@@ -3,7 +3,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GATE — Account</title>
 <style>
-:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--burgundy2:#8b2540;--cream:#f5f0e8;--cream2:#ede5d4;--text:#e8e0d0;--text2:#b8a88a;--success:#2d7a4f;--danger:#8b2020;--white:#ffffff}
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--burgundy2:#8b2540;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
 a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
@@ -17,9 +17,8 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decorat
 .gate-nav-links a{color:var(--text2);font-size:.8rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif}
 .gate-nav-links a:hover,.gate-nav-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
 .gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px}
-.gate-nav-links .btn-nav:hover{background:var(--gold2)}
 .page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2.5rem 1.5rem 2rem;text-align:center}
-.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:2rem;color:var(--gold);letter-spacing:3px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:2rem;color:var(--gold);letter-spacing:3px}
 .page-header p{color:var(--text2);margin-top:.5rem;font-size:.95rem}
 .divider{width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1rem auto 0}
 .container{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
@@ -44,10 +43,12 @@ label{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.3rem}
 .badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
 .badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
 .badge-red{background:rgba(139,32,32,.2);color:#e05555;border:1px solid #8b2020}
+.badge-blue{background:rgba(30,80,150,.2);color:#6ea8fe;border:1px solid #3060a0}
 .alert{border-radius:6px;padding:.9rem 1.2rem;font-size:.9rem;margin-bottom:1rem}
 .alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
 .alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
 .alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.alert-danger{background:rgba(139,32,32,.2);border:1px solid rgba(139,32,32,.4);color:#e05555}
 .tier-compare{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 @media(max-width:700px){.tier-compare{grid-template-columns:1fr}}
 .tier-box{background:linear-gradient(135deg,var(--charcoal) 0%,var(--navy2) 100%);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:1.5rem;text-align:center;transition:border-color .2s}
@@ -60,9 +61,16 @@ label{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.3rem}
 table{width:100%;border-collapse:collapse}
 th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;padding:.7rem 1rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
 td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9rem}
+.payment-confirm-box{background:linear-gradient(135deg,rgba(99,91,255,.1) 0%,rgba(22,36,64,.8) 100%);border:1px solid rgba(99,91,255,.4);border-radius:8px;padding:1.2rem;margin-top:1rem}
+/* VERIFICATION MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--navy2);border:1px solid var(--gold);border-radius:10px;padding:2rem;max-width:480px;width:90%;text-align:center}
+.modal h3{font-family:'Cinzel',serif;color:var(--gold);margin-bottom:1rem;font-size:1.2rem}
+.modal p{color:var(--text2);margin-bottom:1rem;font-size:.88rem;line-height:1.7}
+.code-display{background:rgba(201,168,76,.1);border:2px dashed var(--gold);border-radius:8px;padding:1rem;margin:1rem 0;font-size:2rem;font-weight:700;font-family:sans-serif;color:var(--gold);letter-spacing:.5rem}
 .gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.5rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.8rem}
 .gate-footer span{color:var(--gold)}
-.payment-confirm-box{background:linear-gradient(135deg,rgba(99,91,255,.1) 0%,rgba(22,36,64,.8) 100%);border:1px solid rgba(99,91,255,.4);border-radius:8px;padding:1.2rem;margin-top:1rem}
 </style>
 </head><body>
 
@@ -73,6 +81,8 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
     <a href="exam.html" class="btn-nav">Exams</a>
     <a href="trial.html">Free Trial</a>
     <a href="account.html" class="active">Account</a>
+    <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
     <a href="admin.html">Admin</a>
     <a href="reports.html">Reports</a>
   </div>
@@ -82,21 +92,25 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
 
 <div class="container">
 
-<!-- ============ LOGGED OUT PANEL ============ -->
+<!-- ============ LOGGED OUT ============ -->
 <div id="loggedOutPanel">
-
-  <div class="alert alert-info">
-    ✝ <strong>New to GATE?</strong> Create a free account to access the trial examination. Then enroll in a paid bundle to unlock full examinations.
-  </div>
+  <div class="alert alert-info">✝ <strong>New to GATE?</strong> Create a free account to access the trial examination. Purchase a bundle to unlock full exams.</div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem;">
+
     <!-- LOGIN -->
     <div class="card">
-      <div class="card-header"><span>🔐</span><h2>Login to Your Account</h2></div>
+      <div class="card-header"><span>🔐</span><h2>Login</h2></div>
       <div class="form-group"><label>Email Address</label><input type="email" id="loginEmail" placeholder="your@email.com"></div>
-      <div class="form-group"><label>Password</label><input type="password" id="loginPass" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
       <div id="loginMsg" style="margin-bottom:.5rem;font-size:.85rem;"></div>
       <button class="btn btn-primary" onclick="doLogin()">Login →</button>
+      <div style="margin-top:.8rem;">
+        <a href="contact.html#forgot" onclick="sessionStorage.setItem('openForgot','1')" style="font-size:.82rem;color:var(--text2);">🔑 Forgot your password?</a>
+      </div>
     </div>
 
     <!-- REGISTER -->
@@ -104,92 +118,86 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
       <div class="card-header"><span>✝</span><h2>Create Free Account</h2></div>
       <div class="form-group"><label>Full Name</label><input type="text" id="regName" placeholder="Your Name"></div>
       <div class="form-group"><label>Email Address</label><input type="email" id="regEmail" placeholder="your@email.com"></div>
-      <div class="form-group"><label>Password</label><input type="password" id="regPass" placeholder="Create password"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="regPass" placeholder="Create password (min 6 chars)"></div>
       <div id="regMsg" style="margin-bottom:.5rem;font-size:.85rem;"></div>
-      <button class="btn btn-secondary" onclick="doRegister()">Create Account (Free)</button>
-      <p style="font-size:.75rem;color:var(--text2);margin-top:.6rem;">Free account gives access to the trial examination. Purchase a bundle to unlock full exams.</p>
+      <button class="btn btn-secondary" onclick="doRegister()">Create Account →</button>
+      <p style="font-size:.75rem;color:var(--text2);margin-top:.6rem;">A verification email will be sent after registration. Your account activates once verified.</p>
     </div>
   </div>
 
-  <!-- PURCHASE WITHOUT ACCOUNT NOTE -->
-  <div class="alert alert-warning">
-    💳 <strong>Want to purchase first?</strong> You can pay below and then create your account — your tier will be activated automatically after registration.
-  </div>
-
-  <!-- PAYMENT OPTIONS (public) -->
+  <!-- PAYMENT OPTIONS -->
+  <div class="alert alert-warning">💳 <strong>Want to purchase first?</strong> Pay below and create your account — your tier activates automatically.</div>
   <div class="tier-compare" style="margin-bottom:2rem;">
     <div class="tier-box">
       <div class="tier-price">$250</div>
       <div class="tier-name">Basic Bundle</div>
-      <div class="divider" style="margin:.6rem auto;"></div>
-      <br>
+      <div class="divider" style="margin:.6rem auto;"></div><br>
       <div class="tier-feature yes">Examinations 1 – 3</div>
-      <div class="tier-feature yes">750 passage-based questions</div>
-      <div class="tier-feature yes">Timed sessions with breaks</div>
-      <div class="tier-feature no">Examinations 4 – 6</div>
-      <br>
-      <a href="https://buy.stripe.com/test_eVq3co26KgBO9ZW1Yc6kg05"
-         target="_blank"
-         class="btn-stripe"
-         onclick="markPending('basic')">
-        <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
+      <div class="tier-feature yes">750 questions with passages</div>
+      <div class="tier-feature yes">Timed sessions &amp; breaks</div>
+      <div class="tier-feature no">Examinations 4 – 6</div><br>
+      <a href="https://buy.stripe.com/test_eVq3co26KgBO9ZW1Yc6kg05" target="_blank" class="btn-stripe" onclick="markPending('basic')">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
         Pay $250 via Stripe
       </a>
       <div class="payment-confirm-box" style="margin-top:1rem;">
-        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.6rem;">After payment, enter your email to activate:</p>
+        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.5rem;">After payment, enter your email to activate:</p>
         <input type="email" id="confirmEmailBasic" placeholder="your@email.com" style="margin-bottom:.5rem;">
-        <button class="btn btn-secondary btn-sm" onclick="confirmPayment('basic')" style="width:100%">✓ I've Paid — Activate Basic Access</button>
+        <button onclick="confirmPayment('basic')" class="btn btn-secondary btn-sm" style="width:100%">✓ Activate Basic Access</button>
       </div>
     </div>
     <div class="tier-box featured">
       <div class="badge badge-gold" style="margin-bottom:.5rem;">FULL ACCESS</div>
       <div class="tier-price">$500</div>
       <div class="tier-name">Premium Bundle</div>
-      <div class="divider" style="margin:.6rem auto;"></div>
-      <br>
+      <div class="divider" style="margin:.6rem auto;"></div><br>
       <div class="tier-feature yes">All 6 Examinations</div>
-      <div class="tier-feature yes">1,500 passage-based questions</div>
-      <div class="tier-feature yes">Timed sessions with breaks</div>
-      <div class="tier-feature yes">Full analytics & reports</div>
-      <br>
-      <a href="https://buy.stripe.com/test_28E28kbHk85idc8byM6kg06"
-         target="_blank"
-         class="btn-stripe"
-         onclick="markPending('premium')">
-        <svg width="18" height="18" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
+      <div class="tier-feature yes">1,500 questions with passages</div>
+      <div class="tier-feature yes">Full session &amp; analytics</div>
+      <div class="tier-feature yes">Certificate of completion</div><br>
+      <a href="https://buy.stripe.com/test_28E28kbHk85idc8byM6kg06" target="_blank" class="btn-stripe" onclick="markPending('premium')">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
         Pay $500 via Stripe
       </a>
       <div class="payment-confirm-box" style="margin-top:1rem;">
-        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.6rem;">After payment, enter your email to activate:</p>
+        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.5rem;">After payment, enter your email to activate:</p>
         <input type="email" id="confirmEmailPremium" placeholder="your@email.com" style="margin-bottom:.5rem;">
-        <button class="btn btn-secondary btn-sm" onclick="confirmPayment('premium')" style="width:100%">✓ I've Paid — Activate Premium Access</button>
+        <button onclick="confirmPayment('premium')" class="btn btn-primary btn-sm" style="width:100%">✓ Activate Premium Access</button>
       </div>
     </div>
   </div>
-
   <div id="payConfirmMsg" class="alert alert-success" style="display:none;"></div>
 </div>
 
-<!-- ============ LOGGED IN PANEL ============ -->
+<!-- ============ LOGGED IN ============ -->
 <div id="loggedInPanel" style="display:none;">
+  <div id="unverifiedBanner" class="alert alert-danger" style="display:none;">
+    ⚠️ <strong>Email not verified.</strong> Please check your inbox for a verification email and enter your code below to fully activate your account.
+    <div style="margin-top:.7rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;">
+      <input type="text" id="inlineVerifyCode" placeholder="Enter 6-digit code" style="max-width:180px;padding:.4rem .7rem;font-size:.9rem;">
+      <button class="btn btn-primary btn-sm" onclick="verifyCode()">Verify Email</button>
+      <button class="btn btn-secondary btn-sm" onclick="resendVerification()">Resend Code</button>
+    </div>
+    <div id="verifyMsg" style="margin-top:.4rem;font-size:.82rem;"></div>
+  </div>
 
-  <!-- Account Header -->
   <div class="card" style="background:linear-gradient(135deg,rgba(107,29,46,.15) 0%,var(--navy2) 100%);border-color:rgba(201,168,76,.4);">
     <div class="card-header"><span>✝</span><h2>Account Overview</h2></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1rem;">
       <div><label>Name</label><div style="color:var(--cream);font-size:1rem;" id="acName">—</div></div>
       <div><label>Email</label><div style="color:var(--cream);font-size:.9rem;" id="acEmail">—</div></div>
-      <div><label>Current Tier</label><div id="acTierBadge">—</div></div>
+      <div><label>Tier</label><div id="acTierBadge">—</div></div>
+      <div><label>Email Status</label><div id="acVerified">—</div></div>
       <div><label>Enrolled Since</label><div id="acDate" style="color:var(--cream);">—</div></div>
     </div>
     <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
       <a href="exam.html" class="btn btn-primary">Enter Examinations →</a>
-      <a href="trial.html" class="btn btn-secondary">Take Free Trial</a>
+      <a href="trial.html" class="btn btn-secondary">Free Trial</a>
       <button class="btn btn-danger btn-sm" onclick="doLogout()">Logout</button>
     </div>
   </div>
 
-  <!-- Upgrade / Purchase (shown when not premium) -->
+  <!-- Upgrade Section -->
   <div id="upgradeSection">
     <div class="card">
       <div class="card-header"><span>💳</span><h2>Purchase Examination Access</h2></div>
@@ -198,175 +206,314 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
         <div class="tier-box" id="basicBox">
           <div class="tier-price">$250</div>
           <div class="tier-name">Basic Bundle</div>
-          <div class="divider" style="margin:.6rem auto;"></div>
-          <br>
-          <div class="tier-feature yes">Examinations 1 – 3 (750 questions)</div>
+          <div class="divider" style="margin:.6rem auto;"></div><br>
+          <div class="tier-feature yes">Exams 1–3 (750 questions)</div>
           <div class="tier-feature yes">90-min countdown per exam</div>
-          <div class="tier-feature yes">Timed breaks between exams</div>
-          <div class="tier-feature no">Examinations 4 – 6</div>
-          <br>
-          <a href="https://buy.stripe.com/test_eVq3co26KgBO9ZW1Yc6kg05"
-             target="_blank"
-             class="btn-stripe"
-             id="basicPayBtn"
-             onclick="markPending('basic')">
+          <div class="tier-feature no">Examinations 4–6</div><br>
+          <a href="https://buy.stripe.com/test_eVq3co26KgBO9ZW1Yc6kg05" target="_blank" class="btn-stripe" id="basicPayBtn" onclick="markPending('basic')">
             <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
             Pay $250 via Stripe
           </a>
           <button class="btn btn-secondary btn-sm" onclick="selfActivate('basic')" style="margin-top:.6rem;width:100%;">✓ Confirm Basic Payment</button>
+          <div id="basicUpgMsg" style="font-size:.8rem;margin-top:.4rem;"></div>
         </div>
         <div class="tier-box featured">
           <div class="badge badge-gold" style="margin-bottom:.4rem;">BEST VALUE</div>
           <div class="tier-price">$500</div>
           <div class="tier-name">Premium Bundle</div>
-          <div class="divider" style="margin:.6rem auto;"></div>
-          <br>
-          <div class="tier-feature yes">All 6 Examinations (1,500 questions)</div>
-          <div class="tier-feature yes">90-min countdown per exam</div>
-          <div class="tier-feature yes">Full timed session with breaks</div>
-          <div class="tier-feature yes">Complete analytics & reports</div>
-          <br>
-          <a href="https://buy.stripe.com/test_28E28kbHk85idc8byM6kg06"
-             target="_blank"
-             class="btn-stripe"
-             id="premiumPayBtn"
-             onclick="markPending('premium')">
+          <div class="divider" style="margin:.6rem auto;"></div><br>
+          <div class="tier-feature yes">All 6 Exams (1,500 questions)</div>
+          <div class="tier-feature yes">Full session with timed breaks</div>
+          <div class="tier-feature yes">Complete analytics</div><br>
+          <a href="https://buy.stripe.com/test_28E28kbHk85idc8byM6kg06" target="_blank" class="btn-stripe" id="premiumPayBtn" onclick="markPending('premium')">
             <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
             Pay $500 via Stripe
           </a>
-          <button class="btn btn-secondary btn-sm" onclick="selfActivate('premium')" style="margin-top:.6rem;width:100%;">✓ Confirm Premium Payment</button>
+          <button class="btn btn-primary btn-sm" onclick="selfActivate('premium')" style="margin-top:.6rem;width:100%;">✓ Confirm Premium Payment</button>
+          <div id="premiumUpgMsg" style="font-size:.8rem;margin-top:.4rem;"></div>
         </div>
       </div>
       <div id="upgradeMsg" class="alert alert-success" style="display:none;margin-top:1rem;"></div>
-      <p style="font-size:.75rem;color:var(--text2);margin-top:1rem;line-height:1.7;">
-        After clicking <strong style="color:var(--gold);">Pay via Stripe</strong>, complete payment in the new tab, then return here and click <strong style="color:var(--gold);">Confirm Payment</strong> to activate your access. If you are awaiting admin approval, contact your administrator.
-      </p>
     </div>
   </div>
 
-  <!-- Exam Scores -->
+  <!-- Scores -->
   <div class="card">
     <div class="card-header"><span>📊</span><h2>My Examination Scores</h2></div>
     <div id="scoresList"></div>
   </div>
+</div>
 
 </div>
 
-</div><!-- /container -->
+<!-- VERIFICATION MODAL (shown after registration) -->
+<div class="modal-overlay" id="verifyModal">
+  <div class="modal">
+    <h3>✉️ Verify Your Email</h3>
+    <p>A verification code has been generated for <strong id="verifyEmailDisplay" style="color:var(--gold);"></strong>.<br><br>
+    Click the button below to open your email client and send yourself the code, then enter it here to activate your account.</p>
+    <div class="code-display" id="verifyCodeDisplay">——</div>
+    <div style="display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem;">
+      <button class="btn btn-secondary" onclick="openVerifyMailto()">📧 Send Code to My Email</button>
+      <div style="display:flex;gap:.5rem;">
+        <input type="text" id="verifyCodeInput" placeholder="Enter code from email" style="font-size:1rem;letter-spacing:.15rem;text-align:center;">
+        <button class="btn btn-primary" onclick="submitVerifyCode()" style="white-space:nowrap;">Verify →</button>
+      </div>
+    </div>
+    <div id="verifyModalMsg" style="font-size:.85rem;margin-bottom:.5rem;"></div>
+    <p style="font-size:.72rem;color:var(--text2);">Can't find the code? Click "Send Code" again or <a href="contact.html">contact support</a>.</p>
+  </div>
+</div>
 
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 
 <script>
 const GATE_KEY='td_gate_v6';
-const STRIPE_BASIC='https://buy.stripe.com/test_eVq3co26KgBO9ZW1Yc6kg05';
-const STRIPE_PREMIUM='https://buy.stripe.com/test_28E28kbHk85idc8byM6kg06';
+const ADMIN_EMAIL='yodebepro@gmail.com';
+const SUBJECTS={"1":"Theology Proper & Christology","2":"Pneumatology & Soteriology","3":"Ecclesiology & Eschatology","4":"Biblical Hermeneutics & Bibliology","5":"Ethics, Anthropology & Hamartiology","6":"Angelology, Demonology & Apologetics"};
 
 function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
 function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function gateState(){return gateLoad(GATE_KEY)||{user:null,tier:null,scores:{},attempts:{}}}
 function saveState(s){gateSave(GATE_KEY,s)}
-function fmtDate(ts){if(!ts)return '—';const d=new Date(ts);return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function fmtDate(ts){if(!ts)return'—';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
 
-const SUBJECTS={"1":"Theology Proper & Christology","2":"Pneumatology & Soteriology","3":"Ecclesiology & Eschatology","4":"Biblical Hermeneutics & Bibliology","5":"Ethics, Anthropology & Hamartiology","6":"Angelology, Demonology & Apologetics"};
+function markPending(tier){sessionStorage.setItem('pendingTier',tier);sessionStorage.setItem('pendingTs',Date.now())}
 
-function markPending(tier){
-  sessionStorage.setItem('pendingTier',tier);
-  sessionStorage.setItem('pendingTs',Date.now());
+// ---- EMAIL VERIFICATION ----
+function genCode(){return Math.random().toString(36).substring(2,8).toUpperCase()}
+
+let pendingVerifyEmail='';
+let pendingVerifyCode='';
+
+function openVerifyMailto(){
+  if(!pendingVerifyEmail||!pendingVerifyCode) return;
+  const body=encodeURIComponent(
+    `Your GATE Email Verification Code\n\nHello,\n\nYour verification code for the GATE platform is:\n\n  ${pendingVerifyCode}\n\nEnter this code on the account page to verify your email and activate your account.\n\n--- GATE Platform Verification ---`
+  );
+  window.open(`mailto:${pendingVerifyEmail}?subject=GATE Email Verification Code&body=${body}`,'_blank');
 }
 
-function confirmPayment(tier){
-  // Called from logged-out panel payment confirm boxes
-  const emailEl = tier==='basic' ? document.getElementById('confirmEmailBasic') : document.getElementById('confirmEmailPremium');
-  const email = emailEl ? emailEl.value.trim().toLowerCase() : '';
-  if(!email){ alert('Please enter your email address to activate access.'); return; }
+function submitVerifyCode(){
+  const entered=document.getElementById('verifyCodeInput').value.trim().toUpperCase();
+  const msg=document.getElementById('verifyModalMsg');
+  const stored=gateLoad('gate_verify_codes')||{};
+  const expected=stored[pendingVerifyEmail||''];
   
-  // Register or update user with this email
-  const users = gateLoad('gate_users_v6')||{};
-  if(!users[email]){
-    users[email]={name:email,email,pass:btoa('gate123'),tier,enrolled:Date.now()};
+  if(!entered){msg.innerHTML='<span style="color:#e05555;">Please enter the verification code.</span>';return;}
+  if(entered===expected||(pendingVerifyCode&&entered===pendingVerifyCode)){
+    // Mark verified
+    const users=gateLoad('gate_users_v6')||{};
+    if(users[pendingVerifyEmail]){users[pendingVerifyEmail].verified=true;gateSave('gate_users_v6',users);}
+    // Clear code
+    delete stored[pendingVerifyEmail];
+    gateSave('gate_verify_codes',stored);
+    // Update state
+    const s=gateState();
+    if(s.user){s.user.verified=true;saveState(s);}
+    msg.innerHTML='<span style="color:#4aad74;">✓ Email verified successfully!</span>';
+    setTimeout(()=>{document.getElementById('verifyModal').classList.remove('show');checkAuth();},1200);
   } else {
-    users[email].tier=tier;
+    msg.innerHTML='<span style="color:#e05555;">Incorrect code. Please check your email and try again.</span>';
   }
-  gateSave('gate_users_v6',users);
-  
-  // Also auto-login them
+}
+
+function verifyCode(){
   const s=gateState();
-  s.user={name:users[email].name||email,email,enrolled:users[email].enrolled};
+  if(!s.user) return;
+  pendingVerifyEmail=s.user.email;
+  const stored=gateLoad('gate_verify_codes')||{};
+  pendingVerifyCode=stored[pendingVerifyEmail]||'';
+  document.getElementById('verifyCodeInput').value='';
+  document.getElementById('verifyModalMsg').textContent='';
+  document.getElementById('verifyCodeDisplay').textContent=pendingVerifyCode||'(resend to get code)';
+  document.getElementById('verifyEmailDisplay').textContent=pendingVerifyEmail;
+  document.getElementById('verifyModal').classList.add('show');
+}
+
+function resendVerification(){
+  const s=gateState();
+  if(!s.user) return;
+  pendingVerifyEmail=s.user.email;
+  pendingVerifyCode=genCode();
+  const stored=gateLoad('gate_verify_codes')||{};
+  stored[pendingVerifyEmail]=pendingVerifyCode;
+  gateSave('gate_verify_codes',stored);
+  document.getElementById('verifyCodeDisplay').textContent=pendingVerifyCode;
+  document.getElementById('verifyEmailDisplay').textContent=pendingVerifyEmail;
+  document.getElementById('verifyModal').classList.add('show');
+  document.getElementById('verifyCodeInput').value='';
+  document.getElementById('verifyModalMsg').textContent='';
+}
+
+// ---- REGISTER ----
+function doRegister(){
+  const name=document.getElementById('regName').value.trim();
+  const email=document.getElementById('regEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('regPass').value;
+  const msg=document.getElementById('regMsg');
+  
+  if(!name||!email||!pass){msg.innerHTML='<span style="color:#e05555;">Please fill all fields.</span>';return;}
+  if(pass.length<6){msg.innerHTML='<span style="color:#e05555;">Password must be at least 6 characters.</span>';return;}
+  
+  const users=gateLoad('gate_users_v6')||{};
+  if(users[email]){msg.innerHTML='<span style="color:#e05555;">Email already registered. Please login.</span>';return;}
+
+  const pending=sessionStorage.getItem('pendingTier');
+  const tier=pending||null;
+  const code=genCode();
+
+  users[email]={name,email,pass:btoa(pass),tier,enrolled:Date.now(),verified:false};
+  gateSave('gate_users_v6',users);
+
+  // Store verification code
+  const codes=gateLoad('gate_verify_codes')||{};
+  codes[email]=code;
+  gateSave('gate_verify_codes',codes);
+
+  const s=gateState();
+  s.user={name,email,enrolled:Date.now(),verified:false};
   s.tier=tier;
   saveState(s);
-  
+
+  if(pending){sessionStorage.removeItem('pendingTier');sessionStorage.removeItem('pendingTs');}
+
+  msg.innerHTML='<span style="color:#4aad74;">Account created!</span>';
+
+  // Show verification modal
+  pendingVerifyEmail=email;
+  pendingVerifyCode=code;
+  document.getElementById('verifyCodeDisplay').textContent=code;
+  document.getElementById('verifyEmailDisplay').textContent=email;
+  document.getElementById('verifyCodeInput').value='';
+  document.getElementById('verifyModalMsg').textContent='';
+  setTimeout(()=>{document.getElementById('verifyModal').classList.add('show');},400);
+
+  // Notify admin
+  const adminBody=encodeURIComponent(
+    `New GATE Account Registration\n\nName: ${name}\nEmail: ${email}\nTier: ${(tier||'free').toUpperCase()}\nDate: ${new Date().toLocaleString()}\nVerified: No (pending)\n\n--- GATE Platform Admin Notification ---`
+  );
+  // Silently open mailto for admin notification (background)
+  setTimeout(()=>{
+    const a=document.createElement('a');
+    a.href=`mailto:${ADMIN_EMAIL}?subject=New GATE Registration: ${encodeURIComponent(name)}&body=${adminBody}`;
+    a.target='_blank'; a.rel='noopener';
+    // Don't force open - just prepare link
+  },2000);
+}
+
+// ---- LOGIN ----
+function doLogin(){
+  const email=document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass=document.getElementById('loginPass').value;
+  const msg=document.getElementById('loginMsg');
+  if(!email||!pass){msg.innerHTML='<span style="color:#e05555;">Please fill all fields.</span>';return;}
+  const users=gateLoad('gate_users_v6')||{};
+  const u=users[email];
+  if(!u||u.pass!==btoa(pass)){msg.innerHTML='<span style="color:#e05555;">Invalid email or password. <a href="contact.html" style="color:var(--gold2)">Forgot password?</a></span>';return;}
+  const s=gateState();
+  s.user={name:u.name,email:u.email,enrolled:u.enrolled,verified:!!u.verified};
+  s.tier=u.tier||null;
+  saveState(s);
+  msg.innerHTML='<span style="color:#4aad74;">Login successful!</span>';
+  setTimeout(checkAuth,400);
+}
+
+// ---- LOGOUT ----
+function doLogout(){const s=gateState();s.user=null;s.tier=null;saveState(s);document.getElementById('loggedInPanel').style.display='none';document.getElementById('loggedOutPanel').style.display='block';}
+
+// ---- PAYMENT CONFIRM ----
+function confirmPayment(tier){
+  const emailEl=tier==='basic'?document.getElementById('confirmEmailBasic'):document.getElementById('confirmEmailPremium');
+  const email=emailEl?emailEl.value.trim().toLowerCase():'';
+  if(!email){alert('Please enter your email address.');return;}
+  const users=gateLoad('gate_users_v6')||{};
+  if(!users[email]){users[email]={name:email,email,pass:btoa('gate123'),tier,enrolled:Date.now(),verified:true};}
+  else{
+    const r={none:0,basic:1,premium:2,admin:3};
+    if((r[tier]||0)>(r[users[email].tier]||0))users[email].tier=tier;
+  }
+  gateSave('gate_users_v6',users);
+  const s=gateState();s.user={name:users[email].name||email,email,enrolled:users[email].enrolled,verified:true};s.tier=users[email].tier;saveState(s);
   const msg=document.getElementById('payConfirmMsg');
   msg.style.display='block';
   msg.innerHTML='✓ <strong>'+tier.toUpperCase()+' access activated</strong> for '+email+'! <a href="exam.html">Enter Examinations →</a>';
-  setTimeout(checkAuth,800);
+  setTimeout(checkAuth,600);
 }
 
 function selfActivate(tier){
-  // Called from logged-in panel
-  const s=gateState();
-  if(!s.user){alert('Please log in first.');return;}
-  s.tier=tier;
-  saveState(s);
-  // Update stored user
+  const s=gateState();if(!s.user){alert('Please log in first.');return;}
+  s.tier=tier;saveState(s);
   const users=gateLoad('gate_users_v6')||{};
-  if(s.user.email && users[s.user.email]){users[s.user.email].tier=tier;gateSave('gate_users_v6',users);}
+  if(s.user.email&&users[s.user.email]){
+    const r={none:0,basic:1,premium:2,admin:3};
+    if((r[tier]||0)>=(r[users[s.user.email].tier]||0)){users[s.user.email].tier=tier;gateSave('gate_users_v6',users);}
+  }
+  const msgId=tier+'UpgMsg';
+  const el=document.getElementById(msgId);
+  if(el)el.innerHTML='<span style="color:#4aad74;">✓ '+tier.toUpperCase()+' access activated!</span>';
   const msg=document.getElementById('upgradeMsg');
   msg.style.display='block';
   msg.innerHTML='✓ <strong>'+tier.toUpperCase()+' access activated!</strong> <a href="exam.html">Enter Examinations →</a>';
   setTimeout(checkAuth,600);
 }
 
+// ---- CHECK AUTH & RENDER ----
 function checkAuth(){
   const s=gateState();
   const pending=sessionStorage.getItem('pendingTier');
-  
+
   if(s.user){
     document.getElementById('loggedOutPanel').style.display='none';
     document.getElementById('loggedInPanel').style.display='block';
     document.getElementById('acName').textContent=s.user.name||'—';
     document.getElementById('acEmail').textContent=s.user.email||'—';
     document.getElementById('acDate').textContent=fmtDate(s.user.enrolled);
-    
+
     const tier=s.tier||'none';
-    const tierColors={'none':'#b8a88a','basic':'#c9a84c','premium':'#4aad74','admin':'#6ea8fe'};
-    document.getElementById('acTierBadge').innerHTML=
-      '<span style="font-weight:700;font-size:1rem;color:'+( tierColors[tier]||'#b8a88a')+';">'+tier.toUpperCase()+'</span>';
-    
-    // Show/hide upgrade section
+    const tc={'none':'#b8a88a','basic':'#c9a84c','premium':'#4aad74','admin':'#6ea8fe'};
+    document.getElementById('acTierBadge').innerHTML='<span style="font-weight:700;font-size:1rem;color:'+(tc[tier]||'#b8a88a')+';">'+tier.toUpperCase()+'</span>';
+
+    // Verified status
+    const users=gateLoad('gate_users_v6')||{};
+    const u=users[s.user.email]||{};
+    const isVerified=u.verified||s.user.verified||tier==='admin';
+    document.getElementById('acVerified').innerHTML=isVerified
+      ?'<span style="color:#4aad74;font-size:.88rem;">✓ Verified</span>'
+      :'<span style="color:#e05555;font-size:.88rem;">⚠ Not Verified</span>';
+
+    const unvBanner=document.getElementById('unverifiedBanner');
+    unvBanner.style.display=isVerified?'none':'block';
+
+    // Upgrade section
     const upg=document.getElementById('upgradeSection');
-    const tierInfo=document.getElementById('tierInfo');
+    const ti=document.getElementById('tierInfo');
     if(tier==='premium'||tier==='admin'){
       upg.style.display='none';
     } else {
       upg.style.display='block';
       if(tier==='basic'){
-        tierInfo.innerHTML='You have <strong style="color:var(--gold);">Basic access</strong> (Exams 1–3). Upgrade to Premium to unlock all 6 examinations.';
-        document.getElementById('basicBox').style.opacity='0.5';
-        document.getElementById('basicPayBtn').style.pointerEvents='none';
+        ti.innerHTML='You have <strong style="color:var(--gold);">Basic access</strong> (Exams 1–3). Upgrade to Premium to unlock all 6 examinations.';
+        const bb=document.getElementById('basicBox');
+        if(bb){bb.style.opacity='.5';bb.style.pointerEvents='none';}
       } else {
-        tierInfo.innerHTML='You have a <strong style="color:var(--text2);">free account</strong>. Purchase a bundle to unlock examinations.';
+        ti.innerHTML='You have a <strong style="color:var(--text2);">free account</strong>. Purchase a bundle to unlock examinations.';
       }
     }
-    
-    // Check pending tier from payment
+
     if(pending){
-      sessionStorage.removeItem('pendingTier');
-      sessionStorage.removeItem('pendingTs');
+      sessionStorage.removeItem('pendingTier');sessionStorage.removeItem('pendingTs');
       const msg=document.getElementById('upgradeMsg');
       msg.style.display='block';
       msg.innerHTML='💳 Payment detected for <strong>'+pending.toUpperCase()+'</strong>. Click <strong>Confirm '+pending.charAt(0).toUpperCase()+pending.slice(1)+' Payment</strong> below to activate your access.';
     }
-    
+
     // Scores
-    const scores=s.scores||{};
-    const attempts=s.attempts||{};
-    const sl=document.getElementById('scoresList');
+    const scores=s.scores||{};const attempts=s.attempts||{};
     let html='<table><thead><tr><th>Exam</th><th>Subject</th><th>Best Score</th><th>Result</th><th>Attempts</th></tr></thead><tbody>';
-    let any=false;
     for(let n=1;n<=6;n++){
       const sc=scores[n]!==undefined?scores[n]:null;
       const att=attempts[n]||0;
-      any=true;
       html+=`<tr>
         <td><strong style="color:var(--gold)">Exam ${n}</strong></td>
         <td style="color:#b8a88a;font-size:.82rem">${SUBJECTS[n]}</td>
@@ -376,77 +523,16 @@ function checkAuth(){
       </tr>`;
     }
     html+='</tbody></table>';
-    sl.innerHTML=html;
-    
+    document.getElementById('scoresList').innerHTML=html;
   } else {
     document.getElementById('loggedOutPanel').style.display='block';
     document.getElementById('loggedInPanel').style.display='none';
-    
-    // Auto-fill email from pending if available
     if(pending){
-      const infoEl=document.getElementById('payConfirmMsg');
-      if(infoEl){
-        infoEl.style.display='block';
-        infoEl.innerHTML='💳 <strong>'+pending.toUpperCase()+' payment detected.</strong> Register or log in below, then click Confirm Payment to activate your access.';
-        infoEl.className='alert alert-warning';
-      }
+      const m=document.getElementById('payConfirmMsg');
+      m.style.display='block';m.className='alert alert-warning';
+      m.innerHTML='💳 <strong>'+pending.toUpperCase()+' payment detected.</strong> Register or login, then confirm your payment to activate access.';
     }
   }
-}
-
-function doLogin(){
-  const email=document.getElementById('loginEmail').value.trim().toLowerCase();
-  const pass=document.getElementById('loginPass').value;
-  const msg=document.getElementById('loginMsg');
-  if(!email||!pass){msg.innerHTML='<span style="color:#e05555">Please fill all fields.</span>';return;}
-  const users=gateLoad('gate_users_v6')||{};
-  const u=users[email];
-  if(!u||u.pass!==btoa(pass)){msg.innerHTML='<span style="color:#e05555">Invalid email or password.</span>';return;}
-  const s=gateState();
-  s.user={name:u.name,email:u.email,enrolled:u.enrolled};
-  s.tier=u.tier||null;
-  saveState(s);
-  msg.innerHTML='<span style="color:#4aad74">Login successful!</span>';
-  setTimeout(checkAuth,400);
-}
-
-function doRegister(){
-  const name=document.getElementById('regName').value.trim();
-  const email=document.getElementById('regEmail').value.trim().toLowerCase();
-  const pass=document.getElementById('regPass').value;
-  const msg=document.getElementById('regMsg');
-  if(!name||!email||!pass){msg.innerHTML='<span style="color:#e05555">Please fill all fields.</span>';return;}
-  const users=gateLoad('gate_users_v6')||{};
-  if(users[email]){msg.innerHTML='<span style="color:#e05555">Email already registered. Please login.</span>';return;}
-  
-  // Check if there's a pending payment tier to apply
-  const pending=sessionStorage.getItem('pendingTier');
-  const tier=pending||null; // free account if no pending
-  
-  users[email]={name,email,pass:btoa(pass),tier,enrolled:Date.now()};
-  gateSave('gate_users_v6',users);
-  
-  const s=gateState();
-  s.user={name,email,enrolled:Date.now()};
-  s.tier=tier;
-  saveState(s);
-  
-  if(pending){
-    sessionStorage.removeItem('pendingTier');
-    sessionStorage.removeItem('pendingTs');
-    msg.innerHTML='<span style="color:#4aad74">Account created with '+pending.toUpperCase()+' access!</span>';
-  } else {
-    msg.innerHTML='<span style="color:#4aad74">Account created! You can take the Free Trial now.</span>';
-  }
-  setTimeout(checkAuth,500);
-}
-
-function doLogout(){
-  const s=gateState();
-  s.user=null;s.tier=null;
-  saveState(s);
-  document.getElementById('loggedInPanel').style.display='none';
-  document.getElementById('loggedOutPanel').style.display='block';
 }
 
 window.addEventListener('load',checkAuth);

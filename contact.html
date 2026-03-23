@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Contact & Support</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);padding:0;position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.8rem}
+.gate-logo .crest{font-size:2rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.65rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap}
+.gate-nav-links a{color:var(--text2);font-size:.8rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif}
+.gate-nav-links a:hover,.gate-nav-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px}
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2.5rem 1.5rem 2rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:2rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.5rem;font-size:.95rem}
+.divider{width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1rem auto 0}
+.container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.8rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.8rem;margin-bottom:1.2rem}
+.card-header h2{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.1rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.65rem 1.5rem;border-radius:5px;font-family:sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;letter-spacing:.5px}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.6rem .9rem;font-family:inherit;font-size:.95rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.3rem}
+.form-group{margin-bottom:1rem}
+.alert{border-radius:6px;padding:.9rem 1.2rem;font-size:.9rem;margin-bottom:1rem}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:680px){.two-col{grid-template-columns:1fr}}
+.support-item{display:flex;gap:1rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.support-item:last-child{border-bottom:none}
+.support-icon{font-size:1.5rem;min-width:36px;text-align:center}
+.support-title{color:var(--gold);font-size:.9rem;font-weight:600;font-family:sans-serif}
+.support-desc{color:var(--text2);font-size:.82rem;margin-top:.2rem;line-height:1.6}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.5rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.8rem}
+.gate-footer span{color:var(--gold)}
+</style>
+</head><body>
+
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="bundle.html">Bundles</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav>
+
+<div class="page-header">
+  <h1>Contact & Support</h1>
+  <p>Reach the GATE administration team — we're here to help</p>
+  <div class="divider"></div>
+</div>
+
+<div class="container">
+
+  <div class="two-col">
+
+    <!-- GENERAL CONTACT FORM -->
+    <div class="card">
+      <div class="card-header"><span>✉️</span><h2>Send a Message</h2></div>
+      <div class="form-group"><label>Your Name</label><input type="text" id="contactName" placeholder="Full Name"></div>
+      <div class="form-group"><label>Your Email</label><input type="email" id="contactEmail" placeholder="your@email.com"></div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select id="contactSubject">
+          <option value="">— Select a subject —</option>
+          <option value="General Inquiry">General Inquiry</option>
+          <option value="Enrollment Question">Enrollment / Payment Question</option>
+          <option value="Technical Issue">Technical Issue</option>
+          <option value="Exam Access Problem">Exam Access Problem</option>
+          <option value="Password Reset Request">Password Reset Request</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea id="contactMessage" rows="5" placeholder="Describe your question or issue..."></textarea></div>
+      <div id="contactResult" style="margin-bottom:.5rem;"></div>
+      <button class="btn btn-primary" onclick="sendContact()" style="width:100%;">Send Message →</button>
+      <p style="font-size:.74rem;color:var(--text2);margin-top:.6rem;text-align:center;">This will open your email client pre-filled and addressed to the GATE administration.</p>
+    </div>
+
+    <!-- FORGOT PASSWORD + SUPPORT INFO -->
+    <div>
+      <!-- FORGOT PASSWORD -->
+      <div class="card">
+        <div class="card-header"><span>🔑</span><h2>Forgot Your Password?</h2></div>
+        <p style="color:var(--text2);font-size:.88rem;margin-bottom:1rem;line-height:1.7;">Enter the email address you registered with. A password reset request will be sent to the GATE administration for verification.</p>
+        <div class="form-group"><label>Registered Email Address</label><input type="email" id="forgotEmail" placeholder="your@email.com"></div>
+        <div id="forgotResult" style="margin-bottom:.5rem;font-size:.85rem;"></div>
+        <button class="btn btn-secondary" onclick="sendForgotPassword()" style="width:100%;">Request Password Reset →</button>
+        <p style="font-size:.74rem;color:var(--text2);margin-top:.7rem;line-height:1.6;">The administration will verify your identity and contact you at your registered email within 24–48 hours.</p>
+      </div>
+
+      <!-- SUPPORT INFO -->
+      <div class="card">
+        <div class="card-header"><span>📞</span><h2>Support Information</h2></div>
+        <div class="support-item">
+          <div class="support-icon">✉️</div>
+          <div>
+            <div class="support-title">Email Administration</div>
+            <div class="support-desc"><a href="mailto:yodebepro@gmail.com">yodebepro@gmail.com</a><br>Response within 24–48 hours</div>
+          </div>
+        </div>
+        <div class="support-item">
+          <div class="support-icon">⏱</div>
+          <div>
+            <div class="support-title">Support Hours</div>
+            <div class="support-desc">Monday – Friday, 9 AM – 6 PM EST<br>Limited weekend availability</div>
+          </div>
+        </div>
+        <div class="support-item">
+          <div class="support-icon">🔐</div>
+          <div>
+            <div class="support-title">Account & Access Issues</div>
+            <div class="support-desc">For exam access problems or tier upgrades, include your registered email and payment confirmation in your message.</div>
+          </div>
+        </div>
+        <div class="support-item">
+          <div class="support-icon">📋</div>
+          <div>
+            <div class="support-title">Before Contacting</div>
+            <div class="support-desc">Check that you're logged in at <a href="account.html">My Account</a>. Admins can grant access directly via the <a href="admin.html">Admin Console</a>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved · <a href="mailto:yodebepro@gmail.com">yodebepro@gmail.com</a></p></footer>
+
+<script>
+const ADMIN_EMAIL = 'yodebepro@gmail.com';
+const GATE_KEY = 'td_gate_v6';
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateState(){return gateLoad(GATE_KEY)||{user:null,tier:null}}
+
+function sendContact() {
+  const name    = document.getElementById('contactName').value.trim();
+  const email   = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value;
+  const message = document.getElementById('contactMessage').value.trim();
+  const res     = document.getElementById('contactResult');
+
+  if (!name || !email || !subject || !message) {
+    res.innerHTML = '<div class="alert alert-warning">Please fill in all fields before sending.</div>';
+    return;
+  }
+
+  const s = gateState();
+  const userInfo = s.user ? `\n\n--- Account Info ---\nName: ${s.user.name||'—'}\nEmail: ${s.user.email||'—'}\nTier: ${(s.tier||'none').toUpperCase()}` : '\n\n--- Not logged in ---';
+
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}${userInfo}\n\n--- Sent from GATE Platform ---`
+  );
+  const mailtoLink = `mailto:${ADMIN_EMAIL}?subject=GATE Contact: ${encodeURIComponent(subject)}&body=${body}`;
+
+  window.location.href = mailtoLink;
+
+  res.innerHTML = '<div class="alert alert-success">✓ Your email client has opened with your message pre-filled. Please send it to complete your inquiry.</div>';
+}
+
+function sendForgotPassword() {
+  const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
+  const res   = document.getElementById('forgotResult');
+
+  if (!email) {
+    res.innerHTML = '<span style="color:#e05555;">Please enter your registered email address.</span>';
+    return;
+  }
+
+  // Check if this email is registered
+  const users = gateLoad('gate_users_v6') || {};
+  const exists = !!users[email];
+
+  const body = encodeURIComponent(
+    `Password Reset Request\n\nA user has requested a password reset for the following email address:\n\n  Email: ${email}\n\n` +
+    (exists
+      ? `STATUS: This email IS registered in the GATE system.\n\nPlease verify the identity of this user and assist them with resetting their password via the Admin Console.`
+      : `STATUS: This email was NOT found in the current GATE system.\n\nPlease advise the user accordingly.`) +
+    `\n\n--- Password Reset Request from GATE Platform ---`
+  );
+
+  const mailtoLink = `mailto:${ADMIN_EMAIL}?subject=GATE Password Reset Request: ${encodeURIComponent(email)}&body=${body}`;
+  window.location.href = mailtoLink;
+
+  res.innerHTML = '<span style="color:#4aad74;">✓ Your reset request has been prepared. Your email client has opened — please send the email to reach the administration. You will be contacted within 24–48 hours.</span>';
+}
+</script>
+</body></html>

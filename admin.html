@@ -215,6 +215,7 @@ tr:hover td { background: rgba(201,168,76,0.05); }
     <a href="trial.html">Free Trial</a>
     <a href="account.html">Account</a>
     <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
     <a href="admin.html" class="active">Admin</a>
     <a href="reports.html">Reports</a>
   </div>
@@ -322,9 +323,20 @@ function loadAdminData(){
   const uArr=Object.values(users);
   if(!uArr.length){ uList.innerHTML='<div style="color:var(--text2);">No users registered yet.</div>';}
   else{
-    let t='<table><thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Enrolled</th><th>Action</th></tr></thead><tbody>';
+    let t='<table><thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Email Status</th><th>Enrolled</th><th>Actions</th></tr></thead><tbody>';
     uArr.forEach(u=>{
-      t+=`<tr><td>${u.name||'—'}</td><td style="font-size:.82rem;">${u.email}</td><td><span class="badge badge-gold">${(u.tier||'none').toUpperCase()}</span></td><td style="font-size:.78rem;">${fmtDate(u.enrolled)}</td><td><button class="btn btn-danger btn-sm" onclick="deleteUser('${u.email}')">Delete</button></td></tr>`;
+      const vfd=u.verified||u.tier==='admin';
+      t+=`<tr>
+        <td>${u.name||'—'}</td>
+        <td style="font-size:.8rem;">${u.email}</td>
+        <td><span class="badge badge-gold">${(u.tier||'none').toUpperCase()}</span></td>
+        <td><span style="color:${vfd?'#4aad74':'#e05555'};font-size:.78rem;">${vfd?'✓ Verified':'⚠ Unverified'}</span></td>
+        <td style="font-size:.78rem;">${fmtDate(u.enrolled)}</td>
+        <td style="display:flex;gap:.3rem;flex-wrap:wrap;">
+          ${!vfd?`<button class="btn btn-secondary btn-sm" onclick="verifyUser('${u.email}')">Verify</button>`:''}
+          <button class="btn btn-danger btn-sm" onclick="deleteUser('${u.email}')">Delete</button>
+        </td>
+      </tr>`;
     });
     t+='</tbody></table>';
     uList.innerHTML=t;
@@ -350,6 +362,14 @@ function grantAccess(){
   else users[email].tier=tier;
   gateSave('gate_users_v6',users);
   msg.innerHTML='<span style="color:#4aad74;">Access granted: '+tier.toUpperCase()+'</span>';
+  loadAdminData();
+}
+function verifyUser(email){
+  const users=gateLoad('gate_users_v6')||{};
+  if(users[email]){users[email].verified=true;gateSave('gate_users_v6',users);}
+  // Also clear verification code
+  const codes=gateLoad('gate_verify_codes')||{};
+  delete codes[email]; gateSave('gate_verify_codes',codes);
   loadAdminData();
 }
 function deleteUser(email){

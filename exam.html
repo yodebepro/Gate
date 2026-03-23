@@ -406,6 +406,7 @@ tr:hover td { background: rgba(201,168,76,0.05); }
     <a href="trial.html">Free Trial</a>
     <a href="account.html">Account</a>
     <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
     <a href="admin.html">Admin</a>
     <a href="reports.html">Reports</a>
   </div>
@@ -642,6 +643,16 @@ function getTierAccess(tier) {
 }
 
 function loadSelector() {
+  // Always hide session overlays when returning to selector
+  const bo = document.getElementById('breakOverlay');
+  const so = document.getElementById('sessionCompleteOverlay');
+  if (bo) bo.style.display = 'none';
+  if (so) so.style.display = 'none';
+  // Reset session state so individual exam cards work cleanly
+  if (!sessionMode) {
+    sessionIndex = 0;
+    sessionExams = [];
+  }
   const s = gateState();
   const tier = s.tier;
   const allowed = getTierAccess(tier);
@@ -684,10 +695,18 @@ function loadSelector() {
   }
 }
 
-function startExam(n) {
+function startExam(n, fromSession = false) {
   const qs = ALL_EXAMS[String(n)];
   if (!qs || !qs.length) { alert('Exam data not found.'); return; }
-  
+
+  // If called directly (not from a running session), fully reset session state
+  if (!fromSession) {
+    sessionMode = false;
+    sessionIndex = 0;
+    sessionExams = [];
+    if (breakInterval) { clearInterval(breakInterval); breakInterval = null; }
+  }
+
   currentExam = n;
   userAnswers = new Array(qs.length).fill(null);
   currentQIndex = 0;
@@ -990,7 +1009,7 @@ function skipBreak() {
 
 function startNextSessionExam(n) {
   document.getElementById('breakOverlay').style.display = 'none';
-  startExam(n);
+  startExam(n, true);
 }
 
 function showSessionComplete() {
@@ -1027,7 +1046,7 @@ function startSession(tier) {
   sessionMode = true;
   sessionExams = allowed;  // e.g. [1,2,3] for basic, [1,2,3,4,5,6] for premium
   sessionIndex = 0;
-  startExam(sessionExams[0]);
+  startExam(sessionExams[0], true);
 }
 
 // ============ END BREAK ROOM ============
