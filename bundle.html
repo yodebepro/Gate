@@ -123,9 +123,9 @@ label{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.3rem}
         Pay $250 — Enroll Basic
       </a>
       <div class="confirm-box">
-        <p>After completing payment, enter your email to activate access immediately:</p>
+        <p>After completing payment, enter your email to notify the admin. <strong style="color:var(--gold);">The admin will activate your access after verifying payment.</strong></p>
         <input type="email" id="basicEmail" placeholder="your@email.com" style="margin-bottom:.5rem;">
-        <button onclick="activateBundle('basic')" class="btn btn-secondary" style="width:100%;margin-top:.3rem;">✓ Confirm Basic Payment &amp; Activate</button>
+        <button onclick="requestBundle('basic')" class="btn btn-secondary" style="width:100%;margin-top:.3rem;">📩 Notify Admin — I've Paid Basic</button>
         <div id="basicMsg" style="margin-top:.5rem;font-size:.82rem;"></div>
       </div>
     </div>
@@ -161,9 +161,9 @@ label{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.3rem}
         Pay $500 — Enroll Premium
       </a>
       <div class="confirm-box">
-        <p>After completing payment, enter your email to activate access immediately:</p>
+        <p>After completing payment, enter your email to notify the admin. <strong style="color:var(--gold);">The admin will activate your access after verifying payment.</strong></p>
         <input type="email" id="premiumEmail" placeholder="your@email.com" style="margin-bottom:.5rem;">
-        <button onclick="activateBundle('premium')" class="btn btn-primary" style="width:100%;margin-top:.3rem;">✓ Confirm Premium Payment &amp; Activate</button>
+        <button onclick="requestBundle('premium')" class="btn btn-primary" style="width:100%;margin-top:.3rem;">📩 Notify Admin — I've Paid Premium</button>
         <div id="premiumMsg" style="margin-top:.5rem;font-size:.82rem;"></div>
       </div>
     </div>
@@ -239,35 +239,29 @@ function markPending(tier){
   sessionStorage.setItem('pendingTs',Date.now());
 }
 
-function activateBundle(tier){
+function requestBundle(tier){
   const emailEl=document.getElementById(tier+'Email');
   const msgEl=document.getElementById(tier+'Msg');
   const email=emailEl.value.trim().toLowerCase();
   if(!email){msgEl.innerHTML='<span style="color:#e05555;">Please enter your email address.</span>';return;}
 
-  // Get or create user record
-  const users=gateLoad('gate_users_v6')||{};
-  if(!users[email]){
-    users[email]={name:email,email,pass:btoa('gate123'),tier,enrolled:Date.now()};
-  } else {
-    // Upgrade tier (only upgrade, never downgrade)
-    const tierRank={none:0,basic:1,premium:2,admin:3};
-    if((tierRank[tier]||0)>(tierRank[users[email].tier]||0)){
-      users[email].tier=tier;
-    }
+  // Save as pending — does NOT activate tier
+  const pending=gateLoad('gate_pending_payments')||[];
+  const already=pending.find(p=>p.email===email&&p.tier===tier&&p.status==='pending');
+  if(!already){
+    pending.push({email,tier,requestedAt:Date.now(),status:'pending'});
+    gateSave('gate_pending_payments',pending);
   }
-  gateSave('gate_users_v6',users);
 
-  // Auto-login
-  const s=gateState();
-  s.user={name:users[email].name||email,email,enrolled:users[email].enrolled};
-  s.tier=users[email].tier;
-  saveState(s);
+  // Notify admin via email
+  const body=encodeURIComponent(
+    'Payment Confirmation Request\n\nEmail: '+email+'\nBundle: '+tier.toUpperCase()+' ($'+(tier==='basic'?250:500)+')\nDate: '+new Date().toLocaleString()+'\n\nPlease verify and approve in the Admin Console.\n\n--- GATE Platform ---'
+  );
+  window.open('mailto:yodebepro@gmail.com?subject=GATE+Payment+Request:+'+encodeURIComponent(tier.toUpperCase()+' — '+email)+'&body='+body,'_blank');
+
+  msgEl.innerHTML='<span style="color:#c9a84c;">📩 Admin notified! Your <strong>'+tier.toUpperCase()+'</strong> access will be activated after the admin confirms your payment. Please check back within 24–48 hours or <a href="account.html">log in to your account</a> once activated.</span>';
   sessionStorage.removeItem('pendingTier');
   sessionStorage.removeItem('pendingTs');
-
-  msgEl.innerHTML='<span style="color:#4aad74;">✓ '+tier.toUpperCase()+' access activated! <a href="exam.html">Enter Examinations →</a></span>';
-  checkBanner();
 }
 
 function checkBanner(){

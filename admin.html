@@ -246,6 +246,14 @@ tr:hover td { background: rgba(201,168,76,0.05); }
       <div id="platformStats"></div>
     </div>
   </div>
+  <!-- PENDING PAYMENTS -->
+  <div class="card" style="margin-top:1.5rem;border-color:rgba(201,168,76,.5);">
+    <div class="card-header"><span>💳</span><h2>Pending Payment Approvals</h2></div>
+    <div id="pendingList">
+      <div style="color:var(--text2);font-size:.88rem;">No pending payment requests.</div>
+    </div>
+  </div>
+
   <div class="card" style="margin-top:1.5rem;">
     <div class="card-header"><span>👥</span><h2>All Users</h2></div>
     <div id="userList"></div>
@@ -318,6 +326,7 @@ function checkAdmin(){
   }
 }
 function loadAdminData(){
+  loadPendingPayments();
   const users=gateLoad('gate_users_v6')||{};
   const uList=document.getElementById('userList');
   const uArr=Object.values(users);
@@ -364,6 +373,76 @@ function grantAccess(){
   msg.innerHTML='<span style="color:#4aad74;">Access granted: '+tier.toUpperCase()+'</span>';
   loadAdminData();
 }
+// Load and display pending payment requests
+function loadPendingPayments(){
+  const pending=gateLoad('gate_pending_payments')||[];
+  const active=pending.filter(p=>p.status==='pending');
+  const div=document.getElementById('pendingList');
+  if(!active.length){
+    div.innerHTML='<div style="color:var(--text2);font-size:.88rem;padding:.4rem 0;">No pending payment requests.</div>';
+    return;
+  }
+  let html='<table><thead><tr><th>Email</th><th>Bundle</th><th>Amount</th><th>Requested</th><th>Action</th></tr></thead><tbody>';
+  active.forEach((p,i)=>{
+    const idx=pending.indexOf(p);
+    html+=`<tr>
+      <td style="font-size:.85rem;">${p.email}</td>
+      <td><span class="badge badge-gold">${p.tier.toUpperCase()}</span></td>
+      <td style="color:var(--gold);font-family:sans-serif;font-weight:700;">$${p.tier==='basic'?250:500}</td>
+      <td style="font-size:.78rem;">${new Date(p.requestedAt).toLocaleString()}</td>
+      <td style="display:flex;gap:.4rem;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm" onclick="approvePayment(${idx})">✓ Approve</button>
+        <button class="btn btn-danger btn-sm" onclick="denyPayment(${idx})">✗ Deny</button>
+      </td>
+    </tr>`;
+  });
+  html+='</tbody></table>';
+  div.innerHTML=html;
+}
+
+function approvePayment(idx){
+  const pending=gateLoad('gate_pending_payments')||[];
+  if(!pending[idx]) return;
+  const req=pending[idx];
+  req.status='approved';
+  req.approvedAt=Date.now();
+
+  // Activate the user's tier
+  const users=gateLoad('gate_users_v6')||{};
+  const tierRank={none:0,basic:1,premium:2,admin:3};
+  if(!users[req.email]){
+    users[req.email]={name:req.email,email:req.email,pass:btoa('gate123'),tier:req.tier,enrolled:Date.now(),verified:true};
+  } else {
+    if((tierRank[req.tier]||0)>(tierRank[users[req.email].tier]||0)){
+      users[req.email].tier=req.tier;
+    }
+  }
+  gateSave('gate_users_v6',users);
+  gateSave('gate_pending_payments',pending);
+
+  // If this user is currently logged in, update their state
+  const s=gateLoad('td_gate_v6')||{};
+  if(s.user&&s.user.email===req.email){
+    s.tier=users[req.email].tier;
+    gateSave('td_gate_v6',s);
+  }
+
+  alert('✓ Access approved!
+
+'+req.email+' now has '+req.tier.toUpperCase()+' access.');
+  loadAdminData();
+}
+
+function denyPayment(idx){
+  if(!confirm('Deny this payment request?')) return;
+  const pending=gateLoad('gate_pending_payments')||[];
+  if(!pending[idx]) return;
+  pending[idx].status='denied';
+  pending[idx].deniedAt=Date.now();
+  gateSave('gate_pending_payments',pending);
+  loadAdminData();
+}
+
 function verifyUser(email){
   const users=gateLoad('gate_users_v6')||{};
   if(users[email]){users[email].verified=true;gateSave('gate_users_v6',users);}

@@ -141,9 +141,10 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
         Pay $250 via Stripe
       </a>
       <div class="payment-confirm-box" style="margin-top:1rem;">
-        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.5rem;">After payment, enter your email to activate:</p>
+        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.5rem;">After payment, submit your email to notify the admin:</p>
         <input type="email" id="confirmEmailBasic" placeholder="your@email.com" style="margin-bottom:.5rem;">
-        <button onclick="confirmPayment('basic')" class="btn btn-secondary btn-sm" style="width:100%">✓ Activate Basic Access</button>
+        <button onclick="submitPaymentRequest('basic')" class="btn btn-secondary btn-sm" style="width:100%">📩 Notify Admin of Basic Payment</button>
+        <div id="basicRequestMsg" style="font-size:.78rem;margin-top:.4rem;"></div>
       </div>
     </div>
     <div class="tier-box featured">
@@ -160,9 +161,10 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
         Pay $500 via Stripe
       </a>
       <div class="payment-confirm-box" style="margin-top:1rem;">
-        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.5rem;">After payment, enter your email to activate:</p>
+        <p style="font-size:.78rem;color:#b8a88a;margin-bottom:.5rem;">After payment, submit your email to notify the admin:</p>
         <input type="email" id="confirmEmailPremium" placeholder="your@email.com" style="margin-bottom:.5rem;">
-        <button onclick="confirmPayment('premium')" class="btn btn-primary btn-sm" style="width:100%">✓ Activate Premium Access</button>
+        <button onclick="submitPaymentRequest('premium')" class="btn btn-primary btn-sm" style="width:100%">📩 Notify Admin of Premium Payment</button>
+        <div id="premiumRequestMsg" style="font-size:.78rem;margin-top:.4rem;"></div>
       </div>
     </div>
   </div>
@@ -214,7 +216,7 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
             <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
             Pay $250 via Stripe
           </a>
-          <button class="btn btn-secondary btn-sm" onclick="selfActivate('basic')" style="margin-top:.6rem;width:100%;">✓ Confirm Basic Payment</button>
+          <button class="btn btn-secondary btn-sm" onclick="requestActivation('basic')" style="margin-top:.6rem;width:100%;">📩 Notify Admin — I've Paid Basic</button>
           <div id="basicUpgMsg" style="font-size:.8rem;margin-top:.4rem;"></div>
         </div>
         <div class="tier-box featured">
@@ -229,7 +231,7 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
             <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#fff"/><path d="M13.5 21c-1.7 0-3-1.3-3-3s1.3-3 3-3 3 1.3 3 3-1.3 3-3 3zm5-8c0-2.8-2.2-5-5-5s-5 2.2-5 5v1h-1v8h12v-8h-1v-1z" fill="#635bff"/></svg>
             Pay $500 via Stripe
           </a>
-          <button class="btn btn-primary btn-sm" onclick="selfActivate('premium')" style="margin-top:.6rem;width:100%;">✓ Confirm Premium Payment</button>
+          <button class="btn btn-primary btn-sm" onclick="requestActivation('premium')" style="margin-top:.6rem;width:100%;">📩 Notify Admin — I've Paid Premium</button>
           <div id="premiumUpgMsg" style="font-size:.8rem;margin-top:.4rem;"></div>
         </div>
       </div>
@@ -423,39 +425,73 @@ function doLogin(){
 function doLogout(){const s=gateState();s.user=null;s.tier=null;saveState(s);document.getElementById('loggedInPanel').style.display='none';document.getElementById('loggedOutPanel').style.display='block';}
 
 // ---- PAYMENT CONFIRM ----
-function confirmPayment(tier){
+// ---- PAYMENT REQUEST (user notifies admin - does NOT activate tier) ----
+function submitPaymentRequest(tier){
   const emailEl=tier==='basic'?document.getElementById('confirmEmailBasic'):document.getElementById('confirmEmailPremium');
+  const msgEl=document.getElementById(tier==='basic'?'basicRequestMsg':'premiumRequestMsg');
   const email=emailEl?emailEl.value.trim().toLowerCase():'';
-  if(!email){alert('Please enter your email address.');return;}
-  const users=gateLoad('gate_users_v6')||{};
-  if(!users[email]){users[email]={name:email,email,pass:btoa('gate123'),tier,enrolled:Date.now(),verified:true};}
-  else{
-    const r={none:0,basic:1,premium:2,admin:3};
-    if((r[tier]||0)>(r[users[email].tier]||0))users[email].tier=tier;
+  if(!email){if(msgEl)msgEl.innerHTML='<span style="color:#e05555;">Please enter your email.</span>';return;}
+
+  // Save pending request (does NOT change tier - admin must approve)
+  const pending=gateLoad('gate_pending_payments')||[];
+  const alreadyPending=pending.find(p=>p.email===email&&p.tier===tier&&p.status==='pending');
+  if(!alreadyPending){
+    pending.push({email,tier,requestedAt:Date.now(),status:'pending'});
+    gateSave('gate_pending_payments',pending);
   }
-  gateSave('gate_users_v6',users);
-  const s=gateState();s.user={name:users[email].name||email,email,enrolled:users[email].enrolled,verified:true};s.tier=users[email].tier;saveState(s);
-  const msg=document.getElementById('payConfirmMsg');
-  msg.style.display='block';
-  msg.innerHTML='✓ <strong>'+tier.toUpperCase()+' access activated</strong> for '+email+'! <a href="exam.html">Enter Examinations →</a>';
-  setTimeout(checkAuth,600);
+
+  // Open admin notification email
+  const body=encodeURIComponent(
+    `Payment Confirmation Request
+
+A user has completed payment and is requesting access activation:
+
+Email: ${email}
+Bundle: ${tier.toUpperCase()} ($${tier==='basic'?250:500})
+Date: ${new Date().toLocaleString()}
+
+Please log in to the Admin Console to verify and approve this request.
+
+--- GATE Platform Payment Request ---`
+  );
+  window.open('mailto:yodebepro@gmail.com?subject=GATE Payment Request: '+encodeURIComponent(tier.toUpperCase()+' — '+email)+'&body='+body,'_blank');
+
+  if(msgEl)msgEl.innerHTML='<span style="color:#c9a84c;">📩 Admin has been notified. Your access will be activated once the admin confirms your payment. This usually takes 24–48 hours.</span>';
 }
 
-function selfActivate(tier){
+function requestActivation(tier){
   const s=gateState();if(!s.user){alert('Please log in first.');return;}
-  s.tier=tier;saveState(s);
-  const users=gateLoad('gate_users_v6')||{};
-  if(s.user.email&&users[s.user.email]){
-    const r={none:0,basic:1,premium:2,admin:3};
-    if((r[tier]||0)>=(r[users[s.user.email].tier]||0)){users[s.user.email].tier=tier;gateSave('gate_users_v6',users);}
+
+  // Save pending request (does NOT change tier - admin must approve)
+  const pending=gateLoad('gate_pending_payments')||[];
+  const alreadyPending=pending.find(p=>p.email===s.user.email&&p.tier===tier&&p.status==='pending');
+  if(!alreadyPending){
+    pending.push({email:s.user.email,name:s.user.name||'',tier,requestedAt:Date.now(),status:'pending'});
+    gateSave('gate_pending_payments',pending);
   }
+
+  // Open admin notification email
+  const body=encodeURIComponent(
+    `Payment Confirmation Request
+
+A registered user has completed payment and is requesting access activation:
+
+Name: ${s.user.name||'—'}
+Email: ${s.user.email}
+Bundle: ${tier.toUpperCase()} ($${tier==='basic'?250:500})
+Date: ${new Date().toLocaleString()}
+
+Please log in to the Admin Console to verify and approve this request.
+
+--- GATE Platform Payment Request ---`
+  );
+  window.open('mailto:yodebepro@gmail.com?subject=GATE Payment Request: '+encodeURIComponent(tier.toUpperCase()+' — '+s.user.email)+'&body='+body,'_blank');
+
   const msgId=tier+'UpgMsg';
   const el=document.getElementById(msgId);
-  if(el)el.innerHTML='<span style="color:#4aad74;">✓ '+tier.toUpperCase()+' access activated!</span>';
+  if(el)el.innerHTML='<span style="color:#c9a84c;">📩 Admin notified. Access will be activated after the admin confirms your payment (24–48 hours).</span>';
   const msg=document.getElementById('upgradeMsg');
-  msg.style.display='block';
-  msg.innerHTML='✓ <strong>'+tier.toUpperCase()+' access activated!</strong> <a href="exam.html">Enter Examinations →</a>';
-  setTimeout(checkAuth,600);
+  if(msg){msg.style.display='block';msg.innerHTML='📩 <strong>Payment request submitted.</strong> The admin has been notified and will activate your <strong>'+tier.toUpperCase()+'</strong> access after confirming your payment.';}
 }
 
 // ---- CHECK AUTH & RENDER ----
@@ -503,9 +539,16 @@ function checkAuth(){
 
     if(pending){
       sessionStorage.removeItem('pendingTier');sessionStorage.removeItem('pendingTs');
-      const msg=document.getElementById('upgradeMsg');
+    }
+
+    // Show banner if user has a pending payment request awaiting admin approval
+    const pendingPayments=gateLoad('gate_pending_payments')||[];
+    const myPending=pendingPayments.find(p=>p.email===s.user.email&&p.status==='pending');
+    const msg=document.getElementById('upgradeMsg');
+    if(myPending){
       msg.style.display='block';
-      msg.innerHTML='💳 Payment detected for <strong>'+pending.toUpperCase()+'</strong>. Click <strong>Confirm '+pending.charAt(0).toUpperCase()+pending.slice(1)+' Payment</strong> below to activate your access.';
+      msg.className='alert alert-warning';
+      msg.innerHTML='⏳ <strong>Payment request submitted</strong> for '+myPending.tier.toUpperCase()+' bundle. The admin has been notified and will activate your access after verifying your payment. No further action needed.';
     }
 
     // Scores
