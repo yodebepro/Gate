@@ -239,6 +239,20 @@ td{padding:.7rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.9
     </div>
   </div>
 
+  <!-- Change Password -->
+  <div class="card">
+    <div class="card-header"><span>🔑</span><h2>Change Password</h2></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;">
+      <div class="form-group" style="margin:0;"><label>Current Password</label><input type="password" id="cpCurrent" placeholder="Current password"></div>
+      <div class="form-group" style="margin:0;"><label>New Password</label><input type="password" id="cpNew" placeholder="New password (min 6 chars)"></div>
+      <div class="form-group" style="margin:0;"><label>Confirm New</label><input type="password" id="cpConfirm" placeholder="Confirm new password"></div>
+    </div>
+    <div style="margin-top:.8rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <button class="btn btn-secondary btn-sm" onclick="changePassword()">Update Password</button>
+      <div id="cpMsg" style="font-size:.85rem;"></div>
+    </div>
+  </div>
+
   <!-- Scores -->
   <div class="card">
     <div class="card-header"><span>📊</span><h2>My Examination Scores</h2></div>
@@ -405,20 +419,60 @@ function doRegister(){
 }
 
 // ---- LOGIN ----
+const ADMIN_PASS_HASH = btoa('GATE2025admin');
+
 function doLogin(){
   const email=document.getElementById('loginEmail').value.trim().toLowerCase();
   const pass=document.getElementById('loginPass').value;
   const msg=document.getElementById('loginMsg');
   if(!email||!pass){msg.innerHTML='<span style="color:#e05555;">Please fill all fields.</span>';return;}
+
+  // CASE A: Admin master login — any email + admin password
+  if(pass==='GATE2025admin'||btoa(pass)===ADMIN_PASS_HASH){
+    const users=gateLoad('gate_users_v6')||{};
+    // Ensure admin record exists with this email
+    users[email]={
+      name: users[email]?users[email].name:(email.includes('@')?email.split('@')[0]:email),
+      email, pass:btoa(pass), tier:'admin',
+      enrolled: users[email]?users[email].enrolled:Date.now(),
+      verified:true, active:true
+    };
+    gateSave('gate_users_v6',users);
+    const s=gateState();
+    s.user={name:users[email].name,email,enrolled:users[email].enrolled,verified:true};
+    s.tier='admin';
+    saveState(s);
+    msg.innerHTML='<span style="color:#4aad74;">Admin login successful!</span>';
+    setTimeout(checkAuth,400);
+    return;
+  }
+
   const users=gateLoad('gate_users_v6')||{};
   const u=users[email];
-  if(!u||u.pass!==btoa(pass)){msg.innerHTML='<span style="color:#e05555;">Invalid email or password. <a href="contact.html" style="color:var(--gold2)">Forgot password?</a></span>';return;}
-  const s=gateState();
-  s.user={name:u.name,email:u.email,enrolled:u.enrolled,verified:!!u.verified};
-  s.tier=u.tier||null;
-  saveState(s);
-  msg.innerHTML='<span style="color:#4aad74;">Login successful!</span>';
-  setTimeout(checkAuth,400);
+
+  // CASE B: Account exists with matching password
+  if(u && u.pass===btoa(pass)){
+    // Check if deactivated
+    if(u.active===false){
+      msg.innerHTML='<span style="color:#e05555;">This account has been deactivated. Please <a href="contact.html" style="color:var(--gold2)">contact support</a>.</span>';
+      return;
+    }
+    const s=gateState();
+    s.user={name:u.name,email:u.email,enrolled:u.enrolled,verified:!!u.verified};
+    s.tier=u.tier||null;
+    saveState(s);
+    msg.innerHTML='<span style="color:#4aad74;">Login successful!</span>';
+    setTimeout(checkAuth,400);
+    return;
+  }
+
+  // CASE C: Account was admin-created (default pass = gate123) but user hasn't set their own password
+  if(u && u.pass===btoa('gate123') && pass!=='gate123'){
+    msg.innerHTML='<span style="color:#e05555;">Your account was set up by the admin. Try password: <strong style="color:var(--gold2);">gate123</strong>, then change it. Or <a href="contact.html" style="color:var(--gold2)">contact support</a>.</span>';
+    return;
+  }
+
+  msg.innerHTML='<span style="color:#e05555;">Invalid email or password. <a href="contact.html" style="color:var(--gold2)">Forgot password?</a></span>';
 }
 
 // ---- LOGOUT ----
@@ -576,6 +630,33 @@ function checkAuth(){
       m.innerHTML='💳 <strong>'+pending.toUpperCase()+' payment detected.</strong> Register or login, then confirm your payment to activate access.';
     }
   }
+}
+
+function changePassword(){
+  const s=gateState();
+  if(!s.user){return;}
+  const cur=document.getElementById('cpCurrent').value;
+  const nw=document.getElementById('cpNew').value;
+  const conf=document.getElementById('cpConfirm').value;
+  const msg=document.getElementById('cpMsg');
+  if(!cur||!nw||!conf){msg.innerHTML='<span style="color:#e05555;">Please fill all three fields.</span>';return;}
+  if(nw.length<6){msg.innerHTML='<span style="color:#e05555;">New password must be at least 6 characters.</span>';return;}
+  if(nw!==conf){msg.innerHTML='<span style="color:#e05555;">New passwords do not match.</span>';return;}
+  const users=gateLoad('gate_users_v6')||{};
+  const u=users[s.user.email];
+  if(!u){msg.innerHTML='<span style="color:#e05555;">Account not found.</span>';return;}
+  // Allow change if current password matches OR if current is admin password
+  const adminOk=(cur==='GATE2025admin'||btoa(cur)===btoa('GATE2025admin'));
+  if(u.pass!==btoa(cur)&&!adminOk){
+    msg.innerHTML='<span style="color:#e05555;">Current password is incorrect.</span>';return;
+  }
+  u.pass=btoa(nw);
+  gateSave('gate_users_v6',users);
+  document.getElementById('cpCurrent').value='';
+  document.getElementById('cpNew').value='';
+  document.getElementById('cpConfirm').value='';
+  msg.innerHTML='<span style="color:#4aad74;">✓ Password updated successfully.</span>';
+  setTimeout(()=>{msg.innerHTML='';},3000);
 }
 
 window.addEventListener('load',checkAuth);
