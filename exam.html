@@ -405,6 +405,7 @@ tr:hover td { background: rgba(201,168,76,0.05); }
     <a href="exam.html" class="active btn-nav">Exams</a>
     <a href="trial.html">Free Trial</a>
     <a href="account.html">Account</a>
+    <a href="bundle.html">Bundles</a>
     <a href="admin.html">Admin</a>
     <a href="reports.html">Reports</a>
   </div>
@@ -422,6 +423,19 @@ tr:hover td { background: rgba(201,168,76,0.05); }
       Loading access status...
     </div>
     <div class="exam-grid" id="examGrid"></div>
+    <!-- Session Launch Card -->
+    <div class="card" style="margin-top:1rem;background:linear-gradient(135deg,rgba(107,29,46,0.2) 0%,rgba(22,36,64,0.8) 100%);border-color:rgba(201,168,76,0.4);" id="sessionCard">
+      <div class="card-header"><span>🎓</span><h2>Start Full Examination Session</h2></div>
+      <p style="color:var(--text2);font-size:0.88rem;margin-bottom:1rem;line-height:1.7;">
+        Launch all your examinations in sequence with <strong style="color:var(--gold);">automatic timed breaks</strong>:<br>
+        Exam 1 → <span style="color:var(--gold);">10-min break</span> → Exam 2 → <span style="color:var(--gold);">30-min break</span> → Exam 3 → <span style="color:var(--gold);">10-min break</span> → Exam 4 → <em style="color:var(--text2);">Session Complete</em>
+      </p>
+      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="startSession()">▶ Begin Full Session</button>
+        <span style="color:var(--text2);font-size:0.8rem;align-self:center;">Each exam: 1h 30min countdown · Auto-submits at time limit</span>
+      </div>
+    </div>
+
     <div class="card" style="margin-top:1rem;">
       <div class="card-header"><span>📋</span><h2>Examination Format</h2></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;color:var(--text2);font-size:0.88rem;">
@@ -607,6 +621,16 @@ let userAnswers = []; // null or index
 let examSubmitted = false;
 let startTime = null;
 let timerInterval = null;
+
+// SESSION STATE (for sequential exam sessions with breaks)
+let sessionMode = false;
+let sessionExams = [];      // ordered list of exam numbers in this session
+let sessionIndex = 0;       // which exam in session we are on
+let breakInterval = null;
+
+// Break durations (minutes) AFTER each exam index in session (0-based)
+// session exam 0 -> 10 min break, exam 1 -> 30 min break, exam 2 -> 10 min break, exam 3 -> done
+const BREAK_MINUTES = [10, 30, 10];
 
 // ACCESS CHECK
 function getTierAccess(tier) {
@@ -832,6 +856,19 @@ function submitExam() {
   document.getElementById('resPassFail').textContent = passed ? '✓ PASS' : '✗ FAIL';
   document.getElementById('resPassFail').style.color = passed ? '#4aad74' : '#e05555';
   document.getElementById('examFooter').style.display = 'block';
+
+  // SESSION MODE: show break or session complete
+  if (sessionMode) {
+    const isLastInSession = sessionIndex >= sessionExams.length - 1;
+    if (isLastInSession) {
+      // Show session complete overlay
+      showSessionComplete();
+    } else {
+      const breakMins = BREAK_MINUTES[sessionIndex] !== undefined ? BREAK_MINUTES[sessionIndex] : 10;
+      sessionIndex++;
+      showBreakRoom(breakMins, sessionExams[sessionIndex]);
+    }
+  }
 }
 
 function showReview() {
@@ -872,20 +909,128 @@ function retakeExam() {
   startExam(currentExam);
 }
 
+const EXAM_TIME_LIMIT = 90 * 60; // 90 minutes in seconds
+
 function startTimer() {
   if (timerInterval) clearInterval(timerInterval);
   const display = document.getElementById('examTimer');
   timerInterval = setInterval(() => {
     const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    const h = Math.floor(elapsed/3600);
-    const m = Math.floor((elapsed%3600)/60);
-    const s = elapsed%60;
-    display.textContent = (h>0?h+':':'') + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    const remaining = EXAM_TIME_LIMIT - elapsed;
+    if (remaining <= 0) {
+      clearInterval(timerInterval);
+      display.textContent = '0:00:00';
+      display.classList.add('warn');
+      // Auto-submit when time expires
+      if (!examSubmitted) {
+        display.textContent = 'TIME UP';
+        submitExam();
+      }
+      return;
+    }
+    const h = Math.floor(remaining / 3600);
+    const m = Math.floor((remaining % 3600) / 60);
+    const s = remaining % 60;
+    display.textContent = h + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    if (remaining <= 300) display.classList.add('warn');   // red at 5 min
+    else display.classList.remove('warn');
   }, 1000);
 }
 
 function openModal(id) { document.getElementById(id).classList.add('show'); }
 function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+// ============ BREAK ROOM ============
+function showBreakRoom(breakMins, nextExamNum) {
+  // Hide results, show break overlay
+  document.getElementById('resultsPanel').style.display = 'none';
+  document.getElementById('examInterface').style.display = 'none';
+  
+  const overlay = document.getElementById('breakOverlay');
+  overlay.style.display = 'flex';
+  
+  const totalSecs = breakMins * 60;
+  let remaining = totalSecs;
+  
+  document.getElementById('breakTitle').textContent = breakMins + '-MINUTE BREAK';
+  document.getElementById('breakNextName').textContent = 'Examination ' + nextExamNum + ' — ' + EXAM_SUBJECTS[String(nextExamNum)];
+  
+  const display = document.getElementById('breakTimerDisplay');
+  const fill = document.getElementById('breakProgressFill');
+  const skipBtn = document.getElementById('breakSkipBtn');
+  
+  // Enable skip after 30 seconds
+  setTimeout(() => {
+    skipBtn.disabled = false;
+    skipBtn.style.opacity = '1';
+    skipBtn.style.cursor = 'pointer';
+    skipBtn.textContent = 'Skip Break & Start Examination ' + nextExamNum;
+  }, 30000);
+  
+  if (breakInterval) clearInterval(breakInterval);
+  breakInterval = setInterval(() => {
+    remaining--;
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    display.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    fill.style.width = (remaining / totalSecs * 100) + '%';
+    
+    if (remaining <= 0) {
+      clearInterval(breakInterval);
+      startNextSessionExam(nextExamNum);
+    }
+  }, 1000);
+}
+
+function skipBreak() {
+  if (breakInterval) clearInterval(breakInterval);
+  const nextExamNum = sessionExams[sessionIndex];
+  startNextSessionExam(nextExamNum);
+}
+
+function startNextSessionExam(n) {
+  document.getElementById('breakOverlay').style.display = 'none';
+  startExam(n);
+}
+
+function showSessionComplete() {
+  document.getElementById('resultsPanel').style.display = 'none';
+  document.getElementById('examInterface').style.display = 'none';
+  
+  const overlay = document.getElementById('sessionCompleteOverlay');
+  overlay.style.display = 'flex';
+  
+  // Build score summary
+  const s = gateState();
+  let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.8rem;max-width:700px;">';
+  sessionExams.forEach(n => {
+    const sc = s.scores && s.scores[n] !== undefined ? s.scores[n] : null;
+    const passed = sc !== null && sc >= 65;
+    html += `<div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,${passed?'0.4':'0.15'});border-radius:6px;padding:0.8rem;text-align:center;">
+      <div style="font-size:1.4rem;font-weight:700;color:${sc===null?'#b8a88a':passed?'#4aad74':'#e05555'};font-family:sans-serif;">${sc !== null ? Math.round(sc)+'%' : '—'}</div>
+      <div style="font-size:0.7rem;color:#b8a88a;font-family:sans-serif;letter-spacing:0.5px;">Exam ${n}</div>
+      <div style="font-size:0.72rem;color:${passed?'#4aad74':'#e05555'};margin-top:0.2rem;">${sc===null?'—':passed?'PASS':'FAIL'}</div>
+    </div>`;
+  });
+  html += '</div>';
+  document.getElementById('sessionScoreSummary').innerHTML = html;
+}
+
+// START SESSION — launches all exams in order with breaks
+function startSession(tier) {
+  const s = gateState();
+  const allowed = getTierAccess(s.tier);
+  if (!allowed.length) {
+    openModal('lockedModal');
+    return;
+  }
+  sessionMode = true;
+  sessionExams = allowed;  // e.g. [1,2,3] for basic, [1,2,3,4,5,6] for premium
+  sessionIndex = 0;
+  startExam(sessionExams[0]);
+}
+
+// ============ END BREAK ROOM ============
 
 // Init
 window.addEventListener('load', function() {
@@ -902,5 +1047,40 @@ window.addEventListener('load', function() {
   }
 });
 </script>
+
+<!-- BREAK ROOM OVERLAY -->
+<div id="breakOverlay" style="display:none;position:fixed;inset:0;background:linear-gradient(180deg,#0d1b2e 0%,#162440 100%);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;">
+  <div style="font-size:3rem;margin-bottom:1rem;">☕</div>
+  <h2 id="breakTitle" style="font-family:'Cinzel','Palatino Linotype',serif;font-size:2rem;color:#c9a84c;margin-bottom:0.5rem;letter-spacing:3px;">BREAK TIME</h2>
+  <p id="breakSubtitle" style="color:#b8a88a;margin-bottom:2rem;font-size:1rem;">Rest before your next examination</p>
+  <div style="width:180px;height:180px;border-radius:50%;border:6px solid #c9a84c;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 2rem;background:radial-gradient(circle,rgba(201,168,76,0.1) 0%,transparent 70%);">
+    <div id="breakTimerDisplay" style="font-size:2.8rem;font-weight:700;color:#c9a84c;font-family:sans-serif;">10:00</div>
+    <div style="font-size:0.75rem;color:#b8a88a;font-family:sans-serif;letter-spacing:1px;">REMAINING</div>
+  </div>
+  <div class="progress-bar" style="width:320px;max-width:80vw;margin-bottom:2rem;">
+    <div class="progress-fill" id="breakProgressFill" style="width:100%"></div>
+  </div>
+  <p id="breakNextInfo" style="color:#b8a88a;font-size:0.9rem;margin-bottom:1.5rem;">Next: <strong style="color:#e8c96e;" id="breakNextName">Examination</strong></p>
+  <button class="btn btn-primary" id="breakSkipBtn" onclick="skipBreak()" style="opacity:0.6;cursor:not-allowed;" disabled>
+    Next Examination begins automatically...
+  </button>
+  <p style="margin-top:1.5rem;font-size:0.78rem;color:#b8a88a;opacity:0.6;">You may take a short rest. The next examination will begin automatically when the timer ends.</p>
+</div>
+
+<!-- SESSION COMPLETE OVERLAY -->
+<div id="sessionCompleteOverlay" style="display:none;position:fixed;inset:0;background:linear-gradient(180deg,#0d1b2e 0%,#0a1525 100%);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;">
+  <div style="font-size:4rem;margin-bottom:1rem;">🎓</div>
+  <h2 style="font-family:'Cinzel','Palatino Linotype',serif;font-size:2.2rem;color:#c9a84c;margin-bottom:0.5rem;letter-spacing:3px;">SESSION COMPLETE</h2>
+  <div class="divider" style="margin:1rem auto;"></div>
+  <p style="color:#b8a88a;margin-bottom:2rem;max-width:500px;font-size:1rem;line-height:1.8;">
+    You have completed all examinations in this session. Your scores have been saved.
+  </p>
+  <div id="sessionScoreSummary" style="margin-bottom:2rem;"></div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+    <a href="results.html" class="btn btn-primary">View Full Results</a>
+    <a href="exam.html" class="btn btn-secondary">Return to Examinations</a>
+  </div>
+</div>
+
 </body>
 </html>

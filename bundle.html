@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Enrollment Bundles</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);padding:0;position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.8rem}
+.gate-logo .crest{font-size:2rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.65rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap}
+.gate-nav-links a{color:var(--text2);font-size:.8rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif}
+.gate-nav-links a:hover,.gate-nav-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px}
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2.5rem 1.5rem 2rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:2rem;color:var(--gold);letter-spacing:3px;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+.page-header p{color:var(--text2);margin-top:.5rem;font-size:.95rem}
+.divider{width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1rem auto 0}
+.container{max-width:1100px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.8rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.8rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.1rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.65rem 1.5rem;border-radius:5px;font-family:sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;letter-spacing:.5px}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-stripe{background:linear-gradient(135deg,#635bff 0%,#4b44e0 100%);color:#fff!important;display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border-radius:6px;font-family:sans-serif;font-size:1rem;font-weight:700;text-decoration:none!important;transition:all .2s;border:none;cursor:pointer;justify-content:center;width:100%}
+.btn-stripe:hover{background:linear-gradient(135deg,#7a74ff 0%,#5a53f0 100%);transform:translateY(-2px);box-shadow:0 6px 20px rgba(99,91,255,.4)}
+.badge{display:inline-block;padding:.15rem .5rem;border-radius:12px;font-size:.72rem;font-family:sans-serif;font-weight:700;letter-spacing:.5px}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.alert{border-radius:6px;padding:.9rem 1.2rem;font-size:.9rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+input{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.6rem .9rem;font-family:inherit;font-size:.95rem;width:100%}
+input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.3rem}
+.bundle-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:2rem 0}
+@media(max-width:700px){.bundle-grid{grid-template-columns:1fr}}
+.bundle-card{background:linear-gradient(180deg,var(--charcoal) 0%,var(--navy2) 100%);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:2rem;text-align:center;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+.bundle-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.bundle-card.featured{border-color:var(--gold);box-shadow:0 0 40px rgba(201,168,76,.2)}
+.bundle-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.bundle-card.featured::before{height:4px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold))}
+.bundle-num{font-size:3.5rem;font-weight:700;color:var(--gold);font-family:sans-serif;line-height:1}
+.bundle-currency{font-size:1.2rem;vertical-align:top;margin-top:.5rem;display:inline-block;color:var(--text2)}
+.bundle-name{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.3rem;color:var(--cream);margin:.6rem 0}
+.bundle-features{text-align:left;margin:1.2rem 0 1.5rem;padding:0}
+.bundle-features li{list-style:none;padding:.3rem 0;font-size:.88rem;color:var(--text2);border-bottom:1px solid rgba(255,255,255,.04)}
+.bundle-features li::before{content:'✓ ';color:#4aad74;font-weight:700}
+.bundle-features li.no::before{content:'✗ ';color:#e05555}
+.exam-list{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:1rem 0;text-align:left}
+.exam-item{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:5px;padding:.5rem .7rem;font-size:.78rem;color:var(--text2)}
+.exam-item strong{color:var(--gold);display:block;font-size:.72rem;font-family:sans-serif}
+.confirm-box{background:rgba(22,36,64,.8);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-top:1.2rem;text-align:left}
+.confirm-box p{font-size:.78rem;color:var(--text2);margin-bottom:.6rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.5rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.8rem}
+.gate-footer span{color:var(--gold)}
+</style>
+</head><body>
+
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="bundle.html" class="active">Bundles</a>
+    <a href="admin.html">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav>
+
+<div class="page-header">
+  <h1>Enrollment Bundles</h1>
+  <p>Choose the examination package that fits your theological education goals</p>
+  <div class="divider"></div>
+</div>
+
+<div class="container">
+
+  <div id="userBanner" class="alert alert-info" style="display:none;"></div>
+
+  <!-- BUNDLE CARDS -->
+  <div class="bundle-grid">
+
+    <!-- BASIC BUNDLE -->
+    <div class="bundle-card">
+      <div><span class="bundle-currency">$</span><span class="bundle-num">250</span></div>
+      <div class="bundle-name">Basic Bundle</div>
+      <div class="divider" style="margin:.8rem auto;"></div>
+      <div class="exam-list">
+        <div class="exam-item"><strong>EXAM 1</strong>Theology Proper &amp; Christology</div>
+        <div class="exam-item"><strong>EXAM 2</strong>Pneumatology &amp; Soteriology</div>
+        <div class="exam-item"><strong>EXAM 3</strong>Ecclesiology &amp; Eschatology</div>
+        <div class="exam-item" style="opacity:.35;border-style:dashed;"><strong>EXAM 4</strong>Locked</div>
+        <div class="exam-item" style="opacity:.35;border-style:dashed;"><strong>EXAM 5</strong>Locked</div>
+        <div class="exam-item" style="opacity:.35;border-style:dashed;"><strong>EXAM 6</strong>Locked</div>
+      </div>
+      <ul class="bundle-features">
+        <li>3 full examinations</li>
+        <li>750 passage-based questions</li>
+        <li>KJV Scripture with every question</li>
+        <li>90-minute countdown per exam</li>
+        <li>Timed breaks between exams</li>
+        <li>Score history &amp; analytics</li>
+        <li class="no">Examinations 4 – 6</li>
+      </ul>
+      <a href="https://buy.stripe.com/test_eVq3co26KgBO9ZW1Yc6kg05"
+         target="_blank"
+         class="btn-stripe"
+         onclick="markPending('basic')">
+        <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="white"/><path d="M16 26c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm6-10c0-3.3-2.7-6-6-6s-6 2.7-6 6v1H9v10h14V17h-1v-1z" fill="#635bff"/></svg>
+        Pay $250 — Enroll Basic
+      </a>
+      <div class="confirm-box">
+        <p>After completing payment, enter your email to activate access immediately:</p>
+        <input type="email" id="basicEmail" placeholder="your@email.com" style="margin-bottom:.5rem;">
+        <button onclick="activateBundle('basic')" class="btn btn-secondary" style="width:100%;margin-top:.3rem;">✓ Confirm Basic Payment &amp; Activate</button>
+        <div id="basicMsg" style="margin-top:.5rem;font-size:.82rem;"></div>
+      </div>
+    </div>
+
+    <!-- PREMIUM BUNDLE -->
+    <div class="bundle-card featured">
+      <div class="badge badge-gold" style="margin-bottom:.6rem;">COMPLETE ACCESS</div>
+      <div><span class="bundle-currency">$</span><span class="bundle-num">500</span></div>
+      <div class="bundle-name">Premium Bundle</div>
+      <div class="divider" style="margin:.8rem auto;"></div>
+      <div class="exam-list">
+        <div class="exam-item"><strong>EXAM 1</strong>Theology Proper &amp; Christology</div>
+        <div class="exam-item"><strong>EXAM 2</strong>Pneumatology &amp; Soteriology</div>
+        <div class="exam-item"><strong>EXAM 3</strong>Ecclesiology &amp; Eschatology</div>
+        <div class="exam-item"><strong>EXAM 4</strong>Hermeneutics &amp; Bibliology</div>
+        <div class="exam-item"><strong>EXAM 5</strong>Ethics &amp; Hamartiology</div>
+        <div class="exam-item"><strong>EXAM 6</strong>Angelology &amp; Apologetics</div>
+      </div>
+      <ul class="bundle-features">
+        <li>All 6 full examinations</li>
+        <li>1,500 passage-based questions</li>
+        <li>KJV Scripture with every question</li>
+        <li>90-minute countdown per exam</li>
+        <li>Full session with timed breaks</li>
+        <li>Complete analytics &amp; reports</li>
+        <li>Certificate of completion</li>
+      </ul>
+      <a href="https://buy.stripe.com/test_28E28kbHk85idc8byM6kg06"
+         target="_blank"
+         class="btn-stripe"
+         onclick="markPending('premium')">
+        <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="white"/><path d="M16 26c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm6-10c0-3.3-2.7-6-6-6s-6 2.7-6 6v1H9v10h14V17h-1v-1z" fill="#635bff"/></svg>
+        Pay $500 — Enroll Premium
+      </a>
+      <div class="confirm-box">
+        <p>After completing payment, enter your email to activate access immediately:</p>
+        <input type="email" id="premiumEmail" placeholder="your@email.com" style="margin-bottom:.5rem;">
+        <button onclick="activateBundle('premium')" class="btn btn-primary" style="width:100%;margin-top:.3rem;">✓ Confirm Premium Payment &amp; Activate</button>
+        <div id="premiumMsg" style="margin-top:.5rem;font-size:.82rem;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FREE TRIAL -->
+  <div class="card" style="text-align:center;padding:2rem;">
+    <div style="font-size:2rem;margin-bottom:.5rem;">✝</div>
+    <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:.5rem;">Try Before You Enroll</h2>
+    <p style="color:var(--text2);margin-bottom:1.2rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8;">
+      Not ready to purchase? Experience the GATE examination format with our free 38-question trial. A free account is required — no payment needed.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="account.html" class="btn btn-secondary">Create Free Account</a>
+      <a href="trial.html" class="btn btn-secondary">Take the Trial</a>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="card">
+    <div class="card-header"><span>📋</span><h2>How Enrollment Works</h2></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;">
+      <div style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.5rem;">1️⃣</div>
+        <div style="color:var(--gold);font-weight:600;font-family:sans-serif;font-size:.88rem;margin-bottom:.3rem;">Choose a Bundle</div>
+        <div style="color:var(--text2);font-size:.82rem;">Select Basic ($250) or Premium ($500) above</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.5rem;">2️⃣</div>
+        <div style="color:var(--gold);font-weight:600;font-family:sans-serif;font-size:.88rem;margin-bottom:.3rem;">Pay via Stripe</div>
+        <div style="color:var(--text2);font-size:.82rem;">Secure checkout — all major cards accepted</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.5rem;">3️⃣</div>
+        <div style="color:var(--gold);font-weight:600;font-family:sans-serif;font-size:.88rem;margin-bottom:.3rem;">Confirm &amp; Activate</div>
+        <div style="color:var(--text2);font-size:.82rem;">Return here, enter your email, click Confirm to activate</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:2rem;margin-bottom:.5rem;">4️⃣</div>
+        <div style="color:var(--gold);font-weight:600;font-family:sans-serif;font-size:.88rem;margin-bottom:.3rem;">Begin Examining</div>
+        <div style="color:var(--text2);font-size:.82rem;">Your exams unlock immediately — start anytime</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card">
+    <div class="card-header"><span>❓</span><h2>Frequently Asked Questions</h2></div>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <div><strong style="color:var(--gold);">Can I upgrade from Basic to Premium later?</strong><p style="color:var(--text2);font-size:.88rem;margin-top:.3rem;">Yes. Purchase the Premium bundle and confirm your existing email — your tier will upgrade automatically and all your previous scores are retained.</p></div>
+      <div><strong style="color:var(--gold);">How many times can I retake the exams?</strong><p style="color:var(--text2);font-size:.88rem;margin-top:.3rem;">Unlimited retakes are included with your bundle. Each attempt is logged in your history.</p></div>
+      <div><strong style="color:var(--gold);">Do I need an internet connection during the exam?</strong><p style="color:var(--text2);font-size:.88rem;margin-top:.3rem;">No. Once the platform files are downloaded, all 1,500 questions are embedded locally. No internet is required to take examinations.</p></div>
+      <div><strong style="color:var(--gold);">What is the passing score?</strong><p style="color:var(--text2);font-size:.88rem;margin-top:.3rem;">65% or above is considered a Pass. 80%+ is Merit, 90%+ is Distinction.</p></div>
+      <div><strong style="color:var(--gold);">Can the administrator grant access without payment?</strong><p style="color:var(--text2);font-size:.88rem;margin-top:.3rem;">Yes. Administrators can grant Basic or Premium access to any registered user directly from the Admin Console.</p></div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+
+<script>
+const GATE_KEY='td_gate_v6';
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function gateState(){return gateLoad(GATE_KEY)||{user:null,tier:null,scores:{},attempts:{}}}
+function saveState(s){gateSave(GATE_KEY,s)}
+function fmtDate(ts){if(!ts)return'—';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+
+function markPending(tier){
+  sessionStorage.setItem('pendingTier',tier);
+  sessionStorage.setItem('pendingTs',Date.now());
+}
+
+function activateBundle(tier){
+  const emailEl=document.getElementById(tier+'Email');
+  const msgEl=document.getElementById(tier+'Msg');
+  const email=emailEl.value.trim().toLowerCase();
+  if(!email){msgEl.innerHTML='<span style="color:#e05555;">Please enter your email address.</span>';return;}
+
+  // Get or create user record
+  const users=gateLoad('gate_users_v6')||{};
+  if(!users[email]){
+    users[email]={name:email,email,pass:btoa('gate123'),tier,enrolled:Date.now()};
+  } else {
+    // Upgrade tier (only upgrade, never downgrade)
+    const tierRank={none:0,basic:1,premium:2,admin:3};
+    if((tierRank[tier]||0)>(tierRank[users[email].tier]||0)){
+      users[email].tier=tier;
+    }
+  }
+  gateSave('gate_users_v6',users);
+
+  // Auto-login
+  const s=gateState();
+  s.user={name:users[email].name||email,email,enrolled:users[email].enrolled};
+  s.tier=users[email].tier;
+  saveState(s);
+  sessionStorage.removeItem('pendingTier');
+  sessionStorage.removeItem('pendingTs');
+
+  msgEl.innerHTML='<span style="color:#4aad74;">✓ '+tier.toUpperCase()+' access activated! <a href="exam.html">Enter Examinations →</a></span>';
+  checkBanner();
+}
+
+function checkBanner(){
+  const s=gateState();
+  const banner=document.getElementById('userBanner');
+  if(s.user){
+    banner.style.display='block';
+    banner.innerHTML='✝ Logged in as <strong>'+(s.user.name||s.user.email)+'</strong> · Tier: <strong style="color:var(--gold)">'+(s.tier||'none').toUpperCase()+'</strong> · <a href="exam.html">Enter Examinations →</a> · <a href="account.html">My Account</a>';
+    // Hide already-owned bundle
+    if(s.tier==='basic'){
+      document.getElementById('basicMsg').innerHTML='<span style="color:var(--gold);">✓ You already have Basic access.</span>';
+    }
+    if(s.tier==='premium'||s.tier==='admin'){
+      document.getElementById('basicMsg').innerHTML='<span style="color:#4aad74;">✓ Included in your Premium access.</span>';
+      document.getElementById('premiumMsg').innerHTML='<span style="color:#4aad74;">✓ You already have Premium access.</span>';
+    }
+  }
+  // Check pending
+  const pending=sessionStorage.getItem('pendingTier');
+  if(pending){
+    const box=document.getElementById(pending+'Email');
+    if(box) box.focus();
+    const msg=document.getElementById(pending+'Msg');
+    if(msg) msg.innerHTML='<span style="color:var(--gold2);">Payment detected — enter your email and click Confirm to activate.</span>';
+  }
+}
+
+window.addEventListener('load',checkBanner);
+</script>
+</body></html>

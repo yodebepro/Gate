@@ -263,7 +263,8 @@ tr:hover td { background: rgba(201,168,76,0.05); }
 </style>
 </head>
 <body>
-<nav class="gate-nav"><div class="gate-nav-inner"><div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div><div class="gate-nav-links"><a href="index.html" class="active">Home</a><a href="exam.html" class="btn-nav">Exams</a><a href="trial.html">Free Trial</a><a href="account.html">Account</a><a href="admin.html">Admin</a><a href="reports.html">Reports</a></div></div></nav>
+<nav class="gate-nav"><div class="gate-nav-inner"><div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div><div class="gate-nav-links"><a href="index.html" class="active">Home</a><a href="exam.html" class="btn-nav">Exams</a><a href="trial.html">Free Trial</a><a href="account.html">Account</a><a href="bundle.html">Bundles</a>
+    <a href="admin.html">Admin</a><a href="reports.html">Reports</a></div></div></nav>
 
 <section class="hero">
   <div class="hero-content">
@@ -315,7 +316,8 @@ tr:hover td { background: rgba(201,168,76,0.05); }
         <div class="tier-feature no">Full examinations</div>
         <div class="tier-feature no">Certificate of completion</div>
         <br>
-        <a href="trial.html" class="btn btn-secondary">Begin Trial</a>
+        <a href="account.html" class="btn btn-secondary" onclick="sessionStorage.setItem('afterLogin','trial')">Begin Trial →</a>
+        <p style="font-size:.7rem;color:var(--text2);margin-top:.5rem;">Free account required</p>
       </div>
       <div class="tier-card featured">
         <div class="badge badge-gold" style="margin-bottom:0.5rem;">MOST POPULAR</div>
@@ -329,7 +331,10 @@ tr:hover td { background: rgba(201,168,76,0.05); }
         <div class="tier-feature yes">Score history</div>
         <div class="tier-feature no">Examinations 4–6</div>
         <br>
-        <a href="account.html" class="btn btn-primary">Enroll — Basic</a>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;align-items:center;">
+          <a href="https://buy.stripe.com/test_eVq3co26KgBO9ZW1Yc6kg05" target="_blank" class="btn btn-primary" onclick="markPending('basic')">💳 Pay $250 — Enroll Basic</a>
+          <span style="font-size:0.72rem;color:var(--text2);">Secure checkout via Stripe · After payment, <a href="account.html">activate your account</a></span>
+        </div>
       </div>
       <div class="tier-card">
         <div class="tier-price">$500</div>
@@ -342,7 +347,10 @@ tr:hover td { background: rgba(201,168,76,0.05); }
         <div class="tier-feature yes">Certificate of completion</div>
         <div class="tier-feature yes">Priority academic support</div>
         <br>
-        <a href="account.html" class="btn btn-primary">Enroll — Premium</a>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;align-items:center;">
+          <a href="https://buy.stripe.com/test_28E28kbHk85idc8byM6kg06" target="_blank" class="btn btn-primary" onclick="markPending('premium')">💳 Pay $500 — Enroll Premium</a>
+          <span style="font-size:0.72rem;color:var(--text2);">Secure checkout via Stripe · After payment, <a href="account.html">activate your account</a></span>
+        </div>
       </div>
     </div>
   </div>
@@ -419,6 +427,12 @@ window.addEventListener('load', function() {
     banner.innerHTML = '✝ Welcome back, <strong>' + (s.user.name || s.user.email || 'Scholar') + '</strong> · Tier: <strong>' + tier.toUpperCase() + '</strong> · <a href="exam.html">Enter Examinations →</a>';
   }
 });
+
+function markPending(tier) {
+  // Store pending purchase so account.html knows what to activate
+  sessionStorage.setItem('pendingTier', tier);
+  sessionStorage.setItem('pendingTs', Date.now());
+}
 </script>
 </body>
 </html>
