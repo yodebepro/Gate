@@ -215,7 +215,6 @@ tr:hover td { background: rgba(201,168,76,0.05); }
     <a href="trial.html">Free Trial</a>
     <a href="account.html">Account</a>
     <a href="bundle.html">Bundles</a>
-    <a href="contact.html">Contact</a>
     <a href="admin.html" class="active">Admin</a>
     <a href="reports.html">Reports</a>
   </div>
@@ -225,9 +224,10 @@ tr:hover td { background: rgba(201,168,76,0.05); }
 <div id="adminGate">
   <div class="card" style="max-width:400px;margin:0 auto;">
     <div class="card-header"><span>🔐</span><h2>Admin Access</h2></div>
-    <div class="form-group"><label>Admin Password</label><input type="password" id="adminPassInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')checkAdmin()" autocomplete="off"></div>
+    <div class="form-group"><label>Admin Password</label><input type="password" id="adminPassInput" placeholder="Enter admin password"></div>
     <button class="btn btn-primary" onclick="checkAdmin()">Access Admin Console</button>
     <div id="adminMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    <div style="margin-top:1rem;font-size:.78rem;color:var(--text2);">Default: <code style="color:var(--gold);">GATE2025admin</code></div>
   </div>
 </div>
 <div id="adminContent" style="display:none;">
@@ -238,7 +238,6 @@ tr:hover td { background: rgba(201,168,76,0.05); }
       <div class="form-group"><label>Tier</label>
         <select id="grantTier"><option value="basic">Basic (Exams 1–3)</option><option value="premium">Premium (All 6)</option><option value="admin">Admin</option></select>
       </div>
-      <div class="form-group"><label>Temporary Password <span style="color:var(--text2);font-size:.78rem;">(leave blank for default: gate123)</span></label><input type="text" id="grantTempPass" placeholder="gate123"></div>
       <button class="btn btn-primary" onclick="grantAccess()">Grant Access</button>
       <div id="grantMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
     </div>
@@ -247,14 +246,6 @@ tr:hover td { background: rgba(201,168,76,0.05); }
       <div id="platformStats"></div>
     </div>
   </div>
-  <!-- PENDING PAYMENTS -->
-  <div class="card" style="margin-top:1.5rem;border-color:rgba(201,168,76,.5);">
-    <div class="card-header"><span>💳</span><h2>Pending Payment Approvals</h2></div>
-    <div id="pendingList">
-      <div style="color:var(--text2);font-size:.88rem;">No pending payment requests.</div>
-    </div>
-  </div>
-
   <div class="card" style="margin-top:1.5rem;">
     <div class="card-header"><span>👥</span><h2>All Users</h2></div>
     <div id="userList"></div>
@@ -310,58 +301,31 @@ function gradeLabel(pct) {
   return 'Needs Review';
 }
 
-const ADMIN_PASS='GATE2025admin'; // used for reference
+const ADMIN_PASS='GATE2025admin';
 let adminAuthed=false;
 function checkAdmin(){
-  const p=document.getElementById('adminPassInput').value.trim();
-  const correct=(p==='GATE2025admin');
-  if(correct){
+  const p=document.getElementById('adminPassInput').value;
+  if(p===ADMIN_PASS||p===btoa(ADMIN_PASS)){
     adminAuthed=true;
     document.getElementById('adminGate').style.display='none';
     document.getElementById('adminContent').style.display='block';
-    // Save admin to users table and auto-login
-    const users=gateLoad('gate_users_v6')||{};
-    if(!users['admin@gate.edu']){
-      users['admin@gate.edu']={name:'Administrator',email:'admin@gate.edu',pass:btoa('GATE2025admin'),tier:'admin',enrolled:Date.now(),verified:true,active:true};
-      gateSave('gate_users_v6',users);
-    }
+    // Also auto-login as admin
     const s=gateState();
-    if(!s.user){ s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};s.tier='admin';saveState(s); }
+    if(!s.user){ s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};s.tier='admin';saveState(s); }
     loadAdminData();
   } else {
-    const msg=document.getElementById('adminMsg');
-    msg.innerHTML='<span style="color:#e05555;">Incorrect password. Please try again.</span>';
+    document.getElementById('adminMsg').innerHTML='<span style="color:#e05555;">Incorrect password.</span>';
   }
 }
 function loadAdminData(){
-  loadPendingPayments();
   const users=gateLoad('gate_users_v6')||{};
   const uList=document.getElementById('userList');
   const uArr=Object.values(users);
   if(!uArr.length){ uList.innerHTML='<div style="color:var(--text2);">No users registered yet.</div>';}
   else{
-    let t='<table><thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Status</th><th>Email</th><th>Enrolled</th><th>Actions</th></tr></thead><tbody>';
+    let t='<table><thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Enrolled</th><th>Action</th></tr></thead><tbody>';
     uArr.forEach(u=>{
-      const vfd=u.verified||u.tier==='admin';
-      const isActive=u.active!==false; // default to active if field not set
-      t+=`<tr style="${!isActive?'opacity:.6;':''}">
-        <td>${u.name||'—'}</td>
-        <td style="font-size:.8rem;">${u.email}</td>
-        <td><span class="badge badge-gold">${(u.tier||'none').toUpperCase()}</span></td>
-        <td><span style="color:${isActive?'#4aad74':'#e05555'};font-size:.78rem;">${isActive?'● Active':'○ Deactivated'}</span></td>
-        <td><span style="color:${vfd?'#4aad74':'#c9a84c'};font-size:.78rem;">${vfd?'✓ Verified':'⚠ Unverified'}</span></td>
-        <td style="font-size:.78rem;">${fmtDate(u.enrolled)}</td>
-        <td style="display:flex;gap:.3rem;flex-wrap:wrap;">
-          ${!vfd?`<button class="btn btn-secondary btn-sm" onclick="verifyUser('${u.email}')">Verify</button>`:''}
-          ${isActive
-            ?`<button style="background:#2d7a4f;color:#fff;padding:.3rem .7rem;border:none;border-radius:4px;font-size:.75rem;cursor:pointer;font-weight:600;" onclick="setActive('${u.email}',true)" title="Already active" disabled>✓ Active</button>
-               <button style="background:#8b2020;color:#fff;padding:.3rem .7rem;border:none;border-radius:4px;font-size:.75rem;cursor:pointer;font-weight:600;" onclick="setActive('${u.email}',false)">⊘ Deactivate</button>`
-            :`<button style="background:#2d7a4f;color:#fff;padding:.3rem .7rem;border:none;border-radius:4px;font-size:.75rem;cursor:pointer;font-weight:600;" onclick="setActive('${u.email}',true)">✓ Activate</button>
-               <button style="background:#8b2020;color:#fff;padding:.3rem .7rem;border:none;border-radius:4px;font-size:.75rem;cursor:pointer;font-weight:600;" onclick="setActive('${u.email}',false)" disabled title="Already deactivated">⊘ Deactivated</button>`
-          }
-          <button class="btn btn-danger btn-sm" onclick="deleteUser('${u.email}')">🗑 Delete</button>
-        </td>
-      </tr>`;
+      t+=`<tr><td>${u.name||'—'}</td><td style="font-size:.82rem;">${u.email}</td><td><span class="badge badge-gold">${(u.tier||'none').toUpperCase()}</span></td><td style="font-size:.78rem;">${fmtDate(u.enrolled)}</td><td><button class="btn btn-danger btn-sm" onclick="deleteUser('${u.email}')">Delete</button></td></tr>`;
     });
     t+='</tbody></table>';
     uList.innerHTML=t;
@@ -380,114 +344,13 @@ function loadAdminData(){
 function grantAccess(){
   const email=document.getElementById('grantEmail').value.trim().toLowerCase();
   const tier=document.getElementById('grantTier').value;
-  const tempPass=document.getElementById('grantTempPass')?document.getElementById('grantTempPass').value.trim()||'gate123':'gate123';
   const msg=document.getElementById('grantMsg');
   if(!email){msg.innerHTML='<span style="color:#e05555;">Enter email.</span>';return;}
   const users=gateLoad('gate_users_v6')||{};
-  const tierRank={none:0,basic:1,premium:2,admin:3};
-  if(!users[email]){
-    users[email]={name:email,email,pass:btoa(tempPass),tier,enrolled:Date.now(),verified:true,active:true};
-  } else {
-    if((tierRank[tier]||0)>=(tierRank[users[email].tier]||0))users[email].tier=tier;
-    users[email].active=true;
-  }
+  if(!users[email])users[email]={name:email,email,pass:btoa('gate123'),tier,enrolled:Date.now()};
+  else users[email].tier=tier;
   gateSave('gate_users_v6',users);
-  msg.innerHTML='<span style="color:#4aad74;">✓ Access granted: '+tier.toUpperCase()+'<br><small style="color:#b8a88a;">Temp password: <strong style="color:#c9a84c;">'+tempPass+'</strong> — share with user so they can log in and change it.</small></span>';
-  loadAdminData();
-}
-// Load and display pending payment requests
-function loadPendingPayments(){
-  const pending=gateLoad('gate_pending_payments')||[];
-  const active=pending.filter(p=>p.status==='pending');
-  const div=document.getElementById('pendingList');
-  if(!active.length){
-    div.innerHTML='<div style="color:var(--text2);font-size:.88rem;padding:.4rem 0;">No pending payment requests.</div>';
-    return;
-  }
-  let html='<table><thead><tr><th>Email</th><th>Bundle</th><th>Amount</th><th>Requested</th><th>Action</th></tr></thead><tbody>';
-  active.forEach((p,i)=>{
-    const idx=pending.indexOf(p);
-    html+=`<tr>
-      <td style="font-size:.85rem;">${p.email}</td>
-      <td><span class="badge badge-gold">${p.tier.toUpperCase()}</span></td>
-      <td style="color:var(--gold);font-family:sans-serif;font-weight:700;">$${p.tier==='basic'?250:500}</td>
-      <td style="font-size:.78rem;">${new Date(p.requestedAt).toLocaleString()}</td>
-      <td style="display:flex;gap:.4rem;flex-wrap:wrap;">
-        <button class="btn btn-primary btn-sm" onclick="approvePayment(${idx})">✓ Approve</button>
-        <button class="btn btn-danger btn-sm" onclick="denyPayment(${idx})">✗ Deny</button>
-      </td>
-    </tr>`;
-  });
-  html+='</tbody></table>';
-  div.innerHTML=html;
-}
-
-function approvePayment(idx){
-  const pending=gateLoad('gate_pending_payments')||[];
-  if(!pending[idx]) return;
-  const req=pending[idx];
-  req.status='approved';
-  req.approvedAt=Date.now();
-
-  // Activate the user's tier
-  const users=gateLoad('gate_users_v6')||{};
-  const tierRank={none:0,basic:1,premium:2,admin:3};
-  if(!users[req.email]){
-    users[req.email]={name:req.email,email:req.email,pass:btoa('gate123'),tier:req.tier,enrolled:Date.now(),verified:true};
-  } else {
-    if((tierRank[req.tier]||0)>(tierRank[users[req.email].tier]||0)){
-      users[req.email].tier=req.tier;
-    }
-  }
-  gateSave('gate_users_v6',users);
-  gateSave('gate_pending_payments',pending);
-
-  // If this user is currently logged in, update their state
-  const s=gateLoad('td_gate_v6')||{};
-  if(s.user&&s.user.email===req.email){
-    s.tier=users[req.email].tier;
-    gateSave('td_gate_v6',s);
-  }
-
-  alert('✓ Access approved!
-
-'+req.email+' now has '+req.tier.toUpperCase()+' access.');
-  loadAdminData();
-}
-
-function denyPayment(idx){
-  if(!confirm('Deny this payment request?')) return;
-  const pending=gateLoad('gate_pending_payments')||[];
-  if(!pending[idx]) return;
-  pending[idx].status='denied';
-  pending[idx].deniedAt=Date.now();
-  gateSave('gate_pending_payments',pending);
-  loadAdminData();
-}
-
-// Activate or Deactivate a user account
-function setActive(email, activate){
-  const users=gateLoad('gate_users_v6')||{};
-  if(!users[email]) return;
-  users[email].active=activate;
-  gateSave('gate_users_v6',users);
-
-  // If deactivating currently logged-in user, log them out
-  const s=gateLoad('td_gate_v6')||{};
-  if(s.user&&s.user.email===email&&!activate){
-    s.user=null; s.tier=null;
-    gateSave('td_gate_v6',s);
-  }
-
-  loadAdminData();
-}
-
-function verifyUser(email){
-  const users=gateLoad('gate_users_v6')||{};
-  if(users[email]){users[email].verified=true;gateSave('gate_users_v6',users);}
-  // Also clear verification code
-  const codes=gateLoad('gate_verify_codes')||{};
-  delete codes[email]; gateSave('gate_verify_codes',codes);
+  msg.innerHTML='<span style="color:#4aad74;">Access granted: '+tier.toUpperCase()+'</span>';
   loadAdminData();
 }
 function deleteUser(email){
