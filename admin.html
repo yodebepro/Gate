@@ -225,7 +225,7 @@ tr:hover td { background: rgba(201,168,76,0.05); }
 <div id="adminGate">
   <div class="card" style="max-width:400px;margin:0 auto;">
     <div class="card-header"><span>🔐</span><h2>Admin Access</h2></div>
-    <div class="form-group"><label>Admin Password</label><input type="password" id="adminPassInput" placeholder="Enter admin password"></div>
+    <div class="form-group"><label>Admin Password</label><input type="password" id="adminPassInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')checkAdmin()" autocomplete="off"></div>
     <button class="btn btn-primary" onclick="checkAdmin()">Access Admin Console</button>
     <div id="adminMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
   </div>
@@ -310,11 +310,12 @@ function gradeLabel(pct) {
   return 'Needs Review';
 }
 
-const ADMIN_PASS='GATE2025admin';
+const ADMIN_PASS='GATE2025admin'; // used for reference
 let adminAuthed=false;
 function checkAdmin(){
-  const p=document.getElementById('adminPassInput').value;
-  if(p===ADMIN_PASS||p===btoa(ADMIN_PASS)){
+  const p=document.getElementById('adminPassInput').value.trim();
+  const correct=(p==='GATE2025admin');
+  if(correct){
     adminAuthed=true;
     document.getElementById('adminGate').style.display='none';
     document.getElementById('adminContent').style.display='block';
@@ -328,7 +329,8 @@ function checkAdmin(){
     if(!s.user){ s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};s.tier='admin';saveState(s); }
     loadAdminData();
   } else {
-    document.getElementById('adminMsg').innerHTML='<span style="color:#e05555;">Incorrect password.</span>';
+    const msg=document.getElementById('adminMsg');
+    msg.innerHTML='<span style="color:#e05555;">Incorrect password. Please try again.</span>';
   }
 }
 function loadAdminData(){
