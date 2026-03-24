@@ -260,12 +260,137 @@ tr:hover td { background: rgba(201,168,76,0.05); }
   margin-bottom: 0.5rem; letter-spacing: 2px;
 }
 .section-sub { text-align: center; color: var(--text2); font-size: 0.9rem; margin-bottom: 2rem; }
+
+/* --- Added integrated dropdown navigation + admin manager --- */
+.gate-nav-links{position:relative}
+.gate-dropdown{position:relative; display:inline-block}
+.gate-dropdown > a, .gate-dropdown > button{
+  color: var(--text2); font-size: 0.8rem; padding: 0.3rem 0.7rem;
+  border-radius: 4px; transition: all 0.2s; letter-spacing: 1px;
+  text-transform: uppercase; font-family: sans-serif; background:none; border:none; cursor:pointer;
+}
+.gate-dropdown > a:hover, .gate-dropdown > button:hover{
+  color: var(--gold); background: rgba(201,168,76,0.12); text-decoration:none;
+}
+.gate-dropdown-menu{
+  display:none; position:absolute; top:calc(100% + 6px); left:0; min-width:260px;
+  background: linear-gradient(180deg, var(--navy2), var(--charcoal));
+  border:1px solid rgba(201,168,76,.35); border-radius:10px; padding:8px;
+  box-shadow:0 16px 40px rgba(0,0,0,.30); z-index:150;
+}
+.gate-dropdown:hover .gate-dropdown-menu{display:block}
+.gate-dropdown-menu a{
+  display:block; padding:.55rem .7rem !important; border-radius:6px; color:var(--text) !important;
+  text-transform:none !important; letter-spacing:.3px !important; font-size:.86rem !important;
+}
+.gate-dropdown-menu a:hover{background:rgba(201,168,76,.12) !important; color:var(--gold) !important}
+.gate-manager{
+  margin-top:1rem; padding:1rem; border:1px solid rgba(201,168,76,.22); border-radius:12px;
+  background:rgba(255,255,255,.03)
+}
+.gate-manager h3{margin-bottom:.75rem}
+.gate-manager .row{display:grid; grid-template-columns:1fr 1fr; gap:.8rem}
+.gate-manager label{display:block; font-size:.85rem; color:var(--text2); margin-bottom:.3rem}
+.gate-manager input, .gate-manager textarea{
+  width:100%; padding:.7rem .8rem; border-radius:8px; border:1px solid rgba(201,168,76,.28);
+  background:rgba(255,255,255,.04); color:var(--text); font-family:Arial,sans-serif;
+}
+.gate-manager textarea{min-height:110px; resize:vertical}
+.gate-manager .btnrow{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem}
+.gate-admin-btn{
+  background:var(--gold); color:var(--navy); font-weight:700; border:none;
+  border-radius:8px; padding:.65rem 1rem; cursor:pointer
+}
+.gate-admin-btn.alt{background:rgba(201,168,76,.14); color:var(--gold); border:1px solid rgba(201,168,76,.32)}
+.gate-admin-card{
+  margin-top:.85rem; padding:.85rem; border:1px solid rgba(201,168,76,.22); border-radius:10px;
+  background:rgba(255,255,255,.02)
+}
+.gate-admin-card img{max-width:180px; max-height:120px; display:block; margin-top:.6rem; border-radius:8px; border:1px solid rgba(201,168,76,.2)}
+.gate-badges{display:flex; gap:.5rem; flex-wrap:wrap; margin:.8rem 0}
+.gate-badge{
+  display:inline-block; padding:.35rem .7rem; border-radius:999px; border:1px solid rgba(201,168,76,.24);
+  background:rgba(201,168,76,.08); color:var(--gold2); font-size:.82rem
+}
+@media (max-width: 900px){
+  .gate-nav-inner{align-items:flex-start}
+  .gate-nav-links{width:100%}
+}
+@media (max-width: 700px){
+  .gate-manager .row{grid-template-columns:1fr}
+  .gate-dropdown{display:block}
+  .gate-dropdown-menu{position:static; display:block; margin:.2rem 0 .5rem}
+}
+
 </style>
 </head>
 <body>
-<nav class="gate-nav"><div class="gate-nav-inner"><div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div><div class="gate-nav-links"><a href="index.html" class="active">Home</a><a href="exam.html" class="btn-nav">Exams</a><a href="trial.html">Free Trial</a><a href="account.html">Account</a><a href="bundle.html">Bundles</a>
-    <a href="contact.html">Contact</a>
-    <a href="admin.html">Admin</a><a href="reports.html">Reports</a></div></div></nav>
+<nav class="gate-nav"><div class="gate-nav-inner"><div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div><div class="gate-nav-links"><div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu"><a href="bible.html">📖 The Bible</a>
+<a href="schedule.html">📅 Take The Test</a>
+<a href="apply.html">🎓 Apply to School</a>
+<a href="announcements.html">📢 Announcement</a>
+<a href="events.html">🗓 Events</a>
+<a href="livepanel.html">🔴 LIVE Panel</a>
+<a href="biblestudies.html">✝ Bible Studies</a>
+<a href="video.html">▶ Video</a>
+<a href="ministry.html">⛪ Ministry</a>
+<a href="donation.html">💛 Donation</a>
+<a href="index.html">Home Landing</a>
+<a href="exam.html">Exam 1</a>
+<a href="exam2.html">Exam 2</a>
+<a href="exam3.html">Exam 3</a>
+<a href="exam4.html">Exam 4</a>
+<a href="exam5.html">Exam 5</a>
+<a href="exam6.html">Exam 6</a></div></div><div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu"><a href="subpages/account/profile.html">Profile</a>
+<a href="subpages/account/settings.html">Settings</a>
+<a href="subpages/account/subscriptions.html">Subscriptions</a>
+<a href="subpages/account/orders.html">Orders</a>
+<a href="subpages/account/billing.html">Billing</a>
+<a href="subpages/account/payment_methods.html">Payment Methods</a>
+<a href="subpages/account/messages.html">Messages</a>
+<a href="subpages/account/saved_items.html">Saved Items</a>
+<a href="subpages/account/security.html">Security</a>
+<a href="subpages/account/support_tickets.html">Support Tickets</a></div></div><div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu"><a href="subpages/bundles/store.html">Store</a>
+<a href="subpages/bundles/books.html">Books</a>
+<a href="subpages/bundles/ebooks.html">eBooks</a>
+<a href="subpages/bundles/courses.html">Courses</a>
+<a href="subpages/bundles/study_guides.html">Study Guides</a>
+<a href="subpages/bundles/theology_materials.html">Theology Materials</a>
+<a href="subpages/bundles/divinity_materials.html">Divinity Materials</a>
+<a href="subpages/bundles/bundle_250.html">$250 Bundle</a>
+<a href="subpages/bundles/bundle_500.html">$500 Bundle</a>
+<a href="subpages/bundles/independent_tests.html">Independent Tests</a>
+<a href="bundle.html">Main Bundles</a></div></div><div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu"><a href="subpages/contact/general_contact.html">General Contact</a>
+<a href="subpages/contact/support.html">Support</a>
+<a href="subpages/contact/admissions.html">Admissions</a>
+<a href="subpages/contact/theology_schools.html">Theology Schools</a>
+<a href="subpages/contact/divinity_schools.html">Divinity Schools</a>
+<a href="subpages/contact/phd_directory.html">Theology PhD Directory</a>
+<a href="subpages/contact/university_directory.html">University Directory</a>
+<a href="subpages/contact/ministry_contacts.html">Ministry Contacts</a>
+<a href="subpages/contact/events_contact.html">Events Contact</a>
+<a href="subpages/contact/submit_inquiry.html">Submit Inquiry</a>
+<a href="contact.html">Main Contact</a></div></div><div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu"><a href="subpages/free_trial/overview.html">Trial Overview</a>
+<a href="subpages/free_trial/trial_status.html">Trial Status</a>
+<a href="subpages/free_trial/fifty_questions.html">50 Questions</a>
+<a href="subpages/free_trial/free_theology.html">Free Theology</a>
+<a href="subpages/free_trial/free_divinity.html">Free Divinity</a>
+<a href="subpages/free_trial/free_videos.html">Free Videos</a>
+<a href="subpages/free_trial/free_books.html">Free Books</a>
+<a href="subpages/free_trial/free_quizzes.html">Free Quizzes</a>
+<a href="subpages/free_trial/study_plan.html">Study Plan</a>
+<a href="subpages/free_trial/activation_help.html">Activation Help</a>
+<a href="trial.html">Main Trial</a></div></div><div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu"><a href="subpages/reports/performance.html">Performance</a>
+<a href="subpages/reports/scores.html">Scores</a>
+<a href="subpages/reports/trial_reports.html">Trial Reports</a>
+<a href="subpages/reports/bundle_access.html">Bundle Access</a>
+<a href="subpages/reports/purchase_history.html">Purchase History</a>
+<a href="subpages/reports/student_activity.html">Student Activity</a>
+<a href="subpages/reports/admin_reports.html">Admin Reports</a>
+<a href="subpages/reports/exam_usage.html">Exam Usage</a>
+<a href="subpages/reports/downloads.html">Downloads</a>
+<a href="subpages/reports/notifications.html">Notifications</a>
+<a href="reports.html">Main Reports</a></div></div><a href="admin.html" class="btn-nav">Admin</a></div></div></nav>
 <nav style="background:rgba(10,20,40,0.95);border-bottom:1px solid rgba(201,168,76,.25);position:sticky;top:62px;z-index:99;">
   <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.05rem;overflow-x:auto;">
     <a href="bible.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;letter-spacing:.5px;font-family:sans-serif;white-space:nowrap;text-decoration:none;transition:all .2s;">📖 The Bible</a>
@@ -452,5 +577,6 @@ function markPending(tier) {
   sessionStorage.setItem('pendingTs', Date.now());
 }
 </script>
+<script src="assets/gate_shared.js"></script>
 </body>
 </html>
