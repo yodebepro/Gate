@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Divinity Schools</title>
+<style>
+:root {
+  --navy:#0d1b2e; --navy2:#162440; --charcoal:#1e2d3d; --gold:#c9a84c; --gold2:#e8c96e;
+  --burgundy:#6b1d2e; --burgundy2:#8b2540; --cream:#f5f0e8; --cream2:#ede5d4;
+  --text:#e8e0d0; --text2:#b8a88a; --success:#2d7a4f; --danger:#8b2020; --white:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none} a:hover{color:var(--gold2);text-decoration:underline}
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);padding:0;position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.8rem}
+.gate-logo .crest{font-size:2rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.65rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap}
+.gate-nav-links a{color:var(--text2);font-size:.8rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif}
+.gate-nav-links a:hover,.gate-nav-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px}
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2.5rem 1.5rem 2rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:2rem;color:var(--gold);margin-bottom:.4rem}
+.page-header p{max-width:860px;margin:0 auto;color:var(--text2)}
+.page-wrap{max-width:1200px;margin:0 auto;padding:1.5rem}
+.panel{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.16);border-radius:14px;padding:1.2rem}
+
+/* --- Added integrated dropdown navigation + admin manager --- */
+.gate-nav-links{position:relative}
+.gate-dropdown{position:relative; display:inline-block}
+.gate-dropdown > a, .gate-dropdown > button{
+  color: var(--text2); font-size: 0.8rem; padding: 0.3rem 0.7rem;
+  border-radius: 4px; transition: all 0.2s; letter-spacing: 1px;
+  text-transform: uppercase; font-family: sans-serif; background:none; border:none; cursor:pointer;
+}
+.gate-dropdown > a:hover, .gate-dropdown > button:hover{
+  color: var(--gold); background: rgba(201,168,76,0.12); text-decoration:none;
+}
+.gate-dropdown-menu{
+  display:none; position:absolute; top:calc(100% + 6px); left:0; min-width:260px;
+  background: linear-gradient(180deg, var(--navy2), var(--charcoal));
+  border:1px solid rgba(201,168,76,.35); border-radius:10px; padding:8px;
+  box-shadow:0 16px 40px rgba(0,0,0,.30); z-index:150;
+}
+.gate-dropdown:hover .gate-dropdown-menu{display:block}
+.gate-dropdown-menu a{
+  display:block; padding:.55rem .7rem !important; border-radius:6px; color:var(--text) !important;
+  text-transform:none !important; letter-spacing:.3px !important; font-size:.86rem !important;
+}
+.gate-dropdown-menu a:hover{background:rgba(201,168,76,.12) !important; color:var(--gold) !important}
+.gate-manager{
+  margin-top:1rem; padding:1rem; border:1px solid rgba(201,168,76,.22); border-radius:12px;
+  background:rgba(255,255,255,.03)
+}
+.gate-manager h3{margin-bottom:.75rem}
+.gate-manager .row{display:grid; grid-template-columns:1fr 1fr; gap:.8rem}
+.gate-manager label{display:block; font-size:.85rem; color:var(--text2); margin-bottom:.3rem}
+.gate-manager input, .gate-manager textarea{
+  width:100%; padding:.7rem .8rem; border-radius:8px; border:1px solid rgba(201,168,76,.28);
+  background:rgba(255,255,255,.04); color:var(--text); font-family:Arial,sans-serif;
+}
+.gate-manager textarea{min-height:110px; resize:vertical}
+.gate-manager .btnrow{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem}
+.gate-admin-btn{
+  background:var(--gold); color:var(--navy); font-weight:700; border:none;
+  border-radius:8px; padding:.65rem 1rem; cursor:pointer
+}
+.gate-admin-btn.alt{background:rgba(201,168,76,.14); color:var(--gold); border:1px solid rgba(201,168,76,.32)}
+.gate-admin-card{
+  margin-top:.85rem; padding:.85rem; border:1px solid rgba(201,168,76,.22); border-radius:10px;
+  background:rgba(255,255,255,.02)
+}
+.gate-admin-card img{max-width:180px; max-height:120px; display:block; margin-top:.6rem; border-radius:8px; border:1px solid rgba(201,168,76,.2)}
+.gate-badges{display:flex; gap:.5rem; flex-wrap:wrap; margin:.8rem 0}
+.gate-badge{
+  display:inline-block; padding:.35rem .7rem; border-radius:999px; border:1px solid rgba(201,168,76,.24);
+  background:rgba(201,168,76,.08); color:var(--gold2); font-size:.82rem
+}
+@media (max-width: 900px){
+  .gate-nav-inner{align-items:flex-start}
+  .gate-nav-links{width:100%}
+}
+@media (max-width: 700px){
+  .gate-manager .row{grid-template-columns:1fr}
+  .gate-dropdown{display:block}
+  .gate-dropdown-menu{position:static; display:block; margin:.2rem 0 .5rem}
+}
+
+</style>
+</head>
+<body>
+<nav class="gate-nav"><div class="gate-nav-inner"><div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div><div class="gate-nav-links"><div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu"><a href="bible.html">📖 The Bible</a>
+<a href="schedule.html">📅 Take The Test</a>
+<a href="apply.html">🎓 Apply to School</a>
+<a href="announcements.html">📢 Announcement</a>
+<a href="events.html">🗓 Events</a>
+<a href="livepanel.html">🔴 LIVE Panel</a>
+<a href="biblestudies.html">✝ Bible Studies</a>
+<a href="video.html">▶ Video</a>
+<a href="ministry.html">⛪ Ministry</a>
+<a href="donation.html">💛 Donation</a>
+<a href="index.html">Home Landing</a>
+<a href="exam.html">Exam 1</a>
+<a href="exam2.html">Exam 2</a>
+<a href="exam3.html">Exam 3</a>
+<a href="exam4.html">Exam 4</a>
+<a href="exam5.html">Exam 5</a>
+<a href="exam6.html">Exam 6</a></div></div><div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu"><a href="account_profile.html">Profile</a>
+<a href="account_settings.html">Settings</a>
+<a href="account_subscriptions.html">Subscriptions</a>
+<a href="account_orders.html">Orders</a>
+<a href="account_billing.html">Billing</a>
+<a href="account_payment_methods.html">Payment Methods</a>
+<a href="account_messages.html">Messages</a>
+<a href="account_saved_items.html">Saved Items</a>
+<a href="account_security.html">Security</a>
+<a href="account_support_tickets.html">Support Tickets</a>
+<a href="account.html">Main Account</a></div></div><div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu"><a href="bundles_store.html">Store</a>
+<a href="bundles_books.html">Books</a>
+<a href="bundles_ebooks.html">eBooks</a>
+<a href="bundles_courses.html">Courses</a>
+<a href="bundles_study_guides.html">Study Guides</a>
+<a href="bundles_theology_materials.html">Theology Materials</a>
+<a href="bundles_divinity_materials.html">Divinity Materials</a>
+<a href="bundles_bundle_250.html">$250 Bundle</a>
+<a href="bundles_bundle_500.html">$500 Bundle</a>
+<a href="bundles_independent_tests.html">Independent Tests</a>
+<a href="bundle.html">Main Bundles</a></div></div><div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu"><a href="contact_general_contact.html">General Contact</a>
+<a href="contact_support.html">Support</a>
+<a href="contact_admissions.html">Admissions</a>
+<a href="contact_theology_schools.html">Theology Schools</a>
+<a href="contact_divinity_schools.html">Divinity Schools</a>
+<a href="contact_phd_directory.html">Theology PhD Directory</a>
+<a href="contact_university_directory.html">University Directory</a>
+<a href="contact_ministry_contacts.html">Ministry Contacts</a>
+<a href="contact_events_contact.html">Events Contact</a>
+<a href="contact_submit_inquiry.html">Submit Inquiry</a>
+<a href="contact.html">Main Contact</a></div></div><div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu"><a href="free_trial_overview.html">Trial Overview</a>
+<a href="free_trial_trial_status.html">Trial Status</a>
+<a href="free_trial_fifty_questions.html">50 Questions</a>
+<a href="free_trial_free_theology.html">Free Theology</a>
+<a href="free_trial_free_divinity.html">Free Divinity</a>
+<a href="free_trial_free_videos.html">Free Videos</a>
+<a href="free_trial_free_books.html">Free Books</a>
+<a href="free_trial_free_quizzes.html">Free Quizzes</a>
+<a href="free_trial_study_plan.html">Study Plan</a>
+<a href="free_trial_activation_help.html">Activation Help</a>
+<a href="trial.html">Main Trial</a></div></div><div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu"><a href="reports_performance.html">Performance</a>
+<a href="reports_scores.html">Scores</a>
+<a href="reports_trial_reports.html">Trial Reports</a>
+<a href="reports_bundle_access.html">Bundle Access</a>
+<a href="reports_purchase_history.html">Purchase History</a>
+<a href="reports_student_activity.html">Student Activity</a>
+<a href="reports_admin_reports.html">Admin Reports</a>
+<a href="reports_exam_usage.html">Exam Usage</a>
+<a href="reports_downloads.html">Downloads</a>
+<a href="reports_notifications.html">Notifications</a>
+<a href="reports.html">Main Reports</a></div></div><a href="admin.html" class="btn-nav">Admin</a></div></div></nav>
+<header class="page-header">
+  <h1>Divinity Schools</h1>
+  <p>Contact information, schools, directories, and inquiries.</p>
+</header>
+<main class="page-wrap">
+  <div class="panel">
+    <p>This page now opens as its own root-level file so GitHub Pages can find it without 404 errors.</p>
+    
+    <div id="gate-manager-host"></div>
+  </div>
+</main>
+<script src="assets/gate_shared.js"></script>
+<script>gateRenderManager("contact","contact_divinity_schools");</script>
+</body>
+</html>
