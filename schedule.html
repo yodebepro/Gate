@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Schedule Your Test</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+/* PRIMARY NAV */
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.nav1-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.nav1-links a{color:var(--text2);font-size:.75rem;padding:.28rem .65rem;border-radius:4px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;transition:all .2s}
+.nav1-links a:hover,.nav1-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.nav1-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700}
+.nav1-links .btn-nav:hover{background:var(--gold2)}
+/* SECONDARY NAV */
+.gate-nav2{background:rgba(10,20,40,.9);border-bottom:1px solid rgba(201,168,76,.25);backdrop-filter:blur(4px)}
+.nav2-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.1rem}
+.nav2-inner a{color:var(--text2);font-size:.75rem;padding:.3rem .75rem;border-radius:4px;letter-spacing:.5px;font-family:sans-serif;transition:all .2s;white-space:nowrap}
+.nav2-inner a:hover,.nav2-inner a.active{color:var(--gold);background:rgba(201,168,76,.1);text-decoration:none}
+.nav2-inner .sep{color:rgba(201,168,76,.2);padding:0 .1rem;font-size:.7rem}
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:5px;font-family:sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:var(--cream)}
+.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-sm{padding:.3rem .8rem;font-size:.78rem}
+.btn-green{background:#2d7a4f;color:#fff}
+.btn-green:hover{background:#38945f;text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+@media(max-width:768px){.nav1-links{display:none}.nav2-inner{overflow-x:auto;flex-wrap:nowrap}}
+
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.3rem;margin:.5rem 0}
+.cal-header{text-align:center;font-size:.72rem;color:var(--gold);font-family:sans-serif;font-weight:700;padding:.3rem}
+.cal-day{text-align:center;padding:.5rem .3rem;border-radius:4px;font-size:.82rem;font-family:sans-serif;cursor:default;border:1px solid transparent}
+.cal-day.empty{background:transparent;border:none}
+.cal-day.available{background:rgba(45,122,79,.15);border-color:rgba(45,122,79,.4);color:#4aad74;cursor:pointer}
+.cal-day.available:hover{background:rgba(45,122,79,.35)}
+.cal-day.selected{background:#2d7a4f;color:#fff;border-color:#2d7a4f}
+.cal-day.taken{background:rgba(139,32,32,.15);border-color:rgba(139,32,32,.3);color:#e05555;cursor:not-allowed}
+.cal-day.today{border-color:var(--gold)}
+.time-slot{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}
+.time-btn{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:20px;font-size:.82rem;cursor:pointer;font-family:sans-serif;transition:all .15s}
+.time-btn:hover{border-color:var(--gold);color:var(--gold)}
+.time-btn.selected{background:var(--gold);color:var(--navy);font-weight:700;border-color:var(--gold)}
+.step-indicator{display:flex;gap:0;margin-bottom:2rem}
+.step{flex:1;text-align:center;padding:.6rem;font-size:.78rem;font-family:sans-serif;border-bottom:3px solid rgba(255,255,255,.1);color:var(--text2)}
+.step.active{color:var(--gold);border-bottom-color:var(--gold)}
+.step.done{color:#4aad74;border-bottom-color:#2d7a4f}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="nav1-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav><nav class="gate-nav2"><div class="nav2-inner"><a href="bible.html">📖 The Bible</a><a href="schedule.html" class="active">📅 Take The Test</a><a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcements</a><a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a><a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a><a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a></div></nav>
+<div class="page-header">
+  <h1>📅 Schedule Your GATE Test</h1>
+  <p>Browse available dates, times & locations · $330 test fee required</p>
+  <div class="divider"></div>
+</div>
+<div class="container" style="max-width:900px;">
+
+  <div class="step-indicator">
+    <div class="step active" id="step1ind">1. Select Date &amp; Time</div>
+    <div class="step" id="step2ind">2. Your Information</div>
+    <div class="step" id="step3ind">3. Pay &amp; Confirm</div>
+    <div class="step" id="step4ind">4. Admin Approval</div>
+  </div>
+
+  <!-- STEP 1: Calendar -->
+  <div id="step1">
+    <div class="alert alert-info">📋 Browse available test dates below. Select a date, then choose your preferred time and location.</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-header"><span>📅</span><h2 id="calMonthTitle">Loading...</h2></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;">
+          <button class="btn btn-secondary btn-sm" onclick="prevMonth()">← Prev</button>
+          <span id="calMonthLabel" style="color:var(--gold);font-family:sans-serif;font-size:.9rem;font-weight:600;"></span>
+          <button class="btn btn-secondary btn-sm" onclick="nextMonth()">Next →</button>
+        </div>
+        <div class="calendar-grid">
+          <div class="cal-header">Sun</div><div class="cal-header">Mon</div><div class="cal-header">Tue</div>
+          <div class="cal-header">Wed</div><div class="cal-header">Thu</div><div class="cal-header">Fri</div><div class="cal-header">Sat</div>
+          <div id="calDays"></div>
+        </div>
+        <div style="margin-top:.8rem;font-size:.74rem;color:var(--text2);">
+          <span style="color:#4aad74;">■</span> Available &nbsp;
+          <span style="color:#e05555;">■</span> Taken/Unavailable &nbsp;
+          <span style="color:var(--gold);">□</span> Today
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span>🕐</span><h2>Available Times</h2></div>
+        <div id="selectedDateInfo" style="color:var(--text2);font-size:.88rem;margin-bottom:.8rem;">Select a date to see available times.</div>
+        <div id="timeSlotsDiv" style="display:none;">
+          <div class="time-slot" id="timeSlots"></div>
+          <div style="margin-top:1.2rem;">
+            <label>Test Location</label>
+            <select id="locationSel">
+              <option value="">— Select Location —</option>
+              <option>New York, NY — GATE Testing Center</option>
+              <option>Los Angeles, CA — GATE Testing Center</option>
+              <option>Chicago, IL — GATE Testing Center</option>
+              <option>Houston, TX — GATE Testing Center</option>
+              <option>Atlanta, GA — GATE Testing Center</option>
+              <option>Miami, FL — GATE Testing Center</option>
+              <option>Dallas, TX — GATE Testing Center</option>
+              <option>Philadelphia, PA — GATE Testing Center</option>
+              <option>Remote/Online Proctored</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="width:100%;margin-top:1rem;" onclick="goStep2()">Continue to Registration →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: Registration Form -->
+  <div id="step2" style="display:none;">
+    <div class="card">
+      <div class="card-header"><span>👤</span><h2>Candidate Registration</h2></div>
+      <div class="two-col">
+        <div class="form-group"><label>First Name *</label><input type="text" id="regFirst" placeholder="First Name"></div>
+        <div class="form-group"><label>Last Name *</label><input type="text" id="regLast" placeholder="Last Name"></div>
+      </div>
+      <div class="form-group"><label>Email Address *</label><input type="email" id="regEmail" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Phone Number *</label><input type="tel" id="regPhone" placeholder="+1 (555) 000-0000"></div>
+      <div class="form-group"><label>Mailing Address *</label><input type="text" id="regAddress" placeholder="Street address"></div>
+      <div class="two-col">
+        <div class="form-group"><label>City *</label><input type="text" id="regCity" placeholder="City"></div>
+        <div class="form-group"><label>State / Country *</label><input type="text" id="regState" placeholder="State or Country"></div>
+      </div>
+      <div class="form-group">
+        <label>Highest Educational Degree *</label>
+        <select id="regDegree">
+          <option value="">— Select degree —</option>
+          <option>Bachelor of Arts (BA)</option>
+          <option>Bachelor of Science (BS)</option>
+          <option>Bachelor of Theology (BTh)</option>
+          <option>Master of Divinity (MDiv)</option>
+          <option>Master of Arts (MA)</option>
+          <option>Doctor of Ministry (DMin)</option>
+          <option>Doctor of Philosophy (PhD)</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Name of College / University *</label><input type="text" id="regCollege" placeholder="e.g., Liberty University, Dallas Theological Seminary"></div>
+      <div class="form-group"><label>Year Graduated</label><input type="text" id="regGradYear" placeholder="e.g., 2018"></div>
+      <div class="form-group"><label>Current Ministry / Occupation (optional)</label><input type="text" id="regMinistry" placeholder="Pastor, Deacon, Student, etc."></div>
+      <div class="form-group"><label>Why are you taking the GATE examination? (optional)</label>
+        <textarea id="regWhy" rows="3" placeholder="Brief description..."></textarea></div>
+      <div id="step2Msg" style="font-size:.85rem;margin-bottom:.5rem;"></div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+        <button class="btn btn-secondary" onclick="goStep1()">← Back</button>
+        <button class="btn btn-primary" onclick="goStep3()">Continue to Payment →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Payment -->
+  <div id="step3" style="display:none;">
+    <div class="card">
+      <div class="card-header"><span>💳</span><h2>Test Fee Payment — $330</h2></div>
+      <div class="alert alert-warning">⚠️ Your test scheduling will NOT be confirmed until the $330 test fee is paid AND verified by the admin.</div>
+      <div id="summaryBox" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:1rem;margin-bottom:1.2rem;font-size:.88rem;line-height:1.9;"></div>
+      <div style="text-align:center;margin:1.5rem 0;">
+        <a href="https://buy.stripe.com/test_28E5kw7r41GU2xu0U86kg07" target="_blank"
+           class="btn btn-primary" style="font-size:1rem;padding:.9rem 2.5rem;background:linear-gradient(135deg,#635bff,#4b44e0);color:#fff;"
+           onclick="markPaid()">
+          💳 Pay $330 Test Fee via Stripe
+        </a>
+        <p style="color:var(--text2);font-size:.78rem;margin-top:.6rem;">Opens secure Stripe checkout in a new tab</p>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1rem;margin-top:.5rem;">
+        <p style="color:var(--text2);font-size:.85rem;margin-bottom:.8rem;">After completing payment, click below to notify the admin:</p>
+        <button class="btn btn-primary" style="width:100%;" onclick="submitSchedule()">📩 I've Paid — Notify Admin &amp; Submit Request</button>
+        <div id="step3Msg" style="margin-top:.7rem;font-size:.85rem;"></div>
+      </div>
+      <button class="btn btn-secondary" style="margin-top:1rem;" onclick="goStep2()">← Back</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Confirmation -->
+  <div id="step4" style="display:none;">
+    <div class="card" style="text-align:center;padding:3rem 2rem;">
+      <div style="font-size:3.5rem;margin-bottom:1rem;">✅</div>
+      <h2 style="font-family:'Cinzel',serif;color:var(--gold);margin-bottom:.8rem;">Request Submitted!</h2>
+      <p style="color:var(--text2);max-width:500px;margin:0 auto 1.5rem;line-height:1.8;">
+        Your test scheduling request and payment notification have been sent to the GATE administration.
+        Your schedule will be <strong style="color:var(--cream);">confirmed once the admin verifies your payment</strong>.
+        You will receive confirmation at your registered email within 24–48 hours.
+      </p>
+      <div id="confirmDetails" style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:1rem;margin:0 auto 1.5rem;max-width:450px;text-align:left;font-size:.88rem;line-height:1.9;"></div>
+      <a href="index.html" class="btn btn-secondary">Return to Home</a>
+    </div>
+  </div>
+
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+const GATE_KEY='td_gate_v6';
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+let curYear=new Date().getFullYear(), curMonth=new Date().getMonth();
+let selectedDate='', selectedTime='', selectedLoc='';
+let formData={};
+
+// Available test days: Saturdays only, future dates
+function isAvailable(y,m,d){
+  const dt=new Date(y,m,d); const dow=dt.getDay();
+  const today=new Date(); today.setHours(0,0,0,0);
+  if(dt<=today) return false;
+  // Saturdays only
+  if(dow!==6) return false;
+  // Not every Saturday — skip 2nd Saturday of each month
+  const week=Math.ceil(d/7);
+  if(week===2) return false;
+  return true;
+}
+
+function buildCalendar(){
+  const label=document.getElementById('calMonthLabel');
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  label.textContent=months[curMonth]+' '+curYear;
+  const firstDay=new Date(curYear,curMonth,1).getDay();
+  const daysInMonth=new Date(curYear,curMonth+1,0).getDate();
+  const today=new Date();
+  const calDiv=document.getElementById('calDays');
+  calDiv.style.display='contents';
+  // Clear previous
+  document.querySelectorAll('.cal-day').forEach(e=>e.remove());
+  const grid=document.getElementById('calDays').parentElement;
+  // Remove old day divs
+  Array.from(grid.querySelectorAll('.cal-day')).forEach(e=>e.remove());
+  // Empty cells
+  for(let i=0;i<firstDay;i++){
+    const d=document.createElement('div');d.className='cal-day empty';
+    grid.appendChild(d);
+  }
+  for(let d=1;d<=daysInMonth;d++){
+    const cell=document.createElement('div');
+    const isToday=(today.getFullYear()===curYear&&today.getMonth()===curMonth&&today.getDate()===d);
+    const avail=isAvailable(curYear,curMonth,d);
+    const dateStr=curYear+'-'+String(curMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    cell.className='cal-day'+(isToday?' today':'')+(avail?' available':'  taken');
+    cell.textContent=d;
+    if(dateStr===selectedDate) cell.classList.add('selected');
+    if(avail){
+      cell.onclick=(()=>{const ds=dateStr; return ()=>selectDate(ds);})();
+    }
+    grid.appendChild(cell);
+  }
+}
+
+function selectDate(ds){
+  selectedDate=ds;
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const parts=ds.split('-');
+  const friendly=months[parseInt(parts[1])-1]+' '+parseInt(parts[2])+', '+parts[0];
+  document.getElementById('selectedDateInfo').innerHTML='<strong style="color:var(--gold);">'+friendly+'</strong> — Select a time slot:';
+  document.getElementById('timeSlotsDiv').style.display='block';
+  const slots=['8:00 AM','9:00 AM','10:00 AM','11:00 AM','1:00 PM','2:00 PM','3:00 PM'];
+  const ts=document.getElementById('timeSlots');
+  ts.innerHTML='';
+  slots.forEach(t=>{
+    const b=document.createElement('div');
+    b.className='time-btn'+(t===selectedTime?' selected':'');
+    b.textContent=t;
+    b.onclick=()=>{selectedTime=t;document.querySelectorAll('.time-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');};
+    ts.appendChild(b);
+  });
+  buildCalendar();
+}
+
+function prevMonth(){curMonth--;if(curMonth<0){curMonth=11;curYear--;}buildCalendar();}
+function nextMonth(){curMonth++;if(curMonth>11){curMonth=0;curYear++;}buildCalendar();}
+
+function goStep2(){
+  if(!selectedDate||!selectedTime){alert('Please select a date and time first.');return;}
+  if(!document.getElementById('locationSel').value){alert('Please select a test location.');return;}
+  selectedLoc=document.getElementById('locationSel').value;
+  setStep(2);
+}
+
+function goStep1(){setStep(1);}
+
+function goStep3(){
+  const fields={first:'regFirst',last:'regLast',email:'regEmail',phone:'regPhone',addr:'regAddress',city:'regCity',state:'regState',degree:'regDegree',college:'regCollege'};
+  for(const[k,id] of Object.entries(fields)){
+    if(!document.getElementById(id).value.trim()){
+      document.getElementById('step2Msg').innerHTML='<span style="color:#e05555;">Please fill all required fields (marked *).</span>';
+      return;
+    }
+    formData[k]=document.getElementById(id).value.trim();
+  }
+  formData.gradYear=document.getElementById('regGradYear').value;
+  formData.ministry=document.getElementById('regMinistry').value;
+  formData.why=document.getElementById('regWhy').value;
+  // Build summary
+  const sum=`<strong style="color:var(--gold);">Test Date:</strong> ${selectedDate}<br>
+    <strong style="color:var(--gold);">Time:</strong> ${selectedTime}<br>
+    <strong style="color:var(--gold);">Location:</strong> ${selectedLoc}<br>
+    <strong style="color:var(--gold);">Candidate:</strong> ${formData.first} ${formData.last}<br>
+    <strong style="color:var(--gold);">Email:</strong> ${formData.email}<br>
+    <strong style="color:var(--gold);">Degree:</strong> ${formData.degree} — ${formData.college}<br>
+    <strong style="color:var(--gold);">Test Fee:</strong> <span style="color:#c9a84c;font-weight:700;">$330</span>`;
+  document.getElementById('summaryBox').innerHTML=sum;
+  setStep(3);
+}
+
+function markPaid(){
+  // Save pending schedule
+  const schedules=gateLoad('gate_schedules')||[];
+  schedules.push({...formData,date:selectedDate,time:selectedTime,loc:selectedLoc,status:'pending_payment',submittedAt:Date.now()});
+  gateSave('gate_schedules',schedules);
+}
+
+function submitSchedule(){
+  const body=encodeURIComponent(
+    'GATE Test Schedule Request\n\n'+
+    'Candidate: '+formData.first+' '+formData.last+'\n'+
+    'Email: '+formData.email+'\n'+
+    'Phone: '+formData.phone+'\n'+
+    'Address: '+formData.addr+', '+formData.city+', '+formData.state+'\n'+
+    'Degree: '+formData.degree+' from '+formData.college+' ('+formData.gradYear+')\n'+
+    'Test Date: '+selectedDate+'\n'+
+    'Time: '+selectedTime+'\n'+
+    'Location: '+selectedLoc+'\n'+
+    'Test Fee: $330 (Stripe payment completed)\n\n'+
+    'Please verify payment and confirm the test schedule.\n--- GATE Platform ---'
+  );
+  window.open('mailto:yodebepro@gmail.com?subject=GATE+Test+Schedule+Request:+'+encodeURIComponent(formData.first+' '+formData.last)+'&body='+body,'_blank');
+  document.getElementById('confirmDetails').innerHTML=document.getElementById('summaryBox').innerHTML+
+    '<br><strong style="color:#4aad74;">Status:</strong> Pending admin payment verification';
+  setStep(4);
+}
+
+function setStep(n){
+  [1,2,3,4].forEach(i=>{
+    document.getElementById('step'+i).style.display=(i===n)?'block':'none';
+    const ind=document.getElementById('step'+i+'ind');
+    ind.className='step'+(i===n?' active':i<n?' done':'');
+  });
+  if(n===1) buildCalendar();
+}
+
+// Init
+buildCalendar();
+</script>
+</body></html>

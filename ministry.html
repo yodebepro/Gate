@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Ministry Directory</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+/* PRIMARY NAV */
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.nav1-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.nav1-links a{color:var(--text2);font-size:.75rem;padding:.28rem .65rem;border-radius:4px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;transition:all .2s}
+.nav1-links a:hover,.nav1-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.nav1-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700}
+.nav1-links .btn-nav:hover{background:var(--gold2)}
+/* SECONDARY NAV */
+.gate-nav2{background:rgba(10,20,40,.9);border-bottom:1px solid rgba(201,168,76,.25);backdrop-filter:blur(4px)}
+.nav2-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.1rem}
+.nav2-inner a{color:var(--text2);font-size:.75rem;padding:.3rem .75rem;border-radius:4px;letter-spacing:.5px;font-family:sans-serif;transition:all .2s;white-space:nowrap}
+.nav2-inner a:hover,.nav2-inner a.active{color:var(--gold);background:rgba(201,168,76,.1);text-decoration:none}
+.nav2-inner .sep{color:rgba(201,168,76,.2);padding:0 .1rem;font-size:.7rem}
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:5px;font-family:sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:var(--cream)}
+.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-sm{padding:.3rem .8rem;font-size:.78rem}
+.btn-green{background:#2d7a4f;color:#fff}
+.btn-green:hover{background:#38945f;text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+@media(max-width:768px){.nav1-links{display:none}.nav2-inner{overflow-x:auto;flex-wrap:nowrap}}
+
+.ministry-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem}
+.ministry-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;transition:all .2s}
+.ministry-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.ministry-icon{font-size:2rem;margin-bottom:.5rem}
+.ministry-name{font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold);margin-bottom:.2rem}
+.ministry-cat{font-size:.7rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem}
+.ministry-desc{color:var(--text2);font-size:.82rem;line-height:1.6;margin-bottom:.7rem}
+.cat-tabs{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.cat-tab{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--text2);padding:.3rem .8rem;border-radius:20px;font-size:.75rem;cursor:pointer;font-family:sans-serif;transition:all .15s}
+.cat-tab.active{background:var(--gold);color:var(--navy);font-weight:700;border-color:var(--gold)}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="nav1-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav><nav class="gate-nav2"><div class="nav2-inner"><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a><a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcements</a><a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a><a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a><a href="ministry.html" class="active">⛪ Ministry</a><a href="donation.html">💛 Donation</a></div></nav>
+<div class="page-header">
+  <h1>⛪ Ministry Directory</h1>
+  <p>Churches, missions, humanitarian organizations &amp; ministries</p>
+  <div class="divider"></div>
+</div>
+<div class="container">
+  <div class="cat-tabs" id="catTabs"></div>
+  <div class="ministry-grid" id="ministryGrid"></div>
+
+  <!-- Admin Panel -->
+  <div id="adminPanel" style="display:none;margin-top:2rem;">
+    <div class="card" style="border-color:rgba(201,168,76,.4);">
+      <div class="card-header"><span>➕</span><h2>Add Ministry (Admin)</h2></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label>Ministry/Organization Name *</label><input type="text" id="addName" placeholder="Name"></div>
+        <div class="form-group"><label>Category *</label>
+          <select id="addCat">
+            <option>Church</option><option>Seminary</option><option>Orphanage</option>
+            <option>Humanitarian</option><option>Human Rights</option><option>Missions</option>
+            <option>Bible Society</option><option>Evangelism</option><option>Youth Ministry</option>
+            <option>Counseling</option><option>Prison Ministry</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label>Description</label><textarea id="addDesc" rows="2" placeholder="Brief description..."></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label>Location / Region</label><input type="text" id="addLoc" placeholder="City, State, Country"></div>
+        <div class="form-group"><label>Website (optional)</label><input type="url" id="addUrl" placeholder="https://..."></div>
+      </div>
+      <div class="form-group"><label>Contact Email (optional)</label><input type="email" id="addEmail" placeholder="contact@ministry.org"></div>
+      <button class="btn btn-primary" onclick="addMinistry()">Add to Directory</button>
+      <div id="ministryMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:1rem;">
+    <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">⚙ Admin Access</button>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let adminUnlocked=false, activeCat='All';
+
+const CAT_ICONS={'Church':'⛪','Seminary':'🎓','Orphanage':'🏠','Humanitarian':'🤝','Human Rights':'✊','Missions':'✈️','Bible Society':'📖','Evangelism':'📢','Youth Ministry':'🌟','Counseling':'💬','Prison Ministry':'🕊️','Other':'🌐'};
+
+const DEFAULT_MINISTRIES=[
+  {name:"American Bible Society",cat:"Bible Society",desc:"Distributing the Holy Bible worldwide since 1816, making Scripture accessible to all people.",loc:"Philadelphia, PA",url:"https://www.americanbible.org",email:"",ts:1000},
+  {name:"Billy Graham Evangelistic Association",cat:"Evangelism",desc:"Global ministry dedicated to sharing the Gospel through crusades, media, and training.",loc:"Charlotte, NC",url:"https://billygraham.org",email:"",ts:1001},
+  {name:"Compassion International",cat:"Humanitarian",desc:"Christian child development organization working to release children from poverty.",loc:"Colorado Springs, CO",url:"https://www.compassion.com",email:"",ts:1002},
+  {name:"World Vision",cat:"Humanitarian",desc:"Christian humanitarian organization serving children and families in nearly 100 countries.",loc:"Seattle, WA",url:"https://www.worldvision.org",email:"",ts:1003},
+  {name:"Prison Fellowship",cat:"Prison Ministry",desc:"Ministering to prisoners, ex-prisoners, their families and communities since 1976.",loc:"Lansdowne, VA",url:"https://www.prisonfellowship.org",email:"",ts:1004},
+  {name:"Wycliffe Bible Translators",cat:"Bible Society",desc:"Translating the Bible into every language where it is needed.",loc:"Orlando, FL",url:"https://www.wycliffe.org",email:"",ts:1005},
+  {name:"International Justice Mission",cat:"Human Rights",desc:"Global nonprofit securing rescue, restoration, and protection for people threatened by violence.",loc:"Arlington, VA",url:"https://www.ijm.org",email:"",ts:1006},
+  {name:"Youth With A Mission (YWAM)",cat:"Missions",desc:"International volunteer movement dedicated to knowing God and making Him known worldwide.",loc:"International",url:"https://www.ywam.org",email:"",ts:1007},
+  {name:"SOS Children's Villages",cat:"Orphanage",desc:"International non-governmental organization providing long-term family-based care for orphaned children.",loc:"International",url:"https://www.sos-usa.org",email:"",ts:1008},
+  {name:"Focus on the Family",cat:"Counseling",desc:"Christian organization providing help and resources for couples to build healthy marriages.",loc:"Colorado Springs, CO",url:"https://www.focusonthefamily.com",email:"",ts:1009},
+  {name:"Trans World Radio",cat:"Missions",desc:"Christian radio broadcasting to unreached people groups in their heart languages worldwide.",loc:"Cary, NC",url:"https://www.twr.org",email:"",ts:1010},
+  {name:"Samaritan's Purse",cat:"Humanitarian",desc:"Christian relief and evangelism organization providing aid and the Gospel to suffering people.",loc:"Boone, NC",url:"https://www.samaritanspurse.org",email:"",ts:1011},
+];
+
+function getMinistries(){
+  const custom=gateLoad('gate_ministries_custom')||[];
+  return [...DEFAULT_MINISTRIES,...custom];
+}
+
+function init(){
+  buildCatTabs();
+  renderMinistries();
+}
+
+function buildCatTabs(){
+  const all=getMinistries();
+  const cats=['All',...new Set(all.map(m=>m.cat))].sort();
+  const div=document.getElementById('catTabs');
+  div.innerHTML=cats.map(c=>`<button class="cat-tab${c===activeCat?' active':''}" onclick="setCat('${c}',this)">${CAT_ICONS[c]||'🌐'} ${c}</button>`).join('');
+}
+
+function setCat(cat,btn){
+  activeCat=cat;
+  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMinistries();
+}
+
+function renderMinistries(){
+  let items=getMinistries();
+  if(activeCat!=='All') items=items.filter(m=>m.cat===activeCat);
+  const grid=document.getElementById('ministryGrid');
+  if(!items.length){grid.innerHTML='<p style="color:var(--text2);">No ministries in this category.</p>';return;}
+  grid.innerHTML=items.map(m=>`
+    <div class="ministry-card">
+      <div class="ministry-icon">${CAT_ICONS[m.cat]||'🌐'}</div>
+      <div class="ministry-name">${m.name}</div>
+      <div class="ministry-cat">${m.cat}${m.loc?' · 📍 '+m.loc:''}</div>
+      <div class="ministry-desc">${m.desc||''}</div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+        ${m.url?`<a href="${m.url}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Visit Website →</a>`:''}
+        ${m.email?`<a href="mailto:${m.email}" class="btn btn-secondary btn-sm">Email</a>`:''}
+        ${adminUnlocked&&m.ts>1011?`<button class="btn btn-danger btn-sm" onclick="removeMinistry(${m.ts})">Remove</button>`:''}</div>
+    </div>`).join('');
+}
+
+function addMinistry(){
+  if(!adminUnlocked){alert('Admin access required.');return;}
+  const name=document.getElementById('addName').value.trim();
+  const cat=document.getElementById('addCat').value;
+  const desc=document.getElementById('addDesc').value.trim();
+  const loc=document.getElementById('addLoc').value.trim();
+  const url=document.getElementById('addUrl').value.trim();
+  const email=document.getElementById('addEmail').value.trim();
+  if(!name){document.getElementById('ministryMsg').innerHTML='<span style="color:#e05555;">Name is required.</span>';return;}
+  const custom=gateLoad('gate_ministries_custom')||[];
+  custom.push({name,cat,desc,loc,url,email,ts:Date.now()});
+  gateSave('gate_ministries_custom',custom);
+  buildCatTabs(); renderMinistries();
+  document.getElementById('ministryMsg').innerHTML='<span style="color:#4aad74;">✓ Ministry added!</span>';
+  ['addName','addDesc','addLoc','addUrl','addEmail'].forEach(id=>document.getElementById(id).value='');
+}
+
+function removeMinistry(ts){
+  if(!confirm('Remove this ministry?'))return;
+  const custom=(gateLoad('gate_ministries_custom')||[]).filter(m=>m.ts!==ts);
+  gateSave('gate_ministries_custom',custom);
+  buildCatTabs(); renderMinistries();
+}
+
+function promptAdmin(){
+  const pw=prompt('Admin password:');
+  if(pw==='GATE2025admin'){adminUnlocked=true;document.getElementById('adminPanel').style.display='block';renderMinistries();}
+  else if(pw!==null) alert('Incorrect password.');
+}
+
+init();
+</script>
+</body></html>

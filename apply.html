@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Apply to Theology School</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+/* PRIMARY NAV */
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.nav1-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.nav1-links a{color:var(--text2);font-size:.75rem;padding:.28rem .65rem;border-radius:4px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;transition:all .2s}
+.nav1-links a:hover,.nav1-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.nav1-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700}
+.nav1-links .btn-nav:hover{background:var(--gold2)}
+/* SECONDARY NAV */
+.gate-nav2{background:rgba(10,20,40,.9);border-bottom:1px solid rgba(201,168,76,.25);backdrop-filter:blur(4px)}
+.nav2-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.1rem}
+.nav2-inner a{color:var(--text2);font-size:.75rem;padding:.3rem .75rem;border-radius:4px;letter-spacing:.5px;font-family:sans-serif;transition:all .2s;white-space:nowrap}
+.nav2-inner a:hover,.nav2-inner a.active{color:var(--gold);background:rgba(201,168,76,.1);text-decoration:none}
+.nav2-inner .sep{color:rgba(201,168,76,.2);padding:0 .1rem;font-size:.7rem}
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:5px;font-family:sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:var(--cream)}
+.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-sm{padding:.3rem .8rem;font-size:.78rem}
+.btn-green{background:#2d7a4f;color:#fff}
+.btn-green:hover{background:#38945f;text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+@media(max-width:768px){.nav1-links{display:none}.nav2-inner{overflow-x:auto;flex-wrap:nowrap}}
+
+.school-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
+.school-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;transition:all .2s}
+.school-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.school-name{font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold);margin-bottom:.3rem}
+.school-location{font-size:.78rem;color:var(--text2);margin-bottom:.4rem;font-family:sans-serif}
+.school-desc{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:.7rem}
+.school-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.7rem}
+.tag{background:rgba(201,168,76,.1);color:var(--text2);font-size:.68rem;padding:.1rem .4rem;border-radius:3px;font-family:sans-serif}
+.filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center}
+.filter-btn{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--text2);padding:.3rem .8rem;border-radius:20px;font-size:.78rem;cursor:pointer;font-family:sans-serif;transition:all .15s}
+.filter-btn:hover,.filter-btn.active{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="nav1-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav><nav class="gate-nav2"><div class="nav2-inner"><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a><a href="apply.html" class="active">🎓 Apply to School</a><a href="announcements.html">📢 Announcements</a><a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a><a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a><a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a></div></nav>
+<div class="page-header">
+  <h1>🎓 Apply to Theology & Divinity Schools</h1>
+  <p>Accredited institutions offering theological & divinity studies</p>
+  <div class="divider"></div>
+</div>
+<div class="container">
+  <div class="filter-bar">
+    <span style="color:var(--text2);font-size:.82rem;font-family:sans-serif;">Filter:</span>
+    <button class="filter-btn active" onclick="filterSchools('all',this)">All</button>
+    <button class="filter-btn" onclick="filterSchools('seminary',this)">Seminary</button>
+    <button class="filter-btn" onclick="filterSchools('university',this)">University</button>
+    <button class="filter-btn" onclick="filterSchools('online',this)">Online</button>
+    <button class="filter-btn" onclick="filterSchools('international',this)">International</button>
+    <input type="text" id="schoolSearch" placeholder="Search schools..." oninput="searchSchools()" style="max-width:200px;padding:.3rem .7rem;font-size:.82rem;">
+  </div>
+  <div class="school-grid" id="schoolGrid"></div>
+
+  <!-- Admin: Add School -->
+  <div id="adminAddSchool" style="display:none;margin-top:2rem;">
+    <div class="card" style="border-color:rgba(201,168,76,.4);">
+      <div class="card-header"><span>➕</span><h2>Add School (Admin)</h2></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label>School Name *</label><input type="text" id="addName" placeholder="e.g., Dallas Theological Seminary"></div>
+        <div class="form-group"><label>Location *</label><input type="text" id="addLocation" placeholder="City, State / Country"></div>
+      </div>
+      <div class="form-group"><label>Description</label><textarea id="addDesc" rows="2" placeholder="Brief description of programs offered..."></textarea></div>
+      <div class="form-group"><label>Application URL *</label><input type="url" id="addUrl" placeholder="https://..."></div>
+      <div class="form-group"><label>Tags (comma separated)</label><input type="text" id="addTags" placeholder="Seminary, MDiv, PhD, Online, Baptist..."></div>
+      <div class="form-group">
+        <label>Type</label>
+        <select id="addType"><option value="seminary">Seminary</option><option value="university">University</option><option value="online">Online</option><option value="international">International</option></select>
+      </div>
+      <button class="btn btn-primary" onclick="addSchool()">Add School</button>
+      <div id="addSchoolMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:1rem;">
+    <button class="btn btn-secondary btn-sm" onclick="toggleAdminAdd()">⚙ Admin: Add School</button>
+    <input type="password" id="adminPw" placeholder="Admin password" style="max-width:180px;margin-left:.5rem;padding:.3rem .7rem;font-size:.82rem;" onkeydown="if(event.key==='Enter')checkAdminPw()">
+    <button class="btn btn-secondary btn-sm" onclick="checkAdminPw()">Unlock</button>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+const DEFAULT_SCHOOLS = [
+  // USA SEMINARIES
+  {name:"Dallas Theological Seminary",loc:"Dallas, TX",desc:"Premier evangelical graduate school offering MDiv, ThM, DMin, PhD in biblical studies, theology, and ministry.",url:"https://www.dts.edu/admissions/",tags:["Seminary","MDiv","PhD","DMin","Evangelical","Dallas"],type:"seminary"},
+  {name:"Southern Baptist Theological Seminary",loc:"Louisville, KY",desc:"One of the largest seminaries in the world, offering degrees in theology, divinity, ministry, and biblical studies.",url:"https://www.sbts.edu/apply/",tags:["Seminary","Baptist","MDiv","PhD","Louisville"],type:"seminary"},
+  {name:"Gordon-Conwell Theological Seminary",loc:"South Hamilton, MA",desc:"Interdenominational seminary offering MDiv, MA, DMin degrees with campuses across the US.",url:"https://www.gordonconwell.edu/admissions/",tags:["Seminary","Interdenominational","MDiv","MA"],type:"seminary"},
+  {name:"Southwestern Baptist Theological Seminary",loc:"Fort Worth, TX",desc:"Conservative Baptist seminary with programs in theology, music ministry, educational ministries, and more.",url:"https://www.swbts.edu/admissions/",tags:["Seminary","Baptist","MDiv","DMin","Fort Worth"],type:"seminary"},
+  {name:"Talbot School of Theology",loc:"La Mirada, CA",desc:"Graduate school at Biola University offering MDiv, MA, PhD programs in biblical studies and Christian education.",url:"https://www.biola.edu/talbot/admissions",tags:["Seminary","MDiv","PhD","Biola","Evangelical"],type:"seminary"},
+  {name:"Denver Seminary",loc:"Littleton, CO",desc:"Evangelical seminary with programs in biblical studies, counseling, leadership, and ministry.",url:"https://denverseminary.edu/admissions/",tags:["Seminary","Evangelical","MDiv","Counseling"],type:"seminary"},
+  {name:"Reformed Theological Seminary",loc:"Multiple Campuses",desc:"Reformed/Presbyterian seminary with campuses nationwide. MDiv, DMin, MA programs available.",url:"https://rts.edu/campus/admissions/",tags:["Seminary","Reformed","Presbyterian","MDiv"],type:"seminary"},
+  {name:"Asbury Theological Seminary",loc:"Wilmore, KY",desc:"Wesleyan/Methodist seminary offering MDiv, MA, DMin with focus on world missions and biblical studies.",url:"https://asburyseminary.edu/admissions/",tags:["Seminary","Wesleyan","Methodist","MDiv","Missions"],type:"seminary"},
+  {name:"Bethel Seminary",loc:"St. Paul, MN",desc:"Baptist General Conference seminary with programs in ministry leadership, spiritual formation, and theology.",url:"https://seminary.bethel.edu/admissions/",tags:["Seminary","Baptist","MDiv","Spiritual Formation"],type:"seminary"},
+  {name:"Covenant Theological Seminary",loc:"St. Louis, MO",desc:"Official seminary of the Presbyterian Church in America offering MDiv, MA, DMin programs.",url:"https://www.covenantseminary.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","PCA"],type:"seminary"},
+  {name:"Trinity Evangelical Divinity School",loc:"Deerfield, IL",desc:"Graduate school of Trinity International University with extensive MDiv, PhD, and MA programs.",url:"https://teds.edu/admissions/",tags:["Seminary","Evangelical","MDiv","PhD","Trinity"],type:"seminary"},
+  {name:"Moody Theological Seminary",loc:"Chicago, IL / Plymouth, MI",desc:"Seminary of Moody Bible Institute offering MDiv, MA in ministry leadership and biblical studies.",url:"https://www.moody.edu/seminary/admissions/",tags:["Seminary","MDiv","Biblical Studies","Moody"],type:"seminary"},
+  {name:"Assemblies of God Theological Seminary",loc:"Springfield, MO",desc:"Pentecostal seminary offering MDiv, MA, DMin, PhD in biblical studies, missiology, and ministry leadership.",url:"https://seminary.ag.edu/admissions/",tags:["Seminary","Pentecostal","MDiv","Missions"],type:"seminary"},
+  // USA UNIVERSITIES
+  {name:"Liberty University School of Divinity",loc:"Lynchburg, VA",desc:"One of the largest Christian universities, offering BS, MDiv, DMin, PhD in theology and religious studies. Online and on-campus.",url:"https://www.liberty.edu/divinity/admissions/",tags:["University","MDiv","PhD","Online","Baptist","Liberty"],type:"university"},
+  {name:"Regent University School of Divinity",loc:"Virginia Beach, VA",desc:"Christian research university with programs in divinity, ministry, biblical studies and practical ministry.",url:"https://www.regent.edu/school-of-divinity/admissions/",tags:["University","MDiv","DMin","CBN","Charismatic"],type:"university"},
+  {name:"Baylor University George W. Truett Theological Seminary",loc:"Waco, TX",desc:"Baptist-affiliated seminary within Baylor University, offering MDiv, MA, DMin programs.",url:"https://www.baylor.edu/truett/index.php?id=870808",tags:["University","Seminary","Baptist","MDiv","Baylor"],type:"university"},
+  {name:"Wheaton College Graduate School",loc:"Wheaton, IL",desc:"Evangelical liberal arts college with graduate programs in biblical and theological studies, Christian formation.",url:"https://www.wheaton.edu/graduate-school/admissions/",tags:["University","Evangelical","MA","Biblical Studies"],type:"university"},
+  {name:"Oral Roberts University College of Theology",loc:"Tulsa, OK",desc:"Charismatic university offering undergraduate and graduate degrees in biblical literature, Christian care, and ministry.",url:"https://oru.edu/academics/college-of-theology/",tags:["University","Charismatic","Pentecostal","Theology"],type:"university"},
+  {name:"Fuller Theological Seminary",loc:"Pasadena, CA",desc:"Multidenominational seminary offering MDiv, MA, DMin, PhD with emphasis on global Christianity.",url:"https://www.fuller.edu/admissions/",tags:["Seminary","Multidenominational","MDiv","PhD","Global"],type:"seminary"},
+  {name:"Western Seminary",loc:"Portland, OR",desc:"Evangelical seminary offering MDiv, MA, DMin in biblical and theological studies with ministry focus.",url:"https://www.westernseminary.edu/admissions/",tags:["Seminary","Evangelical","MDiv","Oregon"],type:"seminary"},
+  {name:"Southeastern Baptist Theological Seminary",loc:"Wake Forest, NC",desc:"Southern Baptist seminary offering MDiv, MA, PhD, ThM with rigorous biblical and theological training.",url:"https://www.sebts.edu/admissions/",tags:["Seminary","Baptist","MDiv","PhD","North Carolina"],type:"seminary"},
+  // ONLINE
+  {name:"Liberty University Online (Divinity)",loc:"Online",desc:"Fully accredited online programs in divinity, theology, and biblical studies at all degree levels.",url:"https://www.liberty.edu/divinity/",tags:["Online","MDiv","BA","PhD","Flexible"],type:"online"},
+  {name:"Regent University Online",loc:"Online",desc:"Accredited online divinity and ministry degrees with flexible scheduling for working ministers.",url:"https://www.regent.edu/school-of-divinity/",tags:["Online","MDiv","DMin","Flexible"],type:"online"},
+  {name:"Kairos University (Sioux Falls Seminary)",loc:"Online / Sioux Falls, SD",desc:"Innovative online theological education with outcome-based MDiv and MA programs.",url:"https://kairosedu.org/admissions/",tags:["Online","Seminary","MDiv","Innovative"],type:"online"},
+  {name:"Phoenix Seminary",loc:"Scottsdale, AZ / Online",desc:"Evangelical seminary offering MDiv, MA programs online and on-campus in Phoenix area.",url:"https://ps.edu/admissions/",tags:["Online","Seminary","MDiv","Arizona"],type:"online"},
+  {name:"Grand Canyon Theological Seminary",loc:"Phoenix, AZ / Online",desc:"Christian university offering online MDiv, MA in ministry leadership and theological studies.",url:"https://www.gcu.edu/college-of-theology",tags:["Online","University","MDiv","Phoenix"],type:"online"},
+  // INTERNATIONAL
+  {name:"Oxford Centre for Mission Studies",loc:"Oxford, UK",desc:"Postgraduate research centre for mission, theology, and world Christianity.",url:"https://www.ocms.ac.uk/admissions/",tags:["International","UK","PhD","Missions","Oxford"],type:"international"},
+  {name:"King's College London — Theology",loc:"London, UK",desc:"World-renowned university offering undergraduate and postgraduate programs in theology and religious studies.",url:"https://www.kcl.ac.uk/theology",tags:["International","UK","PhD","MA","Kings College"],type:"international"},
+  {name:"McGill University — Religious Studies",loc:"Montreal, Canada",desc:"Leading Canadian university with programs in religious studies, theology, and comparative religion.",url:"https://www.mcgill.ca/religiousstudies/prospective",tags:["International","Canada","MA","PhD","Religious Studies"],type:"international"},
+  {name:"University of Toronto — Wycliffe College",loc:"Toronto, Canada",desc:"Anglican seminary affiliated with University of Toronto, offering MDiv, ThM, DMin programs.",url:"https://www.wycliffecollege.ca/admissions",tags:["International","Canada","Anglican","MDiv"],type:"international"},
+  {name:"Stellenbosch University — Theology",loc:"Stellenbosch, South Africa",desc:"Premier African theology faculty offering graduate programs in systematic theology and church history.",url:"https://www.sun.ac.za/english/faculty/theology",tags:["International","Africa","PhD","Theology"],type:"international"},
+  {name:"African Theological Seminary",loc:"Nairobi, Kenya",desc:"Evangelical seminary serving Africa with MDiv, MA programs in theology and ministry.",url:"https://ats.ac.ke/admissions",tags:["International","Africa","Kenya","MDiv","Evangelical"],type:"international"},
+];
+
+let allSchools = [];
+let adminUnlocked = false;
+let activeFilter = 'all';
+
+function init(){
+  const custom = gateLoad('gate_custom_schools') || [];
+  allSchools = [...DEFAULT_SCHOOLS, ...custom];
+  renderSchools(allSchools);
+}
+
+function renderSchools(list){
+  const grid = document.getElementById('schoolGrid');
+  if(!list.length){grid.innerHTML='<p style="color:var(--text2);">No schools found matching your criteria.</p>';return;}
+  grid.innerHTML = list.map(s=>`
+    <div class="school-card" data-type="${s.type}">
+      <div class="school-name">${s.name}</div>
+      <div class="school-location">📍 ${s.loc}</div>
+      <div class="school-desc">${s.desc}</div>
+      <div class="school-tags">${(s.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <a href="${s.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Apply Now →</a>
+      ${s.custom?`<button class="btn btn-danger btn-sm" style="margin-left:.5rem;" onclick="removeSchool('${s.name.replace(/'/g,\'\\\'\')}')" >Remove</button>`:''}</div>
+  `).join('');
+}
+
+function filterSchools(type,btn){
+  activeFilter=type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function searchSchools(){applyFilters();}
+
+function applyFilters(){
+  const q = document.getElementById('schoolSearch').value.toLowerCase();
+  let list = allSchools;
+  if(activeFilter!=='all') list=list.filter(s=>s.type===activeFilter);
+  if(q) list=list.filter(s=>s.name.toLowerCase().includes(q)||s.loc.toLowerCase().includes(q)||(s.tags||[]).some(t=>t.toLowerCase().includes(q)));
+  renderSchools(list);
+}
+
+function toggleAdminAdd(){
+  const div=document.getElementById('adminAddSchool');
+  div.style.display=div.style.display==='none'?'block':'none';
+}
+
+function checkAdminPw(){
+  const pw=document.getElementById('adminPw').value;
+  if(pw==='GATE2025admin'){adminUnlocked=true;document.getElementById('adminAddSchool').style.display='block';alert('Admin unlocked.');}
+  else alert('Incorrect password.');
+}
+
+function addSchool(){
+  if(!adminUnlocked){alert('Please enter admin password first.');return;}
+  const name=document.getElementById('addName').value.trim();
+  const loc=document.getElementById('addLocation').value.trim();
+  const desc=document.getElementById('addDesc').value.trim();
+  const url=document.getElementById('addUrl').value.trim();
+  const tags=document.getElementById('addTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const type=document.getElementById('addType').value;
+  if(!name||!loc||!url){document.getElementById('addSchoolMsg').innerHTML='<span style="color:#e05555;">Name, location, and URL are required.</span>';return;}
+  const custom=gateLoad('gate_custom_schools')||[];
+  custom.push({name,loc,desc,url,tags,type,custom:true});
+  gateSave('gate_custom_schools',custom);
+  allSchools.push({name,loc,desc,url,tags,type,custom:true});
+  renderSchools(allSchools);
+  document.getElementById('addSchoolMsg').innerHTML='<span style="color:#4aad74;">✓ School added!</span>';
+  ['addName','addLocation','addDesc','addUrl','addTags'].forEach(id=>document.getElementById(id).value='');
+}
+
+function removeSchool(name){
+  if(!adminUnlocked)return;
+  if(!confirm('Remove '+name+'?'))return;
+  const custom=(gateLoad('gate_custom_schools')||[]).filter(s=>s.name!==name);
+  gateSave('gate_custom_schools',custom);
+  allSchools=allSchools.filter(s=>s.name!==name);
+  renderSchools(allSchools);
+}
+
+init();
+</script>
+</body></html>

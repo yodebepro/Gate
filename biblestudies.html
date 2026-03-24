@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Bible Studies</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+/* PRIMARY NAV */
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.nav1-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.nav1-links a{color:var(--text2);font-size:.75rem;padding:.28rem .65rem;border-radius:4px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;transition:all .2s}
+.nav1-links a:hover,.nav1-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.nav1-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700}
+.nav1-links .btn-nav:hover{background:var(--gold2)}
+/* SECONDARY NAV */
+.gate-nav2{background:rgba(10,20,40,.9);border-bottom:1px solid rgba(201,168,76,.25);backdrop-filter:blur(4px)}
+.nav2-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.1rem}
+.nav2-inner a{color:var(--text2);font-size:.75rem;padding:.3rem .75rem;border-radius:4px;letter-spacing:.5px;font-family:sans-serif;transition:all .2s;white-space:nowrap}
+.nav2-inner a:hover,.nav2-inner a.active{color:var(--gold);background:rgba(201,168,76,.1);text-decoration:none}
+.nav2-inner .sep{color:rgba(201,168,76,.2);padding:0 .1rem;font-size:.7rem}
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:5px;font-family:sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:var(--cream)}
+.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-sm{padding:.3rem .8rem;font-size:.78rem}
+.btn-green{background:#2d7a4f;color:#fff}
+.btn-green:hover{background:#38945f;text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+@media(max-width:768px){.nav1-links{display:none}.nav2-inner{overflow-x:auto;flex-wrap:nowrap}}
+
+.media-tabs{display:flex;gap:.3rem;margin-bottom:1.5rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.5rem}
+.media-tab{background:transparent;border:none;color:var(--text2);padding:.5rem 1.1rem;cursor:pointer;font-family:sans-serif;font-size:.85rem;border-radius:4px 4px 0 0;transition:all .2s;border-bottom:2px solid transparent}
+.media-tab:hover{color:var(--gold)}
+.media-tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.video-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;overflow:hidden;transition:all .2s;cursor:pointer}
+.video-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.video-thumb{position:relative;padding-bottom:56.25%;background:#111;overflow:hidden}
+.video-thumb img,.video-thumb iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;object-fit:cover}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);transition:opacity .2s}
+.video-card:hover .play-overlay{opacity:0}
+.play-btn{width:48px;height:48px;border-radius:50%;background:rgba(201,168,76,.9);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.video-info{padding:.9rem}
+.video-title{color:var(--cream);font-size:.9rem;font-weight:600;margin-bottom:.3rem;font-family:sans-serif}
+.video-meta{color:var(--text2);font-size:.75rem;font-family:sans-serif}
+.podcast-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:1rem;display:flex;gap:1rem;align-items:flex-start}
+.podcast-icon{font-size:2rem;min-width:40px}
+.podcast-title{color:var(--cream);font-size:.9rem;font-weight:600;margin-bottom:.25rem}
+.podcast-desc{color:var(--text2);font-size:.8rem;line-height:1.5;margin-bottom:.5rem}
+.podcast-embed{margin-top:.7rem}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-video{background:#000;border-radius:10px;width:90%;max-width:900px;position:relative}
+.modal-close{position:absolute;top:-2.5rem;right:0;color:#fff;font-size:1.8rem;cursor:pointer;background:none;border:none;padding:.2rem .5rem}
+.modal-embed{position:relative;padding-bottom:56.25%;height:0}
+.modal-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:10px}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="nav1-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav><nav class="gate-nav2"><div class="nav2-inner"><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a><a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcements</a><a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a><a href="biblestudies.html" class="active">✝ Bible Studies</a><a href="video.html">▶ Video</a><a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a></div></nav>
+<div class="page-header">
+  <h1>✝ Bible Studies</h1>
+  <p>Video lessons, recorded sessions &amp; podcast feeds</p>
+  <div class="divider"></div>
+</div>
+<div class="container">
+  <div class="media-tabs">
+    <button class="media-tab active" onclick="showTab('videos',this)">▶ Video Studies</button>
+    <button class="media-tab" onclick="showTab('podcasts',this)">🎙 Podcasts</button>
+    <button class="media-tab" onclick="showTab('audio',this)">🎵 Audio Studies</button>
+  </div>
+
+  <!-- VIDEO TAB -->
+  <div id="tab-videos">
+    <div class="video-grid" id="videoGrid"></div>
+    <div id="noVideos" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
+      <div style="font-size:2rem;margin-bottom:.5rem;">📹</div>No video studies added yet.
+    </div>
+  </div>
+
+  <!-- PODCASTS TAB -->
+  <div id="tab-podcasts" style="display:none;">
+    <div id="podcastList"></div>
+    <div id="noPodcasts" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
+      <div style="font-size:2rem;margin-bottom:.5rem;">🎙</div>No podcast feeds added yet.
+    </div>
+  </div>
+
+  <!-- AUDIO TAB -->
+  <div id="tab-audio" style="display:none;">
+    <div id="audioList"></div>
+    <div id="noAudio" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
+      <div style="font-size:2rem;margin-bottom:.5rem;">🎵</div>No audio studies added yet.
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div id="adminPanel" style="display:none;margin-top:2rem;">
+    <div class="card" style="border-color:rgba(201,168,76,.4);">
+      <div class="card-header"><span>➕</span><h2>Add Media (Admin)</h2></div>
+      <div class="form-group"><label>Type</label>
+        <select id="addType">
+          <option value="video">Video (YouTube / Zoom Cloud)</option>
+          <option value="podcast">Podcast (RSS / Apple / Spotify)</option>
+          <option value="audio">Audio Study</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Title *</label><input type="text" id="addTitle" placeholder="Study title"></div>
+      <div class="form-group"><label>Description</label><input type="text" id="addDesc" placeholder="Brief description"></div>
+      <div class="form-group"><label>URL / Embed Link *</label><input type="url" id="addUrl" placeholder="YouTube URL, Podcast embed code URL, etc."></div>
+      <div class="form-group"><label>Speaker / Teacher</label><input type="text" id="addSpeaker" placeholder="Name of teacher/speaker"></div>
+      <div class="form-group"><label>Category</label><input type="text" id="addCat" placeholder="e.g., Theology, Prophecy, Prayer, Gospel..."></div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="addMedia()">Add Item</button>
+      </div>
+      <div id="mediaMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:1rem;">
+    <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">⚙ Admin Access</button>
+  </div>
+</div>
+
+<!-- Video Modal -->
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-video">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-embed"><iframe id="modalFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+  </div>
+</div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let adminUnlocked=false, curTab='videos';
+
+const DEFAULT_ITEMS=[
+  {type:'video',title:'Understanding the Book of Genesis',desc:'An in-depth study of creation, the fall, and God's covenant.',url:'https://www.youtube.com/embed/videoseries?list=PLH0Szn1yYNecanPeKbCWMBBPNMGBrqNgj',speaker:'GATE Faculty',cat:'Old Testament',ts:1000},
+  {type:'video',title:'The Life of Jesus Christ — Gospel Overview',desc:'A comprehensive overview of the four Gospels and the life of Jesus.',url:'https://www.youtube.com/embed/YTID_placeholder',speaker:'GATE Faculty',cat:'New Testament',ts:1001},
+  {type:'podcast',title:'The GATE Theology Podcast',desc:'Weekly discussions on systematic theology, Christology, and biblical doctrine.',url:'https://anchor.fm/embed/gate-theology',speaker:'GATE Panel',cat:'Theology',ts:1002},
+];
+
+function getItems(){return gateLoad('gate_studies')||(gateSave('gate_studies',DEFAULT_ITEMS),DEFAULT_ITEMS);}
+
+function showTab(tab,btn){
+  curTab=tab;
+  ['videos','podcasts','audio'].forEach(t=>document.getElementById('tab-'+t).style.display=t===tab?'block':'none');
+  document.querySelectorAll('.media-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMedia();
+}
+
+function renderMedia(){
+  const items=getItems();
+  // Videos
+  const videos=items.filter(i=>i.type==='video');
+  const vGrid=document.getElementById('videoGrid');
+  vGrid.innerHTML=videos.map((v,idx)=>{
+    const ytId=getYTId(v.url);
+    const thumb=ytId?`<img src="https://img.youtube.com/vi/${ytId}/hqdefault.jpg" alt="thumb">`:'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;">▶</div>';
+    return `<div class="video-card" onclick="playVideo(${idx})">
+      <div class="video-thumb">${thumb}<div class="play-overlay"><div class="play-btn">▶</div></div></div>
+      <div class="video-info">
+        <div class="video-title">${v.title}</div>
+        <div class="video-meta">${v.speaker?'👤 '+v.speaker:''}${v.cat?' · 📂 '+v.cat:''}</div>
+        ${v.desc?`<div style="color:var(--text2);font-size:.78rem;margin-top:.3rem;">${v.desc}</div>`:''}
+        ${adminUnlocked?`<button class="btn btn-danger btn-sm" style="margin-top:.5rem;" onclick="event.stopPropagation();removeItem(${v.ts})">Remove</button>`:''}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('noVideos').style.display=videos.length?'none':'block';
+  
+  // Podcasts
+  const pods=items.filter(i=>i.type==='podcast');
+  const pList=document.getElementById('podcastList');
+  pList.innerHTML=pods.map(p=>`
+    <div class="podcast-card">
+      <div class="podcast-icon">🎙</div>
+      <div style="flex:1;">
+        <div class="podcast-title">${p.title}</div>
+        <div class="podcast-desc">${p.desc||''}${p.speaker?' · 👤 '+p.speaker:''}</div>
+        ${p.url?`<div class="podcast-embed"><iframe src="${p.url}" width="100%" height="232" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:6px;"></iframe></div>`:''}
+        <div style="margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+          ${p.url?`<a href="${p.url.replace('/embed','')}" target="_blank" class="btn btn-secondary btn-sm">Open Podcast</a>`:''}
+          ${adminUnlocked?`<button class="btn btn-danger btn-sm" onclick="removeItem(${p.ts})">Remove</button>`:''}
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('noPodcasts').style.display=pods.length?'none':'block';
+  
+  // Audio
+  const audio=items.filter(i=>i.type==='audio');
+  const aList=document.getElementById('audioList');
+  aList.innerHTML=audio.map(a=>`
+    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;margin-bottom:.8rem;display:flex;gap:1rem;align-items:center;">
+      <div style="font-size:1.8rem;">🎵</div>
+      <div style="flex:1;">
+        <div style="color:var(--cream);font-size:.9rem;font-weight:600;">${a.title}</div>
+        <div style="color:var(--text2);font-size:.78rem;">${a.speaker||''}${a.cat?' · '+a.cat:''}</div>
+        ${a.url?`<audio controls style="width:100%;margin-top:.5rem;"><source src="${a.url}"></audio>`:''}
+        ${adminUnlocked?`<button class="btn btn-danger btn-sm" style="margin-top:.4rem;" onclick="removeItem(${a.ts})">Remove</button>`:''}
+      </div>
+    </div>`).join('');
+  document.getElementById('noAudio').style.display=audio.length?'none':'block';
+}
+
+function getYTId(url){
+  const m=url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return m?m[1]:null;
+}
+
+function playVideo(idx){
+  const items=getItems().filter(i=>i.type==='video');
+  const v=items[idx];
+  let src=v.url;
+  if(!src.includes('embed')) {
+    const id=getYTId(src);
+    if(id) src='https://www.youtube.com/embed/'+id+'?autoplay=1';
+  }
+  document.getElementById('modalFrame').src=src+'&autoplay=1';
+  document.getElementById('videoModal').classList.add('show');
+}
+
+function closeModal(){
+  document.getElementById('videoModal').classList.remove('show');
+  document.getElementById('modalFrame').src='';
+}
+
+function addMedia(){
+  if(!adminUnlocked){alert('Admin required.');return;}
+  const type=document.getElementById('addType').value;
+  const title=document.getElementById('addTitle').value.trim();
+  const desc=document.getElementById('addDesc').value.trim();
+  const url=document.getElementById('addUrl').value.trim();
+  const speaker=document.getElementById('addSpeaker').value.trim();
+  const cat=document.getElementById('addCat').value.trim();
+  if(!title||!url){document.getElementById('mediaMsg').innerHTML='<span style="color:#e05555;">Title and URL required.</span>';return;}
+  const items=getItems();
+  items.push({type,title,desc,url,speaker,cat,ts:Date.now()});
+  gateSave('gate_studies',items);
+  renderMedia();
+  document.getElementById('mediaMsg').innerHTML='<span style="color:#4aad74;">✓ Added!</span>';
+  ['addTitle','addDesc','addUrl','addSpeaker','addCat'].forEach(id=>document.getElementById(id).value='');
+}
+
+function removeItem(ts){
+  if(!confirm('Remove this item?'))return;
+  gateSave('gate_studies',getItems().filter(i=>i.ts!==ts));
+  renderMedia();
+}
+
+function promptAdmin(){
+  const pw=prompt('Admin password:');
+  if(pw==='GATE2025admin'){adminUnlocked=true;document.getElementById('adminPanel').style.display='block';renderMedia();}
+  else if(pw!==null) alert('Incorrect password.');
+}
+
+renderMedia();
+</script>
+</body></html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Announcements</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+/* PRIMARY NAV */
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.nav1-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.nav1-links a{color:var(--text2);font-size:.75rem;padding:.28rem .65rem;border-radius:4px;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;transition:all .2s}
+.nav1-links a:hover,.nav1-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.nav1-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700}
+.nav1-links .btn-nav:hover{background:var(--gold2)}
+/* SECONDARY NAV */
+.gate-nav2{background:rgba(10,20,40,.9);border-bottom:1px solid rgba(201,168,76,.25);backdrop-filter:blur(4px)}
+.nav2-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.1rem}
+.nav2-inner a{color:var(--text2);font-size:.75rem;padding:.3rem .75rem;border-radius:4px;letter-spacing:.5px;font-family:sans-serif;transition:all .2s;white-space:nowrap}
+.nav2-inner a:hover,.nav2-inner a.active{color:var(--gold);background:rgba(201,168,76,.1);text-decoration:none}
+.nav2-inner .sep{color:rgba(201,168,76,.2);padding:0 .1rem;font-size:.7rem}
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:5px;font-family:sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:var(--cream)}
+.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-sm{padding:.3rem .8rem;font-size:.78rem}
+.btn-green{background:#2d7a4f;color:#fff}
+.btn-green:hover{background:#38945f;text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+@media(max-width:768px){.nav1-links{display:none}.nav2-inner{overflow-x:auto;flex-wrap:nowrap}}
+
+.month-tabs{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.month-tab{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--text2);padding:.35rem .9rem;border-radius:20px;font-size:.78rem;cursor:pointer;font-family:sans-serif;transition:all .15s}
+.month-tab:hover,.month-tab.active{background:var(--gold);color:var(--navy);font-weight:700;border-color:var(--gold)}
+.month-tab.has-content{border-color:var(--gold);color:var(--gold)}
+.announce-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.3rem;margin-bottom:1rem;position:relative}
+.announce-card.pinned{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.05),var(--navy2))}
+.pin-badge{position:absolute;top:.6rem;right:.7rem;background:var(--gold);color:var(--navy);font-size:.65rem;padding:.15rem .5rem;border-radius:10px;font-family:sans-serif;font-weight:700}
+.announce-date{font-size:.75rem;color:var(--text2);font-family:sans-serif;margin-bottom:.4rem}
+.announce-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);margin-bottom:.5rem}
+.announce-body{color:var(--cream);font-size:.9rem;line-height:1.75;white-space:pre-wrap}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="nav1-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="bundle.html">Bundles</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav><nav class="gate-nav2"><div class="nav2-inner"><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a><a href="apply.html">🎓 Apply to School</a><a href="announcements.html" class="active">📢 Announcements</a><a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a><a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a><a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a></div></nav>
+<div class="page-header">
+  <h1>📢 Announcements</h1>
+  <p>Official GATE platform announcements — updated monthly</p>
+  <div class="divider"></div>
+</div>
+<div class="container">
+  <div class="month-tabs" id="monthTabs"></div>
+  <div id="announceList"></div>
+
+  <!-- Admin Panel -->
+  <div id="adminPanel" style="display:none;margin-top:2rem;">
+    <div class="card" style="border-color:rgba(201,168,76,.4);">
+      <div class="card-header"><span>📝</span><h2>Post Announcement (Admin)</h2></div>
+      <div class="form-group"><label>Month</label>
+        <select id="aMonth">
+          <option>January</option><option>February</option><option>March</option><option>April</option>
+          <option>May</option><option>June</option><option>July</option><option>August</option>
+          <option>September</option><option>October</option><option>November</option><option>December</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Title *</label><input type="text" id="aTitle" placeholder="Announcement title"></div>
+      <div class="form-group"><label>Message *</label><textarea id="aBody" rows="5" placeholder="Full announcement text..."></textarea></div>
+      <div class="form-group" style="display:flex;align-items:center;gap:.5rem;">
+        <input type="checkbox" id="aPin" style="width:auto;"> <label style="display:inline;margin:0;">Pin to top (closest to today)</label>
+      </div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="postAnnouncement()">Post Announcement</button>
+        <button class="btn btn-danger btn-sm" onclick="clearMonth()">Clear Month</button>
+      </div>
+      <div id="announceMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:1rem;">
+    <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">⚙ Admin Access</button>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+let activeMonth=MONTHS[new Date().getMonth()];
+let adminUnlocked=false;
+
+function getAnnouncements(){return gateLoad('gate_announcements')||{};}
+
+function init(){
+  // Set current month in select
+  document.getElementById('aMonth').value=activeMonth;
+  buildTabs();
+  renderMonth(activeMonth);
+}
+
+function buildTabs(){
+  const all=getAnnouncements();
+  const tabs=document.getElementById('monthTabs');
+  tabs.innerHTML='';
+  MONTHS.forEach(m=>{
+    const btn=document.createElement('button');
+    btn.className='month-tab'+(m===activeMonth?' active':'')+(all[m]&&all[m].length?' has-content':'');
+    btn.textContent=m+(all[m]&&all[m].length?' ('+all[m].length+')':'');
+    btn.onclick=()=>{activeMonth=m;buildTabs();renderMonth(m);};
+    tabs.appendChild(btn);
+  });
+}
+
+function renderMonth(month){
+  const all=getAnnouncements();
+  const items=(all[month]||[]).slice().sort((a,b)=>{
+    if(a.pinned&&!b.pinned) return -1;
+    if(!a.pinned&&b.pinned) return 1;
+    return b.ts-a.ts;
+  });
+  const div=document.getElementById('announceList');
+  if(!items.length){
+    div.innerHTML='<div style="color:var(--text2);text-align:center;padding:3rem;"><div style="font-size:2rem;margin-bottom:.5rem;">📭</div>No announcements for '+month+' yet.</div>';
+    return;
+  }
+  div.innerHTML=items.map(a=>`
+    <div class="announce-card ${a.pinned?'pinned':''}">
+      ${a.pinned?'<div class="pin-badge">📌 PINNED</div>':''}
+      <div class="announce-date">${new Date(a.ts).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}</div>
+      <div class="announce-title">${a.title}</div>
+      <div class="announce-body">${a.body}</div>
+      ${adminUnlocked?`<button class="btn btn-danger btn-sm" style="margin-top:.7rem;" onclick="deleteAnnouncement(${a.ts})">Delete</button>`:''}</div>
+  `).join('');
+}
+
+function postAnnouncement(){
+  if(!adminUnlocked){alert('Admin access required.');return;}
+  const month=document.getElementById('aMonth').value;
+  const title=document.getElementById('aTitle').value.trim();
+  const body=document.getElementById('aBody').value.trim();
+  const pinned=document.getElementById('aPin').checked;
+  if(!title||!body){document.getElementById('announceMsg').innerHTML='<span style="color:#e05555;">Title and message required.</span>';return;}
+  const all=getAnnouncements();
+  if(!all[month]) all[month]=[];
+  all[month].push({title,body,pinned,ts:Date.now()});
+  gateSave('gate_announcements',all);
+  document.getElementById('aTitle').value='';
+  document.getElementById('aBody').value='';
+  document.getElementById('aPin').checked=false;
+  document.getElementById('announceMsg').innerHTML='<span style="color:#4aad74;">✓ Announcement posted!</span>';
+  activeMonth=month;
+  buildTabs(); renderMonth(month);
+}
+
+function deleteAnnouncement(ts){
+  if(!confirm('Delete this announcement?'))return;
+  const all=getAnnouncements();
+  if(all[activeMonth]) all[activeMonth]=all[activeMonth].filter(a=>a.ts!==ts);
+  gateSave('gate_announcements',all);
+  buildTabs(); renderMonth(activeMonth);
+}
+
+function clearMonth(){
+  if(!confirm('Clear all announcements for '+activeMonth+'?'))return;
+  const all=getAnnouncements();
+  delete all[activeMonth];
+  gateSave('gate_announcements',all);
+  buildTabs(); renderMonth(activeMonth);
+}
+
+function promptAdmin(){
+  const pw=prompt('Admin password:');
+  if(pw==='GATE2025admin'){adminUnlocked=true;document.getElementById('adminPanel').style.display='block';alert('Admin unlocked.');renderMonth(activeMonth);}
+  else if(pw!==null) alert('Incorrect password.');
+}
+
+init();
+</script>
+</body></html>
