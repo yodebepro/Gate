@@ -180,12 +180,11 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
     <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="adm_img" accept="image/*"></div>
     
     <div style="display:flex;gap:.6rem;margin-top:.8rem;">
-      <button class="btn btn-gold" onclick="addItem()">✓ Save Item</button>
+      <button class="btn btn-gold" style="min-width:120px;font-size:.95rem;" onclick="addItem()">📢 POST</button>
       <button class="btn btn-outline" onclick="document.getElementById('addForm').style.display='none'">Cancel</button>
     </div>
     <div id="adm_msg" style="margin-top:.5rem;font-size:.84rem;min-height:1.2rem;"></div>
   </div>
-  <div id="items_list"></div>
 </div>
 
 
@@ -299,7 +298,7 @@ async function addItem(){
   saveItems(items);
   clearForm();
   renderItems();
-  document.getElementById('adm_msg').innerHTML='<span style="color:#4aad74">✓ Item added!</span>';
+  document.getElementById('adm_msg').innerHTML='<span style="color:#4aad74">✅ Posted! Visible to all visitors.</span>';
   setTimeout(()=>document.getElementById('adm_msg').innerHTML='',2500);
 }
 
@@ -355,7 +354,9 @@ function renderItems(){
   if(!list)return;
   const items=getItems();
   if(!items.length){
-    list.innerHTML='<div style="color:var(--text2);text-align:center;padding:2rem;font-size:.88rem;">No content added yet. Use the form above to add items.</div>';
+    // Only show admin message if admin logged in; public sees empty section quietly
+    if(isAdmin) list.innerHTML='<div style="color:var(--text2);text-align:center;padding:1.5rem;font-size:.85rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No posts yet. Use the form above and click 📢 POST to publish content here.</div>';
+    else list.innerHTML='';
     return;
   }
   list.innerHTML='<div class="item-grid">'+items.map(item=>`
