@@ -707,14 +707,14 @@ function markPending(tier) {
     const GATE_ADMIN_KEY='gate_admin_content_'+PAGE.replace('.html','');
     
     const actions={
-      add:{label:'➕ Add Content',icon:'➕',
+      add:{label:'📢 Post New Content',icon:'📢',
         html:`<div style="font-family:sans-serif;">
           <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title / Name *</label><input id="ga_title" type="text" placeholder="Title or name..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
           <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description / Body</label><textarea id="ga_body" rows="4" placeholder="Content description..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;resize:vertical;"></textarea></div>
           <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL / Link (optional)</label><input id="ga_url" type="url" placeholder="https://..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
           <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Upload Image (optional)</label><input id="ga_img" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"></div>
           <div id="ga_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminSaveItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Save Item</button>
+          <button onclick="gAdminSaveItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">📢 POST</button>
         </div>`},
       edit:{label:'✏️ Edit / Change',icon:'✏️',
         html:`<div style="font-family:sans-serif;">
@@ -810,7 +810,7 @@ function markPending(tier) {
     const items=getItems();
     items.push({id:Date.now(),title,body,url,img,status:'active',created:new Date().toISOString()});
     saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Item saved!</span>';
+    msg.innerHTML='<span style="color:#4aad74;">✅ Posted! Visible to all visitors.</span>';
     document.getElementById('ga_title').value='';
     document.getElementById('ga_body').value='';
     document.getElementById('ga_url').value='';
