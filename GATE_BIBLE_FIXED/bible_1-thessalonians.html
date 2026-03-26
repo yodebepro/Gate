@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1 Thessalonians - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+
+.gate-nav{background:linear-gradient(135deg,#162440,#1e2d3d);border-bottom:2px solid #c9a84c;position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:#c9a84c}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#c9a84c;letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:#b8a88a;letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:#b8a88a;font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:#c9a84c;background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid #c9a84c;border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:#b8a88a;font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:#c9a84c;background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:#c9a84c;padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:#c9a84c;color:#0d1b2e!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:#e8c96e}
+@media(max-width:768px){.gate-nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="bible.html">← All 66 Books</a>
+        <a class="btn" href="Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>1 Thessalonians</h2>
+      <p>Complete extracted text for 1 Thessalonians from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 668</span>
+        <span class="badge">Book End Page: 669</span>
+        <span class="badge">Expected Chapters: 5</span>
+        <span class="badge">Verified Chapters Found: 5</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">1 Thessalonians</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">5</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a><a class="chapter-link" href="#chapter-4">Chapter 4</a><a class="chapter-link" href="#chapter-5">Chapter 5</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="Bible PDF.pdf#page=668" target="_blank">Open 1 Thessalonians in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 Paul, and Silvanus, and Timotheus, unto the church of
+the Thessalonians which is in God the Father and in the Lord
+Jesus Christ: Grace be unto you, and peace, from God our
+Father, and the Lord Jesus Christ.
+2 We give thanks to God always for you all, making
+mention of you in our prayers;
+3 Remembering without ceasing your work of faith, and
+labour of love, and patience of hope in our Lord Jesus Christ,
+in the sight of God and our Father;
+4 Knowing, brethren beloved, your election of God.
+5 For our gospel came not unto you in word only, but also
+in power, and in the Holy Ghost, and in much assurance; as
+ye know what manner of men we were among you for your
+sake.
+6 And ye became followers of us, and of the Lord, having
+received the word in much affliction, with joy of the Holy
+Ghost:
+7 So that ye were ensamples to all that believe in
+Macedonia and Achaia.
+8 For from you sounded out the word of the Lord not only
+in Macedonia and Achaia, but also in every place your faith
+to God-ward is spread abroad; so that we need not to speak
+any thing.
+9 For they themselves shew of us what manner of entering
+in we had unto you, and how ye turned to God from idols to
+serve the living and true God;
+10 And to wait for his Son from heaven, whom he raised
+from the dead, even Jesus, which delivered us from the wrath
+to come.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 For yourselves, brethren, know our entrance in unto you,
+that it was not in vain:
+2 But even after that we had suffered before, and were
+shamefully entreated, as ye know, at Philippi, we were bold
+in our God to speak unto you the gospel of God with much
+contention.
+3 For our exhortation was not of deceit, nor of
+uncleanness, nor in guile:
+4 But as we were allowed of God to be put in trust with the
+gospel, even so we speak; not as pleasing men, but God,
+which trieth our hearts.
+5 For neither at any time used we flattering words, as ye
+know, nor a cloke of covetousness; God is witness:
+6 Nor of men sought we glory, neither of you, nor yet of
+others, when we might have been burdensome, as the
+apostles of Christ.
+7 But we were gentle among you, even as a nurse
+cherisheth her children:
+8 So being affectionately desirous of you, we were willing
+to have imparted unto you, not the gospel of God only, but
+also our own souls, because ye were dear unto us.
+9 For ye remember, brethren, our labour and travail: for
+labouring night and day, because we would not be
+chargeable unto any of you, we preached unto you the gospel
+of God.
+10 Ye are witnesses, and God also, how holily and justly
+and unblameably we behaved ourselves among you that
+believe:
+11 As ye know how we exhorted and comforted and
+charged every one of you, as a father doth his children,
+12 That ye would walk worthy of God, who hath called
+you unto his kingdom and glory.
+13 For this cause also thank we God without ceasing,
+because, when ye received the word of God which ye heard
+of us, ye received it not as the word of men, but as it is in
+truth, the word of God, which effectually worketh also in you
+that believe.
+14 For ye, brethren, became followers of the churches of
+God which in Judaea are in Christ Jesus: for ye also have
+suffered like things of your o wn countrymen, even as they
+have of the Jews:
+15 Who both killed the Lord Jesus, and their own prophets,
+and have persecuted us; and they please not God, and are
+contrary to all men:
+16 Forbidding us to speak to the Gentiles that they might
+be saved, to fi ll up their sins alway: for the wrath is come
+upon them to the uttermost.
+17 But we, brethren, being taken from you for a short time
+in presence, not in heart, endeavoured the more abundantly
+to see your face with great desire.
+18 Wherefore we would have c ome unto you, even I Paul,
+once and again; but Satan hindered us.
+19 For what is our hope, or joy, or crown of rejoicing? Are
+not even ye in the presence of our Lord Jesus Christ at his
+coming?
+20 For ye are our glory and joy.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 Wherefore when we could no longer forbear, we thought
+it good to be left at Athens alone;
+2 And sent Timotheus, our brother, and minister of God,
+and our fellowlabourer in the gospel of Christ, to establish
+you, and to comfort you concerning your faith:
+3 That no man shou ld be moved by these afflictions: for
+yourselves know that we are appointed thereunto.
+4 For verily, when we were with you, we told you before
+that we should suffer tribulation; even as it came to pass, and
+ye know.
+5 For this cause, when I could no longer  forbear, I sent to
+know your faith, lest by some means the tempter have
+tempted you, and our labour be in vain.
+6 But now when Timotheus came from you unto us, and
+brought us good tidings of your faith and charity, and that ye
+have good remembrance of us always, desiring greatly to see
+us, as we also to see you:
+7 Therefore, brethren, we were comforted over you in all
+our affliction and distress by your faith:
+8 For now we live, if ye stand fast in the Lord.
+9 For what thanks can we render to God again for  you, for
+all the joy wherewith we joy for your sakes before our God;
+10 Night and day praying exceedingly that we might see
+your face, and might perfect that which is lacking in your
+faith?
+11 Now God himself and our Father, and our Lord Jesus
+Christ, direct our way unto you.
+12 And the Lord make you to increase and abound in love
+one toward another, and toward all men, even as we do
+toward you:
+13 To the end he may stablish your hearts unblameable in
+holiness before God, even our Father, at the coming of our
+Lord Jesus Christ with all his saints.
+
+</div><h4 id="chapter-4">Chapter 4</h4><div>
+1 Furthermore then we beseech you, brethren, and exhort
+you by the Lord Jesus, that as ye have received of us how ye
+ought to walk and to please God, so ye would abound more
+and more.
+2 For ye know what  commandments we gave you by the
+Lord Jesus.
+3 For this is the will of God, even your sanctification, that
+ye should abstain from fornication:
+4 That every one of you should know how to possess his
+vessel in sanctification and honour;
+5 Not in the lust of concupiscence, even as the Gentiles
+which know not God:
+6 That no man go beyond and defraud his brother in any
+matter: because that the Lord is the avenger of all such, as we
+also have forewarned you and testified.
+7 For God hath not called us unto unclean ness, but unto
+holiness.
+8 He therefore that despiseth, despiseth not man, but God,
+who hath also given unto us his holy Spirit.
+9 But as touching brotherly love ye need not that I write
+unto you: for ye yourselves are taught of God to love one
+another.
+10 And indeed ye do it toward all the brethren which are in
+all Macedonia: but we beseech you, brethren, that ye increase
+more and more;
+11 And that ye study to be quiet, and to do your own
+business, and to work with your own hands, as we
+commanded you;
+12 That ye may walk honestly toward them that are
+without, and that ye may have lack of nothing.
+13 But I would not have you to be ignorant, brethren,
+concerning them which are asleep, that ye sorrow not, even
+as others which have no hope.
+14 For if we believe that Jesus died and rose again, even so
+them also which sleep in Jesus will God bring with him.
+15 For this we say unto you by the word of the Lord, that
+we which are alive and remain unto the coming of the Lord
+shall not prevent them which are asleep.
+16 For the Lord himself shall descend from heaven with a
+shout, with the voice of the archangel, and with the trump of
+God: and the dead in Christ shall rise first:
+17 Then we which are alive and remain shall be caught up
+together with them in the clouds, to  meet the Lord in the air:
+and so shall we ever be with the Lord.
+18 Wherefore comfort one another with these words.
+
+</div><h4 id="chapter-5">Chapter 5</h4><div>
+1 But of the times and the seasons, brethren, ye have no
+need that I write unto you.
+2 For yourselves know perfectly that the day of the Lord so
+cometh as a thief in the night.
+3 For when they shall say, Peace and safety; then sudden
+destruction cometh upon them, as travail upon a woman with
+child; and they shall not escape.
+4 But ye, brethren, are not in darkness, that that day should
+overtake you as a thief.
+5 Ye are all the children of light, and the children of the
+day: we are not of the night, nor of darkness.
+6 Therefore let us not sleep, as do others; but let us watch
+and be sober.
+7 For they that sleep sleep in the night; an d they that be
+drunken are drunken in the night.
+8 But let us, who are of the day, be sober, putting on the
+breastplate of faith and love; and for an helmet, the hope of
+salvation.
+9 For God hath not appointed us to wrath, but to obtain
+salvation by our Lord Jesus Christ,
+10 Who died for us, that, whether we wake or sleep, we
+should live together with him.
+11 Wherefore comfort yourselves together, and edify one
+another, even as also ye do.
+12 And we beseech you, brethren, to know them which
+labour among you , and are over you in the Lord, and
+admonish you;
+13 And to esteem them very highly in love for their work&#x27;s
+sake. And be at peace among yourselves.
+14 Now we exhort you, brethren, warn them that are
+unruly, comfort the feebleminded, support the weak, be
+patient toward all men.
+15 See that none render evil for evil unto any man; but
+ever follow that which is good, both among yourselves, and
+to all men.
+16 Rejoice evermore.
+17 Pray without ceasing.
+18 In every thing give thanks: for this is the will of God i n
+Christ Jesus concerning you.
+19 Quench not the Spirit.
+20 Despise not prophesyings.
+21 Prove all things; hold fast that which is good.
+22 Abstain from all appearance of evil.
+23 And the very God of peace sanctify you wholly; and I
+pray God your whole spi rit and soul and body be preserved
+blameless unto the coming of our Lord Jesus Christ.
+24 Faithful is he that calleth you, who also will do it.
+25 Brethren, pray for us.
+26 Greet all the brethren with an holy kiss.
+27 I charge you by the Lord that this epi stle be read unto
+all the holy brethren.
+28 The grace of our Lord Jesus Christ be with you. Amen.
+The first epistle unto the Thessalonians was written from
+Athens.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for 1 Thessalonians.</div>
+  </main>
+
+<script>
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
+</body>
+</html>

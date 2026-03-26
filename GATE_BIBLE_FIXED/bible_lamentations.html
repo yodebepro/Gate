@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lamentations - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+
+.gate-nav{background:linear-gradient(135deg,#162440,#1e2d3d);border-bottom:2px solid #c9a84c;position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:#c9a84c}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#c9a84c;letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:#b8a88a;letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:#b8a88a;font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:#c9a84c;background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid #c9a84c;border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:#b8a88a;font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:#c9a84c;background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:#c9a84c;padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:#c9a84c;color:#0d1b2e!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:#e8c96e}
+@media(max-width:768px){.gate-nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="bible.html">← All 66 Books</a>
+        <a class="btn" href="Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>Lamentations</h2>
+      <p>Complete extracted text for Lamentations from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 460</span>
+        <span class="badge">Book End Page: 463</span>
+        <span class="badge">Expected Chapters: 5</span>
+        <span class="badge">Verified Chapters Found: 5</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">Lamentations</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">5</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a><a class="chapter-link" href="#chapter-4">Chapter 4</a><a class="chapter-link" href="#chapter-5">Chapter 5</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="Bible PDF.pdf#page=460" target="_blank">Open Lamentations in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 How doth the city sit solitary, that was  full of people!
+how is she become as a widow! she that was great among the
+nations, and princess among the provinces, how is she
+become tributary!
+2 She weepeth sore in the night, and her tears are on her
+cheeks: among all her lovers she hath none to comfort her:
+all her friends have dealt treacherously with her, they are
+become her enemies.
+3 Judah is gone into captivity because of affliction, and
+because of great servitude: she dwelleth among the heathen,
+she findeth no rest: all her persecutors overtook her between
+the straits.
+4 The ways of Zion do mourn, because none come to the
+solemn feasts: all her gates are desolate: her priests sigh, her
+virgins are afflicted, and she is in bitterness.
+5 Her adversaries are the chief, her enemies prosper; for
+the LORD hath afflicted her for the multitude of her
+transgressions: her children are gone into captivity before the
+enemy.
+6 And from the daughter of Zion all her beauty is departed:
+her princes are become like harts that find no pasture, and
+they are gone without strength before the pursuer.
+7 Jerusalem remembered in the days of her affliction and
+of her miseries all her pleasant things that she had in the days
+of old, when her people fell into the hand of the enemy, and
+none did help her: the adversaries saw her, and did mock at
+her sabbaths.
+8 Jerusalem hath grievously sinned; therefore she is
+removed: all that honoured her despise her, because they
+have seen her nakedness: yea, she sigheth, and turneth
+backward.
+9 Her filthiness is in her skirts; she remembereth not her
+last end; therefore she came down wonderfully: she had no
+comforter. O LORD, behold my affliction: for the enemy
+hath magnified himself.
+10 The adversary hath spread out his hand upon all her
+pleasant things: for she hath seen that the heathen entered
+into her sanctuary, whom thou didst command that they
+should not enter into thy congregation.
+11 All her people sigh, they seek bread; they have g iven
+their pleasant things for meat to relieve the soul: see, O
+LORD, and consider; for I am become vile.
+12 Is it nothing to you, all ye that pass by? behold, and see
+if there be any sorrow like unto my sorrow, which is done
+unto me, wherewith the LORD ha th afflicted me in the day
+of his fierce anger.
+13 From above hath he sent fire into my bones, and it
+prevaileth against them: he hath spread a net for my feet, he
+hath turned me back: he hath made me desolate and faint all
+the day.
+14 The yoke of my trans gressions is bound by his hand:
+they are wreathed, and come up upon my neck: he hath made
+my strength to fall, the Lord hath delivered me into their
+hands, from whom I am not able to rise up.
+15 The Lord hath trodden under foot all my mighty men in
+the mid st of me: he hath called an assembly against me to
+crush my young men: the Lord hath trodden the virgin, the
+daughter of Judah, as in a winepress.
+16 For these things I weep; mine eye, mine eye runneth
+down with water, because the comforter that should rel ieve
+my soul is far from me: my children are desolate, because the
+enemy prevailed.
+17 Zion spreadeth forth her hands, and there is  none to
+comfort her: the LORD hath commanded concerning Jacob,
+that his adversaries should be round about him: Jerusalem is
+as a menstruous woman among them.
+18 The LORD is righteous; for I have rebelled against his
+commandment: hear, I pray you, all people, and behold my
+sorrow: my virgins and my young men are gone into
+captivity.
+19 I called for my lovers, but they deceived me: my priests
+and mine elders gave up the ghost in the city, while they
+sought their meat to relieve their souls.
+20 Behold, O LORD; for I am in distress: my bowels are
+troubled; mine heart is turned within me; for I have
+grievously rebelled: abroad the sw ord bereaveth, at home
+there is as death.
+21 They have heard that I sigh: there is none to comfort
+me: all mine enemies have heard of my trouble; they are glad
+that thou hast done it: thou wilt bring the day that thou hast
+called, and they shall be like unto me.
+22 Let all their wickedness come before thee; and do unto
+them, as thou hast done unto me for all my transgressions:
+for my sighs are many, and my heart is faint.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 How hath the Lord covered the daughter of Zion with a
+cloud in his anger, and cast down from heaven unto the earth
+the beauty of Israel, and remembered not his footstool in the
+day of his anger!
+2 The Lord hath swallowed up all the habitations of Jacob,
+and hath not pitied: he hath thrown down in his wrath the
+strong holds of t he daughter of Judah; he hath brought them
+down to the ground: he hath polluted the kingdom and the
+princes thereof.
+3 He hath cut off in his fierce anger all the horn of Israel:
+he hath drawn back his right hand from before the enemy,
+and he burned agains t Jacob like a flaming fire, which
+devoureth round about.
+4 He hath bent his bow like an enemy: he stood with his
+right hand as an adversary, and slew all that were pleasant to
+the eye in the tabernacle of the daughter of Zion: he poured
+out his fury like fire.
+5 The Lord was as an enemy: he hath swallowed up Israel,
+he hath swallowed up all her palaces: he hath destroyed his
+strong holds, and hath increased in the daughter of Judah
+mourning and lamentation.
+6 And he hath violently taken away his tabernacle , as if it
+were of  a garden: he hath destroyed his places of the
+assembly: the LORD hath caused the solemn feasts and
+sabbaths to be forgotten in Zion, and hath despised in the
+indignation of his anger the king and the priest.
+7 The Lord hath cast off his altar, he hath abhorred his
+sanctuary, he hath given up into the hand of the enemy the
+walls of her palaces; they have made a noise in the house of
+the LORD, as in the day of a solemn feast.
+8 The LORD hath purposed to destroy the wall of the
+daughter of Z ion: he hath stretched out a line, he hath not
+withdrawn his hand from destroying: therefore he made the
+rampart and the wall to lament; they languished together.
+9 Her gates are sunk into the ground; he hath destroyed
+and broken her bars: her king and her  princes are among the
+Gentiles: the law is no more; her prophets also find no vision
+from the LORD.
+10 The elders of the daughter of Zion sit upon the ground,
+and keep silence: they have cast up dust upon their heads;
+they have girded themselves with sack cloth: the virgins of
+Jerusalem hang down their heads to the ground.
+11 Mine eyes do fail with tears, my bowels are troubled,
+my liver is poured upon the earth, for the destruction of the
+daughter of my people; because the children and the
+sucklings swoon in the streets of the city.
+12 They say to their mothers, Where is corn and wine?
+when they swooned as the wounded in the streets of the city,
+when their soul was poured out into their mothers&#x27; bosom.
+13 What thing shall I take to witness for thee? what th ing
+shall I liken to thee, O daughter of Jerusalem? what shall I
+equal to thee, that I may comfort thee, O virgin daughter of
+Zion? for thy breach is great like the sea: who can heal thee?
+14 Thy prophets have seen vain and foolish things for thee:
+and they have not discovered thine iniquity, to turn away thy
+captivity; but have seen for thee false burdens and causes of
+banishment.
+15 All that pass by clap their hands at thee; they hiss and
+wag their head at the daughter of Jerusalem, saying, Is this
+the city that men call The perfection of beauty, The joy of the
+whole earth?
+16 All thine enemies have opened their mouth against thee:
+they hiss and gnash the teeth: they say, We have swallowed
+her up: certainly this is the day that we looked for; we have
+found, we have seen it.
+17 The LORD hath done that which he had devised; he
+hath fulfilled his word that he had commanded in the days of
+old: he hath thrown down, and hath not pitied: and he hath
+caused thine enemy to rejoice over thee, he hath set up the
+horn of thine adversaries.
+18 Their heart cried unto the Lord, O wall of the daughter
+of Zion, let tears run down like a river day and night: give
+thyself no rest; let not the apple of thine eye cease.
+19 Arise, cry out in the night: in the beginning of the
+watches pour out thine heart like water before the face of the
+Lord: lift up thy hands toward him for the life of thy young
+children, that faint for hunger in the top of every street.
+20 Behold, O LORD, and consider to whom thou hast
+done this. Shall the wome n eat their fruit, and children of a
+span long? shall the priest and the prophet be slain in the
+sanctuary of the Lord?
+21 The young and the old lie on the ground in the streets:
+my virgins and my young men are fallen by the sword; thou
+hast slain them in the day of thine anger; thou hast killed, and
+not pitied.
+22 Thou hast called as in a solemn day my terrors round
+about, so that in the day of the LORD&#x27;S anger none escaped
+nor remained: those that I have swaddled and brought up
+hath mine enemy consumed.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 I am the man that hath seen affliction by the rod of his
+wrath.
+2 He hath led me, and brought me into darkness, but not
+into light.
+3 Surely against me is he turned; he turneth his hand
+against me all the day.
+4 My flesh and my skin hath he mad e old; he hath broken
+my bones.
+5 He hath builded against me, and compassed me with gall
+and travail.
+6 He hath set me in dark places, as they that be  dead of
+old.
+7 He hath hedged me about, that I cannot get out: he hath
+made my chain heavy.
+8 Also when I cry and shout, he shutteth out my prayer.
+9 He hath inclosed my ways with hewn stone, he hath
+made my paths crooked.
+10 He was unto me as a bear lying in wait, and as a lion in
+secret places.
+11 He hath turned aside my ways, and pulled me in pieces:
+he hath made me desolate.
+12 He hath bent his bow, and set me as a mark for the
+arrow.
+13 He hath caused the arrows of his quiver to enter into my
+reins.
+14 I was a derision to all my people; and their song all the
+day.
+15 He hath filled me with bitterness, he hath made me
+drunken with wormwood.
+16 He hath also broken my teeth with gravel stones, he
+hath covered me with ashes.
+17 And thou hast removed my soul far off from peace: I
+forgat prosperity.
+18 And I said, My strength and my hope is perished from
+the LORD:
+19 Remembering mine affliction and my misery, the
+wormwood and the gall.
+20 My soul hath them still in remembrance, and is
+humbled in me.
+21 This I recall to my mind, therefore have I hope.
+22 It is of the LORD&#x27;S mercies that we are not consumed,
+because his compassions fail not.
+23 They are new every morning: great is thy faithfulness.
+24 The LORD is my portion, saith my soul; therefore will I
+hope in him.
+25 The LORD is good unto them that wait for him, to the
+soul that seeketh him.
+26 It is good that a man should both hope and quietly wait
+for the salvation of the LORD.
+27 It is good for a man that he bear the yoke in his youth.
+28 He sitteth alone and keepeth silence, because he hath
+borne it upon him.
+29 He putteth his mouth in the dust; if so be the re may be
+hope.
+30 He giveth his cheek to him that smiteth him: he is filled
+full with reproach.
+31 For the Lord will not cast off for ever:
+32 But though he cause grief, yet will he have compassion
+according to the multitude of his mercies.
+33 For he doth not afflict willingly nor grieve the children
+of men.
+34 To crush under his feet all the prisoners of the earth,
+35 To turn aside the right of a man before the face of the
+most High,
+36 To subvert a man in his cause, the Lord approveth not.
+37 Who is he that saith, and it cometh to pass, when the
+Lord commandeth it not?
+38 Out of the mouth of the most High proceedeth not evil
+and good?
+39 Wherefore doth a living man complain, a man for the
+punishment of his sins?
+40 Let us search and try our ways, and turn  again to the
+LORD.
+41 Let us lift up our heart with our hands unto God in the
+heavens.
+42 We have transgressed and have rebelled: thou hast not
+pardoned.
+43 Thou hast covered with anger, and persecuted us: thou
+hast slain, thou hast not pitied.
+44 Thou hast covered thyself with a cloud, that our prayer
+should not pass through.
+45 Thou hast made us as the offscouring and refuse in the
+midst of the people.
+46 All our enemies have opened their mouths against us.
+47 Fear and a snare is come upon us, desolation  and
+destruction.
+48 Mine eye runneth down with rivers of water for the
+destruction of the daughter of my people.
+49 Mine eye trickleth down, and ceaseth not, without any
+intermission,
+50 Till the LORD look down, and behold from heaven.
+51 Mine eye affecte th mine heart because of all the
+daughters of my city.
+52 Mine enemies chased me sore, like a bird, without
+cause.
+53 They have cut off my life in the dungeon, and cast a
+stone upon me.
+54 Waters flowed over mine head; then I said, I am cut off.
+55 I calle d upon thy name, O LORD, out of the low
+dungeon.
+56 Thou hast heard my voice: hide not thine ear at my
+breathing, at my cry.
+57 Thou drewest near in the day that I called upon thee:
+thou saidst, Fear not.
+58 O Lord, thou hast pleaded the causes of my soul;  thou
+hast redeemed my life.
+59 O LORD, thou hast seen my wrong: judge thou my
+cause.
+60 Thou hast seen all their vengeance and all their
+imaginations against me.
+61 Thou hast heard their reproach, O LORD, and all their
+imaginations against me;
+62 The lips  of those that rose up against me, and their
+device against me all the day.
+63 Behold their sitting down, and their rising up; I am their
+musick.
+64 Render unto them a recompence, O LORD, according
+to the work of their hands.
+65 Give them sorrow of heart, thy curse unto them.
+66 Persecute and destroy them in anger from under the
+heavens of the LORD.
+
+</div><h4 id="chapter-4">Chapter 4</h4><div>
+1 How is the gold become dim! how is the most fine gold
+changed! the stones of the sanctuary are poured out in the top
+of every street.
+2 The precious sons of Zion, comparable to fine gold, how
+are they esteemed as earthen pitchers, the work of the hands
+of the potter!
+3 Even the sea monsters draw out the breast, they give
+suck to their young ones: the daughter of my people is
+become cruel, like the ostriches in the wilderness.
+4 The tongue of the sucking child cleaveth to the roof of
+his mouth for thirst: the young children ask bread, and no
+man breaketh it unto them.
+5 They that did feed delicately are desolate in the streets:
+they that were brought up in scarlet embrace dunghills.
+6 For the punishment of the iniquity of the daughter of my
+people is greater than the punishment of the sin of Sodom,
+that was overthrown as in a moment, and no hands stayed on
+her.
+7 Her Nazarites were purer than snow, they  were whiter
+than milk, they were more ruddy in body than rubies, their
+polishing was of sapphire:
+8 Their visage is blacker than a coal; they are not known in
+the streets: their skin cleaveth to their bones; it is withered, it
+is become like a stick.
+9 They that be slain with the sword are better than they that
+be slain with hunger: for these pine away, stricken through
+for want of the fruits of the field.
+10 The hands of the pitiful women have sodden their own
+children: they were their meat in the destruc tion of the
+daughter of my people.
+11 The LORD hath accomplished his fury; he hath poured
+out his fierce anger, and hath kindled a fire in Zion, and it
+hath devoured the foundations thereof.
+12 The kings of the earth, and all the inhabitants of the
+world, would not have believed that the adversary and the
+enemy should have entered into the gates of Jerusalem.
+13 For the sins of her prophets, and the iniquities of her
+priests, that have shed the blood of the just in the midst of
+her,
+14 They have wandered as blind men in the streets, they
+have polluted themselves with blood, so that men could not
+touch their garments.
+15 They cried unto them, Depart ye; it is unclean; depart,
+depart, touch not: when they fled away and wandered, they
+said among the heathen, They shall no more sojourn there.
+16 The anger of the LORD hath divided them; he will no
+more regard them: they respected not the persons of the
+priests, they favoured not the elders.
+17 As for us, our eyes as yet failed for our vain help: in our
+watching we have watched for a nation that could not save
+us.
+18 They hunt our steps, that we cannot go in our streets:
+our end is near, our days are fulfilled; for our end is come.
+19 Our persecutors are swifter than the eagles of the
+heaven: they pursued us upon th e mountains, they laid wait
+for us in the wilderness.
+20 The breath of our nostrils, the anointed of the LORD,
+was taken in their pits, of whom we said, Under his shadow
+we shall live among the heathen.
+21 Rejoice and be glad, O daughter of Edom, that dwel lest
+in the land of Uz; the cup also shall pass through unto thee:
+thou shalt be drunken, and shalt make thyself naked.
+22 The punishment of thine iniquity is accomplished, O
+daughter of Zion; he will no more carry thee away into
+captivity: he will visit thine iniquity, O daughter of Edom; he
+will discover thy sins.
+
+</div><h4 id="chapter-5">Chapter 5</h4><div>
+1 Remember, O LORD, what is come upon us: consider,
+and behold our reproach.
+2 Our inheritance is turned to strangers, our houses to
+aliens.
+3 We are orphans and fatherless, our mothe rs are as
+widows.
+4 We have drunken our water for money; our wood is sold
+unto us.
+5 Our necks are under persecution: we labour, and have no
+rest.
+6 We have given the hand to the Egyptians, and to  the
+Assyrians, to be satisfied with bread.
+7 Our fathers have sinned, and are not; and we have borne
+their iniquities.
+8 Servants have ruled over us: there is  none that doth
+deliver us out of their hand.
+9 We gat our bread with the peril of  our lives because of
+the sword of the wilderness.
+10 Our skin was black li ke an oven because of the terrible
+famine.
+11 They ravished the women in Zion, and the maids in the
+cities of Judah.
+12 Princes are hanged up by their hand: the faces of elders
+were not honoured.
+13 They took the young men to grind, and the children fell
+under the wood.
+14 The elders have ceased from the gate, the young men
+from their musick.
+15 The joy of our heart is ceased; our dance is turned into
+mourning.
+16 The crown is fallen from our head: woe unto us, that we
+have sinned!
+17 For this our heart is faint; for these things our eyes are
+dim.
+18 Because of the mountain of Zion, which is desolate, the
+foxes walk upon it.
+19 Thou, O LORD, remainest for ever; thy throne from
+generation to generation.
+20 Wherefore dost thou forget us for ever, and forsake us
+so long time?
+21 Turn thou us unto thee, O LORD, and we shall be
+turned; renew our days as of old.
+22 But thou hast utterly rejected us; thou art very wroth
+against us.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for Lamentations.</div>
+  </main>
+
+<script>
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
+</body>
+</html>
