@@ -1,0 +1,2395 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Strong's Concordance G4751–G5000</title>
+<style>
+
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a;--line:rgba(201,168,76,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:var(--gold);background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:var(--gold);padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+
+/* TOPBAR */
+.topbar{position:sticky;top:62px;z-index:100;background:rgba(13,27,46,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.topbar-brand{display:flex;align-items:center;gap:10px}
+.topbar-brand h1{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);margin:0;letter-spacing:2px}
+.topbar-brand small{font-size:.65rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;display:block}
+.topbar-nav{display:flex;gap:8px;flex-wrap:wrap}
+.tbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text2);font-family:sans-serif;font-size:12px;font-weight:600;text-decoration:none;transition:all .2s}
+.tbtn:hover{color:var(--gold);border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.06)}
+.tbtn.primary{background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));color:var(--gold);border-color:rgba(201,168,76,.35)}
+/* LAYOUT */
+.layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:18px;padding:20px 18px 80px;align-items:start}
+/* SIDEBAR */
+.sidebar{position:sticky;top:125px;max-height:calc(100vh - 135px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,.4) transparent}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(201,168,76,.4);border-radius:4px}
+.sidebar-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.sidebar-panel h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line);letter-spacing:1px}
+.section-link{display:block;padding:7px 10px;border-radius:7px;color:var(--text2);font-family:sans-serif;font-size:.75rem;text-decoration:none;border-left:3px solid transparent;transition:all .15s;margin-bottom:2px;letter-spacing:.3px}
+.section-link:hover{color:var(--gold);background:rgba(201,168,76,.08);border-left-color:rgba(201,168,76,.5)}
+.sidebar-nav{display:flex;flex-direction:column;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.sidebar-nav a{display:block;padding:9px 12px;border:1px solid rgba(201,168,76,.2);border-radius:8px;background:rgba(255,255,255,.02);color:var(--text2);font-family:sans-serif;font-size:.8rem;text-align:center;text-decoration:none;transition:all .2s}
+.sidebar-nav a:hover{color:var(--gold);border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.06)}
+.sidebar-nav a.gold{background:rgba(201,168,76,.1);color:var(--gold);border-color:var(--gold);font-weight:600}
+/* CONTENT */
+.content{min-width:0}
+.section-hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.section-hero h2{font-family:'Cinzel',serif;color:var(--gold);font-size:1.6rem;margin-bottom:6px}
+.section-hero p{color:var(--text2);font-size:.88rem}
+.hero-stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.hstat{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(201,168,76,.06);font-family:sans-serif;font-size:.78rem;color:var(--gold)}
+/* ENTRIES */
+.entries-panel{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--line);border-radius:14px;padding:18px}
+.entry-card{padding:14px 16px;border-bottom:1px solid rgba(201,168,76,.1);transition:background .15s}
+.entry-card:hover{background:rgba(201,168,76,.04)}
+.entry-card:last-child{border-bottom:none}
+.entry-header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.entry-num{font-family:sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);padding:2px 7px;border-radius:10px;white-space:nowrap}
+.entry-word{font-family:'Cinzel',serif;font-size:1rem;color:var(--cream);font-weight:700}
+.entry-pron{font-size:.78rem;color:var(--text2);font-style:italic}
+.entry-def{color:var(--text);font-size:.88rem;line-height:1.7;margin-top:3px;padding-left:2px}
+.entry-kjv{font-size:.75rem;color:var(--text2);margin-top:4px;font-style:italic;padding-left:2px}
+.entry-kjv::before{content:"KJV: ";color:rgba(201,168,76,.6);font-style:normal}
+/* ADMIN POSTS */
+.admin-posts{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:16px;margin-top:18px}
+.admin-posts h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;margin-bottom:12px;letter-spacing:1px}
+.post-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;margin-bottom:.7rem}
+.post-card img{max-width:100%;border-radius:6px;margin:.5rem 0;border:1px solid rgba(201,168,76,.15)}
+.post-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;margin-bottom:.3rem}
+.post-body{color:var(--cream);font-size:.85rem;line-height:1.7}
+/* ADMIN PANEL */
+.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;display:none}
+.admin-panel.visible{display:block}
+.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.5rem 1.1rem;border-radius:5px;font-family:sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1)}
+.btn-danger{background:#6b1d2e;color:var(--cream)}.btn-danger:hover{background:#8b2540}
+.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f}
+.btn-sm{padding:.28rem .65rem;font-size:.75rem}
+.form-group{margin-bottom:.8rem}
+label{display:block;color:var(--text2);font-size:.8rem;margin-bottom:.2rem}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.88rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+/* ADMIN TOOLBAR */
+.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
+.admin-toolbar.visible{display:block}
+.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.atb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif}
+.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600;transition:all .15s}
+.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
+.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
+.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
+.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
+.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
+.gate-footer{background:var(--navy2);border-top:1px solid var(--line);padding:1rem;text-align:center;color:var(--text2);font-size:.75rem}
+.gate-footer span{color:var(--gold)}
+.badge{display:inline-block;padding:.1rem .4rem;border-radius:8px;font-size:.68rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand">
+      <div>
+        <h1>Strong's Concordance</h1>
+        <small>Greek Dictionary — G4751–G5000</small>
+      </div>
+    </div>
+    <div class="topbar-nav">
+      <a class="tbtn primary" href="index.html">🏠 GATE Home</a>
+      <a class="tbtn" href="bible.html">📖 Bible</a>
+      <a class="tbtn" href="concordance.html">🔍 All Sections</a>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- STICKY SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-panel">
+      <h3>📋 Sections</h3>
+      <a href="concordance_g1-g250.html" class="section-link" >G1–G250</a>
+<a href="concordance_g251-g500.html" class="section-link" >G251–G500</a>
+<a href="concordance_g501-g750.html" class="section-link" >G501–G750</a>
+<a href="concordance_g751-g1000.html" class="section-link" >G751–G1000</a>
+<a href="concordance_g1001-g1250.html" class="section-link" >G1001–G1250</a>
+<a href="concordance_g1251-g1500.html" class="section-link" >G1251–G1500</a>
+<a href="concordance_g1501-g1750.html" class="section-link" >G1501–G1750</a>
+<a href="concordance_g1751-g2000.html" class="section-link" >G1751–G2000</a>
+<a href="concordance_g2001-g2250.html" class="section-link" >G2001–G2250</a>
+<a href="concordance_g2251-g2500.html" class="section-link" >G2251–G2500</a>
+<a href="concordance_g2501-g2750.html" class="section-link" >G2501–G2750</a>
+<a href="concordance_g2751-g3000.html" class="section-link" >G2751–G3000</a>
+<a href="concordance_g3001-g3250.html" class="section-link" >G3001–G3250</a>
+<a href="concordance_g3251-g3500.html" class="section-link" >G3251–G3500</a>
+<a href="concordance_g3501-g3750.html" class="section-link" >G3501–G3750</a>
+<a href="concordance_g3751-g4000.html" class="section-link" >G3751–G4000</a>
+<a href="concordance_g4001-g4250.html" class="section-link" >G4001–G4250</a>
+<a href="concordance_g4251-g4500.html" class="section-link" >G4251–G4500</a>
+<a href="concordance_g4501-g4750.html" class="section-link" >G4501–G4750</a>
+<a href="concordance_g4751-g5000.html" class="section-link" style="color:var(--gold);background:rgba(201,168,76,.12);border-left:3px solid var(--gold);padding-left:1.1rem;">G4751–G5000</a>
+<a href="concordance_g5001-g5250.html" class="section-link" >G5001–G5250</a>
+<a href="concordance_g5251-g5500.html" class="section-link" >G5251–G5500</a>
+<a href="concordance_g5501-g5624.html" class="section-link" >G5501–G5624</a>
+
+      <div class="sidebar-nav">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="gold">↑ Back to Top</a>
+        <a href="concordance.html">🔍 Concordance Home</a>
+        <a href="bible.html">📖 The Bible</a>
+        <a href="index.html">🏠 GATE Home</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2);">
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;letter-spacing:1px;">⚙ Add Content to This Section</h3>
+        <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close</button>
+      </div>
+      <div id="addForm" style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:1rem;margin-bottom:.8rem;">
+        <div class="grid2">
+          <div class="form-group"><label>Title *</label><input type="text" id="adm_title" placeholder="Entry title or Strong's number..."></div>
+          <div class="form-group"><label>Status</label>
+            <select id="adm_status"><option value="active">Active</option><option value="approved">Approved</option><option value="draft">Draft</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Notes / Definition / Commentary *</label><textarea id="adm_body" rows="3" placeholder="Additional notes, commentary, or cross-references..."></textarea></div>
+        <div class="form-group"><label>Scripture Reference</label><input type="text" id="adm_ref" placeholder="e.g. John 3:16, Acts 2:4"></div>
+        <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="adm_img" accept="image/*"></div>
+        <div id="adm_msg" style="font-size:.83rem;min-height:1.1rem;margin-bottom:.4rem;"></div>
+        <div style="display:flex;gap:.6rem;">
+          <button class="btn btn-gold" style="font-size:.95rem;" onclick="addPost()">📢 POST</button>
+          <button class="btn btn-outline" onclick="document.getElementById('addForm').style.display='none'">Cancel</button>
+        </div>
+      </div>
+      <div id="adminPostList"></div>
+    </div>
+
+    <!-- Section Hero -->
+    <div class="section-hero">
+      <h2>🔍 G4751–G5000: Sarx to Telos</h2>
+      <p>Strong's Greek Dictionary — 250 entries (G4751–G5000). James Strong, S.T.D., LL.D., 1890. Public Domain.</p>
+      <div class="hero-stats">
+        <span class="hstat">📖 250 Entries</span>
+        <span class="hstat">🔢 G4751–G5000</span>
+        <span class="hstat">🇬🇷 Greek New Testament</span>
+        <span class="hstat">✅ Complete &amp; Verified</span>
+      </div>
+    </div>
+
+    <!-- Entries -->
+    <div class="entries-panel">
+      <div class="entry-card" id="g4751">
+  <div class="entry-header">
+    <span class="entry-num">G4751</span>
+    <span class="entry-word">stomachos</span>
+    <span class="entry-pron">{stom'-akh-os}</span>
+  </div>
+  <div class="entry-def">an orifice (the gullet), i.e. (specially), the &quot;stomach&quot;:</div>
+  <div class="entry-kjv">KJV: stomach.</div>
+</div><div class="entry-card" id="g4752">
+  <div class="entry-header">
+    <span class="entry-num">G4752</span>
+    <span class="entry-word">strateia</span>
+    <span class="entry-pron">{strat-i'-ah}</span>
+  </div>
+  <div class="entry-def">military service, i.e. (figuratively) the apostolic career (as one of hardship and danger):</div>
+  <div class="entry-kjv">KJV: warfare.</div>
+</div><div class="entry-card" id="g4753">
+  <div class="entry-header">
+    <span class="entry-num">G4753</span>
+    <span class="entry-word">strateuma</span>
+    <span class="entry-pron">{strat'-yoo-mah}</span>
+  </div>
+  <div class="entry-def">an armament, i.e. (by implication) a body of troops (more or less extensive or systematic):</div>
+  <div class="entry-kjv">KJV: army, soldier, man of war.</div>
+</div><div class="entry-card" id="g4754">
+  <div class="entry-header">
+    <span class="entry-num">G4754</span>
+    <span class="entry-word">strateuomai</span>
+    <span class="entry-pron">{strat-yoo'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to serve in a military campaign; figuratively, to execute the apostolate (with its arduous duties and functions), to contend with carnal inclinations:</div>
+  <div class="entry-kjv">KJV: soldier, (go to) war(-fare).</div>
+</div><div class="entry-card" id="g4755">
+  <div class="entry-header">
+    <span class="entry-num">G4755</span>
+    <span class="entry-word">strategos</span>
+    <span class="entry-pron">{strat-ay-gos'}</span>
+  </div>
+  <div class="entry-def">a general, i.e. (by implication or analogy) a (military) governor (praetor), the chief (praefect) of the (Levitical) temple-wardens:</div>
+  <div class="entry-kjv">KJV: captain, magistrate.</div>
+</div><div class="entry-card" id="g4756">
+  <div class="entry-header">
+    <span class="entry-num">G4756</span>
+    <span class="entry-word">stratia</span>
+    <span class="entry-pron">{strat-ee'-ah}</span>
+  </div>
+  <div class="entry-def">from the base of 4766, as encamped); camp-likeness, i.e. an army, i.e. (figuratively) the angels, the celestial luminaries:</div>
+  <div class="entry-kjv">KJV: host.</div>
+</div><div class="entry-card" id="g4757">
+  <div class="entry-header">
+    <span class="entry-num">G4757</span>
+    <span class="entry-word">stratiotes</span>
+    <span class="entry-pron">{strat-ee-o'-tace}</span>
+  </div>
+  <div class="entry-def">a camper-out, i.e. a (common) warrior (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: soldier.</div>
+</div><div class="entry-card" id="g4758">
+  <div class="entry-header">
+    <span class="entry-num">G4758</span>
+    <span class="entry-word">stratologeo</span>
+    <span class="entry-pron">{strat-ol-og-eh'-o}</span>
+  </div>
+  <div class="entry-def">to gather (or select) as a warrior, i.e. enlist in the army:</div>
+  <div class="entry-kjv">KJV: choose to be a soldier.</div>
+</div><div class="entry-card" id="g4759">
+  <div class="entry-header">
+    <span class="entry-num">G4759</span>
+    <span class="entry-word">stratopedarches</span>
+    <span class="entry-pron">{strat-op-ed-ar'-khace}</span>
+  </div>
+  <div class="entry-def">a ruler of an army, i.e. (specially), a Praetorian praefect:</div>
+  <div class="entry-kjv">KJV: captain of the guard.</div>
+</div><div class="entry-card" id="g4760">
+  <div class="entry-header">
+    <span class="entry-num">G4760</span>
+    <span class="entry-word">stratopedon</span>
+    <span class="entry-pron">{strat-op'-ed-on}</span>
+  </div>
+  <div class="entry-def">a camping-ground, i.e. (by implication) a body of troops:</div>
+  <div class="entry-kjv">KJV: army.</div>
+</div><div class="entry-card" id="g4761">
+  <div class="entry-header">
+    <span class="entry-num">G4761</span>
+    <span class="entry-word">strebloo</span>
+    <span class="entry-pron">{streb-lo'-o}</span>
+  </div>
+  <div class="entry-def">to wrench, i.e. (specially), to torture (by the rack), but only figuratively, to pervert:</div>
+  <div class="entry-kjv">KJV: wrest.</div>
+</div><div class="entry-card" id="g4762">
+  <div class="entry-header">
+    <span class="entry-num">G4762</span>
+    <span class="entry-word">strepho</span>
+    <span class="entry-pron">{stref'-o}</span>
+  </div>
+  <div class="entry-def">to twist, i.e. turn quite around or reverse (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: convert, turn (again, back again, self, self about).</div>
+</div><div class="entry-card" id="g4763">
+  <div class="entry-header">
+    <span class="entry-num">G4763</span>
+    <span class="entry-word">streniao</span>
+    <span class="entry-pron">{stray-nee-ah'-o}</span>
+  </div>
+  <div class="entry-def">to be luxurious:</div>
+  <div class="entry-kjv">KJV: live deliciously.</div>
+</div><div class="entry-card" id="g4764">
+  <div class="entry-header">
+    <span class="entry-num">G4764</span>
+    <span class="entry-word">strenos</span>
+    <span class="entry-pron">{stray'-nos}</span>
+  </div>
+  <div class="entry-def">a &quot;straining&quot;, &quot;strenuousness&quot; or &quot;strength&quot;, i.e. (figuratively) luxury (voluptuousness):</div>
+  <div class="entry-kjv">KJV: delicacy.</div>
+</div><div class="entry-card" id="g4765">
+  <div class="entry-header">
+    <span class="entry-num">G4765</span>
+    <span class="entry-word">strouthion</span>
+    <span class="entry-pron">{stroo-thee'-on}</span>
+  </div>
+  <div class="entry-def">a little sparrow:</div>
+  <div class="entry-kjv">KJV: sparrow.</div>
+</div><div class="entry-card" id="g4766">
+  <div class="entry-header">
+    <span class="entry-num">G4766</span>
+    <span class="entry-word"></span>
+    <span class="entry-pron">{simpler}</span>
+  </div>
+  <div class="entry-def">to &quot;strew,&quot; i.e. spread (as a carpet or couch):</div>
+  <div class="entry-kjv">KJV: make bed, furnish, spread, strew.</div>
+</div><div class="entry-card" id="g4767">
+  <div class="entry-header">
+    <span class="entry-num">G4767</span>
+    <span class="entry-word">stugnetos</span>
+    <span class="entry-pron">{stoog-nay-tos'}</span>
+  </div>
+  <div class="entry-def">hated, i.e. odious:</div>
+  <div class="entry-kjv">KJV: hateful.</div>
+</div><div class="entry-card" id="g4768">
+  <div class="entry-header">
+    <span class="entry-num">G4768</span>
+    <span class="entry-word">stugnazo</span>
+    <span class="entry-pron">{stoog-nad'-zo}</span>
+  </div>
+  <div class="entry-def">to render gloomy, i.e. (by implication) glower (be overcast with clouds, or sombreness of speech):</div>
+  <div class="entry-kjv">KJV: lower, be sad.</div>
+</div><div class="entry-card" id="g4769">
+  <div class="entry-header">
+    <span class="entry-num">G4769</span>
+    <span class="entry-word">stulos</span>
+    <span class="entry-pron">{stoo'-los}</span>
+  </div>
+  <div class="entry-def">properly akin to the base of 2476); a post (&quot;style&quot;), i.e. (figuratively) support:</div>
+  <div class="entry-kjv">KJV: pillar.</div>
+</div><div class="entry-card" id="g4770">
+  <div class="entry-header">
+    <span class="entry-num">G4770</span>
+    <span class="entry-word">Stoikos</span>
+    <span class="entry-pron">{sto-ik-os'}</span>
+  </div>
+  <div class="entry-def">a &quot;Stoic&quot; (as occupying a particular porch in Athens), i.e. adherent of a certin philosophy:</div>
+  <div class="entry-kjv">KJV: Stoick.</div>
+</div><div class="entry-card" id="g4771">
+  <div class="entry-header">
+    <span class="entry-num">G4771</span>
+    <span class="entry-word">su</span>
+    <span class="entry-pron">{soo}</span>
+  </div>
+  <div class="entry-def">thou:</div>
+  <div class="entry-kjv">KJV: thou. See also 4571, 4671, 4675; and for the plural 5209, 5210, 5213, 5216.</div>
+</div><div class="entry-card" id="g4772">
+  <div class="entry-header">
+    <span class="entry-num">G4772</span>
+    <span class="entry-word">suggeneia</span>
+    <span class="entry-pron">{soong-ghen'-i-ah}</span>
+  </div>
+  <div class="entry-def">relationship, i.e. (concretely) relatives:</div>
+  <div class="entry-kjv">KJV: kindred.</div>
+</div><div class="entry-card" id="g4773">
+  <div class="entry-header">
+    <span class="entry-num">G4773</span>
+    <span class="entry-word">suggenes</span>
+    <span class="entry-pron">{soong-ghen-ace'}</span>
+  </div>
+  <div class="entry-def">a relative (by blood); by extension, a fellow countryman:</div>
+  <div class="entry-kjv">KJV: cousin, kin(-sfolk, -sman).</div>
+</div><div class="entry-card" id="g4774">
+  <div class="entry-header">
+    <span class="entry-num">G4774</span>
+    <span class="entry-word">suggnome</span>
+    <span class="entry-pron">{soong-gno'-may}</span>
+  </div>
+  <div class="entry-def">fellow knowledge, i.e. concession:</div>
+  <div class="entry-kjv">KJV: permission.</div>
+</div><div class="entry-card" id="g4775">
+  <div class="entry-header">
+    <span class="entry-num">G4775</span>
+    <span class="entry-word">sugkathemai</span>
+    
+  </div>
+  <div class="entry-def">nd 2521; to seat oneself in company with:--sit with</div>
+  <div class="entry-kjv">KJV: sit with.</div>
+</div><div class="entry-card" id="g4776">
+  <div class="entry-header">
+    <span class="entry-num">G4776</span>
+    <span class="entry-word">sugkathizo</span>
+    <span class="entry-pron">{soong-kath-id'-zo}</span>
+  </div>
+  <div class="entry-def">to give (or take) a seat in company with:</div>
+  <div class="entry-kjv">KJV: (make) sit (down) together.</div>
+</div><div class="entry-card" id="g4777">
+  <div class="entry-header">
+    <span class="entry-num">G4777</span>
+    <span class="entry-word">sugkakopatheo</span>
+    <span class="entry-pron">{soong-kak-op-ath-eh'-o}</span>
+  </div>
+  <div class="entry-def">to suffer hardship in company with:</div>
+  <div class="entry-kjv">KJV: be partaker of afflictions.</div>
+</div><div class="entry-card" id="g4778">
+  <div class="entry-header">
+    <span class="entry-num">G4778</span>
+    <span class="entry-word">sugkakoucheo</span>
+    <span class="entry-pron">{soong-kak-oo-kheh'-o}</span>
+  </div>
+  <div class="entry-def">to maltreat in company with, i.e. (passively) endure persecution together:</div>
+  <div class="entry-kjv">KJV: suffer affliction with.</div>
+</div><div class="entry-card" id="g4779">
+  <div class="entry-header">
+    <span class="entry-num">G4779</span>
+    <span class="entry-word">sugkaleo</span>
+    <span class="entry-pron">{soong-kal-eh'-o}</span>
+  </div>
+  <div class="entry-def">to convoke:</div>
+  <div class="entry-kjv">KJV: call together.</div>
+</div><div class="entry-card" id="g4780">
+  <div class="entry-header">
+    <span class="entry-num">G4780</span>
+    <span class="entry-word">sugkalupto</span>
+    <span class="entry-pron">{soong-kal-oop'-to}</span>
+  </div>
+  <div class="entry-def">to conceal altogether:-cover</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4781">
+  <div class="entry-header">
+    <span class="entry-num">G4781</span>
+    <span class="entry-word">sugkampto</span>
+    <span class="entry-pron">{soong-kamp'-to}</span>
+  </div>
+  <div class="entry-def">to bend together, i.e. (figuratively) to afflict:</div>
+  <div class="entry-kjv">KJV: bow down.</div>
+</div><div class="entry-card" id="g4782">
+  <div class="entry-header">
+    <span class="entry-num">G4782</span>
+    <span class="entry-word">sugkatabaino</span>
+    <span class="entry-pron">{soong-kat-ab-ah'-ee-no}</span>
+  </div>
+  <div class="entry-def">to descend in company with:</div>
+  <div class="entry-kjv">KJV: go down with.</div>
+</div><div class="entry-card" id="g4783">
+  <div class="entry-header">
+    <span class="entry-num">G4783</span>
+    <span class="entry-word">sugkatathesis</span>
+    <span class="entry-pron">{soong-kat-ath'-es-is}</span>
+  </div>
+  <div class="entry-def">a deposition (of sentiment) in company with, i.e. (figuratively) accord with:</div>
+  <div class="entry-kjv">KJV: agreement.</div>
+</div><div class="entry-card" id="g4784">
+  <div class="entry-header">
+    <span class="entry-num">G4784</span>
+    <span class="entry-word">sugkatatithemai</span>
+    <span class="entry-pron">{soong-kat-at-ith'-em-ahee}</span>
+  </div>
+  <div class="entry-def">to deposit (one's vote or opinion) in company with, i.e. (figuratively) to accord with:-consent</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4785">
+  <div class="entry-header">
+    <span class="entry-num">G4785</span>
+    <span class="entry-word">sugkatapsephizo</span>
+    <span class="entry-pron">{soong-kat-aps-ay-fid'-zo}</span>
+  </div>
+  <div class="entry-def">om 4862 and a compound of</div>
+  
+</div><div class="entry-card" id="g4786">
+  <div class="entry-header">
+    <span class="entry-num">G4786</span>
+    <span class="entry-word">sugkerannumi</span>
+    <span class="entry-pron">{soong-ker-an'-noo-mee}</span>
+  </div>
+  <div class="entry-def">to commingle, i.e. (figuratively) to combine or assimilate:</div>
+  <div class="entry-kjv">KJV: mix with, temper together.</div>
+</div><div class="entry-card" id="g4787">
+  <div class="entry-header">
+    <span class="entry-num">G4787</span>
+    <span class="entry-word">sugkineo</span>
+    <span class="entry-pron">{soong-kin-eh'-o}</span>
+  </div>
+  <div class="entry-def">to move together, i.e. (specially), to excite as a mass (to sedition):</div>
+  <div class="entry-kjv">KJV: stir up.</div>
+</div><div class="entry-card" id="g4788">
+  <div class="entry-header">
+    <span class="entry-num">G4788</span>
+    <span class="entry-word">sugkleio</span>
+    <span class="entry-pron">{soong-kli'-o}</span>
+  </div>
+  <div class="entry-def">to shut together, i.e. include or (figuratively) embrace in a common subjection to:</div>
+  <div class="entry-kjv">KJV: conclude, inclose, shut up.</div>
+</div><div class="entry-card" id="g4789">
+  <div class="entry-header">
+    <span class="entry-num">G4789</span>
+    <span class="entry-word">sugkleronomos</span>
+    <span class="entry-pron">{soong-klay-ron-om'-os}</span>
+  </div>
+  <div class="entry-def">a co-heir, i.e. (by analogy) participant in common:</div>
+  <div class="entry-kjv">KJV: fellow (joint)-heir, heir together, heir with.</div>
+</div><div class="entry-card" id="g4790">
+  <div class="entry-header">
+    <span class="entry-num">G4790</span>
+    <span class="entry-word">sugkoinoneo</span>
+    <span class="entry-pron">{soong-koy-no-neh'-o}</span>
+  </div>
+  <div class="entry-def">to share in company with, i.e. co-participate in:</div>
+  <div class="entry-kjv">KJV: communicate (have fellowship) with, be partaker of.</div>
+</div><div class="entry-card" id="g4791">
+  <div class="entry-header">
+    <span class="entry-num">G4791</span>
+    <span class="entry-word">sugkoinonos</span>
+    <span class="entry-pron">{soong-koy-no-nos'}</span>
+  </div>
+  <div class="entry-def">a co-participant:-companion, partake(-r, -r with)</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4792">
+  <div class="entry-header">
+    <span class="entry-num">G4792</span>
+    <span class="entry-word">sugkomizo</span>
+    <span class="entry-pron">{soong-kom-id'-zo}</span>
+  </div>
+  <div class="entry-def">to convey together, i.e. collect or bear away in company with others:</div>
+  <div class="entry-kjv">KJV: carry.</div>
+</div><div class="entry-card" id="g4793">
+  <div class="entry-header">
+    <span class="entry-num">G4793</span>
+    <span class="entry-word">sugkrino</span>
+    <span class="entry-pron">{soong-kree'-no}</span>
+  </div>
+  <div class="entry-def">to judge of one thing in connection with another, i.e. combine (spiritual ideas with appropriate expressions) or collate (one person with another by way of contrast or resemblance):</div>
+  <div class="entry-kjv">KJV: compare among (with).</div>
+</div><div class="entry-card" id="g4794">
+  <div class="entry-header">
+    <span class="entry-num">G4794</span>
+    <span class="entry-word">sugkupto</span>
+    <span class="entry-pron">{soong-koop'-to}</span>
+  </div>
+  <div class="entry-def">to stoop altogether, i.e. be completely overcome by:</div>
+  <div class="entry-kjv">KJV: bow together.</div>
+</div><div class="entry-card" id="g4795">
+  <div class="entry-header">
+    <span class="entry-num">G4795</span>
+    <span class="entry-word">sugkuria</span>
+    <span class="entry-pron">{soong-koo-ree'-ah}</span>
+  </div>
+  <div class="entry-def">from the base of 2962); concurrence, i.e. accident:</div>
+  <div class="entry-kjv">KJV: chance.</div>
+</div><div class="entry-card" id="g4796">
+  <div class="entry-header">
+    <span class="entry-num">G4796</span>
+    <span class="entry-word">sugchairo</span>
+    <span class="entry-pron">{soong-khah'-ee-ro}</span>
+  </div>
+  <div class="entry-def">to sympathize in gladness, congratulate:</div>
+  <div class="entry-kjv">KJV: rejoice in (with).</div>
+</div><div class="entry-card" id="g4797">
+  <div class="entry-header">
+    <span class="entry-num">G4797</span>
+    <span class="entry-word">sugcheo</span>
+    <span class="entry-pron">{soong-kheh'-o}</span>
+  </div>
+  <div class="entry-def">to commingle promiscuously, i.e. (figuratively) to throw (an assembly) into disorder, to perplex (the mind):</div>
+  <div class="entry-kjv">KJV: confound, confuse, stir up, be in an uproar.</div>
+</div><div class="entry-card" id="g4798">
+  <div class="entry-header">
+    <span class="entry-num">G4798</span>
+    <span class="entry-word">sugchraomai</span>
+    
+  </div>
+  <div class="entry-def">nd 5530; to use jointly, i.e. (by implication) to hold intercourse in common:--have dealings with</div>
+  <div class="entry-kjv">KJV: have dealings with.</div>
+</div><div class="entry-card" id="g4799">
+  <div class="entry-header">
+    <span class="entry-num">G4799</span>
+    <span class="entry-word">sugchusis</span>
+    <span class="entry-pron">{soong'-khoo-sis}</span>
+  </div>
+  <div class="entry-def">commixture, i.e. (figuratively) riotous disturbance:</div>
+  <div class="entry-kjv">KJV: confusion.</div>
+</div><div class="entry-card" id="g4800">
+  <div class="entry-header">
+    <span class="entry-num">G4800</span>
+    <span class="entry-word">suzao</span>
+    <span class="entry-pron">{sood-zah'-o}</span>
+  </div>
+  <div class="entry-def">to continue to live in common with, i.e. co-survive (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: live with.</div>
+</div><div class="entry-card" id="g4801">
+  <div class="entry-header">
+    <span class="entry-num">G4801</span>
+    <span class="entry-word">suzeugnumi</span>
+    <span class="entry-pron">{sood-zyoog'-noo-mee}</span>
+  </div>
+  <div class="entry-def">to yoke together, i.e. (figuratively) conjoin (in marriage):</div>
+  <div class="entry-kjv">KJV: join together.</div>
+</div><div class="entry-card" id="g4802">
+  <div class="entry-header">
+    <span class="entry-num">G4802</span>
+    <span class="entry-word">suzeteo</span>
+    <span class="entry-pron">{sood-zay-teh'-o}</span>
+  </div>
+  <div class="entry-def">to investigate jointly, i.e. discuss, controvert, cavil:</div>
+  <div class="entry-kjv">KJV: dispute (with), enquire, question (with), reason (together).</div>
+</div><div class="entry-card" id="g4803">
+  <div class="entry-header">
+    <span class="entry-num">G4803</span>
+    <span class="entry-word">suzetesis</span>
+    <span class="entry-pron">{sood-zay'-tay-sis}</span>
+  </div>
+  <div class="entry-def">mutual questioning, i.e. discussion:-disputation(-ting), reasoning</div>
+  <div class="entry-kjv">KJV: 4802</div>
+</div><div class="entry-card" id="g4804">
+  <div class="entry-header">
+    <span class="entry-num">G4804</span>
+    <span class="entry-word">suzetetes</span>
+    <span class="entry-pron">{sood-zay-tay-tace'}</span>
+  </div>
+  <div class="entry-def">a disputant, i.e. sophist:</div>
+  <div class="entry-kjv">KJV: disputer.</div>
+</div><div class="entry-card" id="g4805">
+  <div class="entry-header">
+    <span class="entry-num">G4805</span>
+    <span class="entry-word">suzugos</span>
+    <span class="entry-pron">{sood'-zoo-gos}</span>
+  </div>
+  <div class="entry-def">co-yoked, i.e. (figuratively) as noun, a colleague; probably rather as a proper name; Syzygus, a Christian:</div>
+  <div class="entry-kjv">KJV: yokefellow.</div>
+</div><div class="entry-card" id="g4806">
+  <div class="entry-header">
+    <span class="entry-num">G4806</span>
+    <span class="entry-word">suzoopoieo</span>
+    <span class="entry-pron">{sood-zo-op-oy-eh'-o}</span>
+  </div>
+  <div class="entry-def">to reanimate conjointly with (figuratively):</div>
+  <div class="entry-kjv">KJV: quicken together with.</div>
+</div><div class="entry-card" id="g4807">
+  <div class="entry-header">
+    <span class="entry-num">G4807</span>
+    <span class="entry-word">sukaminos</span>
+    
+  </div>
+  <div class="entry-def">8256) in imitation of 4809; a sycamore-fig tree:--sycamine tree.  See HEBREW for 08256</div>
+  <div class="entry-kjv">KJV: sycamine tree.</div>
+</div><div class="entry-card" id="g4808">
+  <div class="entry-header">
+    <span class="entry-num">G4808</span>
+    <span class="entry-word">suke</span>
+    <span class="entry-pron">{soo-kay'}</span>
+  </div>
+  <div class="entry-def">a fig-tree:</div>
+  <div class="entry-kjv">KJV: fig tree.</div>
+</div><div class="entry-card" id="g4809">
+  <div class="entry-header">
+    <span class="entry-num">G4809</span>
+    <span class="entry-word">sukomoraia</span>
+    <span class="entry-pron">{soo-kom-o-rah'-yah}</span>
+  </div>
+  <div class="entry-def">the &quot;sycamore&quot;-fig tree:</div>
+  <div class="entry-kjv">KJV: sycamore tree. Compare 4807.</div>
+</div><div class="entry-card" id="g4810">
+  <div class="entry-header">
+    <span class="entry-num">G4810</span>
+    <span class="entry-word">sukon</span>
+    <span class="entry-pron">{soo'-kon}</span>
+  </div>
+  <div class="entry-def">a fig:</div>
+  <div class="entry-kjv">KJV: fig.</div>
+</div><div class="entry-card" id="g4811">
+  <div class="entry-header">
+    <span class="entry-num">G4811</span>
+    <span class="entry-word">sukophanteo</span>
+    <span class="entry-pron">{soo-kof-an-teh'-o}</span>
+  </div>
+  <div class="entry-def">to be a fig-informer (reporter of the law forbidding the exportation of figs from Greece), &quot;sycophant&quot;, i.e. (genitive and by extension) to defraud (exact unlawfully, extort):</div>
+  <div class="entry-kjv">KJV: accuse falsely, take by false accusation.</div>
+</div><div class="entry-card" id="g4812">
+  <div class="entry-header">
+    <span class="entry-num">G4812</span>
+    <span class="entry-word">sulagogeo</span>
+    <span class="entry-pron">{soo-lag-ogue-eh'-o}</span>
+  </div>
+  <div class="entry-def">to lead away as booty, i.e. (figuratively) seduce:</div>
+  <div class="entry-kjv">KJV: spoil.</div>
+</div><div class="entry-card" id="g4813">
+  <div class="entry-header">
+    <span class="entry-num">G4813</span>
+    <span class="entry-word">sulao</span>
+    <span class="entry-pron">{soo-lah'-o}</span>
+  </div>
+  <div class="entry-def">probably akin to 138; compare 4661); to despoil:</div>
+  <div class="entry-kjv">KJV: rob.</div>
+</div><div class="entry-card" id="g4814">
+  <div class="entry-header">
+    <span class="entry-num">G4814</span>
+    <span class="entry-word">sullaleo</span>
+    <span class="entry-pron">{sool-lal-eh'-o}</span>
+  </div>
+  <div class="entry-def">to talk together, i.e. converse:-commune (confer, talk) with, speak among</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4815">
+  <div class="entry-header">
+    <span class="entry-num">G4815</span>
+    <span class="entry-word">sullambano</span>
+    <span class="entry-pron">{sool-lam-ban'-o}</span>
+  </div>
+  <div class="entry-def">to clasp, i.e. seize (arrest, capture); specially, to conceive (literally or figuratively); by implication, to aid:</div>
+  <div class="entry-kjv">KJV: catch, conceive, help, take.</div>
+</div><div class="entry-card" id="g4816">
+  <div class="entry-header">
+    <span class="entry-num">G4816</span>
+    <span class="entry-word">sullego</span>
+    <span class="entry-pron">{sool-leg'-o}</span>
+  </div>
+  <div class="entry-def">to collect:-gather (together, up)</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4817">
+  <div class="entry-header">
+    <span class="entry-num">G4817</span>
+    <span class="entry-word">sullogizomai</span>
+    <span class="entry-pron">{sool-log-id'-zom-ahee}</span>
+  </div>
+  <div class="entry-def">to reckon together (with oneself), i.e. deliberate:</div>
+  <div class="entry-kjv">KJV: reason with.</div>
+</div><div class="entry-card" id="g4818">
+  <div class="entry-header">
+    <span class="entry-num">G4818</span>
+    <span class="entry-word">sullupeo</span>
+    <span class="entry-pron">{sool-loop-eh'-o}</span>
+  </div>
+  <div class="entry-def">to afflict jointly, i.e. (passive) sorrow at (on account of) someone:</div>
+  <div class="entry-kjv">KJV: be grieved.</div>
+</div><div class="entry-card" id="g4819">
+  <div class="entry-header">
+    <span class="entry-num">G4819</span>
+    <span class="entry-word">sumbaino</span>
+    <span class="entry-pron">{soom-bah'-ee-no}</span>
+  </div>
+  <div class="entry-def">to walk (figuratively, transpire) together, i.e. concur (take place):</div>
+  <div class="entry-kjv">KJV: be(-fall), happen (unto).</div>
+</div><div class="entry-card" id="g4820">
+  <div class="entry-header">
+    <span class="entry-num">G4820</span>
+    <span class="entry-word">sumballo</span>
+    <span class="entry-pron">{soom-bal'-lo}</span>
+  </div>
+  <div class="entry-def">to combine, i.e. (in speaking) to converse, consult, dispute, (mentally) to consider, (by implication) to aid, (personally) to join, attack:</div>
+  <div class="entry-kjv">KJV: confer, encounter, help, make, meet with, ponder.</div>
+</div><div class="entry-card" id="g4821">
+  <div class="entry-header">
+    <span class="entry-num">G4821</span>
+    <span class="entry-word">sumbasileuo</span>
+    <span class="entry-pron">{soom-bas-il-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to be co-regent (figuratively):</div>
+  <div class="entry-kjv">KJV: reign with.</div>
+</div><div class="entry-card" id="g4822">
+  <div class="entry-header">
+    <span class="entry-num">G4822</span>
+    <span class="entry-word">sumbibazo</span>
+    <span class="entry-pron">{soom-bib-ad'-zo}</span>
+  </div>
+  <div class="entry-def">causative (by reduplication) of the base of 939); to drive together, i.e. unite (in association or affection), (mentally) to infer, show, teach:</div>
+  <div class="entry-kjv">KJV: compact, assuredly gather, intrust, knit together, prove.</div>
+</div><div class="entry-card" id="g4823">
+  <div class="entry-header">
+    <span class="entry-num">G4823</span>
+    <span class="entry-word">sumbouleuo</span>
+    <span class="entry-pron">{soom-bool-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to give (or take) advice jointly, i.e. recommend, deliberate or determine:</div>
+  <div class="entry-kjv">KJV: consult, (give, take) counsel (together).</div>
+</div><div class="entry-card" id="g4824">
+  <div class="entry-header">
+    <span class="entry-num">G4824</span>
+    <span class="entry-word">sumboulion</span>
+    <span class="entry-pron">{soom-boo'-lee-on}</span>
+  </div>
+  <div class="entry-def">advisement; specially, a deliberative body, i.e. the provincial assessors or lay-court:-consultation, counsel, council</div>
+  <div class="entry-kjv">KJV: 4825</div>
+</div><div class="entry-card" id="g4825">
+  <div class="entry-header">
+    <span class="entry-num">G4825</span>
+    <span class="entry-word">sumboulos</span>
+    <span class="entry-pron">{soom'-boo-los}</span>
+  </div>
+  <div class="entry-def">a consultor, i.e. adviser:-counsellor</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4826">
+  <div class="entry-header">
+    <span class="entry-num">G4826</span>
+    <span class="entry-word">Sumeon</span>
+    <span class="entry-pron">{soom-eh-one'}</span>
+  </div>
+  <div class="entry-def">Symeon (i.e. Shimon), the name of five Israelites:</div>
+  <div class="entry-kjv">KJV: Simeon, Simon.</div>
+</div><div class="entry-card" id="g4827">
+  <div class="entry-header">
+    <span class="entry-num">G4827</span>
+    <span class="entry-word">summathetes</span>
+    <span class="entry-pron">{soom-math-ay-tace'}</span>
+  </div>
+  <div class="entry-def">a co-learner (of Christianity):</div>
+  <div class="entry-kjv">KJV: fellow disciple.</div>
+</div><div class="entry-card" id="g4828">
+  <div class="entry-header">
+    <span class="entry-num">G4828</span>
+    <span class="entry-word">summartureo</span>
+    <span class="entry-pron">{soom-mar-too-reh'-o}</span>
+  </div>
+  <div class="entry-def">to testify jointly, i.e. corroborate by (concurrent) evidence:</div>
+  <div class="entry-kjv">KJV: testify unto, (also) bear witness (with).</div>
+</div><div class="entry-card" id="g4829">
+  <div class="entry-header">
+    <span class="entry-num">G4829</span>
+    <span class="entry-word">summerizomai</span>
+    <span class="entry-pron">{soom-mer-id'-zom-ahee}</span>
+  </div>
+  <div class="entry-def">to share jointly, i.e. participate in:</div>
+  <div class="entry-kjv">KJV: be partaker with.</div>
+</div><div class="entry-card" id="g4830">
+  <div class="entry-header">
+    <span class="entry-num">G4830</span>
+    <span class="entry-word">summetochos</span>
+    <span class="entry-pron">{soom-met'-okh-os}</span>
+  </div>
+  <div class="entry-def">a co-participant:-partaker</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4831">
+  <div class="entry-header">
+    <span class="entry-num">G4831</span>
+    <span class="entry-word">summimetes</span>
+    <span class="entry-pron">{soom-mim-ay-tace'}</span>
+  </div>
+  <div class="entry-def">a co-imitator, i.e. fellow votary:</div>
+  <div class="entry-kjv">KJV: follower together.</div>
+</div><div class="entry-card" id="g4832">
+  <div class="entry-header">
+    <span class="entry-num">G4832</span>
+    <span class="entry-word">summorphos</span>
+    <span class="entry-pron">{soom-mor-fos'}</span>
+  </div>
+  <div class="entry-def">jointly formed, i.e. (figuratively) similar:</div>
+  <div class="entry-kjv">KJV: conformed to, fashioned like unto.</div>
+</div><div class="entry-card" id="g4833">
+  <div class="entry-header">
+    <span class="entry-num">G4833</span>
+    <span class="entry-word">summorphoo</span>
+    <span class="entry-pron">{soom-mor-fo'-o}</span>
+  </div>
+  <div class="entry-def">to render like, i.e. (figuratively) to assimilate:</div>
+  <div class="entry-kjv">KJV: make conformable unto.</div>
+</div><div class="entry-card" id="g4834">
+  <div class="entry-header">
+    <span class="entry-num">G4834</span>
+    <span class="entry-word">sumpatheo</span>
+    <span class="entry-pron">{soom-path-eh'-o}</span>
+  </div>
+  <div class="entry-def">to feel &quot;sympathy&quot; with, i.e. (by implication) to commiserate:</div>
+  <div class="entry-kjv">KJV: have compassion, be touched with a feeling of.</div>
+</div><div class="entry-card" id="g4835">
+  <div class="entry-header">
+    <span class="entry-num">G4835</span>
+    <span class="entry-word">sumpathes</span>
+    <span class="entry-pron">{soom-path-ace'}</span>
+  </div>
+  <div class="entry-def">having a fellow-feeling (&quot;sympathetic&quot;), i.e. (by implication) mutually commiserative:</div>
+  <div class="entry-kjv">KJV: having compassion one of another.</div>
+</div><div class="entry-card" id="g4836">
+  <div class="entry-header">
+    <span class="entry-num">G4836</span>
+    <span class="entry-word">sumparaginomai</span>
+    <span class="entry-pron">{soom-par-ag-in'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to be present together, i.e. to convene; by implication, to appear in aid:</div>
+  <div class="entry-kjv">KJV: come together, stand with.</div>
+</div><div class="entry-card" id="g4837">
+  <div class="entry-header">
+    <span class="entry-num">G4837</span>
+    <span class="entry-word">sumparakaleo</span>
+    <span class="entry-pron">{soom-par-ak-al-eh'-o}</span>
+  </div>
+  <div class="entry-def">to console jointly:</div>
+  <div class="entry-kjv">KJV: comfort together.</div>
+</div><div class="entry-card" id="g4838">
+  <div class="entry-header">
+    <span class="entry-num">G4838</span>
+    <span class="entry-word">sumparalambano</span>
+    <span class="entry-pron">{soom-par-al-am-ban'-o}</span>
+  </div>
+  <div class="entry-def">to take along in company:</div>
+  <div class="entry-kjv">KJV: take with.</div>
+</div><div class="entry-card" id="g4839">
+  <div class="entry-header">
+    <span class="entry-num">G4839</span>
+    <span class="entry-word">sumparameno</span>
+    <span class="entry-pron">{soom-par-am-en'-o}</span>
+  </div>
+  <div class="entry-def">to remain in company, i.e. still live:</div>
+  <div class="entry-kjv">KJV: continue with.</div>
+</div><div class="entry-card" id="g4840">
+  <div class="entry-header">
+    <span class="entry-num">G4840</span>
+    <span class="entry-word">sumpareimi</span>
+    <span class="entry-pron">{soom-par'-i-mee}</span>
+  </div>
+  <div class="entry-def">to be at hand together, i.e. now present:</div>
+  <div class="entry-kjv">KJV: be here present with.</div>
+</div><div class="entry-card" id="g4841">
+  <div class="entry-header">
+    <span class="entry-num">G4841</span>
+    <span class="entry-word">sumpascho</span>
+    <span class="entry-pron">{soom-pas'-kho}</span>
+  </div>
+  <div class="entry-def">to experience pain jointly or of the same kind (specially, persecution; to &quot;sympathize&quot;):-suffer with</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4842">
+  <div class="entry-header">
+    <span class="entry-num">G4842</span>
+    <span class="entry-word">sumpempo</span>
+    <span class="entry-pron">{soom-pem'-po}</span>
+  </div>
+  <div class="entry-def">to despatch in company:-send with</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4843">
+  <div class="entry-header">
+    <span class="entry-num">G4843</span>
+    <span class="entry-word">sumperilambano</span>
+    <span class="entry-pron">{soom-per-ee-lam-ban'-o}</span>
+  </div>
+  <div class="entry-def">4862 and a compound of</div>
+  
+</div><div class="entry-card" id="g4844">
+  <div class="entry-header">
+    <span class="entry-num">G4844</span>
+    <span class="entry-word">sumpino</span>
+    <span class="entry-pron">{soom-pee'-no}</span>
+  </div>
+  <div class="entry-def">to partake a beverage in company:</div>
+  <div class="entry-kjv">KJV: drink with.</div>
+</div><div class="entry-card" id="g4845">
+  <div class="entry-header">
+    <span class="entry-num">G4845</span>
+    <span class="entry-word">sumpleroo</span>
+    <span class="entry-pron">{soom-play-ro'-o}</span>
+  </div>
+  <div class="entry-def">to implenish completely, i.e. (of space) to swamp (a boat), or (of time) to accomplish (passive, be complete):-(fully) come, fill up</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4846">
+  <div class="entry-header">
+    <span class="entry-num">G4846</span>
+    <span class="entry-word">sumpnigo</span>
+    <span class="entry-pron">{soom-pnee'-go}</span>
+  </div>
+  <div class="entry-def">to strangle completely, i.e. (literally) to drown, or (figuratively) to crowd:</div>
+  <div class="entry-kjv">KJV: choke, throng.</div>
+</div><div class="entry-card" id="g4847">
+  <div class="entry-header">
+    <span class="entry-num">G4847</span>
+    <span class="entry-word">sumpolites</span>
+    <span class="entry-pron">{soom-pol-ee'-tace}</span>
+  </div>
+  <div class="entry-def">a native of the same town, i.e. (figuratively) co-religionist (fellow-Christian):</div>
+  <div class="entry-kjv">KJV: fellow- citizen.</div>
+</div><div class="entry-card" id="g4848">
+  <div class="entry-header">
+    <span class="entry-num">G4848</span>
+    <span class="entry-word">sumporeuomai</span>
+    <span class="entry-pron">{soom-por-yoo'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to journey together; by implication, to assemble:</div>
+  <div class="entry-kjv">KJV: go with, resort.</div>
+</div><div class="entry-card" id="g4849">
+  <div class="entry-header">
+    <span class="entry-num">G4849</span>
+    <span class="entry-word">sumposion</span>
+    <span class="entry-pron">{soom-pos'-ee-on}</span>
+  </div>
+  <div class="entry-def">a drinking-party (&quot;symposium&quot;), i.e. (by extension) a room of guests:</div>
+  <div class="entry-kjv">KJV: company.</div>
+</div><div class="entry-card" id="g4850">
+  <div class="entry-header">
+    <span class="entry-num">G4850</span>
+    <span class="entry-word">sumpresbuteros</span>
+    <span class="entry-pron">{soom-pres-boo'-ter-os}</span>
+  </div>
+  <div class="entry-def">a copresbyter:</div>
+  <div class="entry-kjv">KJV: presbyter, also an elder.</div>
+</div><div class="entry-card" id="g4851">
+  <div class="entry-header">
+    <span class="entry-num">G4851</span>
+    <span class="entry-word">sumphero</span>
+    <span class="entry-pron">{soom-fer'-o}</span>
+  </div>
+  <div class="entry-def">to bear together (contribute), i.e. (literally) to collect, or (figuratively) to conduce; especially (neuter participle as a noun) advantage:</div>
+  <div class="entry-kjv">KJV: be better for, bring together, be expedient (for), be good, (be) profit(-able for).</div>
+</div><div class="entry-card" id="g4852">
+  <div class="entry-header">
+    <span class="entry-num">G4852</span>
+    <span class="entry-word">sumphemi</span>
+    <span class="entry-pron">{soom'-fay-mee}</span>
+  </div>
+  <div class="entry-def">to say jointly, i.e. assent to:-consent unto</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4853">
+  <div class="entry-header">
+    <span class="entry-num">G4853</span>
+    <span class="entry-word">sumphuletes</span>
+    <span class="entry-pron">{soom-foo-let'-ace}</span>
+  </div>
+  <div class="entry-def">a cotribesman, i.e. native of the same country:</div>
+  <div class="entry-kjv">KJV: countryman.</div>
+</div><div class="entry-card" id="g4854">
+  <div class="entry-header">
+    <span class="entry-num">G4854</span>
+    <span class="entry-word">sumphutos</span>
+    
+  </div>
+  <div class="entry-def">vative of 5453; grown along with (connate), i.e. (figuratively) closely united to:--planted together</div>
+  <div class="entry-kjv">KJV: planted together.</div>
+</div><div class="entry-card" id="g4855">
+  <div class="entry-header">
+    <span class="entry-num">G4855</span>
+    <span class="entry-word">sumphuo</span>
+    <span class="entry-pron">{soom-foo'-o}</span>
+  </div>
+  <div class="entry-def">passive, to grow jointly:</div>
+  <div class="entry-kjv">KJV: spring up with.</div>
+</div><div class="entry-card" id="g4856">
+  <div class="entry-header">
+    <span class="entry-num">G4856</span>
+    <span class="entry-word">sumphoneo</span>
+    <span class="entry-pron">{soom-fo-neh'-o}</span>
+  </div>
+  <div class="entry-def">to be harmonious, i.e. (figuratively) to accord (be suitable, concur) or stipulate (by compact):</div>
+  <div class="entry-kjv">KJV: agree (together, with).</div>
+</div><div class="entry-card" id="g4857">
+  <div class="entry-header">
+    <span class="entry-num">G4857</span>
+    <span class="entry-word">sumphonesis</span>
+    <span class="entry-pron">{soom-fo'-nay-sis}</span>
+  </div>
+  <div class="entry-def">accordance:</div>
+  <div class="entry-kjv">KJV: concord.</div>
+</div><div class="entry-card" id="g4858">
+  <div class="entry-header">
+    <span class="entry-num">G4858</span>
+    <span class="entry-word">sumphonia</span>
+    <span class="entry-pron">{soom-fo-nee'-ah}</span>
+  </div>
+  <div class="entry-def">unison of sound (&quot;symphony&quot;), i.e. a concert of instruments (harmonious note):</div>
+  <div class="entry-kjv">KJV: music.</div>
+</div><div class="entry-card" id="g4859">
+  <div class="entry-header">
+    <span class="entry-num">G4859</span>
+    <span class="entry-word">sumphonos</span>
+    <span class="entry-pron">{soom'-fo-nos}</span>
+  </div>
+  <div class="entry-def">sounding together (alike), i.e. (figuratively) accordant (neuter as noun, agreement):</div>
+  <div class="entry-kjv">KJV: consent.</div>
+</div><div class="entry-card" id="g4860">
+  <div class="entry-header">
+    <span class="entry-num">G4860</span>
+    <span class="entry-word">sumpsephizo</span>
+    <span class="entry-pron">{soom-psay-fid'-zo}</span>
+  </div>
+  <div class="entry-def">to compute jointly:-reckon</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4861">
+  <div class="entry-header">
+    <span class="entry-num">G4861</span>
+    <span class="entry-word">sumpsuchos</span>
+    <span class="entry-pron">{soom'-psoo-khos}</span>
+  </div>
+  <div class="entry-def">co-spirited, i.e. similar in sentiment:</div>
+  <div class="entry-kjv">KJV: like-minded.</div>
+</div><div class="entry-card" id="g4862">
+  <div class="entry-header">
+    <span class="entry-num">G4862</span>
+    <span class="entry-word">sun</span>
+    <span class="entry-pron">{soon}</span>
+  </div>
+  <div class="entry-def">with or together (but much closer than 3326 or 3844), i.e. by association, companionship, process, resemblance, possession, instrumentality, addition, etc.:</div>
+  <div class="entry-kjv">KJV: beside, with. In composition it has similar applications, including completeness.</div>
+</div><div class="entry-card" id="g4863">
+  <div class="entry-header">
+    <span class="entry-num">G4863</span>
+    <span class="entry-word">sunago</span>
+    <span class="entry-pron">{soon-ag'-o}</span>
+  </div>
+  <div class="entry-def">to lead together, i.e. collect or convene; specially, to entertain (hospitably):</div>
+  <div class="entry-kjv">KJV: + accompany, assemble (selves, together), bestow, come together, gather (selves together, up, together), lead into, resort, take in.</div>
+</div><div class="entry-card" id="g4864">
+  <div class="entry-header">
+    <span class="entry-num">G4864</span>
+    <span class="entry-word">sunagoge</span>
+    <span class="entry-pron">{soon-ag-o-gay'}</span>
+  </div>
+  <div class="entry-def">an assemblage of persons; specially, a Jewish &quot;synagogue&quot; (the meeting or the place); by analogy, a Christian church:</div>
+  <div class="entry-kjv">KJV: assembly, congregation, synagogue.</div>
+</div><div class="entry-card" id="g4865">
+  <div class="entry-header">
+    <span class="entry-num">G4865</span>
+    <span class="entry-word">sunagonizomai</span>
+    <span class="entry-pron">{soon-ag-o-nid'-zom-ahee}</span>
+  </div>
+  <div class="entry-def">to struggle in company with, i.e. (figuratively) to be a partner (assistant):</div>
+  <div class="entry-kjv">KJV: strive together with.</div>
+</div><div class="entry-card" id="g4866">
+  <div class="entry-header">
+    <span class="entry-num">G4866</span>
+    <span class="entry-word">sunathleo</span>
+    <span class="entry-pron">{soon-ath-leh'-o}</span>
+  </div>
+  <div class="entry-def">to wrestle in company with, i.e. (figuratively) to Seek jointly:</div>
+  <div class="entry-kjv">KJV: labour with, strive together for.</div>
+</div><div class="entry-card" id="g4867">
+  <div class="entry-header">
+    <span class="entry-num">G4867</span>
+    <span class="entry-word">sunathroizo</span>
+    <span class="entry-pron">{soon-ath-royd'-zo}</span>
+  </div>
+  <div class="entry-def">to convene:</div>
+  <div class="entry-kjv">KJV: call (gather) together.</div>
+</div><div class="entry-card" id="g4868">
+  <div class="entry-header">
+    <span class="entry-num">G4868</span>
+    <span class="entry-word">sunairo</span>
+    <span class="entry-pron">{soon-ah'-ee-ro}</span>
+  </div>
+  <div class="entry-def">to make up together, i.e. (figuratively) to compute (an account):</div>
+  <div class="entry-kjv">KJV: reckon, take.</div>
+</div><div class="entry-card" id="g4869">
+  <div class="entry-header">
+    <span class="entry-num">G4869</span>
+    <span class="entry-word">sunaichmalotos</span>
+    <span class="entry-pron">{soon-aheekh-mal'-o-tos}</span>
+  </div>
+  <div class="entry-def">a co-captive:-fellowprisoner</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4870">
+  <div class="entry-header">
+    <span class="entry-num">G4870</span>
+    <span class="entry-word">sunakoloutheo</span>
+    <span class="entry-pron">{soon-ak-ol-oo-theh'-o}</span>
+  </div>
+  <div class="entry-def">to accompany:-follow</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4871">
+  <div class="entry-header">
+    <span class="entry-num">G4871</span>
+    <span class="entry-word">sunalizo</span>
+    <span class="entry-pron">{soon-al-id'-zo}</span>
+  </div>
+  <div class="entry-def">to accumulate, i.e. convene:</div>
+  <div class="entry-kjv">KJV: assemble together.</div>
+</div><div class="entry-card" id="g4872">
+  <div class="entry-header">
+    <span class="entry-num">G4872</span>
+    <span class="entry-word">sunanabaino</span>
+    <span class="entry-pron">{soon-an-ab-ah'-ee-no}</span>
+  </div>
+  <div class="entry-def">to ascend in company with:</div>
+  <div class="entry-kjv">KJV: come up with.</div>
+</div><div class="entry-card" id="g4873">
+  <div class="entry-header">
+    <span class="entry-num">G4873</span>
+    <span class="entry-word">sunanakeimai</span>
+    <span class="entry-pron">{soon-an-ak'-i-mahee}</span>
+  </div>
+  <div class="entry-def">to recline in company with (at a meal):</div>
+  <div class="entry-kjv">KJV: sit (down, at the table, together) with (at meat).</div>
+</div><div class="entry-card" id="g4874">
+  <div class="entry-header">
+    <span class="entry-num">G4874</span>
+    <span class="entry-word">sunanamignumi</span>
+    <span class="entry-pron">{soon-an-am-ig'-noo-mee}</span>
+  </div>
+  <div class="entry-def">862 and a compound of</div>
+  
+</div><div class="entry-card" id="g4875">
+  <div class="entry-header">
+    <span class="entry-num">G4875</span>
+    <span class="entry-word">sunanapauomai</span>
+    <span class="entry-pron">{soon-an-ap-ow'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to recruit oneself in company with:</div>
+  <div class="entry-kjv">KJV: refresh with.</div>
+</div><div class="entry-card" id="g4876">
+  <div class="entry-header">
+    <span class="entry-num">G4876</span>
+    <span class="entry-word">sunantao</span>
+    <span class="entry-pron">{soon-an-tah'-o}</span>
+  </div>
+  <div class="entry-def">to meet with; figuratively, to occur:</div>
+  <div class="entry-kjv">KJV: befall, meet.</div>
+</div><div class="entry-card" id="g4877">
+  <div class="entry-header">
+    <span class="entry-num">G4877</span>
+    <span class="entry-word">sunantesis</span>
+    <span class="entry-pron">{soon-an'-tay-sis}</span>
+  </div>
+  <div class="entry-def">a meeting with:</div>
+  <div class="entry-kjv">KJV: meet.</div>
+</div><div class="entry-card" id="g4878">
+  <div class="entry-header">
+    <span class="entry-num">G4878</span>
+    <span class="entry-word">sunantilambanomai</span>
+    <span class="entry-pron">{soon-an-tee-lam-ban'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to take hold of opposite together, i.e. co-operate (assist):</div>
+  <div class="entry-kjv">KJV: help.</div>
+</div><div class="entry-card" id="g4879">
+  <div class="entry-header">
+    <span class="entry-num">G4879</span>
+    <span class="entry-word">sunapago</span>
+    <span class="entry-pron">{soon-ap-ag'-o}</span>
+  </div>
+  <div class="entry-def">to take off together, i.e. transport with (seduce, passively, yield):</div>
+  <div class="entry-kjv">KJV: carry (lead) away with, condescend.</div>
+</div><div class="entry-card" id="g4880">
+  <div class="entry-header">
+    <span class="entry-num">G4880</span>
+    <span class="entry-word">sunapothnesko</span>
+    <span class="entry-pron">{soon-ap-oth-nace'-ko}</span>
+  </div>
+  <div class="entry-def">to decease (literally) in company with, or (figuratively), similarly to:</div>
+  <div class="entry-kjv">KJV: be dead (die) with.</div>
+</div><div class="entry-card" id="g4881">
+  <div class="entry-header">
+    <span class="entry-num">G4881</span>
+    <span class="entry-word">sunapollumi</span>
+    <span class="entry-pron">{soon-ap-ol'-loo-mee}</span>
+  </div>
+  <div class="entry-def">to destroy (middle voice or passively, be slain) in company with:</div>
+  <div class="entry-kjv">KJV: perish with.</div>
+</div><div class="entry-card" id="g4882">
+  <div class="entry-header">
+    <span class="entry-num">G4882</span>
+    <span class="entry-word">sunapostello</span>
+    <span class="entry-pron">{soon-ap-os-tel'-lo}</span>
+  </div>
+  <div class="entry-def">to despatch (on an errand) in company with:</div>
+  <div class="entry-kjv">KJV: send with.</div>
+</div><div class="entry-card" id="g4883">
+  <div class="entry-header">
+    <span class="entry-num">G4883</span>
+    <span class="entry-word">sunarmologeo</span>
+    <span class="entry-pron">{soon-ar-mol-og-eh'-o}</span>
+  </div>
+  <div class="entry-def">to render close-jointed together, i.e. organize compactly:</div>
+  <div class="entry-kjv">KJV: be fitly framed (joined) together.</div>
+</div><div class="entry-card" id="g4884">
+  <div class="entry-header">
+    <span class="entry-num">G4884</span>
+    <span class="entry-word">sunarpazo</span>
+    <span class="entry-pron">{soon-ar-pad'-zo}</span>
+  </div>
+  <div class="entry-def">to snatch together, i.e. seize:</div>
+  <div class="entry-kjv">KJV: catch.</div>
+</div><div class="entry-card" id="g4885">
+  <div class="entry-header">
+    <span class="entry-num">G4885</span>
+    <span class="entry-word">sunauxano</span>
+    <span class="entry-pron">{soon-owx-an'-o}</span>
+  </div>
+  <div class="entry-def">to increase (grow up) together:</div>
+  <div class="entry-kjv">KJV: grow together.</div>
+</div><div class="entry-card" id="g4886">
+  <div class="entry-header">
+    <span class="entry-num">G4886</span>
+    <span class="entry-word">sundesmos</span>
+    <span class="entry-pron">{soon'-des-mos}</span>
+  </div>
+  <div class="entry-def">a joint tie, i.e. ligament, (figuratively) uniting principle, control:</div>
+  <div class="entry-kjv">KJV: band, bond.</div>
+</div><div class="entry-card" id="g4887">
+  <div class="entry-header">
+    <span class="entry-num">G4887</span>
+    <span class="entry-word">sundeo</span>
+    <span class="entry-pron">{soon-deh'-o}</span>
+  </div>
+  <div class="entry-def">to bind with, i.e. (passively) be a fellow-prisoner (figuratively):</div>
+  <div class="entry-kjv">KJV: be bound with.</div>
+</div><div class="entry-card" id="g4888">
+  <div class="entry-header">
+    <span class="entry-num">G4888</span>
+    <span class="entry-word">sundoxazo</span>
+    <span class="entry-pron">{soon-dox-ad'-zo}</span>
+  </div>
+  <div class="entry-def">to exalt to dignity in company (i.e. similarly) with:</div>
+  <div class="entry-kjv">KJV: glorify together.</div>
+</div><div class="entry-card" id="g4889">
+  <div class="entry-header">
+    <span class="entry-num">G4889</span>
+    <span class="entry-word">sundoulos</span>
+    <span class="entry-pron">{soon'-doo-los}</span>
+  </div>
+  <div class="entry-def">a co-slave, i.e. servitor or ministrant of the same master (human or divine):</div>
+  <div class="entry-kjv">KJV: fellowservant.</div>
+</div><div class="entry-card" id="g4890">
+  <div class="entry-header">
+    <span class="entry-num">G4890</span>
+    <span class="entry-word">sundrome</span>
+    <span class="entry-pron">{soon-drom-ay'}</span>
+  </div>
+  <div class="entry-def">a running together, i.e. (riotous) concourse:</div>
+  <div class="entry-kjv">KJV: run together.</div>
+</div><div class="entry-card" id="g4891">
+  <div class="entry-header">
+    <span class="entry-num">G4891</span>
+    <span class="entry-word">sunegeiro</span>
+    <span class="entry-pron">{soon-eg-i'-ro}</span>
+  </div>
+  <div class="entry-def">to rouse (from death) in company with, i.e. (figuratively) to revivify (spirtually) in resemblance to:</div>
+  <div class="entry-kjv">KJV: raise up together, rise with.</div>
+</div><div class="entry-card" id="g4892">
+  <div class="entry-header">
+    <span class="entry-num">G4892</span>
+    <span class="entry-word">sunedrion</span>
+    <span class="entry-pron">{soon-ed'-ree-on}</span>
+  </div>
+  <div class="entry-def">a joint session, i.e. (specially), the Jewish Sanhedrin; by analogy, a subordinate tribunal:</div>
+  <div class="entry-kjv">KJV: council.</div>
+</div><div class="entry-card" id="g4893">
+  <div class="entry-header">
+    <span class="entry-num">G4893</span>
+    <span class="entry-word">suneidesis</span>
+    <span class="entry-pron">{soon-i'-day-sis}</span>
+  </div>
+  <div class="entry-def">co-perception, i.e. moral consciousness:</div>
+  <div class="entry-kjv">KJV: conscience.</div>
+</div><div class="entry-card" id="g4894">
+  <div class="entry-header">
+    <span class="entry-num">G4894</span>
+    <span class="entry-word">suneido</span>
+    <span class="entry-pron">{soon-i'-do}</span>
+  </div>
+  <div class="entry-def">to See completely; used (like its primary) only in two past tenses, respectively meaning to understand or become aware, and to be conscious or (clandestinely) informed of:</div>
+  <div class="entry-kjv">KJV: consider, know, be privy, be ware of.</div>
+</div><div class="entry-card" id="g4895">
+  <div class="entry-header">
+    <span class="entry-num">G4895</span>
+    <span class="entry-word">suneimi</span>
+    <span class="entry-pron">{soon'-i-mee}</span>
+  </div>
+  <div class="entry-def">to be in company with, i.e. present at the time:</div>
+  <div class="entry-kjv">KJV: be with.</div>
+</div><div class="entry-card" id="g4896">
+  <div class="entry-header">
+    <span class="entry-num">G4896</span>
+    <span class="entry-word">suneimi</span>
+    <span class="entry-pron">{soon'-i-mee}</span>
+  </div>
+  <div class="entry-def">to assemble:</div>
+  <div class="entry-kjv">KJV: gather together.</div>
+</div><div class="entry-card" id="g4897">
+  <div class="entry-header">
+    <span class="entry-num">G4897</span>
+    <span class="entry-word">suneiserchomai</span>
+    <span class="entry-pron">{soon-ice-er'-khom-ahee}</span>
+  </div>
+  <div class="entry-def">to enter in company with:</div>
+  <div class="entry-kjv">KJV: go in with, go with into.</div>
+</div><div class="entry-card" id="g4898">
+  <div class="entry-header">
+    <span class="entry-num">G4898</span>
+    <span class="entry-word">sunekdemos</span>
+    <span class="entry-pron">{soon-ek'-day-mos}</span>
+  </div>
+  <div class="entry-def">a coabsentee from home, i.e. fellow-traveller:</div>
+  <div class="entry-kjv">KJV: companion in travel, travel with.</div>
+</div><div class="entry-card" id="g4899">
+  <div class="entry-header">
+    <span class="entry-num">G4899</span>
+    <span class="entry-word">suneklektos</span>
+    <span class="entry-pron">{soon-ek-lek-tos'}</span>
+  </div>
+  <div class="entry-def">chosen in company with, i.e. co-elect (fellow Christian):</div>
+  <div class="entry-kjv">KJV: elected together with.</div>
+</div><div class="entry-card" id="g4900">
+  <div class="entry-header">
+    <span class="entry-num">G4900</span>
+    <span class="entry-word">sunelauno</span>
+    <span class="entry-pron">{soon-el-ow'-no}</span>
+  </div>
+  <div class="entry-def">to drive together, i.e. (figuratively) exhort (to reconciliation):</div>
+  <div class="entry-kjv">KJV: + set at one again.</div>
+</div><div class="entry-card" id="g4901">
+  <div class="entry-header">
+    <span class="entry-num">G4901</span>
+    <span class="entry-word">sunepimartureo</span>
+    <span class="entry-pron">{soon-ep-ee-mar-too-reh'-o}</span>
+  </div>
+  <div class="entry-def">to testify further jointly, i.e. unite in adding evidence:</div>
+  <div class="entry-kjv">KJV: also bear witness.</div>
+</div><div class="entry-card" id="g4902">
+  <div class="entry-header">
+    <span class="entry-num">G4902</span>
+    <span class="entry-word">sunepomai</span>
+    <span class="entry-pron">{soon-ep'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to attend (travel) in company with:</div>
+  <div class="entry-kjv">KJV: accompany.</div>
+</div><div class="entry-card" id="g4903">
+  <div class="entry-header">
+    <span class="entry-num">G4903</span>
+    <span class="entry-word">sunergeo</span>
+    <span class="entry-pron">{soon-erg-eh'-o}</span>
+  </div>
+  <div class="entry-def">to be a fellow-worker, i.e. co-operate:-help (work) with, work(-er) together</div>
+  <div class="entry-kjv">KJV: 4904</div>
+</div><div class="entry-card" id="g4904">
+  <div class="entry-header">
+    <span class="entry-num">G4904</span>
+    <span class="entry-word">sunergos</span>
+    <span class="entry-pron">{soon-er-gos'}</span>
+  </div>
+  <div class="entry-def">a co-laborer, i.e. coadjutor:</div>
+  <div class="entry-kjv">KJV: companion in labour, (fellow-)helper(-labourer, worker), labourer together with, workfellow.</div>
+</div><div class="entry-card" id="g4905">
+  <div class="entry-header">
+    <span class="entry-num">G4905</span>
+    <span class="entry-word">sunerchomai</span>
+    <span class="entry-pron">{soon-er'-khom-ahee}</span>
+  </div>
+  <div class="entry-def">to convene, depart in company with, associate with, or (specially), cohabit (conjugally):</div>
+  <div class="entry-kjv">KJV: accompany, assemble (with), come (together), come (company, go) with, resort.</div>
+</div><div class="entry-card" id="g4906">
+  <div class="entry-header">
+    <span class="entry-num">G4906</span>
+    <span class="entry-word">sunesthio</span>
+    <span class="entry-pron">{soon-es-thee'-o}</span>
+  </div>
+  <div class="entry-def">to take food in company with:</div>
+  <div class="entry-kjv">KJV: eat with.</div>
+</div><div class="entry-card" id="g4907">
+  <div class="entry-header">
+    <span class="entry-num">G4907</span>
+    <span class="entry-word">sunesis</span>
+    <span class="entry-pron">{soon'-es-is}</span>
+  </div>
+  <div class="entry-def">a mental putting together, i.e. intelligence or (concretely) the intellect:</div>
+  <div class="entry-kjv">KJV: knowledge, understanding.</div>
+</div><div class="entry-card" id="g4908">
+  <div class="entry-header">
+    <span class="entry-num">G4908</span>
+    <span class="entry-word">sunetos</span>
+    <span class="entry-pron">{soon-et'-os}</span>
+  </div>
+  <div class="entry-def">mentally put (or putting) together, i.e. sagacious:</div>
+  <div class="entry-kjv">KJV: prudent. Compare 5429.</div>
+</div><div class="entry-card" id="g4909">
+  <div class="entry-header">
+    <span class="entry-num">G4909</span>
+    <span class="entry-word">suneudokeo</span>
+    <span class="entry-pron">{soon-yoo-dok-eh'-o}</span>
+  </div>
+  <div class="entry-def">to think well of in common, i.e. assent to, feel gratified with:</div>
+  <div class="entry-kjv">KJV: allow, assent, be pleased, have pleasure.</div>
+</div><div class="entry-card" id="g4910">
+  <div class="entry-header">
+    <span class="entry-num">G4910</span>
+    <span class="entry-word">suneuocheo</span>
+    <span class="entry-pron">{soon-yoo-o-kheh'-o}</span>
+  </div>
+  <div class="entry-def">to entertain sumptuously in company with, i.e. (middle voice or passive) to revel together:</div>
+  <div class="entry-kjv">KJV: feast with.</div>
+</div><div class="entry-card" id="g4911">
+  <div class="entry-header">
+    <span class="entry-num">G4911</span>
+    <span class="entry-word">sunephistemi</span>
+    <span class="entry-pron">{soon-ef-is'-tay-mee}</span>
+  </div>
+  <div class="entry-def">to stand up together, i.e. to resist (or assault) jointly:</div>
+  <div class="entry-kjv">KJV: rise up together.</div>
+</div><div class="entry-card" id="g4912">
+  <div class="entry-header">
+    <span class="entry-num">G4912</span>
+    <span class="entry-word">sunecho</span>
+    <span class="entry-pron">{soon-ekh'-o}</span>
+  </div>
+  <div class="entry-def">to hold together, i.e. to compress (the ears, with a crowd or siege) or arrest (a prisoner); figuratively, to compel, perplex, afflict, preoccupy:</div>
+  <div class="entry-kjv">KJV: constrain, hold, keep in, press, lie sick of, stop, be in a strait, straiten, be taken with, throng.</div>
+</div><div class="entry-card" id="g4913">
+  <div class="entry-header">
+    <span class="entry-num">G4913</span>
+    <span class="entry-word">sunedomai</span>
+    <span class="entry-pron">{soon-ay'-dom-ahee}</span>
+  </div>
+  <div class="entry-def">to rejoice in with oneself, i.e. feel satisfaction concerning:</div>
+  <div class="entry-kjv">KJV: delight.</div>
+</div><div class="entry-card" id="g4914">
+  <div class="entry-header">
+    <span class="entry-num">G4914</span>
+    <span class="entry-word">sunetheia</span>
+    <span class="entry-pron">{soon-ay'-thi-ah}</span>
+  </div>
+  <div class="entry-def">mutual habituation, i.e. usage:</div>
+  <div class="entry-kjv">KJV: custom.</div>
+</div><div class="entry-card" id="g4915">
+  <div class="entry-header">
+    <span class="entry-num">G4915</span>
+    <span class="entry-word">sunelikiotes</span>
+    <span class="entry-pron">{soon-ay-lik-ee-o'-tace}</span>
+  </div>
+  <div class="entry-def">a coaged person, i.e. alike in years:</div>
+  <div class="entry-kjv">KJV: equal.</div>
+</div><div class="entry-card" id="g4916">
+  <div class="entry-header">
+    <span class="entry-num">G4916</span>
+    <span class="entry-word">sunthapto</span>
+    <span class="entry-pron">{soon-thap'-to}</span>
+  </div>
+  <div class="entry-def">to inter in company with, i.e. (figuratively) to assimilate spiritually (to Christ by a sepulture as to sin):</div>
+  <div class="entry-kjv">KJV: bury with.</div>
+</div><div class="entry-card" id="g4917">
+  <div class="entry-header">
+    <span class="entry-num">G4917</span>
+    <span class="entry-word">sunthlao</span>
+    
+  </div>
+  <div class="entry-def">to crush); to dash together, i.e. shatter:--break</div>
+  <div class="entry-kjv">KJV: break.</div>
+</div><div class="entry-card" id="g4918">
+  <div class="entry-header">
+    <span class="entry-num">G4918</span>
+    <span class="entry-word">sunthlibo</span>
+    <span class="entry-pron">{soon-thlee'-bo}</span>
+  </div>
+  <div class="entry-def">to compress, i.e. crowd on all sides:</div>
+  <div class="entry-kjv">KJV: throng.</div>
+</div><div class="entry-card" id="g4919">
+  <div class="entry-header">
+    <span class="entry-num">G4919</span>
+    <span class="entry-word">sunthrupto</span>
+    <span class="entry-pron">{soon-throop'-to}</span>
+  </div>
+  <div class="entry-def">to crush together, i.e. (figuratively) to dispirit:</div>
+  <div class="entry-kjv">KJV: break.</div>
+</div><div class="entry-card" id="g4920">
+  <div class="entry-header">
+    <span class="entry-num">G4920</span>
+    <span class="entry-word">suniemi</span>
+    <span class="entry-pron">{soon-ee'-ay-mee}</span>
+  </div>
+  <div class="entry-def">to put together, i.e. (mentally) to comprehend; by implication, to act piously:</div>
+  <div class="entry-kjv">KJV: consider, understand, be wise.</div>
+</div><div class="entry-card" id="g4921">
+  <div class="entry-header">
+    <span class="entry-num">G4921</span>
+    <span class="entry-word"></span>
+    <span class="entry-pron">{(strengthened)}</span>
+  </div>
+  <div class="entry-def">to set together, i.e. (by implication) to introduce (favorably), or (figuratively) to exhibit; intransitively, to stand near, or (figuratively) to constitute:</div>
+  <div class="entry-kjv">KJV: approve, commend, consist, make, stand (with).</div>
+</div><div class="entry-card" id="g4922">
+  <div class="entry-header">
+    <span class="entry-num">G4922</span>
+    <span class="entry-word">sunodeuo</span>
+    <span class="entry-pron">{soon-od-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to travel in company with:-journey with</div>
+  <div class="entry-kjv">KJV: 4862</div>
+</div><div class="entry-card" id="g4923">
+  <div class="entry-header">
+    <span class="entry-num">G4923</span>
+    <span class="entry-word">sunodia</span>
+    <span class="entry-pron">{soon-od-ee'-ah}</span>
+  </div>
+  <div class="entry-def">companionship on a journey, i.e. (by implication), a caravan:</div>
+  <div class="entry-kjv">KJV: company.</div>
+</div><div class="entry-card" id="g4924">
+  <div class="entry-header">
+    <span class="entry-num">G4924</span>
+    <span class="entry-word">sunoikeo</span>
+    <span class="entry-pron">{soon-oy-keh'-o}</span>
+  </div>
+  <div class="entry-def">to reside together (as a family):</div>
+  <div class="entry-kjv">KJV: dwell together.</div>
+</div><div class="entry-card" id="g4925">
+  <div class="entry-header">
+    <span class="entry-num">G4925</span>
+    <span class="entry-word">sunoikodomeo</span>
+    <span class="entry-pron">{soon-oy-kod-om-eh'-o}</span>
+  </div>
+  <div class="entry-def">to construct, i.e. (passively) to compose (in company with other Christians, figuratively):</div>
+  <div class="entry-kjv">KJV: build together.</div>
+</div><div class="entry-card" id="g4926">
+  <div class="entry-header">
+    <span class="entry-num">G4926</span>
+    <span class="entry-word">sunomileo</span>
+    <span class="entry-pron">{soon-om-il-eh'-o}</span>
+  </div>
+  <div class="entry-def">to converse mutually:</div>
+  <div class="entry-kjv">KJV: talk with.</div>
+</div><div class="entry-card" id="g4927">
+  <div class="entry-header">
+    <span class="entry-num">G4927</span>
+    <span class="entry-word">sunomoreo</span>
+    <span class="entry-pron">{soon-om-or-eh'-o}</span>
+  </div>
+  <div class="entry-def">to border together, i.e. adjoin:</div>
+  <div class="entry-kjv">KJV: join hard.</div>
+</div><div class="entry-card" id="g4928">
+  <div class="entry-header">
+    <span class="entry-num">G4928</span>
+    <span class="entry-word">sunoche</span>
+    <span class="entry-pron">{soon-okh-ay'}</span>
+  </div>
+  <div class="entry-def">restraint, i.e. (figuratively) anxiety:-anguish, distress</div>
+  <div class="entry-kjv">KJV: 4912</div>
+</div><div class="entry-card" id="g4929">
+  <div class="entry-header">
+    <span class="entry-num">G4929</span>
+    <span class="entry-word">suntasso</span>
+    <span class="entry-pron">{soon-tas-so}</span>
+  </div>
+  <div class="entry-def">to arrange jointly, i.e. (figuratively) to direct:</div>
+  <div class="entry-kjv">KJV: appoint.</div>
+</div><div class="entry-card" id="g4930">
+  <div class="entry-header">
+    <span class="entry-num">G4930</span>
+    <span class="entry-word">sunteleia</span>
+    <span class="entry-pron">{soon-tel'-i-ah}</span>
+  </div>
+  <div class="entry-def">entire completion, i.e. consummation (of a dispensation):</div>
+  <div class="entry-kjv">KJV: end.</div>
+</div><div class="entry-card" id="g4931">
+  <div class="entry-header">
+    <span class="entry-num">G4931</span>
+    <span class="entry-word">sunteleo</span>
+    <span class="entry-pron">{soon-tel-eh'-o}</span>
+  </div>
+  <div class="entry-def">to complete entirely; generally, to execute (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: end, finish, fulfil, make.</div>
+</div><div class="entry-card" id="g4932">
+  <div class="entry-header">
+    <span class="entry-num">G4932</span>
+    <span class="entry-word">suntemno</span>
+    <span class="entry-pron">{soon-tem'-no}</span>
+  </div>
+  <div class="entry-def">to contract by cutting, i.e. (figuratively) do concisely (speedily):</div>
+  <div class="entry-kjv">KJV: (cut) short.</div>
+</div><div class="entry-card" id="g4933">
+  <div class="entry-header">
+    <span class="entry-num">G4933</span>
+    <span class="entry-word">suntereo</span>
+    <span class="entry-pron">{soon-tay-reh'-o}</span>
+  </div>
+  <div class="entry-def">to keep closely together, i.e. (by implication) to conserve (from ruin); mentally, to remember (and obey):</div>
+  <div class="entry-kjv">KJV: keep, observe, preserve.</div>
+</div><div class="entry-card" id="g4934">
+  <div class="entry-header">
+    <span class="entry-num">G4934</span>
+    <span class="entry-word">suntithemai</span>
+    <span class="entry-pron">{soon-tith'-em-ahee}</span>
+  </div>
+  <div class="entry-def">to place jointly, i.e. (figuratively) to consent (bargain, stipulate), concur:</div>
+  <div class="entry-kjv">KJV: agree, assent, covenant.</div>
+</div><div class="entry-card" id="g4935">
+  <div class="entry-header">
+    <span class="entry-num">G4935</span>
+    <span class="entry-word">suntomos</span>
+    <span class="entry-pron">{soon-tom'-oce}</span>
+  </div>
+  <div class="entry-def">concisely (briefly):</div>
+  <div class="entry-kjv">KJV: a few words.</div>
+</div><div class="entry-card" id="g4936">
+  <div class="entry-header">
+    <span class="entry-num">G4936</span>
+    <span class="entry-word">suntrecho</span>
+    <span class="entry-pron">{soon-trekh'-o}</span>
+  </div>
+  <div class="entry-def">to rush together (hastily assemble) or headlong (figuratively):</div>
+  <div class="entry-kjv">KJV: run (together, with).</div>
+</div><div class="entry-card" id="g4937">
+  <div class="entry-header">
+    <span class="entry-num">G4937</span>
+    <span class="entry-word">suntribo</span>
+    <span class="entry-pron">{soon-tree'-bo}</span>
+  </div>
+  <div class="entry-def">to crush completely, i.e. to shatter (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: break (in pieces), broken to shivers (+ -hearted), bruise.</div>
+</div><div class="entry-card" id="g4938">
+  <div class="entry-header">
+    <span class="entry-num">G4938</span>
+    <span class="entry-word">suntrimma</span>
+    <span class="entry-pron">{soon-trim'-mah}</span>
+  </div>
+  <div class="entry-def">concussion or utter fracture (properly, concretely), i.e. complete ruin:</div>
+  <div class="entry-kjv">KJV: destruction.</div>
+</div><div class="entry-card" id="g4939">
+  <div class="entry-header">
+    <span class="entry-num">G4939</span>
+    <span class="entry-word">suntrophos</span>
+    <span class="entry-pron">{soon'-trof-os}</span>
+  </div>
+  <div class="entry-def">a fellownursling, i.e. comrade:</div>
+  <div class="entry-kjv">KJV: brought up with.</div>
+</div><div class="entry-card" id="g4940">
+  <div class="entry-header">
+    <span class="entry-num">G4940</span>
+    <span class="entry-word">suntugchano</span>
+    <span class="entry-pron">{soon-toong-khan'-o}</span>
+  </div>
+  <div class="entry-def">to chance together, i.e. meet with (reach):</div>
+  <div class="entry-kjv">KJV: come at.</div>
+</div><div class="entry-card" id="g4941">
+  <div class="entry-header">
+    <span class="entry-num">G4941</span>
+    <span class="entry-word">Suntuche</span>
+    <span class="entry-pron">{soon-too'-khay}</span>
+  </div>
+  <div class="entry-def">an accident; Syntyche, a Christian female:</div>
+  <div class="entry-kjv">KJV: Syntyche.</div>
+</div><div class="entry-card" id="g4942">
+  <div class="entry-header">
+    <span class="entry-num">G4942</span>
+    <span class="entry-word">sunupokrinomai</span>
+    <span class="entry-pron">{soon-oo-pok-rin'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to act hypocritically in concert with:</div>
+  <div class="entry-kjv">KJV: dissemble with.</div>
+</div><div class="entry-card" id="g4943">
+  <div class="entry-header">
+    <span class="entry-num">G4943</span>
+    <span class="entry-word">sunupourgeo</span>
+    <span class="entry-pron">{soon-oop-oorg-eh'-o}</span>
+  </div>
+  <div class="entry-def">to be a co-auxiliary, i.e. assist:</div>
+  <div class="entry-kjv">KJV: help together.</div>
+</div><div class="entry-card" id="g4944">
+  <div class="entry-header">
+    <span class="entry-num">G4944</span>
+    <span class="entry-word">sunodino</span>
+    <span class="entry-pron">{soon-o-dee'-no}</span>
+  </div>
+  <div class="entry-def">to have (parturition) pangs in company (concert, simultaneously) with, i.e. (figuratively) to sympathize (in expectation of relief from suffering):</div>
+  <div class="entry-kjv">KJV: travail in pain together.</div>
+</div><div class="entry-card" id="g4945">
+  <div class="entry-header">
+    <span class="entry-num">G4945</span>
+    <span class="entry-word">sunomosia</span>
+    <span class="entry-pron">{soon-o-mos-ee'-ah}</span>
+  </div>
+  <div class="entry-def">a swearing together, i.e. (by implication) a plot:</div>
+  <div class="entry-kjv">KJV: comspiracy.</div>
+</div><div class="entry-card" id="g4946">
+  <div class="entry-header">
+    <span class="entry-num">G4946</span>
+    <span class="entry-word">Surakousai</span>
+    <span class="entry-pron">{soo-rak'-oo-sahee}</span>
+  </div>
+  <div class="entry-def">Syracuse, the capital of Sicily:</div>
+  <div class="entry-kjv">KJV: Syracuse.</div>
+</div><div class="entry-card" id="g4947">
+  <div class="entry-header">
+    <span class="entry-num">G4947</span>
+    <span class="entry-word">Suria</span>
+    <span class="entry-pron">{soo-ree'-ah}</span>
+  </div>
+  <div class="entry-def">Syria (i.e. Tsyria or Tyre), a region of Asia:</div>
+  <div class="entry-kjv">KJV: Syria.</div>
+</div><div class="entry-card" id="g4948">
+  <div class="entry-header">
+    <span class="entry-num">G4948</span>
+    <span class="entry-word">Suros</span>
+    <span class="entry-pron">{soo'-ros}</span>
+  </div>
+  <div class="entry-def">a Syran (i.e. probably Tyrian), a native of Syria:</div>
+  <div class="entry-kjv">KJV: Syrian.</div>
+</div><div class="entry-card" id="g4949">
+  <div class="entry-header">
+    <span class="entry-num">G4949</span>
+    <span class="entry-word">Surophoinissa</span>
+    <span class="entry-pron">{soo-rof-oy'-nis-sah}</span>
+  </div>
+  <div class="entry-def">a Syro-phoenician woman, i.e. a female native of Phoenicia in Syria:-Syrophenician</div>
+  <div class="entry-kjv">KJV: 4948</div>
+</div><div class="entry-card" id="g4950">
+  <div class="entry-header">
+    <span class="entry-num">G4950</span>
+    <span class="entry-word">surtis</span>
+    <span class="entry-pron">{soor'-tis}</span>
+  </div>
+  <div class="entry-def">a shoal (from the sand drawn thither by the waves), i.e. the Syrtis Major or great bay on the north coast of Africa:</div>
+  <div class="entry-kjv">KJV: quicksands.</div>
+</div><div class="entry-card" id="g4951">
+  <div class="entry-header">
+    <span class="entry-num">G4951</span>
+    <span class="entry-word">suro</span>
+    <span class="entry-pron">{soo'-ro}</span>
+  </div>
+  <div class="entry-def">to trail:</div>
+  <div class="entry-kjv">KJV: drag, draw, hale.</div>
+</div><div class="entry-card" id="g4952">
+  <div class="entry-header">
+    <span class="entry-num">G4952</span>
+    <span class="entry-word">susparasso</span>
+    <span class="entry-pron">{soos-par-as'-so}</span>
+  </div>
+  <div class="entry-def">to rend completely, i.e. (by analogy) to convulse violently:</div>
+  <div class="entry-kjv">KJV: throw down.</div>
+</div><div class="entry-card" id="g4953">
+  <div class="entry-header">
+    <span class="entry-num">G4953</span>
+    <span class="entry-word">sussemon</span>
+    <span class="entry-pron">{soos'-say-mon}</span>
+  </div>
+  <div class="entry-def">a sign in common, i.e. preconcerted signal:</div>
+  <div class="entry-kjv">KJV: token.</div>
+</div><div class="entry-card" id="g4954">
+  <div class="entry-header">
+    <span class="entry-num">G4954</span>
+    <span class="entry-word">sussomos</span>
+    <span class="entry-pron">{soos'-so-mos}</span>
+  </div>
+  <div class="entry-def">of a joint body, i.e. (figuratively) a fellow-member of the Christian community:</div>
+  <div class="entry-kjv">KJV: of the same body.</div>
+</div><div class="entry-card" id="g4955">
+  <div class="entry-header">
+    <span class="entry-num">G4955</span>
+    <span class="entry-word">sustasiastes</span>
+    <span class="entry-pron">{soos-tas-ee-as-tace'}</span>
+  </div>
+  <div class="entry-def">a fellow-insurgent:</div>
+  <div class="entry-kjv">KJV: make insurrection with.</div>
+</div><div class="entry-card" id="g4956">
+  <div class="entry-header">
+    <span class="entry-num">G4956</span>
+    <span class="entry-word">sustatikos</span>
+    <span class="entry-pron">{soos-tat-ee-kos'}</span>
+  </div>
+  <div class="entry-def">introductory, i.e. recommendatory:</div>
+  <div class="entry-kjv">KJV: of commendation.</div>
+</div><div class="entry-card" id="g4957">
+  <div class="entry-header">
+    <span class="entry-num">G4957</span>
+    <span class="entry-word">sustauroo</span>
+    <span class="entry-pron">{soos-tow-ro'-o}</span>
+  </div>
+  <div class="entry-def">to impale in company with (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: crucify with.</div>
+</div><div class="entry-card" id="g4958">
+  <div class="entry-header">
+    <span class="entry-num">G4958</span>
+    <span class="entry-word">sustello</span>
+    <span class="entry-pron">{soos-tel'-lo}</span>
+  </div>
+  <div class="entry-def">to send (draw) together, i.e. enwrap (enshroud a corpse for burial), contract (an interval):</div>
+  <div class="entry-kjv">KJV: short, wind up.</div>
+</div><div class="entry-card" id="g4959">
+  <div class="entry-header">
+    <span class="entry-num">G4959</span>
+    <span class="entry-word">sustenazo</span>
+    <span class="entry-pron">{soos-ten-ad'-zo}</span>
+  </div>
+  <div class="entry-def">to moan jointly, i.e. (figuratively) experience a common calamity:</div>
+  <div class="entry-kjv">KJV: groan together.</div>
+</div><div class="entry-card" id="g4960">
+  <div class="entry-header">
+    <span class="entry-num">G4960</span>
+    <span class="entry-word">sustoicheo</span>
+    <span class="entry-pron">{soos-toy-kheh'-o}</span>
+  </div>
+  <div class="entry-def">to file together (as soldiers in ranks), i.e. (figuratively) to correspond to:</div>
+  <div class="entry-kjv">KJV: answer to.</div>
+</div><div class="entry-card" id="g4961">
+  <div class="entry-header">
+    <span class="entry-num">G4961</span>
+    <span class="entry-word">sustratiotes</span>
+    <span class="entry-pron">{soos-trat-ee-o'-tace}</span>
+  </div>
+  <div class="entry-def">a co-campaigner, i.e. (figuratively) an associate in Christian toil:</div>
+  <div class="entry-kjv">KJV: fellowsoldier.</div>
+</div><div class="entry-card" id="g4962">
+  <div class="entry-header">
+    <span class="entry-num">G4962</span>
+    <span class="entry-word">sustrepho</span>
+    <span class="entry-pron">{soos-tref'-o}</span>
+  </div>
+  <div class="entry-def">to twist together, i.e. collect (a bundle, a crowd):</div>
+  <div class="entry-kjv">KJV: gather.</div>
+</div><div class="entry-card" id="g4963">
+  <div class="entry-header">
+    <span class="entry-num">G4963</span>
+    <span class="entry-word">sustrophe</span>
+    <span class="entry-pron">{soos-trof-ay'}</span>
+  </div>
+  <div class="entry-def">a twisting together, i.e. (figuratively) a secret coalition, riotous crowd:</div>
+  <div class="entry-kjv">KJV: + band together, concourse.</div>
+</div><div class="entry-card" id="g4964">
+  <div class="entry-header">
+    <span class="entry-num">G4964</span>
+    <span class="entry-word">suschematizo</span>
+    <span class="entry-pron">{soos-khay-mat-id'-zo}</span>
+  </div>
+  <div class="entry-def">to fashion alike, i.e. conform to the same pattern (figuratively):</div>
+  <div class="entry-kjv">KJV: conform to, fashion self according to.</div>
+</div><div class="entry-card" id="g4965">
+  <div class="entry-header">
+    <span class="entry-num">G4965</span>
+    <span class="entry-word">Suchar</span>
+    <span class="entry-pron">{soo-khar'}</span>
+  </div>
+  <div class="entry-def">Sychar (i.e. Shekar), a place in Palestine:</div>
+  <div class="entry-kjv">KJV: Sychar.</div>
+</div><div class="entry-card" id="g4966">
+  <div class="entry-header">
+    <span class="entry-num">G4966</span>
+    <span class="entry-word">Suchem</span>
+    <span class="entry-pron">{soo-khem'}</span>
+  </div>
+  <div class="entry-def">Sychem (i.e. Shekem), the name of a Canaanite and of a place in Palestine:</div>
+  <div class="entry-kjv">KJV: Sychem.</div>
+</div><div class="entry-card" id="g4967">
+  <div class="entry-header">
+    <span class="entry-num">G4967</span>
+    <span class="entry-word">sphage</span>
+    <span class="entry-pron">{sfag-ay'}</span>
+  </div>
+  <div class="entry-def">butchery (of animals for food or sacrifice, or (figuratively) of men (destruction)):</div>
+  <div class="entry-kjv">KJV: slaughter.</div>
+</div><div class="entry-card" id="g4968">
+  <div class="entry-header">
+    <span class="entry-num">G4968</span>
+    <span class="entry-word">sphagion</span>
+    <span class="entry-pron">{sfag'-ee-on}</span>
+  </div>
+  <div class="entry-def">a victim (in sacrifice):-slain beast</div>
+  <div class="entry-kjv">KJV: 4967</div>
+</div><div class="entry-card" id="g4969">
+  <div class="entry-header">
+    <span class="entry-num">G4969</span>
+    <span class="entry-word">sphazo</span>
+    <span class="entry-pron">{sfad'-zo}</span>
+  </div>
+  <div class="entry-def">to butcher (especially an animal for food or in sacrifice) or (generally) to slaughter, or (specially), to maim (violently):</div>
+  <div class="entry-kjv">KJV: kill, slay, wound.</div>
+</div><div class="entry-card" id="g4970">
+  <div class="entry-header">
+    <span class="entry-num">G4970</span>
+    <span class="entry-word">sphodra</span>
+    <span class="entry-pron">{sfod'-rah}</span>
+  </div>
+  <div class="entry-def">of uncertain derivation) as adverb; vehemently, i.e. in a high degree, much:</div>
+  <div class="entry-kjv">KJV: exceeding(-ly), greatly, sore, very.</div>
+</div><div class="entry-card" id="g4971">
+  <div class="entry-header">
+    <span class="entry-num">G4971</span>
+    <span class="entry-word">sphodros</span>
+    <span class="entry-pron">{sfod-roce'}</span>
+  </div>
+  <div class="entry-def">very much:-exceedingly</div>
+  <div class="entry-kjv">KJV: 4970</div>
+</div><div class="entry-card" id="g4972">
+  <div class="entry-header">
+    <span class="entry-num">G4972</span>
+    <span class="entry-word">sphragizo</span>
+    <span class="entry-pron">{sfrag-id'-zo}</span>
+  </div>
+  <div class="entry-def">to stamp (with a signet or private mark) for security or preservation (literally or figuratively); by implication, to keep secret, to attest:-(set a, set to) seal up, stop</div>
+  <div class="entry-kjv">KJV: 4973</div>
+</div><div class="entry-card" id="g4973">
+  <div class="entry-header">
+    <span class="entry-num">G4973</span>
+    <span class="entry-word">sphragis</span>
+    <span class="entry-pron">{sfrag-ece'}</span>
+  </div>
+  <div class="entry-def">a signet (as fencing in or protecting from misappropriation); by implication, the stamp impressed (as a mark of privacy, or genuineness), literally or figuratively:</div>
+  <div class="entry-kjv">KJV: seal.</div>
+</div><div class="entry-card" id="g4974">
+  <div class="entry-header">
+    <span class="entry-num">G4974</span>
+    <span class="entry-word">sphuron</span>
+    <span class="entry-pron">{sfoo-ron'}</span>
+  </div>
+  <div class="entry-def">compare the feminine sphura, a hammer); the ankle (as globular):</div>
+  <div class="entry-kjv">KJV: ancle bone.</div>
+</div><div class="entry-card" id="g4975">
+  <div class="entry-header">
+    <span class="entry-num">G4975</span>
+    <span class="entry-word">schedon</span>
+    <span class="entry-pron">{skhed-on'}</span>
+  </div>
+  <div class="entry-def">nigh, i.e. nearly:</div>
+  <div class="entry-kjv">KJV: almost.</div>
+</div><div class="entry-card" id="g4976">
+  <div class="entry-header">
+    <span class="entry-num">G4976</span>
+    <span class="entry-word">schema</span>
+    
+  </div>
+  <div class="entry-def">; a figure (as a mode or circumstance), i.e. (by implication) external condition:--fashion</div>
+  <div class="entry-kjv">KJV: fashion.</div>
+</div><div class="entry-card" id="g4977">
+  <div class="entry-header">
+    <span class="entry-num">G4977</span>
+    <span class="entry-word">schizo</span>
+    <span class="entry-pron">{skhid'-zo}</span>
+  </div>
+  <div class="entry-def">to split or sever (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: break, divide, open, rend, make a rent.</div>
+</div><div class="entry-card" id="g4978">
+  <div class="entry-header">
+    <span class="entry-num">G4978</span>
+    <span class="entry-word">schisma</span>
+    <span class="entry-pron">{skhis'-mah}</span>
+  </div>
+  <div class="entry-def">a split or gap (&quot;schism&quot;), literally or figuratively:</div>
+  <div class="entry-kjv">KJV: division, rent, schism.</div>
+</div><div class="entry-card" id="g4979">
+  <div class="entry-header">
+    <span class="entry-num">G4979</span>
+    <span class="entry-word">schoinion</span>
+    <span class="entry-pron">{skhoy-nee'-on}</span>
+  </div>
+  <div class="entry-def">of uncertain derivation); a rushlet, i.e. grass-withe or tie (generally):</div>
+  <div class="entry-kjv">KJV: small cord, rope.</div>
+</div><div class="entry-card" id="g4980">
+  <div class="entry-header">
+    <span class="entry-num">G4980</span>
+    <span class="entry-word">scholazo</span>
+    <span class="entry-pron">{skhol-ad'-zo}</span>
+  </div>
+  <div class="entry-def">to take a holiday, i.e. be at leisure for (by implication, devote oneself wholly to); figuratively, to be vacant (of a house):</div>
+  <div class="entry-kjv">KJV: empty, give self.</div>
+</div><div class="entry-card" id="g4981">
+  <div class="entry-header">
+    <span class="entry-num">G4981</span>
+    <span class="entry-word">schole</span>
+    <span class="entry-pron">{skhol-ay'}</span>
+  </div>
+  <div class="entry-def">properly, loitering (as a withholding of oneself from work) or leisure, i.e. (by implication) a &quot;school&quot; (as vacation from physical employment):</div>
+  <div class="entry-kjv">KJV: school.</div>
+</div><div class="entry-card" id="g4982">
+  <div class="entry-header">
+    <span class="entry-num">G4982</span>
+    <span class="entry-word">sozo</span>
+    <span class="entry-pron">{sode'-zo}</span>
+  </div>
+  <div class="entry-def">to save, i.e. deliver or protect (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: heal, preserve, save (self), do well, be (make) whole.</div>
+</div><div class="entry-card" id="g4983">
+  <div class="entry-header">
+    <span class="entry-num">G4983</span>
+    <span class="entry-word">soma</span>
+    <span class="entry-pron">{so'-mah}</span>
+  </div>
+  <div class="entry-def">the body (as a sound whole), used in a very wide application, literally or figuratively:</div>
+  <div class="entry-kjv">KJV: bodily, body, slave.</div>
+</div><div class="entry-card" id="g4984">
+  <div class="entry-header">
+    <span class="entry-num">G4984</span>
+    <span class="entry-word">somatikos</span>
+    <span class="entry-pron">{so-mat-ee-kos'}</span>
+  </div>
+  <div class="entry-def">corporeal or physical:</div>
+  <div class="entry-kjv">KJV: bodily.</div>
+</div><div class="entry-card" id="g4985">
+  <div class="entry-header">
+    <span class="entry-num">G4985</span>
+    <span class="entry-word">somatikos</span>
+    <span class="entry-pron">{so-mat-ee-koce'}</span>
+  </div>
+  <div class="entry-def">corporeally or physically:-bodily</div>
+  <div class="entry-kjv">KJV: 4984</div>
+</div><div class="entry-card" id="g4986">
+  <div class="entry-header">
+    <span class="entry-num">G4986</span>
+    <span class="entry-word">Sopatros</span>
+    
+  </div>
+  <div class="entry-def">nd 3962; of a safe father; Sopatrus, a Christian:--Sopater. Compare 4989</div>
+  <div class="entry-kjv">KJV: Sopater. Compare 4989.</div>
+</div><div class="entry-card" id="g4987">
+  <div class="entry-header">
+    <span class="entry-num">G4987</span>
+    <span class="entry-word">soreuo</span>
+    <span class="entry-pron">{sore-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to pile up (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: heap, load.</div>
+</div><div class="entry-card" id="g4988">
+  <div class="entry-header">
+    <span class="entry-num">G4988</span>
+    <span class="entry-word">Sosthenes</span>
+    <span class="entry-pron">{soce-then'-ace}</span>
+  </div>
+  <div class="entry-def">of safe strength; Sosthenes, a Christian:</div>
+  <div class="entry-kjv">KJV: Sosthenes.</div>
+</div><div class="entry-card" id="g4989">
+  <div class="entry-header">
+    <span class="entry-num">G4989</span>
+    <span class="entry-word">Sosipatros</span>
+    <span class="entry-pron">{so-sip'-at-ros}</span>
+  </div>
+  <div class="entry-def">Sosipatrus, a Christian:-Sosipater</div>
+  <div class="entry-kjv">KJV: 4986</div>
+</div><div class="entry-card" id="g4990">
+  <div class="entry-header">
+    <span class="entry-num">G4990</span>
+    <span class="entry-word">soter</span>
+    <span class="entry-pron">{so-tare'}</span>
+  </div>
+  <div class="entry-def">a deliverer, i.e. God or Christ:</div>
+  <div class="entry-kjv">KJV: saviour.</div>
+</div><div class="entry-card" id="g4991">
+  <div class="entry-header">
+    <span class="entry-num">G4991</span>
+    <span class="entry-word">soteria</span>
+    <span class="entry-pron">{so-tay-ree'-ah}</span>
+  </div>
+  <div class="entry-def">rescue or safety (physically or morally):</div>
+  <div class="entry-kjv">KJV: deliver, health, salvation, save, saving.</div>
+</div><div class="entry-card" id="g4992">
+  <div class="entry-header">
+    <span class="entry-num">G4992</span>
+    <span class="entry-word">soterion</span>
+    <span class="entry-pron">{so-tay'-ree-on}</span>
+  </div>
+  <div class="entry-def">defender or (by implication) defence:</div>
+  <div class="entry-kjv">KJV: salvation.</div>
+</div><div class="entry-card" id="g4993">
+  <div class="entry-header">
+    <span class="entry-num">G4993</span>
+    <span class="entry-word">sophroneo</span>
+    <span class="entry-pron">{so-fron-eh'-o}</span>
+  </div>
+  <div class="entry-def">to be of sound mind, i.e. sane, (figuratively) moderate:</div>
+  <div class="entry-kjv">KJV: be in right mind, be sober (minded), soberly.</div>
+</div><div class="entry-card" id="g4994">
+  <div class="entry-header">
+    <span class="entry-num">G4994</span>
+    <span class="entry-word">sophronizo</span>
+    <span class="entry-pron">{so-fron-id'-zo}</span>
+  </div>
+  <div class="entry-def">to make of sound mind, i.e. (figuratively) to discipline or correct:</div>
+  <div class="entry-kjv">KJV: teach to be sober.</div>
+</div><div class="entry-card" id="g4995">
+  <div class="entry-header">
+    <span class="entry-num">G4995</span>
+    <span class="entry-word">sophronismos</span>
+    <span class="entry-pron">{so-fron-is-mos'}</span>
+  </div>
+  <div class="entry-def">discipline, i.e. self-control:</div>
+  <div class="entry-kjv">KJV: sound mind.</div>
+</div><div class="entry-card" id="g4996">
+  <div class="entry-header">
+    <span class="entry-num">G4996</span>
+    <span class="entry-word">sophronos</span>
+    <span class="entry-pron">{so-fron'-oce}</span>
+  </div>
+  <div class="entry-def">with sound mind, i.e. moderately:-soberly</div>
+  <div class="entry-kjv">KJV: 4998</div>
+</div><div class="entry-card" id="g4997">
+  <div class="entry-header">
+    <span class="entry-num">G4997</span>
+    <span class="entry-word">sophrosune</span>
+    <span class="entry-pron">{so-fros-oo'-nay}</span>
+  </div>
+  <div class="entry-def">soundness of mind, i.e. (literally) sanity or (figuratively) self-control:</div>
+  <div class="entry-kjv">KJV: soberness, sobriety.</div>
+</div><div class="entry-card" id="g4998">
+  <div class="entry-header">
+    <span class="entry-num">G4998</span>
+    <span class="entry-word">sophron</span>
+    <span class="entry-pron">{so'-frone}</span>
+  </div>
+  <div class="entry-def">safe (sound) in mind, i.e. self-controlled (moderate as to opinion or passion):</div>
+  <div class="entry-kjv">KJV: discreet, sober, temperate.</div>
+</div><div class="entry-card" id="g4999">
+  <div class="entry-header">
+    <span class="entry-num">G4999</span>
+    <span class="entry-word">Tabernai</span>
+    <span class="entry-pron">{tab-er'-nahee}</span>
+  </div>
+  <div class="entry-def">huts or wooden-walled buildings; Tabernoe:</div>
+  <div class="entry-kjv">KJV: taverns.</div>
+</div><div class="entry-card" id="g5000">
+  <div class="entry-header">
+    <span class="entry-num">G5000</span>
+    <span class="entry-word">Tabitha</span>
+    <span class="entry-pron">{tab-ee-thah'}</span>
+  </div>
+  <div class="entry-def">the gazelle; Tabitha (i.e. Tabjetha), a Christian female:</div>
+  <div class="entry-kjv">KJV: Tabitha.</div>
+</div>
+    </div>
+
+    <!-- Public admin posts -->
+    <div id="publicPostList" style="margin-top:18px;"></div>
+  </div>
+</div>
+
+<!-- Admin Toolbar -->
+<div class="admin-toolbar" id="adminToolbar">
+  <div class="admin-tb-inner">
+    <span class="atb-label">⚙ ADMIN:</span>
+    <button class="atb-btn green" onclick="document.getElementById('addForm').style.display='block';document.getElementById('adminPanel').classList.add('visible');window.scrollTo(0,0)">+ Add / 📢 POST</button>
+    <button class="atb-btn" onclick="renderPosts()">↻ Refresh</button>
+    <button class="atb-btn green" onclick="bulkStatus('approved')">✓ Approve All</button>
+    <button class="atb-btn" onclick="bulkStatus('archived')">📦 Archive All</button>
+    <button class="atb-btn red" onclick="clearAll()">🗑 Remove All</button>
+    <span style="margin-left:auto;display:flex;gap:.4rem;">
+      <a href="admin.html" class="atb-btn">Admin Console</a>
+      <button class="atb-btn red" onclick="hideAdmin()">✕ Exit</button>
+    </span>
+  </div>
+</div>
+<div class="admin-float" id="adminFloat"><button onclick="promptAdmin()">⚙ Admin</button></div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Strong's Concordance · Public Domain 1890</p></footer>
+
+<script>
+const ADMIN_PASS='GATE2025admin';
+const STORE_KEY='gate_concord_concordance_g4751-g5000';
+let isAdmin=false;
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function getPosts(){return gl(STORE_KEY)||[];}
+function fmtDate(ts){return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+(function(){const s=gl('td_gate_v6');if(s&&s.tier==='admin'){isAdmin=true;showAdminUI();}})();
+function promptAdmin(){
+  if(isAdmin){showAdminUI();return;}
+  const pw=prompt('Admin Password:');
+  if(pw===ADMIN_PASS){isAdmin=true;const s=gl('td_gate_v6')||{};if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};s.tier='admin';gs('td_gate_v6',s);showAdminUI();}
+  else if(pw!==null)alert('Incorrect password.');
+}
+function showAdminUI(){
+  document.getElementById('adminPanel').classList.add('visible');
+  document.getElementById('adminToolbar').classList.add('visible');
+  document.getElementById('adminFloat').style.display='none';
+  renderPosts();
+}
+function hideAdmin(){
+  isAdmin=false;
+  document.getElementById('adminPanel').classList.remove('visible');
+  document.getElementById('adminToolbar').classList.remove('visible');
+  document.getElementById('adminFloat').style.display='block';
+}
+async function addPost(){
+  const title=document.getElementById('adm_title').value.trim();
+  const body=document.getElementById('adm_body').value.trim();
+  const msg=document.getElementById('adm_msg');
+  if(!title&&!body){msg.innerHTML='<span style="color:#e05555">Please enter a title or notes.</span>';return;}
+  const imgFile=document.getElementById('adm_img').files[0];
+  let img='';
+  if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
+  const posts=getPosts();
+  posts.unshift({id:Date.now(),title,body,ref:document.getElementById('adm_ref').value,img,status:document.getElementById('adm_status').value,created:Date.now()});
+  gs(STORE_KEY,posts);
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  ['adm_title','adm_body','adm_ref'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('adm_img').value='';
+  renderPosts();
+}
+function editPost(id){
+  const posts=getPosts();const p=posts.find(x=>x.id===id);if(!p)return;
+  const t=prompt('Edit title:',p.title||'');if(t===null)return;
+  const b=prompt('Edit notes:',p.body||'');if(b===null)return;
+  const r=prompt('Edit reference:',p.ref||'');if(r===null)return;
+  p.title=t;p.body=b;p.ref=r;p.updated=Date.now();
+  gs(STORE_KEY,posts);renderPosts();
+}
+async function uploadImg(id){
+  const input=document.createElement('input');input.type='file';input.accept='image/*';
+  input.onchange=async()=>{
+    if(!input.files[0])return;
+    const img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(input.files[0]);});
+    const posts=getPosts();const p=posts.find(x=>x.id===id);
+    if(p){p.img=img;p.updated=Date.now();gs(STORE_KEY,posts);renderPosts();}
+  };input.click();
+}
+function setStatus(id,status){const posts=getPosts();const p=posts.find(x=>x.id===id);if(p){p.status=status;p.updated=Date.now();};gs(STORE_KEY,posts);renderPosts();}
+function removePost(id){if(!confirm('Remove?'))return;gs(STORE_KEY,getPosts().filter(x=>x.id!==id));renderPosts();}
+function bulkStatus(s){const posts=getPosts();posts.forEach(p=>p.status=s);gs(STORE_KEY,posts);renderPosts();}
+function clearAll(){if(!confirm('Remove all posts?'))return;gs(STORE_KEY,[]);renderPosts();}
+function statusBadge(s){const m={active:'badge-green',approved:'badge-green',draft:'badge-gold',archived:'#555'};return`<span class="badge ${m[s]||'badge-gold'}">${s||'active'}</span>`;}
+function renderPosts(){
+  const posts=getPosts().filter(p=>p.status!=='archived');
+  const pub=document.getElementById('publicPostList');
+  const adm=document.getElementById('adminPostList');
+  if(!posts.length){
+    if(pub)pub.innerHTML='';
+    if(adm&&isAdmin)adm.innerHTML='<div style="color:var(--text2);font-size:.82rem;text-align:center;padding:1rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No posts yet. Fill in the form above and click 📢 POST.</div>';
+    return;
+  }
+  const cards=posts.map(p=>`<div class="post-card">
+    ${p.img?`<img src="${p.img}" alt="">`:''}
+    <div style="display:flex;gap:.4rem;margin-bottom:.4rem;">${statusBadge(p.status)}<span style="font-size:.68rem;color:var(--text2);font-family:sans-serif;">${fmtDate(p.created)}</span></div>
+    <div class="post-title">${p.title||''}</div>
+    <div class="post-body">${p.body||''}</div>
+    ${p.ref?`<div style="font-size:.75rem;color:var(--text2);margin-top:.3rem;font-style:italic;">📖 ${p.ref}</div>`:''}
+    ${isAdmin?`<div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem;">
+      <button class="btn btn-outline btn-sm" onclick="editPost(${p.id})">✏ Edit</button>
+      <button class="btn btn-outline btn-sm" onclick="uploadImg(${p.id})">📷 Upload</button>
+      <button class="btn btn-green btn-sm" onclick="setStatus(${p.id},'approved')">✓ Approve</button>
+      <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setStatus(${p.id},'archived')">📦 Archive</button>
+      <button class="btn btn-danger btn-sm" onclick="removePost(${p.id})">🗑 Remove</button>
+    </div>`:''}
+  </div>`).join('');
+  const wrapper=`<div class="admin-posts"><h3>📌 Posted Notes &amp; Commentary</h3>${cards}</div>`;
+  if(pub)pub.innerHTML=wrapper;
+  if(adm&&isAdmin)adm.innerHTML='<h4 style="color:var(--text2);font-size:.8rem;margin-bottom:.5rem;">All Posts (including archived):</h4>'+getPosts().map(p=>`<div class="post-card"><div style="display:flex;gap:.4rem;">${statusBadge(p.status)}<span style="font-size:.7rem;color:var(--text2);">${p.title}</span></div></div>`).join('');
+}
+document.addEventListener('DOMContentLoaded',renderPosts);
+</script>
+
+<script>
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
+</body></html>

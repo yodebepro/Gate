@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Strong's Exhaustive Concordance</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a;--line:rgba(201,168,76,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:var(--gold);background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:var(--gold);padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+.page-header{background:linear-gradient(180deg,var(--navy2),var(--charcoal));border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1400px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-bottom:1.8rem}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;text-align:center}
+.stat-val{font-size:1.8rem;font-weight:700;color:var(--gold);font-family:sans-serif}
+.stat-lbl{font-size:.7rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;margin-top:.2rem}
+.section-label{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.sections-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem;margin-bottom:2rem}
+.sec-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem 1.2rem;text-decoration:none;transition:all .2s;display:block}
+.sec-card:hover{border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-2px)}
+.sec-range{font-family:sans-serif;font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:1px;margin-bottom:.3rem}
+.sec-title{font-family:'Cinzel',serif;font-size:.82rem;color:var(--cream);margin-bottom:.25rem;line-height:1.4}
+.sec-count{font-size:.7rem;color:var(--text2);font-family:sans-serif}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem}
+.search-row{display:flex;gap:.5rem;margin-bottom:1rem}
+.search-row input{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.6rem .9rem;font-family:inherit;font-size:.9rem;flex:1}
+.search-row input:focus{outline:none;border-color:var(--gold)}
+.search-row button{background:var(--gold);color:var(--navy);border:none;border-radius:5px;padding:.6rem 1.2rem;font-weight:700;cursor:pointer;font-family:sans-serif}
+.result-item{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:1rem;margin-bottom:.6rem}
+.alert-info{background:rgba(30,80,150,.15);border:1px solid rgba(100,150,255,.25);color:#6ea8fe;border-radius:6px;padding:.8rem 1rem;font-size:.85rem;margin-bottom:1rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+<div class="page-header">
+  <h1>🔍 Strong's Exhaustive Concordance</h1>
+  <p>Greek New Testament Dictionary — James Strong, S.T.D., LL.D., 1890 · Public Domain · 5,644 Entries</p>
+  <div class="divider"></div>
+</div>
+<div class="container">
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-val">5,644</div><div class="stat-lbl">Greek Entries</div></div>
+    <div class="stat-box"><div class="stat-val">23</div><div class="stat-lbl">Sections</div></div>
+    <div class="stat-box"><div class="stat-val">G1–G5624</div><div class="stat-lbl">Number Range</div></div>
+    <div class="stat-box"><div class="stat-val">1890</div><div class="stat-lbl">Published</div></div>
+  </div>
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid rgba(201,168,76,.2);">
+      <span style="font-size:1.3rem;">🔍</span>
+      <h2 style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px;">Quick Search by Strong's Number</h2>
+    </div>
+    <div class="search-row">
+      <input type="text" id="srchInput" placeholder="Enter a Strong's number (e.g. G2316, G25, 3056)..." onkeydown="if(event.key==='Enter')doSearch()">
+      <button onclick="doSearch()">Find Section</button>
+    </div>
+    <div id="srchResults"></div>
+  </div>
+  <div class="section-label">🇬🇷 Greek Dictionary — All 23 Sections (G1–G5624)</div>
+  <div class="alert-info">📌 Each section page has a sticky sidebar for easy navigation, plus a Back to Top button and Home button. Use Ctrl+F / Cmd+F within any section to find a specific word.</div>
+  <div class="sections-grid"><a href="concordance_g1-g250.html" class="sec-card"><div class="sec-range">G1–G250</div><div class="sec-title">Alpha to Akribos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g251-g500.html" class="sec-card"><div class="sec-range">G251–G500</div><div class="sec-title">Anthrōpos to Apostellō</div><div class="sec-count">~250 entries</div></a><a href="concordance_g501-g750.html" class="sec-card"><div class="sec-range">G501–G750</div><div class="sec-title">Apo to Artos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g751-g1000.html" class="sec-card"><div class="sec-range">G751–G1000</div><div class="sec-title">Archē to Ballō</div><div class="sec-count">~250 entries</div></a><a href="concordance_g1001-g1250.html" class="sec-card"><div class="sec-range">G1001–G1250</div><div class="sec-title">Ballo to Ginomai</div><div class="sec-count">~250 entries</div></a><a href="concordance_g1251-g1500.html" class="sec-card"><div class="sec-range">G1251–G1500</div><div class="sec-title">Dia to Doxa</div><div class="sec-count">~250 entries</div></a><a href="concordance_g1501-g1750.html" class="sec-card"><div class="sec-range">G1501–G1750</div><div class="sec-title">Doxazō to Ekklesia</div><div class="sec-count">~250 entries</div></a><a href="concordance_g1751-g2000.html" class="sec-card"><div class="sec-range">G1751–G2000</div><div class="sec-title">En to Ephistēmi</div><div class="sec-count">~250 entries</div></a><a href="concordance_g2001-g2250.html" class="sec-card"><div class="sec-range">G2001–G2250</div><div class="sec-title">Epi to Zelos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g2251-g2500.html" class="sec-card"><div class="sec-range">G2251–G2500</div><div class="sec-title">Zao to Thronos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g2501-g2750.html" class="sec-card"><div class="sec-range">G2501–G2750</div><div class="sec-title">Iaomai to Katharos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g2751-g3000.html" class="sec-card"><div class="sec-range">G2751–G3000</div><div class="sec-title">Kata to Logos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g3001-g3250.html" class="sec-card"><div class="sec-range">G3001–G3250</div><div class="sec-title">Logikos to Misthos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g3251-g3500.html" class="sec-card"><div class="sec-range">G3251–G3500</div><div class="sec-title">Meta to Nomos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g3501-g3750.html" class="sec-card"><div class="sec-range">G3501–G3750</div><div class="sec-title">Nomos to Paradidomi</div><div class="sec-count">~250 entries</div></a><a href="concordance_g3751-g4000.html" class="sec-card"><div class="sec-range">G3751–G4000</div><div class="sec-title">Para to Plēroō</div><div class="sec-count">~250 entries</div></a><a href="concordance_g4001-g4250.html" class="sec-card"><div class="sec-range">G4001–G4250</div><div class="sec-title">Plousios to Prophētēs</div><div class="sec-count">~250 entries</div></a><a href="concordance_g4251-g4500.html" class="sec-card"><div class="sec-range">G4251–G4500</div><div class="sec-title">Pros to Rhēma</div><div class="sec-count">~250 entries</div></a><a href="concordance_g4501-g4750.html" class="sec-card"><div class="sec-range">G4501–G4750</div><div class="sec-title">Sabbaton to Sōtēria</div><div class="sec-count">~250 entries</div></a><a href="concordance_g4751-g5000.html" class="sec-card"><div class="sec-range">G4751–G5000</div><div class="sec-title">Sarx to Telos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g5001-g5250.html" class="sec-card"><div class="sec-range">G5001–G5250</div><div class="sec-title">Tekton to Hupnos</div><div class="sec-count">~250 entries</div></a><a href="concordance_g5251-g5500.html" class="sec-card"><div class="sec-range">G5251–G5500</div><div class="sec-title">Huper to Phōs</div><div class="sec-count">~250 entries</div></a><a href="concordance_g5501-g5624.html" class="sec-card"><div class="sec-range">G5501–G5624</div><div class="sec-title">Phos to Ōpheleō</div><div class="sec-count">~124 entries</div></a></div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;">
+    <a href="bible.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">📖 The Bible →</a>
+    <a href="index.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">🏠 GATE Home →</a>
+    <a href="concordance_g1-g250.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">▶ Start from G1 →</a>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Strong's Concordance · Public Domain 1890</p></footer>
+<script>
+const SECTIONS = [[1, 250, "G1\u2013G250", "Alpha to Akribos"], [251, 500, "G251\u2013G500", "Anthr\u014dpos to Apostell\u014d"], [501, 750, "G501\u2013G750", "Apo to Artos"], [751, 1000, "G751\u2013G1000", "Arch\u0113 to Ball\u014d"], [1001, 1250, "G1001\u2013G1250", "Ballo to Ginomai"], [1251, 1500, "G1251\u2013G1500", "Dia to Doxa"], [1501, 1750, "G1501\u2013G1750", "Doxaz\u014d to Ekklesia"], [1751, 2000, "G1751\u2013G2000", "En to Ephist\u0113mi"], [2001, 2250, "G2001\u2013G2250", "Epi to Zelos"], [2251, 2500, "G2251\u2013G2500", "Zao to Thronos"], [2501, 2750, "G2501\u2013G2750", "Iaomai to Katharos"], [2751, 3000, "G2751\u2013G3000", "Kata to Logos"], [3001, 3250, "G3001\u2013G3250", "Logikos to Misthos"], [3251, 3500, "G3251\u2013G3500", "Meta to Nomos"], [3501, 3750, "G3501\u2013G3750", "Nomos to Paradidomi"], [3751, 4000, "G3751\u2013G4000", "Para to Pl\u0113ro\u014d"], [4001, 4250, "G4001\u2013G4250", "Plousios to Proph\u0113t\u0113s"], [4251, 4500, "G4251\u2013G4500", "Pros to Rh\u0113ma"], [4501, 4750, "G4501\u2013G4750", "Sabbaton to S\u014dt\u0113ria"], [4751, 5000, "G4751\u2013G5000", "Sarx to Telos"], [5001, 5250, "G5001\u2013G5250", "Tekton to Hupnos"], [5251, 5500, "G5251\u2013G5500", "Huper to Ph\u014ds"], [5501, 5624, "G5501\u2013G5624", "Phos to \u014cphele\u014d"]];
+function doSearch(){
+  const raw=document.getElementById('srchInput').value.trim();
+  const el=document.getElementById('srchResults');
+  if(!raw){el.innerHTML='';return;}
+  const m=raw.match(/[Gg]?(\d+)/);
+  if(!m){el.innerHTML='<div class="result-item" style="color:var(--text2)">Please enter a Strong's number like G2316 or just 2316.</div>';return;}
+  const gNum=parseInt(m[1]);
+  const sect=SECTIONS.find(s=>gNum>=s[0]&&gNum<=s[1]);
+  if(sect){
+    el.innerHTML=`<div class="result-item"><div style="font-family:sans-serif;font-size:.75rem;font-weight:700;color:var(--gold);margin-bottom:.4rem;">G${gNum} found in section ${sect[2]}</div>
+      <div style="font-size:.85rem;color:var(--text);margin-bottom:.7rem;">${sect[3]}</div>
+      <a href="concordance_g${sect[0]}-g${sect[1]}.html#g${gNum}" style="background:var(--gold);color:var(--navy);padding:.45rem 1rem;border-radius:5px;font-family:sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;">
+        Open G${gNum} in ${sect[2]} →
+      </a></div>`;
+  }else{
+    el.innerHTML='<div class="result-item" style="color:var(--text2)">G'+gNum+' is outside the range G1–G5624. This PDF contains only the Greek dictionary.</div>';
+  }
+}
+(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
+</script>
+</body></html>
