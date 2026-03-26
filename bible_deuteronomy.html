@@ -15,7 +15,7 @@ html,body{height:100%}
 body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
 a{color:var(--gold);text-decoration:none}
 a:hover{color:var(--gold2)}
-.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar{position:sticky;top:60px;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
 .topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
 .crest{font-size:32px;color:var(--gold)}
@@ -30,7 +30,18 @@ a:hover{color:var(--gold2)}
 .hero p{margin:0;color:var(--muted);max-width:980px}
 .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 .badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
-.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.layout{display:grid;grid-template-columns:300px 1fr;gap:18px;margin-top:18px;align-items:start}
+.layout aside.panel{
+  position:sticky;
+  top:125px;
+  max-height:calc(100vh - 135px);
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(201,168,76,.4) transparent;
+}
+.layout aside.panel::-webkit-scrollbar{width:4px}
+.layout aside.panel::-webkit-scrollbar-track{background:transparent}
+.layout aside.panel::-webkit-scrollbar-thumb{background:rgba(201,168,76,.4);border-radius:4px}
 .panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
 .panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
 .book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -138,7 +149,8 @@ a:hover{color:var(--gold2)}
         </div>
       </div>
       <div class="nav">
-        <a class="btn" href="bible.html">← All 66 Books</a>
+        <a class="btn" href="index.html" style="background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02));">🏠 Home</a>
+        <a class="btn" href="bible.html">📖 All 66 Books</a>
         <a class="btn" href="Bible PDF.pdf" target="_blank">Open Bible PDF</a>
       </div>
     </div>
@@ -169,6 +181,21 @@ a:hover{color:var(--gold2)}
         </div>
         <div class="notice" style="margin-top:14px">
           Direct PDF link: <a href="Bible PDF.pdf#page=116" target="_blank">Open Deuteronomy in the source PDF</a>
+        </div>
+      
+        <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(201,168,76,.15);display:flex;flex-direction:column;gap:8px;">
+          <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" 
+             style="display:block;padding:9px 12px;border:1px solid rgba(201,168,76,.3);border-radius:10px;background:rgba(201,168,76,.08);color:#c9a84c;font-family:sans-serif;font-size:13px;font-weight:700;text-align:center;text-decoration:none;">
+            ↑ Back to Top
+          </a>
+          <a href="bible.html"
+             style="display:block;padding:9px 12px;border:1px solid rgba(201,168,76,.2);border-radius:10px;background:rgba(255,255,255,.02);color:#b8a88a;font-family:sans-serif;font-size:13px;text-align:center;text-decoration:none;">
+            📖 All Books
+          </a>
+          <a href="index.html"
+             style="display:block;padding:9px 12px;border:1px solid rgba(201,168,76,.2);border-radius:10px;background:rgba(255,255,255,.02);color:#b8a88a;font-family:sans-serif;font-size:13px;text-align:center;text-decoration:none;">
+            🏠 GATE Home
+          </a>
         </div>
       </aside>
 
