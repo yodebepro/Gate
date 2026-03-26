@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1 Peter - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="../bible.html">All Books</a>
+        <a class="btn" href="../Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>1 Peter</h2>
+      <p>Complete extracted text for 1 Peter from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 688</span>
+        <span class="badge">Book End Page: 690</span>
+        <span class="badge">Expected Chapters: 5</span>
+        <span class="badge">Verified Chapters Found: 5</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">1 Peter</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">5</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a><a class="chapter-link" href="#chapter-4">Chapter 4</a><a class="chapter-link" href="#chapter-5">Chapter 5</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="../Bible PDF.pdf#page=688" target="_blank">Open 1 Peter in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 Peter, an apostle of Jesus Christ, to the strangers
+scattered throughout Pontus, Galatia, Ca ppadocia, Asia, and
+Bithynia,
+2 Elect according to the foreknowledge of God the Father,
+through sanctification of the Spirit, unto obedience and
+sprinkling of the blood of Jesus Christ: Grace unto you, and
+peace, be multiplied.
+3 Blessed be the God and Father of our Lord Jesus Christ,
+which according to his abundant mercy hath begotten us
+again unto a lively hope by the resurrection of Jesus Christ
+from the dead,
+4 To an inheritance incorruptible, and undefiled, and that
+fadeth not away, reserved in heaven for you,
+5 Who are kept by the power of God through faith unto
+salvation ready to be revealed in the last time.
+6 Wherein ye greatly rejoice, though now for a season, if
+need be, ye are in heaviness through manifold temptations:
+7 That the trial of your fa ith, being much more precious
+than of gold that perisheth, though it be tried with fire, might
+be found unto praise and honour and glory at the appearing
+of Jesus Christ:
+8 Whom having not seen, ye love; in whom, though now
+ye see him not, yet believing, ye rejoice with joy unspeakable
+and full of glory:
+9 Receiving the end of your faith, even the salvation of
+your souls.
+10 Of which salvation the prophets have enquired and
+searched diligently, who prophesied of the grace that should
+come unto you:
+11 Searching what, or what manner of time the Spirit of
+Christ which was in them did signify, when it testified
+beforehand the sufferings of Christ, and the glory that should
+follow.
+12 Unto whom it was revealed, that not unto themselves,
+but unto us they did mini ster the things, which are now
+reported unto you by them that have preached the gospel
+unto you with the Holy Ghost sent down from heaven; which
+things the angels desire to look into.
+13 Wherefore gird up the loins of your mind, be sober, and
+hope to the end for the grace that is to be brought unto you at
+the revelation of Jesus Christ;
+14 As obedient children, not fashioning yourselves
+according to the former lusts in your ignorance:
+15 But as he which hath called you is holy, so be ye holy
+in all manner of conversation;
+16 Because it is written, Be ye holy; for I am holy.
+17 And if ye call on the Father, who without respect of
+persons judgeth according to every man&#x27;s work, pass the time
+of your sojourning here in fear:
+18 Forasmuch as ye know that ye were not redeemed with
+corruptible things, as silver and gold, from your vain
+conversation received by tradition from your fathers;
+19 But with the precious blood of Christ, as of a lamb
+without blemish and without spot:
+20 Who verily was foreordained before th e foundation of
+the world, but was manifest in these last times for you,
+21 Who by him do believe in God, that raised him up from
+the dead, and gave him glory; that your faith and hope might
+be in God.
+22 Seeing ye have purified your souls in obeying the t ruth
+through the Spirit unto unfeigned love of the brethren, see
+that ye love one another with a pure heart fervently:
+23 Being born again, not of corruptible seed, but of
+incorruptible, by the word of God, which liveth and abideth
+for ever.
+24 For all flesh is as grass, and all the glory of man as the
+flower of grass. The grass withereth, and the flower thereof
+falleth away:
+25 But the word of the Lord endureth for ever. And this is
+the word which by the gospel is preached unto you.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 Wherefore laying aside all malice, and all guile, and
+hypocrisies, and envies, and all evil speakings,
+2 As newborn babes, desire the sincere milk of the word,
+that ye may grow thereby:
+3 If so be ye have tasted that the Lord is gracious.
+4 To whom coming, as unto  a living stone, disallowed
+indeed of men, but chosen of God, and precious,
+5 Ye also, as lively stones, are built up a spiritual house, an
+holy priesthood, to offer up spiritual sacrifices, acceptable to
+God by Jesus Christ.
+6 Wherefore also it is contained  in the scripture, Behold, I
+lay in Sion a chief corner stone, elect, precious: and he that
+believeth on him shall not be confounded.
+7 Unto you therefore which believe he is  precious: but
+unto them which be disobedient, the stone which the builders
+disallowed, the same is made the head of the corner,
+8 And a stone of stumbling, and a rock of offence, even to
+them which stumble at the word, being disobedient:
+whereunto also they were appointed.
+9 But ye are a chosen generation, a royal priesthood, an
+holy nation, a peculiar people; that ye should shew forth the
+praises of him who hath called you out of darkness into his
+marvellous light:
+10 Which in time past were not a people, but are now the
+people of God: which had not obtained mercy, but now have
+obtained mercy.
+11 Dearly beloved, I beseech you as strangers and
+pilgrims, abstain from fleshly lusts, which war against the
+soul;
+12 Having your conversation honest among the Gentiles:
+that, whereas they speak against you as evildoers, they may
+by your good works, which they shall behold, glorify God in
+the day of visitation.
+13 Submit yourselves to every ordinance of man for the
+Lord&#x27;s sake: whether it be to the king, as supreme;
+14 Or unto governors, as unto them that are sent by him for
+the punishment of evil doers, and for the praise of them that
+do well.
+15 For so is the will of God, that with well doing ye may
+put to silence the ignorance of foolish men:
+16 As free, and not using your liberty for a cloke of
+maliciousness, but as the servants of God.
+17 Honour all men. Love the brotherhood. Fear God.
+Honour the king.
+18 Servants, be subject to your masters with all fear; not
+only to the good and gentle, but also to the froward.
+19 For this is thankworthy, if a man for conscience toward
+God endure grief, suffering wrongfully.
+20 For what glory is it , if, when ye be buffeted for your
+faults, ye shall take it patiently? but if, when ye do well, and
+suffer for it, ye take it patiently, this is acceptable with God.
+21 For even hereunto were ye called: because Christ  also
+suffered for us, leaving us an example, that ye should follow
+his steps:
+22 Who did no sin, neither was guile found in his mouth:
+23 Who, when he was reviled, reviled not again; when he
+suffered, he threatened not; but committed himself to him
+that judgeth righteously:
+24 Who his own self bare our sins in his own body on the
+tree, that we, being dead to sins, should live unto
+righteousness: by whose stripes ye were healed.
+25 For ye were as sheep going astray; but are now returned
+unto the Shepherd and Bishop of your souls.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 Likewise, ye wives, be in subjection to your own
+husbands; that, if any obey not the word, they also may
+without the word be won by the conversation of the wives;
+2 While they behold your chaste conversation coupled
+with fear.
+3 Whose adorning let it not be that outward adorning of
+plaiting the hair, and of wearing of gold, or of putting on of
+apparel;
+4 But let it be the hidden man of the heart, in that which is
+not corruptible, even the ornament of a meek and quiet spirit,
+which is in the sight of God of great price.
+5 For after this manner in the old time the holy women
+also, who trusted in God, adorned themselves, being in
+subjection unto their own husbands:
+6 Even as Sara obeyed Abraham, calling him lord: whose
+daughters ye are, as long as ye do well, and are not afraid
+with any amazement.
+7 Likewise, ye husbands, dwell with them according to
+knowledge, giving honour unto the wife, as unto the weaker
+vessel, and as being heirs together of the grace of life; that
+your prayers be not hindered.
+8 Finally, be ye all of one mind, having compassion one of
+another, love as brethren, be pitiful, be courteous:
+9 Not rendering evil for evil, or railing for railing: but
+contrariwise blessing; knowing that ye are thereunto called,
+that ye should inherit a blessing.
+10 For he that will love life, and see good days, let him
+refrain his tongue from evil, and his lips that they speak no
+guile:
+11 Let him eschew evil, and do good; let him seek peace,
+and ensue it.
+12 For the eyes of the Lord are over the righteous, and his
+ears are open unto their prayers: but the face of the Lord is
+against them that do evil.
+13 And who is he that will harm you, if ye be followers of
+that which is good?
+14 But and if ye suffer for righteousness&#x27; sake, h appy are
+ye: and be not afraid of their terror, neither be troubled;
+15 But sanctify the Lord God in your hearts: and be ready
+always to give an answer to every man that asketh you a
+reason of the hope that is in you with meekness and fear:
+16 Having a goo d conscience; that, whereas they speak
+evil of you, as of evildoers, they may be ashamed that falsely
+accuse your good conversation in Christ.
+17 For it is better, if the will of God be so, that ye suffer
+for well doing, than for evil doing.
+18 For Christ also hath once suffered for sins, the just for
+the unjust, that he might bring us to God, being put to death
+in the flesh, but quickened by the Spirit:
+19 By which also he went and preached unto the spirits in
+prison;
+20 Which sometime were disobedient, wh en once the
+longsuffering of God waited in the days of Noah, while the
+ark was a preparing, wherein few, that is, eight souls were
+saved by water.
+21 The like figure whereunto even baptism doth also now
+save us (not the putting away of the filth of the fle sh, but the
+answer of a good conscience toward God,) by the
+resurrection of Jesus Christ:
+22 Who is gone into heaven, and is on the right hand of
+God; angels and authorities and powers being made subject
+unto him.
+
+</div><h4 id="chapter-4">Chapter 4</h4><div>
+1 Forasmuch then as Christ hath  suffered for us in the
+flesh, arm yourselves likewise with the same mind: for he
+that hath suffered in the flesh hath ceased from sin;
+2 That he no longer should live the rest of his time in the
+flesh to the lusts of men, but to the will of God.
+3 For the  time past of our life may suffice us to have
+wrought the will of the Gentiles, when we walked in
+lasciviousness, lusts, excess of wine, revellings, banquetings,
+and abominable idolatries:
+4 Wherein they think it strange that ye run not with them to
+the same excess of riot, speaking evil of you:
+5 Who shall give account to him that is ready to judge the
+quick and the dead.
+6 For for this cause was the gospel preached also to them
+that are dead, that they might be judged according to men in
+the flesh, but live according to God in the spirit.
+7 But the end of all things is at hand: be ye therefore sober,
+and watch unto prayer.
+8 And above all things have fervent charity among
+yourselves: for charity shall cover the multitude of sins.
+9 Use hospitality one to another without grudging.
+10 As every man hath received the gift, even so minister
+the same one to another, as good stewards of the manifold
+grace of God.
+11 If any man speak, let him speak as the oracles of God; if
+any man minister, let him do it  as of the  ability which God
+giveth: that God in all things may be glorified through Jesus
+Christ, to whom be praise and dominion for ever and ever.
+Amen.
+12 Beloved, think it not strange concerning the fiery trial
+which is to try you, as though some strange thing h appened
+unto you:
+13 But rejoice, inasmuch as ye are partakers of Christ&#x27;s
+sufferings; that, when his glory shall be revealed, ye may be
+glad also with exceeding joy.
+14 If ye be reproached for the name of Christ, happy are
+ye; for the spirit of glory and of God resteth upon you: on
+their part he is evil spoken of, but on your part he is glorified.
+15 But let none of you suffer as a murderer, or as a thief,
+or as an evildoer, or as a busybody in other men&#x27;s matters.
+16 Yet if any man suffer  as a Christian, let him not be
+ashamed; but let him glorify God on this behalf.
+17 For the time is come that judgment must begin at the
+house of God: and if it first begin at us, what shall the end be
+of them that obey not the gospel of God?
+18 And if the righteous scarce ly be saved, where shall the
+ungodly and the sinner appear?
+19 Wherefore let them that suffer according to the will of
+God commit the keeping of their souls to him in well doing,
+as unto a faithful Creator.
+
+</div><h4 id="chapter-5">Chapter 5</h4><div>
+1 The elders which are among you I exh ort, who am also
+an elder, and a witness of the sufferings of Christ, and also a
+partaker of the glory that shall be revealed:
+2 Feed the flock of God which is among you, taking the
+oversight thereof, not by constraint, but willingly; not for
+filthy lucre, but of a ready mind;
+3 Neither as being lords over God&#x27;s heritage, but being
+ensamples to the flock.
+4 And when the chief Shepherd shall appear, ye shall
+receive a crown of glory that fadeth not away.
+5 Likewise, ye younger, submit yourselves unto the eld er.
+Yea, all of you be subject one to another, and be clothed with
+humility: for God resisteth the proud, and giveth grace to the
+humble.
+6 Humble yourselves therefore under the mighty hand of
+God, that he may exalt you in due time:
+7 Casting all your care upon him; for he careth for you.
+8 Be sober, be vigilant; because your adversary the devil,
+as a roaring lion, walketh about, seeking whom he may
+devour:
+9 Whom resist stedfast in the faith, knowing that the same
+afflictions are accomplished in your breth ren that are in the
+world.
+10 But the God of all grace, who hath called us unto his
+eternal glory by Christ Jesus, after that ye have suffered a
+while, make you perfect, stablish, strengthen, settle you.
+11 To him be glory and dominion for ever and ever. Amen.
+12 By Silvanus, a faithful brother unto you, as I suppose, I
+have written briefly, exhorting, and testifying that this is the
+true grace of God wherein ye stand.
+13 The church that is  at Babylon, elected together with
+you, saluteth you; and so doth Marcus my son.
+14 Greet ye one another with a kiss of charity. Peace be
+with you all that are in Christ Jesus. Amen.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for 1 Peter.</div>
+  </main>
+</body>
+</html>

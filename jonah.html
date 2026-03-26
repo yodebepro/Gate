@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonah - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="../bible.html">All Books</a>
+        <a class="btn" href="../Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>Jonah</h2>
+      <p>Complete extracted text for Jonah from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 517</span>
+        <span class="badge">Book End Page: 518</span>
+        <span class="badge">Expected Chapters: 4</span>
+        <span class="badge">Verified Chapters Found: 4</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">Jonah</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">4</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a><a class="chapter-link" href="#chapter-4">Chapter 4</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="../Bible PDF.pdf#page=517" target="_blank">Open Jonah in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 Now the word of the LORD came unto Jonah the son of
+Amittai, saying,
+2 Arise, go to Nineveh, that great city, and cry against it;
+for their wickedness is come up before me.
+3 But Jonah rose up to flee unto Tarshish from the
+presence of the LORD, and went down to Joppa; and he
+found a ship going to Tarshish: so he paid the fare thereof,
+and went down into it, to go with them unto Tarshish from
+the presence of the LORD.
+4 But the LORD sent out a great wind into the sea, and
+there was a  mighty tempest in the sea, so that the ship was
+like to be broken.
+5 Then the mariners were afraid, and cried every man unto
+his god, and cast forth the wares that were in the ship into the
+sea, to lighten it of them. But Jonah was gone down into the
+sides of the ship; and he lay, and was fast asleep.
+6 So the shipmaster came to him, and said unto him, What
+meanest thou, O sleeper? arise, call upon thy God, if so be
+that God will think upon us, that we perish not.
+7 And they said every one to his fellow, C ome, and let us
+cast lots, that we may know for whose cause this evil is upon
+us. So they cast lots, and the lot fell upon Jonah.
+8 Then said they unto him, Tell us, we pray thee, for
+whose cause this evil is upon us; What is thine occupation?
+and whence c omest thou? what is thy country? and of what
+people art thou?
+9 And he said unto them, I am an Hebrew; and I fear the
+LORD, the God of heaven, which hath made the sea and the
+dry land.
+10 Then were the men exceedingly afraid, and said unto
+him, Why hast thou done this? For the men knew that he fled
+from the presence of the LORD, because he had told them.
+11 Then said they unto him, What shall we do unto thee,
+that the sea may be calm unto us? for the sea wrought, and
+was tempestuous.
+12 And he said unto the m, Take me up, and cast me forth
+into the sea; so shall the sea be calm unto you: for I know
+that for my sake this great tempest is upon you.
+13 Nevertheless the men rowed hard to bring it to the land;
+but they could not: for the sea wrought, and was tempestuous
+against them.
+14 Wherefore they cried unto the LORD, and said, We
+beseech thee, O LORD, we beseech thee, let us not perish for
+this man&#x27;s life, and lay not upon us innocent blood: for thou,
+O LORD, hast done as it pleased thee.
+15 So they took up Jo nah, and cast him forth into the sea:
+and the sea ceased from her raging.
+16 Then the men feared the LORD exceedingly, and
+offered a sacrifice unto the LORD, and made vows.
+17 Now the LORD had prepared a great fish to swallow up
+Jonah. And Jonah was in the  belly of the fish three days and
+three nights.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 Then Jonah prayed unto the LORD his God out of the
+fish&#x27;s belly,
+2 And said, I cried by reason of mine affliction unto the
+LORD, and he heard me; out of the belly of hell cried I, and
+thou heardest my voice.
+3 For thou hadst cast me into the deep, in the midst of the
+seas; and the floods compassed me about: all thy billows and
+thy waves passed over me.
+4 Then I said, I am cast out of thy sight; yet I will look
+again toward thy holy temple.
+5 The waters compassed me about, even to the soul: the
+depth closed me round about, the weeds were wrapped about
+my head.
+6 I went down to the bottoms of the mountains; the earth
+with her bars was about me for ever: yet hast thou brought up
+my life from corruption, O LORD my God.
+7 When my soul fainted within me I remembered the
+LORD: and my prayer came in unto thee, into thine holy
+temple.
+8 They that observe lying vanities forsake their own
+mercy.
+9 But I will sacrifice unto thee with the voice of
+thanksgiving; I will pay that that I have vowed. Salvation is
+of the LORD.
+10 And the LORD spake unto the fish, and it vomited out
+Jonah upon the dry land.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 And the word of the LORD came unto Jonah the second
+time, saying,
+2 Arise, go unto Nineveh, that grea t city, and preach unto
+it the preaching that I bid thee.
+3 So Jonah arose, and went unto Nineveh, according to the
+word of the LORD. Now Nineveh was an exceeding great
+city of three days&#x27; journey.
+4 And Jonah began to enter into the city a day&#x27;s journey,
+and he cried, and said, Yet forty days, and Nineveh shall be
+overthrown.
+5 So the people of Nineveh believed God, and proclaimed
+a fast, and put on sackcloth, from the greatest of them even
+to the least of them.
+6 For word came unto the king of Nineveh, an d he arose
+from his throne, and he laid his robe from him, and covered
+him with sackcloth, and sat in ashes.
+7 And he caused it to be proclaimed and published through
+Nineveh by the decree of the king and his nobles, saying, Let
+neither man nor beast, herd  nor flock, taste any thing: let
+them not feed, nor drink water:
+8 But let man and beast be covered with sackcloth, and cry
+mightily unto God: yea, let them turn every one from his evil
+way, and from the violence that is in their hands.
+9 Who can tell if God will turn and repent, and turn away
+from his fierce anger, that we perish not?
+10 And God saw their works, that they turned from their
+evil way; and God repented of the evil, that he had said that
+he would do unto them; and he did it not.
+
+</div><h4 id="chapter-4">Chapter 4</h4><div>
+1 But it displeased Jonah exceedingly, and he was very
+angry.
+2 And he prayed unto the LORD, and said, I pray thee, O
+LORD, was not this my saying, when I was yet in my
+country? Therefore I fled before unto Tarshish: for I knew
+that thou art a gracious God, a nd merciful, slow to anger,
+and of great kindness, and repentest thee of the evil.
+3 Therefore now, O LORD, take, I beseech thee, my life
+from me; for it is better for me to die than to live.
+4 Then said the LORD, Doest thou well to be angry?
+5 So Jonah went out of the city, and sat on the east side of
+the city, and there made him a booth, and sat under it in the
+shadow, till he might see what would become of the city.
+6 And the LORD God prepared a gourd, and made it to
+come up over Jonah, that it might be a shadow over his head,
+to deliver him from his grief. So Jonah was exceeding glad
+of the gourd.
+7 But God prepared a worm when the morning rose the
+next day, and it smote the gourd that it withered.
+8 And it came to pass, when the sun did arise, that God
+prepared a vehement east wind; and the sun beat upon the
+head of Jonah, that he fainted, and wished in himself to die,
+and said, It is better for me to die than to live.
+9 And God said to Jonah, Doest thou well to be angry for
+the gourd? And he said, I do  well to be angry, even unto
+death.
+10 Then said the LORD, Thou hast had pity on the gourd,
+for the which thou hast not laboured, neither madest it grow;
+which came up in a night, and perished in a night:
+11 And should not I spare Nineveh, that great city, wherein
+are more than sixscore thousand persons that cannot discern
+between their right hand and their left hand; and also much
+cattle?</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for Jonah.</div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>James - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="../bible.html">All Books</a>
+        <a class="btn" href="../Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>James</h2>
+      <p>Complete extracted text for James from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 685</span>
+        <span class="badge">Book End Page: 687</span>
+        <span class="badge">Expected Chapters: 5</span>
+        <span class="badge">Verified Chapters Found: 5</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">James</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">5</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a><a class="chapter-link" href="#chapter-4">Chapter 4</a><a class="chapter-link" href="#chapter-5">Chapter 5</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="../Bible PDF.pdf#page=685" target="_blank">Open James in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 James, a servant of God and of the Lord Jesus Christ, to
+the twelve tribes which are scattered abroad, greeting.
+2 My brethren, count it all joy when ye fall into divers
+temptations;
+3 Knowing this, that the trying of your faith worketh
+patience.
+4 But let patience have her perfect work, that ye may be
+perfect and entire, wanting nothing.
+5 If any of you lack wisdom, let him ask of God, that
+giveth to all men liberally, and upbraideth not; and it shall be
+given him.
+6 But let him ask in faith, nothing wavering. For he that
+wavereth is like a wave of the sea driven with the wind and
+tossed.
+7 For let not that man think that he shall receive any thing
+of the Lord.
+8 A double minded man is unstable in all his ways.
+9 Let the brother of low degree rejoice in that he is exalted:
+10 But the rich, in that he is made low: b ecause as the
+flower of the grass he shall pass away.
+11 For the sun is no sooner risen with a burning heat, but it
+withereth the grass, and the flower thereof falleth, and the
+grace of the fashion of it perisheth: so also shall the rich man
+fade away in his ways.
+12 Blessed is the man that endureth temptation: for when
+he is tried, he shall receive the crown of life, which the Lord
+hath promised to them that love him.
+13 Let no man say when he is tempted, I am tempted of
+God: for God cannot be tempted with  evil, neither tempteth
+he any man:
+14 But every man is tempted, when he is drawn away of
+his own lust, and enticed.
+15 Then when lust hath conceived, it bringeth forth sin:
+and sin, when it is finished, bringeth forth death.
+16 Do not err, my beloved brethren.
+17 Every good gift and every perfect gift is from above,
+and cometh down from the Father of lights, with whom is no
+variableness, neither shadow of turning.
+18 Of his own will begat he us with the word of truth, that
+we should be a kind of firstfruits of his creatures.
+19 Wherefore, my beloved brethren, let every man be swift
+to hear, slow to speak, slow to wrath:
+20 For the wrath of man worketh not the righteousness of
+God.
+21 Wherefore lay apart all filthiness and superfluity of
+naughtiness, and rec eive with meekness the engrafted word,
+which is able to save your souls.
+22 But be ye doers of the word, and not hearers only,
+deceiving your own selves.
+23 For if any be a hearer of the word, and not a doer, he is
+like unto a man beholding his natural face in a glass:
+24 For he beholdeth himself, and goeth his way, and
+straightway forgetteth what manner of man he was.
+25 But whoso looketh into the perfect law of liberty, and
+continueth therein, he being not a forgetful hearer, but a doer
+of the work, this man shall be blessed in his deed.
+26 If any man among you seem to be religious, and
+bridleth not his tongue, but deceiveth his own heart, this
+man&#x27;s religion is vain.
+27 Pure religion and undefiled before God and the Father
+is this, To visit the fatherless  and widows in their affliction,
+and to keep himself unspotted from the world.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 My brethren, have not the faith of our Lord Jesus Christ,
+the Lord of glory, with respect of persons.
+2 For if there come unto your assembly a man with a gold
+ring, in goodly apparel, and there come in also a poor man in
+vile raiment;
+3 And ye have respect to him that weareth the gay
+clothing, and say unto him, Sit thou here in a good place; and
+say to the poor, Stand thou there, or sit here under my
+footstool:
+4 Are ye not then partial in yourselves, and are become
+judges of evil thoughts?
+5 Hearken, my beloved brethren, Hath not God chosen the
+poor of this world rich in faith, and heirs of the kingdom
+which he hath promised to them that love him?
+6 But ye have despi sed the poor. Do not rich men oppress
+you, and draw you before the judgment seats?
+7 Do not they blaspheme that worthy name by the which
+ye are called?
+8 If ye fulfil the royal law according to the scripture, Thou
+shalt love thy neighbour as thyself, ye do well:
+9 But if ye have respect to persons, ye commit sin, and are
+convinced of the law as transgressors.
+10 For whosoever shall keep the whole law, and yet offend
+in one point, he is guilty of all.
+11 For he that said, Do not commit adultery, said also, D o
+not kill. Now if thou commit no adultery, yet if thou kill,
+thou art become a transgressor of the law.
+12 So speak ye, and so do, as they that shall be judged by
+the law of liberty.
+13 For he shall have judgment without mercy, that hath
+shewed no mercy; and mercy rejoiceth against judgment.
+14 What doth it profit, my brethren, though a man say he
+hath faith, and have not works? can faith save him?
+15 If a brother or sister be naked, and destitute of daily
+food,
+16 And one of you say unto them, Depart in p eace, be ye
+warmed and filled; notwithstanding ye give them not those
+things which are needful to the body; what doth it profit?
+17 Even so faith, if it hath not works, is dead, being alone.
+18 Yea, a man may say, Thou hast faith, and I have works:
+shew me thy faith without thy works, and I will shew thee
+my faith by my works.
+19 Thou believest that there is one God; thou doest well:
+the devils also believe, and tremble.
+20 But wilt thou know, O vain man, that faith without
+works is dead?
+21 Was not Abraham  our father justified by works, when
+he had offered Isaac his son upon the altar?
+22 Seest thou how faith wrought with his works, and by
+works was faith made perfect?
+23 And the scripture was fulfilled which saith, Abraham
+believed God, and it was imputed unto him for
+righteousness: and he was called the Friend of God.
+24 Ye see then how that by works a man is justified, and
+not by faith only.
+25 Likewise also was not Rahab the harlot justified by
+works, when she had received the messengers, and had sent
+them out another way?
+26 For as the body without the spirit is dead, so faith
+without works is dead also.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 My brethren, be not many masters, knowing that we
+shall receive the greater condemnation.
+2 For in many things we offend all. If any man of fend not
+in word, the same is a perfect man, and able also to bridle the
+whole body.
+3 Behold, we put bits in the horses&#x27; mouths, that they may
+obey us; and we turn about their whole body.
+4 Behold also the ships, which though they be so great, and
+are driven of fierce winds, yet are they turned about with a
+very small helm, whithersoever the governor listeth.
+5 Even so the tongue is a little member, and boasteth great
+things. Behold, how great a matter a little fire kindleth!
+6 And the tongue is a fire, a world of iniquity: so is the
+tongue among our members, that it defileth the whole body,
+and setteth on fire the course of nature; and it is set on fire of
+hell.
+7 For every kind of beasts, and of birds, and of serpents,
+and of things in the sea, is tamed, and hath been tamed of
+mankind:
+8 But the tongue can no man tame; it is an unruly evil, full
+of deadly poison.
+9 Therewith bless we God, even the Father; and therewith
+curse we men, which are made after the similitude of God.
+10 Out of the same mouth proceedeth blessing and cursing.
+My brethren, these things ought not so to be.
+11 Doth a fountain send forth at the same place sweet
+water and bitter?
+12 Can the fig tree, my brethren, bear olive berries? either
+a vine, figs? so can no fountain both yield salt water and
+fresh.
+13 Who is a wise man and endued with knowledge among
+you? let him shew out of a good conversation his works with
+meekness of wisdom.
+14 But if ye have bitter envying and strife in your hearts,
+glory not, and lie not against the truth.
+15 This wisdom descendeth not from above, but is earthly,
+sensual, devilish.
+16 For where envying and strife is, there is confusion and
+every evil work.
+17 But the wisdom that is from above is first pure, then
+peaceable, gentle, and easy to be intreated, full of mercy and
+good fruits, without partiality, and without hypocrisy.
+18 And the fruit of righteousness is sown in peace of them
+that make peace.
+
+</div><h4 id="chapter-4">Chapter 4</h4><div>
+1 From whence come wars and fightings among you? come
+they not hence, even of your lusts that war in your members?
+2 Ye lust, and have not: ye kill, and desire to have, and
+cannot obtain: ye fight and war, yet ye have not, because ye
+ask not.
+3 Ye ask, and receive not, because ye ask amiss, that ye
+may consume it upon your lusts.
+4 Ye adulterers and adul teresses, know ye not that the
+friendship of the world is enmity with God? whosoever
+therefore will be a friend of the world is the enemy of God.
+5 Do ye think that the scripture saith in vain, The spirit that
+dwelleth in us lusteth to envy?
+6 But he givet h more grace. Wherefore he saith, God
+resisteth the proud, but giveth grace unto the humble.
+7 Submit yourselves therefore to God. Resist the devil, and
+he will flee from you.
+8 Draw nigh to God, and he will draw nigh to you. Cleanse
+your hands, ye sinners; and purify your hearts, ye double
+minded.
+9 Be afflicted, and mourn, and weep: let your laughter be
+turned to mourning, and your joy to heaviness.
+10 Humble yourselves in the sight of the Lord, and he shall
+lift you up.
+11 Speak not evil one of another, brethren. He that
+speaketh evil of his brother, and judgeth his brother, speaketh
+evil of the law, and judgeth the law: but if thou judge the
+law, thou art not a doer of the law, but a judge.
+12 There is one lawgiver, who is able to save and to
+destroy: who art thou that judgest another?
+13 Go to now, ye that say, To day or to morrow we will go
+into such a city, and continue there a year, and buy and sell,
+and get gain:
+14 Whereas ye know not what shall be on the morrow. For
+what is your life? It is even a vapour, that appeareth for a
+little time, and then vanisheth away.
+15 For that ye ought to say, If the Lord will, we shall live,
+and do this, or that.
+16 But now ye rejoice in your boastings: all such rejoicing
+is evil.
+17 Therefore to him that knoweth to do good, and doeth it
+not, to him it is sin.
+
+</div><h4 id="chapter-5">Chapter 5</h4><div>
+1 Go to now, ye rich men, weep and howl for your
+miseries that shall come upon you.
+2 Your riches are corrupted, and your garments are
+motheaten.
+3 Your gold and silver is cankered; and the rust of th em
+shall be a witness against you, and shall eat your flesh as it
+were fire. Ye have heaped treasure together for the last days.
+4 Behold, the hire of the labourers who have reaped down
+your fields, which is of you kept back by fraud, crieth: and
+the cries of them which have reaped are entered into the ears
+of the Lord of sabaoth.
+5 Ye have lived in pleasure on the earth, and been wanton;
+ye have nourished your hearts, as in a day of slaughter.
+6 Ye have condemned and killed the just; and he doth not
+resist you.
+7 Be patient therefore, brethren, unto the coming of the
+Lord. Behold, the husbandman waiteth for the precious fruit
+of the earth, and hath long patience for it, until he receive the
+early and latter rain.
+8 Be ye also patient; stablish your hearts: for the coming of
+the Lord draweth nigh.
+9 Grudge not one against another, brethren, lest ye be
+condemned: behold, the judge standeth before the door.
+10 Take, my brethren, the prophets, who have spoken in
+the name of the Lord, for an example of suffering affliction,
+and of patience.
+11 Behold, we count them happy which endure. Ye have
+heard of the patience of Job, and have seen the end of the
+Lord; that the Lord is very pitiful, and of tender mercy.
+12 But above all things, my brethren, swear not, neither by
+heaven, neither by the earth, neither by any other oath: but let
+your yea be yea; and your nay, nay; lest ye fall into
+condemnation.
+13 Is any among you afflicted? let him pray. Is any merry?
+let him sing psalms.
+14 Is any sick among you? let him call for the elders of the
+church; and let them pray over him, anointing him with oil in
+the name of the Lord:
+15 And the prayer of faith shall save the sick, and the Lord
+shall raise him up; and if he have committed sins, they shall
+be forgiven him.
+16 Confess your faults one to another, and pray one for
+another, that ye may be healed. The effectual fervent prayer
+of a righteous man availeth much.
+17 Elias was a man subject to like passions as we are, and
+he prayed earnestly that it might not rain: and it rained not on
+the earth by the space of three years and six months.
+18 And he prayed again, and the heaven gave rain, and the
+earth brought forth her fruit.
+19 Brethren, if any of you do err from the truth, and one
+convert him;
+20 Let him know, that he which converteth the sinner from
+the error of his way shall save a soul from death, and shall
+hide a multitude of sins.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for James.</div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2 Thessalonians - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="../bible.html">All Books</a>
+        <a class="btn" href="../Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>2 Thessalonians</h2>
+      <p>Complete extracted text for 2 Thessalonians from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 670</span>
+        <span class="badge">Book End Page: 670</span>
+        <span class="badge">Expected Chapters: 3</span>
+        <span class="badge">Verified Chapters Found: 3</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">2 Thessalonians</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">3</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="../Bible PDF.pdf#page=670" target="_blank">Open 2 Thessalonians in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 Paul, and Silva nus, and Timotheus, unto the church of
+the Thessalonians in God our Father and the Lord Jesus
+Christ:
+2 Grace unto you, and peace, from God our Father and the
+Lord Jesus Christ.
+3 We are bound to thank God always for you, brethren, as
+it is meet, because t hat your faith groweth exceedingly, and
+the charity of every one of you all toward each other
+aboundeth;
+4 So that we ourselves glory in you in the churches of God
+for your patience and faith in all your persecutions and
+tribulations that ye endure:
+5 Which is a manifest token of the righteous judgment of
+God, that ye may be counted worthy of the kingdom of God,
+for which ye also suffer:
+6 Seeing it is  a righteous thing with God to recompense
+tribulation to them that trouble you;
+7 And to you who are troubled rest with us, when the Lord
+Jesus shall be revealed from heaven with his mighty angels,
+8 In flaming fire taking vengeance on them that know not
+God, and that obey not the gospel of our Lord Jesus Christ:
+9 Who shall be punished with everlasting destruc tion from
+the presence of the Lord, and from the glory of his power;
+10 When he shall come to be glorified in his saints, and to
+be admired in all them that believe (because our testimony
+among you was believed) in that day.
+11 Wherefore also we pray alway s for you, that our God
+would count you worthy of this calling, and fulfil all the
+good pleasure of his goodness, and the work of faith with
+power:
+12 That the name of our Lord Jesus Christ may be glorified
+in you, and ye in him, according to the grace of our God and
+the Lord Jesus Christ.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 Now we beseech you, brethren, by the coming of our
+Lord Jesus Christ, and by our gathering together unto him,
+2 That ye be not soon shaken in mind, or be troubled,
+neither by spirit, nor by word, nor by letter as from us, as that
+the day of Christ is at hand.
+3 Let no man deceive you by any means: for that day shall
+not come , except there come a falling away first, and that
+man of sin be revealed, the son of perdition;
+4 Who opposeth and exalteth himself above  all that is
+called God, or that is worshipped; so that he as God sitteth in
+the temple of God, shewing himself that he is God.
+5 Remember ye not, that, when I was yet with you, I told
+you these things?
+6 And now ye know what withholdeth that he might be
+revealed in his time.
+7 For the mystery of iniquity doth already work: only he
+who now letteth will let, until he be taken out of the way.
+8 And then shall that Wicked be revealed, whom the Lord
+shall consume with the spirit of his mouth, and shall destroy
+with the brightness of his coming:
+9 Even him, whose coming is after the working of Satan
+with all power and signs and lying wonders,
+10 And with all deceivableness of unrighteousness in them
+that perish; because they received not the love of the truth,
+that they might be saved.
+11 And for this cause God shall send them strong delusion,
+that they should believe a lie:
+12 That they all might be damned who believed not the
+truth, but had pleasure in unrighteousness.
+13 But we are bound to give thanks alway to  God for you,
+brethren beloved of the Lord, because God hath from the
+beginning chosen you to salvation through sanctification of
+the Spirit and belief of the truth:
+14 Whereunto he called you by our gospel, to the obtaining
+of the glory of our Lord Jesus Christ.
+15 Therefore, brethren, stand fast, and hold the traditions
+which ye have been taught, whether by word, or our epistle.
+16 Now our Lord Jesus Christ himself, and God, even our
+Father, which hath loved us, and hath given us everlasting
+consolation and good hope through grace,
+17 Comfort your hearts, and stablish you in every good
+word and work.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 Finally, brethren, pray for us, that the word of the Lord
+may have free course, and be glorified, even as it is with you:
+2 And that we may be de livered from unreasonable and
+wicked men: for all men have not faith.
+3 But the Lord is faithful, who shall stablish you, and keep
+you from evil.
+4 And we have confidence in the Lord touching you, that
+ye both do and will do the things which we command you.
+5 And the Lord direct your hearts into the love of God, and
+into the patient waiting for Christ.
+6 Now we command you, brethren, in the name of our
+Lord Jesus Christ, that ye withdraw yourselves from every
+brother that walketh disorderly, and not after t he tradition
+which he received of us.
+7 For yourselves know how ye ought to follow us: for we
+behaved not ourselves disorderly among you;
+8 Neither did we eat any man&#x27;s bread for nought; but
+wrought with labour and travail night and day, that we might
+not be chargeable to any of you:
+9 Not because we have not power, but to make ourselves
+an ensample unto you to follow us.
+10 For even when we were with you, this we commanded
+you, that if any would not work, neither should he eat.
+11 For we hear that there are some which walk among you
+disorderly, working not at all, but are busybodies.
+12 Now them that are such we command and exhort by our
+Lord Jesus Christ, that with quietness they work, and eat
+their own bread.
+13 But ye, brethren, be not weary in well doing.
+14 And if any man obey not our word by this epistle, note
+that man, and have no company with him, that he may be
+ashamed.
+15 Yet count him not as an enemy, but admonish him as a
+brother.
+16 Now the Lord of peace himself give you peace always
+by all means. The Lord be with you all.
+17 The salutation of Paul with mine own hand, which is
+the token in every epistle: so I write.
+18 The grace of our Lord Jesus Christ be with you all.
+Amen.
+The second epistle to the Thessalonians was written
+from Athens.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for 2 Thessalonians.</div>
+  </main>
+</body>
+</html>

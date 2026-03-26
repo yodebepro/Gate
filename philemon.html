@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Philemon - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="../bible.html">All Books</a>
+        <a class="btn" href="../Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>Philemon</h2>
+      <p>Complete extracted text for Philemon from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 677</span>
+        <span class="badge">Book End Page: 677</span>
+        <span class="badge">Expected Chapters: 1</span>
+        <span class="badge">Verified Chapters Found: 1</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">Philemon</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">1</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="../Bible PDF.pdf#page=677" target="_blank">Open Philemon in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 Paul, a prisoner of Jesus Christ, and Timothy our
+brother, unto Philemon our dearly bel oved, and
+fellowlabourer, 2 And to our beloved Apphia, and Archippus
+our fellowsoldier, and to the church in thy house:
+3 Grace to you, and peace, from God our Father and the
+Lord Jesus Christ.
+4 I thank my God, making mention of thee always in my
+prayers,
+5 Hearing of thy love and faith, which thou hast toward the
+Lord Jesus, and toward all saints;
+6 That the communication of thy faith may become
+effectual by the acknowledging of every good thing which is
+in you in Christ Jesus.
+7 For we have great joy and  consolation in thy love,
+because the bowels of the saints are refreshed by thee,
+brother.
+8 Wherefore, though I might be much bold in Christ to
+enjoin thee that which is convenient,
+9 Yet for love&#x27;s sake I rather beseech thee, being such an
+one as Paul the aged, and now also a prisoner of Jesus Christ.
+10 I beseech thee for my son Onesimus, whom I have
+begotten in my bonds:
+11 Which in time past was to thee unprofitable, but now
+profitable to thee and to me:
+12 Whom I have sent again: thou therefore receiv e him,
+that is, mine own bowels:
+13 Whom I would have retained with me, that in thy stead
+he might have ministered unto me in the bonds of the gospel:
+14 But without thy mind would I do nothing; that thy
+benefit should not be as it were of necessity, but willingly.
+15 For perhaps he therefore departed for a season, that
+thou shouldest receive him for ever;
+16 Not now as a servant, but above a servant, a brother
+beloved, specially to me, but how much more unto thee, both
+in the flesh, and in the Lord?
+17 If thou count me therefore a partner, receive him as
+myself.
+18 If he hath wronged thee, or oweth thee ought, put that
+on mine account;
+19 I Paul have written it with mine own hand, I will repay
+it: albeit I do not say to thee how thou owest unto me even
+thine own self besides.
+20 Yea, brother, let me have joy of thee in the Lord:
+refresh my bowels in the Lord.
+21 Having confidence in thy obedience I wrote unto thee,
+knowing that thou wilt also do more than I say.
+22 But withal prepare me also a lodging: for I trust that
+through your prayers I shall be given unto you.
+23 There salute thee Epaphras, my fellowprisoner in Christ
+Jesus;
+24 Marcus, Aristarchus, Demas, Lucas, my
+fellowlabourers.
+25 The grace of our Lord Jesus Christ be with your spirit.
+Amen.
+Written from Rome to Philemon, by Onesimus, a
+servant.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for Philemon.</div>
+  </main>
+</body>
+</html>

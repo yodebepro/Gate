@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2 Timothy - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="../bible.html">All Books</a>
+        <a class="btn" href="../Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>2 Timothy</h2>
+      <p>Complete extracted text for 2 Timothy from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 674</span>
+        <span class="badge">Book End Page: 675</span>
+        <span class="badge">Expected Chapters: 4</span>
+        <span class="badge">Verified Chapters Found: 4</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">2 Timothy</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">4</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a><a class="chapter-link" href="#chapter-4">Chapter 4</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="../Bible PDF.pdf#page=674" target="_blank">Open 2 Timothy in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 Paul, an apostle of Jesus Christ by the will of God ,
+according to the promise of life which is in Christ Jesus,
+2 To Timothy, my dearly beloved son: Grace, mercy, and
+peace, from God the Father and Christ Jesus our Lord.
+3 I thank God, whom I serve from my forefathers with pure
+conscience, that without ceasing I have remembrance of thee
+in my prayers night and day;
+4 Greatly desiring to see thee, being mindful of thy tears,
+that I may be filled with joy;
+5 When I call to remembrance the unfeigned faith that is in
+thee, which dwelt first in thy grandmother L ois, and thy
+mother Eunice; and I am persuaded that in thee also.
+6 Wherefore I put thee in remembrance that thou stir up
+the gift of God, which is in thee by the putting on of my
+hands.
+7 For God hath not given us the spirit of fear; but of
+power, and of love, and of a sound mind.
+8 Be not thou therefore ashamed of the testimony of our
+Lord, nor of me his prisoner: but be thou partaker of the
+afflictions of the gospel according to the power of God;
+9 Who hath saved us, and called us with an holy calling,
+not according to our works, but according to his own purpose
+and grace, which was given us in Christ Jesus before the
+world began,
+10 But is now made manifest by the appearing of our
+Saviour Jesus Christ, who hath abolished death, and hath
+brought life and immortality to light through the gospel:
+11 Whereunto I am appointed a preacher, and an apostle,
+and a teacher of the Gentiles.
+12 For the which cause I also suffer these things:
+nevertheless I am not ashamed: for I know whom I have
+believed, and am persuaded that he is able to keep that which
+I have committed unto him against that day.
+13 Hold fast the form of sound words, which thou hast
+heard of me, in faith and love which is in Christ Jesus.
+14 That good thing which was committed unto thee keep
+by the Holy Ghost which dwelleth in us.
+15 This thou knowest, that all they which are in Asia be
+turned away from me; of whom are Phygellus and
+Hermogenes.
+16 The Lord give mercy unto the house of Onesiphorus;
+for he oft refreshed me, and was not ashamed of my chain:
+17 But, when he was in Rome, he sought me out very
+diligently, and found me.
+18 The Lord grant unto him that he may find mercy of the
+Lord in that day: and in how many things he ministered unto
+me at Ephesus, thou knowest very well.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 Thou therefore, my son, be strong in the grace that is in
+Christ Jesus.
+2 And the things that thou hast heard of me among many
+witnesses, the same commit thou to faithful men, who shall
+be able to teach others also.
+3 Thou therefore endure hardness, as a good so ldier of
+Jesus Christ.
+4 No man that warreth entangleth himself with the affairs
+of this life; that he may please him who hath chosen him to
+be a soldier.
+5 And if a man also strive for masteries, yet is he not
+crowned, except he strive lawfully.
+6 The husbandman that laboureth must be first partaker of
+the fruits.
+7 Consider what I say; and the Lord give thee
+understanding in all things.
+8 Remember that Jesus Christ of the seed of David was
+raised from the dead according to my gospel:
+9 Wherein I suffer tr ouble, as an evil doer, even unto
+bonds; but the word of God is not bound.
+10 Therefore I endure all things for the elect&#x27;s sakes, that
+they may also obtain the salvation which is in Christ Jesus
+with eternal glory.
+11 It is a faithful saying: For if we be  dead with him, we
+shall also live with him:
+12 If we suffer, we shall also reign with him: if we deny
+him, he also will deny us:
+13 If we believe not, yet he abideth faithful: he cannot
+deny himself.
+14 Of these things put them in remembrance, charging
+them before the Lord that they strive not about words to no
+profit, but to the subverting of the hearers.
+15 Study to shew thyself approved unto God, a workman
+that needeth not to be ashamed, rightly dividing the word of
+truth.
+16 But shun profane and vain b abblings: for they will
+increase unto more ungodliness.
+17 And their word will eat as doth a canker: of whom is
+Hymenaeus and Philetus;
+18 Who concerning the truth have erred, saying that the
+resurrection is past already; and overthrow the faith of some.
+19 Nevertheless the foundation of God standeth sure,
+having this seal, The Lord knoweth them that are his. And,
+Let every one that nameth the name of Christ depart from
+iniquity.
+20 But in a great house there are not only vessels of gold
+and of silver, but also of wood and of earth; and some to
+honour, and some to dishonour.
+21 If a man therefore purge himself from these, he shall be
+a vessel unto honour, sanctified, and meet for the master&#x27;s
+use, and prepared unto every good work.
+22 Flee also youthful lusts: but follow righteousness, faith,
+charity, peace, with them that call on the Lord out of a pure
+heart.
+23 But foolish and unlearned questions avoid, knowing
+that they do gender strifes.
+24 And the servant of the Lord must not strive; but be
+gentle unto all men, apt to teach, patient,
+25 In meekness instructing those that oppose themselves;
+if God peradventure will give them repentance to the
+acknowledging of the truth;
+26 And that they may recover themselves out of the snare
+of the devil, who are taken captive by him at his will.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 This know also, that in the last days perilous times shall
+come.
+2 For men shall be lovers of their own selves, covetous,
+boasters, proud, blasphemers, disobedient to parents,
+unthankful, unholy,
+3 Without natural aff ection, trucebreakers, false accusers,
+incontinent, fierce, despisers of those that are good,
+4 Traitors, heady, highminded, lovers of pleasures more
+than lovers of God;
+5 Having a form of godliness, but denying the power
+thereof: from such turn away.
+6 For of this sort are they which creep into houses, and
+lead captive silly women laden with sins, led away with
+divers lusts,
+7 Ever learning, and never able to come to the knowledge
+of the truth.
+8 Now as Jannes and Jambres withstood Moses, so do
+these also resist the truth: men of corrupt minds, reprobate
+concerning the faith.
+9 But they shall proceed no further: for their folly shall be
+manifest unto all men, as their&#x27;s also was.
+10 But thou hast fully known my doctrine, manner of life,
+purpose, faith, longsuffering, charity, patience,
+11 Persecutions, afflictions, which came unto me at
+Antioch, at Iconium, at Lystra; what persecutions I endured:
+but out of them all the Lord delivered me.
+12 Yea, and all that will live godly in Christ Jesus shall
+suffer persecution.
+13 But evil men and seducers shall wax worse and worse,
+deceiving, and being deceived.
+14 But continue thou in the things which thou hast learned
+and hast been assured of, knowing of whom thou hast
+learned them;
+15 And that from a child thou hast known the holy
+scriptures, which are able to make thee wise unto salvation
+through faith which is in Christ Jesus.
+16 All scripture is given by inspiration of God, and is
+profitable for doctrine, for reproof, for correction, for
+instruction in righteousness:
+17 That the man of God may be perfect, throughly
+furnished unto all good works.
+
+</div><h4 id="chapter-4">Chapter 4</h4><div>
+1 I charge thee therefore before God, and the Lord Jesus
+Christ, who shall judge the quick and the dead at his
+appearing and his kingdom;
+2 Preach the word; be in stant in season, out of season;
+reprove, rebuke, exhort with all longsuffering and doctrine.
+3 For the time will come when they will not endure sound
+doctrine; but after their own lusts shall they heap to
+themselves teachers, having itching ears;
+4 And they shall turn away their ears from the truth, and
+shall be turned unto fables.
+5 But watch thou in all things, endure afflictions, do the
+work of an evangelist, make full proof of thy ministry.
+6 For I am now ready to be offered, and the time of my
+departure is at hand.
+7 I have fought a good fight, I have finished my course, I
+have kept the faith:
+8 Henceforth there is laid up for me a crown of
+righteousness, which the Lord, the righteous judge, shall give
+me at that day: and not to me only, but unto all them also that
+love his appearing.
+9 Do thy diligence to come shortly unto me:
+10 For Demas hath forsaken me, having loved this present
+world, and is departed unto Thessalonica; Crescens to
+Galatia, Titus unto Dalmatia.
+11 Only Luke is with me. Take Mark, an d bring him with
+thee: for he is profitable to me for the ministry.
+12 And Tychicus have I sent to Ephesus.
+13 The cloke that I left at Troas with Carpus, when thou
+comest, bring with thee , and the books, but especially the
+parchments.
+14 Alexander the coppersmith did me much evil: the Lord
+reward him according to his works:
+15 Of whom be thou ware also; for he hath greatly
+withstood our words.
+16 At my first answer no man stood with me, but all men
+forsook me: I pray God  that it may not be laid to their
+charge.
+17 Notwithstanding the Lord stood with me, and
+strengthened me; that by me the preaching might be fully
+known, and that all the Gentiles might hear: and I was
+delivered out of the mouth of the lion.
+18 And the Lord shall deliver me from every evil wo rk,
+and will preserve me unto his heavenly kingdom: to whom
+be glory for ever and ever. Amen.
+19 Salute Prisca and Aquila, and the household of
+Onesiphorus.
+20 Erastus abode at Corinth: but Trophimus have I left at
+Miletum sick.
+21 Do thy diligence to come  before winter. Eubulus
+greeteth thee, and Pudens, and Linus, and Claudia, and all
+the brethren.
+22 The Lord Jesus Christ be with thy spirit. Grace be with
+you. Amen.
+The second epistle unto Timotheus, ordained the first
+bishop of the church of the Ephesia ns, was written from
+Rome, when Paul was brought before Nero the second
+time.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for 2 Timothy.</div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nahum - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="../bible.html">All Books</a>
+        <a class="btn" href="../Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>Nahum</h2>
+      <p>Complete extracted text for Nahum from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 522</span>
+        <span class="badge">Book End Page: 523</span>
+        <span class="badge">Expected Chapters: 3</span>
+        <span class="badge">Verified Chapters Found: 3</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">Nahum</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">3</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="../Bible PDF.pdf#page=522" target="_blank">Open Nahum in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 The burden of Nineveh. The book of the vision of
+Nahum the Elkoshite.
+2 God is jealous, and the LORD revengeth; the LORD
+revengeth, and is furious; the LORD will take vengeance on
+his adversaries, and he reserveth wrath for his enemies.
+3 The LORD is slow to anger, and great in power, and will
+not at all acquit the wicked: the LORD hath his way in the
+whirlwind and in the storm, and the clouds are the dust of his
+feet.
+4 He rebuketh the sea, and maketh it dry, and drieth up all
+the rivers: Bashan languisheth, and Carmel, and the flower of
+Lebanon languisheth.
+5 The mountains quake at him, and the hills melt, and the
+earth is burned at his presence, yea, the world, and all that
+dwell therein.
+6 Who can stand before his indignation? and who can
+abide in the fierceness of his anger? his fury is poured out
+like fire, and the rocks are thrown down by him.
+7 The LORD is good, a strong hold in the day of trouble;
+and he knoweth them that trust in him.
+8 But with an overrunning flood he will make an utter end
+of the place thereof, and darkness shall pursue his enemies.
+9 What do ye imagine against the LORD? he will make an
+utter end: affliction shall not rise up the second time.
+10 For while they be folden together as thorns, and while
+they are drunken as drunkards, they shall be devoured as
+stubble fully dry.
+11 There is one come out of thee, that imagineth evil
+against the LORD, a wicked counsellor.
+12 Thus saith the LORD; Though they be  quiet, and
+likewise many, yet thus shall they be cut down, when he
+shall pass through. Though I have afflicted thee, I will afflict
+thee no more.
+13 For now will I break his yoke from off thee, and will
+burst thy bonds in sunder.
+14 And the LORD hath given a commandment concerning
+thee, that no more of thy name be sown: out of the house of
+thy gods will I cut off the graven image and the molten
+image: I will make thy grave; for thou art vile.
+15 Behold upon the mountains the feet of him that bringeth
+good tidings, that publisheth peace! O Judah, keep thy
+solemn feasts, perform thy vows: for the wicked shall no
+more pass through thee; he is utterly cut off.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 He that dasheth in pieces is come up before thy face:
+keep the munition, watch the way, make thy loins strong,
+fortify thy power mightily.
+2 For the LORD hath turned away the excellency of Jacob,
+as the excellency of Israel: for the e mptiers have emptied
+them out, and marred their vine branches.
+3 The shield of his mighty men is made red, the valiant
+men are in scarlet: the chariots shall be with flaming torches
+in the day of his preparation, and the fir trees shall be terribly
+shaken.
+4 The chariots shall rage in the streets, they shall justle one
+against another in the broad ways: they shall seem like
+torches, they shall run like the lightnings.
+5 He shall recount his worthies: they shall stumble in their
+walk; they shall make haste t o the wall thereof, and the
+defence shall be prepared.
+6 The gates of the rivers shall be opened, and the palace
+shall be dissolved.
+7 And Huzzab shall be led away captive, she shall be
+brought up, and her maids shall lead her as with the voice of
+doves, tabering upon their breasts.
+8 But Nineveh is of old like a pool of water: yet they shall
+flee away. Stand, stand, shall they cry ; but none shall look
+back.
+9 Take ye the spoil of silver, take the spoil of gold: for
+there is none end of the store and glory out of all the pleasant
+furniture.
+10 She is empty, and void, and waste: and the heart
+melteth, and the knees smite together, and much pain is in all
+loins, and the faces of them all gather blackness.
+11 Where is the dwelling of the lions, and the feedingplace
+of the young lions, where the lion, even the old lion, walked,
+and the lion&#x27;s whelp, and none made them afraid?
+12 The lion did tear in pieces enough for his whelps, and
+strangled for his lionesses, and filled his holes with prey, and
+his dens with ravin.
+13 Behold, I am against thee, saith the LORD of hosts, and
+I will burn her chariots in the smoke, and the sword shall
+devour thy young lions: and I will cut off thy prey from the
+earth, and the voice of thy messengers shall no more be
+heard.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 Woe to the bloody city! it is all full of lies and robbery;
+the prey departeth not;
+2 The noise of a whip, and the noise of the rattling of the
+wheels, and of the pransing horses, and of the jumping
+chariots.
+3 The horseman lifteth up both the bright s word and the
+glittering spear: and there is a multitude of slain, and a great
+number of carcases; and there is none end of their corpses;
+they stumble upon their corpses:
+4 Because of the multitude of the whoredoms of the
+wellfavoured harlot, the mistress of witchcrafts, that selleth
+nations through her whoredoms, and families through her
+witchcrafts.
+5 Behold, I am against thee, saith the LORD of hosts; and I
+will discover thy skirts upon thy face, and I will shew the
+nations thy nakedness, and the kingdoms thy shame.
+6 And I will cast abominable filth upon thee, and make
+thee vile, and will set thee as a gazingstock.
+7 And it shall come to pass, that all they that look upon
+thee shall flee from thee, and say, Nineveh is laid waste: who
+will bemoan her? whence shall I seek comforters for thee?
+8 Art thou better than populous No, that was situate among
+the rivers, that had the waters round about it, whose rampart
+was the sea, and her wall was from the sea?
+9 Ethiopia and Egypt were her strength, and it was infinite;
+Put and Lubim were thy helpers.
+10 Yet was she carried away, she went into captivity: her
+young children also were dashed in pieces at the top of all
+the streets: and they cast lots for her honourable men, and all
+her great men were bound in chains.
+11 Thou also shalt be drunken: thou shalt be hid, thou also
+shalt seek strength because of the enemy.
+12 All thy strong holds shall be like  fig trees with the
+firstripe figs: if they be shaken, they shall even fall into the
+mouth of the eater.
+13 Behold, thy people in the midst of thee are women: the
+gates of thy land shall be set wide open unto thine enemies:
+the fire shall devour thy bars.
+14 Draw thee waters for the siege, fortify thy strong holds:
+go into clay, and tread the morter, make strong the brickkiln.
+15 There shall the fire devour thee; the sword shall cut thee
+off, it shall eat thee up like the cankerworm: make thyself
+many as the cankerworm, make thyself many as the locusts.
+16 Thou hast multiplied thy merchants above the stars of
+heaven: the cankerworm spoileth, and flieth away.
+17 Thy crowned are as the locusts, and thy captains as the
+great grasshoppers, which camp in the hedges in the cold
+day, but when the sun ariseth they flee away, and their place
+is not known where they are.
+18 Thy shepherds slumber, O king of Assyria: thy nobles
+shall dwell in the dust : thy people is scattered upon the
+mountains, and no man gathereth them.
+19 There is  no healing of thy bruise; thy wound is
+grievous: all that hear the bruit of thee shall clap the hand s
+over thee: for upon whom hath not thy wickedness passed
+continually?</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for Nahum.</div>
+  </main>
+</body>
+</html>
