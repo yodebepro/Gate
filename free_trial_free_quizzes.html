@@ -1,581 +1,486 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GATE — Free Quizzes</title>
 <style>
-:root {
-  --navy:#0d1b2e; --navy2:#162440; --charcoal:#1e2d3d; --gold:#c9a84c; --gold2:#e8c96e;
-  --burgundy:#6b1d2e; --burgundy2:#8b2540; --cream:#f5f0e8; --cream2:#ede5d4;
-  --text:#e8e0d0; --text2:#b8a88a; --success:#2d7a4f; --danger:#8b2020; --white:#ffffff;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
-body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
-a{color:var(--gold);text-decoration:none} a:hover{color:var(--gold2);text-decoration:underline}
-.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);padding:0;position:sticky;top:0;z-index:100}
-.gate-nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.5rem}
-.gate-logo{display:flex;align-items:center;gap:.8rem}
-.gate-logo .crest{font-size:2rem;color:var(--gold)}
-.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:2px}
-.gate-logo-text .sub{font-size:.65rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
-.gate-nav-links{display:flex;gap:.3rem;align-items:center;flex-wrap:wrap}
-.gate-nav-links a{color:var(--text2);font-size:.8rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif}
-.gate-nav-links a:hover,.gate-nav-links a.active{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
-.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px}
-.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2.5rem 1.5rem 2rem;text-align:center}
-.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:2rem;color:var(--gold);margin-bottom:.4rem}
-.page-header p{max-width:860px;margin:0 auto;color:var(--text2)}
-.page-wrap{max-width:1200px;margin:0 auto;padding:1.5rem}
-.panel{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.16);border-radius:14px;padding:1.2rem}
 
-/* --- Added integrated dropdown navigation + admin manager --- */
-.gate-nav-links{position:relative}
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+
+
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
 .gate-dropdown{position:relative; display:inline-block}
 .gate-dropdown > a, .gate-dropdown > button{
   color: var(--text2); font-size: 0.8rem; padding: 0.3rem 0.7rem;
   border-radius: 4px; transition: all 0.2s; letter-spacing: 1px;
   text-transform: uppercase; font-family: sans-serif; background:none; border:none; cursor:pointer;
 }
-.gate-dropdown > a:hover, .gate-dropdown > button:hover{
+.gate-dropdown > a:hover, .gate-dropdown > button:hover,
+.gate-dropdown > a.active, .gate-dropdown > button.active{
   color: var(--gold); background: rgba(201,168,76,0.12); text-decoration:none;
 }
 .gate-dropdown-menu{
-  display:none; position:absolute; top:calc(100% + 6px); left:0; min-width:260px;
-  background: linear-gradient(180deg, var(--navy2), var(--charcoal));
-  border:1px solid rgba(201,168,76,.35); border-radius:10px; padding:8px;
-  box-shadow:0 16px 40px rgba(0,0,0,.30); z-index:150;
+  display:block;
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  min-width:235px;
+  background:linear-gradient(160deg,#162440 0%,#0d1b2e 100%);
+  border:1px solid rgba(201,168,76,0.45);
+  border-top:3px solid var(--gold);
+  border-radius:0 0 10px 10px;
+  padding:0.4rem 0;
+  box-shadow:0 16px 45px rgba(0,0,0,0.75),0 0 0 1px rgba(201,168,76,0.06);
+  z-index:1000;
+  transform:translateY(-8px);
+  transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
 }
-.gate-dropdown:hover .gate-dropdown-menu{display:block}
+.gate-dropdown.open .gate-dropdown-menu,
+.gate-dropdown:hover .gate-dropdown-menu{
+  visibility:visible;
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
 .gate-dropdown-menu a{
-  display:block; padding:.55rem .7rem !important; border-radius:6px; color:var(--text) !important;
-  text-transform:none !important; letter-spacing:.3px !important; font-size:.86rem !important;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  color:var(--text2) !important;
+  font-size:0.82rem !important;
+  padding:0.58rem 1rem !important;
+  font-family:sans-serif;
+  letter-spacing:0.3px !important;
+  text-transform:none !important;
+  text-decoration:none !important;
+  border-left:3px solid transparent;
+  transition:all 0.18s ease;
+  position:relative;
 }
-.gate-dropdown-menu a:hover{background:rgba(201,168,76,.12) !important; color:var(--gold) !important}
-.gate-manager{
-  margin-top:1rem; padding:1rem; border:1px solid rgba(201,168,76,.22); border-radius:12px;
-  background:rgba(255,255,255,.03)
+.gate-dropdown-menu a:hover{
+  color:var(--gold) !important;
+  background:linear-gradient(90deg,rgba(201,168,76,0.12),rgba(201,168,76,0.02));
+  border-left-color:var(--gold);
+  padding-left:1.3rem;
+  text-decoration:none;
 }
-.gate-manager h3{margin-bottom:.75rem}
-.gate-manager .row{display:grid; grid-template-columns:1fr 1fr; gap:.8rem}
-.gate-manager label{display:block; font-size:.85rem; color:var(--text2); margin-bottom:.3rem}
-.gate-manager input, .gate-manager textarea{
-  width:100%; padding:.7rem .8rem; border-radius:8px; border:1px solid rgba(201,168,76,.28);
-  background:rgba(255,255,255,.04); color:var(--text); font-family:Arial,sans-serif;
+.gate-nav-links .btn-nav{
+  background:var(--gold); color:var(--navy)!important; font-weight:700;
+  padding:0.35rem 1rem; border-radius:4px;
 }
-.gate-manager textarea{min-height:110px; resize:vertical}
-.gate-manager .btnrow{display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.8rem}
-.gate-admin-btn{
-  background:var(--gold); color:var(--navy); font-weight:700; border:none;
-  border-radius:8px; padding:.65rem 1rem; cursor:pointer
-}
-.gate-admin-btn.alt{background:rgba(201,168,76,.14); color:var(--gold); border:1px solid rgba(201,168,76,.32)}
-.gate-admin-card{
-  margin-top:.85rem; padding:.85rem; border:1px solid rgba(201,168,76,.22); border-radius:10px;
-  background:rgba(255,255,255,.02)
-}
-.gate-admin-card img{max-width:180px; max-height:120px; display:block; margin-top:.6rem; border-radius:8px; border:1px solid rgba(201,168,76,.2)}
-.gate-badges{display:flex; gap:.5rem; flex-wrap:wrap; margin:.8rem 0}
-.gate-badge{
-  display:inline-block; padding:.35rem .7rem; border-radius:999px; border:1px solid rgba(201,168,76,.24);
-  background:rgba(201,168,76,.08); color:var(--gold2); font-size:.82rem
-}
-@media (max-width: 900px){
-  .gate-nav-inner{align-items:flex-start}
-  .gate-nav-links{width:100%}
-}
-@media (max-width: 700px){
-  .gate-manager .row{grid-template-columns:1fr}
-  .gate-dropdown{display:block}
-  .gate-dropdown-menu{position:static; display:block; margin:.2rem 0 .5rem}
-}
+.gate-nav-links .btn-nav:hover{ background:var(--gold2); }
+
+
+.page-header{background:linear-gradient(180deg,var(--navy2),var(--charcoal));border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem;padding-bottom:5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.card-header h2 span{font-size:1.2rem}
+.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.55rem 1.2rem;border-radius:5px;font-family:sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2);text-decoration:none}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:#f5f0e8}.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f;text-decoration:none}
+.btn-sm{padding:.3rem .7rem;font-size:.78rem}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.badge-red{background:rgba(139,32,32,.2);color:#e05555;border:1px solid #8b2020}
+.badge-blue{background:rgba(30,80,150,.2);color:#6ea8fe;border:1px solid #3060a0}
+.badge-gray{background:rgba(100,100,100,.2);color:#888;border:1px solid #555}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+
+
+.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
+.admin-toolbar.visible{display:block}
+.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.admin-tb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif;margin-right:.2rem}
+.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600;transition:all .15s}
+.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
+.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
+.atb-btn.amber{background:rgba(201,168,76,.15);color:var(--gold);border-color:var(--gold)}
+.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
+.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
+.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
+/* Admin Panel on page */
+.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+.admin-panel.visible{display:block}
+.admin-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.admin-panel-header h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
+.admin-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
+/* Content items */
+.item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1rem}
+.content-item{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;transition:all .2s}
+.content-item:hover{border-color:rgba(201,168,76,.5)}
+.content-item img{width:100%;height:140px;object-fit:cover;border-radius:6px;margin-bottom:.7rem;border:1px solid rgba(201,168,76,.15)}
+.content-item .item-title{font-family:sans-serif;font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.3rem}
+.content-item .item-body{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:.6rem}
+.item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem}
+.status-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
 
 </style>
-</head>
-<body>
+</head><body>
 <nav class="gate-nav"><div class="gate-nav-inner">
-  <div class="gate-logo">
-    <div class="crest">✝</div>
-    <div class="gate-logo-text">
-      <div class="title">GATE</div>
-      <div class="sub">Global Association Theological Education</div>
-    </div>
-  </div>
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
   <div class="gate-nav-links">
-
-    <div class="gate-dropdown">
-      <button>HOME ▾</button>
-      <div class="gate-dropdown-menu">
-        <a href="index.html">🏠 Home</a>
-        <a href="bible.html">📖 The Bible</a>
-        <a href="schedule.html">📅 Take The Test</a>
-        <a href="apply.html">🎓 Apply to School</a>
-        <a href="announcements.html">📢 Announcement</a>
-        <a href="events.html">🗓 Events</a>
-        <a href="livepanel.html">🔴 LIVE Panel</a>
-        <a href="biblestudies.html">✝ Bible Studies</a>
-        <a href="video.html">▶ Video</a>
-        <a href="ministry.html">⛪ Ministry</a>
-        <a href="donation.html">💛 Donation</a>
-      </div>
-    </div>
-
-    <div class="gate-dropdown">
-      <button>ACCOUNT ▾</button>
-      <div class="gate-dropdown-menu">
-        <a href="account.html">🔐 Login / Register</a>
-        <a href="account_profile.html">👤 Profile</a>
-        <a href="account_settings.html">⚙ Settings</a>
-        <a href="account_subscriptions.html">📋 Subscriptions</a>
-        <a href="account_orders.html">📦 Orders</a>
-        <a href="account_billing.html">💳 Billing</a>
-        <a href="account_payment_methods.html">💰 Payment Methods</a>
-        <a href="account_messages.html">✉ Messages</a>
-        <a href="account_saved_items.html">🔖 Saved Items</a>
-        <a href="account_security.html">🔒 Security</a>
-        <a href="account_support_tickets.html">🎫 Support Tickets</a>
-      </div>
-    </div>
-
-    <div class="gate-dropdown">
-      <button>BUNDLES ▾</button>
-      <div class="gate-dropdown-menu">
-        <a href="bundle.html">📦 Exam Bundles</a>
-        <a href="bundles_store.html">🛒 Store</a>
-        <a href="bundles_books.html">📚 Books</a>
-        <a href="bundles_ebooks.html">📱 eBooks</a>
-        <a href="bundles_courses.html">🎓 Courses</a>
-        <a href="bundles_study_guides.html">📝 Study Guides</a>
-        <a href="bundles_theology_materials.html">✝ Theology Materials</a>
-        <a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
-        <a href="bundles_bundle_250.html">💵 $250 Bundle</a>
-        <a href="bundles_bundle_500.html">💵 $500 Bundle</a>
-        <a href="bundles_independent_tests.html">📄 Independent Tests</a>
-      </div>
-    </div>
-
-    <div class="gate-dropdown">
-      <button>CONTACT ▾</button>
-      <div class="gate-dropdown-menu">
-        <a href="contact.html">✉ Contact Us</a>
-        <a href="contact_general_contact.html">📞 General Contact</a>
-        <a href="contact_support.html">🛠 Support</a>
-        <a href="contact_admissions.html">🎓 Admissions</a>
-        <a href="contact_theology_schools.html">⛪ Theology Schools</a>
-        <a href="contact_divinity_schools.html">📖 Divinity Schools</a>
-        <a href="contact_phd_directory.html">🏛 PhD Directory</a>
-        <a href="contact_university_directory.html">🏫 University Directory</a>
-        <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a>
-        <a href="contact_events_contact.html">🗓 Events Contact</a>
-        <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
-      </div>
-    </div>
-
-    <div class="gate-dropdown">
-      <button>FREE TRIAL ▾</button>
-      <div class="gate-dropdown-menu">
-        <a href="trial.html">🎓 Trial Examination</a>
-        <a href="free_trial_overview.html">📋 Trial Overview</a>
-        <a href="free_trial_trial_status.html">📊 Trial Status</a>
-        <a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
-        <a href="free_trial_free_theology.html">✝ Free Theology</a>
-        <a href="free_trial_free_divinity.html">📖 Free Divinity</a>
-        <a href="free_trial_free_videos.html">▶ Free Videos</a>
-        <a href="free_trial_free_books.html">📚 Free Books</a>
-        <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a>
-        <a href="free_trial_study_plan.html">📝 Study Plan</a>
-        <a href="free_trial_activation_help.html">🔑 Activation Help</a>
-      </div>
-    </div>
-
-    <div class="gate-dropdown">
-      <button>REPORTS ▾</button>
-      <div class="gate-dropdown-menu">
-        <a href="reports.html">📈 Reports</a>
-        <a href="results.html">📊 My Results</a>
-        <a href="reports_performance.html">📈 Performance</a>
-        <a href="reports_scores.html">🏅 Scores</a>
-        <a href="reports_trial_reports.html">🎓 Trial Reports</a>
-        <a href="reports_bundle_access.html">📦 Bundle Access</a>
-        <a href="reports_purchase_history.html">💳 Purchase History</a>
-        <a href="reports_student_activity.html">👤 Student Activity</a>
-        <a href="reports_admin_reports.html">⚙ Admin Reports</a>
-        <a href="reports_exam_usage.html">📝 Exam Usage</a>
-        <a href="reports_downloads.html">⬇ Downloads</a>
-        <a href="reports_notifications.html">🔔 Notifications</a>
-      </div>
-    </div>
-
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
     <a href="admin.html" class="btn-nav">ADMIN</a>
-
   </div>
 </div></nav>
-<header class="page-header">
-  <h1>Free Quizzes</h1>
-  <p>Free theology and divinity study materials, trial access, and activation help.</p>
-</header>
-<main class="page-wrap">
-  <div class="panel">
-    <p>This page now opens as its own root-level file so GitHub Pages can find it without 404 errors.</p>
-    
-        <div class="gate-badges">
-          <span class="gate-badge">Free Trial: 50 Questions / 2 Weeks</span>
-          <span class="gate-badge">$250 = Exam 1–3 + 2 Independent Tests</span>
-          <span class="gate-badge">$500 = All Exams + All Independent Questions</span>
-        </div>
-        
-    <div id="gate-manager-host"></div>
-  </div>
-</main>
-<script src="assets/gate_shared.js"></script>
-<script>gateRenderManager("free_trial","free_trial_free_quizzes");</script>
+<div class="page-header">
+  <h1>❓ Free Quizzes</h1>
+  <p>Practice quizzes for GATE exam preparation</p>
+  <div class="divider"></div>
+</div>
+<div class="container">
 
-<!-- ===== GATE ADMIN TOOLBAR ===== -->
-<div id="gateAdminBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#0d1b2e 0%,#162440 100%);border-top:2px solid #c9a84c;padding:.45rem 1rem;font-family:sans-serif;">
-  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
-    <span style="color:#c9a84c;font-size:.75rem;font-weight:700;letter-spacing:1px;margin-right:.3rem;">⚙ ADMIN:</span>
-    <button onclick="gAdminAction('add')" style="background:#2d7a4f;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">+ Add</button>
-    <button onclick="gAdminAction('edit')" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">✏ Edit</button>
-    <button onclick="gAdminAction('upload')" style="background:#3060a0;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">📷 Upload</button>
-    <button onclick="gAdminAction('approve')" style="background:#2d7a4f;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">✓ Approve</button>
-    <button onclick="gAdminAction('verify')" style="background:#5a3080;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">🔍 Verify</button>
-    <button onclick="gAdminAction('suspend')" style="background:#a06020;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">⊘ Suspend</button>
-    <button onclick="gAdminAction('archive')" style="background:#3a3a5a;color:#e8e0d0;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">📦 Archive</button>
-    <button onclick="gAdminAction('restore')" style="background:#1a4a6a;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">↩ Restore</button>
-    <button onclick="gAdminAction('remove')" style="background:#8b2020;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">🗑 Remove</button>
-    <span style="margin-left:auto;display:flex;gap:.4rem;align-items:center;">
-      <a href="admin.html" style="color:#c9a84c;font-size:.72rem;text-decoration:none;border:1px solid rgba(201,168,76,.4);padding:.28rem .6rem;border-radius:4px;">Admin Console →</a>
-      <button onclick="gAdminLogout()" style="background:rgba(139,32,32,.6);color:#e05555;border:1px solid rgba(139,32,32,.6);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✕ Exit Admin</button>
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-panel-header">
+    <h3>⚙ Admin Control Panel</h3>
+    <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close Admin</button>
+  </div>
+  <div class="admin-actions">
+    <button class="btn btn-gold btn-sm" onclick="document.getElementById('addForm').style.display=document.getElementById('addForm').style.display==='none'?'block':'none'">+ Add New Item</button>
+    <button class="btn btn-outline btn-sm" onclick="renderItems()">↻ Refresh</button>
+    <a href="admin.html" class="btn btn-outline btn-sm">Admin Console →</a>
+  </div>
+  <div id="addForm" style="display:none;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
+    <div class="grid2">
+      <div class="form-group"><label>Title *</label><input type="text" id="adm_title" placeholder="Item title..."></div>
+      <div class="form-group"><label>Status</label>
+        <select id="adm_status"><option value="active">Active</option><option value="approved">Approved</option><option value="verified">Verified</option><option value="draft">Draft</option></select>
+      </div>
+    </div>
+    <div class="form-group"><label>Description / Content</label><textarea id="adm_body" rows="3" placeholder="Content, description, or notes..."></textarea></div>
+    <div class="grid2">
+      <div class="form-group"><label>URL / Link (optional)</label><input type="url" id="adm_url" placeholder="https://..."></div>
+      <div class="form-group"><label>Price / Amount (optional)</label><input type="text" id="adm_price" placeholder="e.g. 29.99"></div>
+    </div>
+    <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="adm_img" accept="image/*"></div>
+    
+    <div style="display:flex;gap:.6rem;margin-top:.8rem;">
+      <button class="btn btn-gold" style="min-width:120px;font-size:.95rem;" onclick="addItem()">📢 POST</button>
+      <button class="btn btn-outline" onclick="document.getElementById('addForm').style.display='none'">Cancel</button>
+    </div>
+    <div id="adm_msg" style="margin-top:.5rem;font-size:.84rem;min-height:1.2rem;"></div>
+  </div>
+</div>
+
+
+<div class="alert alert-info">❓ Practice quizzes to prepare for GATE examinations. Admin manages quizzes below.</div>
+<div class="card"><div class="card-header"><h2><span>❓</span> Practice Quiz Library</h2></div>
+<div id="items_list"></div>
+<div style="text-align:center;margin-top:1rem;"><a href="trial.html" class="btn btn-gold">Take the Official Free Trial →</a></div></div>
+
+</div>
+
+<div class="admin-toolbar" id="adminToolbar">
+  <div class="admin-tb-inner">
+    <span class="admin-tb-label">⚙ ADMIN:</span>
+    <button class="atb-btn green" onclick="document.getElementById('addForm').style.display='block';document.getElementById('adminPanel').classList.add('visible');window.scrollTo(0,0)">+ Add</button>
+    <button class="atb-btn amber" onclick="renderItems()">✏ Edit Mode</button>
+    <button class="atb-btn" onclick="document.getElementById('adm_img')&&document.getElementById('adm_img').click()">📷 Upload</button>
+    <button class="atb-btn green" onclick="bulkSetStatus('approved')">✓ Approve All</button>
+    <button class="atb-btn" onclick="bulkSetStatus('verified')">🔍 Verify All</button>
+    <button class="atb-btn" style="background:rgba(180,120,20,.2);color:var(--gold2);" onclick="bulkSetStatus('suspended')">⊘ Suspend</button>
+    <button class="atb-btn" style="background:rgba(60,60,90,.3);color:#aaa;" onclick="bulkSetStatus('archived')">📦 Archive</button>
+    <button class="atb-btn green" onclick="bulkSetStatus('active')">↩ Restore All</button>
+    <button class="atb-btn red" onclick="confirmClearAll()">🗑 Remove All</button>
+    <span style="margin-left:auto;display:flex;gap:.4rem;">
+      <a href="admin.html" class="atb-btn amber">Admin Console</a>
+      <button class="atb-btn red" onclick="hideAdmin()">✕ Exit</button>
     </span>
   </div>
 </div>
-
-<!-- Admin Login Float Button -->
-<div id="gAdminLoginBtn" style="position:fixed;bottom:1rem;right:1rem;z-index:9998;">
-  <button onclick="gAdminPrompt()" style="background:linear-gradient(135deg,#162440,#0d1b2e);color:#c9a84c;border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4);">⚙ Admin</button>
+<div class="admin-float" id="adminFloat">
+  <button onclick="promptAdmin()">⚙ Admin</button>
 </div>
 
-<!-- Admin Action Modal -->
-<div id="gAdminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:10000;align-items:center;justify-content:center;">
-  <div style="background:#162440;border:2px solid #c9a84c;border-radius:10px;padding:2rem;max-width:520px;width:90%;max-height:85vh;overflow-y:auto;position:relative;">
-    <button onclick="document.getElementById('gAdminModal').style.display='none'" style="position:absolute;top:.7rem;right:.8rem;background:none;border:none;color:#b8a88a;font-size:1.3rem;cursor:pointer;">✕</button>
-    <h3 id="gAdminModalTitle" style="font-family:'Cinzel',serif;color:#c9a84c;margin-bottom:1.2rem;letter-spacing:1px;font-size:1.1rem;"></h3>
-    <div id="gAdminModalBody"></div>
-  </div>
-</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
 
+const ADMIN_PASS = 'GATE2025admin';
+const PAGE_KEY = 'gate_page_' + window.location.pathname.split('/').pop().replace('.html','');
+let isAdmin = false;
+
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function getItems(){return gl(PAGE_KEY)||[]}
+function saveItems(items){gs(PAGE_KEY,items)}
+function fmtDate(ts){if(!ts)return'';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+
+// Check if already admin
+(function(){
+  const s=gl('td_gate_v6');
+  if(s&&s.tier==='admin'){isAdmin=true;showAdmin();}
+})();
+
+function promptAdmin(){
+  if(isAdmin){showAdmin();return;}
+  const pw=prompt('Admin Password:');
+  if(pw===ADMIN_PASS){
+    isAdmin=true;
+    const s=gl('td_gate_v6')||{user:null,tier:null};
+    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};
+    s.tier='admin';gs('td_gate_v6',s);
+    showAdmin();
+  } else if(pw!==null){alert('Incorrect password.');}
+}
+
+function showAdmin(){
+  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.add('visible'));
+  document.querySelectorAll('.admin-toolbar').forEach(el=>el.classList.add('visible'));
+  document.querySelectorAll('.admin-float').forEach(el=>el.style.display='none');
+  renderItems();
+}
+
+function hideAdmin(){
+  isAdmin=false;
+  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.remove('visible'));
+  document.querySelectorAll('.admin-toolbar').forEach(el=>el.classList.remove('visible'));
+  document.querySelectorAll('.admin-float').forEach(el=>el.style.display='block');
+}
+
+// Add new item
+async function addItem(){
+  const title=document.getElementById('adm_title').value.trim();
+  const body=document.getElementById('adm_body').value.trim();
+  const url=document.getElementById('adm_url').value.trim();
+  const price=document.getElementById('adm_price').value.trim();
+  const status=document.getElementById('adm_status').value;
+  const imgFile=document.getElementById('adm_img').files[0];
+  if(!title&&!body){alert('Please enter a title or description.');return;}
+  let img='';
+  if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
+  const items=getItems();
+  items.unshift({id:Date.now(),title,body,url,price,img,status,created:Date.now(),updated:Date.now()});
+  saveItems(items);
+  clearForm();
+  renderItems();
+  document.getElementById('adm_msg').innerHTML='<span style="color:#4aad74">✅ Posted! Visible to all visitors.</span>';
+  setTimeout(()=>document.getElementById('adm_msg').innerHTML='',2500);
+}
+
+function clearForm(){
+  ['adm_title','adm_body','adm_url','adm_price'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const img=document.getElementById('adm_img');if(img)img.value='';
+  const sel=document.getElementById('adm_status');if(sel)sel.value='active';
+}
+
+function editItem(id){
+  const items=getItems();
+  const item=items.find(i=>i.id===id);
+  if(!item)return;
+  const title=prompt('Edit title:',item.title||'');if(title===null)return;
+  const body=prompt('Edit description:',item.body||'');if(body===null)return;
+  const url=prompt('Edit URL/link:',item.url||'');if(url===null)return;
+  const price=prompt('Edit price/amount:',item.price||'');if(price===null)return;
+  const status=prompt('Status (active/approved/verified/suspended/archived):',item.status||'active');if(status===null)return;
+  Object.assign(item,{title,body,url,price,status:status||'active',updated:Date.now()});
+  saveItems(items);renderItems();
+}
+
+async function uploadImg(id){
+  const input=document.createElement('input');input.type='file';input.accept='image/*';
+  input.onchange=async()=>{
+    if(!input.files[0])return;
+    const img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(input.files[0]);});
+    const items=getItems();const item=items.find(i=>i.id===id);
+    if(item){item.img=img;item.updated=Date.now();saveItems(items);renderItems();}
+  };
+  input.click();
+}
+
+function setStatus(id,status){
+  const items=getItems();const item=items.find(i=>i.id===id);
+  if(!item)return;
+  item.status=status;item.updated=Date.now();
+  saveItems(items);renderItems();
+}
+
+function removeItem(id){
+  if(!confirm('Permanently remove this item?'))return;
+  saveItems(getItems().filter(i=>i.id!==id));renderItems();
+}
+
+function statusBadge(s){
+  const map={active:'badge-green',approved:'badge-green',verified:'badge-blue',suspended:'badge-red',archived:'badge-gray',draft:'badge-gold'};
+  return `<span class="badge ${map[s]||'badge-gray'}">${s||'active'}</span>`;
+}
+
+function renderItems(){
+  const list=document.getElementById('items_list');
+  if(!list)return;
+  const items=getItems();
+  if(!items.length){
+    // Only show admin message if admin logged in; public sees empty section quietly
+    if(isAdmin) list.innerHTML='<div style="color:var(--text2);text-align:center;padding:1.5rem;font-size:.85rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No posts yet. Use the form above and click 📢 POST to publish content here.</div>';
+    else list.innerHTML='';
+    return;
+  }
+  list.innerHTML='<div class="item-grid">'+items.map(item=>`
+    <div class="content-item">
+      ${item.img?`<img src="${item.img}" alt="${item.title||''}">`:''}
+      <div class="status-bar">${statusBadge(item.status)}${item.price?`<span class="badge badge-gold">$${item.price}</span>`:''}</div>
+      <div class="item-title">${item.title||'(Untitled)'}</div>
+      <div class="item-body">${item.body||''}</div>
+      ${item.url?`<a href="${item.url}" target="_blank" class="btn btn-outline btn-sm" style="margin-bottom:.5rem;">Open Link →</a>`:''}
+      <div style="font-size:.72rem;color:var(--text2);margin-bottom:.5rem;">Added: ${fmtDate(item.created)}</div>
+      ${isAdmin?`<div class="item-actions">
+        <button class="btn btn-outline btn-sm" onclick="editItem(${item.id})">✏ Edit</button>
+        <button class="btn btn-outline btn-sm" onclick="uploadImg(${item.id})">📷 Upload</button>
+        <button class="btn btn-green btn-sm" onclick="setStatus(${item.id},'approved')">✓ Approve</button>
+        <button class="btn btn-outline btn-sm" onclick="setStatus(${item.id},'verified')">🔍 Verify</button>
+        <button class="btn btn-sm" style="background:rgba(180,120,20,.3);color:var(--gold2);border:1px solid rgba(180,120,20,.4);" onclick="setStatus(${item.id},'suspended')">⊘ Suspend</button>
+        <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setStatus(${item.id},'archived')">📦 Archive</button>
+        <button class="btn btn-green btn-sm" onclick="setStatus(${item.id},'active')">↩ Restore</button>
+        <button class="btn btn-danger btn-sm" onclick="removeItem(${item.id})">🗑 Remove</button>
+      </div>`:''}
+    </div>`).join('')+'</div>';
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded',renderItems);
+
+
+function bulkSetStatus(status){
+  const items=getItems();
+  items.forEach(i=>{i.status=status;i.updated=Date.now();});
+  saveItems(items);renderItems();
+}
+function confirmClearAll(){
+  if(!confirm('Remove ALL items from this page? This cannot be undone.'))return;
+  saveItems([]);renderItems();
+}
+
+
+</script>
 <script>
 (function(){
-  const GATE_KEY='td_gate_v6';
-  const ADMIN_PASS='GATE2025admin';
-  function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
-  function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-  
-  function isAdmin(){
-    const s=gl(GATE_KEY);
-    return s&&s.tier==='admin';
-  }
-  
-  function gAdminShow(){
-    document.getElementById('gateAdminBar').style.display='block';
-    document.getElementById('gAdminLoginBtn').style.display='none';
-  }
-  
-  window.gAdminPrompt=function(){
-    if(isAdmin()){gAdminShow();return;}
-    const pw=prompt('🔐 Admin Password:');
-    if(pw===ADMIN_PASS){
-      const s=gl(GATE_KEY)||{user:null,tier:null};
-      if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};
-      s.tier='admin';
-      gs(GATE_KEY,s);
-      gAdminShow();
-    } else if(pw!==null){alert('Incorrect password.');}
-  };
-  
-  window.gAdminLogout=function(){
-    document.getElementById('gateAdminBar').style.display='none';
-    document.getElementById('gAdminLoginBtn').style.display='block';
-  };
-  
-  const PAGE=window.location.pathname.split('/').pop()||'index.html';
-  
-  window.gAdminAction=function(action){
-    const modal=document.getElementById('gAdminModal');
-    const title=document.getElementById('gAdminModalTitle');
-    const body=document.getElementById('gAdminModalBody');
-    const GATE_ADMIN_KEY='gate_admin_content_'+PAGE.replace('.html','');
-    
-    const actions={
-      add:{label:'➕ Add Content',icon:'➕',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title / Name *</label><input id="ga_title" type="text" placeholder="Title or name..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description / Body</label><textarea id="ga_body" rows="4" placeholder="Content description..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;resize:vertical;"></textarea></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL / Link (optional)</label><input id="ga_url" type="url" placeholder="https://..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Upload Image (optional)</label><input id="ga_img" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"></div>
-          <div id="ga_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminSaveItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Save Item</button>
-        </div>`},
-      edit:{label:'✏️ Edit / Change',icon:'✏️',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item to Edit</label>
-          <select id="ga_edit_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;" onchange="gAdminLoadEditItem()"><option value="">— Select —</option></select></div>
-          <div id="ga_edit_fields" style="display:none;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title</label><input id="ga_e_title" type="text" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description</label><textarea id="ga_e_body" rows="4" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;resize:vertical;"></textarea></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL</label><input id="ga_e_url" type="url" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div id="ga_e_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminUpdateItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Update</button></div>
-        </div>`},
-      upload:{label:'📷 Upload Image',icon:'📷',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item</label>
-          <select id="ga_ul_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">— Select item or New —</option><option value="__new__">Add as new image</option></select></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Image Label</label><input id="ga_ul_label" type="text" placeholder="Image label/title..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Image File</label><input id="ga_ul_file" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"><div id="ga_ul_preview" style="margin-top:.5rem;"></div></div>
-          <div id="ga_ul_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminUploadImg()" style="background:#3060a0;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Upload Image</button>
-        </div>`},
-      approve:{label:'✓ Approve Item',icon:'✓',html:gAdminApproveHtml()},
-      verify:{label:'🔍 Verify Item',icon:'🔍',html:gAdminStatusHtml('verify','verified','Verified','#5a3080')},
-      suspend:{label:'⊘ Suspend Item',icon:'⊘',html:gAdminStatusHtml('suspend','suspended','Suspended','#a06020')},
-      archive:{label:'📦 Archive Item',icon:'📦',html:gAdminStatusHtml('archive','archived','Archived','#3a3a5a')},
-      restore:{label:'↩ Restore Item',icon:'↩',html:gAdminRestoreHtml()},
-      remove:{label:'🗑 Remove / Delete',icon:'🗑',html:gAdminRemoveHtml()},
-    };
-    
-    const a=actions[action];
-    title.textContent=a.label;
-    body.innerHTML=a.html;
-    modal.style.display='flex';
-    
-    // Populate selects after rendering
-    if(action==='edit'||action==='upload')setTimeout(()=>gAdminPopulateSelect(action),50);
-    if(action==='remove'||action==='restore'||action==='archive'||action==='suspend'||action==='verify')
-      setTimeout(()=>gAdminPopulateActionSelect(action),50);
-    if(action==='approve')setTimeout(()=>gAdminPopulateApprove(),50);
-  };
-  
-  function gAdminApproveHtml(){
-    return `<div style="font-family:sans-serif;">
-      <p style="color:#b8a88a;font-size:.85rem;margin-bottom:1rem;">Review and approve pending items or user payment requests.</p>
-      <div id="ga_approve_list" style="margin-bottom:1rem;"></div>
-      <div id="ga_approve_users" style="margin-bottom:1rem;"></div>
-    </div>`;
-  }
-  
-  function gAdminStatusHtml(action,status,label,color){
-    return `<div style="font-family:sans-serif;">
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item</label>
-      <select id="ga_status_sel_${action}" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Reason (optional)</label><input id="ga_status_reason_${action}" type="text" placeholder="Reason for ${label.toLowerCase()}..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-      <div id="ga_status_msg_${action}" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminSetStatus('${action}','${status}')" style="background:${color};color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Mark as ${label}</button>
-    </div>`;
-  }
-  
-  function gAdminRestoreHtml(){
-    return `<div style="font-family:sans-serif;">
-      <p style="color:#b8a88a;font-size:.85rem;margin-bottom:.8rem;">Select an archived or suspended item to restore.</p>
-      <div style="margin-bottom:.8rem;"><select id="ga_restore_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div id="ga_restore_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminRestore()" style="background:#1a4a6a;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Restore Item</button>
-    </div>`;
-  }
-  
-  function gAdminRemoveHtml(){
-    return `<div style="font-family:sans-serif;">
-      <div class="alert" style="background:rgba(139,32,32,.2);border:1px solid rgba(139,32,32,.4);color:#e05555;border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem;">⚠️ Removed items cannot be recovered. Consider archiving instead.</div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item to Remove</label>
-      <select id="ga_remove_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Type DELETE to confirm</label><input id="ga_remove_confirm" type="text" placeholder="Type DELETE" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(139,32,32,.4);color:#e05555;border-radius:5px;font-size:.9rem;"></div>
-      <div id="ga_remove_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminRemoveItem()" style="background:#8b2020;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Permanently Remove</button>
-    </div>`;
-  }
-  
-  function getPageKey(){return 'gate_admin_content_'+(window.location.pathname.split('/').pop()||'index').replace('.html','');}
-  function getItems(){return gl(getPageKey())||[];}
-  function saveItems(items){gs(getPageKey(),items);}
-  
-  window.gAdminSaveItem=async function(){
-    const title=document.getElementById('ga_title').value.trim();
-    const body=document.getElementById('ga_body').value.trim();
-    const url=document.getElementById('ga_url').value.trim();
-    const imgFile=document.getElementById('ga_img').files[0];
-    const msg=document.getElementById('ga_msg');
-    if(!title){msg.innerHTML='<span style="color:#e05555;">Title required.</span>';return;}
-    let img='';
-    if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
-    const items=getItems();
-    items.push({id:Date.now(),title,body,url,img,status:'active',created:new Date().toISOString()});
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Item saved!</span>';
-    document.getElementById('ga_title').value='';
-    document.getElementById('ga_body').value='';
-    document.getElementById('ga_url').value='';
-    document.getElementById('ga_img').value='';
-  };
-  
-  window.gAdminPopulateSelect=function(action){
-    const items=getItems();
-    const selId=action==='edit'?'ga_edit_sel':'ga_ul_sel';
-    const sel=document.getElementById(selId);
-    if(!sel)return;
-    const existing=items.map(i=>`<option value="${i.id}">${i.title} [${i.status}]</option>`).join('');
-    sel.innerHTML='<option value="">— Select —</option>'+existing+(action==='upload'?'<option value="__new__">Add as new image</option>':'');
-  };
-  
-  window.gAdminPopulateActionSelect=function(action){
-    const items=getItems();
-    const selId='ga_status_sel_'+action||'ga_'+action+'_sel';
-    let sel=document.getElementById('ga_status_sel_'+action);
-    if(!sel)sel=document.getElementById('ga_'+action+'_sel');
-    if(!sel)return;
-    sel.innerHTML='<option value="">— Select —</option>'+items.map(i=>`<option value="${i.id}">${i.title} [${i.status}]</option>`).join('');
-  };
-  
-  window.gAdminPopulateApprove=function(){
-    const list=document.getElementById('ga_approve_list');
-    const ulist=document.getElementById('ga_approve_users');
-    // Show pending payments
-    const pending=(gl('gate_pending_payments')||[]).filter(p=>p.status==='pending');
-    if(pending.length){
-      list.innerHTML='<p style="color:#c9a84c;font-size:.82rem;font-weight:700;margin-bottom:.5rem;">Pending Payments ('+pending.length+')</p>'+
-        pending.map((p,i)=>`<div style="display:flex;align-items:center;justify-content:space-between;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:.6rem .8rem;margin-bottom:.4rem;font-size:.82rem;">
-          <span style="color:#e8e0d0;">${p.email} — ${p.tier.toUpperCase()}</span>
-          <span style="display:flex;gap:.3rem;"><button onclick="gAdminApprovePayment(${i})" style="background:#2d7a4f;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✓ Approve</button>
-          <button onclick="gAdminDenyPayment(${i})" style="background:#8b2020;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✗ Deny</button></span></div>`).join('');
-    } else {
-      list.innerHTML='<p style="color:#b8a88a;font-size:.82rem;">No pending payment requests.</p>';
+  var timers = {};
+  var DELAY = 320; // ms before closing dropdown
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd, i){
+    dd.setAttribute('data-dd', i);
+    dd.addEventListener('mouseenter', function(){
+      clearTimeout(timers[i]);
+      dd.classList.add('open');
+    });
+    dd.addEventListener('mouseleave', function(){
+      timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
+    });
+    var menu = dd.querySelector('.gate-dropdown-menu');
+    if(menu){
+      menu.addEventListener('mouseenter', function(){ clearTimeout(timers[i]); });
+      menu.addEventListener('mouseleave', function(){
+        timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
+      });
     }
-    // Show users for verification
-    const users=Object.values(gl('gate_users_v6')||{}).filter(u=>!u.verified);
-    if(users.length){
-      ulist.innerHTML='<p style="color:#c9a84c;font-size:.82rem;font-weight:700;margin-bottom:.5rem;margin-top:.8rem;">Unverified Users ('+users.length+')</p>'+
-        users.map(u=>`<div style="display:flex;align-items:center;justify-content:space-between;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:.5rem .8rem;margin-bottom:.3rem;font-size:.82rem;">
-          <span style="color:#e8e0d0;">${u.email}</span>
-          <button onclick="gAdminVerifyUser('${u.email}')" style="background:#5a3080;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">Verify</button></div>`).join('');
-    }
-  };
-  
-  window.gAdminApprovePayment=function(idx){
-    const pending=gl('gate_pending_payments')||[];
-    if(!pending[idx])return;
-    const req=pending[idx];req.status='approved';req.approvedAt=Date.now();
-    const users=gl('gate_users_v6')||{};
-    if(!users[req.email])users[req.email]={name:req.email,email:req.email,pass:btoa('gate123'),tier:req.tier,enrolled:Date.now(),verified:true,active:true};
-    else users[req.email].tier=req.tier;
-    gs('gate_users_v6',users);gs('gate_pending_payments',pending);
-    alert('✓ Approved: '+req.email);gAdminPopulateApprove();
-  };
-  
-  window.gAdminDenyPayment=function(idx){
-    if(!confirm('Deny this payment?'))return;
-    const pending=gl('gate_pending_payments')||[];
-    if(!pending[idx])return;
-    pending[idx].status='denied';gs('gate_pending_payments',pending);gAdminPopulateApprove();
-  };
-  
-  window.gAdminVerifyUser=function(email){
-    const users=gl('gate_users_v6')||{};
-    if(users[email])users[email].verified=true;
-    gs('gate_users_v6',users);alert('✓ Verified: '+email);gAdminPopulateApprove();
-  };
-  
-  window.gAdminLoadEditItem=function(){
-    const sel=document.getElementById('ga_edit_sel');
-    const id=parseInt(sel.value);
-    const item=getItems().find(i=>i.id===id);
-    const fields=document.getElementById('ga_edit_fields');
-    if(!item){fields.style.display='none';return;}
-    fields.style.display='block';
-    document.getElementById('ga_e_title').value=item.title||'';
-    document.getElementById('ga_e_body').value=item.body||'';
-    document.getElementById('ga_e_url').value=item.url||'';
-  };
-  
-  window.gAdminUpdateItem=function(){
-    const sel=document.getElementById('ga_edit_sel');
-    const id=parseInt(sel.value);
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    if(!item){return;}
-    item.title=document.getElementById('ga_e_title').value;
-    item.body=document.getElementById('ga_e_body').value;
-    item.url=document.getElementById('ga_e_url').value;
-    item.updated=new Date().toISOString();
-    saveItems(items);
-    document.getElementById('ga_e_msg').innerHTML='<span style="color:#4aad74;">✓ Updated!</span>';
-  };
-  
-  window.gAdminUploadImg=async function(){
-    const imgFile=document.getElementById('ga_ul_file').files[0];
-    const label=document.getElementById('ga_ul_label').value.trim();
-    const msg=document.getElementById('ga_ul_msg');
-    if(!imgFile){msg.innerHTML='<span style="color:#e05555;">Select an image.</span>';return;}
-    const b64=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});
-    const selVal=document.getElementById('ga_ul_sel').value;
-    const items=getItems();
-    if(selVal==='__new__'||!selVal){
-      items.push({id:Date.now(),title:label||imgFile.name,body:'',url:'',img:b64,status:'active',created:new Date().toISOString()});
-    } else {
-      const item=items.find(i=>i.id===parseInt(selVal));
-      if(item)item.img=b64;
-    }
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Image uploaded!</span>';
-    document.getElementById('ga_ul_preview').innerHTML='<img src="'+b64+'" style="max-height:120px;border-radius:6px;margin-top:.3rem;">';
-  };
-  
-  window.gAdminSetStatus=function(action,status){
-    const sel=document.getElementById('ga_status_sel_'+action);
-    if(!sel)return;
-    const id=parseInt(sel.value);
-    const reason=document.getElementById('ga_status_reason_'+action).value;
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    const msgEl=document.getElementById('ga_status_msg_'+action);
-    if(!item){if(msgEl)msgEl.innerHTML='<span style="color:#e05555;">Select an item.</span>';return;}
-    item.status=status;if(reason)item.reason=reason;item.updated=new Date().toISOString();
-    saveItems(items);
-    if(msgEl)msgEl.innerHTML='<span style="color:#4aad74;">✓ Status updated to '+status+'!</span>';
-  };
-  
-  window.gAdminRestore=function(){
-    const sel=document.getElementById('ga_restore_sel');
-    if(!sel)return;
-    const id=parseInt(sel.value);
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    const msg=document.getElementById('ga_restore_msg');
-    if(!item){msg.innerHTML='<span style="color:#e05555;">Select an item.</span>';return;}
-    item.status='active';delete item.reason;item.updated=new Date().toISOString();
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Restored!</span>';
-    gAdminPopulateActionSelect('restore');
-  };
-  
-  window.gAdminRemoveItem=function(){
-    const sel=document.getElementById('ga_remove_sel');
-    const confirm_input=document.getElementById('ga_remove_confirm');
-    const msg=document.getElementById('ga_remove_msg');
-    if(confirm_input.value!=='DELETE'){msg.innerHTML='<span style="color:#e05555;">Type DELETE to confirm.</span>';return;}
-    const id=parseInt(sel.value);
-    const items=getItems().filter(i=>i.id!==id);
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Removed.</span>';
-    confirm_input.value='';
-    gAdminPopulateActionSelect('remove');
-  };
-  
-  // Auto-show if admin is logged in
-  if(isAdmin()){
-    document.addEventListener('DOMContentLoaded',function(){gAdminShow();});
-  }
+  });
 })();
 </script>
-<!-- ===== END GATE ADMIN TOOLBAR ===== -->
 
-</body>
-</html>
+<script>
+/* Dropdown hover delay — keeps menu open 350ms after cursor leaves */
+(function(){
+  var timers={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    dd.setAttribute('data-ddi',i);
+    function open(){clearTimeout(timers[i]);dd.classList.add('open');}
+    function schedClose(){timers[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);
+    dd.addEventListener('mouseleave',schedClose);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(timers[i]);});m.addEventListener('mouseleave',schedClose);}
+  });
+})();
+</script>
+<script>
+/* Dropdown delay — 350ms before closing so you can click items */
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);
+    dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
+</body></html>
