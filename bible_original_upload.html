@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GATE Bible Library - 66 Books</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn primary" href="Bible PDF.pdf" target="_blank">Open Full Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>The Holy Bible - Full 66 Books</h2>
+      <p>This package is focused only on the Bible. It includes all 66 books, every book page generated from the uploaded Bible PDF, chapter navigation for each book, and the original full Bible PDF for direct reading and cross-checking.</p>
+      <div class="badges">
+        <span class="badge">66 Books</span>
+        <span class="badge">Old Testament + New Testament</span>
+        <span class="badge">Source PDF Included</span>
+        <span class="badge">Chapter Verification: Complete</span>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Verification Summary</h3>
+        <div class="notice">
+          The book pages in this package were generated from the uploaded Bible PDF and checked against the chapter counts listed in the PDF's own table of contents.
+        </div>
+        <div class="table-wrap">
+          <table class="verify-table">
+            <thead><tr><th>Book</th><th>Expected Chapters</th><th>Found</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Genesis</td><td>50</td><td>50</td><td>OK</td></tr>
+<tr><td>Exodus</td><td>40</td><td>40</td><td>OK</td></tr>
+<tr><td>Leviticus</td><td>27</td><td>27</td><td>OK</td></tr>
+<tr><td>Numbers</td><td>36</td><td>36</td><td>OK</td></tr>
+<tr><td>Deuteronomy</td><td>34</td><td>34</td><td>OK</td></tr>
+<tr><td>Joshua</td><td>24</td><td>24</td><td>OK</td></tr>
+<tr><td>Judges</td><td>21</td><td>21</td><td>OK</td></tr>
+<tr><td>Ruth</td><td>4</td><td>4</td><td>OK</td></tr>
+<tr><td>1 Samuel</td><td>31</td><td>31</td><td>OK</td></tr>
+<tr><td>2 Samuel</td><td>24</td><td>24</td><td>OK</td></tr>
+<tr><td>1 Kings</td><td>22</td><td>22</td><td>OK</td></tr>
+<tr><td>2 Kings</td><td>25</td><td>25</td><td>OK</td></tr>
+<tr><td>1 Chronicles</td><td>29</td><td>29</td><td>OK</td></tr>
+<tr><td>2 Chronicles</td><td>36</td><td>36</td><td>OK</td></tr>
+<tr><td>Ezra</td><td>10</td><td>10</td><td>OK</td></tr>
+<tr><td>Nehemiah</td><td>13</td><td>13</td><td>OK</td></tr>
+<tr><td>Esther</td><td>10</td><td>10</td><td>OK</td></tr>
+<tr><td>Job</td><td>42</td><td>42</td><td>OK</td></tr>
+<tr><td>Psalms</td><td>150</td><td>150</td><td>OK</td></tr>
+<tr><td>Proverbs</td><td>31</td><td>31</td><td>OK</td></tr>
+<tr><td>Ecclesiastes</td><td>12</td><td>12</td><td>OK</td></tr>
+<tr><td>Song of Solomon</td><td>8</td><td>8</td><td>OK</td></tr>
+<tr><td>Isaiah</td><td>66</td><td>66</td><td>OK</td></tr>
+<tr><td>Jeremiah</td><td>52</td><td>52</td><td>OK</td></tr>
+<tr><td>Lamentations</td><td>5</td><td>5</td><td>OK</td></tr>
+<tr><td>Ezekiel</td><td>48</td><td>48</td><td>OK</td></tr>
+<tr><td>Daniel</td><td>12</td><td>12</td><td>OK</td></tr>
+<tr><td>Hosea</td><td>14</td><td>14</td><td>OK</td></tr>
+<tr><td>Joel</td><td>3</td><td>3</td><td>OK</td></tr>
+<tr><td>Amos</td><td>9</td><td>9</td><td>OK</td></tr>
+<tr><td>Obadiah</td><td>1</td><td>1</td><td>OK</td></tr>
+<tr><td>Jonah</td><td>4</td><td>4</td><td>OK</td></tr>
+<tr><td>Micah</td><td>7</td><td>7</td><td>OK</td></tr>
+<tr><td>Nahum</td><td>3</td><td>3</td><td>OK</td></tr>
+<tr><td>Habakkuk</td><td>3</td><td>3</td><td>OK</td></tr>
+<tr><td>Zephaniah</td><td>3</td><td>3</td><td>OK</td></tr>
+<tr><td>Haggai</td><td>2</td><td>2</td><td>OK</td></tr>
+<tr><td>Zechariah</td><td>14</td><td>14</td><td>OK</td></tr>
+<tr><td>Malachi</td><td>4</td><td>4</td><td>OK</td></tr>
+<tr><td>Matthew</td><td>28</td><td>28</td><td>OK</td></tr>
+<tr><td>Mark</td><td>16</td><td>16</td><td>OK</td></tr>
+<tr><td>Luke</td><td>24</td><td>24</td><td>OK</td></tr>
+<tr><td>John</td><td>21</td><td>21</td><td>OK</td></tr>
+<tr><td>Acts</td><td>28</td><td>28</td><td>OK</td></tr>
+<tr><td>Romans</td><td>16</td><td>16</td><td>OK</td></tr>
+<tr><td>1 Corinthians</td><td>16</td><td>16</td><td>OK</td></tr>
+<tr><td>2 Corinthians</td><td>13</td><td>13</td><td>OK</td></tr>
+<tr><td>Galatians</td><td>6</td><td>6</td><td>OK</td></tr>
+<tr><td>Ephesians</td><td>6</td><td>6</td><td>OK</td></tr>
+<tr><td>Philippians</td><td>4</td><td>4</td><td>OK</td></tr>
+<tr><td>Colossians</td><td>4</td><td>4</td><td>OK</td></tr>
+<tr><td>1 Thessalonians</td><td>5</td><td>5</td><td>OK</td></tr>
+<tr><td>2 Thessalonians</td><td>3</td><td>3</td><td>OK</td></tr>
+<tr><td>1 Timothy</td><td>6</td><td>6</td><td>OK</td></tr>
+<tr><td>2 Timothy</td><td>4</td><td>4</td><td>OK</td></tr>
+<tr><td>Titus</td><td>3</td><td>3</td><td>OK</td></tr>
+<tr><td>Philemon</td><td>1</td><td>1</td><td>OK</td></tr>
+<tr><td>Hebrews</td><td>13</td><td>13</td><td>OK</td></tr>
+<tr><td>James</td><td>5</td><td>5</td><td>OK</td></tr>
+<tr><td>1 Peter</td><td>5</td><td>5</td><td>OK</td></tr>
+<tr><td>2 Peter</td><td>3</td><td>3</td><td>OK</td></tr>
+<tr><td>1 John</td><td>5</td><td>5</td><td>OK</td></tr>
+<tr><td>2 John</td><td>1</td><td>1</td><td>OK</td></tr>
+<tr><td>3 John</td><td>1</td><td>1</td><td>OK</td></tr>
+<tr><td>Jude</td><td>1</td><td>1</td><td>OK</td></tr>
+<tr><td>Revelation</td><td>22</td><td>22</td><td>OK</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Old Testament</h3>
+        <div class="book-grid">
+          <a class="book-link" href="books/genesis.html">Genesis<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">50 chapters</span></a>
+<a class="book-link" href="books/exodus.html">Exodus<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">40 chapters</span></a>
+<a class="book-link" href="books/leviticus.html">Leviticus<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">27 chapters</span></a>
+<a class="book-link" href="books/numbers.html">Numbers<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">36 chapters</span></a>
+<a class="book-link" href="books/deuteronomy.html">Deuteronomy<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">34 chapters</span></a>
+<a class="book-link" href="books/joshua.html">Joshua<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">24 chapters</span></a>
+<a class="book-link" href="books/judges.html">Judges<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">21 chapters</span></a>
+<a class="book-link" href="books/ruth.html">Ruth<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">4 chapters</span></a>
+<a class="book-link" href="books/1-samuel.html">1 Samuel<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">31 chapters</span></a>
+<a class="book-link" href="books/2-samuel.html">2 Samuel<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">24 chapters</span></a>
+<a class="book-link" href="books/1-kings.html">1 Kings<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">22 chapters</span></a>
+<a class="book-link" href="books/2-kings.html">2 Kings<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">25 chapters</span></a>
+<a class="book-link" href="books/1-chronicles.html">1 Chronicles<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">29 chapters</span></a>
+<a class="book-link" href="books/2-chronicles.html">2 Chronicles<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">36 chapters</span></a>
+<a class="book-link" href="books/ezra.html">Ezra<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">10 chapters</span></a>
+<a class="book-link" href="books/nehemiah.html">Nehemiah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">13 chapters</span></a>
+<a class="book-link" href="books/esther.html">Esther<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">10 chapters</span></a>
+<a class="book-link" href="books/job.html">Job<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">42 chapters</span></a>
+<a class="book-link" href="books/psalms.html">Psalms<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">150 chapters</span></a>
+<a class="book-link" href="books/proverbs.html">Proverbs<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">31 chapters</span></a>
+<a class="book-link" href="books/ecclesiastes.html">Ecclesiastes<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">12 chapters</span></a>
+<a class="book-link" href="books/song-of-solomon.html">Song of Solomon<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">8 chapters</span></a>
+<a class="book-link" href="books/isaiah.html">Isaiah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">66 chapters</span></a>
+<a class="book-link" href="books/jeremiah.html">Jeremiah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">52 chapters</span></a>
+<a class="book-link" href="books/lamentations.html">Lamentations<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">5 chapters</span></a>
+<a class="book-link" href="books/ezekiel.html">Ezekiel<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">48 chapters</span></a>
+<a class="book-link" href="books/daniel.html">Daniel<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">12 chapters</span></a>
+<a class="book-link" href="books/hosea.html">Hosea<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">14 chapters</span></a>
+<a class="book-link" href="books/joel.html">Joel<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">3 chapters</span></a>
+<a class="book-link" href="books/amos.html">Amos<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">9 chapters</span></a>
+<a class="book-link" href="books/obadiah.html">Obadiah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">1 chapters</span></a>
+<a class="book-link" href="books/jonah.html">Jonah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">4 chapters</span></a>
+<a class="book-link" href="books/micah.html">Micah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">7 chapters</span></a>
+<a class="book-link" href="books/nahum.html">Nahum<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">3 chapters</span></a>
+<a class="book-link" href="books/habakkuk.html">Habakkuk<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">3 chapters</span></a>
+<a class="book-link" href="books/zephaniah.html">Zephaniah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">3 chapters</span></a>
+<a class="book-link" href="books/haggai.html">Haggai<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">2 chapters</span></a>
+<a class="book-link" href="books/zechariah.html">Zechariah<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">14 chapters</span></a>
+<a class="book-link" href="books/malachi.html">Malachi<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">4 chapters</span></a>
+        </div>
+        <div class="notice">Old Testament books 1-39.</div>
+
+        <h3 style="margin-top:22px">New Testament</h3>
+        <div class="book-grid">
+          <a class="book-link" href="books/matthew.html">Matthew<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">28 chapters</span></a>
+<a class="book-link" href="books/mark.html">Mark<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">16 chapters</span></a>
+<a class="book-link" href="books/luke.html">Luke<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">24 chapters</span></a>
+<a class="book-link" href="books/john.html">John<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">21 chapters</span></a>
+<a class="book-link" href="books/acts.html">Acts<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">28 chapters</span></a>
+<a class="book-link" href="books/romans.html">Romans<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">16 chapters</span></a>
+<a class="book-link" href="books/1-corinthians.html">1 Corinthians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">16 chapters</span></a>
+<a class="book-link" href="books/2-corinthians.html">2 Corinthians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">13 chapters</span></a>
+<a class="book-link" href="books/galatians.html">Galatians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">6 chapters</span></a>
+<a class="book-link" href="books/ephesians.html">Ephesians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">6 chapters</span></a>
+<a class="book-link" href="books/philippians.html">Philippians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">4 chapters</span></a>
+<a class="book-link" href="books/colossians.html">Colossians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">4 chapters</span></a>
+<a class="book-link" href="books/1-thessalonians.html">1 Thessalonians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">5 chapters</span></a>
+<a class="book-link" href="books/2-thessalonians.html">2 Thessalonians<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">3 chapters</span></a>
+<a class="book-link" href="books/1-timothy.html">1 Timothy<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">6 chapters</span></a>
+<a class="book-link" href="books/2-timothy.html">2 Timothy<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">4 chapters</span></a>
+<a class="book-link" href="books/titus.html">Titus<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">3 chapters</span></a>
+<a class="book-link" href="books/philemon.html">Philemon<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">1 chapters</span></a>
+<a class="book-link" href="books/hebrews.html">Hebrews<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">13 chapters</span></a>
+<a class="book-link" href="books/james.html">James<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">5 chapters</span></a>
+<a class="book-link" href="books/1-peter.html">1 Peter<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">5 chapters</span></a>
+<a class="book-link" href="books/2-peter.html">2 Peter<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">3 chapters</span></a>
+<a class="book-link" href="books/1-john.html">1 John<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">5 chapters</span></a>
+<a class="book-link" href="books/2-john.html">2 John<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">1 chapters</span></a>
+<a class="book-link" href="books/3-john.html">3 John<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">1 chapters</span></a>
+<a class="book-link" href="books/jude.html">Jude<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">1 chapters</span></a>
+<a class="book-link" href="books/revelation.html">Revelation<br><span style="color:var(--muted);font-size:12px;font-family:Arial,sans-serif">22 chapters</span></a>
+        </div>
+        <div class="notice">New Testament books 40-66.</div>
+      </section>
+    </div>
+
+    <div class="footer">Bible-only package prepared for review. Open any book to see full extracted chapter-and-verse text, or open the included PDF directly.</div>
+  </main>
+</body>
+</html>

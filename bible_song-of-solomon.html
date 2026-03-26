@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Song of Solomon - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+
+.gate-nav{background:linear-gradient(135deg,#162440,#1e2d3d);border-bottom:2px solid #c9a84c;position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:#c9a84c}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#c9a84c;letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:#b8a88a;letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:#b8a88a;font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:#c9a84c;background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid #c9a84c;border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:#b8a88a;font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:#c9a84c;background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:#c9a84c;padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:#c9a84c;color:#0d1b2e!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:#e8c96e}
+@media(max-width:768px){.gate-nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="bible.html">← All 66 Books</a>
+        <a class="btn" href="Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>Song of Solomon</h2>
+      <p>Complete extracted text for Song of Solomon from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 392</span>
+        <span class="badge">Book End Page: 394</span>
+        <span class="badge">Expected Chapters: 8</span>
+        <span class="badge">Verified Chapters Found: 8</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">Song of Solomon</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">8</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a><a class="chapter-link" href="#chapter-4">Chapter 4</a><a class="chapter-link" href="#chapter-5">Chapter 5</a><a class="chapter-link" href="#chapter-6">Chapter 6</a><a class="chapter-link" href="#chapter-7">Chapter 7</a><a class="chapter-link" href="#chapter-8">Chapter 8</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="Bible PDF.pdf#page=392" target="_blank">Open Song of Solomon in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 The song of songs, which is Solomon&#x27;s.
+2 Let him kiss me with the kisses of his mouth: for thy
+love is better than wine.
+3 Because of the savour of thy good ointments thy name is
+as ointment poured forth, therefore do the virgins love thee.
+4 Draw me, we will run after thee: the king hath brought
+me into his chambers: we will be glad and rejoice in thee, we
+will remember thy love more than wine: the upright love
+thee.
+5 I am black, but comely, O ye daughters of Jerusalem, as
+the tents of Kedar, as the curtains of Solomon.
+6 Look not upon me, because I am black, because the sun
+hath looked upon me: my mothe r&#x27;s children were angry with
+me; they made me the keeper of the vineyards; but mine own
+vineyard have I not kept.
+7 Tell me, O thou whom my soul loveth, where thou
+feedest, where thou makest thy flock to rest at noon: for why
+should I be as one that turnet h aside by the flocks of thy
+companions?
+8 If thou know not, O thou fairest among women, go thy
+way forth by the footsteps of the flock, and feed thy kids
+beside the shepherds&#x27; tents.
+9 I have compared thee, O my love, to a company of
+horses in Pharaoh&#x27;s chariots.
+10 Thy cheeks are comely with rows of jewels, thy neck
+with chains of gold.
+11 We will make thee borders of gold with studs of silver.
+12 While the king sitteth at his table, my spikenard sendeth
+forth the smell thereof.
+13 A bundle of myrrh is my wellbeloved unto me; he shall
+lie all night betwixt my breasts.
+14 My beloved is unto me as a cluster of camphire in the
+vineyards of En-gedi.
+15 Behold, thou art fair, my love; behold, thou art fair;
+thou hast doves&#x27; eyes.
+16 Behold, thou art fair, my be loved, yea, pleasant: also
+our bed is green.
+17 The beams of our house are cedar, and our rafters of
+fir.
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 I am the rose of Sharon, and the lily of the valleys.
+2 As the lily among thorns, so is my love among the
+daughters.
+3 As the apple tree among the trees of the wood, so is my
+beloved among the sons. I sat down under his shadow with
+great delight, and his fruit was sweet to my taste.
+4 He brought me to the banqueting house, and his banner
+over me was love.
+5 Stay me with flagons, comfort me with apples: for I am
+sick of love.
+6 His left hand is under my head, and his right hand doth
+embrace me.
+7 I charge you, O ye daughters of Jerusalem, by the roes,
+and by the hinds of the field, that ye stir not up, nor awake
+my love, till he please.
+8 The voice of my beloved! behold, he cometh leaping
+upon the mountains, skipping upon the hills.
+9 My beloved is like a roe or a young hart: behold, he
+standeth behind our wall, he looketh forth at the windows,
+shewing himself through the lattice.
+10 My beloved spake, and said unto me, Rise up, my love,
+my fair one, and come away.
+11 For, lo, the winter is past, the rain is over and gone;
+12 The flowers appear on the earth; the time of the singing
+of birds is come, and the voice of the turtle is heard in our
+land;
+13 The fig tree putteth forth her green figs, and the vines
+with the tender grape give a good smell. Arise, my love, my
+fair one, and come away.
+14 O my dove, that art  in the clefts of the rock, in the
+secret places of the stairs, let me see thy counte nance, let me
+hear thy voice; for sweet is thy voice, and thy countenance is
+comely.
+15 Take us the foxes, the little foxes, that spoil the vines:
+for our vines have tender grapes.
+16 My beloved is mine, and I am his: he feedeth among the
+lilies.
+17 Until the day break, and the shadows flee away, turn,
+my beloved, and be thou like a roe or a young hart upon the
+mountains of Bether.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 By night on my bed I sought him whom my soul loveth:
+I sought him, but I found him not.
+2 I will rise now, and go about the city in the streets, and in
+the broad ways I will seek him whom my soul loveth: I
+sought him, but I found him not.
+3 The watchmen that go about the city found me: to whom
+I said, Saw ye him whom my soul loveth?
+4 It was but a little that I passed  from them, but I found
+him whom my soul loveth: I held him, and would not let him
+go, until I had brought him into my mother&#x27;s house, and into
+the chamber of her that conceived me.
+5 I charge you, O ye daughters of Jerusalem, by the roes,
+and by the hinds  of the field, that ye stir not up, nor awake
+my love, till he please.
+6 Who is this that cometh out of the wilderness like pillars
+of smoke, perfumed with myrrh and frankincense, with all
+powders of the merchant?
+7 Behold his bed, which is Solomon&#x27;s; threescore valiant
+men are about it, of the valiant of Israel.
+8 They all hold swords, being expert in war: every man
+hath his sword upon his thigh because of fear in the night.
+9 King Solomon made himself a chariot of the wood of
+Lebanon.
+10 He made the pillars thereof of silver, the bottom thereof
+of gold, the covering of it of purple, the midst thereof being
+paved with love, for the daughters of Jerusalem.
+11 Go forth, O ye daughters of Zion, and behold king
+Solomon with the crown wherewith his mother crowne d him
+in the day of his espousals, and in the day of the gladness of
+his heart.
+
+</div><h4 id="chapter-4">Chapter 4</h4><div>
+1 Behold, thou art fair, my love; behold, thou art fair; thou
+hast doves&#x27; eyes within thy locks: thy hair is as a flock of
+goats, that appear from mount Gilead.
+2 Thy teeth are like a flock of sheep that are even  shorn,
+which came up from the washing; whereof every one bear
+twins, and none is barren among them.
+3 Thy lips are like a thread of scarlet, and thy speech is
+comely: thy temples are like a piece of a pomegranate within
+thy locks.
+4 Thy neck is like the tower of David builded for an
+armoury, whereon there hang a thousand bucklers, all shields
+of mighty men.
+5 Thy two breasts are like two young roes that are twins,
+which feed among the lilies.
+6 Until the day b reak, and the shadows flee away, I will
+get me to the mountain of myrrh, and to the hill of
+frankincense.
+7 Thou art all fair, my love; there is no spot in thee.
+8 Come with me from Lebanon, my spouse, with me from
+Lebanon: look from the top of Amana, from the top of Shenir
+and Hermon, from the lions&#x27; dens, from the mountains of the
+leopards.
+9 Thou hast ravished my heart, my sister, my spouse; thou
+hast ravished my heart with one of thine eyes, with one chain
+of thy neck.
+10 How fair is thy love, my sister , my spouse! how much
+better is thy love than wine! and the smell of thine ointments
+than all spices!
+11 Thy lips, O my spouse, drop as the honeycomb: honey
+and milk are under thy tongue; and the smell of thy garments
+is like the smell of Lebanon.
+12 A garden inclosed is my sister, my spouse; a spring shut
+up, a fountain sealed.
+13 Thy plants are an orchard of pomegranates, with
+pleasant fruits; camphire, with spikenard,
+14 Spikenard and saffron; calamus and cinnamon, with all
+trees of frankincense; myrrh a nd aloes, with all the chief
+spices:
+15 A fountain of gardens, a well of living waters, and
+streams from Lebanon.
+16 Awake, O north wind; and come, thou south; blow
+upon my garden, that the spices thereof may flow out. Let
+my beloved come into his garden, and eat his pleasant fruits.
+
+</div><h4 id="chapter-5">Chapter 5</h4><div>
+1 I am come into my garden, my sister, my spouse: I have
+gathered my myrrh with my spice; I have eaten my
+honeycomb with my honey; I have drunk my wine with my
+milk: eat, O friends; drink, yea, drink abundantly, O beloved.
+2 I sleep, but my heart waketh: it is  the voice of my
+beloved that knocketh, saying, Open to me, my sister, my
+love, my dove, my undefiled: for my head is filled with dew,
+and my locks with the drops of the night.
+3 I have put off my coat; how shall  I put it on? I have
+washed my feet; how shall I defile them?
+4 My beloved put in his hand by the hole of the door, and
+my bowels were moved for him.
+5 I rose up to open to my beloved; and my hands dropped
+with myrrh, and my fingers with sweet smelling myrrh, upon
+the handles of the lock.
+6 I opened to my beloved; but my beloved had withdrawn
+himself, and was gone: my soul failed when he spake: I
+sought him, but I could not find him; I called him, but he
+gave me no answer.
+7 The watchmen that went about the  city found me, they
+smote me, they wounded me; the keepers of the walls took
+away my veil from me.
+8 I charge you, O daughters of Jerusalem, if ye find my
+beloved, that ye tell him, that I am sick of love.
+9 What is thy beloved more than another beloved, O thou
+fairest among women? what is thy beloved more than
+another beloved, that thou dost so charge us?
+10 My beloved is white and ruddy, the chiefest among ten
+thousand.
+11 His head is as the most fine gold, his locks are bushy,
+and black as a raven.
+12 His eyes are as the eyes  of doves by the rivers of
+waters, washed with milk, and fitly set.
+13 His cheeks are as a bed of spices, as sweet flowers: his
+lips like lilies, dropping sweet smelling myrrh.
+14 His hands are as gold rings set with the beryl: his b elly
+is as bright ivory overlaid with sapphires.
+15 His legs are as  pillars of marble, set upon sockets of
+fine gold: his countenance is as Lebanon, excellent as the
+cedars.
+16 His mouth is most sweet: yea, he is altogether lovely.
+This is my beloved, and this is my friend, O daughters of
+Jerusalem.
+
+</div><h4 id="chapter-6">Chapter 6</h4><div>
+1 Whither is thy beloved gone, O thou fairest among
+women? whither is thy beloved turned aside? that we may
+seek him with thee.
+2 My beloved is gone down into his garden, to the beds of
+spices, to feed in the gardens, and to gather lilies.
+3 I am my beloved&#x27;s, and my beloved is mine: he feedeth
+among the lilies.
+4 Thou art beautiful, O my love, as Tirzah, comely as
+Jerusalem, terrible as an army with banners.
+5 Turn away thine eyes from me, for they ha ve overcome
+me: thy hair is as a flock of goats that appear from Gilead.
+6 Thy teeth are as a flock of sheep which go up from the
+washing, whereof every one beareth twins, and there is not
+one barren among them.
+7 As a piece of a pomegranate are thy temples within thy
+locks.
+8 There are threescore queens, and fourscore concubines,
+and virgins without number.
+9 My dove, my undefiled is but one; she is the only one of
+her mother, she is the choice one of her that bare her. The
+daughters saw her, and blessed h er; yea, the queens and the
+concubines, and they praised her.
+10 Who is she that looketh forth as the morning, fair as the
+moon, clear as the sun, and terrible as an army with banners?
+11 I went down into the garden of nuts to see the fruits of
+the valley, and to see whether the vine flourished, and the
+pomegranates budded.
+12 Or ever I was aware, my soul made me like the chariots
+of Amminadib.
+13 Return, return, O Shulamite; return, return, that we may
+look upon thee. What will ye see in the Shulamite? As it
+were the company of two armies.
+
+</div><h4 id="chapter-7">Chapter 7</h4><div>
+1 How beautiful are thy feet with shoes, O prince&#x27;s
+daughter! the joints of thy thighs are like jewels, the work of
+the hands of a cunning workman.
+2 Thy navel is like  a round goblet, which wanteth not
+liquor: thy belly is like an heap of wheat set about with lilies.
+3 Thy two breasts are like two young roes that are twins.
+4 Thy neck is as a tower of ivory; thine eyes like the
+fishpools in Heshbon, by the gate of Bath-rabbim: thy nose is
+as the tower of Lebanon which looketh toward Damascus.
+5 Thine head upon thee is like Carmel, and the hair of
+thine head like purple; the king is held in the galleries.
+6 How fair and how pleasant art thou, O love, for delights!
+7 This thy stature is like to a palm tree, and thy  breasts to
+clusters of grapes.
+8 I said, I will go up to the palm tree, I will take hold of the
+boughs thereof: now also thy breasts shall be as clusters of
+the vine, and the smell of thy nose like apples;
+9 And the roof of thy mouth like the best wine fo r my
+beloved, that goeth down sweetly, causing the lips of those
+that are asleep to speak.
+10 I am my beloved&#x27;s, and his desire is toward me.
+11 Come, my beloved, let us go forth into the field; let us
+lodge in the villages.
+12 Let us get up early to the v ineyards; let us see if the
+vine flourish, whether the tender grape appear, and the
+pomegranates bud forth: there will I give thee my loves.
+13 The mandrakes give a smell, and at our gates are all
+manner of pleasant fruits, new and old, which I have laid u p
+for thee, O my beloved.
+
+</div><h4 id="chapter-8">Chapter 8</h4><div>
+1 O that thou wert as my brother, that sucked the breasts of
+my mother! when I should find thee without, I would kiss
+thee; yea, I should not be despised.
+2 I would lead thee, and bring thee into my mother&#x27;s
+house, who would instruct me: I would cause thee to drink of
+spiced wine of the juice of my pomegranate.
+3 His left hand should be  under my head, and his right
+hand should embrace me.
+4 I charge you, O daughters of Jerusalem, that ye stir not
+up, nor awake my love, until he please.
+5 Who is this that cometh up from the wilderness, leaning
+upon her beloved? I raised thee up under the apple tree: there
+thy mother brought thee forth: there she brought thee forth
+that bare thee.
+6 Set me as a seal upon thine heart, as a s eal upon thine
+arm: for love is strong as death; jealousy is cruel as the
+grave: the coals thereof are coals of fire, which hath a  most
+vehement flame.
+7 Many waters cannot quench love, neither can the floods
+drown it: if a man would give all the substanc e of his house
+for love, it would utterly be contemned.
+8 We have a little sister, and she hath no breasts: what
+shall we do for our sister in the day when she shall be spoken
+for?
+9 If she be a wall, we will build upon her a palace of silver:
+and if she be a door, we will inclose her with boards of cedar.
+10 I am a wall, and my breasts like towers: then was I in
+his eyes as one that found favour.
+11 Solomon had a vineyard at Baal -hamon; he let out the
+vineyard unto keepers; every one for the fruit thereof was to
+bring a thousand pieces of silver.
+12 My vineyard, which is mine, is before me: thou, O
+Solomon, must have a thousand, and those that keep the fruit
+thereof two hundred.
+13 Thou that dwellest in the gardens, the companions
+hearken to thy voice: cause me to hear it.
+14 Make haste, my beloved, and be thou like to a roe or to
+a young hart upon the mountains of spices.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for Song of Solomon.</div>
+  </main>
+
+<script>
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
+</body>
+</html>

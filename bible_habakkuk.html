@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habakkuk - GATE Bible Library</title>
+<style>
+:root{
+  --bg:#0d1b2e; --bg2:#162440; --panel:#10213b; --panel2:#0f1c33;
+  --gold:#c9a84c; --gold2:#e8c96e; --text:#efe5d5; --muted:#b8a88a;
+  --line:rgba(201,168,76,.22); --white:#fff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Georgia,'EB Garamond',serif;background:linear-gradient(180deg,var(--bg2),var(--bg));color:var(--text);line-height:1.62}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold2)}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(13,27,46,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}
+.crest{font-size:32px;color:var(--gold)}
+.brand h1{margin:0;font-size:24px;color:var(--gold);letter-spacing:2px}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.nav{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text);font-family:Arial,sans-serif;font-size:13px;font-weight:700}
+.btn.primary{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(255,255,255,.02))}
+.page{max-width:1400px;margin:0 auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 18px 40px rgba(0,0,0,.22)}
+.hero h2{margin:0 0 10px;font-size:34px;color:var(--gold)}
+.hero p{margin:0;color:var(--muted);max-width:980px}
+.badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:rgba(201,168,76,.08);color:var(--gold2);font-size:12px;font-family:Arial,sans-serif}
+.layout{display:grid;grid-template-columns:330px 1fr;gap:18px;margin-top:18px}
+.panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 16px 36px rgba(0,0,0,.18)}
+.panel h3{margin:0 0 12px;color:var(--gold);font-size:20px}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.book-link{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.02);color:var(--text);font-size:14px}
+.book-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.chapter-nav{display:flex;gap:8px;flex-wrap:wrap}
+.chapter-link{display:inline-flex;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--text);font-family:Arial,sans-serif;font-size:12px}
+.chapter-link:hover{background:rgba(201,168,76,.10);color:var(--gold)}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.stat .k{color:var(--muted);font-size:12px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px}
+.stat .v{font-size:22px;color:var(--gold);margin-top:4px}
+.scripture{font-size:17px;white-space:pre-wrap}
+.scripture h4{color:var(--gold);margin:24px 0 10px;font-size:22px;border-top:1px solid rgba(201,168,76,.18);padding-top:18px}
+.notice{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--muted);margin:14px 0}
+.verify-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:13px}
+.verify-table th,.verify-table td{padding:9px 10px;border-bottom:1px solid rgba(201,168,76,.12);text-align:left}
+.verify-table th{color:var(--gold)}
+.footer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(201,168,76,.14);color:var(--muted);font-size:12px}
+@media (max-width: 980px){
+  .layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:1fr}
+}
+
+.gate-nav{background:linear-gradient(135deg,#162440,#1e2d3d);border-bottom:2px solid #c9a84c;position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:#c9a84c}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:#c9a84c;letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:#b8a88a;letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:#b8a88a;font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:#c9a84c;background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid #c9a84c;border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:#b8a88a;font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:#c9a84c;background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:#c9a84c;padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:#c9a84c;color:#0d1b2e!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:#e8c96e}
+@media(max-width:768px){.gate-nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="crest">✝</div>
+        <div>
+          <h1>GATE Bible Library</h1>
+          <small>Global Association Theological Education</small>
+        </div>
+      </div>
+      <div class="nav">
+        <a class="btn" href="bible.html">← All 66 Books</a>
+        <a class="btn" href="Bible PDF.pdf" target="_blank">Open Bible PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page">
+    <section class="hero">
+      <h2>Habakkuk</h2>
+      <p>Complete extracted text for Habakkuk from the uploaded Bible PDF, with chapter navigation and full verse text.</p>
+      <div class="badges">
+        <span class="badge">Book Start Page: 524</span>
+        <span class="badge">Book End Page: 525</span>
+        <span class="badge">Expected Chapters: 3</span>
+        <span class="badge">Verified Chapters Found: 3</span>
+      </div>
+      <div class="meta">
+        <div class="stat"><div class="k">Book</div><div class="v">Habakkuk</div></div>
+        <div class="stat"><div class="k">Chapter Count</div><div class="v">3</div></div>
+        <div class="stat"><div class="k">Verification</div><div class="v">OK</div></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="panel">
+        <h3>Chapters</h3>
+        <div class="chapter-nav">
+          <a class="chapter-link" href="#chapter-1">Chapter 1</a><a class="chapter-link" href="#chapter-2">Chapter 2</a><a class="chapter-link" href="#chapter-3">Chapter 3</a>
+        </div>
+        <div class="notice" style="margin-top:14px">
+          Direct PDF link: <a href="Bible PDF.pdf#page=524" target="_blank">Open Habakkuk in the source PDF</a>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <h3>Full Text</h3>
+        <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+1 The burden which Habakkuk the prophet did see.
+2 O LORD, how long shall I cry, and thou wilt not hear!
+even cry out unto thee of violence, and thou wilt not save!
+3 Why dost thou shew me iniquity, and cause me to behold
+grievance? for spoiling and violence are before me: and there
+are that raise up strife and contention.
+4 Therefore the law is slacked, and judgment doth never go
+forth: for the wicked doth compas s about the righteous;
+therefore wrong judgment proceedeth.
+5 Behold ye among the heathen, and regard, and wonder
+marvellously: for I will work a work in your days, which ye
+will not believe, though it be told you.
+6 For, lo, I raise up the Chaldeans, that bitter and hasty
+nation, which shall march through the breadth of the land, to
+possess the dwellingplaces that are not their&#x27;s.
+7 They are terrible and dreadful: their judgment and their
+dignity shall proceed of themselves.
+8 Their horses also are swifter  than the leopards, and are
+more fierce than the evening wolves: and their horsemen
+shall spread themselves, and their horsemen shall come from
+far; they shall fly as the eagle that hasteth to eat.
+9 They shall come all for violence: their faces shall sup up
+as the east wind, and they shall gather the captivity as the
+sand.
+10 And they shall scoff at the kings, and the princes shall
+be a scorn unto them: they shall deride every strong hold; for
+they shall heap dust, and take it.
+11 Then shall his mind change, and he shall pass over, and
+offend, imputing this his power unto his god.
+12 Art thou not from everlasting, O LORD my God, mine
+Holy One? we shall not die. O LORD, thou hast ordained
+them for judgment; and, O mighty God, thou hast established
+them for correction.
+13 Thou art of purer eyes than to behold evil, and canst not
+look on iniquity: wherefore lookest thou upon them that deal
+treacherously, and holdest thy tongue when the wicked
+devoureth the man that is more righteous than he?
+14 And makest men as the fishes of the sea, as the creeping
+things, that have no ruler over them?
+15 They take up all of them with the angle, they catch
+them in their net, and gather them in their drag: therefore
+they rejoice and are glad.
+16 Therefore they sacrifice unto their net, and burn incense
+unto their drag; because by them their portion is fat, and their
+meat plenteous.
+17 Shall they therefore empty their net, and not spare
+continually to slay the nations?
+
+</div><h4 id="chapter-2">Chapter 2</h4><div>
+1 I will stand upon my watch, and set me upon the tower,
+and will watch to see what he will say unto me, and what I
+shall answer when I am reproved.
+2 And the LORD answered me, and said, Write the vision,
+and make it plain upon tables, that he may run that readeth it.
+3 For the vision is yet for an appointed time, but at the end
+it shall speak, and not lie: though it tarry, wait for it; because
+it will surely come, it will not tarry.
+4 Behold, his soul which is lifted up is not upright in him:
+but the just shall live by his faith.
+5 Yea also, because he transgresseth by wine, he is a proud
+man, neither keepeth at home, who enlargeth his desire as
+hell, and is as death, and cannot be satisfied, but gathereth
+unto him all nations, and heapeth unto him all people:
+6 Shall not all these take up a parable agains t him, and a
+taunting proverb against him, and say, Woe to him that
+increaseth that which is  not his! how long? and to him that
+ladeth himself with thick clay!
+7 Shall they not rise up suddenly that shall bite thee, and
+awake that shall vex thee, and thou shalt be for booties unto
+them?
+8 Because thou hast spoiled many nations, all the remnant
+of the people shall spoil thee; because of men&#x27;s blood, and
+for the violence of the land, of the city, and of all that dwell
+therein.
+9 Woe to him that coveteth an ev il covetousness to his
+house, that he may set his nest on high, that he may be
+delivered from the power of evil!
+10 Thou hast consulted shame to thy house by cutting off
+many people, and hast sinned against thy soul.
+11 For the stone shall cry out of the wall, and the beam out
+of the timber shall answer it.
+12 Woe to him that buildeth a town with blood, and
+stablisheth a city by iniquity!
+13 Behold, is it not of the LORD of hosts that the people
+shall labour in the very fire, and the people shall weary
+themselves for very vanity?
+14 For the earth shall be filled with the knowledge of the
+glory of the LORD, as the waters cover the sea.
+15 Woe unto him that giveth his neighbour drink, that
+puttest thy bottle to him, and makest him drunken also, that
+thou mayest look on their nakedness!
+16 Thou art filled with shame for glory: drink thou also,
+and let thy foreskin be uncovered: the cup of the LORD&#x27;S
+right hand shall be turned unto thee, and shameful spewing
+shall be on thy glory.
+17 For the violence of Lebanon s hall cover thee, and the
+spoil of beasts, which made them afraid, because of men&#x27;s
+blood, and for the violence of the land, of the city, and of all
+that dwell therein.
+18 What profiteth the graven image that the maker thereof
+hath graven it; the molten ima ge, and a teacher of lies, that
+the maker of his work trusteth therein, to make dumb idols?
+19 Woe unto him that saith to the wood, Awake; to the
+dumb stone, Arise, it shall teach! Behold, it is laid over with
+gold and silver, and there is no breath at all in the midst of it.
+20 But the LORD is in his holy temple: let all the earth
+keep silence before him.
+
+</div><h4 id="chapter-3">Chapter 3</h4><div>
+1 A prayer of Habakkuk the prophet upon Shigionoth.
+2 O LORD, I have heard thy speech, and was afraid: O
+LORD, revive thy work in the midst of  the years, in the
+midst of the years make known; in wrath remember mercy.
+3 God came from Teman, and the Holy One from mount
+Paran. Selah. His glory covered the heavens, and the earth
+was full of his praise.
+4 And his brightness was as the light; he had horns coming
+out of his hand: and there was the hiding of his power.
+5 Before him went the pestilence, and burning coals went
+forth at his feet.
+6 He stood, and measured the earth: he beheld, and drove
+asunder the nations; and the everlasting mountains were
+scattered, the perpetual hills did bow: his ways are
+everlasting.
+7 I saw the tents of Cushan in affliction: and the curtains
+of the land of Midian did tremble.
+8 Was the LORD displeased against the rivers? was thine
+anger against the rivers? was thy wrath against the sea, that
+thou didst ride upon thine horses and thy chariots of
+salvation?
+9 Thy bow was made quite naked, according to the oaths
+of the tribes, even thy  word. Selah. Thou didst cleave the
+earth with rivers.
+10 The mountains saw thee, and they trembled: the
+overflowing of the water passed by: the deep uttered his
+voice, and lifted up his hands on high.
+11 The sun and moon stood still in their habitation: at the
+light of thine arrows they went, and at the shining of thy
+glittering spear.
+12 Thou didst march through the land in indignation, thou
+didst thresh the heathen in anger.
+13 Thou wentest forth for the salvation of thy people, even
+for salvation with thine anointed; thou woundedst the head
+out of the house of the wicked, by discovering the foundation
+unto the neck. Selah.
+14 Thou didst strike through with his staves the head of his
+villages: they came out as a whirlwind to scatter me: their
+rejoicing was as to devour the poor secretly.
+15 Thou didst walk through the sea with thine horses,
+through the heap of great waters.
+16 When I heard, my belly trembled; my lips quivered at
+the voice: rottenness entered into my bones, and I trembled
+in myself, that I might rest in the day of trouble: when he
+cometh up unto the people, he will invade them  with his
+troops.
+17 Although the fig tree shall not blossom, neither shall
+fruit be in the vines; the labour of the olive shall fail, and the
+fields shall yield no meat; the flock shall be cut off from the
+fold, and there shall be no herd in the stalls:
+18 Yet I will rejoice in the LORD, I will joy in the God of
+my salvation.
+19 The LORD God is my strength, and he will make my
+feet like hinds&#x27; feet, and he will make me to walk upon mine
+high places. To the chief singer on my stringed instruments.</div></div>
+      </section>
+    </div>
+
+    <div class="footer">Generated from the uploaded Bible PDF. This page contains the full extracted text for Habakkuk.</div>
+  </main>
+
+<script>
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
+</body>
+</html>
