@@ -1,0 +1,2411 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Strong's Concordance G1001–G1250</title>
+<style>
+
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a;--line:rgba(201,168,76,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:var(--gold);background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:var(--gold);padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+
+/* TOPBAR */
+.topbar{position:sticky;top:62px;z-index:100;background:rgba(13,27,46,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.topbar-brand{display:flex;align-items:center;gap:10px}
+.topbar-brand h1{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);margin:0;letter-spacing:2px}
+.topbar-brand small{font-size:.65rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;display:block}
+.topbar-nav{display:flex;gap:8px;flex-wrap:wrap}
+.tbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text2);font-family:sans-serif;font-size:12px;font-weight:600;text-decoration:none;transition:all .2s}
+.tbtn:hover{color:var(--gold);border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.06)}
+.tbtn.primary{background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));color:var(--gold);border-color:rgba(201,168,76,.35)}
+/* LAYOUT */
+.layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:18px;padding:20px 18px 80px;align-items:start}
+/* SIDEBAR */
+.sidebar{position:sticky;top:125px;max-height:calc(100vh - 135px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,.4) transparent}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(201,168,76,.4);border-radius:4px}
+.sidebar-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.sidebar-panel h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line);letter-spacing:1px}
+.section-link{display:block;padding:7px 10px;border-radius:7px;color:var(--text2);font-family:sans-serif;font-size:.75rem;text-decoration:none;border-left:3px solid transparent;transition:all .15s;margin-bottom:2px;letter-spacing:.3px}
+.section-link:hover{color:var(--gold);background:rgba(201,168,76,.08);border-left-color:rgba(201,168,76,.5)}
+.sidebar-nav{display:flex;flex-direction:column;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.sidebar-nav a{display:block;padding:9px 12px;border:1px solid rgba(201,168,76,.2);border-radius:8px;background:rgba(255,255,255,.02);color:var(--text2);font-family:sans-serif;font-size:.8rem;text-align:center;text-decoration:none;transition:all .2s}
+.sidebar-nav a:hover{color:var(--gold);border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.06)}
+.sidebar-nav a.gold{background:rgba(201,168,76,.1);color:var(--gold);border-color:var(--gold);font-weight:600}
+/* CONTENT */
+.content{min-width:0}
+.section-hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.section-hero h2{font-family:'Cinzel',serif;color:var(--gold);font-size:1.6rem;margin-bottom:6px}
+.section-hero p{color:var(--text2);font-size:.88rem}
+.hero-stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+.hstat{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(201,168,76,.06);font-family:sans-serif;font-size:.78rem;color:var(--gold)}
+/* ENTRIES */
+.entries-panel{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--line);border-radius:14px;padding:18px}
+.entry-card{padding:14px 16px;border-bottom:1px solid rgba(201,168,76,.1);transition:background .15s}
+.entry-card:hover{background:rgba(201,168,76,.04)}
+.entry-card:last-child{border-bottom:none}
+.entry-header{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.entry-num{font-family:sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);padding:2px 7px;border-radius:10px;white-space:nowrap}
+.entry-word{font-family:'Cinzel',serif;font-size:1rem;color:var(--cream);font-weight:700}
+.entry-pron{font-size:.78rem;color:var(--text2);font-style:italic}
+.entry-def{color:var(--text);font-size:.88rem;line-height:1.7;margin-top:3px;padding-left:2px}
+.entry-kjv{font-size:.75rem;color:var(--text2);margin-top:4px;font-style:italic;padding-left:2px}
+.entry-kjv::before{content:"KJV: ";color:rgba(201,168,76,.6);font-style:normal}
+/* ADMIN POSTS */
+.admin-posts{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:16px;margin-top:18px}
+.admin-posts h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;margin-bottom:12px;letter-spacing:1px}
+.post-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;margin-bottom:.7rem}
+.post-card img{max-width:100%;border-radius:6px;margin:.5rem 0;border:1px solid rgba(201,168,76,.15)}
+.post-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;margin-bottom:.3rem}
+.post-body{color:var(--cream);font-size:.85rem;line-height:1.7}
+/* ADMIN PANEL */
+.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;display:none}
+.admin-panel.visible{display:block}
+.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.5rem 1.1rem;border-radius:5px;font-family:sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1)}
+.btn-danger{background:#6b1d2e;color:var(--cream)}.btn-danger:hover{background:#8b2540}
+.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f}
+.btn-sm{padding:.28rem .65rem;font-size:.75rem}
+.form-group{margin-bottom:.8rem}
+label{display:block;color:var(--text2);font-size:.8rem;margin-bottom:.2rem}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.88rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+/* ADMIN TOOLBAR */
+.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
+.admin-toolbar.visible{display:block}
+.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.atb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif}
+.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600;transition:all .15s}
+.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
+.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
+.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
+.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
+.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
+.gate-footer{background:var(--navy2);border-top:1px solid var(--line);padding:1rem;text-align:center;color:var(--text2);font-size:.75rem}
+.gate-footer span{color:var(--gold)}
+.badge{display:inline-block;padding:.1rem .4rem;border-radius:8px;font-size:.68rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand">
+      <div>
+        <h1>Strong's Concordance</h1>
+        <small>Greek Dictionary — G1001–G1250</small>
+      </div>
+    </div>
+    <div class="topbar-nav">
+      <a class="tbtn primary" href="index.html">🏠 GATE Home</a>
+      <a class="tbtn" href="bible.html">📖 Bible</a>
+      <a class="tbtn" href="concordance.html">🔍 All Sections</a>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- STICKY SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-panel">
+      <h3>📋 Sections</h3>
+      <a href="concordance_g1-g250.html" class="section-link" >G1–G250</a>
+<a href="concordance_g251-g500.html" class="section-link" >G251–G500</a>
+<a href="concordance_g501-g750.html" class="section-link" >G501–G750</a>
+<a href="concordance_g751-g1000.html" class="section-link" >G751–G1000</a>
+<a href="concordance_g1001-g1250.html" class="section-link" style="color:var(--gold);background:rgba(201,168,76,.12);border-left:3px solid var(--gold);padding-left:1.1rem;">G1001–G1250</a>
+<a href="concordance_g1251-g1500.html" class="section-link" >G1251–G1500</a>
+<a href="concordance_g1501-g1750.html" class="section-link" >G1501–G1750</a>
+<a href="concordance_g1751-g2000.html" class="section-link" >G1751–G2000</a>
+<a href="concordance_g2001-g2250.html" class="section-link" >G2001–G2250</a>
+<a href="concordance_g2251-g2500.html" class="section-link" >G2251–G2500</a>
+<a href="concordance_g2501-g2750.html" class="section-link" >G2501–G2750</a>
+<a href="concordance_g2751-g3000.html" class="section-link" >G2751–G3000</a>
+<a href="concordance_g3001-g3250.html" class="section-link" >G3001–G3250</a>
+<a href="concordance_g3251-g3500.html" class="section-link" >G3251–G3500</a>
+<a href="concordance_g3501-g3750.html" class="section-link" >G3501–G3750</a>
+<a href="concordance_g3751-g4000.html" class="section-link" >G3751–G4000</a>
+<a href="concordance_g4001-g4250.html" class="section-link" >G4001–G4250</a>
+<a href="concordance_g4251-g4500.html" class="section-link" >G4251–G4500</a>
+<a href="concordance_g4501-g4750.html" class="section-link" >G4501–G4750</a>
+<a href="concordance_g4751-g5000.html" class="section-link" >G4751–G5000</a>
+<a href="concordance_g5001-g5250.html" class="section-link" >G5001–G5250</a>
+<a href="concordance_g5251-g5500.html" class="section-link" >G5251–G5500</a>
+<a href="concordance_g5501-g5624.html" class="section-link" >G5501–G5624</a>
+
+      <div class="sidebar-nav">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="gold">↑ Back to Top</a>
+        <a href="concordance.html">🔍 Concordance Home</a>
+        <a href="bible.html">📖 The Bible</a>
+        <a href="index.html">🏠 GATE Home</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2);">
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;letter-spacing:1px;">⚙ Add Content to This Section</h3>
+        <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close</button>
+      </div>
+      <div id="addForm" style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:1rem;margin-bottom:.8rem;">
+        <div class="grid2">
+          <div class="form-group"><label>Title *</label><input type="text" id="adm_title" placeholder="Entry title or Strong's number..."></div>
+          <div class="form-group"><label>Status</label>
+            <select id="adm_status"><option value="active">Active</option><option value="approved">Approved</option><option value="draft">Draft</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Notes / Definition / Commentary *</label><textarea id="adm_body" rows="3" placeholder="Additional notes, commentary, or cross-references..."></textarea></div>
+        <div class="form-group"><label>Scripture Reference</label><input type="text" id="adm_ref" placeholder="e.g. John 3:16, Acts 2:4"></div>
+        <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="adm_img" accept="image/*"></div>
+        <div id="adm_msg" style="font-size:.83rem;min-height:1.1rem;margin-bottom:.4rem;"></div>
+        <div style="display:flex;gap:.6rem;">
+          <button class="btn btn-gold" style="font-size:.95rem;" onclick="addPost()">📢 POST</button>
+          <button class="btn btn-outline" onclick="document.getElementById('addForm').style.display='none'">Cancel</button>
+        </div>
+      </div>
+      <div id="adminPostList"></div>
+    </div>
+
+    <!-- Section Hero -->
+    <div class="section-hero">
+      <h2>🔍 G1001–G1250: Ballo to Ginomai</h2>
+      <p>Strong's Greek Dictionary — 252 entries (G1001–G1250). James Strong, S.T.D., LL.D., 1890. Public Domain.</p>
+      <div class="hero-stats">
+        <span class="hstat">📖 252 Entries</span>
+        <span class="hstat">🔢 G1001–G1250</span>
+        <span class="hstat">🇬🇷 Greek New Testament</span>
+        <span class="hstat">✅ Complete &amp; Verified</span>
+      </div>
+    </div>
+
+    <!-- Entries -->
+    <div class="entries-panel">
+      <div class="entry-card" id="g1001">
+  <div class="entry-header">
+    <span class="entry-num">G1001</span>
+    <span class="entry-word">bolizo</span>
+    <span class="entry-pron">{bol-id'-zo}</span>
+  </div>
+  <div class="entry-def">to heave the lead:</div>
+  <div class="entry-kjv">KJV: sound.</div>
+</div><div class="entry-card" id="g1002">
+  <div class="entry-header">
+    <span class="entry-num">G1002</span>
+    <span class="entry-word">bolis</span>
+    <span class="entry-pron">{bol-ece'}</span>
+  </div>
+  <div class="entry-def">a missile, i.e. javelin:</div>
+  <div class="entry-kjv">KJV: dart.</div>
+</div><div class="entry-card" id="g1003">
+  <div class="entry-header">
+    <span class="entry-num">G1003</span>
+    <span class="entry-word">Booz</span>
+    <span class="entry-pron">{bo-oz'}</span>
+  </div>
+  <div class="entry-def">Booz, (i.e. Boaz), an Israelite:</div>
+  <div class="entry-kjv">KJV: Booz.</div>
+</div><div class="entry-card" id="g1004">
+  <div class="entry-header">
+    <span class="entry-num">G1004</span>
+    <span class="entry-word">borboros</span>
+    <span class="entry-pron">{bor'-bor-os}</span>
+  </div>
+  <div class="entry-def">mud:</div>
+  <div class="entry-kjv">KJV: mire.</div>
+</div><div class="entry-card" id="g1005">
+  <div class="entry-header">
+    <span class="entry-num">G1005</span>
+    <span class="entry-word">borrhas</span>
+    <span class="entry-pron">{bor-hras'}</span>
+  </div>
+  <div class="entry-def">the north (properly, wind):</div>
+  <div class="entry-kjv">KJV: north.</div>
+</div><div class="entry-card" id="g1006">
+  <div class="entry-header">
+    <span class="entry-num">G1006</span>
+    <span class="entry-word">bosko</span>
+    <span class="entry-pron">{bos'-ko}</span>
+  </div>
+  <div class="entry-def">to pasture; by extension to, fodder; reflexively, to graze:</div>
+  <div class="entry-kjv">KJV: feed, keep.</div>
+</div><div class="entry-card" id="g1007">
+  <div class="entry-header">
+    <span class="entry-num">G1007</span>
+    <span class="entry-word">Bosor</span>
+    <span class="entry-pron">{bos-or'}</span>
+  </div>
+  <div class="entry-def">Bosor (i.e. Beor), a Moabite:</div>
+  <div class="entry-kjv">KJV: Bosor.</div>
+</div><div class="entry-card" id="g1008">
+  <div class="entry-header">
+    <span class="entry-num">G1008</span>
+    <span class="entry-word">botane</span>
+    <span class="entry-pron">{bot-an'-ay}</span>
+  </div>
+  <div class="entry-def">herbage (as if for grazing):</div>
+  <div class="entry-kjv">KJV: herb.</div>
+</div><div class="entry-card" id="g1009">
+  <div class="entry-header">
+    <span class="entry-num">G1009</span>
+    <span class="entry-word">botrus</span>
+    <span class="entry-pron">{bot'-rooce}</span>
+  </div>
+  <div class="entry-def">a bunch (of grapes):</div>
+  <div class="entry-kjv">KJV: (vine) cluster (of the vine).</div>
+</div><div class="entry-card" id="g1010">
+  <div class="entry-header">
+    <span class="entry-num">G1010</span>
+    <span class="entry-word">bouleutes</span>
+    <span class="entry-pron">{bool-yoo-tace'}</span>
+  </div>
+  <div class="entry-def">an adviser, i.e. (specially) a councillor or member of the Jewish Sanhedrin:</div>
+  <div class="entry-kjv">KJV: counsellor.</div>
+</div><div class="entry-card" id="g1011">
+  <div class="entry-header">
+    <span class="entry-num">G1011</span>
+    <span class="entry-word">bouleuo</span>
+    <span class="entry-pron">{bool-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to advise, i.e. (reflexively) deliberate, or (by implication) resolve:</div>
+  <div class="entry-kjv">KJV: consult, take counsel, determine, be minded, purpose.</div>
+</div><div class="entry-card" id="g1012">
+  <div class="entry-header">
+    <span class="entry-num">G1012</span>
+    <span class="entry-word">boule</span>
+    <span class="entry-pron">{boo-lay'}</span>
+  </div>
+  <div class="entry-def">volition, i.e. (objectively) advice, or (by implication) purpose:</div>
+  <div class="entry-kjv">KJV: + advise, counsel, will.</div>
+</div><div class="entry-card" id="g1013">
+  <div class="entry-header">
+    <span class="entry-num">G1013</span>
+    <span class="entry-word">boulema</span>
+    <span class="entry-pron">{boo'-lay-mah}</span>
+  </div>
+  <div class="entry-def">a resolve:</div>
+  <div class="entry-kjv">KJV: purpose, will.</div>
+</div><div class="entry-card" id="g1014">
+  <div class="entry-header">
+    <span class="entry-num">G1014</span>
+    <span class="entry-word">boulomai</span>
+    <span class="entry-pron">{boo'-lom-ahee}</span>
+  </div>
+  <div class="entry-def">to &quot;will,&quot; i.e. (reflexively) be willing:</div>
+  <div class="entry-kjv">KJV: be disposed, minded, intend, list, (be, of own) will (-ing). Compare 2309.</div>
+</div><div class="entry-card" id="g1015">
+  <div class="entry-header">
+    <span class="entry-num">G1015</span>
+    <span class="entry-word">bounos</span>
+    <span class="entry-pron">{boo-nos'}</span>
+  </div>
+  <div class="entry-def">a hillock:</div>
+  <div class="entry-kjv">KJV: hill.</div>
+</div><div class="entry-card" id="g1016">
+  <div class="entry-header">
+    <span class="entry-num">G1016</span>
+    <span class="entry-word">bous</span>
+    <span class="entry-pron">{booce}</span>
+  </div>
+  <div class="entry-def">an ox (as grazing), i.e. an animal of that species (&quot;beef&quot;):</div>
+  <div class="entry-kjv">KJV: ox.</div>
+</div><div class="entry-card" id="g1017">
+  <div class="entry-header">
+    <span class="entry-num">G1017</span>
+    <span class="entry-word">brabeion</span>
+    <span class="entry-pron">{brab-i'-on}</span>
+  </div>
+  <div class="entry-def">an award (of arbitration), i.e. (specially) a prize in the public games:</div>
+  <div class="entry-kjv">KJV: prize.</div>
+</div><div class="entry-card" id="g1018">
+  <div class="entry-header">
+    <span class="entry-num">G1018</span>
+    <span class="entry-word">brabeuo</span>
+    <span class="entry-pron">{brab-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to arbitrate, i.e. (genitive case) to govern (figuratively, prevail):</div>
+  <div class="entry-kjv">KJV: rule.</div>
+</div><div class="entry-card" id="g1019">
+  <div class="entry-header">
+    <span class="entry-num">G1019</span>
+    <span class="entry-word">braduno</span>
+    <span class="entry-pron">{brad-oo'-no}</span>
+  </div>
+  <div class="entry-def">to delay:</div>
+  <div class="entry-kjv">KJV: be slack, tarry.</div>
+</div><div class="entry-card" id="g1020">
+  <div class="entry-header">
+    <span class="entry-num">G1020</span>
+    <span class="entry-word">braduploeo</span>
+    <span class="entry-pron">{brad-oo-plo-eh'-o}</span>
+  </div>
+  <div class="entry-def">to sail slowly:</div>
+  <div class="entry-kjv">KJV: sail slowly.</div>
+</div><div class="entry-card" id="g1021">
+  <div class="entry-header">
+    <span class="entry-num">G1021</span>
+    <span class="entry-word">bradus</span>
+    <span class="entry-pron">{brad-ooce'}</span>
+  </div>
+  <div class="entry-def">slow; figuratively, dull:</div>
+  <div class="entry-kjv">KJV: slow.</div>
+</div><div class="entry-card" id="g1022">
+  <div class="entry-header">
+    <span class="entry-num">G1022</span>
+    <span class="entry-word">bradutes</span>
+    <span class="entry-pron">{brad-oo'-tace}</span>
+  </div>
+  <div class="entry-def">tardiness:</div>
+  <div class="entry-kjv">KJV: slackness.</div>
+</div><div class="entry-card" id="g1023">
+  <div class="entry-header">
+    <span class="entry-num">G1023</span>
+    <span class="entry-word">brachion</span>
+    <span class="entry-pron">{brakh-ee'-own}</span>
+  </div>
+  <div class="entry-def">the arm, i.e. (figuratively) strength:</div>
+  <div class="entry-kjv">KJV: arm.</div>
+</div><div class="entry-card" id="g1024">
+  <div class="entry-header">
+    <span class="entry-num">G1024</span>
+    <span class="entry-word">brachus</span>
+    <span class="entry-pron">{brakh-ooce'}</span>
+  </div>
+  <div class="entry-def">short (of time, place, quantity, or number):</div>
+  <div class="entry-kjv">KJV: few words, little (space, while).</div>
+</div><div class="entry-card" id="g1025">
+  <div class="entry-header">
+    <span class="entry-num">G1025</span>
+    <span class="entry-word">brephos</span>
+    <span class="entry-pron">{bref'-os}</span>
+  </div>
+  <div class="entry-def">an infant (properly, unborn) literally or figuratively:</div>
+  <div class="entry-kjv">KJV: babe, (young) child, infant.</div>
+</div><div class="entry-card" id="g1026">
+  <div class="entry-header">
+    <span class="entry-num">G1026</span>
+    <span class="entry-word">brecho</span>
+    <span class="entry-pron">{brekh'-o}</span>
+  </div>
+  <div class="entry-def">to moisten (especially by a shower):</div>
+  <div class="entry-kjv">KJV: (send) rain, wash.</div>
+</div><div class="entry-card" id="g1027">
+  <div class="entry-header">
+    <span class="entry-num">G1027</span>
+    <span class="entry-word">bronte</span>
+    <span class="entry-pron">{bron-tay'}</span>
+  </div>
+  <div class="entry-def">thunder:</div>
+  <div class="entry-kjv">KJV: thunder(-ing).</div>
+</div><div class="entry-card" id="g1028">
+  <div class="entry-header">
+    <span class="entry-num">G1028</span>
+    <span class="entry-word">broche</span>
+    <span class="entry-pron">{brokh-ay'}</span>
+  </div>
+  <div class="entry-def">rain:</div>
+  <div class="entry-kjv">KJV: rain.</div>
+</div><div class="entry-card" id="g1029">
+  <div class="entry-header">
+    <span class="entry-num">G1029</span>
+    <span class="entry-word">brochos</span>
+    <span class="entry-pron">{brokh'-os}</span>
+  </div>
+  <div class="entry-def">a noose:</div>
+  <div class="entry-kjv">KJV: snare.</div>
+</div><div class="entry-card" id="g1030">
+  <div class="entry-header">
+    <span class="entry-num">G1030</span>
+    <span class="entry-word">brugmos</span>
+    <span class="entry-pron">{broog-mos'}</span>
+  </div>
+  <div class="entry-def">a grating (of the teeth):</div>
+  <div class="entry-kjv">KJV: gnashing.</div>
+</div><div class="entry-card" id="g1031">
+  <div class="entry-header">
+    <span class="entry-num">G1031</span>
+    <span class="entry-word">brucho</span>
+    <span class="entry-pron">{broo'-kho}</span>
+  </div>
+  <div class="entry-def">to grate the teeth (in pain or rage):</div>
+  <div class="entry-kjv">KJV: gnash.</div>
+</div><div class="entry-card" id="g1032">
+  <div class="entry-header">
+    <span class="entry-num">G1032</span>
+    <span class="entry-word">bruo</span>
+    <span class="entry-pron">{broo'-o}</span>
+  </div>
+  <div class="entry-def">to swell out, i.e. (by implication) to gush:</div>
+  <div class="entry-kjv">KJV: send forth.</div>
+</div><div class="entry-card" id="g1033">
+  <div class="entry-header">
+    <span class="entry-num">G1033</span>
+    <span class="entry-word">broma</span>
+    <span class="entry-pron">{bro'-mah}</span>
+  </div>
+  <div class="entry-def">food (literally or figuratively), especially (ceremonially) articles allowed or forbidden by the Jewish law:</div>
+  <div class="entry-kjv">KJV: meat, victuals.</div>
+</div><div class="entry-card" id="g1034">
+  <div class="entry-header">
+    <span class="entry-num">G1034</span>
+    <span class="entry-word">brosimos</span>
+    <span class="entry-pron">{bro'-sim-os}</span>
+  </div>
+  <div class="entry-def">eatable:</div>
+  <div class="entry-kjv">KJV: meat.</div>
+</div><div class="entry-card" id="g1035">
+  <div class="entry-header">
+    <span class="entry-num">G1035</span>
+    <span class="entry-word">brosis</span>
+    <span class="entry-pron">{bro'-sis}</span>
+  </div>
+  <div class="entry-def">(abstractly) eating (literally or figuratively); by extension (concretely) food (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: eating, food, meat.</div>
+</div><div class="entry-card" id="g1036">
+  <div class="entry-header">
+    <span class="entry-num">G1036</span>
+    <span class="entry-word">buthizo</span>
+    <span class="entry-pron">{boo-thid'-zo}</span>
+  </div>
+  <div class="entry-def">to sink; by implication, to drown:</div>
+  <div class="entry-kjv">KJV: begin to sink, drown.</div>
+</div><div class="entry-card" id="g1037">
+  <div class="entry-header">
+    <span class="entry-num">G1037</span>
+    <span class="entry-word">buthos</span>
+    <span class="entry-pron">{boo-thos'}</span>
+  </div>
+  <div class="entry-def">depth, i.e. (by implication) the sea:-deep</div>
+  <div class="entry-kjv">KJV: 899</div>
+</div><div class="entry-card" id="g1038">
+  <div class="entry-header">
+    <span class="entry-num">G1038</span>
+    <span class="entry-word">burseus</span>
+    <span class="entry-pron">{boorce-yooce'}</span>
+  </div>
+  <div class="entry-def">a tanner:</div>
+  <div class="entry-kjv">KJV: tanner.</div>
+</div><div class="entry-card" id="g1039">
+  <div class="entry-header">
+    <span class="entry-num">G1039</span>
+    <span class="entry-word">bussinos</span>
+    <span class="entry-pron">{boos'-See-nos}</span>
+  </div>
+  <div class="entry-def">made of linen (neuter a linen cloth):</div>
+  <div class="entry-kjv">KJV: fine linen.</div>
+</div><div class="entry-card" id="g1040">
+  <div class="entry-header">
+    <span class="entry-num">G1040</span>
+    <span class="entry-word">bussos</span>
+    <span class="entry-pron">{boos'-sos}</span>
+  </div>
+  <div class="entry-def">white linen:</div>
+  <div class="entry-kjv">KJV: fine linen.</div>
+</div><div class="entry-card" id="g1041">
+  <div class="entry-header">
+    <span class="entry-num">G1041</span>
+    <span class="entry-word">bomos</span>
+    <span class="entry-pron">{bo'-mos}</span>
+  </div>
+  <div class="entry-def">properly, a stand, i.e. (specially) an altar:</div>
+  <div class="entry-kjv">KJV: altar.</div>
+</div><div class="entry-card" id="g1042">
+  <div class="entry-header">
+    <span class="entry-num">G1042</span>
+    <span class="entry-word">gabbatha</span>
+    <span class="entry-pron">{gab-bath-ah'}</span>
+  </div>
+  <div class="entry-def">the knoll; gabbatha, a vernacular term for the Roman tribunal in Jerusalem:</div>
+  <div class="entry-kjv">KJV: Gabbatha.</div>
+</div><div class="entry-card" id="g1043">
+  <div class="entry-header">
+    <span class="entry-num">G1043</span>
+    <span class="entry-word">Gabriel</span>
+    <span class="entry-pron">{gab-ree-ale'}</span>
+  </div>
+  <div class="entry-def">Gabriel, an archangel:</div>
+  <div class="entry-kjv">KJV: Gabriel.</div>
+</div><div class="entry-card" id="g1044">
+  <div class="entry-header">
+    <span class="entry-num">G1044</span>
+    <span class="entry-word">gaggraina</span>
+    <span class="entry-pron">{gang'-grahee-nah}</span>
+  </div>
+  <div class="entry-def">an ulcer (&quot;gangrene&quot;):-canker</div>
+  
+</div><div class="entry-card" id="g1045">
+  <div class="entry-header">
+    <span class="entry-num">G1045</span>
+    <span class="entry-word">Gad</span>
+    <span class="entry-pron">{gad}</span>
+  </div>
+  <div class="entry-def">Gad, a tribe of Israelites:</div>
+  <div class="entry-kjv">KJV: Gad.</div>
+</div><div class="entry-card" id="g1046">
+  <div class="entry-header">
+    <span class="entry-num">G1046</span>
+    <span class="entry-word">Gadarenos</span>
+    <span class="entry-pron">{gad-ar-ay-nos'}</span>
+  </div>
+  <div class="entry-def">a Gadarene or inhabitant of Gadara:</div>
+  <div class="entry-kjv">KJV: Gadarene.</div>
+</div><div class="entry-card" id="g1047">
+  <div class="entry-header">
+    <span class="entry-num">G1047</span>
+    <span class="entry-word">gaza</span>
+    <span class="entry-pron">{gad'-zah}</span>
+  </div>
+  <div class="entry-def">a treasure:</div>
+  <div class="entry-kjv">KJV: treasure.</div>
+</div><div class="entry-card" id="g1048">
+  <div class="entry-header">
+    <span class="entry-num">G1048</span>
+    <span class="entry-word">Gaza</span>
+    <span class="entry-pron">{gad'-zah}</span>
+  </div>
+  <div class="entry-def">Gazah (i.e. Azzah), a place in Palestine:</div>
+  <div class="entry-kjv">KJV: Gaza.</div>
+</div><div class="entry-card" id="g1049">
+  <div class="entry-header">
+    <span class="entry-num">G1049</span>
+    <span class="entry-word">gazophulakion</span>
+    <span class="entry-pron">{gad-zof-oo-lak'-ee-on}</span>
+  </div>
+  <div class="entry-def">a treasure-house, i.e. a court in the temple for the collectionboxes:</div>
+  <div class="entry-kjv">KJV: treasury.</div>
+</div><div class="entry-card" id="g1050">
+  <div class="entry-header">
+    <span class="entry-num">G1050</span>
+    <span class="entry-word">Gaios</span>
+    <span class="entry-pron">{gah'-ee-os}</span>
+  </div>
+  <div class="entry-def">Gaius (i.e. Caius), a Christian:</div>
+  <div class="entry-kjv">KJV: Gaius.</div>
+</div><div class="entry-card" id="g1051">
+  <div class="entry-header">
+    <span class="entry-num">G1051</span>
+    <span class="entry-word">gala</span>
+    <span class="entry-pron">{gal'-ah}</span>
+  </div>
+  <div class="entry-def">milk (figuratively):</div>
+  <div class="entry-kjv">KJV: milk.</div>
+</div><div class="entry-card" id="g1052">
+  <div class="entry-header">
+    <span class="entry-num">G1052</span>
+    <span class="entry-word">Galates</span>
+    <span class="entry-pron">{gal-at'-ace}</span>
+  </div>
+  <div class="entry-def">a Galatian or inhabitant of Galatia:</div>
+  <div class="entry-kjv">KJV: Galatian.</div>
+</div><div class="entry-card" id="g1053">
+  <div class="entry-header">
+    <span class="entry-num">G1053</span>
+    <span class="entry-word">Galatia</span>
+    <span class="entry-pron">{gal-at-ee'-ah}</span>
+  </div>
+  <div class="entry-def">Galatia, a region of Asia:</div>
+  <div class="entry-kjv">KJV: Galatia.</div>
+</div><div class="entry-card" id="g1054">
+  <div class="entry-header">
+    <span class="entry-num">G1054</span>
+    <span class="entry-word">Galatikos</span>
+    <span class="entry-pron">{gal-at-ee-kos'}</span>
+  </div>
+  <div class="entry-def">Galatic or relating to Galatia:</div>
+  <div class="entry-kjv">KJV: of Galatia.</div>
+</div><div class="entry-card" id="g1055">
+  <div class="entry-header">
+    <span class="entry-num">G1055</span>
+    <span class="entry-word">galene</span>
+    <span class="entry-pron">{gal-ay'-nay}</span>
+  </div>
+  <div class="entry-def">tranquillity:</div>
+  <div class="entry-kjv">KJV: calm.</div>
+</div><div class="entry-card" id="g1056">
+  <div class="entry-header">
+    <span class="entry-num">G1056</span>
+    <span class="entry-word">Galilaia</span>
+    <span class="entry-pron">{gal-il-ah'-yah}</span>
+  </div>
+  <div class="entry-def">Galiloea (i.e. the heathen circle), a region of Palestine:</div>
+  <div class="entry-kjv">KJV: Galilee.</div>
+</div><div class="entry-card" id="g1057">
+  <div class="entry-header">
+    <span class="entry-num">G1057</span>
+    <span class="entry-word">Galilaios</span>
+    <span class="entry-pron">{gal-ee-lah'-yos}</span>
+  </div>
+  <div class="entry-def">Galilean or belonging to Galilea:-Galilean, of Galilee</div>
+  <div class="entry-kjv">KJV: 1056</div>
+</div><div class="entry-card" id="g1058">
+  <div class="entry-header">
+    <span class="entry-num">G1058</span>
+    <span class="entry-word">Gallion</span>
+    <span class="entry-pron">{gal-lee'-own}</span>
+  </div>
+  <div class="entry-def">Gallion (i.e. Gallio), a Roman officer:-Gallio</div>
+  
+</div><div class="entry-card" id="g1059">
+  <div class="entry-header">
+    <span class="entry-num">G1059</span>
+    <span class="entry-word">Gamaliel</span>
+    <span class="entry-pron">{gam-al-ee-ale'}</span>
+  </div>
+  <div class="entry-def">Gamaliel (i.e. Gamliel), an Israelite:</div>
+  <div class="entry-kjv">KJV: Gamaliel.</div>
+</div><div class="entry-card" id="g1060">
+  <div class="entry-header">
+    <span class="entry-num">G1060</span>
+    <span class="entry-word">gameo</span>
+    <span class="entry-pron">{gam-eh'-o}</span>
+  </div>
+  <div class="entry-def">to wed (of either sex):</div>
+  <div class="entry-kjv">KJV: marry (a wife).</div>
+</div><div class="entry-card" id="g1061">
+  <div class="entry-header">
+    <span class="entry-num">G1061</span>
+    <span class="entry-word">gamisko</span>
+    
+  </div>
+  <div class="entry-def">daughter to a husband):--give in marriage</div>
+  <div class="entry-kjv">KJV: give in marriage.</div>
+</div><div class="entry-card" id="g1062">
+  <div class="entry-header">
+    <span class="entry-num">G1062</span>
+    <span class="entry-word">gamos</span>
+    <span class="entry-pron">{gam'-os}</span>
+  </div>
+  <div class="entry-def">nuptials:</div>
+  <div class="entry-kjv">KJV: marriage, wedding.</div>
+</div><div class="entry-card" id="g1063">
+  <div class="entry-header">
+    <span class="entry-num">G1063</span>
+    <span class="entry-word">gar</span>
+    <span class="entry-pron">{gar}</span>
+  </div>
+  <div class="entry-def">properly, assigning a reason (used in argument, explanation or intensification; often with other particles):</div>
+  <div class="entry-kjv">KJV: and, as, because (that), but, even, for, indeed, no doubt, Seeing, then, therefore, verily, what, why, yet.</div>
+</div><div class="entry-card" id="g1064">
+  <div class="entry-header">
+    <span class="entry-num">G1064</span>
+    <span class="entry-word">gaster</span>
+    <span class="entry-pron">{gas-tare'}</span>
+  </div>
+  <div class="entry-def">the stomach; by analogy, the matrix; figuratively, a gourmand:</div>
+  <div class="entry-kjv">KJV: belly, + with child, womb.</div>
+</div><div class="entry-card" id="g1065">
+  <div class="entry-header">
+    <span class="entry-num">G1065</span>
+    <span class="entry-word">ge</span>
+    <span class="entry-pron">{gheh}</span>
+  </div>
+  <div class="entry-def">ualification (often used with other particles prefixed):--and besides, doubtless, at least, yet</div>
+  <div class="entry-kjv">KJV: and besides, doubtless, at least, yet.</div>
+</div><div class="entry-card" id="g1066">
+  <div class="entry-header">
+    <span class="entry-num">G1066</span>
+    <span class="entry-word">Gedeon</span>
+    <span class="entry-pron">{ghed-eh-own'}</span>
+  </div>
+  <div class="entry-def">Gedeon (i.e. Gid(e)on), an Israelite:</div>
+  <div class="entry-kjv">KJV: Gedeon (in the King James Version).</div>
+</div><div class="entry-card" id="g1067">
+  <div class="entry-header">
+    <span class="entry-num">G1067</span>
+    <span class="entry-word">geena</span>
+    <span class="entry-pron">{gheh'-en-nah}</span>
+  </div>
+  <div class="entry-def">valley of (the son of) Hinnom; ge-henna (or Ge-Hinnom), a valley of Jerusalem, used (figuratively) as a name for the place (or state) of everlasting punishment:</div>
+  <div class="entry-kjv">KJV: hell.</div>
+</div><div class="entry-card" id="g1068">
+  <div class="entry-header">
+    <span class="entry-num">G1068</span>
+    <span class="entry-word">Gethsemane</span>
+    <span class="entry-pron">{gheth-say-man-ay'}</span>
+  </div>
+  <div class="entry-def">oil-press; Gethsemane, a garden near Jerusalem:</div>
+  <div class="entry-kjv">KJV: Gethsemane.</div>
+</div><div class="entry-card" id="g1069">
+  <div class="entry-header">
+    <span class="entry-num">G1069</span>
+    <span class="entry-word">geiton</span>
+    <span class="entry-pron">{ghi'-tone}</span>
+  </div>
+  <div class="entry-def">a neighbour (as adjoining one's ground); by implication, a friend:</div>
+  <div class="entry-kjv">KJV: neighbour.</div>
+</div><div class="entry-card" id="g1070">
+  <div class="entry-header">
+    <span class="entry-num">G1070</span>
+    <span class="entry-word">gelao</span>
+    <span class="entry-pron">{ghel-ah'-o}</span>
+  </div>
+  <div class="entry-def">to laugh (as a sign of joy or satisfaction):</div>
+  <div class="entry-kjv">KJV: laugh.</div>
+</div><div class="entry-card" id="g1071">
+  <div class="entry-header">
+    <span class="entry-num">G1071</span>
+    <span class="entry-word">gelos</span>
+    <span class="entry-pron">{ghel'-os}</span>
+  </div>
+  <div class="entry-def">laughter (as a mark of gratification):</div>
+  <div class="entry-kjv">KJV: laughter.</div>
+</div><div class="entry-card" id="g1072">
+  <div class="entry-header">
+    <span class="entry-num">G1072</span>
+    <span class="entry-word">gemizo</span>
+    
+  </div>
+  <div class="entry-def">fill entirely:--fill (be) full</div>
+  <div class="entry-kjv">KJV: fill (be) full.</div>
+</div><div class="entry-card" id="g1073">
+  <div class="entry-header">
+    <span class="entry-num">G1073</span>
+    <span class="entry-word">gemo</span>
+    <span class="entry-pron">{ghem'-o}</span>
+  </div>
+  <div class="entry-def">to swell out, i.e. be full:</div>
+  <div class="entry-kjv">KJV: be full.</div>
+</div><div class="entry-card" id="g1074">
+  <div class="entry-header">
+    <span class="entry-num">G1074</span>
+    <span class="entry-word">genea</span>
+    <span class="entry-pron">{ghen-eh-ah'}</span>
+  </div>
+  <div class="entry-def">a generation; by implication, an age (the period or the persons):</div>
+  <div class="entry-kjv">KJV: age, generation, nation, time.</div>
+</div><div class="entry-card" id="g1075">
+  <div class="entry-header">
+    <span class="entry-num">G1075</span>
+    <span class="entry-word">genealogeo</span>
+    <span class="entry-pron">{ghen-eh-al-og-eh'-o}</span>
+  </div>
+  <div class="entry-def">to reckon by generations, i.e. trace in genealogy:</div>
+  <div class="entry-kjv">KJV: count by descent.</div>
+</div><div class="entry-card" id="g1076">
+  <div class="entry-header">
+    <span class="entry-num">G1076</span>
+    <span class="entry-word">genealogia</span>
+    <span class="entry-pron">{ghen-eh-al-og-ee'-ah}</span>
+  </div>
+  <div class="entry-def">tracing by generations, i.e. &quot;genealogy&quot;:</div>
+  <div class="entry-kjv">KJV: genealogy.</div>
+</div><div class="entry-card" id="g1077">
+  <div class="entry-header">
+    <span class="entry-num">G1077</span>
+    <span class="entry-word">genesia</span>
+    <span class="entry-pron">{ghen-es'-ee-ah}</span>
+  </div>
+  <div class="entry-def">birthday ceremonies:</div>
+  <div class="entry-kjv">KJV: birthday.</div>
+</div><div class="entry-card" id="g1078">
+  <div class="entry-header">
+    <span class="entry-num">G1078</span>
+    <span class="entry-word">genesis</span>
+    <span class="entry-pron">{ghen'-es-is}</span>
+  </div>
+  <div class="entry-def">nativity; figuratively, nature:-generation, nature(-ral)</div>
+  <div class="entry-kjv">KJV: 1074</div>
+</div><div class="entry-card" id="g1079">
+  <div class="entry-header">
+    <span class="entry-num">G1079</span>
+    <span class="entry-word">genete</span>
+    <span class="entry-pron">{ghen-et-ay}</span>
+  </div>
+  <div class="entry-def">birth:</div>
+  <div class="entry-kjv">KJV: birth.</div>
+</div><div class="entry-card" id="g1080">
+  <div class="entry-header">
+    <span class="entry-num">G1080</span>
+    <span class="entry-word">gennao</span>
+    <span class="entry-pron">{ghen-nah'-o}</span>
+  </div>
+  <div class="entry-def">to procreate (properly, of the father, but by extension of the mother); figuratively, to regenerate:</div>
+  <div class="entry-kjv">KJV: bear, beget, be born, bring forth, conceive, be delivered of, gender, make, spring.</div>
+</div><div class="entry-card" id="g1081">
+  <div class="entry-header">
+    <span class="entry-num">G1081</span>
+    <span class="entry-word">gennema</span>
+    <span class="entry-pron">{ghen'-nay-mah}</span>
+  </div>
+  <div class="entry-def">offspring; by analogy, produce (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: fruit, generation.</div>
+</div><div class="entry-card" id="g1082">
+  <div class="entry-header">
+    <span class="entry-num">G1082</span>
+    <span class="entry-word">Gennesaret</span>
+    
+  </div>
+  <div class="entry-def">(compare 3672); Gennesaret (i.e. Kinnereth), a lake and plain in Palestine:--Gennesaret. See HEBREW for 03672</div>
+  <div class="entry-kjv">KJV: Gennesaret.</div>
+</div><div class="entry-card" id="g1083">
+  <div class="entry-header">
+    <span class="entry-num">G1083</span>
+    <span class="entry-word">gennesis</span>
+    <span class="entry-pron">{ghen'-nay-sis}</span>
+  </div>
+  <div class="entry-def">nativity:</div>
+  <div class="entry-kjv">KJV: birth.</div>
+</div><div class="entry-card" id="g1084">
+  <div class="entry-header">
+    <span class="entry-num">G1084</span>
+    <span class="entry-word">gennetos</span>
+    <span class="entry-pron">{ghen-nay-tos'}</span>
+  </div>
+  <div class="entry-def">born:</div>
+  <div class="entry-kjv">KJV: they that are born.</div>
+</div><div class="entry-card" id="g1085">
+  <div class="entry-header">
+    <span class="entry-num">G1085</span>
+    <span class="entry-word">genos</span>
+    <span class="entry-pron">{ghen'-os}</span>
+  </div>
+  <div class="entry-def">&quot;kin&quot; (abstract or concrete, literal or figurative, individual or collective):</div>
+  <div class="entry-kjv">KJV: born, country(-man), diversity, generation, kind(-red), nation, offspring, stock.</div>
+</div><div class="entry-card" id="g1086">
+  <div class="entry-header">
+    <span class="entry-num">G1086</span>
+    <span class="entry-word">Gergesenos</span>
+    <span class="entry-pron">{gher-ghes-ay-nos'}</span>
+  </div>
+  <div class="entry-def">a Gergesene (i.e. Girgashite) or one of the aborigines of Palestine:</div>
+  <div class="entry-kjv">KJV: Gergesene.</div>
+</div><div class="entry-card" id="g1087">
+  <div class="entry-header">
+    <span class="entry-num">G1087</span>
+    <span class="entry-word">gerousia</span>
+    <span class="entry-pron">{gher-oo-See'-ah}</span>
+  </div>
+  <div class="entry-def">the eldership, i.e. (collectively) the Jewish Sanhedrin:</div>
+  <div class="entry-kjv">KJV: senate.</div>
+</div><div class="entry-card" id="g1088">
+  <div class="entry-header">
+    <span class="entry-num">G1088</span>
+    <span class="entry-word">geron</span>
+    <span class="entry-pron">{gher'-own}</span>
+  </div>
+  <div class="entry-def">aged:</div>
+  <div class="entry-kjv">KJV: old.</div>
+</div><div class="entry-card" id="g1089">
+  <div class="entry-header">
+    <span class="entry-num">G1089</span>
+    <span class="entry-word">geuomai</span>
+    <span class="entry-pron">{ghyoo'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to taste; by implication, to eat; figuratively, to experience (good or ill):</div>
+  <div class="entry-kjv">KJV: eat, taste.</div>
+</div><div class="entry-card" id="g1090">
+  <div class="entry-header">
+    <span class="entry-num">G1090</span>
+    <span class="entry-word">georgeo</span>
+    <span class="entry-pron">{gheh-or-gheh'-o}</span>
+  </div>
+  <div class="entry-def">to till (the soil):</div>
+  <div class="entry-kjv">KJV: dress.</div>
+</div><div class="entry-card" id="g1091">
+  <div class="entry-header">
+    <span class="entry-num">G1091</span>
+    <span class="entry-word">georgion</span>
+    <span class="entry-pron">{gheh-ore'-ghee-on}</span>
+  </div>
+  <div class="entry-def">cultivable, i.e. a farm:</div>
+  <div class="entry-kjv">KJV: husbandry.</div>
+</div><div class="entry-card" id="g1092">
+  <div class="entry-header">
+    <span class="entry-num">G1092</span>
+    <span class="entry-word">georgos</span>
+    <span class="entry-pron">{gheh-ore-gos'}</span>
+  </div>
+  <div class="entry-def">a land-worker, i.e. farmer:</div>
+  <div class="entry-kjv">KJV: husbandman.</div>
+</div><div class="entry-card" id="g1093">
+  <div class="entry-header">
+    <span class="entry-num">G1093</span>
+    <span class="entry-word">ge</span>
+    <span class="entry-pron">{ghay}</span>
+  </div>
+  <div class="entry-def">soil; by extension a region, or the solid part or the whole of the terrene globe (including the occupants in each application):</div>
+  <div class="entry-kjv">KJV: country, earth(-ly), ground, land, world.</div>
+</div><div class="entry-card" id="g1094">
+  <div class="entry-header">
+    <span class="entry-num">G1094</span>
+    <span class="entry-word">geras</span>
+    <span class="entry-pron">{ghay'-ras}</span>
+  </div>
+  <div class="entry-def">senility:</div>
+  <div class="entry-kjv">KJV: old age.</div>
+</div><div class="entry-card" id="g1095">
+  <div class="entry-header">
+    <span class="entry-num">G1095</span>
+    <span class="entry-word">gerasko</span>
+    <span class="entry-pron">{ghay-ras'-ko}</span>
+  </div>
+  <div class="entry-def">to be senescent:</div>
+  <div class="entry-kjv">KJV: be (wax) old.</div>
+</div><div class="entry-card" id="g1096">
+  <div class="entry-header">
+    <span class="entry-num">G1096</span>
+    <span class="entry-word">ginomai</span>
+    <span class="entry-pron">{ghin'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to cause to be (&quot;gen&quot;-erate), i.e. (reflexively) to become (come into being), used with great latitude (literal, figurative, intensive, etc.):</div>
+  
+</div><div class="entry-card" id="g1097">
+  <div class="entry-header">
+    <span class="entry-num">G1097</span>
+    <span class="entry-word">ginosko</span>
+    <span class="entry-pron">{ghin-oce'-ko}</span>
+  </div>
+  <div class="entry-def">to &quot;know&quot; (absolutely) in a great variety of applications and with many implications (as follow, with others not thus clearly expressed):</div>
+  <div class="entry-kjv">KJV: allow, be aware (of), feel, (have) know(-ledge), perceived, be resolved, can speak, be sure, understand.</div>
+</div><div class="entry-card" id="g1098">
+  <div class="entry-header">
+    <span class="entry-num">G1098</span>
+    <span class="entry-word">gleukos</span>
+    <span class="entry-pron">{glyoo'-kos}</span>
+  </div>
+  <div class="entry-def">sweet wine, i.e. (properly) must (fresh juice), but used of the more saccharine (and therefore highly inebriating) fermented wine:</div>
+  <div class="entry-kjv">KJV: new wine.</div>
+</div><div class="entry-card" id="g1099">
+  <div class="entry-header">
+    <span class="entry-num">G1099</span>
+    <span class="entry-word">glukus</span>
+    <span class="entry-pron">{gloo-koos'}</span>
+  </div>
+  <div class="entry-def">sweet (i.e. not bitter nor salt):</div>
+  <div class="entry-kjv">KJV: sweet, fresh.</div>
+</div><div class="entry-card" id="g1100">
+  <div class="entry-header">
+    <span class="entry-num">G1100</span>
+    <span class="entry-word">glossa</span>
+    <span class="entry-pron">{gloce-sah'}</span>
+  </div>
+  <div class="entry-def">the tongue; by implication, a language (specially, one naturally unacquired):</div>
+  <div class="entry-kjv">KJV: tongue.</div>
+</div><div class="entry-card" id="g1101">
+  <div class="entry-header">
+    <span class="entry-num">G1101</span>
+    <span class="entry-word">glossokomon</span>
+    <span class="entry-pron">{gloce-sok'-om-on}</span>
+  </div>
+  <div class="entry-def">properly, a case (to keep mouthpieces of wind-instruments in) i.e. (by extension) a casket or (specially) purse:</div>
+  <div class="entry-kjv">KJV: bag.</div>
+</div><div class="entry-card" id="g1102">
+  <div class="entry-header">
+    <span class="entry-num">G1102</span>
+    <span class="entry-word">gnapheus</span>
+    
+  </div>
+  <div class="entry-def">ative from knapto (to tease cloth); a cloth-dresser:--fuller</div>
+  <div class="entry-kjv">KJV: fuller.</div>
+</div><div class="entry-card" id="g1103">
+  <div class="entry-header">
+    <span class="entry-num">G1103</span>
+    <span class="entry-word">gnesios</span>
+    <span class="entry-pron">{gnay'-See-os}</span>
+  </div>
+  <div class="entry-def">legitimate (of birth), i.e. genuine:</div>
+  <div class="entry-kjv">KJV: own, sincerity, true.</div>
+</div><div class="entry-card" id="g1104">
+  <div class="entry-header">
+    <span class="entry-num">G1104</span>
+    <span class="entry-word">gnesios</span>
+    <span class="entry-pron">{gnay-See'-ose}</span>
+  </div>
+  <div class="entry-def">genuinely, i.e. really:</div>
+  <div class="entry-kjv">KJV: naturally.</div>
+</div><div class="entry-card" id="g1105">
+  <div class="entry-header">
+    <span class="entry-num">G1105</span>
+    <span class="entry-word">gnophos</span>
+    <span class="entry-pron">{gnof'-os}</span>
+  </div>
+  <div class="entry-def">gloom (as of a storm):</div>
+  <div class="entry-kjv">KJV: blackness.</div>
+</div><div class="entry-card" id="g1106">
+  <div class="entry-header">
+    <span class="entry-num">G1106</span>
+    <span class="entry-word">gnome</span>
+    <span class="entry-pron">{gno'-may}</span>
+  </div>
+  <div class="entry-def">cognition, i.e. (subjectively) opinion, or (objectively) resolve (counsel, consent, etc.):</div>
+  <div class="entry-kjv">KJV: advice, + agree, judgment, mind, purpose, will.</div>
+</div><div class="entry-card" id="g1107">
+  <div class="entry-header">
+    <span class="entry-num">G1107</span>
+    <span class="entry-word">gnorizo</span>
+    <span class="entry-pron">{gno-rid'-zo}</span>
+  </div>
+  <div class="entry-def">to make known; subjectively, to know:</div>
+  <div class="entry-kjv">KJV: certify, declare, make known, give to understand, do to wit, wot.</div>
+</div><div class="entry-card" id="g1108">
+  <div class="entry-header">
+    <span class="entry-num">G1108</span>
+    <span class="entry-word">gnosis</span>
+    <span class="entry-pron">{gno'-sis}</span>
+  </div>
+  <div class="entry-def">knowing (the act), i.e. (by implication) knowledge:-knowledge, science</div>
+  <div class="entry-kjv">KJV: 1097</div>
+</div><div class="entry-card" id="g1109">
+  <div class="entry-header">
+    <span class="entry-num">G1109</span>
+    <span class="entry-word">gnostes</span>
+    <span class="entry-pron">{gnoce'-tace}</span>
+  </div>
+  <div class="entry-def">a knower:</div>
+  <div class="entry-kjv">KJV: expert.</div>
+</div><div class="entry-card" id="g1110">
+  <div class="entry-header">
+    <span class="entry-num">G1110</span>
+    <span class="entry-word">gnostos</span>
+    <span class="entry-pron">{gnoce-tos'}</span>
+  </div>
+  <div class="entry-def">well-known:</div>
+  <div class="entry-kjv">KJV: acquaintance, (which may be) known, notable.</div>
+</div><div class="entry-card" id="g1111">
+  <div class="entry-header">
+    <span class="entry-num">G1111</span>
+    <span class="entry-word">gogguzo</span>
+    <span class="entry-pron">{gong-good'-zo}</span>
+  </div>
+  <div class="entry-def">to grumble:</div>
+  <div class="entry-kjv">KJV: murmur.</div>
+</div><div class="entry-card" id="g1112">
+  <div class="entry-header">
+    <span class="entry-num">G1112</span>
+    <span class="entry-word">goggusmos</span>
+    <span class="entry-pron">{gong-goos-mos'}</span>
+  </div>
+  <div class="entry-def">a grumbling:</div>
+  <div class="entry-kjv">KJV: grudging, murmuring.</div>
+</div><div class="entry-card" id="g1113">
+  <div class="entry-header">
+    <span class="entry-num">G1113</span>
+    <span class="entry-word">goggustes</span>
+    <span class="entry-pron">{gong-goos-tace'}</span>
+  </div>
+  <div class="entry-def">a grumbler:</div>
+  <div class="entry-kjv">KJV: murmurer.</div>
+</div><div class="entry-card" id="g1114">
+  <div class="entry-header">
+    <span class="entry-num">G1114</span>
+    <span class="entry-word">goes</span>
+    <span class="entry-pron">{go'-ace}</span>
+  </div>
+  <div class="entry-def">properly, a wizard (as muttering spells), i.e. (by implication) an {imposter:</div>
+  <div class="entry-kjv">KJV: seducer.}</div>
+</div><div class="entry-card" id="g1115">
+  <div class="entry-header">
+    <span class="entry-num">G1115</span>
+    <span class="entry-word">Golgotha</span>
+    <span class="entry-pron">{gol-goth-ah'}</span>
+  </div>
+  <div class="entry-def">the skull; Golgotha, a knoll near Jerusalem:</div>
+  <div class="entry-kjv">KJV: Golgotha.</div>
+</div><div class="entry-card" id="g1116">
+  <div class="entry-header">
+    <span class="entry-num">G1116</span>
+    <span class="entry-word">Gomorrha</span>
+    <span class="entry-pron">{gom'-or-hrhah}</span>
+  </div>
+  <div class="entry-def">Gomorrha (i.e. Amorah), a place near the Dead Sea:</div>
+  <div class="entry-kjv">KJV: Gomorrha.</div>
+</div><div class="entry-card" id="g1117">
+  <div class="entry-header">
+    <span class="entry-num">G1117</span>
+    <span class="entry-word">gomos</span>
+    <span class="entry-pron">{gom'-os}</span>
+  </div>
+  <div class="entry-def">a load (as filling), i.e. (specially) a cargo, or (by extension) wares:</div>
+  <div class="entry-kjv">KJV: burden, merchandise.</div>
+</div><div class="entry-card" id="g1118">
+  <div class="entry-header">
+    <span class="entry-num">G1118</span>
+    <span class="entry-word">goneus</span>
+    <span class="entry-pron">{gon-yooce'}</span>
+  </div>
+  <div class="entry-def">a parent:</div>
+  <div class="entry-kjv">KJV: parent.</div>
+</div><div class="entry-card" id="g1119">
+  <div class="entry-header">
+    <span class="entry-num">G1119</span>
+    <span class="entry-word">gonu</span>
+    <span class="entry-pron">{gon-oo'}</span>
+  </div>
+  <div class="entry-def">the &quot;knee&quot;:</div>
+  <div class="entry-kjv">KJV: knee(X -l).</div>
+</div><div class="entry-card" id="g1120">
+  <div class="entry-header">
+    <span class="entry-num">G1120</span>
+    <span class="entry-word">gonupeteo</span>
+    <span class="entry-pron">{gon-oo-pet-eh'-o}</span>
+  </div>
+  <div class="entry-def">to fall on the knee:</div>
+  <div class="entry-kjv">KJV: bow the knee, kneel down.</div>
+</div><div class="entry-card" id="g1121">
+  <div class="entry-header">
+    <span class="entry-num">G1121</span>
+    <span class="entry-word">gramma</span>
+    <span class="entry-pron">{gram'-mah}</span>
+  </div>
+  <div class="entry-def">a writing, i.e. a letter, note, epistle, book, etc.; plural learning:</div>
+  <div class="entry-kjv">KJV: bill, learning, letter, scripture, writing, written.</div>
+</div><div class="entry-card" id="g1122">
+  <div class="entry-header">
+    <span class="entry-num">G1122</span>
+    <span class="entry-word">grammateus</span>
+    <span class="entry-pron">{gram-mat-yooce'}</span>
+  </div>
+  <div class="entry-def">ter, i.e. (professionally) scribe or secretary:--scribe, town-clerk</div>
+  <div class="entry-kjv">KJV: scribe, town-clerk.</div>
+</div><div class="entry-card" id="g1123">
+  <div class="entry-header">
+    <span class="entry-num">G1123</span>
+    <span class="entry-word">graptos</span>
+    <span class="entry-pron">{grap-tos'}</span>
+  </div>
+  <div class="entry-def">inscribed (figuratively):</div>
+  <div class="entry-kjv">KJV: written.</div>
+</div><div class="entry-card" id="g1124">
+  <div class="entry-header">
+    <span class="entry-num">G1124</span>
+    <span class="entry-word">graphe</span>
+    <span class="entry-pron">{graf-ay'}</span>
+  </div>
+  <div class="entry-def">(or its contents or a statement in it):--scripture</div>
+  <div class="entry-kjv">KJV: scripture.</div>
+</div><div class="entry-card" id="g1125">
+  <div class="entry-header">
+    <span class="entry-num">G1125</span>
+    <span class="entry-word">grapho</span>
+    <span class="entry-pron">{graf'-o}</span>
+  </div>
+  <div class="entry-def">to &quot;grave&quot;, especially to write; figuratively, to describe:</div>
+  <div class="entry-kjv">KJV: describe, write(-ing, -ten).</div>
+</div><div class="entry-card" id="g1126">
+  <div class="entry-header">
+    <span class="entry-num">G1126</span>
+    <span class="entry-word">graodes</span>
+    <span class="entry-pron">{grah-o'-dace}</span>
+  </div>
+  <div class="entry-def">crone-like, i.e. silly:</div>
+  <div class="entry-kjv">KJV: old wives'.</div>
+</div><div class="entry-card" id="g1127">
+  <div class="entry-header">
+    <span class="entry-num">G1127</span>
+    <span class="entry-word">gregoreuo</span>
+    <span class="entry-pron">{gray-gor-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to keep awake, i.e. watch (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: be vigilant, wake, (be) watch(-ful).</div>
+</div><div class="entry-card" id="g1128">
+  <div class="entry-header">
+    <span class="entry-num">G1128</span>
+    <span class="entry-word">gumnazo</span>
+    <span class="entry-pron">{goom-nad'-zo}</span>
+  </div>
+  <div class="entry-def">to practise naked (in the games), i.e. train (figuratively):</div>
+  <div class="entry-kjv">KJV: exercise.</div>
+</div><div class="entry-card" id="g1129">
+  <div class="entry-header">
+    <span class="entry-num">G1129</span>
+    <span class="entry-word">gumnasia</span>
+    <span class="entry-pron">{goom-nas-ee'-ah}</span>
+  </div>
+  <div class="entry-def">training, i.e. (figuratively) asceticism:-exercise</div>
+  <div class="entry-kjv">KJV: 1128</div>
+</div><div class="entry-card" id="g1130">
+  <div class="entry-header">
+    <span class="entry-num">G1130</span>
+    <span class="entry-word">gumneteuo</span>
+    <span class="entry-pron">{goom-nayt-yoo'-o}</span>
+  </div>
+  <div class="entry-def">to strip, i.e. (reflexively) go poorly clad:</div>
+  <div class="entry-kjv">KJV: be naked.</div>
+</div><div class="entry-card" id="g1131">
+  <div class="entry-header">
+    <span class="entry-num">G1131</span>
+    <span class="entry-word">gumnos</span>
+    <span class="entry-pron">{goom-nos'}</span>
+  </div>
+  <div class="entry-def">nude (absolute or relative, literal or figurative):</div>
+  <div class="entry-kjv">KJV: naked.</div>
+</div><div class="entry-card" id="g1132">
+  <div class="entry-header">
+    <span class="entry-num">G1132</span>
+    <span class="entry-word">gumnotes</span>
+    <span class="entry-pron">{goom-not'-ace}</span>
+  </div>
+  <div class="entry-def">nudity (absolute or comparative):-nakedness</div>
+  <div class="entry-kjv">KJV: 1131</div>
+</div><div class="entry-card" id="g1133">
+  <div class="entry-header">
+    <span class="entry-num">G1133</span>
+    <span class="entry-word">gunaikarion</span>
+    <span class="entry-pron">{goo-nahee-kar'-ee-on}</span>
+  </div>
+  <div class="entry-def">a little (i.e. foolish) woman:</div>
+  <div class="entry-kjv">KJV: silly woman.</div>
+</div><div class="entry-card" id="g1134">
+  <div class="entry-header">
+    <span class="entry-num">G1134</span>
+    <span class="entry-word">gunaikeios</span>
+    <span class="entry-pron">{goo-nahee-ki'-os}</span>
+  </div>
+  <div class="entry-def">feminine:</div>
+  <div class="entry-kjv">KJV: wife.</div>
+</div><div class="entry-card" id="g1135">
+  <div class="entry-header">
+    <span class="entry-num">G1135</span>
+    <span class="entry-word">gune</span>
+    <span class="entry-pron">{goo-nay'}</span>
+  </div>
+  <div class="entry-def">a woman; specially, a wife:-wife, woman</div>
+  <div class="entry-kjv">KJV: 1096</div>
+</div><div class="entry-card" id="g1136">
+  <div class="entry-header">
+    <span class="entry-num">G1136</span>
+    <span class="entry-word">Gog</span>
+    <span class="entry-pron">{gogue}</span>
+  </div>
+  <div class="entry-def">Gog, a symbolic name for some future Antichrist:</div>
+  <div class="entry-kjv">KJV: Gog.</div>
+</div><div class="entry-card" id="g1137">
+  <div class="entry-header">
+    <span class="entry-num">G1137</span>
+    <span class="entry-word">gonia</span>
+    
+  </div>
+  <div class="entry-def">ngle:--corner, quarter. See Greek- 1119</div>
+  <div class="entry-kjv">KJV: corner, quarter.</div>
+</div><div class="entry-card" id="g1138">
+  <div class="entry-header">
+    <span class="entry-num">G1138</span>
+    <span class="entry-word">Dabid</span>
+    <span class="entry-pron">{dab-eed'}</span>
+  </div>
+  <div class="entry-def">Dabid (i.e. David), the Israelite king:-David</div>
+  
+</div><div class="entry-card" id="g1139">
+  <div class="entry-header">
+    <span class="entry-num">G1139</span>
+    <span class="entry-word">daimonizomai</span>
+    <span class="entry-pron">{dahee-mon-id'-zom-ahee}</span>
+  </div>
+  <div class="entry-def">to be exercised by a dæmon:</div>
+  <div class="entry-kjv">KJV: have a (be vexed with, be possessed with) devil(-s).</div>
+</div><div class="entry-card" id="g1140">
+  <div class="entry-header">
+    <span class="entry-num">G1140</span>
+    <span class="entry-word">daimonion</span>
+    <span class="entry-pron">{dahee-mon'-ee-on}</span>
+  </div>
+  <div class="entry-def">a dæmonic being; by extension a deity:</div>
+  <div class="entry-kjv">KJV: devil, god.</div>
+</div><div class="entry-card" id="g1141">
+  <div class="entry-header">
+    <span class="entry-num">G1141</span>
+    <span class="entry-word">daimoniodes</span>
+    <span class="entry-pron">{dahee-mon-ee-o'-dace}</span>
+  </div>
+  <div class="entry-def">dæmon-like:-devilish</div>
+  <div class="entry-kjv">KJV: 1140</div>
+</div><div class="entry-card" id="g1142">
+  <div class="entry-header">
+    <span class="entry-num">G1142</span>
+    <span class="entry-word">daimon</span>
+    <span class="entry-pron">{dah'-ee-mown}</span>
+  </div>
+  <div class="entry-def">a dæmon or supernatural spirit (of a bad nature):</div>
+  <div class="entry-kjv">KJV: devil.</div>
+</div><div class="entry-card" id="g1143">
+  <div class="entry-header">
+    <span class="entry-num">G1143</span>
+    <span class="entry-word">dakno</span>
+    <span class="entry-pron">{dak'-no}</span>
+  </div>
+  <div class="entry-def">to bite, i.e. (figuratively) thwart:</div>
+  <div class="entry-kjv">KJV: bite.</div>
+</div><div class="entry-card" id="g1144">
+  <div class="entry-header">
+    <span class="entry-num">G1144</span>
+    <span class="entry-word">dakru</span>
+    <span class="entry-pron">{dak'-roo}</span>
+  </div>
+  <div class="entry-def">a tear:</div>
+  <div class="entry-kjv">KJV: tear.</div>
+</div><div class="entry-card" id="g1145">
+  <div class="entry-header">
+    <span class="entry-num">G1145</span>
+    <span class="entry-word">dakruo</span>
+    <span class="entry-pron">{dak-roo'-o}</span>
+  </div>
+  <div class="entry-def">to shed tears:</div>
+  <div class="entry-kjv">KJV: weep. Compare 2799.</div>
+</div><div class="entry-card" id="g1146">
+  <div class="entry-header">
+    <span class="entry-num">G1146</span>
+    <span class="entry-word">daktulios</span>
+    <span class="entry-pron">{dak-too'-lee-os}</span>
+  </div>
+  <div class="entry-def">a finger-ring:</div>
+  <div class="entry-kjv">KJV: ring.</div>
+</div><div class="entry-card" id="g1147">
+  <div class="entry-header">
+    <span class="entry-num">G1147</span>
+    <span class="entry-word">daktulos</span>
+    <span class="entry-pron">{dak'-too-los}</span>
+  </div>
+  <div class="entry-def">a finger:</div>
+  <div class="entry-kjv">KJV: finger.</div>
+</div><div class="entry-card" id="g1148">
+  <div class="entry-header">
+    <span class="entry-num">G1148</span>
+    <span class="entry-word">Dalmanoutha</span>
+    <span class="entry-pron">{dal-man-oo-thah'}</span>
+  </div>
+  <div class="entry-def">Dalmanutha, a place in Palestine:</div>
+  <div class="entry-kjv">KJV: Dalmanutha.</div>
+</div><div class="entry-card" id="g1149">
+  <div class="entry-header">
+    <span class="entry-num">G1149</span>
+    <span class="entry-word">Dalmatia</span>
+    <span class="entry-pron">{dal-mat-ee'-ah}</span>
+  </div>
+  <div class="entry-def">Dalmatia, a region of Europe:</div>
+  <div class="entry-kjv">KJV: Dalmatia.</div>
+</div><div class="entry-card" id="g1150">
+  <div class="entry-header">
+    <span class="entry-num">G1150</span>
+    <span class="entry-word">damazo</span>
+    <span class="entry-pron">{dam-ad'-zo}</span>
+  </div>
+  <div class="entry-def">to tame:</div>
+  <div class="entry-kjv">KJV: tame.</div>
+</div><div class="entry-card" id="g1151">
+  <div class="entry-header">
+    <span class="entry-num">G1151</span>
+    <span class="entry-word">damalis</span>
+    <span class="entry-pron">{dam'-al-is}</span>
+  </div>
+  <div class="entry-def">a heifer (as tame):</div>
+  <div class="entry-kjv">KJV: heifer.</div>
+</div><div class="entry-card" id="g1152">
+  <div class="entry-header">
+    <span class="entry-num">G1152</span>
+    <span class="entry-word">Damaris</span>
+    <span class="entry-pron">{dam'-ar-is}</span>
+  </div>
+  <div class="entry-def">perhaps gentle; Damaris, an Athenian woman:</div>
+  <div class="entry-kjv">KJV: Damaris.</div>
+</div><div class="entry-card" id="g1153">
+  <div class="entry-header">
+    <span class="entry-num">G1153</span>
+    <span class="entry-word">Damaskenos</span>
+    <span class="entry-pron">{dam-as-kay-nos'}</span>
+  </div>
+  <div class="entry-def">a Damascene or inhabitant of Damascus:</div>
+  <div class="entry-kjv">KJV: Damascene.</div>
+</div><div class="entry-card" id="g1154">
+  <div class="entry-header">
+    <span class="entry-num">G1154</span>
+    <span class="entry-word">Damaskos</span>
+    <span class="entry-pron">{dam-as-kos'}</span>
+  </div>
+  <div class="entry-def">Damascus, a city of Syria:-Damascus</div>
+  
+</div><div class="entry-card" id="g1155">
+  <div class="entry-header">
+    <span class="entry-num">G1155</span>
+    <span class="entry-word">daneizo</span>
+    <span class="entry-pron">{dan-ide'-zo}</span>
+  </div>
+  <div class="entry-def">to loan on interest; reflexively, to borrow:-borrow, lend</div>
+  <div class="entry-kjv">KJV: 1156</div>
+</div><div class="entry-card" id="g1156">
+  <div class="entry-header">
+    <span class="entry-num">G1156</span>
+    <span class="entry-word">daneion</span>
+    <span class="entry-pron">{dan'-i-on}</span>
+  </div>
+  <div class="entry-def">probably akin to the base of 1325; a loan:</div>
+  <div class="entry-kjv">KJV: debt.</div>
+</div><div class="entry-card" id="g1157">
+  <div class="entry-header">
+    <span class="entry-num">G1157</span>
+    <span class="entry-word">daneistes</span>
+    <span class="entry-pron">{dan-ice-tace'}</span>
+  </div>
+  <div class="entry-def">a lender:</div>
+  <div class="entry-kjv">KJV: creditor.</div>
+</div><div class="entry-card" id="g1158">
+  <div class="entry-header">
+    <span class="entry-num">G1158</span>
+    <span class="entry-word">Daniel</span>
+    <span class="entry-pron">{dan-ee-ale'}</span>
+  </div>
+  <div class="entry-def">Daniel, an Israelite:</div>
+  <div class="entry-kjv">KJV: Daniel.</div>
+</div><div class="entry-card" id="g1159">
+  <div class="entry-header">
+    <span class="entry-num">G1159</span>
+    <span class="entry-word">dapanao</span>
+    <span class="entry-pron">{dap-an-ah'-o}</span>
+  </div>
+  <div class="entry-def">to expend, i.e. (in a good sense) to incur cost, or (in a bad one) to waste:</div>
+  <div class="entry-kjv">KJV: be at charges, consume, spend.</div>
+</div><div class="entry-card" id="g1160">
+  <div class="entry-header">
+    <span class="entry-num">G1160</span>
+    <span class="entry-word">dapane</span>
+    <span class="entry-pron">{dap-an'-ay}</span>
+  </div>
+  <div class="entry-def">expense (as consuming):</div>
+  <div class="entry-kjv">KJV: cost.</div>
+</div><div class="entry-card" id="g1161">
+  <div class="entry-header">
+    <span class="entry-num">G1161</span>
+    <span class="entry-word">de</span>
+    <span class="entry-pron">{deh}</span>
+  </div>
+  <div class="entry-def">but, and, etc.:</div>
+  <div class="entry-kjv">KJV: also, and, but, moreover, now (often unexpressed in English).</div>
+</div><div class="entry-card" id="g1162">
+  <div class="entry-header">
+    <span class="entry-num">G1162</span>
+    <span class="entry-word">deesis</span>
+    <span class="entry-pron">{deh'-ay-sis}</span>
+  </div>
+  <div class="entry-def">a petition:</div>
+  <div class="entry-kjv">KJV: prayer, request, supplication.</div>
+</div><div class="entry-card" id="g1163">
+  <div class="entry-header">
+    <span class="entry-num">G1163</span>
+    <span class="entry-word">dei</span>
+    <span class="entry-pron">{die}</span>
+  </div>
+  <div class="entry-def">also deon deh-on'; neuter active participle of the same; both used impersonally; it is (was, etc.) necessary (as binding):</div>
+  <div class="entry-kjv">KJV: behoved, be meet, must (needs), (be) need(-ful), ought, should.</div>
+</div><div class="entry-card" id="g1164">
+  <div class="entry-header">
+    <span class="entry-num">G1164</span>
+    <span class="entry-word">deigma</span>
+    <span class="entry-pron">{digh'-mah}</span>
+  </div>
+  <div class="entry-def">a specimen (as shown):</div>
+  <div class="entry-kjv">KJV: example.</div>
+</div><div class="entry-card" id="g1165">
+  <div class="entry-header">
+    <span class="entry-num">G1165</span>
+    <span class="entry-word">deigmatizo</span>
+    <span class="entry-pron">{digh-mat-id'-zo}</span>
+  </div>
+  <div class="entry-def">to exhibit:</div>
+  <div class="entry-kjv">KJV: make a shew.</div>
+</div><div class="entry-card" id="g1166">
+  <div class="entry-header">
+    <span class="entry-num">G1166</span>
+    <span class="entry-word">deiknuo</span>
+    <span class="entry-pron">{dike-noo'-o}</span>
+  </div>
+  <div class="entry-def">to show (literally or figuratively):</div>
+  <div class="entry-kjv">KJV: shew.</div>
+</div><div class="entry-card" id="g1167">
+  <div class="entry-header">
+    <span class="entry-num">G1167</span>
+    <span class="entry-word">deilia</span>
+    <span class="entry-pron">{di-lee'-ah}</span>
+  </div>
+  <div class="entry-def">timidity:</div>
+  <div class="entry-kjv">KJV: fear.</div>
+</div><div class="entry-card" id="g1168">
+  <div class="entry-header">
+    <span class="entry-num">G1168</span>
+    <span class="entry-word">deiliao</span>
+    <span class="entry-pron">{di-lee-ah'-o}</span>
+  </div>
+  <div class="entry-def">to be timid:</div>
+  <div class="entry-kjv">KJV: be afraid.</div>
+</div><div class="entry-card" id="g1169">
+  <div class="entry-header">
+    <span class="entry-num">G1169</span>
+    <span class="entry-word">deilos</span>
+    <span class="entry-pron">{di-los'}</span>
+  </div>
+  <div class="entry-def">timid, i.e. (by implication) faithless:</div>
+  <div class="entry-kjv">KJV: fearful.</div>
+</div><div class="entry-card" id="g1170">
+  <div class="entry-header">
+    <span class="entry-num">G1170</span>
+    <span class="entry-word">deina</span>
+    <span class="entry-pron">{di'-nah}</span>
+  </div>
+  <div class="entry-def">so and so (when the person is not specified):</div>
+  <div class="entry-kjv">KJV: such a man.</div>
+</div><div class="entry-card" id="g1171">
+  <div class="entry-header">
+    <span class="entry-num">G1171</span>
+    <span class="entry-word">deinos</span>
+    <span class="entry-pron">{di-noce'}</span>
+  </div>
+  <div class="entry-def">terribly, i.e. excessively:</div>
+  <div class="entry-kjv">KJV: grievously, vehemently.</div>
+</div><div class="entry-card" id="g1172">
+  <div class="entry-header">
+    <span class="entry-num">G1172</span>
+    <span class="entry-word">deipneo</span>
+    <span class="entry-pron">{dipe-neh'-o}</span>
+  </div>
+  <div class="entry-def">to dine, i.e. take the principle (or evening) meal:</div>
+  <div class="entry-kjv">KJV: sup (X -er).</div>
+</div><div class="entry-card" id="g1173">
+  <div class="entry-header">
+    <span class="entry-num">G1173</span>
+    <span class="entry-word">deipnon</span>
+    <span class="entry-pron">{dipe'-non}</span>
+  </div>
+  <div class="entry-def">dinner, i.e. the chief meal (usually in the evening):</div>
+  <div class="entry-kjv">KJV: feast, supper.</div>
+</div><div class="entry-card" id="g1174">
+  <div class="entry-header">
+    <span class="entry-num">G1174</span>
+    <span class="entry-word">deisidaimonesteros</span>
+    <span class="entry-pron">{dice-ee-dahee-mon-es'-ter-os}</span>
+  </div>
+  <div class="entry-def">more religious than others:</div>
+  <div class="entry-kjv">KJV: too superstitious.</div>
+</div><div class="entry-card" id="g1175">
+  <div class="entry-header">
+    <span class="entry-num">G1175</span>
+    <span class="entry-word">deisidaimonia</span>
+    <span class="entry-pron">{dice-ee-dahee-mon-ee'-ah}</span>
+  </div>
+  <div class="entry-def">religion:-superstition</div>
+  <div class="entry-kjv">KJV: 1174</div>
+</div><div class="entry-card" id="g1176">
+  <div class="entry-header">
+    <span class="entry-num">G1176</span>
+    <span class="entry-word">deka</span>
+    <span class="entry-pron">{dek'-ah}</span>
+  </div>
+  <div class="entry-def">ten:</div>
+  <div class="entry-kjv">KJV: (eight-)een, ten.</div>
+</div><div class="entry-card" id="g1177">
+  <div class="entry-header">
+    <span class="entry-num">G1177</span>
+    <span class="entry-word">dekaduo</span>
+    <span class="entry-pron">{dek-ad-oo'-o}</span>
+  </div>
+  <div class="entry-def">two and ten, i.e. twelve:</div>
+  <div class="entry-kjv">KJV: twelve.</div>
+</div><div class="entry-card" id="g1178">
+  <div class="entry-header">
+    <span class="entry-num">G1178</span>
+    <span class="entry-word">dekapente</span>
+    <span class="entry-pron">{dek-ap-en'-teh}</span>
+  </div>
+  <div class="entry-def">ten and five, i.e. fifteen:-fifteen</div>
+  <div class="entry-kjv">KJV: 1176</div>
+</div><div class="entry-card" id="g1179">
+  <div class="entry-header">
+    <span class="entry-num">G1179</span>
+    <span class="entry-word">Dekapolis</span>
+    <span class="entry-pron">{dek-ap'-ol-is}</span>
+  </div>
+  <div class="entry-def">the ten-city region; the Decapolis, a district in Syria:</div>
+  <div class="entry-kjv">KJV: Decapolis.</div>
+</div><div class="entry-card" id="g1180">
+  <div class="entry-header">
+    <span class="entry-num">G1180</span>
+    <span class="entry-word">dekatessares</span>
+    <span class="entry-pron">{dek-at-es'-sar-es}</span>
+  </div>
+  <div class="entry-def">ten and four, i.e. fourteen:</div>
+  <div class="entry-kjv">KJV: fourteen.</div>
+</div><div class="entry-card" id="g1181">
+  <div class="entry-header">
+    <span class="entry-num">G1181</span>
+    <span class="entry-word">dekate</span>
+    <span class="entry-pron">{dek-at'-ay}</span>
+  </div>
+  <div class="entry-def">a tenth, i.e. as a percentage or (technically) tithe:</div>
+  <div class="entry-kjv">KJV: tenth (part), tithe.</div>
+</div><div class="entry-card" id="g1182">
+  <div class="entry-header">
+    <span class="entry-num">G1182</span>
+    <span class="entry-word">dekatos</span>
+    <span class="entry-pron">{dek'-at-os}</span>
+  </div>
+  <div class="entry-def">tenth:</div>
+  <div class="entry-kjv">KJV: tenth.</div>
+</div><div class="entry-card" id="g1183">
+  <div class="entry-header">
+    <span class="entry-num">G1183</span>
+    <span class="entry-word">dekatoo</span>
+    <span class="entry-pron">{dek-at-o'-o}</span>
+  </div>
+  <div class="entry-def">to tithe, i.e. to give or take a tenth:</div>
+  <div class="entry-kjv">KJV: pay (receive) tithes.</div>
+</div><div class="entry-card" id="g1184">
+  <div class="entry-header">
+    <span class="entry-num">G1184</span>
+    <span class="entry-word">dektos</span>
+    <span class="entry-pron">{dek-tos'}</span>
+  </div>
+  <div class="entry-def">approved; (figuratively) propitious:</div>
+  <div class="entry-kjv">KJV: accepted(table).</div>
+</div><div class="entry-card" id="g1185">
+  <div class="entry-header">
+    <span class="entry-num">G1185</span>
+    <span class="entry-word">deleazo</span>
+    <span class="entry-pron">{del-eh-ad'-zo}</span>
+  </div>
+  <div class="entry-def">to entrap, i.e. (figuratively) delude:</div>
+  <div class="entry-kjv">KJV: allure, beguile, entice.</div>
+</div><div class="entry-card" id="g1186">
+  <div class="entry-header">
+    <span class="entry-num">G1186</span>
+    <span class="entry-word">dendron</span>
+    <span class="entry-pron">{den'-dron}</span>
+  </div>
+  <div class="entry-def">a tree:</div>
+  <div class="entry-kjv">KJV: tree.</div>
+</div><div class="entry-card" id="g1187">
+  <div class="entry-header">
+    <span class="entry-num">G1187</span>
+    <span class="entry-word">dexiolabos</span>
+    <span class="entry-pron">{dex-ee-ol-ab'-os}</span>
+  </div>
+  <div class="entry-def">a guardsman (as if taking the right) or light-armed soldier:</div>
+  <div class="entry-kjv">KJV: spearman.</div>
+</div><div class="entry-card" id="g1188">
+  <div class="entry-header">
+    <span class="entry-num">G1188</span>
+    <span class="entry-word">dexios</span>
+    <span class="entry-pron">{dex-ee-os'}</span>
+  </div>
+  <div class="entry-def">the right side or (feminine) hand (as that which usually takes):</div>
+  <div class="entry-kjv">KJV: right (hand, side).</div>
+</div><div class="entry-card" id="g1189">
+  <div class="entry-header">
+    <span class="entry-num">G1189</span>
+    <span class="entry-word">deomai</span>
+    <span class="entry-pron">{deh'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to beg (as binding oneself), i.e. petition:</div>
+  <div class="entry-kjv">KJV: beSeech, pray (to), make request. Compare 4441.</div>
+</div><div class="entry-card" id="g1190">
+  <div class="entry-header">
+    <span class="entry-num">G1190</span>
+    <span class="entry-word">Derbaios</span>
+    <span class="entry-pron">{der-bah'-ee-os}</span>
+  </div>
+  <div class="entry-def">a Derbæan or inhabitant of Derbe:</div>
+  <div class="entry-kjv">KJV: of Derbe.</div>
+</div><div class="entry-card" id="g1191">
+  <div class="entry-header">
+    <span class="entry-num">G1191</span>
+    <span class="entry-word">Derbe</span>
+    <span class="entry-pron">{der-bay'}</span>
+  </div>
+  <div class="entry-def">Derbe, a place in Asia Minor:</div>
+  <div class="entry-kjv">KJV: Derbe.</div>
+</div><div class="entry-card" id="g1192">
+  <div class="entry-header">
+    <span class="entry-num">G1192</span>
+    <span class="entry-word">derma</span>
+    <span class="entry-pron">{der'-mah}</span>
+  </div>
+  <div class="entry-def">a hide:</div>
+  <div class="entry-kjv">KJV: skin.</div>
+</div><div class="entry-card" id="g1193">
+  <div class="entry-header">
+    <span class="entry-num">G1193</span>
+    <span class="entry-word">dermatinos</span>
+    <span class="entry-pron">{der-mat'-ee-nos}</span>
+  </div>
+  <div class="entry-def">made of hide:</div>
+  <div class="entry-kjv">KJV: leathern, of a skin.</div>
+</div><div class="entry-card" id="g1194">
+  <div class="entry-header">
+    <span class="entry-num">G1194</span>
+    <span class="entry-word">dero</span>
+    <span class="entry-pron">{der'-o}</span>
+  </div>
+  <div class="entry-def">properly, to flay, i.e. (by implication) to scourge, or (by analogy) to thrash:</div>
+  <div class="entry-kjv">KJV: beat, smite.</div>
+</div><div class="entry-card" id="g1195">
+  <div class="entry-header">
+    <span class="entry-num">G1195</span>
+    <span class="entry-word">desmeuo</span>
+    <span class="entry-pron">{des-myoo'-o}</span>
+  </div>
+  <div class="entry-def">to be a binder (captor), i.e. to enchain (a prisoner), to tie on (a load):</div>
+  <div class="entry-kjv">KJV: bind.</div>
+</div><div class="entry-card" id="g1196">
+  <div class="entry-header">
+    <span class="entry-num">G1196</span>
+    <span class="entry-word">desmeo</span>
+    <span class="entry-pron">{des-meh'-o}</span>
+  </div>
+  <div class="entry-def">to tie, i.e. shackle:</div>
+  <div class="entry-kjv">KJV: bind.</div>
+</div><div class="entry-card" id="g1197">
+  <div class="entry-header">
+    <span class="entry-num">G1197</span>
+    <span class="entry-word">desme</span>
+    <span class="entry-pron">{des-may'}</span>
+  </div>
+  <div class="entry-def">a bundle:</div>
+  <div class="entry-kjv">KJV: bundle.</div>
+</div><div class="entry-card" id="g1198">
+  <div class="entry-header">
+    <span class="entry-num">G1198</span>
+    <span class="entry-word">desmios</span>
+    <span class="entry-pron">{des'-mee-os}</span>
+  </div>
+  <div class="entry-def">a captive (as bound):</div>
+  <div class="entry-kjv">KJV: in bonds, prisoner.</div>
+</div><div class="entry-card" id="g1199">
+  <div class="entry-header">
+    <span class="entry-num">G1199</span>
+    <span class="entry-word">desmon</span>
+    <span class="entry-pron">{des-mon'}</span>
+  </div>
+  <div class="entry-def">a band, i.e. ligament (of the body) or shackle (of a prisoner); figuratively, an impediment or disability:</div>
+  <div class="entry-kjv">KJV: band, bond, chain, string.</div>
+</div><div class="entry-card" id="g1200">
+  <div class="entry-header">
+    <span class="entry-num">G1200</span>
+    <span class="entry-word">desmophulax</span>
+    <span class="entry-pron">{des-mof-oo'-lax}</span>
+  </div>
+  <div class="entry-def">a jailer (as guardi the prisoners):</div>
+  <div class="entry-kjv">KJV: jailor, keeper of the prison.</div>
+</div><div class="entry-card" id="g1201">
+  <div class="entry-header">
+    <span class="entry-num">G1201</span>
+    <span class="entry-word">desmoterion</span>
+    <span class="entry-pron">{des-mo-tay'-ree-on}</span>
+  </div>
+  <div class="entry-def">a place of bondage, i.e. a dungeon:</div>
+  <div class="entry-kjv">KJV: prison.</div>
+</div><div class="entry-card" id="g1202">
+  <div class="entry-header">
+    <span class="entry-num">G1202</span>
+    <span class="entry-word">desmotes</span>
+    <span class="entry-pron">{des-mo'-tace}</span>
+  </div>
+  <div class="entry-def">(passively) a captive:-prisoner</div>
+  <div class="entry-kjv">KJV: 1201</div>
+</div><div class="entry-card" id="g1203">
+  <div class="entry-header">
+    <span class="entry-num">G1203</span>
+    <span class="entry-word">despotes</span>
+    <span class="entry-pron">{des-pot'-ace}</span>
+  </div>
+  <div class="entry-def">an absolute ruler (&quot;despot&quot;):</div>
+  <div class="entry-kjv">KJV: Lord, master.</div>
+</div><div class="entry-card" id="g1204">
+  <div class="entry-header">
+    <span class="entry-num">G1204</span>
+    <span class="entry-word">deuro</span>
+    <span class="entry-pron">{dyoo'-ro}</span>
+  </div>
+  <div class="entry-def">here; used also imperative hither!; and of time, hitherto:</div>
+  <div class="entry-kjv">KJV: come (hither), hither(-to).</div>
+</div><div class="entry-card" id="g1205">
+  <div class="entry-header">
+    <span class="entry-num">G1205</span>
+    <span class="entry-word">deute</span>
+    <span class="entry-pron">{dyoo'-teh}</span>
+  </div>
+  <div class="entry-def">come hither!:</div>
+  <div class="entry-kjv">KJV: come, X follow.</div>
+</div><div class="entry-card" id="g1206">
+  <div class="entry-header">
+    <span class="entry-num">G1206</span>
+    <span class="entry-word">deuteraios</span>
+    <span class="entry-pron">{dyoo-ter-ah'-yos}</span>
+  </div>
+  <div class="entry-def">secondary, i.e. (specially) on the second day:</div>
+  <div class="entry-kjv">KJV: next day.</div>
+</div><div class="entry-card" id="g1207">
+  <div class="entry-header">
+    <span class="entry-num">G1207</span>
+    <span class="entry-word">deuteroprotos</span>
+    <span class="entry-pron">{dyoo-ter-op'-ro-tos}</span>
+  </div>
+  <div class="entry-def">second-first, i.e. (specially) a designation of the Sabbath immediately after the Paschal week (being the second after Passover day, and the first of the seven Sabbaths intervening before Pentecost):</div>
+  <div class="entry-kjv">KJV: second ... after the first.</div>
+</div><div class="entry-card" id="g1208">
+  <div class="entry-header">
+    <span class="entry-num">G1208</span>
+    <span class="entry-word">deuteros</span>
+    <span class="entry-pron">{dyoo'-ter-os}</span>
+  </div>
+  <div class="entry-def">(ordinal) second (in time, place, or rank; also adverb):</div>
+  <div class="entry-kjv">KJV: afterward, again, second(-arily, time).</div>
+</div><div class="entry-card" id="g1209">
+  <div class="entry-header">
+    <span class="entry-num">G1209</span>
+    <span class="entry-word">dechomai</span>
+    <span class="entry-pron">{dekh'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to receive (in various applications, literally or figuratively):</div>
+  <div class="entry-kjv">KJV: accept, receive, take. Compare 2983.</div>
+</div><div class="entry-card" id="g1210">
+  <div class="entry-header">
+    <span class="entry-num">G1210</span>
+    <span class="entry-word">deo</span>
+    <span class="entry-pron">{deh'-o}</span>
+  </div>
+  <div class="entry-def">to bind (in various applications, literally or figuratively):</div>
+  <div class="entry-kjv">KJV: bind, be in bonds, knit, tie, wind. See also 1163, 1189.</div>
+</div><div class="entry-card" id="g1211">
+  <div class="entry-header">
+    <span class="entry-num">G1211</span>
+    <span class="entry-word">de</span>
+    <span class="entry-pron">{day}</span>
+  </div>
+  <div class="entry-def">a particle of emphasis or explicitness; now, then, etc.:</div>
+  <div class="entry-kjv">KJV: also, and, doubtless, now, therefore.</div>
+</div><div class="entry-card" id="g1212">
+  <div class="entry-header">
+    <span class="entry-num">G1212</span>
+    <span class="entry-word">delos</span>
+    <span class="entry-pron">{day'-los}</span>
+  </div>
+  <div class="entry-def">clear:</div>
+  <div class="entry-kjv">KJV: + bewray, certain, evident, manifest.</div>
+</div><div class="entry-card" id="g1213">
+  <div class="entry-header">
+    <span class="entry-num">G1213</span>
+    <span class="entry-word">deloo</span>
+    <span class="entry-pron">{day-lo'-o}</span>
+  </div>
+  <div class="entry-def">to make plain (by words):</div>
+  <div class="entry-kjv">KJV: declare, shew, signify.</div>
+</div><div class="entry-card" id="g1214">
+  <div class="entry-header">
+    <span class="entry-num">G1214</span>
+    <span class="entry-word">Demas</span>
+    <span class="entry-pron">{day-mas'}</span>
+  </div>
+  <div class="entry-def">Demas, a Christian:</div>
+  <div class="entry-kjv">KJV: Demas.</div>
+</div><div class="entry-card" id="g1215">
+  <div class="entry-header">
+    <span class="entry-num">G1215</span>
+    <span class="entry-word">demexoreo</span>
+    <span class="entry-pron">{day-may-gor-eh'-o}</span>
+  </div>
+  <div class="entry-def">to be a people-gatherer, i.e. to address a public assembly:</div>
+  <div class="entry-kjv">KJV: make an oration.</div>
+</div><div class="entry-card" id="g1216">
+  <div class="entry-header">
+    <span class="entry-num">G1216</span>
+    <span class="entry-word">Demetrios</span>
+    <span class="entry-pron">{day-may'-tree-os}</span>
+  </div>
+  <div class="entry-def">Demetrius, the name of an Ephesian and of a Christian:</div>
+  <div class="entry-kjv">KJV: Demetrius.</div>
+</div><div class="entry-card" id="g1217">
+  <div class="entry-header">
+    <span class="entry-num">G1217</span>
+    <span class="entry-word">demiourgos</span>
+    <span class="entry-pron">{day-me-oor-gos'}</span>
+  </div>
+  <div class="entry-def">a worker for the people, i.e. mechanic (spoken of the Creator):</div>
+  <div class="entry-kjv">KJV: maker.</div>
+</div><div class="entry-card" id="g1218">
+  <div class="entry-header">
+    <span class="entry-num">G1218</span>
+    <span class="entry-word">demos</span>
+    <span class="entry-pron">{day'-mos}</span>
+  </div>
+  <div class="entry-def">the public (as bound together socially):</div>
+  <div class="entry-kjv">KJV: people.</div>
+</div><div class="entry-card" id="g1219">
+  <div class="entry-header">
+    <span class="entry-num">G1219</span>
+    <span class="entry-word">demosios</span>
+    <span class="entry-pron">{day-mos'ee-os}</span>
+  </div>
+  <div class="entry-def">public; (feminine singular dative case as adverb) in public:</div>
+  <div class="entry-kjv">KJV: common, openly, publickly.</div>
+</div><div class="entry-card" id="g1220">
+  <div class="entry-header">
+    <span class="entry-num">G1220</span>
+    <span class="entry-word">denarion</span>
+    <span class="entry-pron">{day-nar'-ee-on}</span>
+  </div>
+  <div class="entry-def">a denarius (or ten asses):</div>
+  <div class="entry-kjv">KJV: pence, penny(-worth).</div>
+</div><div class="entry-card" id="g1221">
+  <div class="entry-header">
+    <span class="entry-num">G1221</span>
+    <span class="entry-word">depote</span>
+    <span class="entry-pron">{day'-pot-eh}</span>
+  </div>
+  <div class="entry-def">a particle of generalization; indeed, at any time:</div>
+  <div class="entry-kjv">KJV: (what-)soever.</div>
+</div><div class="entry-card" id="g1222">
+  <div class="entry-header">
+    <span class="entry-num">G1222</span>
+    <span class="entry-word">depou</span>
+    <span class="entry-pron">{day'-poo}</span>
+  </div>
+  <div class="entry-def">a particle of asseveration; indeed doubtless:</div>
+  <div class="entry-kjv">KJV: verily.</div>
+</div><div class="entry-card" id="g1223">
+  <div class="entry-header">
+    <span class="entry-num">G1223</span>
+    <span class="entry-word">dia</span>
+    <span class="entry-pron">{dee-ah'}</span>
+  </div>
+  <div class="entry-def">through (in very wide applications, local, causal, or occasional):</div>
+  
+</div><div class="entry-card" id="g1224">
+  <div class="entry-header">
+    <span class="entry-num">G1224</span>
+    <span class="entry-word">diabaino</span>
+    <span class="entry-pron">{dee-ab-ah'-ee-no}</span>
+  </div>
+  <div class="entry-def">to cross:</div>
+  <div class="entry-kjv">KJV: come over, pass (through).</div>
+</div><div class="entry-card" id="g1225">
+  <div class="entry-header">
+    <span class="entry-num">G1225</span>
+    <span class="entry-word">diaballo</span>
+    <span class="entry-pron">{dee-ab-al'-lo}</span>
+  </div>
+  <div class="entry-def">(figuratively) to traduce:</div>
+  <div class="entry-kjv">KJV: accuse.</div>
+</div><div class="entry-card" id="g1226">
+  <div class="entry-header">
+    <span class="entry-num">G1226</span>
+    <span class="entry-word">diabebaioomai</span>
+    <span class="entry-pron">{dee-ab-eb-ahee-o'-om-ahee}</span>
+  </div>
+  <div class="entry-def">dle voice of a compound of</div>
+  
+</div><div class="entry-card" id="g1223">
+  <div class="entry-header">
+    <span class="entry-num">G1223</span>
+    <span class="entry-word"></span>
+    
+  </div>
+  <div class="entry-def">e. asseverate:--affirm constantly</div>
+  <div class="entry-kjv">KJV: affirm constantly.</div>
+</div><div class="entry-card" id="g1227">
+  <div class="entry-header">
+    <span class="entry-num">G1227</span>
+    <span class="entry-word">diablepo</span>
+    <span class="entry-pron">{dee-ab-lep'-o}</span>
+  </div>
+  <div class="entry-def">to look through, i.e. recover full vision:</div>
+  <div class="entry-kjv">KJV: See clearly.</div>
+</div><div class="entry-card" id="g1228">
+  <div class="entry-header">
+    <span class="entry-num">G1228</span>
+    <span class="entry-word">diabolos</span>
+    <span class="entry-pron">{dee-ab'-ol-os}</span>
+  </div>
+  <div class="entry-def">a traducer; specially, Satan (compare 7854):</div>
+  <div class="entry-kjv">KJV: false accuser, devil, slanderer.</div>
+</div><div class="entry-card" id="g1229">
+  <div class="entry-header">
+    <span class="entry-num">G1229</span>
+    <span class="entry-word">diaggello</span>
+    <span class="entry-pron">{de-ang-gel'-lo}</span>
+  </div>
+  <div class="entry-def">to herald thoroughly:-declare, preach, signify</div>
+  <div class="entry-kjv">KJV: 1223</div>
+</div><div class="entry-card" id="g1230">
+  <div class="entry-header">
+    <span class="entry-num">G1230</span>
+    <span class="entry-word">diaginomai</span>
+    <span class="entry-pron">{dee-ag-in'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to elapse meanwhile:-X after, be past, be spent</div>
+  <div class="entry-kjv">KJV: 1223</div>
+</div><div class="entry-card" id="g1231">
+  <div class="entry-header">
+    <span class="entry-num">G1231</span>
+    <span class="entry-word">diaginosko</span>
+    <span class="entry-pron">{dee-ag-in-o'-sko}</span>
+  </div>
+  <div class="entry-def">to know thoroughly, i.e. ascertain exactly:</div>
+  <div class="entry-kjv">KJV: (would) enquire, know the uttermost.</div>
+</div><div class="entry-card" id="g1232">
+  <div class="entry-header">
+    <span class="entry-num">G1232</span>
+    <span class="entry-word">diagnorizo</span>
+    <span class="entry-pron">{dee-ag-no-rid'-zo}</span>
+  </div>
+  <div class="entry-def">to tell abroad:</div>
+  <div class="entry-kjv">KJV: make known.</div>
+</div><div class="entry-card" id="g1233">
+  <div class="entry-header">
+    <span class="entry-num">G1233</span>
+    <span class="entry-word">diagnosis</span>
+    <span class="entry-pron">{dee-ag'-no-sis}</span>
+  </div>
+  <div class="entry-def">(magisterial) examination (&quot;diagnosis&quot;):-hearing</div>
+  <div class="entry-kjv">KJV: 1231</div>
+</div><div class="entry-card" id="g1234">
+  <div class="entry-header">
+    <span class="entry-num">G1234</span>
+    <span class="entry-word">diagogguzo</span>
+    <span class="entry-pron">{dee-ag-ong-good'-zo}</span>
+  </div>
+  <div class="entry-def">to complain throughout a crowd:</div>
+  <div class="entry-kjv">KJV: murmur.</div>
+</div><div class="entry-card" id="g1235">
+  <div class="entry-header">
+    <span class="entry-num">G1235</span>
+    <span class="entry-word">diagregoreo</span>
+    <span class="entry-pron">{dee-ag-ray-gor-eh'-o}</span>
+  </div>
+  <div class="entry-def">to waken thoroughly:</div>
+  <div class="entry-kjv">KJV: be awake.</div>
+</div><div class="entry-card" id="g1236">
+  <div class="entry-header">
+    <span class="entry-num">G1236</span>
+    <span class="entry-word">diago</span>
+    <span class="entry-pron">{dee-ag'-o}</span>
+  </div>
+  <div class="entry-def">to pass time or life:</div>
+  <div class="entry-kjv">KJV: lead life, living.</div>
+</div><div class="entry-card" id="g1237">
+  <div class="entry-header">
+    <span class="entry-num">G1237</span>
+    <span class="entry-word">diadechomai</span>
+    <span class="entry-pron">{dee-ad-ekh'-om-ahee}</span>
+  </div>
+  <div class="entry-def">to receive in turn, i.e. (figuratively) succeed to:</div>
+  <div class="entry-kjv">KJV: come after.</div>
+</div><div class="entry-card" id="g1238">
+  <div class="entry-header">
+    <span class="entry-num">G1238</span>
+    <span class="entry-word">diadema</span>
+    <span class="entry-pron">{dee-ad'-ay-mah}</span>
+  </div>
+  <div class="entry-def">a &quot;diadem&quot; (as bound about the head):</div>
+  <div class="entry-kjv">KJV: crown. Compare 4735.</div>
+</div><div class="entry-card" id="g1239">
+  <div class="entry-header">
+    <span class="entry-num">G1239</span>
+    <span class="entry-word">diadidomai</span>
+    <span class="entry-pron">{dee-ad-id'-o-mee}</span>
+  </div>
+  <div class="entry-def">to give throughout a crowd, i.e. deal out; also to deliver over (as to a successor):</div>
+  <div class="entry-kjv">KJV: (make) distribute(-ion), divide, give.</div>
+</div><div class="entry-card" id="g1240">
+  <div class="entry-header">
+    <span class="entry-num">G1240</span>
+    <span class="entry-word">diadochos</span>
+    <span class="entry-pron">{dee-ad'-okh-os}</span>
+  </div>
+  <div class="entry-def">a successor in office:</div>
+  <div class="entry-kjv">KJV: room.</div>
+</div><div class="entry-card" id="g1241">
+  <div class="entry-header">
+    <span class="entry-num">G1241</span>
+    <span class="entry-word">diazonnumi</span>
+    <span class="entry-pron">{dee-az-own'-noo-mee}</span>
+  </div>
+  <div class="entry-def">to gird tightly:</div>
+  <div class="entry-kjv">KJV: gird.</div>
+</div><div class="entry-card" id="g1242">
+  <div class="entry-header">
+    <span class="entry-num">G1242</span>
+    <span class="entry-word">diatheke</span>
+    <span class="entry-pron">{dee-ath-ay'-kay}</span>
+  </div>
+  <div class="entry-def">properly, a disposition, i.e. (specially) a contract (especially a devisory will):</div>
+  <div class="entry-kjv">KJV: covenant, testament.</div>
+</div><div class="entry-card" id="g1243">
+  <div class="entry-header">
+    <span class="entry-num">G1243</span>
+    <span class="entry-word">diairesis</span>
+    <span class="entry-pron">{dee-ah'-ee-res-is}</span>
+  </div>
+  <div class="entry-def">a distinction or (concretely) variety:-difference, diversity</div>
+  <div class="entry-kjv">KJV: 1244</div>
+</div><div class="entry-card" id="g1244">
+  <div class="entry-header">
+    <span class="entry-num">G1244</span>
+    <span class="entry-word">diaireo</span>
+    <span class="entry-pron">{dee-ahee-reh'-o}</span>
+  </div>
+  <div class="entry-def">to separate, i.e. distribute:-divide</div>
+  <div class="entry-kjv">KJV: 1223</div>
+</div><div class="entry-card" id="g1245">
+  <div class="entry-header">
+    <span class="entry-num">G1245</span>
+    <span class="entry-word">diakatharizo</span>
+    <span class="entry-pron">{dee-ak-ath-ar-id'-zo}</span>
+  </div>
+  <div class="entry-def">to cleanse perfectly, i.e. (specially) winnow:</div>
+  <div class="entry-kjv">KJV: thoroughly purge.</div>
+</div><div class="entry-card" id="g1246">
+  <div class="entry-header">
+    <span class="entry-num">G1246</span>
+    <span class="entry-word">diakatelegchomai</span>
+    <span class="entry-pron">{dee-ak-at-el-eng'-khom-ahee}</span>
+  </div>
+  <div class="entry-def">to prove downright, i.e. confute:</div>
+  <div class="entry-kjv">KJV: convince.</div>
+</div><div class="entry-card" id="g1247">
+  <div class="entry-header">
+    <span class="entry-num">G1247</span>
+    <span class="entry-word">diakoneo</span>
+    <span class="entry-pron">{dee-ak-on-eh'-o}</span>
+  </div>
+  <div class="entry-def">to be an attendant, i.e. wait upon (menially or as a host, friend, or (figuratively) teacher); technically, to act as a Christian deacon:</div>
+  <div class="entry-kjv">KJV: (ad-)minister (unto), serve, use the office of a deacon.</div>
+</div><div class="entry-card" id="g1248">
+  <div class="entry-header">
+    <span class="entry-num">G1248</span>
+    <span class="entry-word">diakonia</span>
+    <span class="entry-pron">{dee-ak-on-ee'-ah}</span>
+  </div>
+  <div class="entry-def">attendance (as a servant, etc.); figuratively (eleemosynary) aid, (official) service (especially of the Christian teacher, or technically of the diaconate):</div>
+  <div class="entry-kjv">KJV: (ad-)minister(-ing, -tration, -try), office, relief, service(-ing).</div>
+</div><div class="entry-card" id="g1249">
+  <div class="entry-header">
+    <span class="entry-num">G1249</span>
+    <span class="entry-word">diakonos</span>
+    <span class="entry-pron">{dee-ak'-on-os}</span>
+  </div>
+  <div class="entry-def">compare 1377); an attendant, i.e. (genitive case) a waiter (at table or in other menial duties); specially, a Christian teacher and pastor (technically, a deacon or deaconess):-deacon, minister, servant</div>
+  <div class="entry-kjv">KJV: 1377</div>
+</div><div class="entry-card" id="g1250">
+  <div class="entry-header">
+    <span class="entry-num">G1250</span>
+    <span class="entry-word">diakosioi</span>
+    <span class="entry-pron">{dee-ak-os'-ee-oy}</span>
+  </div>
+  <div class="entry-def">two hundred:</div>
+  <div class="entry-kjv">KJV: two hundred.</div>
+</div><div class="entry-card" id="g1065">
+  <div class="entry-header">
+    <span class="entry-num">G1065</span>
+    <span class="entry-word"></span>
+    
+  </div>
+  <div class="entry-def">rwise), otherwise</div>
+  <div class="entry-kjv">KJV: (or) else, if (not, otherwise), otherwise.</div>
+</div>
+    </div>
+
+    <!-- Public admin posts -->
+    <div id="publicPostList" style="margin-top:18px;"></div>
+  </div>
+</div>
+
+<!-- Admin Toolbar -->
+<div class="admin-toolbar" id="adminToolbar">
+  <div class="admin-tb-inner">
+    <span class="atb-label">⚙ ADMIN:</span>
+    <button class="atb-btn green" onclick="document.getElementById('addForm').style.display='block';document.getElementById('adminPanel').classList.add('visible');window.scrollTo(0,0)">+ Add / 📢 POST</button>
+    <button class="atb-btn" onclick="renderPosts()">↻ Refresh</button>
+    <button class="atb-btn green" onclick="bulkStatus('approved')">✓ Approve All</button>
+    <button class="atb-btn" onclick="bulkStatus('archived')">📦 Archive All</button>
+    <button class="atb-btn red" onclick="clearAll()">🗑 Remove All</button>
+    <span style="margin-left:auto;display:flex;gap:.4rem;">
+      <a href="admin.html" class="atb-btn">Admin Console</a>
+      <button class="atb-btn red" onclick="hideAdmin()">✕ Exit</button>
+    </span>
+  </div>
+</div>
+<div class="admin-float" id="adminFloat"><button onclick="promptAdmin()">⚙ Admin</button></div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Strong's Concordance · Public Domain 1890</p></footer>
+
+<script>
+const ADMIN_PASS='GATE2025admin';
+const STORE_KEY='gate_concord_concordance_g1001-g1250';
+let isAdmin=false;
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function getPosts(){return gl(STORE_KEY)||[];}
+function fmtDate(ts){return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+(function(){const s=gl('td_gate_v6');if(s&&s.tier==='admin'){isAdmin=true;showAdminUI();}})();
+function promptAdmin(){
+  if(isAdmin){showAdminUI();return;}
+  const pw=prompt('Admin Password:');
+  if(pw===ADMIN_PASS){isAdmin=true;const s=gl('td_gate_v6')||{};if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};s.tier='admin';gs('td_gate_v6',s);showAdminUI();}
+  else if(pw!==null)alert('Incorrect password.');
+}
+function showAdminUI(){
+  document.getElementById('adminPanel').classList.add('visible');
+  document.getElementById('adminToolbar').classList.add('visible');
+  document.getElementById('adminFloat').style.display='none';
+  renderPosts();
+}
+function hideAdmin(){
+  isAdmin=false;
+  document.getElementById('adminPanel').classList.remove('visible');
+  document.getElementById('adminToolbar').classList.remove('visible');
+  document.getElementById('adminFloat').style.display='block';
+}
+async function addPost(){
+  const title=document.getElementById('adm_title').value.trim();
+  const body=document.getElementById('adm_body').value.trim();
+  const msg=document.getElementById('adm_msg');
+  if(!title&&!body){msg.innerHTML='<span style="color:#e05555">Please enter a title or notes.</span>';return;}
+  const imgFile=document.getElementById('adm_img').files[0];
+  let img='';
+  if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
+  const posts=getPosts();
+  posts.unshift({id:Date.now(),title,body,ref:document.getElementById('adm_ref').value,img,status:document.getElementById('adm_status').value,created:Date.now()});
+  gs(STORE_KEY,posts);
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  ['adm_title','adm_body','adm_ref'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('adm_img').value='';
+  renderPosts();
+}
+function editPost(id){
+  const posts=getPosts();const p=posts.find(x=>x.id===id);if(!p)return;
+  const t=prompt('Edit title:',p.title||'');if(t===null)return;
+  const b=prompt('Edit notes:',p.body||'');if(b===null)return;
+  const r=prompt('Edit reference:',p.ref||'');if(r===null)return;
+  p.title=t;p.body=b;p.ref=r;p.updated=Date.now();
+  gs(STORE_KEY,posts);renderPosts();
+}
+async function uploadImg(id){
+  const input=document.createElement('input');input.type='file';input.accept='image/*';
+  input.onchange=async()=>{
+    if(!input.files[0])return;
+    const img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(input.files[0]);});
+    const posts=getPosts();const p=posts.find(x=>x.id===id);
+    if(p){p.img=img;p.updated=Date.now();gs(STORE_KEY,posts);renderPosts();}
+  };input.click();
+}
+function setStatus(id,status){const posts=getPosts();const p=posts.find(x=>x.id===id);if(p){p.status=status;p.updated=Date.now();};gs(STORE_KEY,posts);renderPosts();}
+function removePost(id){if(!confirm('Remove?'))return;gs(STORE_KEY,getPosts().filter(x=>x.id!==id));renderPosts();}
+function bulkStatus(s){const posts=getPosts();posts.forEach(p=>p.status=s);gs(STORE_KEY,posts);renderPosts();}
+function clearAll(){if(!confirm('Remove all posts?'))return;gs(STORE_KEY,[]);renderPosts();}
+function statusBadge(s){const m={active:'badge-green',approved:'badge-green',draft:'badge-gold',archived:'#555'};return`<span class="badge ${m[s]||'badge-gold'}">${s||'active'}</span>`;}
+function renderPosts(){
+  const posts=getPosts().filter(p=>p.status!=='archived');
+  const pub=document.getElementById('publicPostList');
+  const adm=document.getElementById('adminPostList');
+  if(!posts.length){
+    if(pub)pub.innerHTML='';
+    if(adm&&isAdmin)adm.innerHTML='<div style="color:var(--text2);font-size:.82rem;text-align:center;padding:1rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No posts yet. Fill in the form above and click 📢 POST.</div>';
+    return;
+  }
+  const cards=posts.map(p=>`<div class="post-card">
+    ${p.img?`<img src="${p.img}" alt="">`:''}
+    <div style="display:flex;gap:.4rem;margin-bottom:.4rem;">${statusBadge(p.status)}<span style="font-size:.68rem;color:var(--text2);font-family:sans-serif;">${fmtDate(p.created)}</span></div>
+    <div class="post-title">${p.title||''}</div>
+    <div class="post-body">${p.body||''}</div>
+    ${p.ref?`<div style="font-size:.75rem;color:var(--text2);margin-top:.3rem;font-style:italic;">📖 ${p.ref}</div>`:''}
+    ${isAdmin?`<div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem;">
+      <button class="btn btn-outline btn-sm" onclick="editPost(${p.id})">✏ Edit</button>
+      <button class="btn btn-outline btn-sm" onclick="uploadImg(${p.id})">📷 Upload</button>
+      <button class="btn btn-green btn-sm" onclick="setStatus(${p.id},'approved')">✓ Approve</button>
+      <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setStatus(${p.id},'archived')">📦 Archive</button>
+      <button class="btn btn-danger btn-sm" onclick="removePost(${p.id})">🗑 Remove</button>
+    </div>`:''}
+  </div>`).join('');
+  const wrapper=`<div class="admin-posts"><h3>📌 Posted Notes &amp; Commentary</h3>${cards}</div>`;
+  if(pub)pub.innerHTML=wrapper;
+  if(adm&&isAdmin)adm.innerHTML='<h4 style="color:var(--text2);font-size:.8rem;margin-bottom:.5rem;">All Posts (including archived):</h4>'+getPosts().map(p=>`<div class="post-card"><div style="display:flex;gap:.4rem;">${statusBadge(p.status)}<span style="font-size:.7rem;color:var(--text2);">${p.title}</span></div></div>`).join('');
+}
+document.addEventListener('DOMContentLoaded',renderPosts);
+</script>
+
+<script>
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
+</body></html>
