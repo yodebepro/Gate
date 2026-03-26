@@ -85,17 +85,51 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   color: var(--gold); background: rgba(201,168,76,0.12); text-decoration:none;
 }
 .gate-dropdown-menu{
-  display:none; position:absolute; top:calc(100% + 6px); left:0; min-width:260px;
-  background: linear-gradient(180deg, var(--navy2), var(--charcoal));
-  border:1px solid rgba(201,168,76,.35); border-radius:10px; padding:8px;
-  box-shadow:0 16px 40px rgba(0,0,0,.30); z-index:150;
+  display:block;
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  min-width:235px;
+  background:linear-gradient(160deg,#162440 0%,#0d1b2e 100%);
+  border:1px solid rgba(201,168,76,0.45);
+  border-top:3px solid var(--gold);
+  border-radius:0 0 10px 10px;
+  padding:0.4rem 0;
+  box-shadow:0 16px 45px rgba(0,0,0,0.75),0 0 0 1px rgba(201,168,76,0.06);
+  z-index:1000;
+  transform:translateY(-8px);
+  transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
 }
-.gate-dropdown:hover .gate-dropdown-menu{display:block}
+.gate-dropdown.open .gate-dropdown-menu,
+.gate-dropdown:hover .gate-dropdown-menu{
+  visibility:visible;
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
 .gate-dropdown-menu a{
-  display:block; padding:.55rem .7rem !important; border-radius:6px; color:var(--text) !important;
-  text-transform:none !important; letter-spacing:.3px !important; font-size:.86rem !important;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  color:var(--text2);
+  font-size:0.82rem;
+  padding:0.58rem 1rem;
+  font-family:sans-serif;
+  letter-spacing:0.3px;
+  text-decoration:none;
+  border-left:3px solid transparent;
+  transition:all 0.18s ease;
 }
-.gate-dropdown-menu a:hover{background:rgba(201,168,76,.12) !important; color:var(--gold) !important}
+.gate-dropdown-menu a:hover{
+  color:var(--gold) !important;
+  background:linear-gradient(90deg,rgba(201,168,76,0.12),rgba(201,168,76,0.02));
+  border-left-color:var(--gold);
+  padding-left:1.3rem;
+  text-decoration:none;
+}
 .gate-manager{
   margin-top:1rem; padding:1rem; border:1px solid rgba(201,168,76,.22); border-radius:12px;
   background:rgba(255,255,255,.03)
@@ -389,14 +423,14 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
     const GATE_ADMIN_KEY='gate_admin_content_'+PAGE.replace('.html','');
     
     const actions={
-      add:{label:'➕ Add Content',icon:'➕',
+      add:{label:'📢 Post New Content',icon:'📢',
         html:`<div style="font-family:sans-serif;">
           <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title / Name *</label><input id="ga_title" type="text" placeholder="Title or name..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
           <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description / Body</label><textarea id="ga_body" rows="4" placeholder="Content description..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;resize:vertical;"></textarea></div>
           <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL / Link (optional)</label><input id="ga_url" type="url" placeholder="https://..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
           <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Upload Image (optional)</label><input id="ga_img" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"></div>
           <div id="ga_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminSaveItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Save Item</button>
+          <button onclick="gAdminSaveItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">📢 POST</button>
         </div>`},
       edit:{label:'✏️ Edit / Change',icon:'✏️',
         html:`<div style="font-family:sans-serif;">
@@ -492,7 +526,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
     const items=getItems();
     items.push({id:Date.now(),title,body,url,img,status:'active',created:new Date().toISOString()});
     saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Item saved!</span>';
+    msg.innerHTML='<span style="color:#4aad74;">✅ Posted! Visible to all visitors.</span>';
     document.getElementById('ga_title').value='';
     document.getElementById('ga_body').value='';
     document.getElementById('ga_url').value='';
@@ -659,4 +693,41 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 </script>
 <!-- ===== END GATE ADMIN TOOLBAR ===== -->
 
+<script>
+(function(){
+  var timers = {};
+  var DELAY = 320; // ms before closing dropdown
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd, i){
+    dd.setAttribute('data-dd', i);
+    dd.addEventListener('mouseenter', function(){
+      clearTimeout(timers[i]);
+      dd.classList.add('open');
+    });
+    dd.addEventListener('mouseleave', function(){
+      timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
+    });
+    var menu = dd.querySelector('.gate-dropdown-menu');
+    if(menu){
+      menu.addEventListener('mouseenter', function(){ clearTimeout(timers[i]); });
+      menu.addEventListener('mouseleave', function(){
+        timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
+      });
+    }
+  });
+})();
+</script>
+<script>
+/* Dropdown delay — 350ms before closing so you can click items */
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);
+    dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+</script>
 </body></html>

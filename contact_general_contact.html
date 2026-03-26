@@ -17,15 +17,69 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
 .gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
 .gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
 .gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
-.gate-dropdown{position:relative;display:inline-block}
-.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
-.gate-dropdown>a:hover,.gate-dropdown>button:hover,.gate-dropdown>a.active,.gate-dropdown>button.active{color:var(--gold);background:rgba(201,168,76,.12)}
-.gate-dropdown-menu{display:none;position:absolute;top:calc(100% + 4px);left:0;min-width:220px;background:linear-gradient(180deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.35);border-top:2px solid var(--gold);border-radius:0 0 8px 8px;padding:.3rem 0;box-shadow:0 8px 30px rgba(0,0,0,.6);z-index:1000}
-.gate-dropdown:hover .gate-dropdown-menu{display:block}
-.gate-dropdown-menu a{display:block;color:var(--text2);font-size:.8rem;padding:.5rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:2px solid transparent;transition:all .15s}
-.gate-dropdown-menu a:hover{color:var(--gold);background:rgba(201,168,76,.08);border-left-color:var(--gold)}
-.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
-.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+.gate-dropdown{position:relative; display:inline-block}
+.gate-dropdown > a, .gate-dropdown > button{
+  color: var(--text2); font-size: 0.8rem; padding: 0.3rem 0.7rem;
+  border-radius: 4px; transition: all 0.2s; letter-spacing: 1px;
+  text-transform: uppercase; font-family: sans-serif; background:none; border:none; cursor:pointer;
+}
+.gate-dropdown > a:hover, .gate-dropdown > button:hover,
+.gate-dropdown > a.active, .gate-dropdown > button.active{
+  color: var(--gold); background: rgba(201,168,76,0.12); text-decoration:none;
+}
+.gate-dropdown-menu{
+  display:block;
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  min-width:235px;
+  background:linear-gradient(160deg,#162440 0%,#0d1b2e 100%);
+  border:1px solid rgba(201,168,76,0.45);
+  border-top:3px solid var(--gold);
+  border-radius:0 0 10px 10px;
+  padding:0.4rem 0;
+  box-shadow:0 16px 45px rgba(0,0,0,0.75),0 0 0 1px rgba(201,168,76,0.06);
+  z-index:1000;
+  transform:translateY(-8px);
+  transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+.gate-dropdown.open .gate-dropdown-menu,
+.gate-dropdown:hover .gate-dropdown-menu{
+  visibility:visible;
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.gate-dropdown-menu a{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  color:var(--text2) !important;
+  font-size:0.82rem !important;
+  padding:0.58rem 1rem !important;
+  font-family:sans-serif;
+  letter-spacing:0.3px !important;
+  text-transform:none !important;
+  text-decoration:none !important;
+  border-left:3px solid transparent;
+  transition:all 0.18s ease;
+  position:relative;
+}
+.gate-dropdown-menu a:hover{
+  color:var(--gold) !important;
+  background:linear-gradient(90deg,rgba(201,168,76,0.12),rgba(201,168,76,0.02));
+  border-left-color:var(--gold);
+  padding-left:1.3rem;
+  text-decoration:none;
+}
+.gate-nav-links .btn-nav{
+  background:var(--gold); color:var(--navy)!important; font-weight:700;
+  padding:0.35rem 1rem; border-radius:4px;
+}
+.gate-nav-links .btn-nav:hover{ background:var(--gold2); }
 
 
 .page-header{background:linear-gradient(180deg,var(--navy2),var(--charcoal));border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
@@ -404,5 +458,58 @@ function sendMsg(){
   document.getElementById('cnt_result').innerHTML='<span style="color:#4aad74">✓ Email client opened.</span>';
 }
 
+</script>
+<script>
+(function(){
+  var timers = {};
+  var DELAY = 320; // ms before closing dropdown
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd, i){
+    dd.setAttribute('data-dd', i);
+    dd.addEventListener('mouseenter', function(){
+      clearTimeout(timers[i]);
+      dd.classList.add('open');
+    });
+    dd.addEventListener('mouseleave', function(){
+      timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
+    });
+    var menu = dd.querySelector('.gate-dropdown-menu');
+    if(menu){
+      menu.addEventListener('mouseenter', function(){ clearTimeout(timers[i]); });
+      menu.addEventListener('mouseleave', function(){
+        timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
+      });
+    }
+  });
+})();
+</script>
+
+<script>
+/* Dropdown hover delay — keeps menu open 350ms after cursor leaves */
+(function(){
+  var timers={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    dd.setAttribute('data-ddi',i);
+    function open(){clearTimeout(timers[i]);dd.classList.add('open');}
+    function schedClose(){timers[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);
+    dd.addEventListener('mouseleave',schedClose);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(timers[i]);});m.addEventListener('mouseleave',schedClose);}
+  });
+})();
+</script>
+<script>
+/* Dropdown delay — 350ms before closing so you can click items */
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);
+    dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
 </script>
 </body></html>
