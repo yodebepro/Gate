@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Bible Commentaries</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a;--line:rgba(201,168,76,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:var(--gold);background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:var(--gold);padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+.page-header{background:linear-gradient(180deg,var(--navy2),var(--charcoal));border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1400px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-bottom:1.8rem}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;text-align:center}
+.stat-val{font-size:1.8rem;font-weight:700;color:var(--gold);font-family:sans-serif}
+.stat-lbl{font-size:.7rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;margin-top:.2rem}
+.search-card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.4rem;margin-bottom:1.5rem}
+.search-card h2{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px;margin-bottom:.9rem}
+.search-row{display:flex;gap:.5rem}
+.search-row input{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.65rem .9rem;font-family:inherit;font-size:.9rem;flex:1}
+.search-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.15)}
+.search-row button{background:var(--gold);color:var(--navy);border:none;border-radius:5px;padding:.65rem 1.3rem;font-weight:700;cursor:pointer;font-family:sans-serif}
+.search-row button:hover{background:var(--gold2)}
+.search-results{margin-top:1rem}
+.result-item{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:.8rem 1rem;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.result-name{font-family:'Cinzel',serif;color:var(--cream);font-size:.9rem}
+.result-test{font-size:.72rem;color:var(--text2);font-family:sans-serif}
+.testament-section{margin-bottom:2rem}
+.testament-label{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2);display:flex;align-items:center;gap:.6rem}
+.book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:.8rem}
+.book-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;text-align:center;text-decoration:none;transition:all .2s;display:block}
+.book-card:hover{border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-2px)}
+.book-name{font-family:'Cinzel',serif;font-size:.82rem;color:var(--cream);margin-bottom:.3rem}
+.book-meta{font-size:.7rem;color:var(--text2);font-family:sans-serif}
+.book-card.hidden{display:none}
+.no-results{color:var(--text2);text-align:center;padding:2rem;font-size:.9rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+
+<div class="page-header">
+  <h1>📚 Bible Commentaries</h1>
+  <p>In-Depth Scholarly Commentaries — Genesis to Revelation · Old &amp; New Testament</p>
+  <div class="divider"></div>
+</div>
+
+<div class="container">
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-val">68</div><div class="stat-lbl">Commentaries</div></div>
+    <div class="stat-box"><div class="stat-val">OT + NT</div><div class="stat-lbl">Both Testaments</div></div>
+    <div class="stat-box"><div class="stat-val">PDF</div><div class="stat-lbl">Embedded Viewer</div></div>
+    <div class="stat-box"><div class="stat-val">Gen–Rev</div><div class="stat-lbl">Full Coverage</div></div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-card">
+    <h2>🔍 Search Commentaries by Book Name</h2>
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Type a book name — e.g. Genesis, Romans, Psalms, Revelation..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Enter')doSearch(document.getElementById('searchInput').value)">
+      <button onclick="doSearch(document.getElementById('searchInput').value)">Search</button>
+    </div>
+    <div class="search-results" id="searchResults" style="display:none;"></div>
+  </div>
+
+  <!-- OT BOOKS -->
+  <div class="testament-section" id="otSection">
+    <div class="testament-label">📜 Old Testament <span style="font-size:.72rem;color:var(--text2);font-family:sans-serif;font-weight:400;letter-spacing:0;">(43 Commentaries)</span></div>
+    <div class="book-grid" id="otGrid"><a href="commentary_genesis.html" class="book-card" data-name="genesis"><div class="book-name">Genesis</div><div class="book-meta">View Commentary →</div></a><a href="commentary_exodus.html" class="book-card" data-name="exodus"><div class="book-name">Exodus</div><div class="book-meta">View Commentary →</div></a><a href="commentary_leviticus.html" class="book-card" data-name="leviticus"><div class="book-name">Leviticus</div><div class="book-meta">View Commentary →</div></a><a href="commentary_numbers.html" class="book-card" data-name="numbers"><div class="book-name">Numbers</div><div class="book-meta">View Commentary →</div></a><a href="commentary_deuteronomy.html" class="book-card" data-name="deuteronomy"><div class="book-name">Deuteronomy</div><div class="book-meta">View Commentary →</div></a><a href="commentary_joshua.html" class="book-card" data-name="joshua"><div class="book-name">Joshua</div><div class="book-meta">View Commentary →</div></a><a href="commentary_judges.html" class="book-card" data-name="judges"><div class="book-name">Judges</div><div class="book-meta">View Commentary →</div></a><a href="commentary_ruth.html" class="book-card" data-name="ruth"><div class="book-name">Ruth</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1samuel.html" class="book-card" data-name="1 samuel"><div class="book-name">1 Samuel</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2samuel.html" class="book-card" data-name="2 samuel"><div class="book-name">2 Samuel</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1kings.html" class="book-card" data-name="1 kings"><div class="book-name">1 Kings</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2kings.html" class="book-card" data-name="2 kings"><div class="book-name">2 Kings</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1chronicles.html" class="book-card" data-name="1 chronicles"><div class="book-name">1 Chronicles</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2chronicles.html" class="book-card" data-name="2 chronicles"><div class="book-name">2 Chronicles</div><div class="book-meta">View Commentary →</div></a><a href="commentary_ezra.html" class="book-card" data-name="ezra"><div class="book-name">Ezra</div><div class="book-meta">View Commentary →</div></a><a href="commentary_nehemiah.html" class="book-card" data-name="nehemiah"><div class="book-name">Nehemiah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_esther.html" class="book-card" data-name="esther"><div class="book-name">Esther</div><div class="book-meta">View Commentary →</div></a><a href="commentary_job.html" class="book-card" data-name="job"><div class="book-name">Job</div><div class="book-meta">View Commentary →</div></a><a href="commentary_psalms_1-41.html" class="book-card" data-name="psalms 1–41"><div class="book-name">Psalms 1–41</div><div class="book-meta">View Commentary →</div></a><a href="commentary_psalms_42-72.html" class="book-card" data-name="psalms 42–72"><div class="book-name">Psalms 42–72</div><div class="book-meta">View Commentary →</div></a><a href="commentary_psalms_73-89.html" class="book-card" data-name="psalms 73–89"><div class="book-name">Psalms 73–89</div><div class="book-meta">View Commentary →</div></a><a href="commentary_psalms_90-106.html" class="book-card" data-name="psalms 90–106"><div class="book-name">Psalms 90–106</div><div class="book-meta">View Commentary →</div></a><a href="commentary_psalms_107-150.html" class="book-card" data-name="psalms 107–150"><div class="book-name">Psalms 107–150</div><div class="book-meta">View Commentary →</div></a><a href="commentary_proverbs.html" class="book-card" data-name="proverbs"><div class="book-name">Proverbs</div><div class="book-meta">View Commentary →</div></a><a href="commentary_ecclesiastes.html" class="book-card" data-name="ecclesiastes"><div class="book-name">Ecclesiastes</div><div class="book-meta">View Commentary →</div></a><a href="commentary_song_of_solomon.html" class="book-card" data-name="song of solomon"><div class="book-name">Song of Solomon</div><div class="book-meta">View Commentary →</div></a><a href="commentary_isaiah.html" class="book-card" data-name="isaiah"><div class="book-name">Isaiah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_jeremiah.html" class="book-card" data-name="jeremiah"><div class="book-name">Jeremiah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_lamentations.html" class="book-card" data-name="lamentations"><div class="book-name">Lamentations</div><div class="book-meta">View Commentary →</div></a><a href="commentary_ezekiel.html" class="book-card" data-name="ezekiel"><div class="book-name">Ezekiel</div><div class="book-meta">View Commentary →</div></a><a href="commentary_daniel.html" class="book-card" data-name="daniel"><div class="book-name">Daniel</div><div class="book-meta">View Commentary →</div></a><a href="commentary_hosea.html" class="book-card" data-name="hosea"><div class="book-name">Hosea</div><div class="book-meta">View Commentary →</div></a><a href="commentary_joel.html" class="book-card" data-name="joel"><div class="book-name">Joel</div><div class="book-meta">View Commentary →</div></a><a href="commentary_amos.html" class="book-card" data-name="amos"><div class="book-name">Amos</div><div class="book-meta">View Commentary →</div></a><a href="commentary_obadiah.html" class="book-card" data-name="obadiah"><div class="book-name">Obadiah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_jonah.html" class="book-card" data-name="jonah"><div class="book-name">Jonah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_micah.html" class="book-card" data-name="micah"><div class="book-name">Micah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_nahum.html" class="book-card" data-name="nahum"><div class="book-name">Nahum</div><div class="book-meta">View Commentary →</div></a><a href="commentary_habakkuk.html" class="book-card" data-name="habakkuk"><div class="book-name">Habakkuk</div><div class="book-meta">View Commentary →</div></a><a href="commentary_zephaniah.html" class="book-card" data-name="zephaniah"><div class="book-name">Zephaniah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_haggai.html" class="book-card" data-name="haggai"><div class="book-name">Haggai</div><div class="book-meta">View Commentary →</div></a><a href="commentary_zechariah.html" class="book-card" data-name="zechariah"><div class="book-name">Zechariah</div><div class="book-meta">View Commentary →</div></a><a href="commentary_malachi.html" class="book-card" data-name="malachi"><div class="book-name">Malachi</div><div class="book-meta">View Commentary →</div></a></div>
+  </div>
+
+  <!-- NT BOOKS -->
+  <div class="testament-section" id="ntSection">
+    <div class="testament-label">✝ New Testament <span style="font-size:.72rem;color:var(--text2);font-family:sans-serif;font-weight:400;letter-spacing:0;">(25 Commentaries)</span></div>
+    <div class="book-grid" id="ntGrid"><a href="commentary_matthew.html" class="book-card" data-name="matthew"><div class="book-name">Matthew</div><div class="book-meta">View Commentary →</div></a><a href="commentary_mark.html" class="book-card" data-name="mark"><div class="book-name">Mark</div><div class="book-meta">View Commentary →</div></a><a href="commentary_luke.html" class="book-card" data-name="luke"><div class="book-name">Luke</div><div class="book-meta">View Commentary →</div></a><a href="commentary_john.html" class="book-card" data-name="john"><div class="book-name">John</div><div class="book-meta">View Commentary →</div></a><a href="commentary_acts.html" class="book-card" data-name="acts"><div class="book-name">Acts</div><div class="book-meta">View Commentary →</div></a><a href="commentary_romans.html" class="book-card" data-name="romans"><div class="book-name">Romans</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1corinthians.html" class="book-card" data-name="1 corinthians"><div class="book-name">1 Corinthians</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2corinthians.html" class="book-card" data-name="2 corinthians"><div class="book-name">2 Corinthians</div><div class="book-meta">View Commentary →</div></a><a href="commentary_galatians.html" class="book-card" data-name="galatians"><div class="book-name">Galatians</div><div class="book-meta">View Commentary →</div></a><a href="commentary_phi_col_eph.html" class="book-card" data-name="ephesians / philippians / colossians"><div class="book-name">Ephesians / Philippians / Colossians</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1thessalonians.html" class="book-card" data-name="1 thessalonians"><div class="book-name">1 Thessalonians</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2thessalonians.html" class="book-card" data-name="2 thessalonians"><div class="book-name">2 Thessalonians</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1timothy.html" class="book-card" data-name="1 timothy"><div class="book-name">1 Timothy</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2timothy.html" class="book-card" data-name="2 timothy"><div class="book-name">2 Timothy</div><div class="book-meta">View Commentary →</div></a><a href="commentary_titus.html" class="book-card" data-name="titus"><div class="book-name">Titus</div><div class="book-meta">View Commentary →</div></a><a href="commentary_philemon.html" class="book-card" data-name="philemon"><div class="book-name">Philemon</div><div class="book-meta">View Commentary →</div></a><a href="commentary_hebrews.html" class="book-card" data-name="hebrews"><div class="book-name">Hebrews</div><div class="book-meta">View Commentary →</div></a><a href="commentary_james.html" class="book-card" data-name="james"><div class="book-name">James</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1peter.html" class="book-card" data-name="1 peter"><div class="book-name">1 Peter</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2peter.html" class="book-card" data-name="2 peter"><div class="book-name">2 Peter</div><div class="book-meta">View Commentary →</div></a><a href="commentary_1john.html" class="book-card" data-name="1 john"><div class="book-name">1 John</div><div class="book-meta">View Commentary →</div></a><a href="commentary_2john.html" class="book-card" data-name="2 john"><div class="book-name">2 John</div><div class="book-meta">View Commentary →</div></a><a href="commentary_3john.html" class="book-card" data-name="3 john"><div class="book-name">3 John</div><div class="book-meta">View Commentary →</div></a><a href="commentary_jude.html" class="book-card" data-name="jude"><div class="book-name">Jude</div><div class="book-meta">View Commentary →</div></a><a href="commentary_revelation.html" class="book-card" data-name="revelation"><div class="book-name">Revelation</div><div class="book-meta">View Commentary →</div></a></div>
+  </div>
+
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;">
+    <a href="bible.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">📖 The Bible →</a>
+    <a href="concordance.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">🔍 Strong's Concordance →</a>
+    <a href="index.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">🏠 GATE Home →</a>
+  </div>
+</div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Bible Commentaries · All Rights Reserved</p></footer>
+
+<script>
+const ALL_BOOKS = [["genesis", "Genesis", "Old Testament"], ["exodus", "Exodus", "Old Testament"], ["leviticus", "Leviticus", "Old Testament"], ["numbers", "Numbers", "Old Testament"], ["deuteronomy", "Deuteronomy", "Old Testament"], ["joshua", "Joshua", "Old Testament"], ["judges", "Judges", "Old Testament"], ["ruth", "Ruth", "Old Testament"], ["1samuel", "1 Samuel", "Old Testament"], ["2samuel", "2 Samuel", "Old Testament"], ["1kings", "1 Kings", "Old Testament"], ["2kings", "2 Kings", "Old Testament"], ["1chronicles", "1 Chronicles", "Old Testament"], ["2chronicles", "2 Chronicles", "Old Testament"], ["ezra", "Ezra", "Old Testament"], ["nehemiah", "Nehemiah", "Old Testament"], ["esther", "Esther", "Old Testament"], ["job", "Job", "Old Testament"], ["psalms_1-41", "Psalms 1–41", "Old Testament"], ["psalms_42-72", "Psalms 42–72", "Old Testament"], ["psalms_73-89", "Psalms 73–89", "Old Testament"], ["psalms_90-106", "Psalms 90–106", "Old Testament"], ["psalms_107-150", "Psalms 107–150", "Old Testament"], ["proverbs", "Proverbs", "Old Testament"], ["ecclesiastes", "Ecclesiastes", "Old Testament"], ["song_of_solomon", "Song of Solomon", "Old Testament"], ["isaiah", "Isaiah", "Old Testament"], ["jeremiah", "Jeremiah", "Old Testament"], ["lamentations", "Lamentations", "Old Testament"], ["ezekiel", "Ezekiel", "Old Testament"], ["daniel", "Daniel", "Old Testament"], ["hosea", "Hosea", "Old Testament"], ["joel", "Joel", "Old Testament"], ["amos", "Amos", "Old Testament"], ["obadiah", "Obadiah", "Old Testament"], ["jonah", "Jonah", "Old Testament"], ["micah", "Micah", "Old Testament"], ["nahum", "Nahum", "Old Testament"], ["habakkuk", "Habakkuk", "Old Testament"], ["zephaniah", "Zephaniah", "Old Testament"], ["haggai", "Haggai", "Old Testament"], ["zechariah", "Zechariah", "Old Testament"], ["malachi", "Malachi", "Old Testament"], ["matthew", "Matthew", "New Testament"], ["mark", "Mark", "New Testament"], ["luke", "Luke", "New Testament"], ["john", "John", "New Testament"], ["acts", "Acts", "New Testament"], ["romans", "Romans", "New Testament"], ["1corinthians", "1 Corinthians", "New Testament"], ["2corinthians", "2 Corinthians", "New Testament"], ["galatians", "Galatians", "New Testament"], ["phi_col_eph", "Ephesians / Philippians / Colossians", "New Testament"], ["1thessalonians", "1 Thessalonians", "New Testament"], ["2thessalonians", "2 Thessalonians", "New Testament"], ["1timothy", "1 Timothy", "New Testament"], ["2timothy", "2 Timothy", "New Testament"], ["titus", "Titus", "New Testament"], ["philemon", "Philemon", "New Testament"], ["hebrews", "Hebrews", "New Testament"], ["james", "James", "New Testament"], ["1peter", "1 Peter", "New Testament"], ["2peter", "2 Peter", "New Testament"], ["1john", "1 John", "New Testament"], ["2john", "2 John", "New Testament"], ["3john", "3 John", "New Testament"], ["jude", "Jude", "New Testament"], ["revelation", "Revelation", "New Testament"]];
+
+function doSearch(q) {
+  q = (q||'').trim().toLowerCase();
+  const resultsEl = document.getElementById('searchResults');
+  const otGrid = document.getElementById('otGrid');
+  const ntGrid = document.getElementById('ntGrid');
+  const otSection = document.getElementById('otSection');
+  const ntSection = document.getElementById('ntSection');
+
+  if (!q) {
+    resultsEl.style.display = 'none';
+    resultsEl.innerHTML = '';
+    document.querySelectorAll('.book-card').forEach(c => c.classList.remove('hidden'));
+    otSection.style.display = ''; ntSection.style.display = '';
+    return;
+  }
+
+  // Filter cards live
+  let anyOT = false, anyNT = false;
+  document.querySelectorAll('#otGrid .book-card').forEach(c => {
+    const match = c.dataset.name.includes(q);
+    c.classList.toggle('hidden', !match);
+    if (match) anyOT = true;
+  });
+  document.querySelectorAll('#ntGrid .book-card').forEach(c => {
+    const match = c.dataset.name.includes(q);
+    c.classList.toggle('hidden', !match);
+    if (match) anyNT = true;
+  });
+
+  // Show results list too
+  const matches = ALL_BOOKS.filter(b => b[1].toLowerCase().includes(q));
+  if (matches.length) {
+    resultsEl.style.display = 'block';
+    resultsEl.innerHTML = '<div style="font-size:.8rem;color:var(--text2);margin-bottom:.5rem;font-family:sans-serif;">' + matches.length + ' result(s):</div>' +
+      matches.map(b => '<div class="result-item"><div><div class="result-name">' + b[1] + '</div><div class="result-test">' + b[2] + '</div></div><a href="commentary_' + b[0] + '.html" style="background:var(--gold);color:var(--navy);padding:.35rem .8rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;">Open →</a></div>').join('');
+  } else {
+    resultsEl.style.display = 'block';
+    resultsEl.innerHTML = '<div class="no-results">No commentaries found for "' + q + '"</div>';
+  }
+}
+
+(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
+</script>
+</body></html>
