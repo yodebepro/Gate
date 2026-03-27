@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — The Holy Bible (KJV) — All 66 Books</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a;--line:rgba(201,168,76,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+
+/* NAV */
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:var(--gold);background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:var(--gold);padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2),var(--charcoal));border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1400px;margin:0 auto;padding:2rem 1.5rem 6rem}
+
+/* TABS */
+.bible-tabs{display:flex;gap:0;border-bottom:2px solid rgba(201,168,76,.2);margin-bottom:2rem;overflow-x:auto}
+.bible-tab{padding:.7rem 1.4rem;font-family:sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--text2);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;letter-spacing:.5px}
+.bible-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.06)}
+.bible-tab:hover{color:var(--gold);background:rgba(201,168,76,.05)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* BOOK GRID */
+.testament-section{margin-bottom:2rem}
+.testament-label{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2);display:flex;align-items:center;gap:.7rem}
+.book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.8rem}
+.book-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;text-align:center;text-decoration:none;transition:all .2s;display:block}
+.book-card:hover{border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-2px);text-decoration:none}
+.book-name{font-family:'Cinzel',serif;font-size:.85rem;color:var(--cream);margin-bottom:.3rem}
+.book-meta{font-size:.72rem;color:var(--text2);font-family:sans-serif}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;text-align:center}
+.stat-val{font-size:1.8rem;font-weight:700;color:var(--gold);font-family:sans-serif}
+.stat-lbl{font-size:.7rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;margin-top:.2rem}
+
+/* CONCORDANCE & DICTIONARY */
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.search-bar{display:flex;gap:.5rem;margin-bottom:1.2rem}
+.search-bar input{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.6rem .9rem;font-family:inherit;font-size:.9rem;flex:1}
+.search-bar input:focus{outline:none;border-color:var(--gold)}
+.search-bar button{background:var(--gold);color:var(--navy);border:none;border-radius:5px;padding:.6rem 1.2rem;font-weight:700;cursor:pointer;font-family:sans-serif;font-size:.85rem}
+.result-item{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:1rem;margin-bottom:.8rem}
+.result-item .word{font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;margin-bottom:.3rem}
+.result-item .number{font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-bottom:.4rem}
+.result-item .definition{color:var(--cream);font-size:.88rem;line-height:1.7}
+.result-item .verse-refs{font-size:.78rem;color:var(--text2);margin-top:.4rem;font-style:italic}
+
+/* CONTENT ITEMS (admin posts) */
+.content-item{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:.8rem}
+.content-item img{max-width:100%;border-radius:6px;margin:.5rem 0;border:1px solid rgba(201,168,76,.2)}
+.item-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;margin-bottom:.3rem}
+.item-body{color:var(--cream);font-size:.88rem;line-height:1.75;margin-bottom:.5rem}
+.item-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem}
+
+/* ADMIN */
+.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+.admin-panel.visible{display:block}
+.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.55rem 1.2rem;border-radius:5px;font-family:sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1)}
+.btn-danger{background:#6b1d2e;color:var(--cream)}.btn-danger:hover{background:#8b2540}
+.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f}
+.btn-sm{padding:.3rem .7rem;font-size:.78rem}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
+.admin-toolbar.visible{display:block}
+.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.admin-tb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif;margin-right:.2rem}
+.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600}
+.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
+.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
+.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
+.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
+.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+@media(max-width:768px){.gate-nav-links{display:none}.book-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}.stats-bar{grid-template-columns:1fr 1fr}}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+<div class="page-header">
+  <h1>📖 The Holy Bible</h1>
+  <p>King James Version · All 66 Books · Complete Chapters &amp; Verses</p>
+  <div class="divider"></div>
+</div>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-val">66</div><div class="stat-lbl">Books</div></div>
+    <div class="stat-box"><div class="stat-val">1,189</div><div class="stat-lbl">Chapters</div></div>
+    <div class="stat-box"><div class="stat-val">31,102</div><div class="stat-lbl">Verses</div></div>
+    <div class="stat-box"><div class="stat-val">KJV</div><div class="stat-lbl">Translation</div></div>
+  </div>
+
+  <!-- TABS -->
+  <div class="bible-tabs">
+    <button class="bible-tab active" onclick="switchTab('books',this)">📖 All 66 Books</button>
+    <button class="bible-tab" onclick="window.location.href='concordance.html'">🔍 Strong's Concordance</button>
+    <button class="bible-tab" onclick="window.location.href='commentaries.html'">📚 Bible Commentaries</button>
+    <button class="bible-tab" onclick="switchTab('resources',this)">🗂 Resources</button>
+  </div>
+
+  <!-- TAB: ALL BOOKS -->
+  <div class="tab-panel active" id="tab-books">
+    <div class="testament-section">
+      <div class="testament-label">📜 Old Testament <span style="font-size:.72rem;color:var(--text2);font-family:sans-serif;font-weight:400;letter-spacing:0;">(39 Books)</span></div>
+      <div class="book-grid"><a href="bible_genesis.html" class="book-card">
+      <div class="book-name">Genesis</div>
+      <div class="book-meta">50 chapters</div>
+    </a><a href="bible_exodus.html" class="book-card">
+      <div class="book-name">Exodus</div>
+      <div class="book-meta">40 chapters</div>
+    </a><a href="bible_leviticus.html" class="book-card">
+      <div class="book-name">Leviticus</div>
+      <div class="book-meta">27 chapters</div>
+    </a><a href="bible_numbers.html" class="book-card">
+      <div class="book-name">Numbers</div>
+      <div class="book-meta">36 chapters</div>
+    </a><a href="bible_deuteronomy.html" class="book-card">
+      <div class="book-name">Deuteronomy</div>
+      <div class="book-meta">34 chapters</div>
+    </a><a href="bible_joshua.html" class="book-card">
+      <div class="book-name">Joshua</div>
+      <div class="book-meta">24 chapters</div>
+    </a><a href="bible_judges.html" class="book-card">
+      <div class="book-name">Judges</div>
+      <div class="book-meta">21 chapters</div>
+    </a><a href="bible_ruth.html" class="book-card">
+      <div class="book-name">Ruth</div>
+      <div class="book-meta">4 chapters</div>
+    </a><a href="bible_1-samuel.html" class="book-card">
+      <div class="book-name">1 Samuel</div>
+      <div class="book-meta">31 chapters</div>
+    </a><a href="bible_2-samuel.html" class="book-card">
+      <div class="book-name">2 Samuel</div>
+      <div class="book-meta">24 chapters</div>
+    </a><a href="bible_1-kings.html" class="book-card">
+      <div class="book-name">1 Kings</div>
+      <div class="book-meta">22 chapters</div>
+    </a><a href="bible_2-kings.html" class="book-card">
+      <div class="book-name">2 Kings</div>
+      <div class="book-meta">25 chapters</div>
+    </a><a href="bible_1-chronicles.html" class="book-card">
+      <div class="book-name">1 Chronicles</div>
+      <div class="book-meta">29 chapters</div>
+    </a><a href="bible_2-chronicles.html" class="book-card">
+      <div class="book-name">2 Chronicles</div>
+      <div class="book-meta">36 chapters</div>
+    </a><a href="bible_ezra.html" class="book-card">
+      <div class="book-name">Ezra</div>
+      <div class="book-meta">10 chapters</div>
+    </a><a href="bible_nehemiah.html" class="book-card">
+      <div class="book-name">Nehemiah</div>
+      <div class="book-meta">13 chapters</div>
+    </a><a href="bible_esther.html" class="book-card">
+      <div class="book-name">Esther</div>
+      <div class="book-meta">10 chapters</div>
+    </a><a href="bible_job.html" class="book-card">
+      <div class="book-name">Job</div>
+      <div class="book-meta">42 chapters</div>
+    </a><a href="bible_psalms.html" class="book-card">
+      <div class="book-name">Psalms</div>
+      <div class="book-meta">150 chapters</div>
+    </a><a href="bible_proverbs.html" class="book-card">
+      <div class="book-name">Proverbs</div>
+      <div class="book-meta">31 chapters</div>
+    </a><a href="bible_ecclesiastes.html" class="book-card">
+      <div class="book-name">Ecclesiastes</div>
+      <div class="book-meta">12 chapters</div>
+    </a><a href="bible_song-of-solomon.html" class="book-card">
+      <div class="book-name">Song of Solomon</div>
+      <div class="book-meta">8 chapters</div>
+    </a><a href="bible_isaiah.html" class="book-card">
+      <div class="book-name">Isaiah</div>
+      <div class="book-meta">66 chapters</div>
+    </a><a href="bible_jeremiah.html" class="book-card">
+      <div class="book-name">Jeremiah</div>
+      <div class="book-meta">52 chapters</div>
+    </a><a href="bible_lamentations.html" class="book-card">
+      <div class="book-name">Lamentations</div>
+      <div class="book-meta">5 chapters</div>
+    </a><a href="bible_ezekiel.html" class="book-card">
+      <div class="book-name">Ezekiel</div>
+      <div class="book-meta">48 chapters</div>
+    </a><a href="bible_daniel.html" class="book-card">
+      <div class="book-name">Daniel</div>
+      <div class="book-meta">12 chapters</div>
+    </a><a href="bible_hosea.html" class="book-card">
+      <div class="book-name">Hosea</div>
+      <div class="book-meta">14 chapters</div>
+    </a><a href="bible_joel.html" class="book-card">
+      <div class="book-name">Joel</div>
+      <div class="book-meta">3 chapters</div>
+    </a><a href="bible_amos.html" class="book-card">
+      <div class="book-name">Amos</div>
+      <div class="book-meta">9 chapters</div>
+    </a><a href="bible_obadiah.html" class="book-card">
+      <div class="book-name">Obadiah</div>
+      <div class="book-meta">1 chapters</div>
+    </a><a href="bible_jonah.html" class="book-card">
+      <div class="book-name">Jonah</div>
+      <div class="book-meta">4 chapters</div>
+    </a><a href="bible_micah.html" class="book-card">
+      <div class="book-name">Micah</div>
+      <div class="book-meta">7 chapters</div>
+    </a><a href="bible_nahum.html" class="book-card">
+      <div class="book-name">Nahum</div>
+      <div class="book-meta">3 chapters</div>
+    </a><a href="bible_habakkuk.html" class="book-card">
+      <div class="book-name">Habakkuk</div>
+      <div class="book-meta">3 chapters</div>
+    </a><a href="bible_zephaniah.html" class="book-card">
+      <div class="book-name">Zephaniah</div>
+      <div class="book-meta">3 chapters</div>
+    </a><a href="bible_haggai.html" class="book-card">
+      <div class="book-name">Haggai</div>
+      <div class="book-meta">2 chapters</div>
+    </a><a href="bible_zechariah.html" class="book-card">
+      <div class="book-name">Zechariah</div>
+      <div class="book-meta">14 chapters</div>
+    </a><a href="bible_malachi.html" class="book-card">
+      <div class="book-name">Malachi</div>
+      <div class="book-meta">4 chapters</div>
+    </a></div>
+    </div>
+    <div class="testament-section">
+      <div class="testament-label">✝ New Testament <span style="font-size:.72rem;color:var(--text2);font-family:sans-serif;font-weight:400;letter-spacing:0;">(27 Books)</span></div>
+      <div class="book-grid"><a href="bible_matthew.html" class="book-card">
+      <div class="book-name">Matthew</div>
+      <div class="book-meta">28 chapters</div>
+    </a><a href="bible_mark.html" class="book-card">
+      <div class="book-name">Mark</div>
+      <div class="book-meta">16 chapters</div>
+    </a><a href="bible_luke.html" class="book-card">
+      <div class="book-name">Luke</div>
+      <div class="book-meta">24 chapters</div>
+    </a><a href="bible_john.html" class="book-card">
+      <div class="book-name">John</div>
+      <div class="book-meta">21 chapters</div>
+    </a><a href="bible_acts.html" class="book-card">
+      <div class="book-name">Acts</div>
+      <div class="book-meta">28 chapters</div>
+    </a><a href="bible_romans.html" class="book-card">
+      <div class="book-name">Romans</div>
+      <div class="book-meta">16 chapters</div>
+    </a><a href="bible_1-corinthians.html" class="book-card">
+      <div class="book-name">1 Corinthians</div>
+      <div class="book-meta">16 chapters</div>
+    </a><a href="bible_2-corinthians.html" class="book-card">
+      <div class="book-name">2 Corinthians</div>
+      <div class="book-meta">13 chapters</div>
+    </a><a href="bible_galatians.html" class="book-card">
+      <div class="book-name">Galatians</div>
+      <div class="book-meta">6 chapters</div>
+    </a><a href="bible_ephesians.html" class="book-card">
+      <div class="book-name">Ephesians</div>
+      <div class="book-meta">6 chapters</div>
+    </a><a href="bible_philippians.html" class="book-card">
+      <div class="book-name">Philippians</div>
+      <div class="book-meta">4 chapters</div>
+    </a><a href="bible_colossians.html" class="book-card">
+      <div class="book-name">Colossians</div>
+      <div class="book-meta">4 chapters</div>
+    </a><a href="bible_1-thessalonians.html" class="book-card">
+      <div class="book-name">1 Thessalonians</div>
+      <div class="book-meta">5 chapters</div>
+    </a><a href="bible_2-thessalonians.html" class="book-card">
+      <div class="book-name">2 Thessalonians</div>
+      <div class="book-meta">3 chapters</div>
+    </a><a href="bible_1-timothy.html" class="book-card">
+      <div class="book-name">1 Timothy</div>
+      <div class="book-meta">6 chapters</div>
+    </a><a href="bible_2-timothy.html" class="book-card">
+      <div class="book-name">2 Timothy</div>
+      <div class="book-meta">4 chapters</div>
+    </a><a href="bible_titus.html" class="book-card">
+      <div class="book-name">Titus</div>
+      <div class="book-meta">3 chapters</div>
+    </a><a href="bible_philemon.html" class="book-card">
+      <div class="book-name">Philemon</div>
+      <div class="book-meta">1 chapters</div>
+    </a><a href="bible_hebrews.html" class="book-card">
+      <div class="book-name">Hebrews</div>
+      <div class="book-meta">13 chapters</div>
+    </a><a href="bible_james.html" class="book-card">
+      <div class="book-name">James</div>
+      <div class="book-meta">5 chapters</div>
+    </a><a href="bible_1-peter.html" class="book-card">
+      <div class="book-name">1 Peter</div>
+      <div class="book-meta">5 chapters</div>
+    </a><a href="bible_2-peter.html" class="book-card">
+      <div class="book-name">2 Peter</div>
+      <div class="book-meta">3 chapters</div>
+    </a><a href="bible_1-john.html" class="book-card">
+      <div class="book-name">1 John</div>
+      <div class="book-meta">5 chapters</div>
+    </a><a href="bible_2-john.html" class="book-card">
+      <div class="book-name">2 John</div>
+      <div class="book-meta">1 chapters</div>
+    </a><a href="bible_3-john.html" class="book-card">
+      <div class="book-name">3 John</div>
+      <div class="book-meta">1 chapters</div>
+    </a><a href="bible_jude.html" class="book-card">
+      <div class="book-name">Jude</div>
+      <div class="book-meta">1 chapters</div>
+    </a><a href="bible_revelation.html" class="book-card">
+      <div class="book-name">Revelation</div>
+      <div class="book-meta">22 chapters</div>
+    </a></div>
+    </div>
+  </div>
+
+  <!-- TAB: STRONG'S CONCORDANCE -->
+  <div class="tab-panel" id="tab-concordance">
+    <div class="card">
+      <div class="card-header"><h2><span>🔍</span> Strong's Exhaustive Concordance</h2></div>
+      <p style="color:var(--text2);font-size:.88rem;line-height:1.75;margin-bottom:1.2rem;">
+        Strong's Concordance provides Hebrew (Old Testament) and Greek (New Testament) word numbers, definitions, and cross-references for every word in the KJV Bible. Admin can add concordance entries below.
+      </p>
+      <div class="search-bar">
+        <input type="text" id="concordSearch" placeholder="Search Hebrew/Greek word, Strong's number, or English word..." onkeydown="if(event.key==='Enter')searchConcord()">
+        <button onclick="searchConcord()">Search</button>
+      </div>
+      <div id="concordResults"></div>
+    </div>
+
+    <!-- Admin Panel: Concordance -->
+    <div class="admin-panel" id="adminConcord">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2);">
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;">⚙ Add Concordance Entry</h3>
+        <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close</button>
+      </div>
+      <div id="concordAddForm" style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
+        <div class="grid2">
+          <div class="form-group"><label>Strong's Number (H or G) *</label><input type="text" id="c_num" placeholder="e.g. H430 or G2316"></div>
+          <div class="form-group"><label>Original Word *</label><input type="text" id="c_word" placeholder="Hebrew/Greek word"></div>
+        </div>
+        <div class="grid2">
+          <div class="form-group"><label>Transliteration</label><input type="text" id="c_trans" placeholder="Phonetic spelling"></div>
+          <div class="form-group"><label>Part of Speech</label><input type="text" id="c_pos" placeholder="Noun, Verb, etc."></div>
+        </div>
+        <div class="form-group"><label>Definition / Meaning *</label><textarea id="c_def" rows="3" placeholder="Full definition and meaning..."></textarea></div>
+        <div class="form-group"><label>Key Verse References</label><input type="text" id="c_refs" placeholder="e.g. Gen 1:1, John 3:16, Ps 23:1"></div>
+        <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="c_img" accept="image/*"></div>
+        <div id="c_msg" style="font-size:.85rem;min-height:1.2rem;margin-bottom:.5rem;"></div>
+        <div style="display:flex;gap:.6rem;">
+          <button class="btn btn-gold" style="font-size:.95rem;" onclick="addConcord()">📢 POST</button>
+          <button class="btn btn-outline" onclick="document.getElementById('concordAddForm').style.display='none'">Cancel</button>
+        </div>
+      </div>
+      <div id="concordAdminList"></div>
+    </div>
+
+    <!-- Public concordance items list -->
+    <div id="concordPublicList"></div>
+  </div>
+
+  <!-- TAB: BIBLE DICTIONARIES -->
+  <div class="tab-panel" id="tab-dictionary">
+    <div class="card">
+      <div class="card-header"><h2><span>📚</span> Bible Dictionaries &amp; Reference Works</h2></div>
+      <p style="color:var(--text2);font-size:.88rem;line-height:1.75;margin-bottom:1.2rem;">
+        Biblical definitions, names, places, events, and theological terms. Admin can add dictionary entries, upload reference files, and manage all content below.
+      </p>
+      <div class="search-bar">
+        <input type="text" id="dictSearch" placeholder="Search person, place, term, or biblical concept..." onkeydown="if(event.key==='Enter')searchDict()">
+        <button onclick="searchDict()">Search</button>
+      </div>
+      <div id="dictResults"></div>
+    </div>
+
+    <!-- Admin Panel: Dictionary -->
+    <div class="admin-panel" id="adminDict">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2);">
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;">⚙ Add Dictionary Entry</h3>
+        <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close</button>
+      </div>
+      <div id="dictAddForm" style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
+        <div class="grid2">
+          <div class="form-group"><label>Term / Word *</label><input type="text" id="d_term" placeholder="Biblical term, name, or place"></div>
+          <div class="form-group"><label>Category</label>
+            <select id="d_cat"><option>Person</option><option>Place</option><option>Theological Term</option><option>Object / Artifact</option><option>Event</option><option>Plant / Animal</option><option>General</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Definition / Description *</label><textarea id="d_def" rows="4" placeholder="Full definition, description, or explanation..."></textarea></div>
+        <div class="grid2">
+          <div class="form-group"><label>Scripture References</label><input type="text" id="d_refs" placeholder="e.g. Gen 1:1, Matt 1:1"></div>
+          <div class="form-group"><label>Hebrew / Greek Origin</label><input type="text" id="d_origin" placeholder="Original language origin"></div>
+        </div>
+        <div class="form-group"><label>Upload Image / Map / Diagram (optional)</label><input type="file" id="d_img" accept="image/*,.pdf"></div>
+        <div id="d_msg" style="font-size:.85rem;min-height:1.2rem;margin-bottom:.5rem;"></div>
+        <div style="display:flex;gap:.6rem;">
+          <button class="btn btn-gold" style="font-size:.95rem;" onclick="addDictEntry()">📢 POST</button>
+          <button class="btn btn-outline" onclick="document.getElementById('dictAddForm').style.display='none'">Cancel</button>
+        </div>
+      </div>
+      <div id="dictAdminList"></div>
+    </div>
+
+    <!-- Public dictionary list -->
+    <div id="dictPublicList"></div>
+  </div>
+
+  <!-- TAB: RESOURCES -->
+  <div class="tab-panel" id="tab-resources">
+    <div class="card">
+      <div class="card-header"><h2><span>🗂</span> Bible Study Resources</h2></div>
+      <p style="color:var(--text2);font-size:.88rem;line-height:1.75;margin-bottom:1.2rem;">
+        Additional Bible study resources, commentaries, maps, and reference materials. Admin adds and manages all items below.
+      </p>
+    </div>
+
+    <!-- Admin Panel: Resources -->
+    <div class="admin-panel" id="adminRes">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2);">
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;">⚙ Add Resource</h3>
+        <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close</button>
+      </div>
+      <div id="resAddForm" style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
+        <div class="grid2">
+          <div class="form-group"><label>Title *</label><input type="text" id="r_title" placeholder="Resource title"></div>
+          <div class="form-group"><label>Type</label>
+            <select id="r_type"><option>Commentary</option><option>Bible Map</option><option>Timeline</option><option>Study Guide</option><option>Reference Chart</option><option>Lexicon</option><option>Other</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Description</label><textarea id="r_desc" rows="2" placeholder="Brief description..."></textarea></div>
+        <div class="form-group"><label>URL / Link (optional)</label><input type="url" id="r_url" placeholder="https://..."></div>
+        <div class="form-group"><label>Upload File or Image (optional)</label><input type="file" id="r_img" accept="image/*,.pdf,.doc,.docx"></div>
+        <div id="r_msg" style="font-size:.85rem;min-height:1.2rem;margin-bottom:.5rem;"></div>
+        <div style="display:flex;gap:.6rem;">
+          <button class="btn btn-gold" style="font-size:.95rem;" onclick="addResource()">📢 POST</button>
+          <button class="btn btn-outline" onclick="document.getElementById('resAddForm').style.display='none'">Cancel</button>
+        </div>
+      </div>
+      <div id="resAdminList"></div>
+    </div>
+
+    <!-- Public resources list -->
+    <div id="resPublicList"></div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- Admin Toolbar -->
+<div class="admin-toolbar" id="adminToolbar">
+  <div class="admin-tb-inner">
+    <span class="admin-tb-label">⚙ ADMIN:</span>
+    <button class="atb-btn green" onclick="showAddForm()">+ Add / POST</button>
+    <button class="atb-btn" onclick="refreshAll()">↻ Refresh</button>
+    <button class="atb-btn green" onclick="approveAll()">✓ Approve All</button>
+    <button class="atb-btn" onclick="archiveAll()">📦 Archive</button>
+    <button class="atb-btn red" onclick="removeAll()">🗑 Remove All</button>
+    <span style="margin-left:auto;display:flex;gap:.4rem;">
+      <a href="admin.html" class="atb-btn">Admin Console</a>
+      <button class="atb-btn red" onclick="hideAdmin()">✕ Exit Admin</button>
+    </span>
+  </div>
+</div>
+<div class="admin-float" id="adminFloat">
+  <button onclick="promptAdmin()">⚙ Admin</button>
+</div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+
+<script>
+const ADMIN_PASS = 'GATE2025admin';
+let isAdmin = false;
+let curTab = 'books';
+
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+// Check if already admin
+(function(){
+  const s=gl('td_gate_v6');
+  if(s&&s.tier==='admin'){isAdmin=true;showAdminUI();}
+})();
+
+function promptAdmin(){
+  if(isAdmin){showAdminUI();return;}
+  const pw=prompt('Admin Password:');
+  if(pw===ADMIN_PASS){
+    isAdmin=true;
+    const s=gl('td_gate_v6')||{};
+    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};
+    s.tier='admin';gs('td_gate_v6',s);
+    showAdminUI();
+  }else if(pw!==null)alert('Incorrect password.');
+}
+
+function showAdminUI(){
+  document.getElementById('adminToolbar').classList.add('visible');
+  document.getElementById('adminFloat').style.display='none';
+  ['adminConcord','adminDict','adminRes'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.add('visible');
+  });
+  refreshAll();
+}
+
+function hideAdmin(){
+  isAdmin=false;
+  document.getElementById('adminToolbar').classList.remove('visible');
+  document.getElementById('adminFloat').style.display='block';
+  ['adminConcord','adminDict','adminRes'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.classList.remove('visible');
+  });
+}
+
+function switchTab(tab, btn){
+  curTab=tab;
+  document.querySelectorAll('.bible-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+  refreshAll();
+}
+
+// ===== STRONG'S CONCORDANCE =====
+const CONCORD_KEY = 'gate_bible_concordance';
+const CONCORD_DEFAULTS = [
+  {id:1,num:'H430',word:'אֱלֹהִים',trans:'Elohim',pos:'Noun Masculine',def:'God, gods — The supreme God, used 2,570 times in the OT. Occurs first in Genesis 1:1. Though plural in form, when referring to the God of Israel it takes singular verbs, indicating the plural of majesty.',refs:'Gen 1:1, Ps 50:1, Isa 40:28',img:'',status:'active',created:Date.now()},
+  {id:2,num:'H3068',word:'יְהוָה',trans:'Yahweh / YHWH',pos:'Proper Noun',def:'LORD — The personal name of the God of Israel, the tetragrammaton. Meaning "I AM WHO I AM" (Exod 3:14). Used approximately 6,828 times in the Old Testament.',refs:'Exod 3:14, Ps 23:1, Isa 26:4',img:'',status:'active',created:Date.now()},
+  {id:3,num:'G2316',word:'θεός',trans:'Theos',pos:'Noun Masculine',def:'God — The supreme Divinity. Used in the NT to refer to the one true God (Father, Son, and Spirit). Occurs 1,317 times in the Greek NT.',refs:'John 1:1, Rom 1:1, 1 Tim 2:5',img:'',status:'active',created:Date.now()},
+  {id:4,num:'G5547',word:'Χριστός',trans:'Christos',pos:'Noun Masculine',def:'Christ, the Anointed One — The Messiah; one who has been anointed. The Greek equivalent of the Hebrew Mashiach (Messiah). Used 529 times in the NT.',refs:'Matt 1:1, John 20:31, Acts 2:36',img:'',status:'active',created:Date.now()},
+  {id:5,num:'G4151',word:'πνεῦμα',trans:'Pneuma',pos:'Noun Neuter',def:'Spirit, breath, wind — Used of the Holy Spirit, the human spirit, evil spirits, and the wind. Occurs 379 times in the NT.',refs:'John 4:24, Acts 2:4, Rom 8:9',img:'',status:'active',created:Date.now()},
+];
+
+function getConcord(){return gl(CONCORD_KEY)||CONCORD_DEFAULTS;}
+
+function renderConcordPublic(){
+  const items=getConcord().filter(i=>i.status!=='archived');
+  const el=document.getElementById('concordPublicList');
+  if(!items.length){el.innerHTML='';return;}
+  el.innerHTML='<h3 style="font-family:Cinzel,serif;color:var(--gold);margin-bottom:1rem;font-size:1rem;letter-spacing:1px;">Posted Concordance Entries</h3>'+items.map(renderConcordItem).join('');
+}
+
+function renderConcordAdmin(){
+  const items=getConcord();
+  const el=document.getElementById('concordAdminList');
+  if(!el)return;
+  el.innerHTML=items.length?items.map(i=>renderConcordItem(i,true)).join(''):'<div style="color:var(--text2);font-size:.85rem;text-align:center;padding:1rem;">No entries yet. Add your first entry above.</div>';
+}
+
+function renderConcordItem(i,admin=false){
+  return `<div class="result-item" id="ci${i.id}">
+    ${i.img?`<img src="${i.img}" style="max-height:120px;border-radius:6px;margin-bottom:.5rem;">`:''}
+    <div class="word">${i.word} <span style="font-family:sans-serif;font-size:.8rem;color:var(--text2);">${i.num} — ${i.trans}</span></div>
+    <div class="number"><span class="badge badge-gold">${i.pos||''}</span> <span style="font-size:.72rem;color:var(--text2);">Status: ${i.status||'active'}</span></div>
+    <div class="definition">${i.def}</div>
+    ${i.refs?`<div class="verse-refs">📖 ${i.refs}</div>`:''}
+    ${admin&&isAdmin?`<div class="item-actions" style="margin-top:.6rem;">
+      <button class="btn btn-outline btn-sm" onclick="editConcord(${i.id})">✏ Edit</button>
+      <button class="btn btn-green btn-sm" onclick="setConcordStatus(${i.id},'approved')">✓ Approve</button>
+      <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setConcordStatus(${i.id},'archived')">📦 Archive</button>
+      <button class="btn btn-danger btn-sm" onclick="removeConcord(${i.id})">🗑 Remove</button>
+    </div>`:''}
+  </div>`;
+}
+
+function searchConcord(){
+  const q=document.getElementById('concordSearch').value.toLowerCase().trim();
+  const el=document.getElementById('concordResults');
+  if(!q){el.innerHTML='';return;}
+  const results=getConcord().filter(i=>
+    i.num.toLowerCase().includes(q)||i.word.toLowerCase().includes(q)||
+    i.trans.toLowerCase().includes(q)||i.def.toLowerCase().includes(q)||
+    (i.refs&&i.refs.toLowerCase().includes(q))
+  );
+  el.innerHTML=results.length?results.map(i=>renderConcordItem(i)).join(''):
+    '<div style="color:var(--text2);text-align:center;padding:1.5rem;">No results found for "'+q+'". Add entries via the admin panel.</div>';
+}
+
+async function addConcord(){
+  const num=document.getElementById('c_num').value.trim();
+  const word=document.getElementById('c_word').value.trim();
+  const def=document.getElementById('c_def').value.trim();
+  const msg=document.getElementById('c_msg');
+  if(!num||!word||!def){msg.innerHTML='<span style="color:#e05555">Strong\'s number, word, and definition are required.</span>';return;}
+  const imgFile=document.getElementById('c_img').files[0];
+  let img='';
+  if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
+  const items=getConcord();
+  items.unshift({id:Date.now(),num,word,trans:document.getElementById('c_trans').value,pos:document.getElementById('c_pos').value,def,refs:document.getElementById('c_refs').value,img,status:'active',created:Date.now()});
+  gs(CONCORD_KEY,items);
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  ['c_num','c_word','c_trans','c_pos','c_def','c_refs'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('c_img').value='';
+  renderConcordPublic();renderConcordAdmin();
+}
+
+function editConcord(id){
+  const items=getConcord();const item=items.find(i=>i.id===id);if(!item)return;
+  const w=prompt('Edit word:',item.word||'');if(w===null)return;
+  const d=prompt('Edit definition:',item.def||'');if(d===null)return;
+  const r=prompt('Edit references:',item.refs||'');if(r===null)return;
+  item.word=w;item.def=d;item.refs=r;item.updated=Date.now();
+  gs(CONCORD_KEY,items);renderConcordPublic();renderConcordAdmin();
+}
+
+function setConcordStatus(id,status){
+  const items=getConcord();const item=items.find(i=>i.id===id);
+  if(item){item.status=status;item.updated=Date.now();}
+  gs(CONCORD_KEY,items);renderConcordPublic();renderConcordAdmin();
+}
+
+function removeConcord(id){
+  if(!confirm('Remove this entry?'))return;
+  gs(CONCORD_KEY,getConcord().filter(i=>i.id!==id));
+  renderConcordPublic();renderConcordAdmin();
+}
+
+// ===== BIBLE DICTIONARY =====
+const DICT_KEY = 'gate_bible_dictionary';
+const DICT_DEFAULTS = [
+  {id:1,term:'Atonement',cat:'Theological Term',def:'The reconciliation of God and humanity through the sacrifice of Jesus Christ. In the OT, the Day of Atonement (Yom Kippur) was the annual cleansing of sins through blood sacrifice. In the NT, Christ\'s death on the cross is the final, perfect atonement for sin.',refs:'Lev 16, Rom 3:25, Heb 9:12',origin:'Hebrew: Kaphar (כָּפַר) — to cover, atone, make reconciliation',img:'',status:'active',created:Date.now()},
+  {id:2,term:'Covenant',cat:'Theological Term',def:'A solemn agreement or binding promise between God and His people. Major biblical covenants include the Noahic (Gen 9), Abrahamic (Gen 12, 15, 17), Mosaic (Exod 19-24), Davidic (2 Sam 7), and New Covenant (Jer 31, Luke 22:20).',refs:'Gen 9:9, 17:7, Jer 31:31, Luke 22:20',origin:'Hebrew: Berith (בְּרִית) — to cut a covenant',img:'',status:'active',created:Date.now()},
+  {id:3,term:'Jerusalem',cat:'Place',def:'The holy city and capital of ancient Israel. Site of the Temple of God, the ministry of Christ, and the early church. Known as Zion, the City of David, and the City of God. Jerusalem appears over 800 times in the Bible.',refs:'Ps 122, Matt 5:35, Rev 21:2',origin:'Hebrew: Yerushalayim (יְרוּשָׁלַ͏ַיִם) — possibly "City of Peace"',img:'',status:'active',created:Date.now()},
+  {id:4,term:'Messiah',cat:'Theological Term',def:'The Anointed One — the promised deliverer and king who would come to save God\'s people. The Hebrew Mashiach and Greek Christos both mean "Anointed." Jesus of Nazareth is identified in the NT as the fulfillment of all messianic prophecy.',refs:'Dan 9:25, John 1:41, John 4:25-26',origin:'Hebrew: Mashiach (מָשִׁיחַ) — the anointed',img:'',status:'active',created:Date.now()},
+  {id:5,term:'Abraham',cat:'Person',def:'Father of the Hebrew nation; originally named Abram. God called him from Ur of the Chaldeans and made an everlasting covenant with him, promising land, descendants, and blessing to all nations through his seed. He is the father of faith (Rom 4).',refs:'Gen 12, 15, 17, Rom 4:3, Heb 11:8',origin:'Hebrew: Avraham (אַבְרָהָם) — father of a multitude',img:'',status:'active',created:Date.now()},
+];
+
+function getDict(){return gl(DICT_KEY)||DICT_DEFAULTS;}
+
+function renderDictPublic(){
+  const items=getDict().filter(i=>i.status!=='archived');
+  const el=document.getElementById('dictPublicList');
+  if(!items.length){el.innerHTML='';return;}
+  el.innerHTML='<h3 style="font-family:Cinzel,serif;color:var(--gold);margin-bottom:1rem;font-size:1rem;letter-spacing:1px;">Dictionary Entries</h3>'+items.map(i=>renderDictItem(i)).join('');
+}
+
+function renderDictAdmin(){
+  const items=getDict();
+  const el=document.getElementById('dictAdminList');
+  if(!el)return;
+  el.innerHTML=items.length?items.map(i=>renderDictItem(i,true)).join(''):'<div style="color:var(--text2);font-size:.85rem;text-align:center;padding:1rem;">No entries yet.</div>';
+}
+
+function renderDictItem(i,admin=false){
+  return `<div class="result-item" id="di${i.id}">
+    ${i.img?`<img src="${i.img}" style="max-height:150px;border-radius:6px;margin-bottom:.5rem;">`:''}
+    <div class="word">${i.term}</div>
+    <div class="number"><span class="badge badge-gold">${i.cat}</span> <span style="font-size:.72rem;color:var(--text2);">Status: ${i.status||'active'}</span></div>
+    ${i.origin?`<div style="font-size:.78rem;color:var(--text2);margin:.3rem 0;font-style:italic;">Origin: ${i.origin}</div>`:''}
+    <div class="definition">${i.def}</div>
+    ${i.refs?`<div class="verse-refs">📖 ${i.refs}</div>`:''}
+    ${admin&&isAdmin?`<div class="item-actions" style="margin-top:.6rem;">
+      <button class="btn btn-outline btn-sm" onclick="editDict(${i.id})">✏ Edit</button>
+      <button class="btn btn-green btn-sm" onclick="setDictStatus(${i.id},'approved')">✓ Approve</button>
+      <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setDictStatus(${i.id},'archived')">📦 Archive</button>
+      <button class="btn btn-danger btn-sm" onclick="removeDict(${i.id})">🗑 Remove</button>
+    </div>`:''}
+  </div>`;
+}
+
+function searchDict(){
+  const q=document.getElementById('dictSearch').value.toLowerCase().trim();
+  const el=document.getElementById('dictResults');
+  if(!q){el.innerHTML='';return;}
+  const results=getDict().filter(i=>
+    i.term.toLowerCase().includes(q)||i.def.toLowerCase().includes(q)||
+    (i.cat&&i.cat.toLowerCase().includes(q))||(i.refs&&i.refs.toLowerCase().includes(q))||
+    (i.origin&&i.origin.toLowerCase().includes(q))
+  );
+  el.innerHTML=results.length?results.map(i=>renderDictItem(i)).join(''):
+    '<div style="color:var(--text2);text-align:center;padding:1.5rem;">No results for "'+q+'". Add entries via the admin panel.</div>';
+}
+
+async function addDictEntry(){
+  const term=document.getElementById('d_term').value.trim();
+  const def=document.getElementById('d_def').value.trim();
+  const msg=document.getElementById('d_msg');
+  if(!term||!def){msg.innerHTML='<span style="color:#e05555">Term and definition are required.</span>';return;}
+  const imgFile=document.getElementById('d_img').files[0];
+  let img='';
+  if(imgFile&&imgFile.type.startsWith('image/')){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
+  const items=getDict();
+  items.unshift({id:Date.now(),term,cat:document.getElementById('d_cat').value,def,refs:document.getElementById('d_refs').value,origin:document.getElementById('d_origin').value,img,status:'active',created:Date.now()});
+  gs(DICT_KEY,items);
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  ['d_term','d_def','d_refs','d_origin'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('d_img').value='';
+  renderDictPublic();renderDictAdmin();
+}
+
+function editDict(id){
+  const items=getDict();const item=items.find(i=>i.id===id);if(!item)return;
+  const t=prompt('Edit term:',item.term||'');if(t===null)return;
+  const d=prompt('Edit definition:',item.def||'');if(d===null)return;
+  const r=prompt('Edit references:',item.refs||'');if(r===null)return;
+  item.term=t;item.def=d;item.refs=r;item.updated=Date.now();
+  gs(DICT_KEY,items);renderDictPublic();renderDictAdmin();
+}
+
+function setDictStatus(id,status){
+  const items=getDict();const item=items.find(i=>i.id===id);
+  if(item){item.status=status;item.updated=Date.now();}
+  gs(DICT_KEY,items);renderDictPublic();renderDictAdmin();
+}
+
+function removeDict(id){
+  if(!confirm('Remove this entry?'))return;
+  gs(DICT_KEY,getDict().filter(i=>i.id!==id));
+  renderDictPublic();renderDictAdmin();
+}
+
+// ===== RESOURCES =====
+const RES_KEY = 'gate_bible_resources';
+
+function getRes(){return gl(RES_KEY)||[];}
+
+function renderResPublic(){
+  const items=getRes().filter(i=>i.status!=='archived');
+  const el=document.getElementById('resPublicList');
+  if(!items.length){el.innerHTML=isAdmin?'<div style="color:var(--text2);text-align:center;padding:2rem;font-size:.85rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No resources posted yet. Use the form above to add resources.</div>':'';return;}
+  el.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+    ${items.map(i=>`<div class="content-item">
+      ${i.img?`<img src="${i.img}" alt="${i.title||''}">`:''}
+      <div style="display:flex;gap:.4rem;margin-bottom:.4rem;"><span class="badge badge-gold">${i.type||'Resource'}</span><span style="font-size:.7rem;color:var(--text2);font-family:sans-serif;">${i.status||'active'}</span></div>
+      <div class="item-title">${i.title||''}</div>
+      <div class="item-body">${i.desc||''}</div>
+      ${i.url?`<a href="${i.url}" target="_blank" class="btn btn-outline btn-sm" style="margin-top:.4rem;">Open →</a>`:''}
+      ${isAdmin?`<div class="item-actions">
+        <button class="btn btn-outline btn-sm" onclick="editRes(${i.id})">✏ Edit</button>
+        <button class="btn btn-green btn-sm" onclick="setResStatus(${i.id},'approved')">✓ Approve</button>
+        <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setResStatus(${i.id},'archived')">📦 Archive</button>
+        <button class="btn btn-danger btn-sm" onclick="removeRes(${i.id})">🗑 Remove</button>
+      </div>`:''}
+    </div>`).join('')}
+  </div>`;
+}
+
+async function addResource(){
+  const title=document.getElementById('r_title').value.trim();
+  const msg=document.getElementById('r_msg');
+  if(!title){msg.innerHTML='<span style="color:#e05555">Title required.</span>';return;}
+  const imgFile=document.getElementById('r_img').files[0];
+  let img='';
+  if(imgFile&&imgFile.type.startsWith('image/')){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
+  const items=getRes();
+  items.unshift({id:Date.now(),title,type:document.getElementById('r_type').value,desc:document.getElementById('r_desc').value,url:document.getElementById('r_url').value,img,status:'active',created:Date.now()});
+  gs(RES_KEY,items);
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  ['r_title','r_desc','r_url'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('r_img').value='';
+  renderResPublic();
+}
+
+function editRes(id){
+  const items=getRes();const item=items.find(i=>i.id===id);if(!item)return;
+  const t=prompt('Edit title:',item.title||'');if(t===null)return;
+  const d=prompt('Edit description:',item.desc||'');if(d===null)return;
+  const u=prompt('Edit URL:',item.url||'');if(u===null)return;
+  item.title=t;item.desc=d;item.url=u;item.updated=Date.now();
+  gs(RES_KEY,items);renderResPublic();
+}
+
+function setResStatus(id,status){
+  const items=getRes();const item=items.find(i=>i.id===id);
+  if(item){item.status=status;item.updated=Date.now();}
+  gs(RES_KEY,items);renderResPublic();
+}
+
+function removeRes(id){
+  if(!confirm('Remove?'))return;
+  gs(RES_KEY,getRes().filter(i=>i.id!==id));renderResPublic();
+}
+
+// ===== TOOLBAR ACTIONS =====
+function showAddForm(){
+  if(curTab==='concordance')document.getElementById('concordAddForm').style.display='block';
+  else if(curTab==='dictionary')document.getElementById('dictAddForm').style.display='block';
+  else if(curTab==='resources')document.getElementById('resAddForm').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function refreshAll(){
+  renderConcordPublic();
+  if(isAdmin){renderConcordAdmin();renderDictAdmin();}
+  renderDictPublic();renderResPublic();
+}
+
+function approveAll(){
+  const tab=curTab;
+  if(tab==='concordance'){const i=getConcord();i.forEach(x=>x.status='approved');gs(CONCORD_KEY,i);renderConcordPublic();renderConcordAdmin();}
+  else if(tab==='dictionary'){const i=getDict();i.forEach(x=>x.status='approved');gs(DICT_KEY,i);renderDictPublic();renderDictAdmin();}
+  else if(tab==='resources'){const i=getRes();i.forEach(x=>x.status='approved');gs(RES_KEY,i);renderResPublic();}
+}
+
+function archiveAll(){
+  if(!confirm('Archive all items in this tab?'))return;
+  const tab=curTab;
+  if(tab==='concordance'){const i=getConcord();i.forEach(x=>x.status='archived');gs(CONCORD_KEY,i);renderConcordPublic();renderConcordAdmin();}
+  else if(tab==='dictionary'){const i=getDict();i.forEach(x=>x.status='archived');gs(DICT_KEY,i);renderDictPublic();renderDictAdmin();}
+  else if(tab==='resources'){const i=getRes();i.forEach(x=>x.status='archived');gs(RES_KEY,i);renderResPublic();}
+}
+
+function removeAll(){
+  if(!confirm('Permanently remove ALL items in this tab?'))return;
+  const tab=curTab;
+  if(tab==='concordance'){gs(CONCORD_KEY,[]);renderConcordPublic();renderConcordAdmin();}
+  else if(tab==='dictionary'){gs(DICT_KEY,[]);renderDictPublic();renderDictAdmin();}
+  else if(tab==='resources'){gs(RES_KEY,[]);renderResPublic();}
+}
+
+// Dropdown delay
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
+
+// Init
+document.addEventListener('DOMContentLoaded',refreshAll);
+</script>
+</body></html>

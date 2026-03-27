@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Commentary: Jude</title>
+<style>
+
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a;--line:rgba(201,168,76,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:var(--gold);background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:var(--gold);padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+
+.topbar{position:sticky;top:62px;z-index:100;background:rgba(13,27,46,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1400px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.topbar-brand h1{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold);margin:0;letter-spacing:2px}
+.topbar-brand small{font-size:.65rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;display:block}
+.topbar-nav{display:flex;gap:8px;flex-wrap:wrap}
+.tbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--text2);font-family:sans-serif;font-size:12px;font-weight:600;text-decoration:none;transition:all .2s}
+.tbtn:hover{color:var(--gold);border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.06)}
+.tbtn.gold{background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));color:var(--gold);border-color:rgba(201,168,76,.35)}
+.layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:18px;padding:20px 18px 80px;align-items:start}
+.sidebar{position:sticky;top:125px;max-height:calc(100vh - 135px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,168,76,.4) transparent}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(201,168,76,.4);border-radius:4px}
+.sidebar-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:14px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.sidebar-panel h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid var(--line);letter-spacing:1px}
+.book-link{display:block;padding:5px 9px;border-radius:6px;color:var(--text2);font-family:sans-serif;font-size:.72rem;text-decoration:none;border-left:3px solid transparent;transition:all .15s;margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.book-link:hover{color:var(--gold);background:rgba(201,168,76,.08);border-left-color:rgba(201,168,76,.5)}
+.sidebar-nav{display:flex;flex-direction:column;gap:5px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.sidebar-nav a{display:block;padding:8px 10px;border:1px solid rgba(201,168,76,.2);border-radius:7px;background:rgba(255,255,255,.02);color:var(--text2);font-family:sans-serif;font-size:.75rem;text-align:center;text-decoration:none;transition:all .2s}
+.sidebar-nav a:hover{color:var(--gold);border-color:rgba(201,168,76,.5)}
+.sidebar-nav a.gold{background:rgba(201,168,76,.1);color:var(--gold);border-color:var(--gold);font-weight:600}
+.content{min-width:0}
+.hero{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.hero h2{font-family:'Cinzel',serif;color:var(--gold);font-size:1.5rem;margin-bottom:6px}
+.hero p{color:var(--text2);font-size:.88rem;line-height:1.7}
+.hero-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.hbadge{padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(201,168,76,.06);font-family:sans-serif;font-size:.75rem;color:var(--gold)}
+.pdf-panel{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:18px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.pdf-toolbar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line);background:rgba(201,168,76,.05);flex-wrap:wrap;gap:8px}
+.pdf-toolbar h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px}
+.pdf-actions{display:flex;gap:8px;flex-wrap:wrap}
+.pdf-btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:7px;font-family:sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:all .2s}
+.pdf-btn.gold{background:var(--gold);color:var(--navy)}
+.pdf-btn.gold:hover{background:var(--gold2)}
+.pdf-btn.outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.pdf-btn.outline:hover{background:rgba(201,168,76,.1)}
+.pdf-embed{width:100%;height:82vh;border:none;display:block;background:var(--charcoal)}
+.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.2rem;margin-bottom:1.2rem;display:none}
+.admin-panel.visible{display:block}
+.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.5rem 1.1rem;border-radius:5px;font-family:sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1)}
+.btn-danger{background:#6b1d2e;color:var(--cream)}.btn-danger:hover{background:#8b2540}
+.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f}
+.btn-sm{padding:.28rem .65rem;font-size:.75rem}
+.form-group{margin-bottom:.8rem}
+label{display:block;color:var(--text2);font-size:.8rem;margin-bottom:.2rem}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.88rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.post-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;margin-bottom:.7rem}
+.post-card img{max-width:100%;border-radius:6px;margin:.5rem 0}
+.post-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;margin-bottom:.3rem}
+.post-body{color:var(--cream);font-size:.85rem;line-height:1.7}
+.admin-posts{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:14px;margin-top:14px}
+.admin-posts h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;margin-bottom:10px;letter-spacing:1px}
+.badge{display:inline-block;padding:.1rem .4rem;border-radius:8px;font-size:.68rem;font-family:sans-serif;font-weight:700}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-gray{background:rgba(80,80,80,.2);color:#888;border:1px solid #555}
+.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
+.admin-toolbar.visible{display:block}
+.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.atb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif}
+.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600}
+.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
+.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
+.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
+.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
+.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
+.gate-footer{background:var(--navy2);border-top:1px solid var(--line);padding:1rem;text-align:center;color:var(--text2);font-size:.75rem}
+.gate-footer span{color:var(--gold)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{position:static;max-height:none}.pdf-embed{height:60vh}}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand">
+      <h1>Bible Commentaries</h1>
+      <small>New Testament — Jude</small>
+    </div>
+    <div class="topbar-nav">
+      <a class="tbtn gold" href="index.html">🏠 GATE Home</a>
+      <a class="tbtn" href="bible.html">📖 Bible</a>
+      <a class="tbtn" href="commentaries.html">📚 All Commentaries</a>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <!-- STICKY SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-panel">
+      <h3>📚 All Books</h3>
+      <a href="commentary_genesis.html" class="book-link" >📜 Genesis</a>
+<a href="commentary_exodus.html" class="book-link" >📜 Exodus</a>
+<a href="commentary_leviticus.html" class="book-link" >📜 Leviticus</a>
+<a href="commentary_numbers.html" class="book-link" >📜 Numbers</a>
+<a href="commentary_deuteronomy.html" class="book-link" >📜 Deuteronomy</a>
+<a href="commentary_joshua.html" class="book-link" >📜 Joshua</a>
+<a href="commentary_judges.html" class="book-link" >📜 Judges</a>
+<a href="commentary_ruth.html" class="book-link" >📜 Ruth</a>
+<a href="commentary_1samuel.html" class="book-link" >📜 1 Samuel</a>
+<a href="commentary_2samuel.html" class="book-link" >📜 2 Samuel</a>
+<a href="commentary_1kings.html" class="book-link" >📜 1 Kings</a>
+<a href="commentary_2kings.html" class="book-link" >📜 2 Kings</a>
+<a href="commentary_1chronicles.html" class="book-link" >📜 1 Chronicles</a>
+<a href="commentary_2chronicles.html" class="book-link" >📜 2 Chronicles</a>
+<a href="commentary_ezra.html" class="book-link" >📜 Ezra</a>
+<a href="commentary_nehemiah.html" class="book-link" >📜 Nehemiah</a>
+<a href="commentary_esther.html" class="book-link" >📜 Esther</a>
+<a href="commentary_job.html" class="book-link" >📜 Job</a>
+<a href="commentary_psalms_1-41.html" class="book-link" >📜 Psalms 1–41</a>
+<a href="commentary_psalms_42-72.html" class="book-link" >📜 Psalms 42–72</a>
+<a href="commentary_psalms_73-89.html" class="book-link" >📜 Psalms 73–89</a>
+<a href="commentary_psalms_90-106.html" class="book-link" >📜 Psalms 90–106</a>
+<a href="commentary_psalms_107-150.html" class="book-link" >📜 Psalms 107–150</a>
+<a href="commentary_proverbs.html" class="book-link" >📜 Proverbs</a>
+<a href="commentary_ecclesiastes.html" class="book-link" >📜 Ecclesiastes</a>
+<a href="commentary_song_of_solomon.html" class="book-link" >📜 Song of Solomon</a>
+<a href="commentary_isaiah.html" class="book-link" >📜 Isaiah</a>
+<a href="commentary_jeremiah.html" class="book-link" >📜 Jeremiah</a>
+<a href="commentary_lamentations.html" class="book-link" >📜 Lamentations</a>
+<a href="commentary_ezekiel.html" class="book-link" >📜 Ezekiel</a>
+<a href="commentary_daniel.html" class="book-link" >📜 Daniel</a>
+<a href="commentary_hosea.html" class="book-link" >📜 Hosea</a>
+<a href="commentary_joel.html" class="book-link" >📜 Joel</a>
+<a href="commentary_amos.html" class="book-link" >📜 Amos</a>
+<a href="commentary_obadiah.html" class="book-link" >📜 Obadiah</a>
+<a href="commentary_jonah.html" class="book-link" >📜 Jonah</a>
+<a href="commentary_micah.html" class="book-link" >📜 Micah</a>
+<a href="commentary_nahum.html" class="book-link" >📜 Nahum</a>
+<a href="commentary_habakkuk.html" class="book-link" >📜 Habakkuk</a>
+<a href="commentary_zephaniah.html" class="book-link" >📜 Zephaniah</a>
+<a href="commentary_haggai.html" class="book-link" >📜 Haggai</a>
+<a href="commentary_zechariah.html" class="book-link" >📜 Zechariah</a>
+<a href="commentary_malachi.html" class="book-link" >📜 Malachi</a>
+<a href="commentary_matthew.html" class="book-link" >✝ Matthew</a>
+<a href="commentary_mark.html" class="book-link" >✝ Mark</a>
+<a href="commentary_luke.html" class="book-link" >✝ Luke</a>
+<a href="commentary_john.html" class="book-link" >✝ John</a>
+<a href="commentary_acts.html" class="book-link" >✝ Acts</a>
+<a href="commentary_romans.html" class="book-link" >✝ Romans</a>
+<a href="commentary_1corinthians.html" class="book-link" >✝ 1 Corinthians</a>
+<a href="commentary_2corinthians.html" class="book-link" >✝ 2 Corinthians</a>
+<a href="commentary_galatians.html" class="book-link" >✝ Galatians</a>
+<a href="commentary_phi_col_eph.html" class="book-link" >✝ Ephesians / Philippians / Colossians</a>
+<a href="commentary_1thessalonians.html" class="book-link" >✝ 1 Thessalonians</a>
+<a href="commentary_2thessalonians.html" class="book-link" >✝ 2 Thessalonians</a>
+<a href="commentary_1timothy.html" class="book-link" >✝ 1 Timothy</a>
+<a href="commentary_2timothy.html" class="book-link" >✝ 2 Timothy</a>
+<a href="commentary_titus.html" class="book-link" >✝ Titus</a>
+<a href="commentary_philemon.html" class="book-link" >✝ Philemon</a>
+<a href="commentary_hebrews.html" class="book-link" >✝ Hebrews</a>
+<a href="commentary_james.html" class="book-link" >✝ James</a>
+<a href="commentary_1peter.html" class="book-link" >✝ 1 Peter</a>
+<a href="commentary_2peter.html" class="book-link" >✝ 2 Peter</a>
+<a href="commentary_1john.html" class="book-link" >✝ 1 John</a>
+<a href="commentary_2john.html" class="book-link" >✝ 2 John</a>
+<a href="commentary_3john.html" class="book-link" >✝ 3 John</a>
+<a href="commentary_jude.html" class="book-link" style="color:var(--gold);background:rgba(201,168,76,.12);border-left:3px solid var(--gold);padding-left:1.1rem;">✝ Jude</a>
+<a href="commentary_revelation.html" class="book-link" >✝ Revelation</a>
+
+      <div class="sidebar-nav">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="gold">↑ Back to Top</a>
+        <a href="commentaries.html">📚 All Commentaries</a>
+        <a href="bible.html">📖 The Bible</a>
+        <a href="index.html">🏠 GATE Home</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2);">
+        <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">⚙ Add Notes for Jude</h3>
+        <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close</button>
+      </div>
+      <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:1rem;margin-bottom:.8rem;">
+        <div class="grid2">
+          <div class="form-group"><label>Title *</label><input type="text" id="adm_title" placeholder="Note or commentary title..."></div>
+          <div class="form-group"><label>Status</label>
+            <select id="adm_status"><option value="active">Active</option><option value="approved">Approved</option><option value="draft">Draft</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Notes / Commentary</label><textarea id="adm_body" rows="3" placeholder="Your notes, observations, or cross-references..."></textarea></div>
+        <div class="form-group"><label>Scripture Reference</label><input type="text" id="adm_ref" placeholder="e.g. Jude 1:1, 3:16"></div>
+        <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="adm_img" accept="image/*"></div>
+        <div id="adm_msg" style="font-size:.83rem;min-height:1rem;margin-bottom:.4rem;"></div>
+        <div style="display:flex;gap:.6rem;">
+          <button class="btn btn-gold" style="font-size:.95rem;" onclick="addPost()">📢 POST</button>
+          <button class="btn btn-outline" onclick="document.getElementById('adm_msg').innerHTML=''">Cancel</button>
+        </div>
+      </div>
+      <div id="adminPostList"></div>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h2>📖 Jude — Bible Commentary</h2>
+      <p>In-depth commentary on the book of Jude. This scholarly resource provides verse-by-verse analysis, historical context, theological insights, and cross-references for deeper Bible study.</p>
+      <div class="hero-badges">
+        <span class="hbadge">📚 New Testament</span>
+        <span class="hbadge">📄 Full PDF Commentary</span>
+        <span class="hbadge">✅ Embedded Viewer</span>
+      </div>
+    </div>
+
+    <!-- PDF Viewer -->
+    <div class="pdf-panel">
+      <div class="pdf-toolbar">
+        <h3>📄 Jude Commentary</h3>
+        <div class="pdf-actions">
+          <a href="commentary_jude.pdf" target="_blank" class="pdf-btn gold">⬇ Download PDF</a>
+          <a href="commentary_jude.pdf" target="_blank" class="pdf-btn outline">↗ Open Full Screen</a>
+        </div>
+      </div>
+      <iframe class="pdf-embed" src="commentary_jude.pdf" title="Jude Commentary PDF"></iframe>
+    </div>
+
+    <!-- Public posts -->
+    <div id="publicPostList"></div>
+  </div>
+</div>
+
+<!-- Admin Toolbar -->
+<div class="admin-toolbar" id="adminToolbar">
+  <div class="admin-tb-inner">
+    <span class="atb-label">⚙ ADMIN:</span>
+    <button class="atb-btn green" onclick="document.getElementById('adminPanel').classList.add('visible');window.scrollTo(0,0)">+ Add / 📢 POST</button>
+    <button class="atb-btn" onclick="renderPosts()">↻ Refresh</button>
+    <button class="atb-btn green" onclick="bulkStatus('approved')">✓ Approve All</button>
+    <button class="atb-btn" onclick="bulkStatus('archived')">📦 Archive</button>
+    <button class="atb-btn red" onclick="clearAll()">🗑 Remove All</button>
+    <span style="margin-left:auto;display:flex;gap:.4rem;">
+      <a href="admin.html" class="atb-btn">Admin Console</a>
+      <button class="atb-btn red" onclick="hideAdmin()">✕ Exit</button>
+    </span>
+  </div>
+</div>
+<div class="admin-float" id="adminFloat"><button onclick="promptAdmin()">⚙ Admin</button></div>
+
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Bible Commentaries</p></footer>
+<script>
+const ADMIN_PASS='GATE2025admin';
+let isAdmin=false;
+const STORE_KEY='gate_comm_'+window.location.pathname.split('/').pop().replace('.html','');
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function getPosts(){return gl(STORE_KEY)||[];}
+function fmtDate(ts){return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+(function(){const s=gl('td_gate_v6');if(s&&s.tier==='admin'){isAdmin=true;showAdminUI();}})();
+function promptAdmin(){
+  if(isAdmin){showAdminUI();return;}
+  const pw=prompt('Admin Password:');
+  if(pw===ADMIN_PASS){isAdmin=true;const s=gl('td_gate_v6')||{};if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};s.tier='admin';gs('td_gate_v6',s);showAdminUI();}
+  else if(pw!==null)alert('Incorrect password.');
+}
+function showAdminUI(){
+  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.add('visible'));
+  document.getElementById('adminToolbar').classList.add('visible');
+  document.getElementById('adminFloat').style.display='none';
+  renderPosts();
+}
+function hideAdmin(){
+  isAdmin=false;
+  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.remove('visible'));
+  document.getElementById('adminToolbar').classList.remove('visible');
+  document.getElementById('adminFloat').style.display='block';
+}
+async function addPost(){
+  const title=document.getElementById('adm_title').value.trim();
+  const body=document.getElementById('adm_body').value.trim();
+  const msg=document.getElementById('adm_msg');
+  if(!title&&!body){msg.innerHTML='<span style="color:#e05555">Please enter a title or note.</span>';return;}
+  const imgFile=document.getElementById('adm_img').files[0];
+  let img='';
+  if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
+  const posts=getPosts();
+  posts.unshift({id:Date.now(),title,body,ref:document.getElementById('adm_ref').value,img,status:document.getElementById('adm_status').value,created:Date.now()});
+  gs(STORE_KEY,posts);
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  ['adm_title','adm_body','adm_ref'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('adm_img').value='';
+  renderPosts();
+}
+function editPost(id){const posts=getPosts();const p=posts.find(x=>x.id===id);if(!p)return;const t=prompt('Edit title:',p.title||'');if(t===null)return;const b=prompt('Edit notes:',p.body||'');if(b===null)return;p.title=t;p.body=b;p.updated=Date.now();gs(STORE_KEY,posts);renderPosts();}
+async function uploadImg(id){const input=document.createElement('input');input.type='file';input.accept='image/*';input.onchange=async()=>{if(!input.files[0])return;const img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(input.files[0]);});const posts=getPosts();const p=posts.find(x=>x.id===id);if(p){p.img=img;p.updated=Date.now();gs(STORE_KEY,posts);renderPosts();}};input.click();}
+function setStatus(id,status){const posts=getPosts();const p=posts.find(x=>x.id===id);if(p){p.status=status;p.updated=Date.now();}gs(STORE_KEY,posts);renderPosts();}
+function removePost(id){if(!confirm('Remove?'))return;gs(STORE_KEY,getPosts().filter(x=>x.id!==id));renderPosts();}
+function bulkStatus(s){const posts=getPosts();posts.forEach(p=>p.status=s);gs(STORE_KEY,posts);renderPosts();}
+function clearAll(){if(!confirm('Remove all posts?'))return;gs(STORE_KEY,[]);renderPosts();}
+function statusBadge(s){const m={active:'badge-green',approved:'badge-green',draft:'badge-gold',archived:'badge-gray'};return '<span class="badge '+( m[s]||'badge-gold')+'">'+s+'</span>';}
+function renderPosts(){
+  const posts=getPosts().filter(p=>p.status!=='archived');
+  const pub=document.getElementById('publicPostList');
+  const adm=document.getElementById('adminPostList');
+  if(!posts.length){
+    if(pub)pub.innerHTML='';
+    if(adm&&isAdmin)adm.innerHTML='<div style="color:var(--text2);font-size:.82rem;text-align:center;padding:1rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No notes posted yet. Fill in the form above and click 📢 POST.</div>';
+    return;
+  }
+  const cards=posts.map(p=>'<div class="post-card">'+(p.img?'<img src="'+p.img+'" alt="">':'')+'<div style="display:flex;gap:.4rem;margin-bottom:.4rem;">'+statusBadge(p.status)+'<span style="font-size:.68rem;color:var(--text2);font-family:sans-serif;">'+fmtDate(p.created)+'</span></div><div class="post-title">'+p.title+'</div><div class="post-body">'+p.body+'</div>'+(p.ref?'<div style="font-size:.75rem;color:var(--text2);margin-top:.3rem;font-style:italic;">📖 '+p.ref+'</div>':'')+(isAdmin?'<div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem;"><button class="btn btn-outline btn-sm" onclick="editPost('+p.id+')">✏ Edit</button><button class="btn btn-outline btn-sm" onclick="uploadImg('+p.id+')">📷 Upload</button><button class="btn btn-green btn-sm" onclick="setStatus('+p.id+',('approved'))">✓ Approve</button><button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setStatus('+p.id+','archived')">📦 Archive</button><button class="btn btn-danger btn-sm" onclick="removePost('+p.id+')">🗑 Remove</button></div>':'')+'</div>').join('');
+  const wrapper='<div class="admin-posts"><h3>📌 Notes &amp; Commentary</h3>'+cards+'</div>';
+  if(pub)pub.innerHTML=wrapper;
+  if(adm&&isAdmin)adm.innerHTML=cards;
+}
+document.addEventListener('DOMContentLoaded',renderPosts);
+</script>
+<script>(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();</script>
+</body></html>
