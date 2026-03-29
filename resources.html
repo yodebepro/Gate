@@ -134,8 +134,8 @@ input[type="file"]{background:var(--charcoal);border:1px solid rgba(201,168,76,.
 </div>
 <div class="container">
   <div class="stats-bar">
-    <div class="stat-box"><div class="stat-val">7</div><div class="stat-lbl">Resources</div></div>
-    <div class="stat-box"><div class="stat-val">3</div><div class="stat-lbl">Categories</div></div>
+    <div class="stat-box"><div class="stat-val">10</div><div class="stat-lbl">Resources</div></div>
+    <div class="stat-box"><div class="stat-val">4</div><div class="stat-lbl">Categories</div></div>
     <div class="stat-box"><div class="stat-val">PDF</div><div class="stat-lbl">Embedded Viewer</div></div>
     <div class="stat-box"><div class="stat-val">🆓</div><div class="stat-lbl">Free Access</div></div>
   </div>
@@ -162,6 +162,8 @@ input[type="file"]{background:var(--charcoal);border:1px solid rgba(201,168,76,.
       <button class="filter-btn" onclick="filterCat('bible studies',this)">📖 Bible Studies</button>
       <button class="filter-btn" onclick="filterCat('family studies',this)">👨‍👩‍👧 Family Studies</button>
       <button class="filter-btn" onclick="filterCat('theology',this)">✝ Theology</button>
+      <button class="filter-btn" onclick="filterCat('apocrypha',this)">📜 Apocrypha</button>
+      <button class="filter-btn" onclick="filterCat('reference',this)">📋 Reference</button>
     </div>
     <div class="search-results" id="searchResults" style="display:none;"></div>
   </div>
@@ -310,7 +312,7 @@ input[type="file"]{background:var(--charcoal);border:1px solid rgba(201,168,76,.
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Free Bible Resources</p></footer>
 <script>
-var ALL_RES = [["bible_study", "Bible Study Guide", "Bible Studies"], ["daily_family_studies_1", "Daily Family Bible Studies \u2014 Part 1", "Family Studies"], ["daily_family_studies_2", "Daily Family Bible Studies \u2014 Part 2", "Family Studies"], ["daily_family_studies_3", "Daily Family Bible Studies \u2014 Part 3", "Family Studies"], ["daily_family_studies_4", "Daily Family Bible Studies \u2014 Part 4", "Family Studies"], ["resources_1", "Theological Resources \u2014 Volume 1", "Theology"], ["resources_2", "Theological Resources \u2014 Volume 2", "Theology"]];
+var ALL_RES = [["bible_study", "Bible Study Guide", "Bible Studies"], ["daily_family_studies_1", "Daily Family Bible Studies \u2014 Part 1", "Family Studies"], ["daily_family_studies_2", "Daily Family Bible Studies \u2014 Part 2", "Family Studies"], ["daily_family_studies_3", "Daily Family Bible Studies \u2014 Part 3", "Family Studies"], ["daily_family_studies_4", "Daily Family Bible Studies \u2014 Part 4", "Family Studies"], ["resources_1", "Theological Resources \u2014 Volume 1", "Theology"], ["resources_2", "Theological Resources \u2014 Volume 2", "Theology"], ["apocrypha", "The Complete Apocrypha of the Ethiopian Bible", "Apocrypha"], ["enoch", "The Complete Book of Enoch", "Apocrypha"], ["chapter_titles", "Bible Chapter Titles \u2014 Genesis to Revelation", "Reference"]];
 
 function doSearch(q) {
   q = (q||'').trim().toLowerCase();
