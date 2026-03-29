@@ -294,158 +294,274 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   <div class="divider"></div>
 </div>
 <div class="container">
-  <div class="filter-bar">
-    <span style="color:var(--text2);font-size:.82rem;font-family:sans-serif;">Filter:</span>
-    <button class="filter-btn active" onclick="filterSchools('all',this)">All</button>
-    <button class="filter-btn" onclick="filterSchools('seminary',this)">Seminary</button>
-    <button class="filter-btn" onclick="filterSchools('university',this)">University</button>
-    <button class="filter-btn" onclick="filterSchools('online',this)">Online</button>
-    <button class="filter-btn" onclick="filterSchools('international',this)">International</button>
-    <input type="text" id="schoolSearch" placeholder="Search schools..." oninput="searchSchools()" style="max-width:200px;padding:.3rem .7rem;font-size:.82rem;">
+
+  <!-- SEARCH + FILTER BAR -->
+  <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.2rem;margin-bottom:1.5rem;">
+    <div style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:.8rem;">
+      <div style="flex:1;min-width:200px;position:relative;">
+        <input type="text" id="schoolSearch" placeholder="🔍 Search by name, location, degree, or denomination..." oninput="searchSchools()" style="width:100%;padding:.65rem 1rem;font-size:.9rem;">
+      </div>
+      <button onclick="searchSchools()" style="background:var(--gold);color:var(--navy);border:none;border-radius:5px;padding:.65rem 1.3rem;font-weight:700;cursor:pointer;font-family:sans-serif;font-size:.88rem;white-space:nowrap;">Search</button>
+    </div>
+    <div style="display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;">
+      <span style="color:var(--text2);font-size:.78rem;font-family:sans-serif;">Browse by type:</span>
+      <button class="filter-btn active" onclick="filterSchools('all',this)">All Schools</button>
+      <button class="filter-btn" onclick="filterSchools('seminary',this)">Seminaries</button>
+      <button class="filter-btn" onclick="filterSchools('university',this)">Universities</button>
+      <button class="filter-btn" onclick="filterSchools('online',this)">Online</button>
+      <button class="filter-btn" onclick="filterSchools('international',this)">International</button>
+    </div>
+    <div id="resultCount" style="margin-top:.6rem;font-size:.78rem;color:var(--text2);font-family:sans-serif;"></div>
   </div>
+
+  <!-- SCHOOL GRID -->
   <div class="school-grid" id="schoolGrid"></div>
 
-  <!-- Admin: Add School -->
+  <!-- Admin Panel -->
   <div id="adminAddSchool" style="display:none;margin-top:2rem;">
     <div class="card" style="border-color:rgba(201,168,76,.4);">
       <div class="card-header"><span>➕</span><h2>Add School (Admin)</h2></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
         <div class="form-group"><label>School Name *</label><input type="text" id="addName" placeholder="e.g., Dallas Theological Seminary"></div>
-        <div class="form-group"><label>Location *</label><input type="text" id="addLocation" placeholder="City, State / Country"></div>
+        <div class="form-group"><label>Location *</label><input type="text" id="addLocation" placeholder="City, State"></div>
       </div>
-      <div class="form-group"><label>Description</label><textarea id="addDesc" rows="2" placeholder="Brief description of programs offered..."></textarea></div>
-      <div class="form-group"><label>Application URL *</label><input type="url" id="addUrl" placeholder="https://..."></div>
-      <div class="form-group"><label>Tags (comma separated)</label><input type="text" id="addTags" placeholder="Seminary, MDiv, PhD, Online, Baptist..."></div>
-      <div class="form-group">
-        <label>Type</label>
-        <select id="addType"><option value="seminary">Seminary</option><option value="university">University</option><option value="online">Online</option><option value="international">International</option></select>
+      <div class="form-group"><label>Description</label><textarea id="addDesc" rows="3" placeholder="Brief description of programs offered..."></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="form-group"><label>Website URL</label><input type="url" id="addUrl" placeholder="https://..."></div>
+        <div class="form-group"><label>Type</label>
+          <select id="addType"><option value="seminary">Seminary</option><option value="university">University</option><option value="online">Online</option><option value="international">International</option></select>
+        </div>
       </div>
-      <button class="btn btn-primary" onclick="addSchool()">📢 POST</button>
-      <div id="addSchoolMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+      <div class="form-group"><label>Tags (comma separated)</label><input type="text" id="addTags" placeholder="MDiv, PhD, Baptist, Online..."></div>
+      <button class="btn btn-primary" onclick="addSchool()">📢 POST School</button>
+      <div id="addMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
     </div>
   </div>
-  <div style="text-align:center;margin-top:1rem;">
-    <button class="btn btn-secondary btn-sm" onclick="toggleAdminAdd()">⚙ Admin: Add School</button>
-    <input type="password" id="adminPw" placeholder="Admin password" style="max-width:180px;margin-left:.5rem;padding:.3rem .7rem;font-size:.82rem;" onkeydown="if(event.key==='Enter')checkAdminPw()">
-    <button class="btn btn-secondary btn-sm" onclick="checkAdminPw()">Unlock</button>
+
+  <div style="text-align:center;margin-top:1.5rem;">
+    <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">⚙ Admin — Add / Remove Schools</button>
   </div>
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
 function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
 function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+let adminUnlocked=false;
+let allSchools=[];
+let currentFilter='all';
 
 const DEFAULT_SCHOOLS = [
-  // USA SEMINARIES
-  {name:"Dallas Theological Seminary",loc:"Dallas, TX",desc:"Premier evangelical graduate school offering MDiv, ThM, DMin, PhD in biblical studies, theology, and ministry.",url:"https://www.dts.edu/admissions/",tags:["Seminary","MDiv","PhD","DMin","Evangelical","Dallas"],type:"seminary"},
-  {name:"Southern Baptist Theological Seminary",loc:"Louisville, KY",desc:"One of the largest seminaries in the world, offering degrees in theology, divinity, ministry, and biblical studies.",url:"https://www.sbts.edu/apply/",tags:["Seminary","Baptist","MDiv","PhD","Louisville"],type:"seminary"},
-  {name:"Gordon-Conwell Theological Seminary",loc:"South Hamilton, MA",desc:"Interdenominational seminary offering MDiv, MA, DMin degrees with campuses across the US.",url:"https://www.gordonconwell.edu/admissions/",tags:["Seminary","Interdenominational","MDiv","MA"],type:"seminary"},
-  {name:"Southwestern Baptist Theological Seminary",loc:"Fort Worth, TX",desc:"Conservative Baptist seminary with programs in theology, music ministry, educational ministries, and more.",url:"https://www.swbts.edu/admissions/",tags:["Seminary","Baptist","MDiv","DMin","Fort Worth"],type:"seminary"},
-  {name:"Talbot School of Theology",loc:"La Mirada, CA",desc:"Graduate school at Biola University offering MDiv, MA, PhD programs in biblical studies and Christian education.",url:"https://www.biola.edu/talbot/admissions",tags:["Seminary","MDiv","PhD","Biola","Evangelical"],type:"seminary"},
-  {name:"Denver Seminary",loc:"Littleton, CO",desc:"Evangelical seminary with programs in biblical studies, counseling, leadership, and ministry.",url:"https://denverseminary.edu/admissions/",tags:["Seminary","Evangelical","MDiv","Counseling"],type:"seminary"},
-  {name:"Reformed Theological Seminary",loc:"Multiple Campuses",desc:"Reformed/Presbyterian seminary with campuses nationwide. MDiv, DMin, MA programs available.",url:"https://rts.edu/campus/admissions/",tags:["Seminary","Reformed","Presbyterian","MDiv"],type:"seminary"},
-  {name:"Asbury Theological Seminary",loc:"Wilmore, KY",desc:"Wesleyan/Methodist seminary offering MDiv, MA, DMin with focus on world missions and biblical studies.",url:"https://asburyseminary.edu/admissions/",tags:["Seminary","Wesleyan","Methodist","MDiv","Missions"],type:"seminary"},
-  {name:"Bethel Seminary",loc:"St. Paul, MN",desc:"Baptist General Conference seminary with programs in ministry leadership, spiritual formation, and theology.",url:"https://seminary.bethel.edu/admissions/",tags:["Seminary","Baptist","MDiv","Spiritual Formation"],type:"seminary"},
-  {name:"Covenant Theological Seminary",loc:"St. Louis, MO",desc:"Official seminary of the Presbyterian Church in America offering MDiv, MA, DMin programs.",url:"https://www.covenantseminary.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","PCA"],type:"seminary"},
-  {name:"Trinity Evangelical Divinity School",loc:"Deerfield, IL",desc:"Graduate school of Trinity International University with extensive MDiv, PhD, and MA programs.",url:"https://teds.edu/admissions/",tags:["Seminary","Evangelical","MDiv","PhD","Trinity"],type:"seminary"},
-  {name:"Moody Theological Seminary",loc:"Chicago, IL / Plymouth, MI",desc:"Seminary of Moody Bible Institute offering MDiv, MA in ministry leadership and biblical studies.",url:"https://www.moody.edu/seminary/admissions/",tags:["Seminary","MDiv","Biblical Studies","Moody"],type:"seminary"},
-  {name:"Assemblies of God Theological Seminary",loc:"Springfield, MO",desc:"Pentecostal seminary offering MDiv, MA, DMin, PhD in biblical studies, missiology, and ministry leadership.",url:"https://seminary.ag.edu/admissions/",tags:["Seminary","Pentecostal","MDiv","Missions"],type:"seminary"},
-  // USA UNIVERSITIES
-  {name:"Liberty University School of Divinity",loc:"Lynchburg, VA",desc:"One of the largest Christian universities, offering BS, MDiv, DMin, PhD in theology and religious studies. Online and on-campus.",url:"https://www.liberty.edu/divinity/admissions/",tags:["University","MDiv","PhD","Online","Baptist","Liberty"],type:"university"},
-  {name:"Regent University School of Divinity",loc:"Virginia Beach, VA",desc:"Christian research university with programs in divinity, ministry, biblical studies and practical ministry.",url:"https://www.regent.edu/school-of-divinity/admissions/",tags:["University","MDiv","DMin","CBN","Charismatic"],type:"university"},
-  {name:"Baylor University George W. Truett Theological Seminary",loc:"Waco, TX",desc:"Baptist-affiliated seminary within Baylor University, offering MDiv, MA, DMin programs.",url:"https://www.baylor.edu/truett/index.php?id=870808",tags:["University","Seminary","Baptist","MDiv","Baylor"],type:"university"},
-  {name:"Wheaton College Graduate School",loc:"Wheaton, IL",desc:"Evangelical liberal arts college with graduate programs in biblical and theological studies, Christian formation.",url:"https://www.wheaton.edu/graduate-school/admissions/",tags:["University","Evangelical","MA","Biblical Studies"],type:"university"},
-  {name:"Oral Roberts University College of Theology",loc:"Tulsa, OK",desc:"Charismatic university offering undergraduate and graduate degrees in biblical literature, Christian care, and ministry.",url:"https://oru.edu/academics/college-of-theology/",tags:["University","Charismatic","Pentecostal","Theology"],type:"university"},
-  {name:"Fuller Theological Seminary",loc:"Pasadena, CA",desc:"Multidenominational seminary offering MDiv, MA, DMin, PhD with emphasis on global Christianity.",url:"https://www.fuller.edu/admissions/",tags:["Seminary","Multidenominational","MDiv","PhD","Global"],type:"seminary"},
-  {name:"Western Seminary",loc:"Portland, OR",desc:"Evangelical seminary offering MDiv, MA, DMin in biblical and theological studies with ministry focus.",url:"https://www.westernseminary.edu/admissions/",tags:["Seminary","Evangelical","MDiv","Oregon"],type:"seminary"},
-  {name:"Southeastern Baptist Theological Seminary",loc:"Wake Forest, NC",desc:"Southern Baptist seminary offering MDiv, MA, PhD, ThM with rigorous biblical and theological training.",url:"https://www.sebts.edu/admissions/",tags:["Seminary","Baptist","MDiv","PhD","North Carolina"],type:"seminary"},
-  // ONLINE
-  {name:"Liberty University Online (Divinity)",loc:"Online",desc:"Fully accredited online programs in divinity, theology, and biblical studies at all degree levels.",url:"https://www.liberty.edu/divinity/",tags:["Online","MDiv","BA","PhD","Flexible"],type:"online"},
-  {name:"Regent University Online",loc:"Online",desc:"Accredited online divinity and ministry degrees with flexible scheduling for working ministers.",url:"https://www.regent.edu/school-of-divinity/",tags:["Online","MDiv","DMin","Flexible"],type:"online"},
-  {name:"Kairos University (Sioux Falls Seminary)",loc:"Online / Sioux Falls, SD",desc:"Innovative online theological education with outcome-based MDiv and MA programs.",url:"https://kairosedu.org/admissions/",tags:["Online","Seminary","MDiv","Innovative"],type:"online"},
-  {name:"Phoenix Seminary",loc:"Scottsdale, AZ / Online",desc:"Evangelical seminary offering MDiv, MA programs online and on-campus in Phoenix area.",url:"https://ps.edu/admissions/",tags:["Online","Seminary","MDiv","Arizona"],type:"online"},
-  {name:"Grand Canyon Theological Seminary",loc:"Phoenix, AZ / Online",desc:"Christian university offering online MDiv, MA in ministry leadership and theological studies.",url:"https://www.gcu.edu/college-of-theology",tags:["Online","University","MDiv","Phoenix"],type:"online"},
-  // INTERNATIONAL
-  {name:"Oxford Centre for Mission Studies",loc:"Oxford, UK",desc:"Postgraduate research centre for mission, theology, and world Christianity.",url:"https://www.ocms.ac.uk/admissions/",tags:["International","UK","PhD","Missions","Oxford"],type:"international"},
-  {name:"King's College London — Theology",loc:"London, UK",desc:"World-renowned university offering undergraduate and postgraduate programs in theology and religious studies.",url:"https://www.kcl.ac.uk/theology",tags:["International","UK","PhD","MA","Kings College"],type:"international"},
-  {name:"McGill University — Religious Studies",loc:"Montreal, Canada",desc:"Leading Canadian university with programs in religious studies, theology, and comparative religion.",url:"https://www.mcgill.ca/religiousstudies/prospective",tags:["International","Canada","MA","PhD","Religious Studies"],type:"international"},
-  {name:"University of Toronto — Wycliffe College",loc:"Toronto, Canada",desc:"Anglican seminary affiliated with University of Toronto, offering MDiv, ThM, DMin programs.",url:"https://www.wycliffecollege.ca/admissions",tags:["International","Canada","Anglican","MDiv"],type:"international"},
-  {name:"Stellenbosch University — Theology",loc:"Stellenbosch, South Africa",desc:"Premier African theology faculty offering graduate programs in systematic theology and church history.",url:"https://www.sun.ac.za/english/faculty/theology",tags:["International","Africa","PhD","Theology"],type:"international"},
-  {name:"African Theological Seminary",loc:"Nairobi, Kenya",desc:"Evangelical seminary serving Africa with MDiv, MA programs in theology and ministry.",url:"https://ats.ac.ke/admissions",tags:["International","Africa","Kenya","MDiv","Evangelical"],type:"international"},
+  // ===== MAJOR SEMINARIES =====
+  {name:"Dallas Theological Seminary",loc:"Dallas, TX",desc:"Premier evangelical graduate school. Offers ThM, MDiv, DMin, PhD in biblical studies, theology, and ministry leadership.",url:"https://www.dts.edu/admissions/",tags:["Seminary","MDiv","PhD","ThM","Evangelical"],type:"seminary"},
+  {name:"Southern Baptist Theological Seminary",loc:"Louisville, KY",desc:"One of the world's largest seminaries with MDiv, MRE, DMin, PhD in theology, counseling, and ministry.",url:"https://www.sbts.edu/apply/",tags:["Seminary","Baptist","MDiv","PhD"],type:"seminary"},
+  {name:"Gordon-Conwell Theological Seminary",loc:"South Hamilton, MA",desc:"Interdenominational seminary with MDiv, MA, DMin and campuses in Boston, Charlotte, and Jacksonville.",url:"https://www.gordonconwell.edu/admissions/",tags:["Seminary","MDiv","MA","Interdenominational"],type:"seminary"},
+  {name:"Southwestern Baptist Theological Seminary",loc:"Fort Worth, TX",desc:"Conservative Baptist seminary with programs in theology, music ministry, and educational ministries.",url:"https://www.swbts.edu/admissions/",tags:["Seminary","Baptist","MDiv","DMin"],type:"seminary"},
+  {name:"Trinity Evangelical Divinity School",loc:"Deerfield, IL",desc:"Graduate school of Trinity International University. MDiv, MA, ThM, PhD in biblical and theological studies.",url:"https://teds.edu/admissions/",tags:["Seminary","Evangelical","MDiv","PhD"],type:"seminary"},
+  {name:"Reformed Theological Seminary",loc:"Jackson, MS / Multiple Campuses",desc:"Reformed/Presbyterian seminary with campuses in Jackson, Charlotte, Washington DC, Atlanta, and Orlando.",url:"https://rts.edu/admissions/",tags:["Seminary","Reformed","Presbyterian","MDiv"],type:"seminary"},
+  {name:"Asbury Theological Seminary",loc:"Wilmore, KY",desc:"Wesleyan-Arminian seminary offering MDiv, MA, DMin with focus on world missions and biblical studies.",url:"https://asburyseminary.edu/admissions/",tags:["Seminary","Wesleyan","Methodist","MDiv","Missions"],type:"seminary"},
+  {name:"Fuller Theological Seminary",loc:"Pasadena, CA",desc:"Multidenominational seminary offering MDiv, MA, DMin, PhD emphasizing global Christianity and mission.",url:"https://www.fuller.edu/admissions/",tags:["Seminary","MDiv","PhD","Multidenominational"],type:"seminary"},
+  {name:"Talbot School of Theology",loc:"La Mirada, CA",desc:"Graduate school at Biola University offering MDiv, MA, PhD in biblical studies and Christian education.",url:"https://www.biola.edu/talbot/admissions",tags:["Seminary","MDiv","PhD","Evangelical","Biola"],type:"seminary"},
+  {name:"Moody Theological Seminary",loc:"Chicago, IL",desc:"Seminary of Moody Bible Institute offering MDiv, MA in ministry leadership and biblical studies.",url:"https://www.moody.edu/seminary/admissions/",tags:["Seminary","MDiv","Biblical Studies","Moody"],type:"seminary"},
+  {name:"Assemblies of God Theological Seminary",loc:"Springfield, MO",desc:"Pentecostal seminary offering MDiv, MA, DMin, PhD in biblical studies, missiology, and ministry.",url:"https://seminary.ag.edu/admissions/",tags:["Seminary","Pentecostal","MDiv","Missions"],type:"seminary"},
+  {name:"Denver Seminary",loc:"Littleton, CO",desc:"Evangelical seminary with programs in biblical studies, counseling, ministry leadership, and preaching.",url:"https://denverseminary.edu/admissions/",tags:["Seminary","Evangelical","MDiv","Counseling"],type:"seminary"},
+  {name:"Bethel Seminary",loc:"St. Paul, MN",desc:"Seminary of Converge Worldwide offering MDiv, MA in ministry leadership and spiritual formation.",url:"https://seminary.bethel.edu/admissions/",tags:["Seminary","Baptist","MDiv","Spiritual Formation"],type:"seminary"},
+  {name:"Covenant Theological Seminary",loc:"St. Louis, MO",desc:"Official seminary of the Presbyterian Church in America (PCA). Offers MDiv, MA, DMin.",url:"https://www.covenantseminary.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","PCA"],type:"seminary"},
+  {name:"Southeastern Baptist Theological Seminary",loc:"Wake Forest, NC",desc:"Southern Baptist seminary with MDiv, MA, PhD, ThM emphasizing biblical and theological rigor.",url:"https://www.sebts.edu/admissions/",tags:["Seminary","Baptist","MDiv","PhD"],type:"seminary"},
+  {name:"Midwestern Baptist Theological Seminary",loc:"Kansas City, MO",desc:"Southern Baptist seminary offering MDiv, MA, ThM, PhD in theology, ministry, and biblical studies.",url:"https://www.mbts.edu/admissions/",tags:["Seminary","Baptist","MDiv","PhD","Kansas City"],type:"seminary"},
+  {name:"New Orleans Baptist Theological Seminary",loc:"New Orleans, LA",desc:"Southern Baptist seminary offering MDiv, DMin, PhD with strengths in Christian ministry and evangelism.",url:"https://www.nobts.edu/apply/",tags:["Seminary","Baptist","MDiv","PhD","New Orleans"],type:"seminary"},
+  {name:"Pittsburgh Theological Seminary",loc:"Pittsburgh, PA",desc:"Presbyterian seminary offering MDiv, MA, DMin with academic and contextual ministry focus.",url:"https://www.pts.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","Pennsylvania"],type:"seminary"},
+  {name:"Westminster Theological Seminary",loc:"Glenside, PA",desc:"Reformed/Presbyterian seminary emphasizing confessional theology. Offers MDiv, ThM, PhD, DMin.",url:"https://www.wts.edu/admissions/",tags:["Seminary","Reformed","Presbyterian","MDiv","PhD"],type:"seminary"},
+  {name:"Knox Theological Seminary",loc:"Fort Lauderdale, FL",desc:"Reformed seminary affiliated with Coral Ridge Ministries. Offers MDiv, MA in theology and ministry.",url:"https://www.knox.edu/admissions/",tags:["Seminary","Reformed","MDiv","Florida"],type:"seminary"},
+  {name:"Beeson Divinity School",loc:"Birmingham, AL",desc:"Graduate school of Samford University offering MDiv, MA with commitment to Great Commission evangelism.",url:"https://www.beesondivinity.com/admissions",tags:["Seminary","MDiv","Evangelical","Alabama"],type:"seminary"},
+  {name:"Truett McConnell University",loc:"Cleveland, GA",desc:"Baptist liberal arts university with undergraduate and graduate theology programs.",url:"https://www.truett.edu/admissions/",tags:["Seminary","Baptist","MA","Georgia"],type:"seminary"},
+  {name:"American Baptist Seminary of the West",loc:"Berkeley, CA",desc:"American Baptist seminary on the Graduate Theological Union campus offering MDiv and various graduate degrees.",url:"https://www.absw.edu/admissions/",tags:["Seminary","Baptist","MDiv","California"],type:"seminary"},
+  {name:"Christian Theological Seminary",loc:"Indianapolis, IN",desc:"Progressive Christian seminary affiliated with Disciples of Christ offering MDiv, MA, DMin.",url:"https://www.cts.edu/admissions/",tags:["Seminary","MDiv","Disciples of Christ","Indiana"],type:"seminary"},
+  {name:"George W. Truett Theological Seminary",loc:"Waco, TX",desc:"Baptist seminary at Baylor University offering MDiv, MA, DMin in ministry and practical theology.",url:"https://www.baylor.edu/truett/",tags:["Seminary","Baptist","MDiv","Baylor","Texas"],type:"seminary"},
+  {name:"Duke Divinity School",loc:"Durham, NC",desc:"United Methodist divinity school at Duke University. Offers MDiv, MTS, ThM, PhD with strong research focus.",url:"https://divinity.duke.edu/admissions",tags:["Seminary","Methodist","MDiv","PhD","Duke"],type:"seminary"},
+  {name:"Vanderbilt Divinity School",loc:"Nashville, TN",desc:"Liberal divinity school at Vanderbilt University offering MDiv, MTS, ThM with emphasis on social justice.",url:"https://divinity.vanderbilt.edu/admissions/",tags:["Seminary","MDiv","MTS","Vanderbilt","Tennessee"],type:"seminary"},
+  {name:"Princeton Theological Seminary",loc:"Princeton, NJ",desc:"Presbyterian Church USA seminary offering MDiv, MAR, ThM, PhD. One of the oldest in the US.",url:"https://www.ptsem.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","PhD","Ivy"],type:"seminary"},
+  {name:"Yale Divinity School",loc:"New Haven, CT",desc:"Non-denominational divinity school at Yale University. Offers MDiv, MAR with interdisciplinary approach.",url:"https://divinity.yale.edu/admissions",tags:["Seminary","Ivy League","MDiv","MAR","Yale"],type:"seminary"},
+  {name:"Harvard Divinity School",loc:"Cambridge, MA",desc:"Nonsectarian divinity school at Harvard University offering MDiv, MTS, ThD with global reach.",url:"https://hds.harvard.edu/admissions",tags:["Seminary","Ivy League","MDiv","MTS","Harvard"],type:"seminary"},
+  {name:"Union Presbyterian Seminary",loc:"Richmond, VA / Charlotte, NC",desc:"Presbyterian Church USA seminary offering MDiv, MAYM, DMin, PhD on two campuses.",url:"https://www.upsem.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","PhD","Virginia"],type:"seminary"},
+  {name:"Wesley Theological Seminary",loc:"Washington, DC",desc:"United Methodist seminary in DC offering MDiv, MA, DMin with focus on justice and cultural engagement.",url:"https://www.wesleyseminary.edu/admissions/",tags:["Seminary","Methodist","MDiv","DC","Wesleyan"],type:"seminary"},
+  {name:"Luther Seminary",loc:"St. Paul, MN",desc:"ELCA Lutheran seminary offering MDiv, MA, DMin, PhD in preaching, leadership, and theology.",url:"https://www.luthersem.edu/admissions/",tags:["Seminary","Lutheran","ELCA","MDiv","Minnesota"],type:"seminary"},
+  {name:"Lutheran School of Theology at Chicago",loc:"Chicago, IL",desc:"ELCA seminary in Chicago offering MDiv, MA, STM, DMin in theology and urban ministry.",url:"https://www.lstc.edu/admissions/",tags:["Seminary","Lutheran","ELCA","MDiv","Chicago"],type:"seminary"},
+  {name:"McCormick Theological Seminary",loc:"Chicago, IL",desc:"Presbyterian seminary affiliated with the Chicago Theological Union. Offers MDiv, MA, DMin.",url:"https://www.mccormick.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","Chicago"],type:"seminary"},
+  {name:"Andover Newton Seminary at Yale",loc:"New Haven, CT",desc:"Historic Baptist/Congregational seminary now at Yale. Offers MDiv with progressive evangelical focus.",url:"https://andovernewton.org/",tags:["Seminary","Baptist","MDiv","Yale","Progressive"],type:"seminary"},
+  {name:"San Francisco Theological Seminary",loc:"San Anselmo, CA",desc:"Presbyterian PCUSA seminary offering MDiv, DMIN on the Bay Area campus.",url:"https://sfts.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","California"],type:"seminary"},
+  {name:"Austin Presbyterian Theological Seminary",loc:"Austin, TX",desc:"PCUSA seminary in Austin offering MDiv, MA, DMin with focus on justice and community.",url:"https://www.austinseminary.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","Texas"],type:"seminary"},
+  {name:"Columbia Theological Seminary",loc:"Decatur, GA",desc:"PCUSA seminary offering MDiv, MATS, ThM, DMin emphasizing Reformed theology and diverse ministry.",url:"https://www.ctsnet.edu/admissions/",tags:["Seminary","Presbyterian","MDiv","Georgia"],type:"seminary"},
+  {name:"Garrett-Evangelical Theological Seminary",loc:"Evanston, IL",desc:"United Methodist seminary at Northwestern University. Offers MDiv, MA, DMin, PhD.",url:"https://www.garrett.edu/admissions/",tags:["Seminary","Methodist","MDiv","PhD","Northwestern"],type:"seminary"},
+  {name:"Iliff School of Theology",loc:"Denver, CO",desc:"United Methodist seminary in Denver offering MDiv, MTS, DMin, PhD with progressive approach.",url:"https://www.iliff.edu/admissions/",tags:["Seminary","Methodist","MDiv","PhD","Denver"],type:"seminary"},
+  {name:"Drew Theological School",loc:"Madison, NJ",desc:"Methodist seminary at Drew University offering MDiv, MTS, STM, PhD in theology and ministry.",url:"https://www.drew.edu/theological-school/admissions/",tags:["Seminary","Methodist","MDiv","PhD","New Jersey"],type:"seminary"},
+  {name:"Perkins School of Theology",loc:"Dallas, TX",desc:"United Methodist seminary at Southern Methodist University. Offers MDiv, MAM, ThM, DMin, PhD.",url:"https://www.smu.edu/perkins/Admissions",tags:["Seminary","Methodist","MDiv","PhD","SMU"],type:"seminary"},
+  {name:"Boston University School of Theology",loc:"Boston, MA",desc:"Methodist seminary at Boston University offering MDiv, STM, ThD, PhD with global emphasis.",url:"https://www.bu.edu/sth/admissions/",tags:["Seminary","Methodist","MDiv","PhD","Boston"],type:"seminary"},
+  {name:"Catholic Theological Union",loc:"Chicago, IL",desc:"Catholic graduate school of theology offering MA, MDiv, DMin, STL, STD for ministers and scholars.",url:"https://ctu.edu/admissions/",tags:["Seminary","Catholic","MDiv","PhD","Chicago"],type:"seminary"},
+  {name:"St. John's Seminary",loc:"Brighton, MA",desc:"Roman Catholic major seminary serving the Archdiocese of Boston. Offers MDiv, MA in theology.",url:"https://www.sjs.edu/admissions/",tags:["Seminary","Catholic","MDiv","Boston"],type:"seminary"},
+  {name:"Mount Angel Seminary",loc:"St. Benedict, OR",desc:"Benedictine Roman Catholic major seminary in Oregon offering MDiv, MA in theology.",url:"https://mountangelabbey.org/seminary/",tags:["Seminary","Catholic","Benedictine","MDiv","Oregon"],type:"seminary"},
+  {name:"Nashotah House Theological Seminary",loc:"Nashotah, WI",desc:"Anglo-Catholic Episcopal seminary offering MDiv, STM, DMin with emphasis on liturgical theology.",url:"https://www.nashotah.edu/admissions/",tags:["Seminary","Episcopal","Anglican","MDiv","Wisconsin"],type:"seminary"},
+  {name:"Candler School of Theology",loc:"Atlanta, GA",desc:"United Methodist school at Emory University. Offers MDiv, MTS, ThM, DMin, PhD in theology.",url:"https://candler.emory.edu/admissions/",tags:["Seminary","Methodist","MDiv","PhD","Emory","Atlanta"],type:"seminary"},
+  {name:"Baptist Theological Seminary at Richmond",loc:"Richmond, VA",desc:"Progressive Baptist seminary offering MDiv and certificate programs with emphasis on ministry practice.",url:"https://www.btsr.edu/admissions/",tags:["Seminary","Baptist","MDiv","Virginia"],type:"seminary"},
+  {name:"Eastern Mennonite Seminary",loc:"Harrisonburg, VA",desc:"Mennonite/Anabaptist seminary offering MDiv, MA in peacemaking, justice, and biblical studies.",url:"https://www.emu.edu/seminary/admissions/",tags:["Seminary","Mennonite","Anabaptist","MDiv","Virginia"],type:"seminary"},
+  {name:"Bethany Theological Seminary",loc:"Richmond, IN",desc:"Church of the Brethren seminary offering MDiv, MA in ministry, peace, and theology.",url:"https://www.bethanyseminary.edu/admissions",tags:["Seminary","Brethren","MDiv","Indiana"],type:"seminary"},
+  {name:"Pacific School of Religion",loc:"Berkeley, CA",desc:"Progressive ecumenical seminary at the Graduate Theological Union. Offers MDiv, MA, DMin.",url:"https://www.psr.edu/admissions/",tags:["Seminary","Ecumenical","MDiv","California"],type:"seminary"},
+  {name:"Claremont School of Theology",loc:"Claremont, CA",desc:"Methodist-affiliated seminary offering MDiv, MA, MTS, DMin, PhD with interfaith emphasis.",url:"https://cst.edu/admissions/",tags:["Seminary","Methodist","Interfaith","MDiv","California"],type:"seminary"},
+  {name:"Church Divinity School of the Pacific",loc:"Berkeley, CA",desc:"Episcopal seminary at the Graduate Theological Union. Offers MDiv, MTS, DMin.",url:"https://cdsp.edu/admissions/",tags:["Seminary","Episcopal","Anglican","MDiv","California"],type:"seminary"},
+  {name:"Jesuit School of Theology",loc:"Berkeley, CA",desc:"Jesuit Catholic theology school at Santa Clara University offering STL, STD, PhD.",url:"https://www.scu.edu/jstb/admissions/",tags:["Seminary","Catholic","Jesuit","PhD","California"],type:"seminary"},
+  {name:"Saint Meinrad Seminary and School of Theology",loc:"St. Meinrad, IN",desc:"Benedictine Catholic major seminary offering MDiv, MA, MAPS in theology and ministry.",url:"https://www.saintmeinrad.edu/school-of-theology/admissions/",tags:["Seminary","Catholic","Benedictine","MDiv","Indiana"],type:"seminary"},
+  {name:"Emmanuel Christian Seminary at Milligan",loc:"Johnson City, TN",desc:"Churches of Christ/Christian Church seminary offering MDiv, MA with emphasis on ministry and counseling.",url:"https://www.milligan.edu/emmanuel-christian-seminary/",tags:["Seminary","Churches of Christ","MDiv","Tennessee"],type:"seminary"},
+  {name:"Lipscomb University Graduate Bible",loc:"Nashville, TN",desc:"Churches of Christ university offering MA, MDiv in biblical studies and ministry leadership.",url:"https://www.lipscomb.edu/graduate-bible/",tags:["Seminary","Churches of Christ","MA","MDiv","Nashville"],type:"seminary"},
+  {name:"Cincinnati Christian University",loc:"Cincinnati, OH",desc:"Churches of Christ institution offering MDiv, MA in ministry and biblical studies.",url:"https://www.ccuniversity.edu/",tags:["Seminary","Churches of Christ","MDiv","Ohio"],type:"seminary"},
+  {name:"Lincoln Christian Seminary",loc:"Lincoln, IL",desc:"Churches of Christ seminary offering MDiv, MA in ministry, preaching, and biblical exposition.",url:"https://www.lincolnchristian.edu/seminary/",tags:["Seminary","Churches of Christ","MDiv","Illinois"],type:"seminary"},
+  {name:"Anderson University School of Theology",loc:"Anderson, IN",desc:"Church of God seminary offering MDiv, MA with focus on Wesleyan-Arminian theology and ministry.",url:"https://anderson.edu/school-of-theology/",tags:["Seminary","Church of God","MDiv","Wesleyan","Indiana"],type:"seminary"},
+  {name:"Azusa Pacific University School of Theology",loc:"Azusa, CA",desc:"Evangelical Wesleyan university offering MDiv, MA, DMin, PhD in biblical studies and ministry.",url:"https://www.apu.edu/theologyandministry/",tags:["Seminary","Wesleyan","MDiv","PhD","California"],type:"seminary"},
+  {name:"Vanguard University",loc:"Costa Mesa, CA",desc:"Assemblies of God university offering BA and MA degrees in theology and biblical studies.",url:"https://www.vanguard.edu/academics/graduate/",tags:["Seminary","Pentecostal","Assemblies of God","MA","California"],type:"seminary"},
+  {name:"Lee University School of Religion",loc:"Cleveland, TN",desc:"Church of God Pentecostal university with undergraduate and graduate programs in religion and theology.",url:"https://www.leeuniversity.edu/academics/schools/school-of-religion/",tags:["Seminary","Pentecostal","Church of God","MA","Tennessee"],type:"seminary"},
+  {name:"Regent University School of Divinity",loc:"Virginia Beach, VA",desc:"Charismatic Christian university offering MDiv, MA, DMin, PhD in divinity and biblical studies.",url:"https://www.regent.edu/school-of-divinity/admissions/",tags:["Seminary","Charismatic","MDiv","PhD","Virginia"],type:"seminary"},
+  {name:"Oral Roberts University College of Theology",loc:"Tulsa, OK",desc:"Charismatic university offering BA, MA, MDiv in biblical literature, Christian care, and ministry leadership.",url:"https://oru.edu/academics/college-of-theology/",tags:["Seminary","Pentecostal","Charismatic","MDiv","Oklahoma"],type:"seminary"},
+  {name:"Western Seminary",loc:"Portland, OR",desc:"Evangelical seminary offering MDiv, MA, DMin in biblical studies, counseling, and ministry.",url:"https://www.westernseminary.edu/admissions/",tags:["Seminary","Evangelical","MDiv","Oregon"],type:"seminary"},
+  {name:"Multnomah Biblical Seminary",loc:"Portland, OR",desc:"Evangelical seminary at Multnomah University offering MDiv, MA with emphasis on preaching and church leadership.",url:"https://www.multnomah.edu/seminary/",tags:["Seminary","Evangelical","MDiv","Oregon"],type:"seminary"},
+  {name:"Biola University — Institute of Biblical Studies",loc:"La Mirada, CA",desc:"Evangelical Bible institute affiliated with Biola University offering certificate and degree programs.",url:"https://www.biola.edu/ibs",tags:["Seminary","Evangelical","Biblical Studies","California"],type:"seminary"},
+  {name:"Knox Theological Seminary",loc:"Fort Lauderdale, FL",desc:"Reformed evangelical seminary offering MDiv, MA in theology and ministry for church leadership.",url:"https://www.knox.edu/",tags:["Seminary","Reformed","MDiv","Florida"],type:"seminary"},
+  {name:"Southeastern University",loc:"Lakeland, FL",desc:"Assemblies of God university with MA, MDiv programs in ministry leadership and biblical studies.",url:"https://www.seu.edu/graduate/",tags:["Seminary","Pentecostal","Assemblies of God","MDiv","Florida"],type:"seminary"},
+  // ===== UNIVERSITIES =====
+  {name:"Liberty University School of Divinity",loc:"Lynchburg, VA",desc:"One of the largest Christian universities. Offers BS, MDiv, DMin, PhD in theology. Online and on-campus.",url:"https://www.liberty.edu/divinity/admissions/",tags:["University","MDiv","PhD","Online","Baptist"],type:"university"},
+  {name:"Wheaton College Graduate School",loc:"Wheaton, IL",desc:"Evangelical liberal arts college with graduate programs in biblical and theological studies.",url:"https://www.wheaton.edu/graduate-school/admissions/",tags:["University","Evangelical","MA","Biblical Studies"],type:"university"},
+  {name:"Baylor University — George W. Truett Seminary",loc:"Waco, TX",desc:"Baptist-affiliated research university with strong divinity school offering MDiv, MA, DMin.",url:"https://www.baylor.edu/truett/",tags:["University","Baptist","MDiv","Baylor","Texas"],type:"university"},
+  {name:"Cedarville University",loc:"Cedarville, OH",desc:"Baptist university offering BA and MA in biblical studies, ministry, and theology.",url:"https://www.cedarville.edu/graduate/theology/",tags:["University","Baptist","MA","Biblical Studies","Ohio"],type:"university"},
+  {name:"Biola University",loc:"La Mirada, CA",desc:"Evangelical university with Talbot School of Theology. MDiv, MA, PhD in theology and apologetics.",url:"https://www.biola.edu/admissions/",tags:["University","Evangelical","MDiv","PhD","Apologetics"],type:"university"},
+  {name:"Wheaton College (IL)",loc:"Wheaton, IL",desc:"Evangelical liberal arts college offering MA in biblical and theological studies, and ministry.",url:"https://www.wheaton.edu/graduate-school/",tags:["University","Evangelical","MA","Illinois"],type:"university"},
+  {name:"John Brown University",loc:"Siloam Springs, AR",desc:"Interdenominational Christian university offering BA, MA in ministry leadership and biblical studies.",url:"https://www.jbu.edu/theology-ministry/",tags:["University","Christian","MA","Arkansas"],type:"university"},
+  {name:"Samford University — Beeson Divinity",loc:"Birmingham, AL",desc:"Baptist-affiliated research university with Beeson Divinity offering MDiv, MA, PhD.",url:"https://www.beesondivinity.com/",tags:["University","Baptist","MDiv","Alabama"],type:"university"},
+  {name:"Trevecca Nazarene University",loc:"Nashville, TN",desc:"Church of the Nazarene university offering MA, MDiv in ministry and practical theology.",url:"https://www.trevecca.edu/graduate/",tags:["University","Nazarene","MDiv","Wesleyan","Tennessee"],type:"university"},
+  {name:"Southern Nazarene University",loc:"Bethany, OK",desc:"Church of the Nazarene institution with MA in ministry leadership and theological studies.",url:"https://home.snu.edu/graduate/",tags:["University","Nazarene","MA","Oklahoma","Wesleyan"],type:"university"},
+  {name:"Northwest Nazarene University",loc:"Nampa, ID",desc:"Nazarene liberal arts university offering MDiv, MA in ministry leadership and theology.",url:"https://www.nnu.edu/graduate/",tags:["University","Nazarene","MDiv","Idaho"],type:"university"},
+  {name:"Point Loma Nazarene University",loc:"San Diego, CA",desc:"Nazarene university offering MA in practical theology, biblical studies, and Christian education.",url:"https://www.pointloma.edu/graduate-professional/",tags:["University","Nazarene","MA","California"],type:"university"},
+  {name:"Harding University",loc:"Searcy, AR",desc:"Churches of Christ liberal arts university offering MA, MDiv in biblical studies and ministry.",url:"https://www.harding.edu/academics/graduate",tags:["University","Churches of Christ","MA","Arkansas"],type:"university"},
+  {name:"Abilene Christian University",loc:"Abilene, TX",desc:"Churches of Christ university with MA, MDiv, DMin in biblical studies, theology, and ministry.",url:"https://www.acu.edu/graduate/",tags:["University","Churches of Christ","MDiv","Texas"],type:"university"},
+  {name:"George Fox University",loc:"Newberg, OR",desc:"Quaker-affiliated evangelical university offering MDiv, MA, DMin in ministry and spiritual formation.",url:"https://www.georgefox.edu/seminary/",tags:["University","Quaker","Evangelical","MDiv","Oregon"],type:"university"},
+  {name:"Spring Arbor University",loc:"Spring Arbor, MI",desc:"Free Methodist university with MA programs in ministry, counseling, and theological studies.",url:"https://www.arbor.edu/graduate/",tags:["University","Methodist","MA","Michigan"],type:"university"},
+  {name:"Indiana Wesleyan University",loc:"Marion, IN",desc:"Wesleyan university offering MA, MDiv in ministry leadership and biblical studies.",url:"https://www.indwes.edu/graduate/",tags:["University","Wesleyan","MA","MDiv","Indiana"],type:"university"},
+  {name:"Olivet Nazarene University",loc:"Bourbonnais, IL",desc:"Nazarene university offering MA in ministry leadership, practical theology, and biblical studies.",url:"https://www.olivet.edu/graduate/",tags:["University","Nazarene","MA","Illinois"],type:"university"},
+  {name:"Roberts Wesleyan College",loc:"Rochester, NY",desc:"Free Methodist liberal arts college offering MA in ministry studies and spiritual formation.",url:"https://www.roberts.edu/graduate/",tags:["University","Methodist","MA","New York"],type:"university"},
+  {name:"Messiah University",loc:"Mechanicsburg, PA",desc:"Christ-centered university with MA programs in biblical studies, ministry, and Christian ethics.",url:"https://www.messiah.edu/graduate/",tags:["University","Christian","MA","Pennsylvania"],type:"university"},
+  {name:"Taylor University",loc:"Upland, IN",desc:"Evangelical liberal arts university with undergraduate theology programs and some graduate options.",url:"https://www.taylor.edu/academics/graduate/",tags:["University","Evangelical","BA","Indiana"],type:"university"},
+  {name:"Covenant College",loc:"Lookout Mountain, GA",desc:"Reformed liberal arts college affiliated with the PCA offering biblical studies and theology.",url:"https://www.covenant.edu/admissions/",tags:["University","Reformed","Presbyterian","BA","Georgia"],type:"university"},
+  {name:"Dordt University",loc:"Sioux Center, IA",desc:"Christian Reformed university offering BA and MA in theology, biblical studies, and ministry.",url:"https://www.dordt.edu/academics/graduate",tags:["University","Reformed","BA","Iowa"],type:"university"},
+  {name:"Calvin University",loc:"Grand Rapids, MI",desc:"Christian Reformed university offering undergraduate theology and religious studies programs.",url:"https://calvin.edu/academics/departments/religion/",tags:["University","Reformed","BA","Michigan","Christian Reformed"],type:"university"},
+  {name:"Calvin Theological Seminary",loc:"Grand Rapids, MI",desc:"Denominational seminary of the Christian Reformed Church offering MDiv, MA, ThM, PhD.",url:"https://www.calvinseminary.edu/admissions/",tags:["Seminary","Reformed","MDiv","PhD","Michigan"],type:"seminary"},
+  {name:"Hope College",loc:"Holland, MI",desc:"Reformed Church in America liberal arts college with strong theology and religion departments.",url:"https://hope.edu/admissions/",tags:["University","Reformed","BA","Michigan"],type:"university"},
+  {name:"Grand Canyon University",loc:"Phoenix, AZ",desc:"Large Christian university offering MA, MDiv in ministry leadership and theological studies online and on-campus.",url:"https://www.gcu.edu/college-of-theology",tags:["University","MDiv","Online","Arizona","Baptist"],type:"university"},
+  // ===== ONLINE PROGRAMS =====
+  {name:"Liberty University Online — Divinity",loc:"Online",desc:"Fully accredited online MDiv, DMin, PhD in theology, divinity, and ministry studies at all levels.",url:"https://www.liberty.edu/divinity/",tags:["Online","MDiv","PhD","Baptist","Accredited"],type:"online"},
+  {name:"Regent University Online",loc:"Online",desc:"Accredited online MDiv, MA, DMin, PhD in divinity and ministry with flexible scheduling.",url:"https://www.regent.edu/school-of-divinity/",tags:["Online","MDiv","DMin","PhD","Charismatic"],type:"online"},
+  {name:"Grand Canyon Theological Seminary — Online",loc:"Online",desc:"Online MDiv, MA in ministry leadership and theological studies with 8-week courses.",url:"https://www.gcu.edu/college-of-theology",tags:["Online","MDiv","MA","Arizona"],type:"online"},
+  {name:"Phoenix Seminary Online",loc:"Online",desc:"Evangelical seminary offering online and hybrid MDiv, MA in biblical studies and church leadership.",url:"https://ps.edu/admissions/",tags:["Online","MDiv","MA","Arizona","Evangelical"],type:"online"},
+  {name:"Kairos University",loc:"Online / Sioux Falls, SD",desc:"Outcome-based online theological education with MDiv and MA programs for ministry practitioners.",url:"https://kairosedu.org/admissions/",tags:["Online","MDiv","Innovative","Seminary"],type:"online"},
+  {name:"Moody Bible Institute — Distance Learning",loc:"Online",desc:"Distance education from Moody Bible Institute in biblical studies, theology, and ministry certificates.",url:"https://www.moody.edu/moody-distance-learning/",tags:["Online","Biblical Studies","Certificate","Moody"],type:"online"},
+  {name:"Dallas Theological Seminary — Online",loc:"Online",desc:"Online access to DTS programs including MA in Biblical Studies, Christian Leadership, and Apologetics.",url:"https://www.dts.edu/programs/distance-education/",tags:["Online","MA","Evangelical","Biblical Studies"],type:"online"},
+  {name:"Assemblies of God University — Online",loc:"Online",desc:"Online BA and MA programs in ministry leadership, biblical studies, and Christian counseling.",url:"https://www.agts.edu/online/",tags:["Online","Pentecostal","MA","Ministry"],type:"online"},
+  {name:"Biola University — Online Theology",loc:"Online",desc:"Talbot School of Theology online programs in MA, MDiv offered with flexibility for working ministers.",url:"https://www.biola.edu/online/",tags:["Online","MDiv","MA","Evangelical","Apologetics"],type:"online"},
+  {name:"Southern Seminary — Online",loc:"Online",desc:"SBTS offers online MDiv, MA, DMin programs in biblical and theological studies for distance learners.",url:"https://www.sbts.edu/apply/",tags:["Online","MDiv","Baptist","Southern Baptist"],type:"online"},
+  {name:"Western Seminary — Online",loc:"Online",desc:"Online MDiv, MA in ministry leadership, spiritual formation, and biblical counseling.",url:"https://www.westernseminary.edu/online/",tags:["Online","MDiv","MA","Evangelical"],type:"online"},
+  {name:"Asbury Theological Seminary — Online",loc:"Online",desc:"Online MDiv, MA, DMin programs with Wesleyan emphasis available to students worldwide.",url:"https://asburyseminary.edu/experience/online/",tags:["Online","MDiv","Wesleyan","Methodist"],type:"online"},
+  {name:"Fuller Seminary — Online",loc:"Online",desc:"Online MDiv, MA programs in theology, global leadership, and ministry available internationally.",url:"https://www.fuller.edu/programs/",tags:["Online","MDiv","Multidenominational","Global"],type:"online"},
+  {name:"Denver Seminary — Online",loc:"Online",desc:"Online MDiv, MA in biblical studies, counseling, leadership, and spiritual formation.",url:"https://denverseminary.edu/programs/online/",tags:["Online","MDiv","MA","Counseling"],type:"online"},
+  // ===== INTERNATIONAL =====
+  {name:"Oxford Centre for Mission Studies",loc:"Oxford, UK",desc:"Postgraduate research in mission, theology, and world Christianity. PhD and MA research programs.",url:"https://www.ocms.ac.uk/admissions/",tags:["International","UK","PhD","Missions"],type:"international"},
+  {name:"King's College London — Theology",loc:"London, UK",desc:"World-ranked university offering undergraduate and postgraduate programs in theology and religious studies.",url:"https://www.kcl.ac.uk/theology",tags:["International","UK","PhD","MA"],type:"international"},
+  {name:"McGill University — Religious Studies",loc:"Montreal, Canada",desc:"Leading Canadian university with MA, PhD in religious studies, theology, and comparative religion.",url:"https://www.mcgill.ca/religiousstudies/prospective",tags:["International","Canada","MA","PhD"],type:"international"},
+  {name:"Wycliffe College — University of Toronto",loc:"Toronto, Canada",desc:"Anglican seminary at U of T offering MDiv, ThM, DMin. One of Canada's largest theological schools.",url:"https://www.wycliffecollege.ca/admissions",tags:["International","Canada","Anglican","MDiv"],type:"international"},
+  {name:"Regent College",loc:"Vancouver, Canada",desc:"Interdenominational Christian graduate school offering MA, MCS, MDiv in theology and culture.",url:"https://www.regent-college.edu/admissions",tags:["International","Canada","MA","MDiv","Evangelical"],type:"international"},
+  {name:"Stellenbosch University — Theology",loc:"Stellenbosch, South Africa",desc:"Premier African theology faculty with graduate programs in systematic theology and church history.",url:"https://www.sun.ac.za/english/faculty/theology",tags:["International","Africa","PhD","Theology"],type:"international"},
+  {name:"African Theological Seminary",loc:"Nairobi, Kenya",desc:"Evangelical seminary serving Africa with MDiv and MA programs in theology and ministry.",url:"https://ats.ac.ke/admissions",tags:["International","Africa","Kenya","MDiv"],type:"international"},
+  {name:"Philippines Biblical Seminary",loc:"Valenzuela City, Philippines",desc:"Evangelical seminary in Asia offering MDiv, MA, DMin in biblical studies and ministry leadership.",url:"https://www.pbseminary.edu.ph/",tags:["International","Asia","Philippines","MDiv"],type:"international"},
+  {name:"South Asia Institute of Advanced Christian Studies",loc:"Bangalore, India",desc:"Evangelical institution offering graduate programs in theology and biblical studies for South Asian context.",url:"https://www.saiacs.org/admissions/",tags:["International","Asia","India","MDiv","MA"],type:"international"},
 ];
 
-let allSchools = [];
-let adminUnlocked = false;
-let activeFilter = 'all';
 
 function init(){
-  const custom = gateLoad('gate_custom_schools') || [];
-  allSchools = [...DEFAULT_SCHOOLS, ...custom];
+  const custom=gateLoad('gate_custom_schools')||[];
+  allSchools=[...DEFAULT_SCHOOLS,...custom];
   renderSchools(allSchools);
+  document.getElementById('resultCount').textContent='Showing all '+allSchools.length+' schools and universities';
 }
 
 function renderSchools(list){
-  const grid = document.getElementById('schoolGrid');
-  if(!list.length){grid.innerHTML='<p style="color:var(--text2);">No schools found matching your criteria.</p>';return;}
-  grid.innerHTML = list.map(s=>`
-    <div class="school-card" data-type="${s.type}">
-      <div class="school-name">${s.name}</div>
+  const grid=document.getElementById('schoolGrid');
+  const count=document.getElementById('resultCount');
+  if(!list.length){
+    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text2);font-size:.9rem;">No schools found matching your search.</div>';
+    if(count)count.textContent='0 results';
+    return;
+  }
+  if(count)count.textContent='Showing '+list.length+' school'+(list.length!==1?'s':'')+' — click any card to visit';
+  const icons={seminary:'⛪',university:'🏛',online:'💻',international:'🌍'};
+  const colors={seminary:'rgba(201,168,76,.06)',university:'rgba(30,80,150,.08)',online:'rgba(45,122,79,.06)',international:'rgba(100,60,160,.08)'};
+  grid.innerHTML=list.map(s=>`
+    <div class="school-card" data-type="${s.type||'seminary'}">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.5rem;">
+        <div class="school-name">${s.name}</div>
+        <span style="font-size:1.1rem;flex-shrink:0;">${icons[s.type]||'⛪'}</span>
+      </div>
       <div class="school-location">📍 ${s.loc}</div>
       <div class="school-desc">${s.desc}</div>
-      <div class="school-tags">${(s.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-      <a href="${s.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Apply Now →</a>
-      ${s.custom?`<button class="btn btn-danger btn-sm" style="margin-left:.5rem;" onclick="removeSchool('${s.name.replace(/'/g,\'\\\'\')}')" >Remove</button>`:''}</div>
-  `).join('');
+      <div class="school-tags">${(s.tags||[]).map(t=>'<span class="tag">'+t+'</span>').join('')}</div>
+      <div style="display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap;">
+        <a href="${s.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Apply Now →</a>
+        ${s.custom&&adminUnlocked?'<button class="btn btn-danger btn-sm" onclick="removeSchool(''+s.name.replace(/'/g,"\'")+'')">🗑 Remove</button>':''}
+      </div>
+    </div>`).join('');
 }
 
 function filterSchools(type,btn){
-  activeFilter=type;
+  currentFilter=type;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  applyFilters();
+  if(btn)btn.classList.add('active');
+  document.getElementById('schoolSearch').value='';
+  if(type==='all'){renderSchools(allSchools);}
+  else{renderSchools(allSchools.filter(s=>s.type===type));}
 }
 
-function searchSchools(){applyFilters();}
-
-function applyFilters(){
-  const q = document.getElementById('schoolSearch').value.toLowerCase();
-  let list = allSchools;
-  if(activeFilter!=='all') list=list.filter(s=>s.type===activeFilter);
-  if(q) list=list.filter(s=>s.name.toLowerCase().includes(q)||s.loc.toLowerCase().includes(q)||(s.tags||[]).some(t=>t.toLowerCase().includes(q)));
-  renderSchools(list);
-}
-
-function toggleAdminAdd(){
-  const div=document.getElementById('adminAddSchool');
-  div.style.display=div.style.display==='none'?'block':'none';
-}
-
-function checkAdminPw(){
-  const pw=document.getElementById('adminPw').value;
-  if(pw==='GATE2025admin'){adminUnlocked=true;document.getElementById('adminAddSchool').style.display='block';alert('Admin unlocked.');}
-  else alert('Incorrect password.');
+function searchSchools(){
+  const q=document.getElementById('schoolSearch').value.toLowerCase().trim();
+  if(!q){
+    const list=currentFilter==='all'?allSchools:allSchools.filter(s=>s.type===currentFilter);
+    renderSchools(list);return;
+  }
+  const filtered=allSchools.filter(s=>
+    s.name.toLowerCase().includes(q)||
+    s.loc.toLowerCase().includes(q)||
+    s.desc.toLowerCase().includes(q)||
+    (s.tags||[]).some(t=>t.toLowerCase().includes(q))
+  );
+  renderSchools(filtered);
 }
 
 function addSchool(){
-  if(!adminUnlocked){alert('Please enter admin password first.');return;}
+  if(!adminUnlocked)return;
   const name=document.getElementById('addName').value.trim();
   const loc=document.getElementById('addLocation').value.trim();
-  const desc=document.getElementById('addDesc').value.trim();
-  const url=document.getElementById('addUrl').value.trim();
-  const tags=document.getElementById('addTags').value.split(',').map(t=>t.trim()).filter(Boolean);
-  const type=document.getElementById('addType').value;
-  if(!name||!loc||!url){document.getElementById('addSchoolMsg').innerHTML='<span style="color:#e05555;">Name, location, and URL are required.</span>';return;}
+  if(!name||!loc){document.getElementById('addMsg').innerHTML='<span style="color:#e05555">Name and location required.</span>';return;}
+  const school={
+    name,loc,
+    desc:document.getElementById('addDesc').value.trim(),
+    url:document.getElementById('addUrl').value.trim()||'#',
+    type:document.getElementById('addType').value,
+    tags:document.getElementById('addTags').value.split(',').map(t=>t.trim()).filter(Boolean),
+    custom:true
+  };
   const custom=gateLoad('gate_custom_schools')||[];
-  custom.push({name,loc,desc,url,tags,type,custom:true});
+  custom.push(school);
   gateSave('gate_custom_schools',custom);
-  allSchools.push({name,loc,desc,url,tags,type,custom:true});
+  allSchools.push(school);
   renderSchools(allSchools);
-  document.getElementById('addSchoolMsg').innerHTML='<span style="color:#4aad74;">✅ Posted! Visible to everyone.</span>';
   ['addName','addLocation','addDesc','addUrl','addTags'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('addMsg').innerHTML='<span style="color:#4aad74">✅ School posted! Visible to everyone.</span>';
+  setTimeout(()=>{document.getElementById('addMsg').innerHTML='';},3000);
 }
 
 function removeSchool(name){
-  if(!adminUnlocked)return;
   if(!confirm('Remove '+name+'?'))return;
   const custom=(gateLoad('gate_custom_schools')||[]).filter(s=>s.name!==name);
   gateSave('gate_custom_schools',custom);
@@ -453,392 +569,25 @@ function removeSchool(name){
   renderSchools(allSchools);
 }
 
-init();
-</script>
-<script src="assets/gate_shared.js"></script>
+function promptAdmin(){
+  if(adminUnlocked){document.getElementById('adminAddSchool').style.display='block';return;}
+  const pw=prompt('Admin Password:');
+  if(pw==='GATE2025admin'){
+    adminUnlocked=true;
+    const s=gateLoad('td_gate_v6')||{};
+    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};
+    s.tier='admin';gateSave('td_gate_v6',s);
+    document.getElementById('adminAddSchool').style.display='block';
+    renderSchools(allSchools);
+  }else if(pw!==null)alert('Incorrect password.');
+}
 
-<!-- ===== GATE ADMIN TOOLBAR ===== -->
-<div id="gateAdminBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#0d1b2e 0%,#162440 100%);border-top:2px solid #c9a84c;padding:.45rem 1rem;font-family:sans-serif;">
-  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
-    <span style="color:#c9a84c;font-size:.75rem;font-weight:700;letter-spacing:1px;margin-right:.3rem;">⚙ ADMIN:</span>
-    <button onclick="gAdminAction('add')" style="background:#2d7a4f;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">+ Add</button>
-    <button onclick="gAdminAction('edit')" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">✏ Edit</button>
-    <button onclick="gAdminAction('upload')" style="background:#3060a0;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">📷 Upload</button>
-    <button onclick="gAdminAction('approve')" style="background:#2d7a4f;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">✓ Approve</button>
-    <button onclick="gAdminAction('verify')" style="background:#5a3080;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">🔍 Verify</button>
-    <button onclick="gAdminAction('suspend')" style="background:#a06020;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">⊘ Suspend</button>
-    <button onclick="gAdminAction('archive')" style="background:#3a3a5a;color:#e8e0d0;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">📦 Archive</button>
-    <button onclick="gAdminAction('restore')" style="background:#1a4a6a;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">↩ Restore</button>
-    <button onclick="gAdminAction('remove')" style="background:#8b2020;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">🗑 Remove</button>
-    <span style="margin-left:auto;display:flex;gap:.4rem;align-items:center;">
-      <a href="admin.html" style="color:#c9a84c;font-size:.72rem;text-decoration:none;border:1px solid rgba(201,168,76,.4);padding:.28rem .6rem;border-radius:4px;">Admin Console →</a>
-      <button onclick="gAdminLogout()" style="background:rgba(139,32,32,.6);color:#e05555;border:1px solid rgba(139,32,32,.6);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✕ Exit Admin</button>
-    </span>
-  </div>
-</div>
-
-<!-- Admin Login Float Button -->
-<div id="gAdminLoginBtn" style="position:fixed;bottom:1rem;right:1rem;z-index:9998;">
-  <button onclick="gAdminPrompt()" style="background:linear-gradient(135deg,#162440,#0d1b2e);color:#c9a84c;border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4);">⚙ Admin</button>
-</div>
-
-<!-- Admin Action Modal -->
-<div id="gAdminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:10000;align-items:center;justify-content:center;">
-  <div style="background:#162440;border:2px solid #c9a84c;border-radius:10px;padding:2rem;max-width:520px;width:90%;max-height:85vh;overflow-y:auto;position:relative;">
-    <button onclick="document.getElementById('gAdminModal').style.display='none'" style="position:absolute;top:.7rem;right:.8rem;background:none;border:none;color:#b8a88a;font-size:1.3rem;cursor:pointer;">✕</button>
-    <h3 id="gAdminModalTitle" style="font-family:'Cinzel',serif;color:#c9a84c;margin-bottom:1.2rem;letter-spacing:1px;font-size:1.1rem;"></h3>
-    <div id="gAdminModalBody"></div>
-  </div>
-</div>
-
-<script>
 (function(){
-  const GATE_KEY='td_gate_v6';
-  const ADMIN_PASS='GATE2025admin';
-  function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
-  function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-  
-  function isAdmin(){
-    const s=gl(GATE_KEY);
-    return s&&s.tier==='admin';
-  }
-  
-  function gAdminShow(){
-    document.getElementById('gateAdminBar').style.display='block';
-    document.getElementById('gAdminLoginBtn').style.display='none';
-  }
-  
-  window.gAdminPrompt=function(){
-    if(isAdmin()){gAdminShow();return;}
-    const pw=prompt('🔐 Admin Password:');
-    if(pw===ADMIN_PASS){
-      const s=gl(GATE_KEY)||{user:null,tier:null};
-      if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};
-      s.tier='admin';
-      gs(GATE_KEY,s);
-      gAdminShow();
-    } else if(pw!==null){alert('Incorrect password.');}
-  };
-  
-  window.gAdminLogout=function(){
-    document.getElementById('gateAdminBar').style.display='none';
-    document.getElementById('gAdminLoginBtn').style.display='block';
-  };
-  
-  const PAGE=window.location.pathname.split('/').pop()||'index.html';
-  
-  window.gAdminAction=function(action){
-    const modal=document.getElementById('gAdminModal');
-    const title=document.getElementById('gAdminModalTitle');
-    const body=document.getElementById('gAdminModalBody');
-    const GATE_ADMIN_KEY='gate_admin_content_'+PAGE.replace('.html','');
-    
-    const actions={
-      add:{label:'📢 Post New Content',icon:'📢',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title / Name *</label><input id="ga_title" type="text" placeholder="Title or name..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description / Body</label><textarea id="ga_body" rows="4" placeholder="Content description..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;resize:vertical;"></textarea></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL / Link (optional)</label><input id="ga_url" type="url" placeholder="https://..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Upload Image (optional)</label><input id="ga_img" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"></div>
-          <div id="ga_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminSaveItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">📢 POST</button>
-        </div>`},
-      edit:{label:'✏️ Edit / Change',icon:'✏️',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item to Edit</label>
-          <select id="ga_edit_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;" onchange="gAdminLoadEditItem()"><option value="">— Select —</option></select></div>
-          <div id="ga_edit_fields" style="display:none;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title</label><input id="ga_e_title" type="text" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description</label><textarea id="ga_e_body" rows="4" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;resize:vertical;"></textarea></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL</label><input id="ga_e_url" type="url" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div id="ga_e_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminUpdateItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Update</button></div>
-        </div>`},
-      upload:{label:'📷 Upload Image',icon:'📷',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item</label>
-          <select id="ga_ul_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">— Select item or New —</option><option value="__new__">Add as new image</option></select></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Image Label</label><input id="ga_ul_label" type="text" placeholder="Image label/title..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Image File</label><input id="ga_ul_file" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"><div id="ga_ul_preview" style="margin-top:.5rem;"></div></div>
-          <div id="ga_ul_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminUploadImg()" style="background:#3060a0;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Upload Image</button>
-        </div>`},
-      approve:{label:'✓ Approve Item',icon:'✓',html:gAdminApproveHtml()},
-      verify:{label:'🔍 Verify Item',icon:'🔍',html:gAdminStatusHtml('verify','verified','Verified','#5a3080')},
-      suspend:{label:'⊘ Suspend Item',icon:'⊘',html:gAdminStatusHtml('suspend','suspended','Suspended','#a06020')},
-      archive:{label:'📦 Archive Item',icon:'📦',html:gAdminStatusHtml('archive','archived','Archived','#3a3a5a')},
-      restore:{label:'↩ Restore Item',icon:'↩',html:gAdminRestoreHtml()},
-      remove:{label:'🗑 Remove / Delete',icon:'🗑',html:gAdminRemoveHtml()},
-    };
-    
-    const a=actions[action];
-    title.textContent=a.label;
-    body.innerHTML=a.html;
-    modal.style.display='flex';
-    
-    // Populate selects after rendering
-    if(action==='edit'||action==='upload')setTimeout(()=>gAdminPopulateSelect(action),50);
-    if(action==='remove'||action==='restore'||action==='archive'||action==='suspend'||action==='verify')
-      setTimeout(()=>gAdminPopulateActionSelect(action),50);
-    if(action==='approve')setTimeout(()=>gAdminPopulateApprove(),50);
-  };
-  
-  function gAdminApproveHtml(){
-    return `<div style="font-family:sans-serif;">
-      <p style="color:#b8a88a;font-size:.85rem;margin-bottom:1rem;">Review and approve pending items or user payment requests.</p>
-      <div id="ga_approve_list" style="margin-bottom:1rem;"></div>
-      <div id="ga_approve_users" style="margin-bottom:1rem;"></div>
-    </div>`;
-  }
-  
-  function gAdminStatusHtml(action,status,label,color){
-    return `<div style="font-family:sans-serif;">
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item</label>
-      <select id="ga_status_sel_${action}" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Reason (optional)</label><input id="ga_status_reason_${action}" type="text" placeholder="Reason for ${label.toLowerCase()}..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-      <div id="ga_status_msg_${action}" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminSetStatus('${action}','${status}')" style="background:${color};color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Mark as ${label}</button>
-    </div>`;
-  }
-  
-  function gAdminRestoreHtml(){
-    return `<div style="font-family:sans-serif;">
-      <p style="color:#b8a88a;font-size:.85rem;margin-bottom:.8rem;">Select an archived or suspended item to restore.</p>
-      <div style="margin-bottom:.8rem;"><select id="ga_restore_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div id="ga_restore_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminRestore()" style="background:#1a4a6a;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Restore Item</button>
-    </div>`;
-  }
-  
-  function gAdminRemoveHtml(){
-    return `<div style="font-family:sans-serif;">
-      <div class="alert" style="background:rgba(139,32,32,.2);border:1px solid rgba(139,32,32,.4);color:#e05555;border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem;">⚠️ Removed items cannot be recovered. Consider archiving instead.</div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item to Remove</label>
-      <select id="ga_remove_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Type DELETE to confirm</label><input id="ga_remove_confirm" type="text" placeholder="Type DELETE" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(139,32,32,.4);color:#e05555;border-radius:5px;font-size:.9rem;"></div>
-      <div id="ga_remove_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminRemoveItem()" style="background:#8b2020;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Permanently Remove</button>
-    </div>`;
-  }
-  
-  function getPageKey(){return 'gate_admin_content_'+(window.location.pathname.split('/').pop()||'index').replace('.html','');}
-  function getItems(){return gl(getPageKey())||[];}
-  function saveItems(items){gs(getPageKey(),items);}
-  
-  window.gAdminSaveItem=async function(){
-    const title=document.getElementById('ga_title').value.trim();
-    const body=document.getElementById('ga_body').value.trim();
-    const url=document.getElementById('ga_url').value.trim();
-    const imgFile=document.getElementById('ga_img').files[0];
-    const msg=document.getElementById('ga_msg');
-    if(!title){msg.innerHTML='<span style="color:#e05555;">Title required.</span>';return;}
-    let img='';
-    if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
-    const items=getItems();
-    items.push({id:Date.now(),title,body,url,img,status:'active',created:new Date().toISOString()});
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✅ Posted! Visible to all visitors.</span>';
-    document.getElementById('ga_title').value='';
-    document.getElementById('ga_body').value='';
-    document.getElementById('ga_url').value='';
-    document.getElementById('ga_img').value='';
-  };
-  
-  window.gAdminPopulateSelect=function(action){
-    const items=getItems();
-    const selId=action==='edit'?'ga_edit_sel':'ga_ul_sel';
-    const sel=document.getElementById(selId);
-    if(!sel)return;
-    const existing=items.map(i=>`<option value="${i.id}">${i.title} [${i.status}]</option>`).join('');
-    sel.innerHTML='<option value="">— Select —</option>'+existing+(action==='upload'?'<option value="__new__">Add as new image</option>':'');
-  };
-  
-  window.gAdminPopulateActionSelect=function(action){
-    const items=getItems();
-    const selId='ga_status_sel_'+action||'ga_'+action+'_sel';
-    let sel=document.getElementById('ga_status_sel_'+action);
-    if(!sel)sel=document.getElementById('ga_'+action+'_sel');
-    if(!sel)return;
-    sel.innerHTML='<option value="">— Select —</option>'+items.map(i=>`<option value="${i.id}">${i.title} [${i.status}]</option>`).join('');
-  };
-  
-  window.gAdminPopulateApprove=function(){
-    const list=document.getElementById('ga_approve_list');
-    const ulist=document.getElementById('ga_approve_users');
-    // Show pending payments
-    const pending=(gl('gate_pending_payments')||[]).filter(p=>p.status==='pending');
-    if(pending.length){
-      list.innerHTML='<p style="color:#c9a84c;font-size:.82rem;font-weight:700;margin-bottom:.5rem;">Pending Payments ('+pending.length+')</p>'+
-        pending.map((p,i)=>`<div style="display:flex;align-items:center;justify-content:space-between;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:.6rem .8rem;margin-bottom:.4rem;font-size:.82rem;">
-          <span style="color:#e8e0d0;">${p.email} — ${p.tier.toUpperCase()}</span>
-          <span style="display:flex;gap:.3rem;"><button onclick="gAdminApprovePayment(${i})" style="background:#2d7a4f;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✓ Approve</button>
-          <button onclick="gAdminDenyPayment(${i})" style="background:#8b2020;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✗ Deny</button></span></div>`).join('');
-    } else {
-      list.innerHTML='<p style="color:#b8a88a;font-size:.82rem;">No pending payment requests.</p>';
-    }
-    // Show users for verification
-    const users=Object.values(gl('gate_users_v6')||{}).filter(u=>!u.verified);
-    if(users.length){
-      ulist.innerHTML='<p style="color:#c9a84c;font-size:.82rem;font-weight:700;margin-bottom:.5rem;margin-top:.8rem;">Unverified Users ('+users.length+')</p>'+
-        users.map(u=>`<div style="display:flex;align-items:center;justify-content:space-between;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:.5rem .8rem;margin-bottom:.3rem;font-size:.82rem;">
-          <span style="color:#e8e0d0;">${u.email}</span>
-          <button onclick="gAdminVerifyUser('${u.email}')" style="background:#5a3080;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">Verify</button></div>`).join('');
-    }
-  };
-  
-  window.gAdminApprovePayment=function(idx){
-    const pending=gl('gate_pending_payments')||[];
-    if(!pending[idx])return;
-    const req=pending[idx];req.status='approved';req.approvedAt=Date.now();
-    const users=gl('gate_users_v6')||{};
-    if(!users[req.email])users[req.email]={name:req.email,email:req.email,pass:btoa('gate123'),tier:req.tier,enrolled:Date.now(),verified:true,active:true};
-    else users[req.email].tier=req.tier;
-    gs('gate_users_v6',users);gs('gate_pending_payments',pending);
-    alert('✓ Approved: '+req.email);gAdminPopulateApprove();
-  };
-  
-  window.gAdminDenyPayment=function(idx){
-    if(!confirm('Deny this payment?'))return;
-    const pending=gl('gate_pending_payments')||[];
-    if(!pending[idx])return;
-    pending[idx].status='denied';gs('gate_pending_payments',pending);gAdminPopulateApprove();
-  };
-  
-  window.gAdminVerifyUser=function(email){
-    const users=gl('gate_users_v6')||{};
-    if(users[email])users[email].verified=true;
-    gs('gate_users_v6',users);alert('✓ Verified: '+email);gAdminPopulateApprove();
-  };
-  
-  window.gAdminLoadEditItem=function(){
-    const sel=document.getElementById('ga_edit_sel');
-    const id=parseInt(sel.value);
-    const item=getItems().find(i=>i.id===id);
-    const fields=document.getElementById('ga_edit_fields');
-    if(!item){fields.style.display='none';return;}
-    fields.style.display='block';
-    document.getElementById('ga_e_title').value=item.title||'';
-    document.getElementById('ga_e_body').value=item.body||'';
-    document.getElementById('ga_e_url').value=item.url||'';
-  };
-  
-  window.gAdminUpdateItem=function(){
-    const sel=document.getElementById('ga_edit_sel');
-    const id=parseInt(sel.value);
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    if(!item){return;}
-    item.title=document.getElementById('ga_e_title').value;
-    item.body=document.getElementById('ga_e_body').value;
-    item.url=document.getElementById('ga_e_url').value;
-    item.updated=new Date().toISOString();
-    saveItems(items);
-    document.getElementById('ga_e_msg').innerHTML='<span style="color:#4aad74;">✓ Updated!</span>';
-  };
-  
-  window.gAdminUploadImg=async function(){
-    const imgFile=document.getElementById('ga_ul_file').files[0];
-    const label=document.getElementById('ga_ul_label').value.trim();
-    const msg=document.getElementById('ga_ul_msg');
-    if(!imgFile){msg.innerHTML='<span style="color:#e05555;">Select an image.</span>';return;}
-    const b64=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});
-    const selVal=document.getElementById('ga_ul_sel').value;
-    const items=getItems();
-    if(selVal==='__new__'||!selVal){
-      items.push({id:Date.now(),title:label||imgFile.name,body:'',url:'',img:b64,status:'active',created:new Date().toISOString()});
-    } else {
-      const item=items.find(i=>i.id===parseInt(selVal));
-      if(item)item.img=b64;
-    }
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Image uploaded!</span>';
-    document.getElementById('ga_ul_preview').innerHTML='<img src="'+b64+'" style="max-height:120px;border-radius:6px;margin-top:.3rem;">';
-  };
-  
-  window.gAdminSetStatus=function(action,status){
-    const sel=document.getElementById('ga_status_sel_'+action);
-    if(!sel)return;
-    const id=parseInt(sel.value);
-    const reason=document.getElementById('ga_status_reason_'+action).value;
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    const msgEl=document.getElementById('ga_status_msg_'+action);
-    if(!item){if(msgEl)msgEl.innerHTML='<span style="color:#e05555;">Select an item.</span>';return;}
-    item.status=status;if(reason)item.reason=reason;item.updated=new Date().toISOString();
-    saveItems(items);
-    if(msgEl)msgEl.innerHTML='<span style="color:#4aad74;">✓ Status updated to '+status+'!</span>';
-  };
-  
-  window.gAdminRestore=function(){
-    const sel=document.getElementById('ga_restore_sel');
-    if(!sel)return;
-    const id=parseInt(sel.value);
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    const msg=document.getElementById('ga_restore_msg');
-    if(!item){msg.innerHTML='<span style="color:#e05555;">Select an item.</span>';return;}
-    item.status='active';delete item.reason;item.updated=new Date().toISOString();
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Restored!</span>';
-    gAdminPopulateActionSelect('restore');
-  };
-  
-  window.gAdminRemoveItem=function(){
-    const sel=document.getElementById('ga_remove_sel');
-    const confirm_input=document.getElementById('ga_remove_confirm');
-    const msg=document.getElementById('ga_remove_msg');
-    if(confirm_input.value!=='DELETE'){msg.innerHTML='<span style="color:#e05555;">Type DELETE to confirm.</span>';return;}
-    const id=parseInt(sel.value);
-    const items=getItems().filter(i=>i.id!==id);
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Removed.</span>';
-    confirm_input.value='';
-    gAdminPopulateActionSelect('remove');
-  };
-  
-  // Auto-show if admin is logged in
-  if(isAdmin()){
-    document.addEventListener('DOMContentLoaded',function(){gAdminShow();});
-  }
+  const s=gateLoad('td_gate_v6');
+  if(s&&s.tier==='admin'){adminUnlocked=true;document.getElementById('adminAddSchool').style.display='block';}
+  init();
 })();
-</script>
-<!-- ===== END GATE ADMIN TOOLBAR ===== -->
 
-<script>
-(function(){
-  var timers = {};
-  var DELAY = 320; // ms before closing dropdown
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd, i){
-    dd.setAttribute('data-dd', i);
-    dd.addEventListener('mouseenter', function(){
-      clearTimeout(timers[i]);
-      dd.classList.add('open');
-    });
-    dd.addEventListener('mouseleave', function(){
-      timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-    });
-    var menu = dd.querySelector('.gate-dropdown-menu');
-    if(menu){
-      menu.addEventListener('mouseenter', function(){ clearTimeout(timers[i]); });
-      menu.addEventListener('mouseleave', function(){
-        timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-      });
-    }
-  });
-})();
-</script>
-<script>
-/* Dropdown delay — 350ms before closing so you can click items */
-(function(){
-  var T={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    function open(){clearTimeout(T[i]);dd.classList.add('open');}
-    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);
-    dd.addEventListener('mouseleave',close);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
-  });
-})();
+(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
 </script>
 </body></html>
