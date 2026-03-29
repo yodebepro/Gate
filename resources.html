@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Bible Resources</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a;--line:rgba(201,168,76,.22)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative;display:inline-block}
+.gate-dropdown>a,.gate-dropdown>button{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;background:none;border:none;cursor:pointer}
+.gate-dropdown>a:hover,.gate-dropdown>button:hover{color:var(--gold);background:rgba(201,168,76,.12)}
+.gate-dropdown-menu{display:block;visibility:hidden;opacity:0;pointer-events:none;position:absolute;top:calc(100% + 8px);left:0;min-width:235px;background:linear-gradient(160deg,#162440,#0d1b2e);border:1px solid rgba(201,168,76,.45);border-top:3px solid var(--gold);border-radius:0 0 10px 10px;padding:.4rem 0;box-shadow:0 16px 45px rgba(0,0,0,.75);z-index:1000;transform:translateY(-8px);transition:opacity .22s,transform .22s,visibility .22s}
+.gate-dropdown.open .gate-dropdown-menu,.gate-dropdown:hover .gate-dropdown-menu{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.gate-dropdown-menu a{display:flex;align-items:center;gap:.5rem;color:var(--text2);font-size:.82rem;padding:.58rem 1rem;font-family:sans-serif;letter-spacing:.3px;text-decoration:none;border-left:3px solid transparent;transition:all .18s}
+.gate-dropdown-menu a:hover{color:var(--gold);background:linear-gradient(90deg,rgba(201,168,76,.12),rgba(201,168,76,.02));border-left-color:var(--gold);padding-left:1.3rem}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+.page-header{background:linear-gradient(180deg,var(--navy2),var(--charcoal));border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1400px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-bottom:1.8rem}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;text-align:center}
+.stat-val{font-size:1.8rem;font-weight:700;color:var(--gold);font-family:sans-serif}
+.stat-lbl{font-size:.7rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;margin-top:.2rem}
+.search-card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.4rem;margin-bottom:1.5rem}
+.search-card h2{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px;margin-bottom:.9rem}
+.search-row{display:flex;gap:.5rem;margin-bottom:.8rem}
+.search-row input{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.65rem .9rem;font-family:inherit;font-size:.9rem;flex:1}
+.search-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.15)}
+.search-row button{background:var(--gold);color:var(--navy);border:none;border-radius:5px;padding:.65rem 1.3rem;font-weight:700;cursor:pointer;font-family:sans-serif}
+.search-row button:hover{background:var(--gold2)}
+.filter-row{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.filter-btn{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--text2);padding:.35rem .9rem;border-radius:20px;font-size:.78rem;cursor:pointer;font-family:sans-serif;transition:all .2s}
+.filter-btn.active,.filter-btn:hover{background:rgba(201,168,76,.2);color:var(--gold);border-color:var(--gold)}
+.search-results{margin-top:.8rem}
+.result-item{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:.8rem 1rem;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.result-name{font-family:'Cinzel',serif;color:var(--cream);font-size:.9rem}
+.result-cat{font-size:.72rem;color:var(--text2);font-family:sans-serif}
+.section-label{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);letter-spacing:2px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
+.res-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;text-decoration:none;transition:all .2s;display:block}
+.res-card:hover{border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-2px)}
+.res-card.hidden{display:none}
+.res-icon{font-size:1.8rem;margin-bottom:.5rem}
+.res-name{font-family:'Cinzel',serif;font-size:.88rem;color:var(--cream);margin-bottom:.25rem;line-height:1.4}
+.res-cat{font-size:.7rem;color:var(--gold);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem}
+.res-desc{font-size:.78rem;color:var(--text2);line-height:1.6;margin-bottom:.6rem}
+.res-link{font-size:.78rem;color:var(--gold);font-family:sans-serif;font-weight:600}
+.divinity-banner{background:linear-gradient(135deg,rgba(45,122,79,.12),rgba(201,168,76,.08));border:1px solid rgba(45,122,79,.35);border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.divinity-banner h3{font-family:'Cinzel',serif;color:#4aad74;font-size:.95rem;margin-bottom:.3rem}
+.divinity-banner p{color:var(--text2);font-size:.82rem}
+.no-results{color:var(--text2);text-align:center;padding:2rem;font-size:.9rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+
+.form-group{margin-bottom:.85rem}
+label{display:block;color:var(--text2);font-size:.8rem;margin-bottom:.22rem}
+input[type="text"],input[type="url"],select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.88rem;width:100%}
+input[type="text"]:focus,input[type="url"]:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.15)}
+input[type="file"]{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text2);border-radius:5px;padding:.45rem .7rem;font-family:sans-serif;font-size:.82rem;width:100%;cursor:pointer}
+.admin-res-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;margin-bottom:.7rem}
+.admin-res-card img{max-width:100%;max-height:160px;object-fit:cover;border-radius:6px;margin-bottom:.5rem;border:1px solid rgba(201,168,76,.15)}
+.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+<div class="page-header">
+  <h1>📚 Bible Resources</h1>
+  <p>Free Bible Studies, Theological Resources &amp; Family Devotionals · Open Access</p>
+  <div class="divider"></div>
+</div>
+<div class="container">
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-val">7</div><div class="stat-lbl">Resources</div></div>
+    <div class="stat-box"><div class="stat-val">3</div><div class="stat-lbl">Categories</div></div>
+    <div class="stat-box"><div class="stat-val">PDF</div><div class="stat-lbl">Embedded Viewer</div></div>
+    <div class="stat-box"><div class="stat-val">🆓</div><div class="stat-lbl">Free Access</div></div>
+  </div>
+
+  <!-- Free Divinity Banner -->
+  <div class="divinity-banner">
+    <div>
+      <h3>📖 Also Available: Free Divinity Resources</h3>
+      <p>These resources are also accessible through the Free Divinity section in your Free Trial menu.</p>
+    </div>
+    <a href="free_trial_free_divinity.html" style="background:#2d7a4f;color:#fff;padding:.6rem 1.2rem;border-radius:6px;font-family:sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;white-space:nowrap;">Go to Free Divinity →</a>
+  </div>
+
+  <!-- Search -->
+  <div class="search-card">
+    <h2>🔍 Search Resources</h2>
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Search by title or category — e.g. Family, Theology, Bible Study..." oninput="doSearch(this.value)" onkeydown="if(event.key===&#39;Enter&#39;)doSearch(this.value)">
+      <button onclick="doSearch(document.getElementById('searchInput').value)">Search</button>
+    </div>
+    <div class="filter-row">
+      <span style="color:var(--text2);font-size:.78rem;font-family:sans-serif;">Browse:</span>
+      <button class="filter-btn active" onclick="filterCat('all',this)">All Resources</button>
+      <button class="filter-btn" onclick="filterCat('bible studies',this)">📖 Bible Studies</button>
+      <button class="filter-btn" onclick="filterCat('family studies',this)">👨‍👩‍👧 Family Studies</button>
+      <button class="filter-btn" onclick="filterCat('theology',this)">✝ Theology</button>
+    </div>
+    <div class="search-results" id="searchResults" style="display:none;"></div>
+  </div>
+
+  <!-- Resource Grid -->
+  <div class="section-label">📚 All Resources</div>
+  <div class="res-grid" id="resGrid"><a href="resource_bible_study.html" class="res-card" data-name="bible study guide" data-cat="bible studies">
+  <div class="res-icon">📖</div>
+  <div class="res-name">Bible Study Guide</div>
+  <div class="res-cat">Bible Studies</div>
+  <div class="res-desc">A comprehensive guide to personal and group Bible study methods, covering study techniques, hermeneu…</div>
+  <div class="res-link">Open Resource →</div>
+</a>
+<a href="resource_daily_family_studies_1.html" class="res-card" data-name="daily family bible studies — part 1" data-cat="family studies">
+  <div class="res-icon">👨‍👩‍👧</div>
+  <div class="res-name">Daily Family Bible Studies — Part 1</div>
+  <div class="res-cat">Family Studies</div>
+  <div class="res-desc">Daily devotional Bible studies designed for families. Part 1 covers foundational passages from the O…</div>
+  <div class="res-link">Open Resource →</div>
+</a>
+<a href="resource_daily_family_studies_2.html" class="res-card" data-name="daily family bible studies — part 2" data-cat="family studies">
+  <div class="res-icon">👨‍👩‍👧</div>
+  <div class="res-name">Daily Family Bible Studies — Part 2</div>
+  <div class="res-cat">Family Studies</div>
+  <div class="res-desc">Continuing daily family devotionals. Part 2 explores Psalms, Proverbs, and major prophetic books.…</div>
+  <div class="res-link">Open Resource →</div>
+</a>
+<a href="resource_daily_family_studies_3.html" class="res-card" data-name="daily family bible studies — part 3" data-cat="family studies">
+  <div class="res-icon">👨‍👩‍👧</div>
+  <div class="res-name">Daily Family Bible Studies — Part 3</div>
+  <div class="res-cat">Family Studies</div>
+  <div class="res-desc">Daily family devotional studies covering the Gospels and the life and teachings of Jesus Christ.…</div>
+  <div class="res-link">Open Resource →</div>
+</a>
+<a href="resource_daily_family_studies_4.html" class="res-card" data-name="daily family bible studies — part 4" data-cat="family studies">
+  <div class="res-icon">👨‍👩‍👧</div>
+  <div class="res-name">Daily Family Bible Studies — Part 4</div>
+  <div class="res-cat">Family Studies</div>
+  <div class="res-desc">The final volume covering Acts, the Epistles, and Revelation.…</div>
+  <div class="res-link">Open Resource →</div>
+</a>
+<a href="resource_resources_1.html" class="res-card" data-name="theological resources — volume 1" data-cat="theology">
+  <div class="res-icon">✝</div>
+  <div class="res-name">Theological Resources — Volume 1</div>
+  <div class="res-cat">Theology</div>
+  <div class="res-desc">A curated collection of theological study materials and reference works for biblical and doctrinal s…</div>
+  <div class="res-link">Open Resource →</div>
+</a>
+<a href="resource_resources_2.html" class="res-card" data-name="theological resources — volume 2" data-cat="theology">
+  <div class="res-icon">✝</div>
+  <div class="res-name">Theological Resources — Volume 2</div>
+  <div class="res-cat">Theology</div>
+  <div class="res-desc">Volume 2 of theological resources with additional reference materials and biblical research guides.…</div>
+  <div class="res-link">Open Resource →</div>
+</a></div>
+
+
+  <!-- ══ ADMIN: Add Resource ══ -->
+  <div class="admin-panel" id="adminPanel" style="display:none;margin-top:1.5rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
+      <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px;">⚙ Admin — Add New Resource</h3>
+      <button onclick="hideAdmin()" style="background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">✕ Close</button>
+    </div>
+
+    <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.18);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+        <div class="form-group"><label>Resource Title *</label><input type="text" id="r_title" placeholder="e.g. Systematic Theology Vol. 3"></div>
+        <div class="form-group"><label>Category</label>
+          <select id="r_cat">
+            <option value="Bible Studies">📖 Bible Studies</option>
+            <option value="Family Studies">👨‍👩‍👧 Family Studies</option>
+            <option value="Theology">✝ Theology</option>
+            <option value="Divinity">📖 Divinity</option>
+            <option value="Commentary">📚 Commentary</option>
+            <option value="Devotional">🙏 Devotional</option>
+            <option value="Reference">📋 Reference</option>
+            <option value="Other">📄 Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label>Description *</label><textarea id="r_desc" rows="3" placeholder="Brief description of this resource..."></textarea></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+        <div class="form-group">
+          <label>PDF Filename or URL</label>
+          <input type="text" id="r_pdf" placeholder="e.g. MyResource.pdf  OR  https://example.com/file.pdf">
+          <div style="font-size:.72rem;color:var(--text2);margin-top:.25rem;">If uploading a PDF to GitHub, enter the filename (e.g. MyFile.pdf). For external links enter the full URL.</div>
+        </div>
+        <div class="form-group">
+          <label>Upload PDF Directly (optional)</label>
+          <input type="file" id="r_pdffile" accept=".pdf">
+          <div style="font-size:.72rem;color:var(--text2);margin-top:.25rem;">Upload a small PDF (&lt;5MB) to embed directly in the browser.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Upload Cover Image (optional)</label>
+        <input type="file" id="r_img" accept="image/*">
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+        <div class="form-group"><label>Author / Source (optional)</label><input type="text" id="r_author" placeholder="e.g. Charles Spurgeon"></div>
+        <div class="form-group"><label>Tags (comma separated, optional)</label><input type="text" id="r_tags" placeholder="e.g. Prophecy, NT, Greek"></div>
+      </div>
+
+      <div id="r_msg" style="font-size:.85rem;min-height:1.1rem;margin-bottom:.5rem;"></div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+        <button onclick="addAdminResource()" style="background:var(--gold);color:var(--navy);border:none;padding:.65rem 1.6rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;font-size:.95rem;">📢 POST Resource</button>
+        <button onclick="document.getElementById('r_msg').innerHTML=''" style="background:transparent;color:var(--gold);border:1.5px solid var(--gold);padding:.65rem 1.2rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.85rem;">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Admin list of posted resources -->
+    <div id="adminResources"></div>
+  </div>
+
+  <!-- ══ PUBLIC: Admin-Posted Resources Grid ══ -->
+  <div id="postedResGrid" style="margin-top:1rem;"></div>
+
+  <!-- Admin float button -->
+  <div id="adminFloat" style="position:fixed;bottom:1rem;right:1rem;z-index:8999;">
+    <button onclick="promptAdmin()" style="background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4);">⚙ Admin</button>
+  </div>
+
+  <!-- Admin toolbar -->
+  <div id="adminToolbar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;">
+      <span style="color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif;">⚙ ADMIN:</span>
+      <button onclick="document.getElementById('adminPanel').style.display='block';window.scrollTo(0,0);" style="background:rgba(45,122,79,.3);color:#4aad74;border:1px solid #2d7a4f;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600;">+ Add Resource</button>
+      <button onclick="renderPostedResources()" style="background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">↻ Refresh</button>
+      <button onclick="bulkApprove()" style="background:rgba(45,122,79,.3);color:#4aad74;border:1px solid #2d7a4f;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">✓ Approve All</button>
+      <button onclick="bulkArchive()" style="background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">📦 Archive</button>
+      <button onclick="removeAllAdmin()" style="background:rgba(139,32,32,.3);color:#e05555;border:1px solid #8b2020;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">🗑 Remove All</button>
+      <span style="margin-left:auto;display:flex;gap:.4rem;">
+        <a href="admin.html" style="background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;font-family:sans-serif;text-decoration:none;">Admin Console</a>
+        <button onclick="hideAdmin()" style="background:rgba(139,32,32,.3);color:#e05555;border:1px solid #8b2020;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">✕ Exit</button>
+      </span>
+    </div>
+  </div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;">
+    <a href="free_trial_free_divinity.html" style="background:rgba(45,122,79,.1);border:1px solid rgba(45,122,79,.35);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:#4aad74;">📖 Free Divinity →</a>
+    <a href="bible.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">📖 The Bible →</a>
+    <a href="commentaries.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">📚 Commentaries →</a>
+    <a href="index.html" style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:.7rem 1.2rem;font-family:sans-serif;font-size:.85rem;color:var(--gold);">🏠 GATE Home →</a>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Free Bible Resources</p></footer>
+<script>
+var ALL_RES = [["bible_study", "Bible Study Guide", "Bible Studies"], ["daily_family_studies_1", "Daily Family Bible Studies \u2014 Part 1", "Family Studies"], ["daily_family_studies_2", "Daily Family Bible Studies \u2014 Part 2", "Family Studies"], ["daily_family_studies_3", "Daily Family Bible Studies \u2014 Part 3", "Family Studies"], ["daily_family_studies_4", "Daily Family Bible Studies \u2014 Part 4", "Family Studies"], ["resources_1", "Theological Resources \u2014 Volume 1", "Theology"], ["resources_2", "Theological Resources \u2014 Volume 2", "Theology"]];
+
+function doSearch(q) {
+  q = (q||'').trim().toLowerCase();
+  var el = document.getElementById('searchResults');
+  if (!q) { el.style.display='none'; el.innerHTML=''; filterCat('all'); return; }
+  document.querySelectorAll('.res-card').forEach(function(c){ c.classList.toggle('hidden', !c.dataset.name.includes(q) && !c.dataset.cat.includes(q)); });
+  var matches = ALL_RES.filter(function(r){ return r[1].toLowerCase().includes(q) || r[2].toLowerCase().includes(q); });
+  if (matches.length) {
+    var html = '<div style="font-size:.8rem;color:var(--text2);margin-bottom:.5rem;font-family:sans-serif;">' + matches.length + ' result(s):</div>';
+    matches.forEach(function(r){
+      html += '<div class="result-item"><div><div class="result-name">'+r[1]+'</div><div class="result-cat">'+r[2]+'</div></div>';
+      html += '<a href="resource_'+r[0]+'.html" style="background:var(--gold);color:var(--navy);padding:.35rem .8rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;">Open &rarr;</a></div>';
+    });
+    el.style.display='block'; el.innerHTML=html;
+  } else {
+    el.style.display='block'; el.innerHTML='<div class="no-results">No resources found for "'+q+'"</div>';
+  }
+}
+
+function filterCat(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchResults').style.display='none';
+  document.querySelectorAll('.res-card').forEach(function(c){ c.classList.toggle('hidden', cat!=='all' && c.dataset.cat!==cat); });
+}
+
+
+const ADMIN_PASS='GATE2025admin';
+const RES_KEY='gate_admin_resources_v1';
+let isAdmin=false;
+
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){alert('Storage full — try removing some archived resources.');}}
+function getAdminRes(){return gl(RES_KEY)||[];}
+function fmtDate(ts){return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+
+/* Auto-login if already admin */
+(function(){const s=gl('td_gate_v6');if(s&&s.tier==='admin'){isAdmin=true;showAdminUI();}})();
+
+function promptAdmin(){
+  if(isAdmin){showAdminUI();return;}
+  const pw=prompt('Admin Password:');
+  if(pw===ADMIN_PASS){
+    isAdmin=true;
+    const s=gl('td_gate_v6')||{};
+    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};
+    s.tier='admin';gs('td_gate_v6',s);
+    showAdminUI();
+  } else if(pw!==null) alert('Incorrect password.');
+}
+
+function showAdminUI(){
+  document.getElementById('adminPanel').style.display='block';
+  document.getElementById('adminToolbar').style.display='block';
+  document.getElementById('adminFloat').style.display='none';
+  renderPostedResources();
+}
+
+function hideAdmin(){
+  isAdmin=false;
+  document.getElementById('adminPanel').style.display='none';
+  document.getElementById('adminToolbar').style.display='none';
+  document.getElementById('adminFloat').style.display='block';
+}
+
+/* ── Add New Resource ────────────────────────────────────── */
+async function addAdminResource(){
+  const title=document.getElementById('r_title').value.trim();
+  const desc=document.getElementById('r_desc').value.trim();
+  const msg=document.getElementById('r_msg');
+  if(!title||!desc){msg.innerHTML='<span style="color:#e05555">Title and description are required.</span>';return;}
+
+  const cat=document.getElementById('r_cat').value;
+  const pdfPath=document.getElementById('r_pdf').value.trim();
+  const author=document.getElementById('r_author').value.trim();
+  const tags=document.getElementById('r_tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const pdfFile=document.getElementById('r_pdffile').files[0];
+  const imgFile=document.getElementById('r_img').files[0];
+
+  msg.innerHTML='<span style="color:var(--text2)">Processing...</span>';
+
+  let pdfData='', pdfUrl='', img='';
+
+  /* Handle PDF - either upload as base64 or use path/URL */
+  if(pdfFile){
+    if(pdfFile.size > 5*1024*1024){
+      msg.innerHTML='<span style="color:#e05555">PDF is over 5MB. Please upload it to GitHub and enter the filename instead.</span>';
+      return;
+    }
+    pdfData=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(pdfFile);});
+    pdfUrl=''; /* embedded as base64 */
+  } else if(pdfPath){
+    pdfUrl=pdfPath; /* GitHub filename or external URL */
+  }
+
+  /* Handle image */
+  if(imgFile){
+    img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});
+  }
+
+  const resources=getAdminRes();
+  resources.unshift({
+    id:Date.now(),
+    title,desc,cat,author,tags,
+    pdfData,  /* base64 PDF if uploaded directly */
+    pdfUrl,   /* filename or URL if linked */
+    img,
+    status:'active',
+    created:Date.now()
+  });
+  gs(RES_KEY,resources);
+
+  /* Clear form */
+  ['r_title','r_desc','r_pdf','r_author','r_tags'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('r_pdffile').value='';
+  document.getElementById('r_img').value='';
+
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone now.</span>';
+  setTimeout(()=>{document.getElementById('r_msg').innerHTML='';},3500);
+  renderPostedResources();
+}
+
+/* ── Render public + admin views ─────────────────────────── */
+const CAT_ICONS={
+  'Bible Studies':'📖','Family Studies':'👨‍👩‍👧','Theology':'✝',
+  'Divinity':'📖','Commentary':'📚','Devotional':'🙏','Reference':'📋','Other':'📄'
+};
+
+function renderPostedResources(){
+  const all=getAdminRes();
+  const pub=document.getElementById('postedResGrid');
+  const adm=document.getElementById('adminResources');
+
+  /* Public: only non-archived */
+  const visible=all.filter(r=>r.status!=='archived');
+  if(!visible.length){
+    if(pub)pub.innerHTML='';
+  } else {
+    if(pub)pub.innerHTML=
+      '<h2 style="font-family:Cinzel,serif;color:var(--gold);font-size:1rem;letter-spacing:1px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2);">📌 Additional Resources</h2>'+
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">'+
+      visible.map(r=>resCard(r,false)).join('')+'</div>';
+  }
+
+  /* Admin: all entries */
+  if(adm&&isAdmin){
+    if(!all.length){
+      adm.innerHTML='<div style="color:var(--text2);font-size:.85rem;text-align:center;padding:1rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No resources posted yet. Fill in the form above and click 📢 POST Resource.</div>';
+    } else {
+      adm.innerHTML='<h4 style="color:var(--text2);font-size:.82rem;margin-bottom:.6rem;font-family:sans-serif;">All Admin Resources ('+all.length+'):</h4>'+
+        all.map(r=>resCard(r,true)).join('');
+    }
+  }
+}
+
+function resCard(r,admin){
+  const icon=CAT_ICONS[r.cat]||'📄';
+  const pdfLink=r.pdfData||r.pdfUrl||'';
+  const hasPDF=!!pdfLink;
+  const badge=(s)=>{const m={active:'rgba(45,122,79,.2),#4aad74,#2d7a4f',approved:'rgba(45,122,79,.2),#4aad74,#2d7a4f',archived:'rgba(80,80,80,.2),#888,#555',draft:'rgba(201,168,76,.2),var(--gold),var(--gold)'};const v=(m[s]||m.draft).split(',');return '<span style="background:'+v[0]+';color:'+v[1]+';border:1px solid '+v[2]+';padding:.1rem .4rem;border-radius:8px;font-size:.68rem;font-family:sans-serif;font-weight:700;">'+s+'</span>';};
+  return '<div class="admin-res-card">'+
+    (r.img?'<img src="'+r.img+'" alt="'+r.title+'">':'')+
+    '<div style="display:flex;gap:.4rem;align-items:center;margin-bottom:.4rem;">'+badge(r.status||'active')+
+    '<span style="font-size:.68rem;color:var(--text2);font-family:sans-serif;">'+fmtDate(r.created)+'</span></div>'+
+    '<div style="display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.3rem;">'+
+    '<span style="font-size:1.3rem;">'+icon+'</span>'+
+    '<div><div style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;">'+r.title+'</div>'+
+    '<div style="font-size:.7rem;color:var(--gold);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;">'+r.cat+'</div></div></div>'+
+    (r.author?'<div style="font-size:.75rem;color:var(--text2);margin-bottom:.3rem;">✍ '+r.author+'</div>':'')+
+    '<div style="font-size:.82rem;color:var(--cream);line-height:1.7;margin-bottom:.6rem;">'+r.desc+'</div>'+
+    (r.tags&&r.tags.length?'<div style="margin-bottom:.6rem;">'+r.tags.map(t=>'<span style="background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.2);padding:.1rem .4rem;border-radius:8px;font-size:.68rem;font-family:sans-serif;margin:.1rem;">'+t+'</span>').join(' ')+'</div>':'')+
+    (hasPDF?
+      '<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem;">'+
+      '<a href="'+pdfLink+'" target="_blank" style="background:var(--gold);color:var(--navy);padding:.4rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;">⬇ Download PDF</a>'+
+      '<button onclick="openPDFModal(''+r.id+'')" style="background:transparent;color:var(--gold);border:1.5px solid var(--gold);padding:.4rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;">↗ View in Browser</button>'+
+      '</div>':'<div style="color:var(--text2);font-size:.78rem;margin-bottom:.5rem;">📎 No PDF linked yet</div>')+
+    (admin&&isAdmin?
+      '<div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.4rem;">'+
+      '<button onclick="editAdminRes('+r.id+')" style="background:transparent;color:var(--gold);border:1.5px solid var(--gold);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">✏ Edit</button>'+
+      '<button onclick="setResStatus('+r.id+','approved')" style="background:rgba(45,122,79,.3);color:#4aad74;border:1px solid #2d7a4f;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">✓ Approve</button>'+
+      '<button onclick="setResStatus('+r.id+','archived')" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">📦 Archive</button>'+
+      '<button onclick="restoreRes('+r.id+')" style="background:rgba(45,122,79,.3);color:#4aad74;border:1px solid #2d7a4f;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">↩ Restore</button>'+
+      '<button onclick="removeAdminRes('+r.id+')" style="background:rgba(139,32,32,.3);color:#e05555;border:1px solid #8b2020;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;">🗑 Remove</button>'+
+      '</div>':'')+
+    '</div>';
+}
+
+/* ── PDF Modal Viewer ─────────────────────────────────────── */
+function openPDFModal(id){
+  const res=getAdminRes().find(r=>r.id==id);
+  if(!res)return;
+  const src=res.pdfData||res.pdfUrl||'';
+  if(!src){alert('No PDF available for this resource.');return;}
+  let modal=document.getElementById('pdfModal');
+  if(!modal){
+    modal=document.createElement('div');
+    modal.id='pdfModal';
+    modal.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.85);display:flex;flex-direction:column;';
+    modal.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:#162440;border-bottom:1px solid rgba(201,168,76,.3);"><div style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;" id="pdfModalTitle"></div><div style="display:flex;gap:.5rem;"><a id="pdfModalDl" href="#" target="_blank" style="background:var(--gold);color:#0d1b2e;padding:.3rem .8rem;border-radius:4px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;">⬇ Download</a><button onclick="closePDFModal()" style="background:rgba(139,32,32,.5);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:4px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">✕ Close</button></div></div><iframe id="pdfModalFrame" style="flex:1;border:none;background:#111;"></iframe>';
+    document.body.appendChild(modal);
+  }
+  document.getElementById('pdfModalTitle').textContent=res.title;
+  document.getElementById('pdfModalFrame').src=src;
+  document.getElementById('pdfModalDl').href=src;
+  modal.style.display='flex';
+}
+function closePDFModal(){const m=document.getElementById('pdfModal');if(m)m.style.display='none';}
+
+/* ── CRUD helpers ─────────────────────────────────────────── */
+function editAdminRes(id){
+  const all=getAdminRes();const r=all.find(x=>x.id==id);if(!r)return;
+  const t=prompt('Edit title:',r.title);if(t===null)return;
+  const d=prompt('Edit description:',r.desc);if(d===null)return;
+  const p=prompt('Edit PDF path/URL:',r.pdfUrl||'');if(p===null)return;
+  const a=prompt('Edit author:',r.author||'');if(a===null)return;
+  r.title=t;r.desc=d;r.pdfUrl=p;r.author=a;r.updated=Date.now();
+  gs(RES_KEY,all);renderPostedResources();
+}
+
+function setResStatus(id,status){
+  const all=getAdminRes();const r=all.find(x=>x.id==id);
+  if(r){r.status=status;r.updated=Date.now();}
+  gs(RES_KEY,all);renderPostedResources();
+}
+
+function restoreRes(id){setResStatus(id,'active');}
+
+function removeAdminRes(id){
+  if(!confirm('Permanently remove this resource?'))return;
+  gs(RES_KEY,getAdminRes().filter(r=>r.id!=id));
+  renderPostedResources();
+}
+
+function bulkApprove(){const all=getAdminRes();all.forEach(r=>r.status='approved');gs(RES_KEY,all);renderPostedResources();}
+function bulkArchive(){if(!confirm('Archive all posted resources?'))return;const all=getAdminRes();all.forEach(r=>r.status='archived');gs(RES_KEY,all);renderPostedResources();}
+function removeAllAdmin(){if(!confirm('Permanently remove ALL posted resources? This cannot be undone.'))return;gs(RES_KEY,[]);renderPostedResources();}
+
+document.addEventListener('DOMContentLoaded',renderPostedResources);
+
+(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
+</script>
+</body></html>
