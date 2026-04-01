@@ -488,30 +488,40 @@ function init(){
 }
 
 function renderSchools(list){
-  const grid=document.getElementById('schoolGrid');
-  const count=document.getElementById('resultCount');
+  var grid=document.getElementById('schoolGrid');
+  var count=document.getElementById('resultCount');
+  if(!grid)return;
   if(!list.length){
-    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text2);font-size:.9rem;">No schools found matching your search.</div>';
+    grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text2);font-size:.9rem;">No schools found matching your search. Try a different filter or keyword.</div>';
     if(count)count.textContent='0 results';
     return;
   }
-  if(count)count.textContent='Showing '+list.length+' school'+(list.length!==1?'s':'')+' — click any card to visit';
-  const icons={seminary:'⛪',university:'🏛',online:'💻',international:'🌍'};
-  const colors={seminary:'rgba(201,168,76,.06)',university:'rgba(30,80,150,.08)',online:'rgba(45,122,79,.06)',international:'rgba(100,60,160,.08)'};
-  grid.innerHTML=list.map(s=>`
-    <div class="school-card" data-type="${s.type||'seminary'}">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.5rem;">
-        <div class="school-name">${s.name}</div>
-        <span style="font-size:1.1rem;flex-shrink:0;">${icons[s.type]||'⛪'}</span>
-      </div>
-      <div class="school-location">📍 ${s.loc}</div>
-      <div class="school-desc">${s.desc}</div>
-      <div class="school-tags">${(s.tags||[]).map(t=>'<span class="tag">'+t+'</span>').join('')}</div>
-      <div style="display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap;">
-        <a href="${s.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Apply Now →</a>
-        ${s.custom&&adminUnlocked?'<button class="btn btn-danger btn-sm" onclick="removeSchool(''+s.name.replace(/'/g,"\'")+'')">🗑 Remove</button>':''}
-      </div>
-    </div>`).join('');
+  if(count)count.textContent='Showing '+list.length+' school'+(list.length!==1?'s':'')+' — click Apply Now to visit the school website';
+  var icons={seminary:'⛪',university:'🏛',online:'💻',international:'🌍'};
+  var html='';
+  for(var i=0;i<list.length;i++){
+    var s=list[i];
+    var icon=icons[s.type]||'⛪';
+    var tags='';
+    for(var j=0;j<(s.tags||[]).length;j++) tags+='<span class="tag">'+s.tags[j]+'</span>';
+    var removeBtn='';
+    if(s.custom&&adminUnlocked){
+      var safeName=s.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      removeBtn='<button class="btn btn-danger btn-sm" onclick="removeSchool(\''+safeName+'\')">🗑 Remove</button>';
+    }
+    html+='<div class="school-card" data-type="'+(s.type||'seminary')+'">';
+    html+='<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:.5rem;margin-bottom:.5rem;">';
+    html+='<div class="school-name">'+s.name+'</div>';
+    html+='<span style="font-size:1.1rem;flex-shrink:0;">'+icon+'</span></div>';
+    html+='<div class="school-location">📍 '+s.loc+'</div>';
+    html+='<div class="school-desc">'+s.desc+'</div>';
+    html+='<div class="school-tags">'+tags+'</div>';
+    html+='<div style="display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap;">';
+    html+='<a href="'+s.url+'" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Apply Now →</a>';
+    html+=removeBtn;
+    html+='</div></div>';
+  }
+  grid.innerHTML=html;
 }
 
 function filterSchools(type,btn){

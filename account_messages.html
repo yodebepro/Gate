@@ -147,6 +147,36 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 .item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem}
 .status-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
 
+
+.msg-tabs{display:flex;gap:.3rem;margin-bottom:1.5rem;border-bottom:2px solid rgba(201,168,76,.2);overflow-x:auto}
+.msg-tab{padding:.65rem 1.2rem;font-family:sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--text2);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.msg-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.06)}
+.msg-tab:hover{color:var(--gold);background:rgba(201,168,76,.04)}
+.community-post{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+.community-post:hover{border-color:rgba(201,168,76,.4)}
+.post-author{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+.post-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.9rem;color:var(--navy);font-weight:700;flex-shrink:0}
+.post-author-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem}
+.post-author-time{font-size:.7rem;color:var(--text2);font-family:sans-serif}
+.post-body{color:var(--cream);font-size:.88rem;line-height:1.75;margin-bottom:.7rem}
+.post-img{max-width:100%;border-radius:8px;margin:.5rem 0;border:1px solid rgba(201,168,76,.15)}
+.post-actions{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}
+.like-btn{background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.25rem .65rem;border-radius:15px;font-family:sans-serif;font-size:.75rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.3rem}
+.like-btn:hover,.like-btn.liked{background:rgba(201,168,76,.15);color:var(--gold);border-color:var(--gold)}
+.comment-btn{background:transparent;border:1px solid rgba(100,150,255,.3);color:#6ea8fe;padding:.25rem .65rem;border-radius:15px;font-family:sans-serif;font-size:.75rem;cursor:pointer;transition:all .2s}
+.comment-btn:hover{background:rgba(30,80,150,.15)}
+.comment-section{margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.06)}
+.comment-item{display:flex;gap:.6rem;margin-bottom:.6rem;align-items:flex-start}
+.comment-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,rgba(201,168,76,.5),rgba(201,168,76,.3));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.65rem;color:var(--navy);font-weight:700;flex-shrink:0}
+.comment-bubble{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:.5rem .7rem;font-size:.82rem;color:var(--cream);flex:1}
+.comment-author-name{font-family:sans-serif;font-weight:700;font-size:.72rem;color:var(--gold);margin-bottom:.2rem}
+.comment-input-row{display:flex;gap:.5rem;margin-top:.5rem}
+.comment-input{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);color:var(--text);border-radius:20px;padding:.4rem .9rem;font-family:inherit;font-size:.82rem;flex:1}
+.comment-input:focus{outline:none;border-color:var(--gold)}
+.send-comment-btn{background:var(--gold);color:var(--navy);border:none;border-radius:20px;padding:.4rem .9rem;font-family:sans-serif;font-size:.78rem;font-weight:700;cursor:pointer}
+.email-card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:1.5rem;margin-bottom:1rem}
+.email-badge{background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.4);border-radius:8px;padding:1rem 1.2rem;display:inline-flex;align-items:center;gap:.8rem;margin:.8rem 0}
+.email-address{font-family:'Courier New',monospace;color:var(--gold);font-size:1rem;font-weight:700}
 </style>
 </head><body>
 <nav class="gate-nav"><div class="gate-nav-inner">
@@ -209,286 +239,245 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 </div>
 <div class="container">
 
-<div class="admin-panel" id="adminPanel">
-  <div class="admin-panel-header">
-    <h3>⚙ Admin Control Panel</h3>
-    <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close Admin</button>
+  <!-- TABS -->
+  <div class="msg-tabs">
+    <button class="msg-tab active" onclick="showMsgTab('community',this)">🌐 Community</button>
+    <button class="msg-tab" onclick="showMsgTab('email',this)">✉ My GATE Email</button>
+    <button class="msg-tab" onclick="showMsgTab('inbox',this)">📬 Messages</button>
   </div>
-  <div class="admin-actions">
-    <button class="btn btn-gold btn-sm" onclick="document.getElementById('addForm').style.display=document.getElementById('addForm').style.display==='none'?'block':'none'">+ Add New Item</button>
-    <button class="btn btn-outline btn-sm" onclick="renderItems()">↻ Refresh</button>
-    <a href="admin.html" class="btn btn-outline btn-sm">Admin Console →</a>
-  </div>
-  <div id="addForm" style="display:none;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
-    <div class="grid2">
-      <div class="form-group"><label>Title *</label><input type="text" id="adm_title" placeholder="Item title..."></div>
-      <div class="form-group"><label>Status</label>
-        <select id="adm_status"><option value="active">Active</option><option value="approved">Approved</option><option value="verified">Verified</option><option value="draft">Draft</option></select>
+
+  <!-- ══ COMMUNITY TAB ══ -->
+  <div id="tab-community">
+    <div style="background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(30,80,150,.06));border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;margin-bottom:.3rem;">🌐 GATE Community</div>
+        <div style="font-size:.82rem;color:var(--text2);">Open to all GATE members. Post updates, questions, and encouragements. All members can read and reply.</div>
+      </div>
+      <span id="memberCount" style="font-family:sans-serif;font-size:.78rem;color:var(--text2);white-space:nowrap;">Log in to post</span>
+    </div>
+
+    <!-- New Post Box -->
+    <div id="newPostBox" style="background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;display:none;">
+      <div style="display:flex;gap:.8rem;align-items:flex-start;">
+        <div id="myAvatar" class="post-avatar">?</div>
+        <div style="flex:1;">
+          <textarea id="newPostText" rows="3" placeholder="Share a thought, question, or encouragement with the GATE community..." style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.25);color:var(--text);border-radius:8px;padding:.7rem .9rem;font-family:inherit;font-size:.88rem;resize:vertical;"></textarea>
+          <div style="display:flex;align-items:center;gap:.7rem;margin-top:.6rem;flex-wrap:wrap;">
+            <label style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--text2);padding:.3rem .7rem;border-radius:6px;font-family:sans-serif;font-size:.75rem;cursor:pointer;">📷 Photo <input type="file" id="postImg" accept="image/*" style="display:none;" onchange="previewPostImg(this)"></label>
+            <div id="imgPreview" style="display:none;"></div>
+            <button onclick="submitPost()" style="background:var(--gold);color:var(--navy);border:none;padding:.45rem 1.2rem;border-radius:20px;font-family:sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;margin-left:auto;">📢 POST</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="form-group"><label>Description / Content</label><textarea id="adm_body" rows="3" placeholder="Content, description, or notes..."></textarea></div>
-    <div class="grid2">
-      <div class="form-group"><label>URL / Link (optional)</label><input type="url" id="adm_url" placeholder="https://..."></div>
-      <div class="form-group"><label>Price / Amount (optional)</label><input type="text" id="adm_price" placeholder="e.g. 29.99"></div>
+    <div id="loginPromptCommunity" style="text-align:center;padding:1.5rem;background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;margin-bottom:1.5rem;">
+      <div style="color:var(--text2);margin-bottom:.8rem;">Log in to post and join the GATE community</div>
+      <a href="account.html" style="background:var(--gold);color:var(--navy);padding:.5rem 1.2rem;border-radius:6px;font-family:sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;">Login / Register →</a>
     </div>
-    <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="adm_img" accept="image/*"></div>
-    
-    <div style="display:flex;gap:.6rem;margin-top:.8rem;">
-      <button class="btn btn-gold" style="min-width:120px;font-size:.95rem;" onclick="addItem()">📢 POST</button>
-      <button class="btn btn-outline" onclick="document.getElementById('addForm').style.display='none'">Cancel</button>
+
+    <!-- Community Feed -->
+    <div id="communityFeed"></div>
+  </div>
+
+  <!-- ══ EMAIL TAB ══ -->
+  <div id="tab-email" style="display:none;">
+    <div class="email-card">
+      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1.1rem;margin-bottom:.5rem;">✉ Your GATE Professional Email</div>
+      <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1rem;">Every GATE member receives a professional email address in the format <strong style="color:var(--gold);">firstname.lastname@gate-theology.org</strong>. This email is linked to your account and can be used for professional ministry communications.</p>
+      <div id="emailDisplay"><div style="color:var(--text2);font-size:.88rem;">Log in to see your GATE email address. <a href="account.html">Login →</a></div></div>
     </div>
-    <div id="adm_msg" style="margin-top:.5rem;font-size:.84rem;min-height:1.2rem;"></div>
+    <div class="email-card">
+      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;margin-bottom:.8rem;">📧 How Your GATE Email Works</div>
+      <div style="font-size:.85rem;color:var(--text2);line-height:2;">
+        <div>✓ <strong style="color:var(--cream);">Format:</strong> firstname.lastname@gate-theology.org</div>
+        <div>✓ <strong style="color:var(--cream);">Forwarding:</strong> Emails sent to your GATE address forward to your registered email</div>
+        <div>✓ <strong style="color:var(--cream);">Professional:</strong> Use on ministry websites, certificates, and applications</div>
+        <div>✓ <strong style="color:var(--cream);">Setup:</strong> Automatically activated upon account creation</div>
+        <div>✓ <strong style="color:var(--cream);">Support:</strong> Contact <a href="mailto:yodebepro@gmail.com">yodebepro@gmail.com</a> for setup help</div>
+      </div>
+    </div>
   </div>
-</div>
 
-
-<div class="card"><div class="card-header"><h2><span>✉</span> Messages &amp; Notifications</h2></div>
-<div id="msgContent"><div class="alert alert-info">Log in to view messages. <a href="account.html">Login →</a></div></div></div>
-<div class="card"><div class="card-header"><h2><span>📢</span> Admin Messages &amp; Broadcasts</h2></div>
-<p style="color:var(--text2);font-size:.88rem;margin-bottom:1rem;">Official messages from GATE administration appear below.</p>
-<div id="items_list"></div></div>
-
-</div>
-
-<div class="admin-toolbar" id="adminToolbar">
-  <div class="admin-tb-inner">
-    <span class="admin-tb-label">⚙ ADMIN:</span>
-    <button class="atb-btn green" onclick="document.getElementById('addForm').style.display='block';document.getElementById('adminPanel').classList.add('visible');window.scrollTo(0,0)">+ Add</button>
-    <button class="atb-btn amber" onclick="renderItems()">✏ Edit Mode</button>
-    <button class="atb-btn" onclick="document.getElementById('adm_img')&&document.getElementById('adm_img').click()">📷 Upload</button>
-    <button class="atb-btn green" onclick="bulkSetStatus('approved')">✓ Approve All</button>
-    <button class="atb-btn" onclick="bulkSetStatus('verified')">🔍 Verify All</button>
-    <button class="atb-btn" style="background:rgba(180,120,20,.2);color:var(--gold2);" onclick="bulkSetStatus('suspended')">⊘ Suspend</button>
-    <button class="atb-btn" style="background:rgba(60,60,90,.3);color:#aaa;" onclick="bulkSetStatus('archived')">📦 Archive</button>
-    <button class="atb-btn green" onclick="bulkSetStatus('active')">↩ Restore All</button>
-    <button class="atb-btn red" onclick="confirmClearAll()">🗑 Remove All</button>
-    <span style="margin-left:auto;display:flex;gap:.4rem;">
-      <a href="admin.html" class="atb-btn amber">Admin Console</a>
-      <button class="atb-btn red" onclick="hideAdmin()">✕ Exit</button>
-    </span>
+  <!-- ══ INBOX TAB ══ -->
+  <div id="tab-inbox" style="display:none;">
+    <div id="inboxContent"><div style="text-align:center;padding:2rem;color:var(--text2);">Log in to view messages. <a href="account.html">Login →</a></div></div>
   </div>
-</div>
-<div class="admin-float" id="adminFloat">
-  <button onclick="promptAdmin()">⚙ Admin</button>
-</div>
 
+</div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 
-const ADMIN_PASS = 'GATE2025admin';
-const PAGE_KEY = 'gate_page_' + window.location.pathname.split('/').pop().replace('.html','');
-let isAdmin = false;
+const COMM_KEY='gate_community_posts';
+let currentUser=null, adminUnlocked=false;
 
-function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
-function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function getItems(){return gl(PAGE_KEY)||[]}
-function saveItems(items){gs(PAGE_KEY,items)}
-function fmtDate(ts){if(!ts)return'';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function getCommunityPosts(){return gateLoad(COMM_KEY)||[];}
 
-// Check if already admin
 (function(){
-  const s=gl('td_gate_v6');
-  if(s&&s.tier==='admin'){isAdmin=true;showAdmin();}
-})();
-
-function promptAdmin(){
-  if(isAdmin){showAdmin();return;}
-  const pw=prompt('Admin Password:');
-  if(pw===ADMIN_PASS){
-    isAdmin=true;
-    const s=gl('td_gate_v6')||{user:null,tier:null};
-    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};
-    s.tier='admin';gs('td_gate_v6',s);
-    showAdmin();
-  } else if(pw!==null){alert('Incorrect password.');}
-}
-
-function showAdmin(){
-  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.add('visible'));
-  document.querySelectorAll('.admin-toolbar').forEach(el=>el.classList.add('visible'));
-  document.querySelectorAll('.admin-float').forEach(el=>el.style.display='none');
-  renderItems();
-}
-
-function hideAdmin(){
-  isAdmin=false;
-  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.remove('visible'));
-  document.querySelectorAll('.admin-toolbar').forEach(el=>el.classList.remove('visible'));
-  document.querySelectorAll('.admin-float').forEach(el=>el.style.display='block');
-}
-
-// Add new item
-async function addItem(){
-  const title=document.getElementById('adm_title').value.trim();
-  const body=document.getElementById('adm_body').value.trim();
-  const url=document.getElementById('adm_url').value.trim();
-  const price=document.getElementById('adm_price').value.trim();
-  const status=document.getElementById('adm_status').value;
-  const imgFile=document.getElementById('adm_img').files[0];
-  if(!title&&!body){alert('Please enter a title or description.');return;}
-  let img='';
-  if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
-  const items=getItems();
-  items.unshift({id:Date.now(),title,body,url,price,img,status,created:Date.now(),updated:Date.now()});
-  saveItems(items);
-  clearForm();
-  renderItems();
-  document.getElementById('adm_msg').innerHTML='<span style="color:#4aad74">✅ Posted! Visible to all visitors.</span>';
-  setTimeout(()=>document.getElementById('adm_msg').innerHTML='',2500);
-}
-
-function clearForm(){
-  ['adm_title','adm_body','adm_url','adm_price'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  const img=document.getElementById('adm_img');if(img)img.value='';
-  const sel=document.getElementById('adm_status');if(sel)sel.value='active';
-}
-
-function editItem(id){
-  const items=getItems();
-  const item=items.find(i=>i.id===id);
-  if(!item)return;
-  const title=prompt('Edit title:',item.title||'');if(title===null)return;
-  const body=prompt('Edit description:',item.body||'');if(body===null)return;
-  const url=prompt('Edit URL/link:',item.url||'');if(url===null)return;
-  const price=prompt('Edit price/amount:',item.price||'');if(price===null)return;
-  const status=prompt('Status (active/approved/verified/suspended/archived):',item.status||'active');if(status===null)return;
-  Object.assign(item,{title,body,url,price,status:status||'active',updated:Date.now()});
-  saveItems(items);renderItems();
-}
-
-async function uploadImg(id){
-  const input=document.createElement('input');input.type='file';input.accept='image/*';
-  input.onchange=async()=>{
-    if(!input.files[0])return;
-    const img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(input.files[0]);});
-    const items=getItems();const item=items.find(i=>i.id===id);
-    if(item){item.img=img;item.updated=Date.now();saveItems(items);renderItems();}
-  };
-  input.click();
-}
-
-function setStatus(id,status){
-  const items=getItems();const item=items.find(i=>i.id===id);
-  if(!item)return;
-  item.status=status;item.updated=Date.now();
-  saveItems(items);renderItems();
-}
-
-function removeItem(id){
-  if(!confirm('Permanently remove this item?'))return;
-  saveItems(getItems().filter(i=>i.id!==id));renderItems();
-}
-
-function statusBadge(s){
-  const map={active:'badge-green',approved:'badge-green',verified:'badge-blue',suspended:'badge-red',archived:'badge-gray',draft:'badge-gold'};
-  return `<span class="badge ${map[s]||'badge-gray'}">${s||'active'}</span>`;
-}
-
-function renderItems(){
-  const list=document.getElementById('items_list');
-  if(!list)return;
-  const items=getItems();
-  if(!items.length){
-    // Only show admin message if admin logged in; public sees empty section quietly
-    if(isAdmin) list.innerHTML='<div style="color:var(--text2);text-align:center;padding:1.5rem;font-size:.85rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No posts yet. Use the form above and click 📢 POST to publish content here.</div>';
-    else list.innerHTML='';
-    return;
+  var s=gateLoad('td_gate_v6');
+  if(s&&s.user){
+    currentUser=s.user;
+    document.getElementById('newPostBox').style.display='block';
+    document.getElementById('loginPromptCommunity').style.display='none';
+    var initials=(currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
+    document.getElementById('myAvatar').textContent=initials;
+    document.getElementById('memberCount').textContent='Welcome, '+(currentUser.name||currentUser.email);
   }
-  list.innerHTML='<div class="item-grid">'+items.map(item=>`
-    <div class="content-item">
-      ${item.img?`<img src="${item.img}" alt="${item.title||''}">`:''}
-      <div class="status-bar">${statusBadge(item.status)}${item.price?`<span class="badge badge-gold">$${item.price}</span>`:''}</div>
-      <div class="item-title">${item.title||'(Untitled)'}</div>
-      <div class="item-body">${item.body||''}</div>
-      ${item.url?`<a href="${item.url}" target="_blank" class="btn btn-outline btn-sm" style="margin-bottom:.5rem;">Open Link →</a>`:''}
-      <div style="font-size:.72rem;color:var(--text2);margin-bottom:.5rem;">Added: ${fmtDate(item.created)}</div>
-      ${isAdmin?`<div class="item-actions">
-        <button class="btn btn-outline btn-sm" onclick="editItem(${item.id})">✏ Edit</button>
-        <button class="btn btn-outline btn-sm" onclick="uploadImg(${item.id})">📷 Upload</button>
-        <button class="btn btn-green btn-sm" onclick="setStatus(${item.id},'approved')">✓ Approve</button>
-        <button class="btn btn-outline btn-sm" onclick="setStatus(${item.id},'verified')">🔍 Verify</button>
-        <button class="btn btn-sm" style="background:rgba(180,120,20,.3);color:var(--gold2);border:1px solid rgba(180,120,20,.4);" onclick="setStatus(${item.id},'suspended')">⊘ Suspend</button>
-        <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setStatus(${item.id},'archived')">📦 Archive</button>
-        <button class="btn btn-green btn-sm" onclick="setStatus(${item.id},'active')">↩ Restore</button>
-        <button class="btn btn-danger btn-sm" onclick="removeItem(${item.id})">🗑 Remove</button>
-      </div>`:''}
-    </div>`).join('')+'</div>';
+  if(s&&s.tier==='admin') adminUnlocked=true;
+  renderFeed();
+  renderEmail();
+  renderInbox();
+})();
+
+function showMsgTab(tab,btn){
+  ['community','email','inbox'].forEach(function(t){document.getElementById('tab-'+t).style.display=t===tab?'block':'none';});
+  document.querySelectorAll('.msg-tab').forEach(function(b){b.classList.remove('active');});
+  if(btn)btn.classList.add('active');
 }
 
-// Init on load
-document.addEventListener('DOMContentLoaded',renderItems);
-
-
-function bulkSetStatus(status){
-  const items=getItems();
-  items.forEach(i=>{i.status=status;i.updated=Date.now();});
-  saveItems(items);renderItems();
-}
-function confirmClearAll(){
-  if(!confirm('Remove ALL items from this page? This cannot be undone.'))return;
-  saveItems([]);renderItems();
+// ── COMMUNITY FEED ────────────────────────────────────────────────────────
+function previewPostImg(input){
+  var prev=document.getElementById('imgPreview');
+  if(input.files[0]){
+    var r=new FileReader();
+    r.onload=function(){prev.innerHTML='<img src="'+r.result+'" style="max-height:80px;border-radius:6px;border:1px solid rgba(201,168,76,.2);">';prev.style.display='block';};
+    r.readAsDataURL(input.files[0]);
+  }
 }
 
-
-(function(){
-  const s=JSON.parse(localStorage.getItem('td_gate_v6')||'{}');
-  const el=document.getElementById('msgContent');
-  if(!s.user)return;
-  el.innerHTML='<div style="color:var(--text2);text-align:center;padding:2rem;font-size:.88rem;">No new messages. Check announcements for platform updates. <a href="announcements.html">View Announcements →</a></div>';
-})();
-
-</script>
-<script>
-(function(){
-  var timers = {};
-  var DELAY = 320; // ms before closing dropdown
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd, i){
-    dd.setAttribute('data-dd', i);
-    dd.addEventListener('mouseenter', function(){
-      clearTimeout(timers[i]);
-      dd.classList.add('open');
-    });
-    dd.addEventListener('mouseleave', function(){
-      timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-    });
-    var menu = dd.querySelector('.gate-dropdown-menu');
-    if(menu){
-      menu.addEventListener('mouseenter', function(){ clearTimeout(timers[i]); });
-      menu.addEventListener('mouseleave', function(){
-        timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-      });
-    }
+async function submitPost(){
+  if(!currentUser){alert('Please log in to post.');return;}
+  var text=document.getElementById('newPostText').value.trim();
+  if(!text){alert('Please write something before posting.');return;}
+  var imgFile=document.getElementById('postImg').files[0];
+  var img='';
+  if(imgFile){img=await new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result);};r.readAsDataURL(imgFile);});}
+  var posts=getCommunityPosts();
+  var initials=(currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
+  posts.unshift({
+    id:Date.now(),
+    author:currentUser.name||currentUser.email,
+    initials:initials,
+    text:text,img,
+    likes:[],
+    comments:[],
+    created:Date.now()
   });
-})();
-</script>
+  gateSave(COMM_KEY,posts);
+  document.getElementById('newPostText').value='';
+  document.getElementById('postImg').value='';
+  document.getElementById('imgPreview').innerHTML='';
+  document.getElementById('imgPreview').style.display='none';
+  renderFeed();
+}
 
-<script>
-/* Dropdown hover delay — keeps menu open 350ms after cursor leaves */
-(function(){
-  var timers={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    dd.setAttribute('data-ddi',i);
-    function open(){clearTimeout(timers[i]);dd.classList.add('open');}
-    function schedClose(){timers[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);
-    dd.addEventListener('mouseleave',schedClose);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(timers[i]);});m.addEventListener('mouseleave',schedClose);}
-  });
-})();
-</script>
-<script>
-/* Dropdown delay — 350ms before closing so you can click items */
-(function(){
-  var T={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    function open(){clearTimeout(T[i]);dd.classList.add('open');}
-    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);
-    dd.addEventListener('mouseleave',close);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
-  });
-})();
+function toggleLike(postId){
+  if(!currentUser){alert('Log in to like posts.');return;}
+  var posts=getCommunityPosts();
+  var post=posts.find(function(p){return p.id===postId;});
+  if(!post)return;
+  var uid=currentUser.email||currentUser.name;
+  var idx=post.likes.indexOf(uid);
+  if(idx>-1) post.likes.splice(idx,1);
+  else post.likes.push(uid);
+  gateSave(COMM_KEY,posts);
+  renderFeed();
+}
+
+function toggleComments(postId){
+  var cs=document.getElementById('comments-'+postId);
+  if(cs) cs.style.display=cs.style.display==='none'?'block':'none';
+}
+
+function submitComment(postId){
+  if(!currentUser){alert('Log in to comment.');return;}
+  var inp=document.getElementById('cinput-'+postId);
+  var text=inp?inp.value.trim():'';
+  if(!text)return;
+  var posts=getCommunityPosts();
+  var post=posts.find(function(p){return p.id===postId;});
+  if(!post)return;
+  if(!post.comments)post.comments=[];
+  var initials=(currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
+  post.comments.push({id:Date.now(),author:currentUser.name||currentUser.email,initials:initials,text:text,created:Date.now()});
+  gateSave(COMM_KEY,posts);
+  inp.value='';
+  renderFeed();
+  // Reopen comment section
+  var cs=document.getElementById('comments-'+postId);
+  if(cs)cs.style.display='block';
+}
+
+function deletePost(postId){
+  if(!confirm('Delete this post?'))return;
+  gateSave(COMM_KEY,getCommunityPosts().filter(function(p){return p.id!==postId;}));
+  renderFeed();
+}
+
+function fmtTime(ts){
+  var d=Date.now()-ts;
+  if(d<60000)return 'just now';
+  if(d<3600000)return Math.floor(d/60000)+'m ago';
+  if(d<86400000)return Math.floor(d/3600000)+'h ago';
+  return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric'});
+}
+
+function renderFeed(){
+  var posts=getCommunityPosts();
+  var feed=document.getElementById('communityFeed');
+  if(!feed)return;
+  if(!posts.length){feed.innerHTML='<div style="text-align:center;padding:3rem;color:var(--text2);font-size:.88rem;">No community posts yet. Be the first to share something!</div>';return;}
+  var uid=currentUser?currentUser.email||currentUser.name:'';
+  feed.innerHTML=posts.map(function(p){
+    var liked=p.likes&&p.likes.indexOf(uid)>-1;
+    var likeCount=(p.likes||[]).length;
+    var commentCount=(p.comments||[]).length;
+    var commentsHtml=(p.comments||[]).map(function(c){
+      return '<div class="comment-item"><div class="comment-avatar">'+c.initials+'</div><div class="comment-bubble"><div class="comment-author-name">'+c.author+'</div>'+c.text+'</div></div>';
+    }).join('');
+    var commentInput=currentUser?'<div class="comment-input-row"><div class="comment-avatar" style="font-size:.6rem;">'+((currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2))+'</div><input type="text" class="comment-input" id="cinput-'+p.id+'" placeholder="Write a comment..." onkeydown="if(event.key==='Enter')submitComment('+p.id+')"><button class="send-comment-btn" onclick="submitComment('+p.id+')">Send</button></div>':'';
+    var canDelete=adminUnlocked||(currentUser&&(currentUser.email===p.authorEmail||currentUser.name===p.author));
+    var deleteBtn=canDelete?'<button onclick="deletePost('+p.id+')" style="background:transparent;border:none;color:var(--text2);font-size:.75rem;cursor:pointer;font-family:sans-serif;padding:0;">🗑 Delete</button>':'';
+    return '<div class="community-post">'
+      +'<div class="post-author"><div class="post-avatar">'+p.initials+'</div><div><div class="post-author-name">'+p.author+'</div><div class="post-author-time">'+fmtTime(p.created)+'</div></div>'+deleteBtn+'</div>'
+      +'<div class="post-body">'+p.text+'</div>'
+      +(p.img?'<img src="'+p.img+'" class="post-img" alt="">':'')
+      +'<div class="post-actions">'
+      +'<button class="like-btn'+(liked?' liked':'')+'" onclick="toggleLike('+p.id+')">❤ '+likeCount+' Like'+(likeCount!==1?'s':'')+'</button>'
+      +'<button class="comment-btn" onclick="toggleComments('+p.id+')">💬 '+commentCount+' Comment'+(commentCount!==1?'s':'')+'</button>'
+      +'</div>'
+      +'<div class="comment-section" id="comments-'+p.id+'" style="display:none;">'
+      +commentsHtml+commentInput+'</div></div>';
+  }).join('');
+}
+
+// ── EMAIL ─────────────────────────────────────────────────────────────────
+function renderEmail(){
+  var s=gateLoad('td_gate_v6');
+  var el=document.getElementById('emailDisplay');
+  if(!el)return;
+  if(!s||!s.user){return;}
+  var name=s.user.name||s.user.email||'member';
+  var emailName=name.toLowerCase().replace(/[^a-z0-9]+/g,'.').replace(/^\.|\.$/g,'');
+  var email=emailName+'@gate-theology.org';
+  el.innerHTML='<div class="email-badge"><span style="font-size:1.4rem;">✉</span><div><div class="email-address">'+email+'</div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-top:.2rem;">Your professional GATE email address</div></div></div>'
+    +'<div style="font-size:.82rem;color:var(--text2);margin-top:.7rem;">This address is tied to your account: <strong style="color:var(--cream);">'+s.user.email+'</strong>. Contact admin to activate email forwarding.</div>'
+    +'<div style="margin-top:.8rem;"><a href="mailto:yodebepro@gmail.com?subject=GATE Email Setup: '+email+'" style="background:var(--gold);color:var(--navy);padding:.45rem 1rem;border-radius:6px;font-family:sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;">Request Email Activation →</a></div>';
+}
+
+// ── INBOX ─────────────────────────────────────────────────────────────────
+function renderInbox(){
+  var s=gateLoad('td_gate_v6');
+  var el=document.getElementById('inboxContent');
+  if(!el)return;
+  if(!s||!s.user){return;}
+  el.innerHTML='<div style="text-align:center;padding:2rem;color:var(--text2);font-size:.88rem;">'
+    +'<div style="font-size:2rem;margin-bottom:.5rem;">📬</div>'
+    +'Direct messaging between members is coming soon. For now, use the Community tab to connect with other GATE members, or email us at <a href="mailto:yodebepro@gmail.com">yodebepro@gmail.com</a>.'
+    +'</div>';
+}
+
+(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
 </script>
 </body></html>

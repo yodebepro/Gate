@@ -309,583 +309,380 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   <div class="divider"></div>
 </div>
 <div class="container">
+
+  <!-- TABS -->
   <div class="media-tabs">
     <button class="media-tab active" onclick="showTab('videos',this)">▶ Video Studies</button>
     <button class="media-tab" onclick="showTab('podcasts',this)">🎙 Podcasts</button>
     <button class="media-tab" onclick="showTab('audio',this)">🎵 Audio Studies</button>
   </div>
 
-  <!-- VIDEO TAB -->
+  <!-- ══ VIDEO TAB ══ -->
   <div id="tab-videos">
     <div class="video-grid" id="videoGrid"></div>
     <div id="noVideos" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
-      <div style="font-size:2rem;margin-bottom:.5rem;">📹</div>No video studies added yet.
+      <div style="font-size:2.5rem;margin-bottom:.5rem;">📹</div>
+      <div>No video studies added yet. Admin can add YouTube videos below.</div>
     </div>
   </div>
 
-  <!-- PODCASTS TAB -->
+  <!-- ══ PODCAST TAB ══ -->
   <div id="tab-podcasts" style="display:none;">
+    <!-- Platform Links -->
+    <div class="podcast-platforms" id="platformLinks" style="display:none;">
+      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;width:100%;margin-bottom:.4rem;letter-spacing:1px;">🎙 Listen On</div>
+      <a id="spotifyLink" href="#" target="_blank" class="platform-badge platform-spotify" style="display:none;">
+        <span style="font-size:1.1rem;">♪</span> Spotify
+      </a>
+      <a id="appleLink" href="#" target="_blank" class="platform-badge platform-apple" style="display:none;">
+        <span style="font-size:1.1rem;">🎵</span> Apple Podcasts
+      </a>
+      <a id="rssLink" href="#" target="_blank" class="platform-badge platform-rss" style="display:none;">
+        <span style="font-size:1rem;">⚡</span> RSS Feed
+      </a>
+    </div>
     <div id="podcastList"></div>
     <div id="noPodcasts" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
-      <div style="font-size:2rem;margin-bottom:.5rem;">🎙</div>No podcast feeds added yet.
+      <div style="font-size:2.5rem;margin-bottom:.5rem;">🎙</div>
+      <div>No podcasts added yet. Admin can add Spotify, Apple Podcast, and RSS links below.</div>
     </div>
   </div>
 
-  <!-- AUDIO TAB -->
+  <!-- ══ AUDIO TAB ══ -->
   <div id="tab-audio" style="display:none;">
     <div id="audioList"></div>
     <div id="noAudio" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
-      <div style="font-size:2rem;margin-bottom:.5rem;">🎵</div>No audio studies added yet.
+      <div style="font-size:2.5rem;margin-bottom:.5rem;">🎵</div>
+      <div>No audio studies added yet. Admin can upload audio files below.</div>
     </div>
   </div>
 
-  <!-- Admin Panel -->
+  <!-- ══ ADMIN PANEL ══ -->
   <div id="adminPanel" style="display:none;margin-top:2rem;">
     <div class="card" style="border-color:rgba(201,168,76,.4);">
-      <div class="card-header"><span>➕</span><h2>Add Media (Admin)</h2></div>
-      <div class="form-group"><label>Type</label>
-        <select id="addType">
-          <option value="video">Video (YouTube / Zoom Cloud)</option>
-          <option value="podcast">Podcast (RSS / Apple / Spotify)</option>
-          <option value="audio">Audio Study</option>
-        </select>
+      <div class="card-header"><span>✏️</span><h2>Admin: Manage Bible Studies Media</h2></div>
+
+      <!-- VIDEO SECTION -->
+      <div style="margin-bottom:1.5rem;">
+        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">▶ Add YouTube Video</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Video Title *</label><input type="text" id="vTitle" placeholder="e.g. Study of the Gospel of John"></div>
+          <div class="form-group"><label>Speaker / Teacher</label><input type="text" id="vSpeaker" placeholder="e.g. Pastor John Smith"></div>
+        </div>
+        <div class="form-group"><label>YouTube URL or Video ID *</label>
+          <input type="text" id="vUrl" placeholder="https://www.youtube.com/watch?v=XXXXXXX  or  embed URL  or  just the video ID">
+          <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste the full YouTube URL, the embed URL, or just the 11-character video ID</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Description</label><input type="text" id="vDesc" placeholder="Brief description of this study"></div>
+          <div class="form-group"><label>Category</label>
+            <select id="vCat"><option>Old Testament</option><option>New Testament</option><option>Theology</option><option>Devotional</option><option>Sermon</option><option>Bible Study</option></select>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="addVideo()">📢 POST Video</button>
+        <div id="vMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
       </div>
-      <div class="form-group"><label>Title *</label><input type="text" id="addTitle" placeholder="Study title"></div>
-      <div class="form-group"><label>Description</label><input type="text" id="addDesc" placeholder="Brief description"></div>
-      <div class="form-group"><label>URL / Embed Link *</label><input type="url" id="addUrl" placeholder="YouTube URL, Podcast embed code URL, etc."></div>
-      <div class="form-group"><label>Speaker / Teacher</label><input type="text" id="addSpeaker" placeholder="Name of teacher/speaker"></div>
-      <div class="form-group"><label>Category</label><input type="text" id="addCat" placeholder="e.g., Theology, Prophecy, Prayer, Gospel..."></div>
-      <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
-        <button class="btn btn-primary" onclick="addMedia()">📢 POST</button>
+
+      <!-- PODCAST SECTION -->
+      <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1.2rem;margin-bottom:1.5rem;">
+        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">🎙 Podcast Platform Links</div>
+        <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:1rem;margin-bottom:1rem;">
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:.4rem;"><span style="color:#1db954;font-size:1rem;">♪</span> Spotify Podcast URL</label>
+            <input type="url" id="spotifyUrl" placeholder="https://open.spotify.com/show/YOUR_SHOW_ID">
+            <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste your Spotify podcast show link</div>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:.4rem;"><span style="color:#fc5252;font-size:1rem;">🎵</span> Apple Podcasts URL</label>
+            <input type="url" id="appleUrl" placeholder="https://podcasts.apple.com/podcast/YOUR_PODCAST/idXXXXXXXX">
+            <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste your Apple Podcasts link</div>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:center;gap:.4rem;"><span style="color:#ffa500;font-size:1rem;">⚡</span> RSS Feed URL</label>
+            <input type="url" id="rssUrl" placeholder="https://anchor.fm/s/XXXXXXXX/podcast/rss  or  any RSS feed URL">
+            <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste your podcast RSS feed URL (works with Anchor, Buzzsprout, Podbean, etc.)</div>
+          </div>
+          <button class="btn btn-primary" onclick="savePlatformLinks()">📢 POST Platform Links</button>
+          <div id="platformMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
+        </div>
+
+        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">Add Individual Podcast Episode</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Episode Title *</label><input type="text" id="pTitle" placeholder="e.g. Episode 12: The Book of Romans"></div>
+          <div class="form-group"><label>Host / Speaker</label><input type="text" id="pSpeaker" placeholder="e.g. GATE Panel"></div>
+        </div>
+        <div class="form-group"><label>Description</label><input type="text" id="pDesc" placeholder="Brief description of this episode"></div>
+        <div class="form-group"><label>Spotify Episode Embed URL (optional)</label>
+          <input type="url" id="pSpotifyEmbed" placeholder="https://open.spotify.com/embed/episode/EPISODE_ID">
+          <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">On Spotify: click ••• → Share → Embed Episode → copy the src URL</div>
+        </div>
+        <div class="form-group"><label>Direct MP3 / Audio URL (optional)</label>
+          <input type="url" id="pAudioUrl" placeholder="https://example.com/episode.mp3">
+        </div>
+        <button class="btn btn-primary" onclick="addPodcast()">📢 POST Episode</button>
+        <div id="pMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
       </div>
-      <div id="mediaMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+
+      <!-- AUDIO SECTION -->
+      <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1.2rem;">
+        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">🎵 Add Audio Study</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Audio Title *</label><input type="text" id="aTitle" placeholder="e.g. Genesis Chapter 1 Audio Study"></div>
+          <div class="form-group"><label>Teacher / Speaker</label><input type="text" id="aSpeaker" placeholder="e.g. Dr. John Smith"></div>
+        </div>
+        <div class="form-group"><label>Description</label><input type="text" id="aDesc" placeholder="Brief description"></div>
+        <div class="form-group"><label>Upload Audio File (MP3, M4A, WAV — up to 5MB)</label>
+          <input type="file" id="aFile" accept="audio/*" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text2);border-radius:5px;padding:.45rem .7rem;font-family:sans-serif;font-size:.82rem;width:100%;cursor:pointer;">
+          <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Or paste an external audio URL below</div>
+        </div>
+        <div class="form-group"><label>External Audio URL (optional — instead of upload)</label>
+          <input type="url" id="aUrl" placeholder="https://example.com/audio-study.mp3">
+        </div>
+        <button class="btn btn-primary" onclick="addAudio()">📢 POST Audio</button>
+        <div id="aMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
+      </div>
     </div>
   </div>
+
   <div style="text-align:center;margin-top:1rem;">
     <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">⚙ Admin Access</button>
   </div>
 </div>
-
-<!-- Video Modal -->
-<div class="modal-overlay" id="videoModal">
-  <div class="modal-video">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-embed"><iframe id="modalFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-  </div>
-</div>
-
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
 <script>
 function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
 function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 let adminUnlocked=false, curTab='videos';
 
-const DEFAULT_ITEMS=[
-  {type:'video',title:'Understanding the Book of Genesis',desc:'An in-depth study of creation, the fall, and God's covenant.',url:'https://www.youtube.com/embed/videoseries?list=PLH0Szn1yYNecanPeKbCWMBBPNMGBrqNgj',speaker:'GATE Faculty',cat:'Old Testament',ts:1000},
-  {type:'video',title:'The Life of Jesus Christ — Gospel Overview',desc:'A comprehensive overview of the four Gospels and the life of Jesus.',url:'https://www.youtube.com/embed/YTID_placeholder',speaker:'GATE Faculty',cat:'New Testament',ts:1001},
-  {type:'podcast',title:'The GATE Theology Podcast',desc:'Weekly discussions on systematic theology, Christology, and biblical doctrine.',url:'https://anchor.fm/embed/gate-theology',speaker:'GATE Panel',cat:'Theology',ts:1002},
+const DEFAULT_VIDEOS=[
+  {id:1000,title:'Understanding the Book of Genesis',desc:'An in-depth study of creation, the fall, and the Abrahamic covenant.',url:'https://www.youtube.com/embed/dQw4w9WgXcQ',speaker:'GATE Faculty',cat:'Old Testament'},
+  {id:1001,title:'The Life of Jesus Christ — Gospel Overview',desc:'A comprehensive overview of the four Gospels and the life of Jesus.',url:'https://www.youtube.com/embed/dQw4w9WgXcQ',speaker:'GATE Faculty',cat:'New Testament'},
 ];
 
-function getItems(){return gateLoad('gate_studies')||(gateSave('gate_studies',DEFAULT_ITEMS),DEFAULT_ITEMS);}
+function getVideos(){return gateLoad('gate_bs_videos')||DEFAULT_VIDEOS;}
+function getPodcasts(){return gateLoad('gate_bs_podcasts')||[];}
+function getAudios(){return gateLoad('gate_bs_audios')||[];}
+function getPlatforms(){return gateLoad('gate_bs_platforms')||{spotify:'',apple:'',rss:''};}
 
 function showTab(tab,btn){
   curTab=tab;
-  ['videos','podcasts','audio'].forEach(t=>document.getElementById('tab-'+t).style.display=t===tab?'block':'none');
+  ['videos','podcasts','audio'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===tab?'block':'none';});
   document.querySelectorAll('.media-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderMedia();
-}
-
-function renderMedia(){
-  const items=getItems();
-  // Videos
-  const videos=items.filter(i=>i.type==='video');
-  const vGrid=document.getElementById('videoGrid');
-  vGrid.innerHTML=videos.map((v,idx)=>{
-    const ytId=getYTId(v.url);
-    const thumb=ytId?`<img src="https://img.youtube.com/vi/${ytId}/hqdefault.jpg" alt="thumb">`:'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;">▶</div>';
-    return `<div class="video-card" onclick="playVideo(${idx})">
-      <div class="video-thumb">${thumb}<div class="play-overlay"><div class="play-btn">▶</div></div></div>
-      <div class="video-info">
-        <div class="video-title">${v.title}</div>
-        <div class="video-meta">${v.speaker?'👤 '+v.speaker:''}${v.cat?' · 📂 '+v.cat:''}</div>
-        ${v.desc?`<div style="color:var(--text2);font-size:.78rem;margin-top:.3rem;">${v.desc}</div>`:''}
-        ${adminUnlocked?`<button class="btn btn-danger btn-sm" style="margin-top:.5rem;" onclick="event.stopPropagation();removeItem(${v.ts})">Remove</button>`:''}</div>
-    </div>`;
-  }).join('');
-  document.getElementById('noVideos').style.display=videos.length?'none':'block';
-  
-  // Podcasts
-  const pods=items.filter(i=>i.type==='podcast');
-  const pList=document.getElementById('podcastList');
-  pList.innerHTML=pods.map(p=>`
-    <div class="podcast-card">
-      <div class="podcast-icon">🎙</div>
-      <div style="flex:1;">
-        <div class="podcast-title">${p.title}</div>
-        <div class="podcast-desc">${p.desc||''}${p.speaker?' · 👤 '+p.speaker:''}</div>
-        ${p.url?`<div class="podcast-embed"><iframe src="${p.url}" width="100%" height="232" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" style="border-radius:6px;"></iframe></div>`:''}
-        <div style="margin-top:.5rem;display:flex;gap:.5rem;flex-wrap:wrap;">
-          ${p.url?`<a href="${p.url.replace('/embed','')}" target="_blank" class="btn btn-secondary btn-sm">Open Podcast</a>`:''}
-          ${adminUnlocked?`<button class="btn btn-danger btn-sm" onclick="removeItem(${p.ts})">Remove</button>`:''}
-        </div>
-      </div>
-    </div>`).join('');
-  document.getElementById('noPodcasts').style.display=pods.length?'none':'block';
-  
-  // Audio
-  const audio=items.filter(i=>i.type==='audio');
-  const aList=document.getElementById('audioList');
-  aList.innerHTML=audio.map(a=>`
-    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;margin-bottom:.8rem;display:flex;gap:1rem;align-items:center;">
-      <div style="font-size:1.8rem;">🎵</div>
-      <div style="flex:1;">
-        <div style="color:var(--cream);font-size:.9rem;font-weight:600;">${a.title}</div>
-        <div style="color:var(--text2);font-size:.78rem;">${a.speaker||''}${a.cat?' · '+a.cat:''}</div>
-        ${a.url?`<audio controls style="width:100%;margin-top:.5rem;"><source src="${a.url}"></audio>`:''}
-        ${adminUnlocked?`<button class="btn btn-danger btn-sm" style="margin-top:.4rem;" onclick="removeItem(${a.ts})">Remove</button>`:''}
-      </div>
-    </div>`).join('');
-  document.getElementById('noAudio').style.display=audio.length?'none':'block';
+  if(btn)btn.classList.add('active');
+  renderAll();
 }
 
 function getYTId(url){
-  const m=url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
-  return m?m[1]:null;
+  if(!url)return null;
+  var m=url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  return m?m[1]:(/^[a-zA-Z0-9_-]{11}$/.test(url.trim())?url.trim():null);
 }
 
-function playVideo(idx){
-  const items=getItems().filter(i=>i.type==='video');
-  const v=items[idx];
-  let src=v.url;
-  if(!src.includes('embed')) {
-    const id=getYTId(src);
-    if(id) src='https://www.youtube.com/embed/'+id+'?autoplay=1';
+function renderAll(){
+  renderVideos();
+  renderPodcasts();
+  renderAudios();
+}
+
+// ── VIDEOS ──────────────────────────────────────────────────────────────
+function renderVideos(){
+  var videos=getVideos();
+  var grid=document.getElementById('videoGrid');
+  var none=document.getElementById('noVideos');
+  if(!videos.length){grid.innerHTML='';none.style.display='block';return;}
+  none.style.display='none';
+  grid.innerHTML=videos.map(function(v){
+    var ytId=getYTId(v.url);
+    var thumbHtml=ytId?'<img src="https://img.youtube.com/vi/'+ytId+'/hqdefault.jpg" alt="'+v.title+'">':'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--gold);">▶</div>';
+    var removeBtn=adminUnlocked?'<button class="btn btn-danger btn-sm" style="margin-top:.5rem;" onclick="removeVideo('+v.id+')">🗑 Remove</button>':'';
+    return '<div class="video-card" onclick="playVideo('+v.id+')" data-url="'+v.url+'">'
+      +'<div class="video-thumb">'+thumbHtml
+      +'<div class="play-overlay"><div class="play-btn">▶</div></div></div>'
+      +'<div class="video-info">'
+      +'<div class="video-title">'+v.title+'</div>'
+      +'<div class="video-meta">'+(v.speaker?'👤 '+v.speaker:'')+(v.cat?' · 📂 '+v.cat:'')+'</div>'
+      +(v.desc?'<div style="color:var(--text2);font-size:.78rem;margin-top:.3rem;">'+v.desc+'</div>':'')
+      +removeBtn+'</div></div>';
+  }).join('');
+}
+
+function playVideo(id){
+  var videos=getVideos();
+  var v=videos.find(function(x){return x.id===id;});
+  if(!v)return;
+  var ytId=getYTId(v.url);
+  var embedUrl=ytId?'https://www.youtube.com/embed/'+ytId+'?autoplay=1':v.url;
+  var modal=document.getElementById('videoModal');
+  if(!modal){
+    modal=document.createElement('div');
+    modal.id='videoModal';
+    modal.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.9);display:flex;flex-direction:column;';
+    modal.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:#162440;border-bottom:1px solid rgba(201,168,76,.3);"><div id="vmTitle" style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;"></div><button onclick="closeVideoModal()" style="background:rgba(139,32,32,.5);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:4px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">✕ Close</button></div><div style="flex:1;position:relative;"><iframe id="vmFrame" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="autoplay;fullscreen"></iframe></div>';
+    document.body.appendChild(modal);
   }
-  document.getElementById('modalFrame').src=src+'&autoplay=1';
-  document.getElementById('videoModal').classList.add('show');
+  document.getElementById('vmTitle').textContent=v.title;
+  document.getElementById('vmFrame').src=embedUrl;
+  modal.style.display='flex';
+}
+function closeVideoModal(){
+  var m=document.getElementById('videoModal');
+  if(m){document.getElementById('vmFrame').src='';m.style.display='none';}
 }
 
-function closeModal(){
-  document.getElementById('videoModal').classList.remove('show');
-  document.getElementById('modalFrame').src='';
+function addVideo(){
+  var title=document.getElementById('vTitle').value.trim();
+  var url=document.getElementById('vUrl').value.trim();
+  var msg=document.getElementById('vMsg');
+  if(!title||!url){msg.innerHTML='<span style="color:#e05555">Title and URL required.</span>';return;}
+  var videos=getVideos();
+  videos.unshift({id:Date.now(),title,url,speaker:document.getElementById('vSpeaker').value,desc:document.getElementById('vDesc').value,cat:document.getElementById('vCat').value});
+  gateSave('gate_bs_videos',videos);
+  ['vTitle','vUrl','vSpeaker','vDesc'].forEach(function(id){document.getElementById(id).value='';});
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  setTimeout(function(){msg.innerHTML='';},3000);
+  renderVideos();
+}
+function removeVideo(id){if(!confirm('Remove?'))return;gateSave('gate_bs_videos',getVideos().filter(function(v){return v.id!==id;}));renderVideos();}
+
+// ── PODCASTS ─────────────────────────────────────────────────────────────
+function renderPodcasts(){
+  var plat=getPlatforms();
+  var hasPlat=plat.spotify||plat.apple||plat.rss;
+  var platDiv=document.getElementById('platformLinks');
+  if(platDiv){
+    platDiv.style.display=hasPlat?'flex':'none';
+    var sl=document.getElementById('spotifyLink');
+    var al=document.getElementById('appleLink');
+    var rl=document.getElementById('rssLink');
+    if(sl){sl.href=plat.spotify||'#';sl.style.display=plat.spotify?'inline-flex':'none';}
+    if(al){al.href=plat.apple||'#';al.style.display=plat.apple?'inline-flex':'none';}
+    if(rl){rl.href=plat.rss||'#';rl.style.display=plat.rss?'inline-flex':'none';}
+  }
+  var pods=getPodcasts();
+  var pList=document.getElementById('podcastList');
+  var none=document.getElementById('noPodcasts');
+  if(!pods.length&&!hasPlat){if(none)none.style.display='block';if(pList)pList.innerHTML='';return;}
+  if(none)none.style.display='none';
+  if(!pList)return;
+  pList.innerHTML=pods.map(function(p){
+    var embedHtml='';
+    if(p.spotifyEmbed){
+      embedHtml='<div class="podcast-embed"><iframe src="'+p.spotifyEmbed+'" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>';
+    } else if(p.audioUrl){
+      embedHtml='<audio controls class="audio-player" style="width:100%;margin-top:.6rem;"><source src="'+p.audioUrl+'">Your browser does not support audio.</audio>';
+    }
+    var removeBtn=adminUnlocked?'<button class="btn btn-danger btn-sm" onclick="removePodcast('+p.id+')">🗑 Remove</button>':'';
+    return '<div class="podcast-card">'
+      +'<div class="podcast-icon">🎙</div>'
+      +'<div style="flex:1;min-width:0;">'
+      +'<div class="podcast-title">'+p.title+'</div>'
+      +'<div class="podcast-desc">'+(p.desc||'')+(p.speaker?' · 👤 '+p.speaker:'')+'</div>'
+      +embedHtml+removeBtn+'</div></div>';
+  }).join('');
 }
 
-function addMedia(){
-  if(!adminUnlocked){alert('Admin required.');return;}
-  const type=document.getElementById('addType').value;
-  const title=document.getElementById('addTitle').value.trim();
-  const desc=document.getElementById('addDesc').value.trim();
-  const url=document.getElementById('addUrl').value.trim();
-  const speaker=document.getElementById('addSpeaker').value.trim();
-  const cat=document.getElementById('addCat').value.trim();
-  if(!title||!url){document.getElementById('mediaMsg').innerHTML='<span style="color:#e05555;">Title and URL required.</span>';return;}
-  const items=getItems();
-  items.push({type,title,desc,url,speaker,cat,ts:Date.now()});
-  gateSave('gate_studies',items);
-  renderMedia();
-  document.getElementById('mediaMsg').innerHTML='<span style="color:#4aad74;">✅ Posted! Visible to everyone.</span>';
-  ['addTitle','addDesc','addUrl','addSpeaker','addCat'].forEach(id=>document.getElementById(id).value='');
+function savePlatformLinks(){
+  var plat={
+    spotify:document.getElementById('spotifyUrl').value.trim(),
+    apple:document.getElementById('appleUrl').value.trim(),
+    rss:document.getElementById('rssUrl').value.trim()
+  };
+  gateSave('gate_bs_platforms',plat);
+  document.getElementById('platformMsg').innerHTML='<span style="color:#4aad74">✅ Platform links saved! Visible to everyone.</span>';
+  setTimeout(function(){document.getElementById('platformMsg').innerHTML='';},3000);
+  renderPodcasts();
 }
 
-function removeItem(ts){
-  if(!confirm('Remove this item?'))return;
-  gateSave('gate_studies',getItems().filter(i=>i.ts!==ts));
-  renderMedia();
+function addPodcast(){
+  var title=document.getElementById('pTitle').value.trim();
+  var msg=document.getElementById('pMsg');
+  if(!title){msg.innerHTML='<span style="color:#e05555">Title required.</span>';return;}
+  var pods=getPodcasts();
+  pods.unshift({id:Date.now(),title,desc:document.getElementById('pDesc').value,speaker:document.getElementById('pSpeaker').value,spotifyEmbed:document.getElementById('pSpotifyEmbed').value.trim(),audioUrl:document.getElementById('pAudioUrl').value.trim()});
+  gateSave('gate_bs_podcasts',pods);
+  ['pTitle','pDesc','pSpeaker','pSpotifyEmbed','pAudioUrl'].forEach(function(id){document.getElementById(id).value='';});
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  setTimeout(function(){msg.innerHTML='';},3000);
+  renderPodcasts();
+}
+function removePodcast(id){if(!confirm('Remove?'))return;gateSave('gate_bs_podcasts',getPodcasts().filter(function(p){return p.id!==id;}));renderPodcasts();}
+
+// ── AUDIO ────────────────────────────────────────────────────────────────
+function renderAudios(){
+  var audios=getAudios();
+  var list=document.getElementById('audioList');
+  var none=document.getElementById('noAudio');
+  if(!audios.length){if(list)list.innerHTML='';if(none)none.style.display='block';return;}
+  if(none)none.style.display='none';
+  list.innerHTML=audios.map(function(a){
+    var srcHtml=a.data?'<source src="'+a.data+'">':a.url?'<source src="'+a.url+'">':'';
+    var removeBtn=adminUnlocked?'<button class="btn btn-danger btn-sm" style="margin-top:.4rem;" onclick="removeAudio('+a.id+')">🗑 Remove</button>':'';
+    return '<div class="audio-card">'
+      +'<div class="audio-title">'+a.title+'</div>'
+      +(a.speaker?'<div style="font-size:.78rem;color:var(--text2);margin-bottom:.3rem;">👤 '+a.speaker+'</div>':'')
+      +(a.desc?'<div style="font-size:.82rem;color:var(--text2);margin-bottom:.4rem;">'+a.desc+'</div>':'')
+      +'<audio controls class="audio-player" style="width:100%;accent-color:var(--gold);">'+srcHtml+'Your browser does not support audio.</audio>'
+      +removeBtn+'</div>';
+  }).join('');
 }
 
+async function addAudio(){
+  var title=document.getElementById('aTitle').value.trim();
+  var msg=document.getElementById('aMsg');
+  if(!title){msg.innerHTML='<span style="color:#e05555">Title required.</span>';return;}
+  var file=document.getElementById('aFile').files[0];
+  var extUrl=document.getElementById('aUrl').value.trim();
+  if(!file&&!extUrl){msg.innerHTML='<span style="color:#e05555">Please upload a file or enter a URL.</span>';return;}
+  msg.innerHTML='<span style="color:var(--text2)">Processing...</span>';
+  var data='', url=extUrl;
+  if(file){
+    if(file.size>5*1024*1024){msg.innerHTML='<span style="color:#e05555">File too large (max 5MB). Use an external URL instead.</span>';return;}
+    data=await new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result);};r.readAsDataURL(file);});
+  }
+  var audios=getAudios();
+  audios.unshift({id:Date.now(),title,speaker:document.getElementById('aSpeaker').value,desc:document.getElementById('aDesc').value,data,url});
+  gateSave('gate_bs_audios',audios);
+  ['aTitle','aSpeaker','aDesc','aUrl'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('aFile').value='';
+  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  setTimeout(function(){msg.innerHTML='';},3000);
+  renderAudios();
+}
+function removeAudio(id){if(!confirm('Remove?'))return;gateSave('gate_bs_audios',getAudios().filter(function(a){return a.id!==id;}));renderAudios();}
+
+// ── ADMIN ────────────────────────────────────────────────────────────────
 function promptAdmin(){
-  const pw=prompt('Admin password:');
-  if(pw==='GATE2025admin'){adminUnlocked=true;document.getElementById('adminPanel').style.display='block';renderMedia();}
-  else if(pw!==null) alert('Incorrect password.');
+  if(adminUnlocked){document.getElementById('adminPanel').style.display='block';return;}
+  var pw=prompt('Admin Password:');
+  if(pw==='GATE2025admin'){
+    adminUnlocked=true;
+    var s=gateLoad('td_gate_v6')||{};
+    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};
+    s.tier='admin';gateSave('td_gate_v6',s);
+    document.getElementById('adminPanel').style.display='block';
+    // Pre-fill platform links
+    var plat=getPlatforms();
+    document.getElementById('spotifyUrl').value=plat.spotify||'';
+    document.getElementById('appleUrl').value=plat.apple||'';
+    document.getElementById('rssUrl').value=plat.rss||'';
+    renderAll();
+  }else if(pw!==null)alert('Incorrect password.');
 }
 
-renderMedia();
-</script>
-<script src="assets/gate_shared.js"></script>
-
-<!-- ===== GATE ADMIN TOOLBAR ===== -->
-<div id="gateAdminBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#0d1b2e 0%,#162440 100%);border-top:2px solid #c9a84c;padding:.45rem 1rem;font-family:sans-serif;">
-  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;">
-    <span style="color:#c9a84c;font-size:.75rem;font-weight:700;letter-spacing:1px;margin-right:.3rem;">⚙ ADMIN:</span>
-    <button onclick="gAdminAction('add')" style="background:#2d7a4f;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">+ Add</button>
-    <button onclick="gAdminAction('edit')" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">✏ Edit</button>
-    <button onclick="gAdminAction('upload')" style="background:#3060a0;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">📷 Upload</button>
-    <button onclick="gAdminAction('approve')" style="background:#2d7a4f;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">✓ Approve</button>
-    <button onclick="gAdminAction('verify')" style="background:#5a3080;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">🔍 Verify</button>
-    <button onclick="gAdminAction('suspend')" style="background:#a06020;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">⊘ Suspend</button>
-    <button onclick="gAdminAction('archive')" style="background:#3a3a5a;color:#e8e0d0;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">📦 Archive</button>
-    <button onclick="gAdminAction('restore')" style="background:#1a4a6a;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">↩ Restore</button>
-    <button onclick="gAdminAction('remove')" style="background:#8b2020;color:#fff;border:none;padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-weight:600;">🗑 Remove</button>
-    <span style="margin-left:auto;display:flex;gap:.4rem;align-items:center;">
-      <a href="admin.html" style="color:#c9a84c;font-size:.72rem;text-decoration:none;border:1px solid rgba(201,168,76,.4);padding:.28rem .6rem;border-radius:4px;">Admin Console →</a>
-      <button onclick="gAdminLogout()" style="background:rgba(139,32,32,.6);color:#e05555;border:1px solid rgba(139,32,32,.6);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✕ Exit Admin</button>
-    </span>
-  </div>
-</div>
-
-<!-- Admin Login Float Button -->
-<div id="gAdminLoginBtn" style="position:fixed;bottom:1rem;right:1rem;z-index:9998;">
-  <button onclick="gAdminPrompt()" style="background:linear-gradient(135deg,#162440,#0d1b2e);color:#c9a84c;border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4);">⚙ Admin</button>
-</div>
-
-<!-- Admin Action Modal -->
-<div id="gAdminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:10000;align-items:center;justify-content:center;">
-  <div style="background:#162440;border:2px solid #c9a84c;border-radius:10px;padding:2rem;max-width:520px;width:90%;max-height:85vh;overflow-y:auto;position:relative;">
-    <button onclick="document.getElementById('gAdminModal').style.display='none'" style="position:absolute;top:.7rem;right:.8rem;background:none;border:none;color:#b8a88a;font-size:1.3rem;cursor:pointer;">✕</button>
-    <h3 id="gAdminModalTitle" style="font-family:'Cinzel',serif;color:#c9a84c;margin-bottom:1.2rem;letter-spacing:1px;font-size:1.1rem;"></h3>
-    <div id="gAdminModalBody"></div>
-  </div>
-</div>
-
-<script>
 (function(){
-  const GATE_KEY='td_gate_v6';
-  const ADMIN_PASS='GATE2025admin';
-  function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
-  function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-  
-  function isAdmin(){
-    const s=gl(GATE_KEY);
-    return s&&s.tier==='admin';
+  var s=gateLoad('td_gate_v6');
+  if(s&&s.tier==='admin'){
+    adminUnlocked=true;
+    document.getElementById('adminPanel').style.display='block';
+    var plat=getPlatforms();
+    document.getElementById('spotifyUrl').value=plat.spotify||'';
+    document.getElementById('appleUrl').value=plat.apple||'';
+    document.getElementById('rssUrl').value=plat.rss||'';
   }
-  
-  function gAdminShow(){
-    document.getElementById('gateAdminBar').style.display='block';
-    document.getElementById('gAdminLoginBtn').style.display='none';
-  }
-  
-  window.gAdminPrompt=function(){
-    if(isAdmin()){gAdminShow();return;}
-    const pw=prompt('🔐 Admin Password:');
-    if(pw===ADMIN_PASS){
-      const s=gl(GATE_KEY)||{user:null,tier:null};
-      if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};
-      s.tier='admin';
-      gs(GATE_KEY,s);
-      gAdminShow();
-    } else if(pw!==null){alert('Incorrect password.');}
-  };
-  
-  window.gAdminLogout=function(){
-    document.getElementById('gateAdminBar').style.display='none';
-    document.getElementById('gAdminLoginBtn').style.display='block';
-  };
-  
-  const PAGE=window.location.pathname.split('/').pop()||'index.html';
-  
-  window.gAdminAction=function(action){
-    const modal=document.getElementById('gAdminModal');
-    const title=document.getElementById('gAdminModalTitle');
-    const body=document.getElementById('gAdminModalBody');
-    const GATE_ADMIN_KEY='gate_admin_content_'+PAGE.replace('.html','');
-    
-    const actions={
-      add:{label:'📢 Post New Content',icon:'📢',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title / Name *</label><input id="ga_title" type="text" placeholder="Title or name..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description / Body</label><textarea id="ga_body" rows="4" placeholder="Content description..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;resize:vertical;"></textarea></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL / Link (optional)</label><input id="ga_url" type="url" placeholder="https://..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-family:sans-serif;font-size:.9rem;"></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Upload Image (optional)</label><input id="ga_img" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"></div>
-          <div id="ga_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminSaveItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">📢 POST</button>
-        </div>`},
-      edit:{label:'✏️ Edit / Change',icon:'✏️',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item to Edit</label>
-          <select id="ga_edit_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;" onchange="gAdminLoadEditItem()"><option value="">— Select —</option></select></div>
-          <div id="ga_edit_fields" style="display:none;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Title</label><input id="ga_e_title" type="text" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Description</label><textarea id="ga_e_body" rows="4" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;resize:vertical;"></textarea></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">URL</label><input id="ga_e_url" type="url" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div id="ga_e_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminUpdateItem()" style="background:#c9a84c;color:#0d1b2e;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Update</button></div>
-        </div>`},
-      upload:{label:'📷 Upload Image',icon:'📷',
-        html:`<div style="font-family:sans-serif;">
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item</label>
-          <select id="ga_ul_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">— Select item or New —</option><option value="__new__">Add as new image</option></select></div>
-          <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Image Label</label><input id="ga_ul_label" type="text" placeholder="Image label/title..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-          <div style="margin-bottom:1rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Image File</label><input id="ga_ul_file" type="file" accept="image/*" style="color:#b8a88a;font-size:.82rem;"><div id="ga_ul_preview" style="margin-top:.5rem;"></div></div>
-          <div id="ga_ul_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-          <button onclick="gAdminUploadImg()" style="background:#3060a0;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Upload Image</button>
-        </div>`},
-      approve:{label:'✓ Approve Item',icon:'✓',html:gAdminApproveHtml()},
-      verify:{label:'🔍 Verify Item',icon:'🔍',html:gAdminStatusHtml('verify','verified','Verified','#5a3080')},
-      suspend:{label:'⊘ Suspend Item',icon:'⊘',html:gAdminStatusHtml('suspend','suspended','Suspended','#a06020')},
-      archive:{label:'📦 Archive Item',icon:'📦',html:gAdminStatusHtml('archive','archived','Archived','#3a3a5a')},
-      restore:{label:'↩ Restore Item',icon:'↩',html:gAdminRestoreHtml()},
-      remove:{label:'🗑 Remove / Delete',icon:'🗑',html:gAdminRemoveHtml()},
-    };
-    
-    const a=actions[action];
-    title.textContent=a.label;
-    body.innerHTML=a.html;
-    modal.style.display='flex';
-    
-    // Populate selects after rendering
-    if(action==='edit'||action==='upload')setTimeout(()=>gAdminPopulateSelect(action),50);
-    if(action==='remove'||action==='restore'||action==='archive'||action==='suspend'||action==='verify')
-      setTimeout(()=>gAdminPopulateActionSelect(action),50);
-    if(action==='approve')setTimeout(()=>gAdminPopulateApprove(),50);
-  };
-  
-  function gAdminApproveHtml(){
-    return `<div style="font-family:sans-serif;">
-      <p style="color:#b8a88a;font-size:.85rem;margin-bottom:1rem;">Review and approve pending items or user payment requests.</p>
-      <div id="ga_approve_list" style="margin-bottom:1rem;"></div>
-      <div id="ga_approve_users" style="margin-bottom:1rem;"></div>
-    </div>`;
-  }
-  
-  function gAdminStatusHtml(action,status,label,color){
-    return `<div style="font-family:sans-serif;">
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item</label>
-      <select id="ga_status_sel_${action}" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Reason (optional)</label><input id="ga_status_reason_${action}" type="text" placeholder="Reason for ${label.toLowerCase()}..." style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"></div>
-      <div id="ga_status_msg_${action}" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminSetStatus('${action}','${status}')" style="background:${color};color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Mark as ${label}</button>
-    </div>`;
-  }
-  
-  function gAdminRestoreHtml(){
-    return `<div style="font-family:sans-serif;">
-      <p style="color:#b8a88a;font-size:.85rem;margin-bottom:.8rem;">Select an archived or suspended item to restore.</p>
-      <div style="margin-bottom:.8rem;"><select id="ga_restore_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div id="ga_restore_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminRestore()" style="background:#1a4a6a;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Restore Item</button>
-    </div>`;
-  }
-  
-  function gAdminRemoveHtml(){
-    return `<div style="font-family:sans-serif;">
-      <div class="alert" style="background:rgba(139,32,32,.2);border:1px solid rgba(139,32,32,.4);color:#e05555;border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem;">⚠️ Removed items cannot be recovered. Consider archiving instead.</div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Select Item to Remove</label>
-      <select id="ga_remove_sel" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(201,168,76,.3);color:#e8e0d0;border-radius:5px;font-size:.9rem;"><option value="">Loading...</option></select></div>
-      <div style="margin-bottom:.8rem;"><label style="display:block;color:#b8a88a;font-size:.82rem;margin-bottom:.25rem;">Type DELETE to confirm</label><input id="ga_remove_confirm" type="text" placeholder="Type DELETE" style="width:100%;padding:.55rem .8rem;background:#1e2d3d;border:1px solid rgba(139,32,32,.4);color:#e05555;border-radius:5px;font-size:.9rem;"></div>
-      <div id="ga_remove_msg" style="min-height:1.2rem;font-size:.83rem;margin-bottom:.5rem;"></div>
-      <button onclick="gAdminRemoveItem()" style="background:#8b2020;color:#fff;border:none;padding:.6rem 1.4rem;border-radius:5px;font-weight:700;cursor:pointer;font-family:sans-serif;">Permanently Remove</button>
-    </div>`;
-  }
-  
-  function getPageKey(){return 'gate_admin_content_'+(window.location.pathname.split('/').pop()||'index').replace('.html','');}
-  function getItems(){return gl(getPageKey())||[];}
-  function saveItems(items){gs(getPageKey(),items);}
-  
-  window.gAdminSaveItem=async function(){
-    const title=document.getElementById('ga_title').value.trim();
-    const body=document.getElementById('ga_body').value.trim();
-    const url=document.getElementById('ga_url').value.trim();
-    const imgFile=document.getElementById('ga_img').files[0];
-    const msg=document.getElementById('ga_msg');
-    if(!title){msg.innerHTML='<span style="color:#e05555;">Title required.</span>';return;}
-    let img='';
-    if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
-    const items=getItems();
-    items.push({id:Date.now(),title,body,url,img,status:'active',created:new Date().toISOString()});
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✅ Posted! Visible to all visitors.</span>';
-    document.getElementById('ga_title').value='';
-    document.getElementById('ga_body').value='';
-    document.getElementById('ga_url').value='';
-    document.getElementById('ga_img').value='';
-  };
-  
-  window.gAdminPopulateSelect=function(action){
-    const items=getItems();
-    const selId=action==='edit'?'ga_edit_sel':'ga_ul_sel';
-    const sel=document.getElementById(selId);
-    if(!sel)return;
-    const existing=items.map(i=>`<option value="${i.id}">${i.title} [${i.status}]</option>`).join('');
-    sel.innerHTML='<option value="">— Select —</option>'+existing+(action==='upload'?'<option value="__new__">Add as new image</option>':'');
-  };
-  
-  window.gAdminPopulateActionSelect=function(action){
-    const items=getItems();
-    const selId='ga_status_sel_'+action||'ga_'+action+'_sel';
-    let sel=document.getElementById('ga_status_sel_'+action);
-    if(!sel)sel=document.getElementById('ga_'+action+'_sel');
-    if(!sel)return;
-    sel.innerHTML='<option value="">— Select —</option>'+items.map(i=>`<option value="${i.id}">${i.title} [${i.status}]</option>`).join('');
-  };
-  
-  window.gAdminPopulateApprove=function(){
-    const list=document.getElementById('ga_approve_list');
-    const ulist=document.getElementById('ga_approve_users');
-    // Show pending payments
-    const pending=(gl('gate_pending_payments')||[]).filter(p=>p.status==='pending');
-    if(pending.length){
-      list.innerHTML='<p style="color:#c9a84c;font-size:.82rem;font-weight:700;margin-bottom:.5rem;">Pending Payments ('+pending.length+')</p>'+
-        pending.map((p,i)=>`<div style="display:flex;align-items:center;justify-content:space-between;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:.6rem .8rem;margin-bottom:.4rem;font-size:.82rem;">
-          <span style="color:#e8e0d0;">${p.email} — ${p.tier.toUpperCase()}</span>
-          <span style="display:flex;gap:.3rem;"><button onclick="gAdminApprovePayment(${i})" style="background:#2d7a4f;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✓ Approve</button>
-          <button onclick="gAdminDenyPayment(${i})" style="background:#8b2020;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">✗ Deny</button></span></div>`).join('');
-    } else {
-      list.innerHTML='<p style="color:#b8a88a;font-size:.82rem;">No pending payment requests.</p>';
-    }
-    // Show users for verification
-    const users=Object.values(gl('gate_users_v6')||{}).filter(u=>!u.verified);
-    if(users.length){
-      ulist.innerHTML='<p style="color:#c9a84c;font-size:.82rem;font-weight:700;margin-bottom:.5rem;margin-top:.8rem;">Unverified Users ('+users.length+')</p>'+
-        users.map(u=>`<div style="display:flex;align-items:center;justify-content:space-between;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:.5rem .8rem;margin-bottom:.3rem;font-size:.82rem;">
-          <span style="color:#e8e0d0;">${u.email}</span>
-          <button onclick="gAdminVerifyUser('${u.email}')" style="background:#5a3080;color:#fff;border:none;padding:.25rem .6rem;border-radius:4px;font-size:.72rem;cursor:pointer;">Verify</button></div>`).join('');
-    }
-  };
-  
-  window.gAdminApprovePayment=function(idx){
-    const pending=gl('gate_pending_payments')||[];
-    if(!pending[idx])return;
-    const req=pending[idx];req.status='approved';req.approvedAt=Date.now();
-    const users=gl('gate_users_v6')||{};
-    if(!users[req.email])users[req.email]={name:req.email,email:req.email,pass:btoa('gate123'),tier:req.tier,enrolled:Date.now(),verified:true,active:true};
-    else users[req.email].tier=req.tier;
-    gs('gate_users_v6',users);gs('gate_pending_payments',pending);
-    alert('✓ Approved: '+req.email);gAdminPopulateApprove();
-  };
-  
-  window.gAdminDenyPayment=function(idx){
-    if(!confirm('Deny this payment?'))return;
-    const pending=gl('gate_pending_payments')||[];
-    if(!pending[idx])return;
-    pending[idx].status='denied';gs('gate_pending_payments',pending);gAdminPopulateApprove();
-  };
-  
-  window.gAdminVerifyUser=function(email){
-    const users=gl('gate_users_v6')||{};
-    if(users[email])users[email].verified=true;
-    gs('gate_users_v6',users);alert('✓ Verified: '+email);gAdminPopulateApprove();
-  };
-  
-  window.gAdminLoadEditItem=function(){
-    const sel=document.getElementById('ga_edit_sel');
-    const id=parseInt(sel.value);
-    const item=getItems().find(i=>i.id===id);
-    const fields=document.getElementById('ga_edit_fields');
-    if(!item){fields.style.display='none';return;}
-    fields.style.display='block';
-    document.getElementById('ga_e_title').value=item.title||'';
-    document.getElementById('ga_e_body').value=item.body||'';
-    document.getElementById('ga_e_url').value=item.url||'';
-  };
-  
-  window.gAdminUpdateItem=function(){
-    const sel=document.getElementById('ga_edit_sel');
-    const id=parseInt(sel.value);
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    if(!item){return;}
-    item.title=document.getElementById('ga_e_title').value;
-    item.body=document.getElementById('ga_e_body').value;
-    item.url=document.getElementById('ga_e_url').value;
-    item.updated=new Date().toISOString();
-    saveItems(items);
-    document.getElementById('ga_e_msg').innerHTML='<span style="color:#4aad74;">✓ Updated!</span>';
-  };
-  
-  window.gAdminUploadImg=async function(){
-    const imgFile=document.getElementById('ga_ul_file').files[0];
-    const label=document.getElementById('ga_ul_label').value.trim();
-    const msg=document.getElementById('ga_ul_msg');
-    if(!imgFile){msg.innerHTML='<span style="color:#e05555;">Select an image.</span>';return;}
-    const b64=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});
-    const selVal=document.getElementById('ga_ul_sel').value;
-    const items=getItems();
-    if(selVal==='__new__'||!selVal){
-      items.push({id:Date.now(),title:label||imgFile.name,body:'',url:'',img:b64,status:'active',created:new Date().toISOString()});
-    } else {
-      const item=items.find(i=>i.id===parseInt(selVal));
-      if(item)item.img=b64;
-    }
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Image uploaded!</span>';
-    document.getElementById('ga_ul_preview').innerHTML='<img src="'+b64+'" style="max-height:120px;border-radius:6px;margin-top:.3rem;">';
-  };
-  
-  window.gAdminSetStatus=function(action,status){
-    const sel=document.getElementById('ga_status_sel_'+action);
-    if(!sel)return;
-    const id=parseInt(sel.value);
-    const reason=document.getElementById('ga_status_reason_'+action).value;
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    const msgEl=document.getElementById('ga_status_msg_'+action);
-    if(!item){if(msgEl)msgEl.innerHTML='<span style="color:#e05555;">Select an item.</span>';return;}
-    item.status=status;if(reason)item.reason=reason;item.updated=new Date().toISOString();
-    saveItems(items);
-    if(msgEl)msgEl.innerHTML='<span style="color:#4aad74;">✓ Status updated to '+status+'!</span>';
-  };
-  
-  window.gAdminRestore=function(){
-    const sel=document.getElementById('ga_restore_sel');
-    if(!sel)return;
-    const id=parseInt(sel.value);
-    const items=getItems();
-    const item=items.find(i=>i.id===id);
-    const msg=document.getElementById('ga_restore_msg');
-    if(!item){msg.innerHTML='<span style="color:#e05555;">Select an item.</span>';return;}
-    item.status='active';delete item.reason;item.updated=new Date().toISOString();
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Restored!</span>';
-    gAdminPopulateActionSelect('restore');
-  };
-  
-  window.gAdminRemoveItem=function(){
-    const sel=document.getElementById('ga_remove_sel');
-    const confirm_input=document.getElementById('ga_remove_confirm');
-    const msg=document.getElementById('ga_remove_msg');
-    if(confirm_input.value!=='DELETE'){msg.innerHTML='<span style="color:#e05555;">Type DELETE to confirm.</span>';return;}
-    const id=parseInt(sel.value);
-    const items=getItems().filter(i=>i.id!==id);
-    saveItems(items);
-    msg.innerHTML='<span style="color:#4aad74;">✓ Removed.</span>';
-    confirm_input.value='';
-    gAdminPopulateActionSelect('remove');
-  };
-  
-  // Auto-show if admin is logged in
-  if(isAdmin()){
-    document.addEventListener('DOMContentLoaded',function(){gAdminShow();});
-  }
+  renderAll();
 })();
-</script>
-<!-- ===== END GATE ADMIN TOOLBAR ===== -->
 
-<script>
-(function(){
-  var timers = {};
-  var DELAY = 320; // ms before closing dropdown
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd, i){
-    dd.setAttribute('data-dd', i);
-    dd.addEventListener('mouseenter', function(){
-      clearTimeout(timers[i]);
-      dd.classList.add('open');
-    });
-    dd.addEventListener('mouseleave', function(){
-      timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-    });
-    var menu = dd.querySelector('.gate-dropdown-menu');
-    if(menu){
-      menu.addEventListener('mouseenter', function(){ clearTimeout(timers[i]); });
-      menu.addEventListener('mouseleave', function(){
-        timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-      });
-    }
-  });
-})();
-</script>
-<script>
-/* Dropdown delay — 350ms before closing so you can click items */
-(function(){
-  var T={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    function open(){clearTimeout(T[i]);dd.classList.add('open');}
-    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);
-    dd.addEventListener('mouseleave',close);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
-  });
-})();
+
 </script>
 </body></html>
