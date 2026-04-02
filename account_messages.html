@@ -238,246 +238,268 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   <div class="divider"></div>
 </div>
 <div class="container">
-
-  <!-- TABS -->
   <div class="msg-tabs">
-    <button class="msg-tab active" onclick="showMsgTab('community',this)">🌐 Community</button>
-    <button class="msg-tab" onclick="showMsgTab('email',this)">✉ My GATE Email</button>
-    <button class="msg-tab" onclick="showMsgTab('inbox',this)">📬 Messages</button>
+    <button class="msg-tab active" id="btn-community" onclick="showTab('community')">🌐 Community</button>
+    <button class="msg-tab" id="btn-email"     onclick="showTab('email')">✉ My GATE Email</button>
+    <button class="msg-tab" id="btn-inbox"     onclick="showTab('inbox')">📬 Messages</button>
   </div>
 
-  <!-- ══ COMMUNITY TAB ══ -->
+  <!-- ══ COMMUNITY ══ -->
   <div id="tab-community">
     <div style="background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(30,80,150,.06));border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
       <div>
         <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;margin-bottom:.3rem;">🌐 GATE Community</div>
         <div style="font-size:.82rem;color:var(--text2);">Open to all GATE members. Post updates, questions, and encouragements. All members can read and reply.</div>
       </div>
-      <span id="memberCount" style="font-family:sans-serif;font-size:.78rem;color:var(--text2);white-space:nowrap;">Log in to post</span>
+      <span id="memberStatus" style="font-family:sans-serif;font-size:.78rem;color:var(--text2);white-space:nowrap;"></span>
     </div>
-
-    <!-- New Post Box -->
-    <div id="newPostBox" style="background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;display:none;">
+    <div id="newPostBox" style="display:none;background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:10px;padding:1.2rem;margin-bottom:1.5rem;">
       <div style="display:flex;gap:.8rem;align-items:flex-start;">
-        <div id="myAvatar" class="post-avatar">?</div>
+        <div id="myAvatar" class="post-avatar" style="margin-top:2px;">?</div>
         <div style="flex:1;">
-          <textarea id="newPostText" rows="3" placeholder="Share a thought, question, or encouragement with the GATE community..." style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.25);color:var(--text);border-radius:8px;padding:.7rem .9rem;font-family:inherit;font-size:.88rem;resize:vertical;"></textarea>
+          <textarea id="newPostText" rows="3" placeholder="Share a thought, question, or encouragement..." style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.25);color:var(--text);border-radius:8px;padding:.7rem .9rem;font-family:inherit;font-size:.88rem;resize:vertical;"></textarea>
           <div style="display:flex;align-items:center;gap:.7rem;margin-top:.6rem;flex-wrap:wrap;">
-            <label style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--text2);padding:.3rem .7rem;border-radius:6px;font-family:sans-serif;font-size:.75rem;cursor:pointer;">📷 Photo <input type="file" id="postImg" accept="image/*" style="display:none;" onchange="previewPostImg(this)"></label>
-            <div id="imgPreview" style="display:none;"></div>
+            <label style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--text2);padding:.3rem .7rem;border-radius:6px;font-family:sans-serif;font-size:.75rem;cursor:pointer;">📷 Photo<input type="file" id="postImg" accept="image/*" style="display:none;" onchange="previewImg(this)"></label>
+            <div id="imgPrev" style="display:none;"></div>
             <button onclick="submitPost()" style="background:var(--gold);color:var(--navy);border:none;padding:.45rem 1.2rem;border-radius:20px;font-family:sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;margin-left:auto;">📢 POST</button>
           </div>
         </div>
       </div>
     </div>
-    <div id="loginPromptCommunity" style="text-align:center;padding:1.5rem;background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;margin-bottom:1.5rem;">
+    <div id="loginPrompt" style="text-align:center;padding:1.5rem;background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;margin-bottom:1.5rem;">
       <div style="color:var(--text2);margin-bottom:.8rem;">Log in to post and join the GATE community</div>
-      <a href="account.html" style="background:var(--gold);color:var(--navy);padding:.5rem 1.2rem;border-radius:6px;font-family:sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;">Login / Register →</a>
+      <a href="account.html" style="background:var(--gold);color:var(--navy);padding:.5rem 1.2rem;border-radius:6px;font-family:sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;">Login / Register</a>
     </div>
-
-    <!-- Community Feed -->
     <div id="communityFeed"></div>
   </div>
 
-  <!-- ══ EMAIL TAB ══ -->
+  <!-- ══ GATE EMAIL ══ -->
   <div id="tab-email" style="display:none;">
     <div class="email-card">
       <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1.1rem;margin-bottom:.5rem;">✉ Your GATE Professional Email</div>
-      <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1rem;">Every GATE member receives a professional email address in the format <strong style="color:var(--gold);">firstname.lastname@gate-theology.org</strong>. This email is linked to your account and can be used for professional ministry communications.</p>
+      <p style="color:var(--text2);font-size:.88rem;line-height:1.7;margin-bottom:1rem;">Every GATE member receives a professional email address in the format <strong style="color:var(--gold);">firstname.lastname@gate-theology.org</strong>. Use it for ministry, applications, and professional communications.</p>
       <div id="emailDisplay"><div style="color:var(--text2);font-size:.88rem;">Log in to see your GATE email address. <a href="account.html">Login →</a></div></div>
     </div>
     <div class="email-card">
       <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;margin-bottom:.8rem;">📧 How Your GATE Email Works</div>
-      <div style="font-size:.85rem;color:var(--text2);line-height:2;">
+      <div style="font-size:.85rem;color:var(--text2);line-height:2.2;">
         <div>✓ <strong style="color:var(--cream);">Format:</strong> firstname.lastname@gate-theology.org</div>
-        <div>✓ <strong style="color:var(--cream);">Forwarding:</strong> Emails sent to your GATE address forward to your registered email</div>
-        <div>✓ <strong style="color:var(--cream);">Professional:</strong> Use on ministry websites, certificates, and applications</div>
-        <div>✓ <strong style="color:var(--cream);">Setup:</strong> Automatically activated upon account creation</div>
-        <div>✓ <strong style="color:var(--cream);">Support:</strong> Contact <a href="mailto:yodebepro@gmail.com">yodebepro@gmail.com</a> for setup help</div>
+        <div>✓ <strong style="color:var(--cream);">Forwarding:</strong> Emails sent here forward to your registered email</div>
+        <div>✓ <strong style="color:var(--cream);">Professional use:</strong> Ministry websites, certificates, school applications</div>
+        <div>✓ <strong style="color:var(--cream);">Activation:</strong> Email admin to activate forwarding</div>
+        <div>✓ <strong style="color:var(--cream);">Support:</strong> <a href="mailto:yodebepro@gmail.com">yodebepro@gmail.com</a></div>
       </div>
     </div>
   </div>
 
-  <!-- ══ INBOX TAB ══ -->
+  <!-- ══ MESSAGES ══ -->
   <div id="tab-inbox" style="display:none;">
-    <div id="inboxContent"><div style="text-align:center;padding:2rem;color:var(--text2);">Log in to view messages. <a href="account.html">Login →</a></div></div>
+    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:2rem;text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:.8rem;">📬</div>
+      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;margin-bottom:.6rem;">Direct Messages</div>
+      <div style="color:var(--text2);font-size:.88rem;line-height:1.8;max-width:480px;margin:0 auto 1rem;">Direct messaging between members is coming soon. For now, use the Community tab to connect with other GATE members.</div>
+      <a href="mailto:yodebepro@gmail.com" style="background:var(--gold);color:var(--navy);padding:.55rem 1.3rem;border-radius:6px;font-family:sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;">Email Admin →</a>
+    </div>
   </div>
-
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
-function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
-function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var COMM_KEY='gate_community_posts';
+var currentUser=null;
+var adminUnlocked=false;
 
-const COMM_KEY='gate_community_posts';
-let currentUser=null, adminUnlocked=false;
+/* ── TAB SWITCHING ─────────────────────────────────────────────────────── */
+function showTab(name){
+  var tabs=['community','email','inbox'];
+  for(var i=0;i<tabs.length;i++){
+    var el=document.getElementById('tab-'+tabs[i]);
+    var btn=document.getElementById('btn-'+tabs[i]);
+    if(el)  el.style.display  = tabs[i]===name ? 'block' : 'none';
+    if(btn) btn.className     = 'msg-tab' + (tabs[i]===name ? ' active' : '');
+  }
+}
 
-function getCommunityPosts(){return gateLoad(COMM_KEY)||[];}
-
-(function(){
-  var s=gateLoad('td_gate_v6');
+/* ── INIT ──────────────────────────────────────────────────────────────── */
+window.addEventListener('load',function(){
+  var s=gl('td_gate_v6');
   if(s&&s.user){
     currentUser=s.user;
-    document.getElementById('newPostBox').style.display='block';
-    document.getElementById('loginPromptCommunity').style.display='none';
-    var initials=(currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
-    document.getElementById('myAvatar').textContent=initials;
-    document.getElementById('memberCount').textContent='Welcome, '+(currentUser.name||currentUser.email);
+    var nb=document.getElementById('newPostBox');
+    var lp=document.getElementById('loginPrompt');
+    var av=document.getElementById('myAvatar');
+    var ms=document.getElementById('memberStatus');
+    if(nb) nb.style.display='block';
+    if(lp) lp.style.display='none';
+    var nm=(currentUser.name||currentUser.email||'?');
+    var ini=nm.split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2);
+    if(av) av.textContent=ini;
+    if(ms) ms.textContent='Welcome, '+nm;
   }
   if(s&&s.tier==='admin') adminUnlocked=true;
   renderFeed();
   renderEmail();
-  renderInbox();
-})();
+});
 
-function showMsgTab(tab,btn){
-  ['community','email','inbox'].forEach(function(t){document.getElementById('tab-'+t).style.display=t===tab?'block':'none';});
-  document.querySelectorAll('.msg-tab').forEach(function(b){b.classList.remove('active');});
-  if(btn)btn.classList.add('active');
-}
+/* ── COMMUNITY ─────────────────────────────────────────────────────────── */
+function getCommunityPosts(){return gl(COMM_KEY)||[];}
 
-// ── COMMUNITY FEED ────────────────────────────────────────────────────────
-function previewPostImg(input){
-  var prev=document.getElementById('imgPreview');
+function previewImg(input){
+  var prev=document.getElementById('imgPrev');
   if(input.files[0]){
     var r=new FileReader();
-    r.onload=function(){prev.innerHTML='<img src="'+r.result+'" style="max-height:80px;border-radius:6px;border:1px solid rgba(201,168,76,.2);">';prev.style.display='block';};
+    r.onload=function(e){
+      prev.innerHTML='<img src="'+e.target.result+'" style="max-height:80px;border-radius:6px;border:1px solid rgba(201,168,76,.2);">';
+      prev.style.display='block';
+    };
     r.readAsDataURL(input.files[0]);
   }
 }
 
-async function submitPost(){
+function submitPost(){
   if(!currentUser){alert('Please log in to post.');return;}
   var text=document.getElementById('newPostText').value.trim();
-  if(!text){alert('Please write something before posting.');return;}
+  if(!text){alert('Please write something.');return;}
   var imgFile=document.getElementById('postImg').files[0];
-  var img='';
-  if(imgFile){img=await new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result);};r.readAsDataURL(imgFile);});}
+  if(imgFile){
+    var r=new FileReader();
+    r.onload=function(e){doPost(text,e.target.result);};
+    r.readAsDataURL(imgFile);
+  } else {
+    doPost(text,'');
+  }
+}
+
+function doPost(text,img){
+  var nm=(currentUser.name||currentUser.email||'Member');
+  var ini=nm.split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2);
   var posts=getCommunityPosts();
-  var initials=(currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
-  posts.unshift({
-    id:Date.now(),
-    author:currentUser.name||currentUser.email,
-    initials:initials,
-    text:text,img,
-    likes:[],
-    comments:[],
-    created:Date.now()
-  });
-  gateSave(COMM_KEY,posts);
+  posts.unshift({id:Date.now(),author:nm,ini:ini,text:text,img:img,likes:[],comments:[],ts:Date.now()});
+  gs(COMM_KEY,posts);
   document.getElementById('newPostText').value='';
   document.getElementById('postImg').value='';
-  document.getElementById('imgPreview').innerHTML='';
-  document.getElementById('imgPreview').style.display='none';
+  document.getElementById('imgPrev').innerHTML='';
+  document.getElementById('imgPrev').style.display='none';
   renderFeed();
 }
 
-function toggleLike(postId){
+function toggleLike(id){
   if(!currentUser){alert('Log in to like posts.');return;}
   var posts=getCommunityPosts();
-  var post=posts.find(function(p){return p.id===postId;});
-  if(!post)return;
+  var p=posts.find(function(x){return x.id===id;});
+  if(!p)return;
   var uid=currentUser.email||currentUser.name;
-  var idx=post.likes.indexOf(uid);
-  if(idx>-1) post.likes.splice(idx,1);
-  else post.likes.push(uid);
-  gateSave(COMM_KEY,posts);
+  var i=p.likes.indexOf(uid);
+  if(i>-1) p.likes.splice(i,1); else p.likes.push(uid);
+  gs(COMM_KEY,posts);
   renderFeed();
 }
 
-function toggleComments(postId){
-  var cs=document.getElementById('comments-'+postId);
+function toggleComments(id){
+  var cs=document.getElementById('cs-'+id);
   if(cs) cs.style.display=cs.style.display==='none'?'block':'none';
 }
 
-function submitComment(postId){
+function submitComment(id){
   if(!currentUser){alert('Log in to comment.');return;}
-  var inp=document.getElementById('cinput-'+postId);
-  var text=inp?inp.value.trim():'';
-  if(!text)return;
+  var inp=document.getElementById('ci-'+id);
+  if(!inp||!inp.value.trim())return;
   var posts=getCommunityPosts();
-  var post=posts.find(function(p){return p.id===postId;});
-  if(!post)return;
-  if(!post.comments)post.comments=[];
-  var initials=(currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
-  post.comments.push({id:Date.now(),author:currentUser.name||currentUser.email,initials:initials,text:text,created:Date.now()});
-  gateSave(COMM_KEY,posts);
+  var p=posts.find(function(x){return x.id===id;});
+  if(!p)return;
+  if(!p.comments)p.comments=[];
+  var nm=(currentUser.name||currentUser.email||'Member');
+  var ini=nm.split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2);
+  p.comments.push({id:Date.now(),author:nm,ini:ini,text:inp.value.trim(),ts:Date.now()});
+  gs(COMM_KEY,posts);
   inp.value='';
   renderFeed();
-  // Reopen comment section
-  var cs=document.getElementById('comments-'+postId);
-  if(cs)cs.style.display='block';
+  var cs=document.getElementById('cs-'+id);
+  if(cs) cs.style.display='block';
 }
 
-function deletePost(postId){
+function deletePost(id){
   if(!confirm('Delete this post?'))return;
-  gateSave(COMM_KEY,getCommunityPosts().filter(function(p){return p.id!==postId;}));
+  gs(COMM_KEY,getCommunityPosts().filter(function(p){return p.id!==id;}));
   renderFeed();
 }
 
-function fmtTime(ts){
+function ago(ts){
   var d=Date.now()-ts;
-  if(d<60000)return 'just now';
-  if(d<3600000)return Math.floor(d/60000)+'m ago';
-  if(d<86400000)return Math.floor(d/3600000)+'h ago';
+  if(d<60000) return 'just now';
+  if(d<3600000) return Math.floor(d/60000)+'m ago';
+  if(d<86400000) return Math.floor(d/3600000)+'h ago';
   return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric'});
 }
+
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
 function renderFeed(){
   var posts=getCommunityPosts();
   var feed=document.getElementById('communityFeed');
   if(!feed)return;
-  if(!posts.length){feed.innerHTML='<div style="text-align:center;padding:3rem;color:var(--text2);font-size:.88rem;">No community posts yet. Be the first to share something!</div>';return;}
+  if(!posts.length){
+    feed.innerHTML='<div style="text-align:center;padding:3rem;color:var(--text2);font-size:.88rem;">No posts yet. Be the first to share something!</div>';
+    return;
+  }
   var uid=currentUser?currentUser.email||currentUser.name:'';
-  feed.innerHTML=posts.map(function(p){
-    var liked=p.likes&&p.likes.indexOf(uid)>-1;
-    var likeCount=(p.likes||[]).length;
-    var commentCount=(p.comments||[]).length;
-    var commentsHtml=(p.comments||[]).map(function(c){
-      return '<div class="comment-item"><div class="comment-avatar">'+c.initials+'</div><div class="comment-bubble"><div class="comment-author-name">'+c.author+'</div>'+c.text+'</div></div>';
-    }).join('');
-    var commentInput=currentUser?'<div class="comment-input-row"><div class="comment-avatar" style="font-size:.6rem;">'+((currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2))+'</div><input type="text" class="comment-input" id="cinput-'+p.id+'" placeholder="Write a comment..." onkeydown="if(event.key==='Enter')submitComment('+p.id+')"><button class="send-comment-btn" onclick="submitComment('+p.id+')">Send</button></div>':'';
-    var canDelete=adminUnlocked||(currentUser&&(currentUser.email===p.authorEmail||currentUser.name===p.author));
-    var deleteBtn=canDelete?'<button onclick="deletePost('+p.id+')" style="background:transparent;border:none;color:var(--text2);font-size:.75rem;cursor:pointer;font-family:sans-serif;padding:0;">🗑 Delete</button>':'';
-    return '<div class="community-post">'
-      +'<div class="post-author"><div class="post-avatar">'+p.initials+'</div><div><div class="post-author-name">'+p.author+'</div><div class="post-author-time">'+fmtTime(p.created)+'</div></div>'+deleteBtn+'</div>'
-      +'<div class="post-body">'+p.text+'</div>'
-      +(p.img?'<img src="'+p.img+'" class="post-img" alt="">':'')
-      +'<div class="post-actions">'
-      +'<button class="like-btn'+(liked?' liked':'')+'" onclick="toggleLike('+p.id+')">❤ '+likeCount+' Like'+(likeCount!==1?'s':'')+'</button>'
-      +'<button class="comment-btn" onclick="toggleComments('+p.id+')">💬 '+commentCount+' Comment'+(commentCount!==1?'s':'')+'</button>'
-      +'</div>'
-      +'<div class="comment-section" id="comments-'+p.id+'" style="display:none;">'
-      +commentsHtml+commentInput+'</div></div>';
-  }).join('');
+  var html='';
+  for(var i=0;i<posts.length;i++){
+    var p=posts[i];
+    var liked=(p.likes||[]).indexOf(uid)>-1;
+    var lc=(p.likes||[]).length;
+    var cc=(p.comments||[]).length;
+    var canDel=adminUnlocked||(currentUser&&(currentUser.name===p.author));
+    var commHtml='';
+    for(var j=0;j<(p.comments||[]).length;j++){
+      var cm=p.comments[j];
+      commHtml+='<div class="comment-item"><div class="comment-avatar">'+esc(cm.ini||'?')+'</div><div class="comment-bubble"><div class="comment-name">'+esc(cm.author)+'</div>'+esc(cm.text)+'</div></div>';
+    }
+    var curIni=currentUser?(currentUser.name||currentUser.email||'?').split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2):'';
+    var cinput=currentUser?('<div class="comment-row"><div class="comment-avatar">'+curIni+'</div><input class="comment-input" id="ci-'+p.id+'" placeholder="Write a comment..."><button class="send-btn" onclick="submitComment('+p.id+')">Send</button></div>'):'';
+    html+='<div class="community-post">';
+    html+='<div class="post-author">';
+    html+='<div class="post-avatar">'+esc(p.ini||'?')+'</div>';
+    html+='<div style="flex:1;"><div class="post-author-name">'+esc(p.author)+'</div><div class="post-author-time">'+ago(p.ts)+'</div></div>';
+    if(canDel) html+='<button onclick="deletePost('+p.id+')" style="background:transparent;border:none;color:var(--text2);font-size:.8rem;cursor:pointer;padding:.2rem .4rem;" title="Delete">🗑</button>';
+    html+='</div>';
+    html+='<div class="post-body">'+esc(p.text)+'</div>';
+    if(p.img) html+='<img src="'+p.img+'" class="post-img" alt="">';
+    html+='<div class="post-actions">';
+    html+='<button class="like-btn'+(liked?' liked':'')+'" onclick="toggleLike('+p.id+')">❤ '+lc+' Like'+(lc!==1?'s':'')+'</button>';
+    html+='<button class="comment-btn" onclick="toggleComments('+p.id+')">💬 '+cc+' Comment'+(cc!==1?'s':'')+'</button>';
+    html+='</div>';
+    html+='<div class="comment-section" id="cs-'+p.id+'" style="display:none;">'+commHtml+cinput+'</div>';
+    html+='</div>';
+  }
+  feed.innerHTML=html;
 }
 
-// ── EMAIL ─────────────────────────────────────────────────────────────────
+/* ── GATE EMAIL ──────────────────────────────────────────────────────────── */
 function renderEmail(){
-  var s=gateLoad('td_gate_v6');
+  var s=gl('td_gate_v6');
   var el=document.getElementById('emailDisplay');
-  if(!el)return;
-  if(!s||!s.user){return;}
-  var name=s.user.name||s.user.email||'member';
-  var emailName=name.toLowerCase().replace(/[^a-z0-9]+/g,'.').replace(/^\.|\.$/g,'');
-  var email=emailName+'@gate-theology.org';
-  el.innerHTML='<div class="email-badge"><span style="font-size:1.4rem;">✉</span><div><div class="email-address">'+email+'</div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-top:.2rem;">Your professional GATE email address</div></div></div>'
-    +'<div style="font-size:.82rem;color:var(--text2);margin-top:.7rem;">This address is tied to your account: <strong style="color:var(--cream);">'+s.user.email+'</strong>. Contact admin to activate email forwarding.</div>'
-    +'<div style="margin-top:.8rem;"><a href="mailto:yodebepro@gmail.com?subject=GATE Email Setup: '+email+'" style="background:var(--gold);color:var(--navy);padding:.45rem 1rem;border-radius:6px;font-family:sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;">Request Email Activation →</a></div>';
+  if(!el||!s||!s.user)return;
+  var nm=(s.user.name||s.user.email||'member');
+  var parts=nm.toLowerCase().split(/[^a-z0-9]+/).filter(function(x){return x.length>0;});
+  var addr=parts.join('.')+'@gate-theology.org';
+  el.innerHTML='<div class="email-badge"><span style="font-size:1.6rem;">✉</span><div><div class="email-addr">'+addr+'</div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-top:.15rem;">Your professional GATE email address</div></div></div>'
+    +'<div style="font-size:.82rem;color:var(--text2);margin-top:.7rem;">Linked to your account: <strong style="color:var(--cream);">'+esc(s.user.email||nm)+'</strong></div>'
+    +'<div style="margin-top:.9rem;"><a href="mailto:yodebepro@gmail.com?subject=GATE Email Activation: '+addr+'" style="background:var(--gold);color:var(--navy);padding:.45rem 1rem;border-radius:6px;font-family:sans-serif;font-size:.82rem;font-weight:700;text-decoration:none;">Request Email Activation →</a></div>';
 }
 
-// ── INBOX ─────────────────────────────────────────────────────────────────
-function renderInbox(){
-  var s=gateLoad('td_gate_v6');
-  var el=document.getElementById('inboxContent');
-  if(!el)return;
-  if(!s||!s.user){return;}
-  el.innerHTML='<div style="text-align:center;padding:2rem;color:var(--text2);font-size:.88rem;">'
-    +'<div style="font-size:2rem;margin-bottom:.5rem;">📬</div>'
-    +'Direct messaging between members is coming soon. For now, use the Community tab to connect with other GATE members, or email us at <a href="mailto:yodebepro@gmail.com">yodebepro@gmail.com</a>.'
-    +'</div>';
-}
-
-(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
+/* ── DROPDOWN NAV ────────────────────────────────────────────────────────── */
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);
+    dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();
 </script>
 </body></html>
