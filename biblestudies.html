@@ -184,6 +184,69 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   .gate-dropdown-menu{position:static; display:block; margin:.2rem 0 .5rem}
 }
 
+
+.study-tab-bar{display:flex;gap:.2rem;margin-bottom:1.5rem;border-bottom:2px solid rgba(201,168,76,.2);overflow-x:auto;flex-wrap:wrap}
+.study-tab{padding:.6rem 1rem;font-family:sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--text2);border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;letter-spacing:.5px}
+.study-tab.active,.study-tab:hover{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.06)}
+/* Calendar */
+.cal-wrap{background:var(--navy2);border:1px solid rgba(201,168,76,.22);border-radius:12px;padding:1.2rem;margin-bottom:1.5rem}
+.cal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.cal-hdr h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
+.cal-nav-btn{background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.3rem .7rem;border-radius:5px;cursor:pointer;font-size:.95rem}
+.cal-nav-btn:hover{background:rgba(201,168,76,.1)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-lbl{text-align:center;font-family:sans-serif;font-size:.65rem;color:var(--text2);padding:.3rem;text-transform:uppercase;letter-spacing:1px}
+.cal-day{min-height:46px;border:1px solid rgba(201,168,76,.1);border-radius:5px;padding:.3rem .4rem;cursor:pointer;transition:all .2s;position:relative}
+.cal-day:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.cal-day.other{opacity:.25}
+.cal-day.today{border-color:var(--gold);background:rgba(201,168,76,.1)}
+.cal-day.selected{border-color:var(--gold2);background:rgba(201,168,76,.18)}
+.cal-day-n{font-family:sans-serif;font-size:.75rem;color:var(--cream);font-weight:600}
+.cal-dot{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--gold);margin:1px}
+/* Topic modal */
+.topic-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,.85);display:none;flex-direction:column}
+.topic-panel{background:linear-gradient(135deg,#162440,#0d1b2e);border-top:3px solid var(--gold);max-height:70vh;overflow-y:auto;padding:1.5rem;border-radius:12px 12px 0 0;margin-top:auto}
+.topic-item{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.9rem 1.1rem;margin-bottom:.7rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.8rem}
+.topic-item:hover{border-color:var(--gold);background:rgba(201,168,76,.12);transform:translateX(4px)}
+.topic-icon{font-size:1.3rem;flex-shrink:0}
+.topic-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem}
+.topic-cat{font-size:.7rem;color:var(--text2);font-family:sans-serif;margin-top:.1rem}
+/* PDF viewer modal */
+.pdf-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.92);display:none;flex-direction:column}
+.pdf-modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:#162440;border-bottom:1px solid rgba(201,168,76,.3);flex-shrink:0}
+.pdf-modal-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px}
+.pdf-iframe{flex:1;border:none;background:#111}
+/* By Topic */
+.topic-cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.topic-cat-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;cursor:pointer;transition:all .2s;text-align:center}
+.topic-cat-card:hover{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.topic-cat-icon{font-size:1.8rem;margin-bottom:.4rem}
+.topic-cat-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem;letter-spacing:1px}
+.topic-cat-count{font-size:.7rem;color:var(--text2);font-family:sans-serif;margin-top:.2rem}
+.topic-list-item{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:7px;padding:.7rem 1rem;margin-bottom:.4rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:space-between;gap.5rem}
+.topic-list-item:hover{border-color:var(--gold);background:rgba(201,168,76,.1)}
+.tli-name{font-family:sans-serif;font-size:.85rem;color:var(--cream)}
+.tli-arrow{color:var(--gold);font-size:.8rem}
+/* Flashcards */
+.fc-wrap{max-width:600px;margin:0 auto}
+.fc-card{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border:2px solid rgba(201,168,76,.3);border-radius:16px;padding:2.5rem 2rem;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;transition:all .35s;user-select:none;position:relative}
+.fc-card:hover{border-color:var(--gold);box-shadow:0 8px 30px rgba(201,168,76,.15)}
+.fc-card.flipped{background:linear-gradient(135deg,#0d2e1a,#0d1b2e);border-color:var(--gold)}
+.fc-label{font-family:sans-serif;font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text2);margin-bottom:.8rem}
+.fc-text{font-family:'Cinzel',serif;color:var(--gold);font-size:1.05rem;line-height:1.65}
+.fc-answer{font-family:'Georgia',serif;color:var(--cream);font-size:.92rem;line-height:1.75}
+.fc-hint{font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-top:1rem}
+.fc-controls{display:flex;gap:.8rem;justify-content:center;margin-top:1.2rem;flex-wrap:wrap}
+.fc-btn{padding:.55rem 1.3rem;border-radius:8px;font-family:sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.fc-correct{background:#2d7a4f;color:#fff}.fc-correct:hover{background:#38945f}
+.fc-wrong{background:#6b1d2e;color:#fff}.fc-wrong:hover{background:#8b2540}
+.fc-skip{background:rgba(201,168,76,.1);color:var(--gold);border:1.5px solid rgba(201,168,76,.3)}.fc-skip:hover{background:rgba(201,168,76,.2)}
+.fc-progress{background:rgba(255,255,255,.06);border-radius:10px;height:6px;margin-bottom:1.2rem;overflow:hidden}
+.fc-progress-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:10px;transition:width .4s}
+.fc-score{font-family:sans-serif;font-size:.8rem;color:var(--text2);text-align:center;margin-bottom:.6rem}
+.search-input{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .9rem;font-family:inherit;font-size:.88rem;width:100%}
+.search-input:focus{outline:none;border-color:var(--gold)}
+
 </style>
 </head><body>
 <nav class="gate-nav"><div class="gate-nav-inner">
@@ -310,225 +373,647 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 </div>
 <div class="container">
 
-  <!-- TABS -->
-  <div class="media-tabs">
-    <button class="media-tab active" onclick="showTab('videos',this)">▶ Video Studies</button>
-    <button class="media-tab" onclick="showTab('podcasts',this)">🎙 Podcasts</button>
-    <button class="media-tab" onclick="showTab('audio',this)">🎵 Audio Studies</button>
+<!-- MAIN TAB BAR -->
+<div class="study-tab-bar">
+  <button class="study-tab active" id="stab-videos"   onclick="showStudyTab('videos')">▶ Video Studies</button>
+  <button class="study-tab"        id="stab-podcasts" onclick="showStudyTab('podcasts')">🎙 Podcasts</button>
+  <button class="study-tab"        id="stab-audio"    onclick="showStudyTab('audio')">🎵 Audio Studies</button>
+  <button class="study-tab"        id="stab-calendar" onclick="showStudyTab('calendar')">📅 Study Calendar</button>
+  <button class="study-tab"        id="stab-topics"   onclick="showStudyTab('topics')">📂 By Topic</button>
+  <button class="study-tab"        id="stab-flash"    onclick="showStudyTab('flash')">🃏 Flashcards</button>
+</div>
+
+<!-- ══ VIDEO TAB ══ -->
+<div id="stab-content-videos">
+  <div class="video-grid" id="videoGrid"></div>
+  <div id="noVideos" style="display:none;color:var(--text2);text-align:center;padding:3rem;"><div style="font-size:2.5rem;margin-bottom:.5rem;">📹</div>No video studies yet. Admin can add YouTube videos below.</div>
+</div>
+
+<!-- ══ PODCAST TAB ══ -->
+<div id="stab-content-podcasts" style="display:none;">
+  <div class="podcast-platforms" id="platformLinks" style="display:none;">
+    <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;width:100%;margin-bottom:.4rem;letter-spacing:1px;">🎙 Listen On</div>
+    <a id="spotifyLink"  href="#" target="_blank" class="platform-badge platform-spotify" style="display:none;"><span style="font-size:1.1rem;">♪</span> Spotify</a>
+    <a id="appleLink"    href="#" target="_blank" class="platform-badge platform-apple"   style="display:none;"><span style="font-size:1.1rem;">🎵</span> Apple Podcasts</a>
+    <a id="rssLink"      href="#" target="_blank" class="platform-badge platform-rss"     style="display:none;"><span style="font-size:1rem;">⚡</span> RSS Feed</a>
   </div>
+  <div id="podcastList"></div>
+  <div id="noPodcasts" style="display:none;color:var(--text2);text-align:center;padding:3rem;"><div style="font-size:2.5rem;margin-bottom:.5rem;">🎙</div>No podcasts yet.</div>
+</div>
 
-  <!-- ══ VIDEO TAB ══ -->
-  <div id="tab-videos">
-    <div class="video-grid" id="videoGrid"></div>
-    <div id="noVideos" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
-      <div style="font-size:2.5rem;margin-bottom:.5rem;">📹</div>
-      <div>No video studies added yet. Admin can add YouTube videos below.</div>
+<!-- ══ AUDIO TAB ══ -->
+<div id="stab-content-audio" style="display:none;">
+  <div id="audioList"></div>
+  <div id="noAudio" style="display:none;color:var(--text2);text-align:center;padding:3rem;"><div style="font-size:2.5rem;margin-bottom:.5rem;">🎵</div>No audio studies yet.</div>
+</div>
+
+<!-- ══ STUDY CALENDAR TAB ══ -->
+<div id="stab-content-calendar" style="display:none;">
+  <div style="margin-bottom:1.2rem;color:var(--text2);font-size:.87rem;line-height:1.7;">Click any day to receive <strong style="color:var(--gold);">5 guided study topics</strong> for that date. Each topic links directly to study materials from the GATE library.</div>
+  <div class="cal-wrap">
+    <div class="cal-hdr">
+      <button class="cal-nav-btn" onclick="calPrev()">&#8592;</button>
+      <h3 id="calMonthLabel">Loading...</h3>
+      <button class="cal-nav-btn" onclick="calNext()">&#8594;</button>
     </div>
+    <div class="cal-grid">
+      <div class="cal-lbl">Sun</div><div class="cal-lbl">Mon</div><div class="cal-lbl">Tue</div><div class="cal-lbl">Wed</div><div class="cal-lbl">Thu</div><div class="cal-lbl">Fri</div><div class="cal-lbl">Sat</div>
+    </div>
+    <div class="cal-grid" id="calDays"></div>
   </div>
-
-  <!-- ══ PODCAST TAB ══ -->
-  <div id="tab-podcasts" style="display:none;">
-    <!-- Platform Links -->
-    <div class="podcast-platforms" id="platformLinks" style="display:none;">
-      <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;width:100%;margin-bottom:.4rem;letter-spacing:1px;">🎙 Listen On</div>
-      <a id="spotifyLink" href="#" target="_blank" class="platform-badge platform-spotify" style="display:none;">
-        <span style="font-size:1.1rem;">♪</span> Spotify
-      </a>
-      <a id="appleLink" href="#" target="_blank" class="platform-badge platform-apple" style="display:none;">
-        <span style="font-size:1.1rem;">🎵</span> Apple Podcasts
-      </a>
-      <a id="rssLink" href="#" target="_blank" class="platform-badge platform-rss" style="display:none;">
-        <span style="font-size:1rem;">⚡</span> RSS Feed
-      </a>
-    </div>
-    <div id="podcastList"></div>
-    <div id="noPodcasts" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
-      <div style="font-size:2.5rem;margin-bottom:.5rem;">🎙</div>
-      <div>No podcasts added yet. Admin can add Spotify, Apple Podcast, and RSS links below.</div>
-    </div>
-  </div>
-
-  <!-- ══ AUDIO TAB ══ -->
-  <div id="tab-audio" style="display:none;">
-    <div id="audioList"></div>
-    <div id="noAudio" style="display:none;color:var(--text2);text-align:center;padding:3rem;">
-      <div style="font-size:2.5rem;margin-bottom:.5rem;">🎵</div>
-      <div>No audio studies added yet. Admin can upload audio files below.</div>
-    </div>
-  </div>
-
-  <!-- ══ ADMIN PANEL ══ -->
-  <div id="adminPanel" style="display:none;margin-top:2rem;">
-    <div class="card" style="border-color:rgba(201,168,76,.4);">
-      <div class="card-header"><span>✏️</span><h2>Admin: Manage Bible Studies Media</h2></div>
-
-      <!-- VIDEO SECTION -->
-      <div style="margin-bottom:1.5rem;">
-        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">▶ Add YouTube Video</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
-          <div class="form-group"><label>Video Title *</label><input type="text" id="vTitle" placeholder="e.g. Study of the Gospel of John"></div>
-          <div class="form-group"><label>Speaker / Teacher</label><input type="text" id="vSpeaker" placeholder="e.g. Pastor John Smith"></div>
-        </div>
-        <div class="form-group"><label>YouTube URL or Video ID *</label>
-          <input type="text" id="vUrl" placeholder="https://www.youtube.com/watch?v=XXXXXXX  or  embed URL  or  just the video ID">
-          <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste the full YouTube URL, the embed URL, or just the 11-character video ID</div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
-          <div class="form-group"><label>Description</label><input type="text" id="vDesc" placeholder="Brief description of this study"></div>
-          <div class="form-group"><label>Category</label>
-            <select id="vCat"><option>Old Testament</option><option>New Testament</option><option>Theology</option><option>Devotional</option><option>Sermon</option><option>Bible Study</option></select>
-          </div>
-        </div>
-        <button class="btn btn-primary" onclick="addVideo()">📢 POST Video</button>
-        <div id="vMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
+  <!-- Topics modal -->
+  <div class="topic-modal" id="topicModal" onclick="closeTopicModal(event)">
+    <div class="topic-panel" id="topicPanel">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+        <h3 id="topicDateLabel" style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px;"></h3>
+        <button onclick="closeTopicModal()" style="background:rgba(139,32,32,.5);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#10005; Close</button>
       </div>
-
-      <!-- PODCAST SECTION -->
-      <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1.2rem;margin-bottom:1.5rem;">
-        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">🎙 Podcast Platform Links</div>
-        <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:1rem;margin-bottom:1rem;">
-          <div class="form-group">
-            <label style="display:flex;align-items:center;gap:.4rem;"><span style="color:#1db954;font-size:1rem;">♪</span> Spotify Podcast URL</label>
-            <input type="url" id="spotifyUrl" placeholder="https://open.spotify.com/show/YOUR_SHOW_ID">
-            <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste your Spotify podcast show link</div>
-          </div>
-          <div class="form-group">
-            <label style="display:flex;align-items:center;gap:.4rem;"><span style="color:#fc5252;font-size:1rem;">🎵</span> Apple Podcasts URL</label>
-            <input type="url" id="appleUrl" placeholder="https://podcasts.apple.com/podcast/YOUR_PODCAST/idXXXXXXXX">
-            <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste your Apple Podcasts link</div>
-          </div>
-          <div class="form-group">
-            <label style="display:flex;align-items:center;gap:.4rem;"><span style="color:#ffa500;font-size:1rem;">⚡</span> RSS Feed URL</label>
-            <input type="url" id="rssUrl" placeholder="https://anchor.fm/s/XXXXXXXX/podcast/rss  or  any RSS feed URL">
-            <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Paste your podcast RSS feed URL (works with Anchor, Buzzsprout, Podbean, etc.)</div>
-          </div>
-          <button class="btn btn-primary" onclick="savePlatformLinks()">📢 POST Platform Links</button>
-          <div id="platformMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
-        </div>
-
-        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">Add Individual Podcast Episode</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
-          <div class="form-group"><label>Episode Title *</label><input type="text" id="pTitle" placeholder="e.g. Episode 12: The Book of Romans"></div>
-          <div class="form-group"><label>Host / Speaker</label><input type="text" id="pSpeaker" placeholder="e.g. GATE Panel"></div>
-        </div>
-        <div class="form-group"><label>Description</label><input type="text" id="pDesc" placeholder="Brief description of this episode"></div>
-        <div class="form-group"><label>Spotify Episode Embed URL (optional)</label>
-          <input type="url" id="pSpotifyEmbed" placeholder="https://open.spotify.com/embed/episode/EPISODE_ID">
-          <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">On Spotify: click ••• → Share → Embed Episode → copy the src URL</div>
-        </div>
-        <div class="form-group"><label>Direct MP3 / Audio URL (optional)</label>
-          <input type="url" id="pAudioUrl" placeholder="https://example.com/episode.mp3">
-        </div>
-        <button class="btn btn-primary" onclick="addPodcast()">📢 POST Episode</button>
-        <div id="pMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
-      </div>
-
-      <!-- AUDIO SECTION -->
-      <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1.2rem;">
-        <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">🎵 Add Audio Study</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
-          <div class="form-group"><label>Audio Title *</label><input type="text" id="aTitle" placeholder="e.g. Genesis Chapter 1 Audio Study"></div>
-          <div class="form-group"><label>Teacher / Speaker</label><input type="text" id="aSpeaker" placeholder="e.g. Dr. John Smith"></div>
-        </div>
-        <div class="form-group"><label>Description</label><input type="text" id="aDesc" placeholder="Brief description"></div>
-        <div class="form-group"><label>Upload Audio File (MP3, M4A, WAV — up to 5MB)</label>
-          <input type="file" id="aFile" accept="audio/*" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text2);border-radius:5px;padding:.45rem .7rem;font-family:sans-serif;font-size:.82rem;width:100%;cursor:pointer;">
-          <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem;">Or paste an external audio URL below</div>
-        </div>
-        <div class="form-group"><label>External Audio URL (optional — instead of upload)</label>
-          <input type="url" id="aUrl" placeholder="https://example.com/audio-study.mp3">
-        </div>
-        <button class="btn btn-primary" onclick="addAudio()">📢 POST Audio</button>
-        <div id="aMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
+      <div style="font-size:.8rem;color:var(--text2);margin-bottom:1rem;font-family:sans-serif;">Select a topic to open the study material:</div>
+      <div id="topicList"></div>
+    </div>
+  </div>
+  <!-- PDF study modal -->
+  <div class="pdf-modal" id="pdfModal">
+    <div class="pdf-modal-hdr">
+      <span class="pdf-modal-title" id="pdfModalTitle"></span>
+      <div style="display:flex;gap:.5rem;">
+        <a id="pdfModalDl" href="#" target="_blank" style="background:var(--gold);color:#0d1b2e;padding:.3rem .8rem;border-radius:4px;font-family:sans-serif;font-size:.75rem;font-weight:700;text-decoration:none;">&#8681; Download</a>
+        <button onclick="closePdfModal()" style="background:rgba(139,32,32,.5);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#10005; Close</button>
       </div>
     </div>
-  </div>
-
-  <div style="text-align:center;margin-top:1rem;">
-    <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">⚙ Admin Access</button>
+    <iframe class="pdf-iframe" id="pdfModalFrame" src=""></iframe>
   </div>
 </div>
-<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
-<script>
-<script>
-function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
-function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-let adminUnlocked=false, curTab='videos';
 
-const DEFAULT_VIDEOS=[
-  {id:1000,title:'Understanding the Book of Genesis',desc:'An in-depth study of creation, the fall, and the Abrahamic covenant.',url:'https://www.youtube.com/embed/dQw4w9WgXcQ',speaker:'GATE Faculty',cat:'Old Testament'},
-  {id:1001,title:'The Life of Jesus Christ — Gospel Overview',desc:'A comprehensive overview of the four Gospels and the life of Jesus.',url:'https://www.youtube.com/embed/dQw4w9WgXcQ',speaker:'GATE Faculty',cat:'New Testament'},
+<!-- ══ BY TOPIC TAB ══ -->
+<div id="stab-content-topics" style="display:none;">
+  <div style="margin-bottom:1.2rem;">
+    <input class="search-input" id="topicSearch" placeholder="Search study topics... e.g. Genesis, Salvation, Prayer" oninput="filterTopicSearch(this.value)">
+  </div>
+  <div id="topicCatView">
+    <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;margin-bottom:1rem;">Browse by Category</div>
+    <div class="topic-cat-grid" id="topicCatGrid"></div>
+  </div>
+  <div id="topicDetailView" style="display:none;">
+    <button onclick="showTopicCats()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;margin-bottom:1rem;">&#8592; All Categories</button>
+    <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;letter-spacing:1px;margin-bottom:.8rem;" id="topicDetailTitle"></div>
+    <div id="topicDetailList"></div>
+  </div>
+  <div id="topicSearchResults" style="display:none;">
+    <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;margin-bottom:.8rem;" id="searchResultLabel"></div>
+    <div id="searchResultList"></div>
+  </div>
+  <!-- Shared PDF modal used here too -->
+</div>
+
+<!-- ══ FLASHCARD TAB ══ -->
+<div id="stab-content-flash" style="display:none;">
+  <div class="fc-wrap">
+    <div class="fc-score" id="fcScore">Card 1 of 200 &nbsp;|&nbsp; &#10003; 0 correct &nbsp; &#10007; 0 wrong</div>
+    <div class="fc-progress"><div class="fc-progress-bar" id="fcBar" style="width:0%;"></div></div>
+    <div class="fc-card" id="fcCard" onclick="flipCard()">
+      <div class="fc-label" id="fcLabel">Question</div>
+      <div class="fc-text" id="fcFront"></div>
+      <div class="fc-answer" id="fcBack" style="display:none;"></div>
+      <div class="fc-hint" id="fcHint">Tap to reveal answer</div>
+    </div>
+    <div class="fc-controls">
+      <button class="fc-btn fc-correct"  id="btnCorrect" onclick="markCard(true)"  style="display:none;">&#10003; Correct</button>
+      <button class="fc-btn fc-wrong"    id="btnWrong"   onclick="markCard(false)" style="display:none;">&#10007; Wrong</button>
+      <button class="fc-btn fc-skip"     onclick="nextCard()">&#8594; Skip</button>
+      <button class="fc-btn fc-skip"     onclick="shuffleCards()" style="font-size:.75rem;">&#8635; Shuffle</button>
+      <button class="fc-btn fc-skip"     onclick="resetCards()" style="font-size:.75rem;">&#9634; Reset</button>
+    </div>
+    <div style="text-align:center;margin-top:1rem;">
+      <select id="fcCatFilter" onchange="filterFlashcards(this.value)" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.4rem .8rem;font-family:sans-serif;font-size:.8rem;cursor:pointer;">
+        <option value="all">All Categories</option>
+        <option value="Bible Facts">Bible Facts</option>
+        <option value="Old Testament">Old Testament</option>
+        <option value="New Testament">New Testament</option>
+        <option value="Theology">Theology</option>
+        <option value="Characters">Biblical Characters</option>
+        <option value="Prophecy">Prophecy</option>
+        <option value="Christian Living">Christian Living</option>
+        <option value="Doctrine">Doctrine</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN PANEL ══ -->
+<div id="adminPanel" style="display:none;margin-top:2rem;">
+  <div class="card" style="border-color:rgba(201,168,76,.4);">
+    <div class="card-header"><span>&#9999;</span><h2>Admin: Add Bible Studies Media</h2></div>
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">&#9654; Add YouTube Video</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+        <div class="form-group"><label>Video Title *</label><input type="text" id="vTitle" placeholder="e.g. Study of the Gospel of John"></div>
+        <div class="form-group"><label>Speaker / Teacher</label><input type="text" id="vSpeaker" placeholder="e.g. Pastor John Smith"></div>
+      </div>
+      <div class="form-group"><label>YouTube URL or Video ID *</label><input type="text" id="vUrl" placeholder="https://www.youtube.com/watch?v=XXXXXXX"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+        <div class="form-group"><label>Description</label><input type="text" id="vDesc" placeholder="Brief description"></div>
+        <div class="form-group"><label>Category</label>
+          <select id="vCat"><option>Old Testament</option><option>New Testament</option><option>Theology</option><option>Devotional</option><option>Sermon</option><option>Bible Study</option></select>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="addVideo()">&#128226; POST Video</button>
+      <div id="vMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1.2rem;margin-bottom:1.5rem;">
+      <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">&#127897; Podcast Platform Links</div>
+      <div class="form-group"><label>&#9835; Spotify URL</label><input type="url" id="spotifyUrl" placeholder="https://open.spotify.com/show/..."></div>
+      <div class="form-group"><label>&#127925; Apple Podcasts URL</label><input type="url" id="appleUrl" placeholder="https://podcasts.apple.com/..."></div>
+      <div class="form-group"><label>&#9889; RSS Feed URL</label><input type="url" id="rssUrl" placeholder="https://anchor.fm/..."></div>
+      <button class="btn btn-primary" onclick="savePlatformLinks()">&#128226; POST Platform Links</button>
+      <div id="platformMsg" style="font-size:.83rem;margin-top:.4rem;min-height:1rem;"></div>
+      <div style="margin-top:1rem;">
+        <label style="font-size:.9rem;color:var(--gold);display:block;margin-bottom:.4rem;">Add Episode Embed</label>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+          <div class="form-group"><label>Episode Title *</label><input type="text" id="pTitle" placeholder="Episode title"></div>
+          <div class="form-group"><label>Host</label><input type="text" id="pSpeaker" placeholder="Host name"></div>
+        </div>
+        <div class="form-group"><label>Spotify Episode Embed URL</label><input type="url" id="pSpotifyEmbed" placeholder="https://open.spotify.com/embed/episode/..."></div>
+        <div class="form-group"><label>Direct Audio URL</label><input type="url" id="pAudioUrl" placeholder="https://...mp3"></div>
+        <button class="btn btn-primary" onclick="addPodcast()">&#128226; POST Episode</button>
+        <div id="pMsg" style="font-size:.83rem;margin-top:.4rem;"></div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:1.2rem;">
+      <div style="font-size:.9rem;color:var(--gold);font-weight:600;margin-bottom:.8rem;font-family:'Cinzel',serif;letter-spacing:1px;">&#127925; Add Audio Study</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
+        <div class="form-group"><label>Audio Title *</label><input type="text" id="aTitle" placeholder="e.g. Genesis Chapter 1 Study"></div>
+        <div class="form-group"><label>Teacher</label><input type="text" id="aSpeaker" placeholder="Teacher name"></div>
+      </div>
+      <div class="form-group"><label>Upload Audio File (max 5MB)</label><input type="file" id="aFile" accept="audio/*" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text2);border-radius:5px;padding:.45rem .7rem;font-family:sans-serif;font-size:.82rem;width:100%;cursor:pointer;"></div>
+      <div class="form-group"><label>Or External Audio URL</label><input type="url" id="aUrl" placeholder="https://example.com/audio.mp3"></div>
+      <button class="btn btn-primary" onclick="addAudio()">&#128226; POST Audio</button>
+      <div id="aMsg" style="font-size:.83rem;margin-top:.4rem;"></div>
+    </div>
+  </div>
+</div>
+<div style="text-align:center;margin-top:1rem;">
+  <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">&#9881; Admin Access</button>
+</div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   GATE BIBLE STUDIES — All Tabs
+   ═══════════════════════════════════════════════════════════════ */
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+
+var adminUnlocked = false;
+
+/* ── STUDY DOCUMENTS (use uploaded PDFs + existing pages) ────── */
+var DOCS = {
+  genesis:    {title:'Genesis Commentary',      src:'commentary_genesis.pdf'},
+  exodus:     {title:'Exodus Commentary',       src:'commentary_exodus.pdf'},
+  leviticus:  {title:'Leviticus Commentary',    src:'commentary_leviticus.pdf'},
+  numbers:    {title:'Numbers Commentary',      src:'commentary_numbers.pdf'},
+  deuteronomy:{title:'Deuteronomy Commentary',  src:'commentary_deuteronomy.pdf'},
+  joshua:     {title:'Joshua Commentary',       src:'commentary_joshua.pdf'},
+  judges:     {title:'Judges Commentary',       src:'commentary_judges.pdf'},
+  ruth:       {title:'Ruth Commentary',         src:'commentary_ruth.pdf'},
+  samuel1:    {title:'1 Samuel Commentary',     src:'commentary_1samuel.pdf'},
+  samuel2:    {title:'2 Samuel Commentary',     src:'commentary_2samuel.pdf'},
+  kings1:     {title:'1 Kings Commentary',      src:'commentary_1kings.pdf'},
+  kings2:     {title:'2 Kings Commentary',      src:'commentary_2kings.pdf'},
+  chronicles1:{title:'1 Chronicles Commentary', src:'commentary_1chronicles.pdf'},
+  chronicles2:{title:'2 Chronicles Commentary', src:'commentary_2chronicles.pdf'},
+  ezra:       {title:'Ezra Commentary',         src:'commentary_ezra.pdf'},
+  nehemiah:   {title:'Nehemiah Commentary',     src:'commentary_nehemiah.pdf'},
+  esther:     {title:'Esther Commentary',       src:'commentary_esther.pdf'},
+  job:        {title:'Job Commentary',          src:'commentary_job.pdf'},
+  psalms1:    {title:'Psalms 1-41 Commentary',  src:'commentary_psalms_1-41.pdf'},
+  psalms2:    {title:'Psalms 42-72 Commentary', src:'commentary_psalms_42-72.pdf'},
+  psalms3:    {title:'Psalms 73-89 Commentary', src:'commentary_psalms_73-89.pdf'},
+  psalms4:    {title:'Psalms 90-106 Commentary',src:'commentary_psalms_90-106.pdf'},
+  psalms5:    {title:'Psalms 107-150 Commentary',src:'commentary_psalms_107-150.pdf'},
+  proverbs:   {title:'Proverbs Commentary',     src:'commentary_proverbs.pdf'},
+  ecclesiastes:{title:'Ecclesiastes Commentary',src:'commentary_ecclesiastes.pdf'},
+  solomon:    {title:'Song of Solomon Commentary',src:'commentary_song_of_solomon.pdf'},
+  isaiah:     {title:'Isaiah Commentary',       src:'commentary_isaiah.pdf'},
+  jeremiah:   {title:'Jeremiah Commentary',     src:'commentary_jeremiah.pdf'},
+  lamentations:{title:'Lamentations Commentary',src:'commentary_lamentations.pdf'},
+  ezekiel:    {title:'Ezekiel Commentary',      src:'commentary_ezekiel.pdf'},
+  daniel:     {title:'Daniel Commentary',       src:'commentary_daniel.pdf'},
+  hosea:      {title:'Hosea Commentary',        src:'commentary_hosea.pdf'},
+  joel:       {title:'Joel Commentary',         src:'commentary_joel.pdf'},
+  amos:       {title:'Amos Commentary',         src:'commentary_amos.pdf'},
+  obadiah:    {title:'Obadiah Commentary',      src:'commentary_obadiah.pdf'},
+  jonah:      {title:'Jonah Commentary',        src:'commentary_jonah.pdf'},
+  micah:      {title:'Micah Commentary',        src:'commentary_micah.pdf'},
+  nahum:      {title:'Nahum Commentary',        src:'commentary_nahum.pdf'},
+  habakkuk:   {title:'Habakkuk Commentary',     src:'commentary_habakkuk.pdf'},
+  zephaniah:  {title:'Zephaniah Commentary',    src:'commentary_zephaniah.pdf'},
+  haggai:     {title:'Haggai Commentary',       src:'commentary_haggai.pdf'},
+  zechariah:  {title:'Zechariah Commentary',    src:'commentary_zechariah.pdf'},
+  malachi:    {title:'Malachi Commentary',      src:'commentary_malachi.pdf'},
+  matthew:    {title:'Matthew Commentary',      src:'commentary_matthew.pdf'},
+  mark:       {title:'Mark Commentary',         src:'commentary_mark.pdf'},
+  luke:       {title:'Luke Commentary',         src:'commentary_luke.pdf'},
+  john:       {title:'John Commentary',         src:'commentary_john.pdf'},
+  acts:       {title:'Acts Commentary',         src:'commentary_acts.pdf'},
+  romans:     {title:'Romans Commentary',       src:'commentary_romans.pdf'},
+  cor1:       {title:'1 Corinthians Commentary',src:'commentary_1corinthians.pdf'},
+  cor2:       {title:'2 Corinthians Commentary',src:'commentary_2corinthians.pdf'},
+  galatians:  {title:'Galatians Commentary',   src:'commentary_galatians.pdf'},
+  ephesians:  {title:'Eph/Phil/Col Commentary', src:'commentary_phi_col_eph.pdf'},
+  thessalonians1:{title:'1 Thessalonians',     src:'commentary_1thessalonians.pdf'},
+  thessalonians2:{title:'2 Thessalonians',     src:'commentary_2thessalonians.pdf'},
+  timothy1:   {title:'1 Timothy Commentary',   src:'commentary_1timothy.pdf'},
+  timothy2:   {title:'2 Timothy Commentary',   src:'commentary_2timothy.pdf'},
+  titus:      {title:'Titus Commentary',        src:'commentary_titus.pdf'},
+  philemon:   {title:'Philemon Commentary',     src:'commentary_philemon.pdf'},
+  hebrews:    {title:'Hebrews Commentary',      src:'commentary_hebrews.pdf'},
+  james:      {title:'James Commentary',        src:'commentary_james.pdf'},
+  peter1:     {title:'1 Peter Commentary',      src:'commentary_1peter.pdf'},
+  peter2:     {title:'2 Peter Commentary',      src:'commentary_2peter.pdf'},
+  john1:      {title:'1 John Commentary',       src:'commentary_1john.pdf'},
+  john2:      {title:'2 John Commentary',       src:'commentary_2john.pdf'},
+  john3:      {title:'3 John Commentary',       src:'commentary_3john.pdf'},
+  jude:       {title:'Jude Commentary',         src:'commentary_jude.pdf'},
+  revelation: {title:'Revelation Commentary',  src:'commentary_revelation.pdf'},
+  biblestudy: {title:'Bible Study Guide',       src:'Bible_Study.pdf'},
+  family1:    {title:'Daily Family Studies 1',  src:'Daily-Family-Bible-Studies-1.pdf'},
+  family2:    {title:'Daily Family Studies 2',  src:'Daily-Family-Bible-Studies-2.pdf'},
+  family3:    {title:'Daily Family Studies 3',  src:'Daily-Family-Bible-Studies-3.pdf'},
+  family4:    {title:'Daily Family Studies 4',  src:'Daily-Family-Bible-Studies-4.pdf'},
+  resources1: {title:'Theological Resources Vol 1', src:'Resources_1.pdf'},
+  resources2: {title:'Theological Resources Vol 2', src:'Resources_2.pdf'},
+  chapters:   {title:'Bible Chapter Titles',    src:'Bible_Chapter_Titles.pdf'},
+  apocrypha:  {title:'Complete Apocrypha',      src:'The_Complete_Apocrypha_Ethiopian_Bible.pdf'},
+  enoch:      {title:'Book of Enoch',           src:'The_Complete_Book_of_Enoch.pdf'},
+  kjv:        {title:'King James Bible (KJV)',  src:'kjv.pdf'},
+  blb:        {title:'Berean Literal Bible',    src:'blb.pdf'},
+  dbt:        {title:'Darby Translation',       src:'dbt.pdf'}
+};
+
+/* ── STUDY TOPICS (for calendar + by-topic) ──────────────────── */
+var ALL_TOPICS = [
+  /* OT Books */
+  {id:'t001',cat:'Old Testament',title:'Creation & the Beginning',sub:'Genesis 1-3: Creation, Fall, and God\'s design',doc:'genesis',icon:'🌍'},
+  {id:'t002',cat:'Old Testament',title:'Noah and the Flood',sub:'Genesis 6-9: Covenant, judgment and grace',doc:'genesis',icon:'🌊'},
+  {id:'t003',cat:'Old Testament',title:'Abraham\'s Faith',sub:'Genesis 12-22: The call and testing of Abraham',doc:'genesis',icon:'⭐'},
+  {id:'t004',cat:'Old Testament',title:'Jacob and the Twelve Tribes',sub:'Genesis 25-49: Israel\'s family and God\'s plan',doc:'genesis',icon:'👥'},
+  {id:'t005',cat:'Old Testament',title:'Joseph: Redemption & Forgiveness',sub:'Genesis 37-50: Joseph in Egypt',doc:'genesis',icon:'🌾'},
+  {id:'t006',cat:'Old Testament',title:'Moses and the Exodus',sub:'Exodus 1-14: Deliverance from Egypt',doc:'exodus',icon:'📜'},
+  {id:'t007',cat:'Old Testament',title:'The Ten Commandments',sub:'Exodus 20: God\'s moral law',doc:'exodus',icon:'⛩'},
+  {id:'t008',cat:'Old Testament',title:'The Tabernacle',sub:'Exodus 25-40: God\'s dwelling place',doc:'exodus',icon:'🕯'},
+  {id:'t009',cat:'Old Testament',title:'The Five Offerings',sub:'Leviticus 1-7: Burnt, grain, peace, sin, trespass',doc:'leviticus',icon:'🔥'},
+  {id:'t010',cat:'Old Testament',title:'The Day of Atonement',sub:'Leviticus 16: Yom Kippur and its meaning',doc:'leviticus',icon:'✝'},
+  {id:'t011',cat:'Old Testament',title:'The Wilderness Journey',sub:'Numbers 11-21: Israel\'s wandering and lessons',doc:'numbers',icon:'🏜'},
+  {id:'t012',cat:'Old Testament',title:'Moses\' Final Sermons',sub:'Deuteronomy: The law reviewed before Canaan',doc:'deuteronomy',icon:'📖'},
+  {id:'t013',cat:'Old Testament',title:'Conquest of Canaan',sub:'Joshua 1-12: God\'s promises fulfilled',doc:'joshua',icon:'⚔'},
+  {id:'t014',cat:'Old Testament',title:'Rahab\'s Faith',sub:'Joshua 2: A model of saving faith',doc:'joshua',icon:'🧡'},
+  {id:'t015',cat:'Old Testament',title:'The Period of the Judges',sub:'Judges 1-16: Cycle of sin and redemption',doc:'judges',icon:'🔄'},
+  {id:'t016',cat:'Old Testament',title:'Gideon\'s Victory',sub:'Judges 6-8: Strength through weakness',doc:'judges',icon:'💪'},
+  {id:'t017',cat:'Old Testament',title:'Samson\'s Life',sub:'Judges 13-16: A flawed but anointed judge',doc:'judges',icon:'🦁'},
+  {id:'t018',cat:'Old Testament',title:'Ruth: Loyalty and Redemption',sub:'The Book of Ruth: Kinsman-redeemer typology',doc:'ruth',icon:'🌺'},
+  {id:'t019',cat:'Old Testament',title:'Samuel the Prophet',sub:'1 Samuel 1-7: The last judge and first prophet',doc:'samuel1',icon:'🙏'},
+  {id:'t020',cat:'Old Testament',title:'Saul: Israel\'s First King',sub:'1 Samuel 9-31: Rise and fall of Saul',doc:'samuel1',icon:'👑'},
+  {id:'t021',cat:'Old Testament',title:'David and Goliath',sub:'1 Samuel 17: Faith that overcomes giants',doc:'samuel1',icon:'🪨'},
+  {id:'t022',cat:'Old Testament',title:'David: Man After God\'s Heart',sub:'2 Samuel: David\'s reign and covenant',doc:'samuel2',icon:'🎶'},
+  {id:'t023',cat:'Old Testament',title:'The Davidic Covenant',sub:'2 Samuel 7: God\'s eternal promise to David',doc:'samuel2',icon:'📜'},
+  {id:'t024',cat:'Old Testament',title:'Solomon\'s Wisdom',sub:'1 Kings 3-10: Wisdom, temple, and wealth',doc:'kings1',icon:'💎'},
+  {id:'t025',cat:'Old Testament',title:'Elijah the Prophet',sub:'1 Kings 17-21: Fire on Carmel, still small voice',doc:'kings1',icon:'⚡'},
+  {id:'t026',cat:'Old Testament',title:'The Fall of Israel',sub:'2 Kings 17: Assyrian captivity explained',doc:'kings2',icon:'🏚'},
+  {id:'t027',cat:'Old Testament',title:'Hezekiah\'s Revival',sub:'2 Kings 18-20: God honors faith',doc:'kings2',icon:'🌅'},
+  {id:'t028',cat:'Old Testament',title:'The Return from Exile',sub:'Ezra 1-6: God restores His people',doc:'ezra',icon:'🏠'},
+  {id:'t029',cat:'Old Testament',title:'Rebuilding the Walls',sub:'Nehemiah: Leadership and perseverance',doc:'nehemiah',icon:'🧱'},
+  {id:'t030',cat:'Old Testament',title:'Esther: Such a Time as This',sub:'Esther: Providence and courage',doc:'esther',icon:'👸'},
+  {id:'t031',cat:'Old Testament',title:'Why Do the Righteous Suffer?',sub:'Job: The problem of suffering',doc:'job',icon:'🤔'},
+  {id:'t032',cat:'Old Testament',title:'God\'s Answer to Job',sub:'Job 38-42: When God speaks from the whirlwind',doc:'job',icon:'🌪'},
+  {id:'t033',cat:'Old Testament',title:'Psalms of Praise',sub:'Psalms 1-41: Foundational worship',doc:'psalms1',icon:'🎵'},
+  {id:'t034',cat:'Old Testament',title:'The Shepherd Psalm',sub:'Psalm 23: The Lord is my shepherd',doc:'psalms1',icon:'🐑'},
+  {id:'t035',cat:'Old Testament',title:'Psalms of Suffering',sub:'Psalms 42-72: Songs from the depths',doc:'psalms2',icon:'😢'},
+  {id:'t036',cat:'Old Testament',title:'Psalms of God\'s Greatness',sub:'Psalms 73-89: Covenant and majesty',doc:'psalms3',icon:'🏔'},
+  {id:'t037',cat:'Old Testament',title:'Psalms of the Kingdom',sub:'Psalms 90-106: Moses to the millennium',doc:'psalms4',icon:'👑'},
+  {id:'t038',cat:'Old Testament',title:'Psalms of Hallelujah',sub:'Psalms 107-150: Final crescendo of praise',doc:'psalms5',icon:'🎉'},
+  {id:'t039',cat:'Old Testament',title:'Wisdom of Proverbs',sub:'Proverbs: Practical godly living',doc:'proverbs',icon:'🦉'},
+  {id:'t040',cat:'Old Testament',title:'The Virtuous Woman',sub:'Proverbs 31: Excellence in womanhood',doc:'proverbs',icon:'💐'},
+  {id:'t041',cat:'Old Testament',title:'Vanity of Vanities',sub:'Ecclesiastes: Life\'s meaning under the sun',doc:'ecclesiastes',icon:'☀'},
+  {id:'t042',cat:'Old Testament',title:'The Song of Solomon',sub:'Divine love and the marriage relationship',doc:'solomon',icon:'❤'},
+  {id:'t043',cat:'Old Testament',title:'Isaiah\'s Great Vision',sub:'Isaiah: The evangelical prophet',doc:'isaiah',icon:'👁'},
+  {id:'t044',cat:'Old Testament',title:'The Suffering Servant',sub:'Isaiah 52-53: Christ foretold',doc:'isaiah',icon:'✝'},
+  {id:'t045',cat:'Old Testament',title:'Jeremiah the Weeping Prophet',sub:'Jeremiah: Courage in persecution',doc:'jeremiah',icon:'😭'},
+  {id:'t046',cat:'Old Testament',title:'The New Covenant',sub:'Jeremiah 31: God\'s promise of a new heart',doc:'jeremiah',icon:'📜'},
+  {id:'t047',cat:'Old Testament',title:'Valley of Dry Bones',sub:'Ezekiel 37: Resurrection and national restoration',doc:'ezekiel',icon:'💀'},
+  {id:'t048',cat:'Old Testament',title:'Daniel\'s Prophecies',sub:'Daniel: World empires and God\'s kingdom',doc:'daniel',icon:'🦁'},
+  {id:'t049',cat:'Old Testament',title:'The 70 Weeks of Daniel',sub:'Daniel 9: Blueprint of prophetic history',doc:'daniel',icon:'⏳'},
+  {id:'t050',cat:'Old Testament',title:'Hosea: God\'s Faithful Love',sub:'Hosea: God\'s heart for wayward Israel',doc:'hosea',icon:'💔'},
+  {id:'t051',cat:'Old Testament',title:'Joel: The Day of the Lord',sub:'Joel: Judgment and the outpouring of the Spirit',doc:'joel',icon:'🔥'},
+  {id:'t052',cat:'Old Testament',title:'Amos: Justice for the Poor',sub:'Amos: Social justice in God\'s sight',doc:'amos',icon:'⚖'},
+  {id:'t053',cat:'Old Testament',title:'Jonah: Running from God',sub:'Jonah: God\'s mercy for all nations',doc:'jonah',icon:'🐋'},
+  {id:'t054',cat:'Old Testament',title:'Micah: The Christmas Prophecy',sub:'Micah 5:2 — Christ born in Bethlehem',doc:'micah',icon:'⭐'},
+  {id:'t055',cat:'Old Testament',title:'Habakkuk: Faith in Trouble',sub:'Habakkuk: The just shall live by faith',doc:'habakkuk',icon:'🙏'},
+  {id:'t056',cat:'Old Testament',title:'Zechariah\'s Visions',sub:'Zechariah: Messianic prophecies',doc:'zechariah',icon:'🌙'},
+  {id:'t057',cat:'Old Testament',title:'Malachi: Returning to God',sub:'Malachi: The last OT prophet\'s call',doc:'malachi',icon:'🔔'},
+  /* NT Books */
+  {id:'t058',cat:'New Testament',title:'The Kingdom of Heaven',sub:'Matthew 5-7: Sermon on the Mount',doc:'matthew',icon:'⛅'},
+  {id:'t059',cat:'New Testament',title:'The Parables of Jesus',sub:'Matthew 13: Kingdom parables explained',doc:'matthew',icon:'📖'},
+  {id:'t060',cat:'New Testament',title:'The Great Commission',sub:'Matthew 28: Go and make disciples',doc:'matthew',icon:'🌍'},
+  {id:'t061',cat:'New Testament',title:'Jesus the Servant',sub:'Mark: The Gospel of action and service',doc:'mark',icon:'🙌'},
+  {id:'t062',cat:'New Testament',title:'The Son of Man',sub:'Luke: Jesus among the outcasts',doc:'luke',icon:'👤'},
+  {id:'t063',cat:'New Testament',title:'The Prodigal Son',sub:'Luke 15: God\'s heart for the lost',doc:'luke',icon:'🏃'},
+  {id:'t064',cat:'New Testament',title:'The Word Made Flesh',sub:'John 1: The incarnation of Christ',doc:'john',icon:'✨'},
+  {id:'t065',cat:'New Testament',title:'Born Again',sub:'John 3: Nicodemus and the new birth',doc:'john',icon:'🌟'},
+  {id:'t066',cat:'New Testament',title:'The Good Shepherd',sub:'John 10: Christ\'s care for His sheep',doc:'john',icon:'🐑'},
+  {id:'t067',cat:'New Testament',title:'The Resurrection of Christ',sub:'John 20: The empty tomb and its meaning',doc:'john',icon:'☀'},
+  {id:'t068',cat:'New Testament',title:'Pentecost and the Church',sub:'Acts 2: The Holy Spirit comes',doc:'acts',icon:'🔥'},
+  {id:'t069',cat:'New Testament',title:'Paul\'s Conversion',sub:'Acts 9: Saul becomes Paul',doc:'acts',icon:'⚡'},
+  {id:'t070',cat:'New Testament',title:'The Missionary Journeys',sub:'Acts 13-20: Paul spreading the gospel',doc:'acts',icon:'✈'},
+  {id:'t071',cat:'New Testament',title:'Justification by Faith',sub:'Romans 3-5: How sinners are saved',doc:'romans',icon:'✝'},
+  {id:'t072',cat:'New Testament',title:'Life in the Spirit',sub:'Romans 8: No condemnation in Christ',doc:'romans',icon:'🕊'},
+  {id:'t073',cat:'New Testament',title:'The Body of Christ',sub:'1 Corinthians 12: Spiritual gifts and unity',doc:'cor1',icon:'🫂'},
+  {id:'t074',cat:'New Testament',title:'The Love Chapter',sub:'1 Corinthians 13: Defining agape love',doc:'cor1',icon:'❤'},
+  {id:'t075',cat:'New Testament',title:'The Resurrection Chapter',sub:'1 Corinthians 15: Resurrection hope',doc:'cor1',icon:'✨'},
+  {id:'t076',cat:'New Testament',title:'The Fruit of the Spirit',sub:'Galatians 5: Life transformed by the Spirit',doc:'galatians',icon:'🍇'},
+  {id:'t077',cat:'New Testament',title:'The Armor of God',sub:'Ephesians 6: Spiritual warfare',doc:'ephesians',icon:'⚔'},
+  {id:'t078',cat:'New Testament',title:'The Mind of Christ',sub:'Philippians 2 & 4: Peace and contentment',doc:'ephesians',icon:'🧠'},
+  {id:'t079',cat:'New Testament',title:'Christ: Head of the Church',sub:'Colossians 1-2: The preeminence of Jesus',doc:'ephesians',icon:'✝'},
+  {id:'t080',cat:'New Testament',title:'The Rapture',sub:'1 Thessalonians 4: Caught up to meet the Lord',doc:'thessalonians1',icon:'🌤'},
+  {id:'t081',cat:'New Testament',title:'The Man of Sin',sub:'2 Thessalonians 2: The Antichrist revealed',doc:'thessalonians2',icon:'⚠'},
+  {id:'t082',cat:'New Testament',title:'Qualifications for Church Leaders',sub:'1 Timothy 3: Bishops and deacons',doc:'timothy1',icon:'⛪'},
+  {id:'t083',cat:'New Testament',title:'Scripture and Its Authority',sub:'2 Timothy 3: All Scripture is God-breathed',doc:'timothy2',icon:'📖'},
+  {id:'t084',cat:'New Testament',title:'Faith and Works',sub:'James 2: A living, active faith',doc:'james',icon:'🙏'},
+  {id:'t085',cat:'New Testament',title:'Christ: Better than the Angels',sub:'Hebrews 1-2: The supremacy of Jesus',doc:'hebrews',icon:'👼'},
+  {id:'t086',cat:'New Testament',title:'The Hall of Faith',sub:'Hebrews 11: Heroes of faith',doc:'hebrews',icon:'🏆'},
+  {id:'t087',cat:'New Testament',title:'The Seven Churches',sub:'Revelation 2-3: Letters to the church',doc:'revelation',icon:'✉'},
+  {id:'t088',cat:'New Testament',title:'The Throne Room of Heaven',sub:'Revelation 4-5: Worship in eternity',doc:'revelation',icon:'🌈'},
+  {id:'t089',cat:'New Testament',title:'The Second Coming',sub:'Revelation 19: Christ returns in glory',doc:'revelation',icon:'☁'},
+  {id:'t090',cat:'New Testament',title:'New Heaven and New Earth',sub:'Revelation 21-22: Eternity with God',doc:'revelation',icon:'🌟'},
+  /* Theology */
+  {id:'t091',cat:'Theology',title:'The Trinity',sub:'One God in three persons: Father, Son, Holy Spirit',doc:'resources1',icon:'△'},
+  {id:'t092',cat:'Theology',title:'The Nature of God',sub:'God\'s attributes: omniscient, omnipotent, omnipresent',doc:'resources1',icon:'✨'},
+  {id:'t093',cat:'Theology',title:'The Inspiration of Scripture',sub:'Verbal plenary inspiration and inerrancy',doc:'resources1',icon:'📖'},
+  {id:'t094',cat:'Theology',title:'The Fall of Man',sub:'Original sin and its consequences',doc:'genesis',icon:'🍎'},
+  {id:'t095',cat:'Theology',title:'Salvation: Grace Through Faith',sub:'Soteriology: How we are saved',doc:'romans',icon:'✝'},
+  {id:'t096',cat:'Theology',title:'Atonement Theories',sub:'Substitutionary, moral influence, Christus Victor',doc:'resources2',icon:'🩸'},
+  {id:'t097',cat:'Theology',title:'Sanctification',sub:'Growing in holiness after salvation',doc:'resources1',icon:'🌱'},
+  {id:'t098',cat:'Theology',title:'The Holy Spirit',sub:'His person, work, gifts, and filling',doc:'resources1',icon:'🕊'},
+  {id:'t099',cat:'Theology',title:'The Church',sub:'Ecclesiology: What is the Church?',doc:'resources2',icon:'⛪'},
+  {id:'t100',cat:'Theology',title:'Baptism and the Lord\'s Supper',sub:'The two ordinances of the church',doc:'resources1',icon:'💧'},
+  {id:'t101',cat:'Theology',title:'Prayer and Intercession',sub:'How and why we pray',doc:'biblestudy',icon:'🙏'},
+  {id:'t102',cat:'Theology',title:'Angels and Spiritual Warfare',sub:'The angelic realm and demonic forces',doc:'resources2',icon:'⚔'},
+  {id:'t103',cat:'Theology',title:'Eschatology: End Times Overview',sub:'Rapture, Tribulation, Millennium, Eternity',doc:'resources2',icon:'⏳'},
+  {id:'t104',cat:'Theology',title:'The Millennial Kingdom',sub:'1000-year reign of Christ',doc:'revelation',icon:'👑'},
+  {id:'t105',cat:'Theology',title:'The Great White Throne Judgment',sub:'Final judgment of the unsaved',doc:'revelation',icon:'⚖'},
+  {id:'t106',cat:'Theology',title:'Heaven and Hell',sub:'The eternal destinies of mankind',doc:'resources2',icon:'🌟'},
+  {id:'t107',cat:'Theology',title:'Election and Free Will',sub:'Calvinism, Arminianism, and the Middle',doc:'resources2',icon:'🔄'},
+  {id:'t108',cat:'Theology',title:'Spiritual Gifts Today',sub:'Cessationism vs. continuationism',doc:'resources1',icon:'🎁'},
+  {id:'t109',cat:'Theology',title:'The Second Coming of Christ',sub:'Signs, timing, and events',doc:'resources2',icon:'☁'},
+  {id:'t110',cat:'Theology',title:'Christian Apologetics',sub:'Defending the faith with reason',doc:'resources2',icon:'🛡'},
+  /* Characters */
+  {id:'t111',cat:'Biblical Characters',title:'Abraham: Father of Faith',sub:'His call, trials, and ultimate obedience',doc:'genesis',icon:'👴'},
+  {id:'t112',cat:'Biblical Characters',title:'Moses: The Lawgiver',sub:'His life, leadership, and failure',doc:'exodus',icon:'📜'},
+  {id:'t113',cat:'Biblical Characters',title:'David: The King',sub:'His psalms, victories, and failures',doc:'samuel2',icon:'🎶'},
+  {id:'t114',cat:'Biblical Characters',title:'Solomon: Wisdom and Folly',sub:'Riches, temples, and backsliding',doc:'kings1',icon:'💎'},
+  {id:'t115',cat:'Biblical Characters',title:'Elijah: The Fire Prophet',sub:'Mount Carmel, depression, and translation',doc:'kings1',icon:'🔥'},
+  {id:'t116',cat:'Biblical Characters',title:'Isaiah: The Eagle Prophet',sub:'His call and messianic prophecies',doc:'isaiah',icon:'🦅'},
+  {id:'t117',cat:'Biblical Characters',title:'Jeremiah: The Weeping Prophet',sub:'Faithful ministry in rejection',doc:'jeremiah',icon:'😭'},
+  {id:'t118',cat:'Biblical Characters',title:'Daniel: Faithful in Babylon',sub:'Integrity in exile and prophetic visions',doc:'daniel',icon:'🦁'},
+  {id:'t119',cat:'Biblical Characters',title:'Mary: Chosen of God',sub:'The mother of Jesus — faith and sacrifice',doc:'luke',icon:'💙'},
+  {id:'t120',cat:'Biblical Characters',title:'Peter: From Fisherman to Apostle',sub:'His failures, restoration, and ministry',doc:'acts',icon:'🐟'},
+  {id:'t121',cat:'Biblical Characters',title:'Paul: The Apostle to the Gentiles',sub:'His conversion, journeys, and letters',doc:'acts',icon:'✉'},
+  {id:'t122',cat:'Biblical Characters',title:'John: The Beloved Disciple',sub:'His Gospel, letters, and Revelation',doc:'john',icon:'❤'},
+  {id:'t123',cat:'Biblical Characters',title:'Esther: For Such a Time',sub:'Courage and Providence',doc:'esther',icon:'👸'},
+  {id:'t124',cat:'Biblical Characters',title:'Ruth: Faithfulness Rewarded',sub:'Loyalty, kindness, redemption',doc:'ruth',icon:'🌺'},
+  {id:'t125',cat:'Biblical Characters',title:'Job: Faith Under Fire',sub:'Patient endurance and divine restoration',doc:'job',icon:'💎'},
+  /* Christian Living */
+  {id:'t126',cat:'Christian Living',title:'How to Study the Bible',sub:'Methods, tools, and approaches',doc:'biblestudy',icon:'📖'},
+  {id:'t127',cat:'Christian Living',title:'Daily Devotional Life',sub:'Building a consistent walk with God',doc:'family1',icon:'🌅'},
+  {id:'t128',cat:'Christian Living',title:'Family Bible Studies',sub:'Engaging the whole family in Scripture',doc:'family1',icon:'👨‍👩‍👧'},
+  {id:'t129',cat:'Christian Living',title:'Marriage in the Bible',sub:'God\'s design for husband and wife',doc:'family2',icon:'💍'},
+  {id:'t130',cat:'Christian Living',title:'Raising Godly Children',sub:'Biblical principles for parents',doc:'family2',icon:'👶'},
+  {id:'t131',cat:'Christian Living',title:'Forgiveness and Reconciliation',sub:'How to forgive as Christ forgave',doc:'family3',icon:'🤝'},
+  {id:'t132',cat:'Christian Living',title:'Overcoming Temptation',sub:'Biblical strategies for resisting sin',doc:'resources1',icon:'💪'},
+  {id:'t133',cat:'Christian Living',title:'Financial Stewardship',sub:'Biblical principles on money and giving',doc:'resources1',icon:'💰'},
+  {id:'t134',cat:'Christian Living',title:'Serving Others',sub:'The ministry of helps and servanthood',doc:'family4',icon:'🙌'},
+  {id:'t135',cat:'Christian Living',title:'Evangelism',sub:'Sharing your faith with others',doc:'acts',icon:'📢'},
+  {id:'t136',cat:'Christian Living',title:'Fasting and Prayer',sub:'Spiritual disciplines for breakthrough',doc:'biblestudy',icon:'🙏'},
+  {id:'t137',cat:'Christian Living',title:'Worshipping God',sub:'The heart and practice of true worship',doc:'psalms1',icon:'🎵'},
+  {id:'t138',cat:'Christian Living',title:'Christian Community',sub:'Fellowship, accountability, and the Body',doc:'resources1',icon:'👥'},
+  {id:'t139',cat:'Christian Living',title:'Suffering for Christ',sub:'Why God allows trials and how to respond',doc:'peter1',icon:'✝'},
+  {id:'t140',cat:'Christian Living',title:'The Beatitudes',sub:'Matthew 5: The character of kingdom citizens',doc:'matthew',icon:'😊'},
+  /* Bible Overview */
+  {id:'t141',cat:'Bible Overview',title:'Overview of the Old Testament',sub:'66 books: structure, themes, and flow',doc:'chapters',icon:'📜'},
+  {id:'t142',cat:'Bible Overview',title:'Overview of the New Testament',sub:'27 books: from Gospels to Revelation',doc:'chapters',icon:'✝'},
+  {id:'t143',cat:'Bible Overview',title:'Bible Chapter-by-Chapter Guide',sub:'Genesis to Revelation summarized',doc:'chapters',icon:'📋'},
+  {id:'t144',cat:'Bible Overview',title:'How We Got the Bible',sub:'Canon formation, manuscripts, translations',doc:'resources1',icon:'📜'},
+  {id:'t145',cat:'Bible Overview',title:'Understanding Bible Translation',sub:'KJV, ASV, YLT, BSB, DRB and more',doc:'kjv',icon:'📖'},
+  {id:'t146',cat:'Bible Overview',title:'The Literal Translation Approach',sub:'YLT, DBT, BLB: word-for-word study',doc:'blb',icon:'🔤'},
+  {id:'t147',cat:'Bible Overview',title:'The Apocryphal Books',sub:'Ethiopian Bible and deuterocanon',doc:'apocrypha',icon:'📜'},
+  {id:'t148',cat:'Bible Overview',title:'The Book of Enoch',sub:'Ancient text quoted by New Testament',doc:'enoch',icon:'🌙'},
+  {id:'t149',cat:'Bible Overview',title:'Biblical Typology',sub:'Types and shadows pointing to Christ',doc:'resources2',icon:'🔮'},
+  {id:'t150',cat:'Bible Overview',title:'Bible Archaeology',sub:'Discoveries confirming Scripture',doc:'resources2',icon:'🏺'},
+  /* Prophecy */
+  {id:'t151',cat:'Prophecy',title:'Messianic Prophecies',sub:'300+ OT prophecies fulfilled in Jesus',doc:'resources2',icon:'⭐'},
+  {id:'t152',cat:'Prophecy',title:'Isaiah\'s Messianic Vision',sub:'Isaiah 7, 9, 11, 53: Christ foretold',doc:'isaiah',icon:'✨'},
+  {id:'t153',cat:'Prophecy',title:'Daniel\'s Four Kingdoms',sub:'Babylon, Persia, Greece, Rome, and God\'s Kingdom',doc:'daniel',icon:'🏛'},
+  {id:'t154',cat:'Prophecy',title:'The Great Tribulation',sub:'Revelation 6-18: 7-year period explained',doc:'revelation',icon:'⚠'},
+  {id:'t155',cat:'Prophecy',title:'The Battle of Armageddon',sub:'Revelation 19: Final battle',doc:'revelation',icon:'⚔'},
+  {id:'t156',cat:'Prophecy',title:'Israel in Prophecy',sub:'Romans 9-11: God\'s plan for Israel',doc:'romans',icon:'🕍'},
+  {id:'t157',cat:'Prophecy',title:'Signs of Christ\'s Return',sub:'Matthew 24: What to watch for',doc:'matthew',icon:'👁'},
+  {id:'t158',cat:'Prophecy',title:'The Antichrist',sub:'2 Thessalonians 2, Revelation 13: The man of sin',doc:'revelation',icon:'🔱'},
+  {id:'t159',cat:'Prophecy',title:'The New Jerusalem',sub:'Revelation 21: The eternal city',doc:'revelation',icon:'🏙'},
+  {id:'t160',cat:'Prophecy',title:'The Olivet Discourse',sub:'Matthew 24-25: Jesus on end-time events',doc:'matthew',icon:'🌿'}
 ];
 
-function getVideos(){return gateLoad('gate_bs_videos')||DEFAULT_VIDEOS;}
-function getPodcasts(){return gateLoad('gate_bs_podcasts')||[];}
-function getAudios(){return gateLoad('gate_bs_audios')||[];}
-function getPlatforms(){return gateLoad('gate_bs_platforms')||{spotify:'',apple:'',rss:''};}
+/* ── FLASHCARDS ───────────────────────────────────────────────── */
+var ALL_FLASHCARDS = [
+  {q:'How many books are in the Bible?',a:'66 books — 39 Old Testament, 27 New Testament',cat:'Bible Facts'},
+  {q:'Who wrote the first five books of the Bible?',a:'Moses (the Pentateuch: Genesis, Exodus, Leviticus, Numbers, Deuteronomy)',cat:'Bible Facts'},
+  {q:'What is the shortest verse in the Bible?',a:'"Jesus wept." — John 11:35',cat:'Bible Facts'},
+  {q:'What is the longest book in the Bible?',a:'Psalms (150 chapters)',cat:'Bible Facts'},
+  {q:'What is the shortest book in the Bible?',a:'2 John (only 13 verses)',cat:'Bible Facts'},
+  {q:'Who wrote most of the New Testament letters?',a:'The Apostle Paul (13 epistles)',cat:'Bible Facts'},
+  {q:'In what language was the Old Testament primarily written?',a:'Hebrew (with some Aramaic)',cat:'Bible Facts'},
+  {q:'In what language was the New Testament written?',a:'Greek (Koine Greek)',cat:'Bible Facts'},
+  {q:'What does the word "Bible" mean?',a:'From the Greek "biblia" meaning "books" or "scrolls"',cat:'Bible Facts'},
+  {q:'How many chapters are in the entire Bible?',a:'1,189 chapters total',cat:'Bible Facts'},
+  {q:'What is the middle book of the Bible?',a:'Psalms (the middle of the 66 books)',cat:'Bible Facts'},
+  {q:'Who wrote the book of Psalms mostly?',a:'David wrote approximately 73 of the 150 psalms',cat:'Old Testament'},
+  {q:'What does "Genesis" mean?',a:'"Beginning" — from the Hebrew "Bereshit" (in the beginning)',cat:'Old Testament'},
+  {q:'How many plagues fell on Egypt?',a:'Ten plagues',cat:'Old Testament'},
+  {q:'What are the Ten Commandments\' first two?',a:'1) No other gods; 2) No graven images',cat:'Old Testament'},
+  {q:'Who was the oldest person in the Bible?',a:'Methuselah — 969 years old (Genesis 5:27)',cat:'Old Testament'},
+  {q:'How many days did it rain during Noah\'s flood?',a:'40 days and 40 nights',cat:'Old Testament'},
+  {q:'What does the name "Israel" mean?',a:'"He who strives with God" — given to Jacob after wrestling with God',cat:'Old Testament'},
+  {q:'How many spies did Moses send into Canaan?',a:'12 spies (Numbers 13)',cat:'Old Testament'},
+  {q:'What was the first miracle of Elijah?',a:'Stopping the rain for 3.5 years (1 Kings 17:1)',cat:'Old Testament'},
+  {q:'Who wrote the book of Proverbs?',a:'Primarily Solomon, with contributions from Agur and King Lemuel\'s mother',cat:'Old Testament'},
+  {q:'How many chapters are in Psalms?',a:'150 chapters',cat:'Old Testament'},
+  {q:'Who was the mother of Samuel?',a:'Hannah (1 Samuel 1)',cat:'Old Testament'},
+  {q:'What was the name of David\'s son who built the Temple?',a:'Solomon',cat:'Old Testament'},
+  {q:'Who interpreted Pharaoh\'s dreams?',a:'Joseph (Genesis 41)',cat:'Old Testament'},
+  {q:'What river did Moses part?',a:'Moses parted the Red Sea (not a river). He struck a rock for water.',cat:'Old Testament'},
+  {q:'What are the four major prophets?',a:'Isaiah, Jeremiah, Ezekiel, Daniel',cat:'Old Testament'},
+  {q:'What are the twelve minor prophets called?',a:'The Book of the Twelve (Hosea through Malachi)',cat:'Old Testament'},
+  {q:'Who was the last judge of Israel?',a:'Samuel',cat:'Old Testament'},
+  {q:'What is "the Day of Atonement" called in Hebrew?',a:'Yom Kippur',cat:'Old Testament'},
+  {q:'Who wrote the Gospel of Matthew?',a:'Matthew (Levi), the tax collector and apostle',cat:'New Testament'},
+  {q:'Which Gospel emphasizes Jesus as the Son of Man?',a:'Luke',cat:'New Testament'},
+  {q:'Which Gospel is the shortest?',a:'Mark (16 chapters)',cat:'New Testament'},
+  {q:'What is the theme of John\'s Gospel?',a:'Jesus is the Son of God who gives eternal life (John 20:31)',cat:'New Testament'},
+  {q:'What does "gospel" mean?',a:'"Good news" — from the Greek "euangelion"',cat:'New Testament'},
+  {q:'How many apostles did Jesus choose?',a:'12 apostles',cat:'New Testament'},
+  {q:'Who baptized Jesus?',a:'John the Baptist (Matthew 3)',cat:'New Testament'},
+  {q:'Where was Jesus born?',a:'Bethlehem of Judea (Luke 2:4-7)',cat:'New Testament'},
+  {q:'What was Jesus\' first miracle?',a:'Turning water into wine at Cana (John 2:1-11)',cat:'New Testament'},
+  {q:'How many times did Peter deny Jesus?',a:'Three times (before the rooster crowed)',cat:'New Testament'},
+  {q:'Who betrayed Jesus?',a:'Judas Iscariot for 30 pieces of silver',cat:'New Testament'},
+  {q:'On what day did Jesus rise from the dead?',a:'The third day after His crucifixion — Sunday morning',cat:'New Testament'},
+  {q:'What happened on the Day of Pentecost?',a:'The Holy Spirit came on the disciples with wind, fire, and speaking in tongues (Acts 2)',cat:'New Testament'},
+  {q:'Who wrote the book of Acts?',a:'Luke (the physician and companion of Paul)',cat:'New Testament'},
+  {q:'What was Paul\'s Hebrew name?',a:'Saul of Tarsus',cat:'New Testament'},
+  {q:'Who wrote Revelation?',a:'The Apostle John on the island of Patmos',cat:'New Testament'},
+  {q:'How many churches are addressed in Revelation?',a:'Seven churches (Revelation 2-3)',cat:'New Testament'},
+  {q:'What is the Great Commission?',a:'"Go and make disciples of all nations" — Matthew 28:19-20',cat:'New Testament'},
+  {q:'Who was the first Christian martyr?',a:'Stephen (Acts 7)',cat:'New Testament'},
+  {q:'What does "Trinity" mean?',a:'One God eternally existing as three co-equal persons: Father, Son, Holy Spirit',cat:'Theology'},
+  {q:'What does "omniscient" mean regarding God?',a:'God knows all things — past, present, future — completely and perfectly',cat:'Theology'},
+  {q:'What does "omnipotent" mean regarding God?',a:'God is all-powerful — He can do anything consistent with His nature',cat:'Theology'},
+  {q:'What does "omnipresent" mean regarding God?',a:'God is present everywhere simultaneously',cat:'Theology'},
+  {q:'What does "salvation" mean?',a:'Deliverance from sin and its consequences through faith in Jesus Christ',cat:'Theology'},
+  {q:'What is "grace"?',a:'God\'s unmerited favor — receiving what we do not deserve',cat:'Theology'},
+  {q:'What is "mercy"?',a:'Not receiving what we do deserve — God withholding just punishment',cat:'Theology'},
+  {q:'What does "justification" mean?',a:'Being declared righteous before God through faith in Christ (Romans 5:1)',cat:'Theology'},
+  {q:'What does "sanctification" mean?',a:'The ongoing process of being made holy — growing more like Christ',cat:'Theology'},
+  {q:'What does "glorification" mean?',a:'The final stage of salvation — receiving a glorified body at resurrection',cat:'Theology'},
+  {q:'What is "original sin"?',a:'The fallen nature and guilt inherited from Adam\'s disobedience (Romans 5:12)',cat:'Theology'},
+  {q:'What is the "atonement"?',a:'Christ\'s death on the cross paying the penalty for our sins',cat:'Theology'},
+  {q:'What does "propitiation" mean?',a:'Christ\'s sacrifice satisfying God\'s righteous wrath against sin (1 John 2:2)',cat:'Theology'},
+  {q:'What does "redemption" mean?',a:'Being bought back/freed from slavery to sin by Christ\'s blood',cat:'Theology'},
+  {q:'What does "regeneration" mean?',a:'Being "born again" — the Holy Spirit giving new spiritual life',cat:'Theology'},
+  {q:'What is the "Great Tribulation"?',a:'A future 7-year period of unprecedented judgment on earth (Revelation 6-18)',cat:'Prophecy'},
+  {q:'What is the Rapture?',a:'Christ catching up believers to meet Him in the air before/during Tribulation (1 Thess. 4:16-17)',cat:'Prophecy'},
+  {q:'What is the Millennium?',a:'The 1,000-year reign of Christ on earth after His Second Coming (Revelation 20)',cat:'Prophecy'},
+  {q:'What are the 70 Weeks of Daniel?',a:'490 years of prophetic history for Israel outlined in Daniel 9:24-27',cat:'Prophecy'},
+  {q:'What is Armageddon?',a:'The final world battle where Christ defeats the nations at His return (Revelation 16:16)',cat:'Prophecy'},
+  {q:'What is the Great White Throne Judgment?',a:'The final judgment of the unsaved before God — Revelation 20:11-15',cat:'Prophecy'},
+  {q:'What is the "New Jerusalem"?',a:'The eternal holy city that descends from heaven in Revelation 21',cat:'Prophecy'},
+  {q:'What are "signs of the times"?',a:'Events Jesus described in Matthew 24 signaling the nearness of His return',cat:'Prophecy'},
+  {q:'Who is the "man of sin" in 2 Thessalonians 2?',a:'The Antichrist — a future world leader who opposes Christ',cat:'Prophecy'},
+  {q:'What does "eschatology" mean?',a:'The study of last things: death, judgment, heaven, hell, end times',cat:'Prophecy'},
+  {q:'Who wrote the Sermon on the Mount?',a:'Jesus preached it; Matthew recorded it in chapters 5-7',cat:'Characters'},
+  {q:'How old was Abraham when Isaac was born?',a:'100 years old (Sarah was 90) — Genesis 21:5',cat:'Characters'},
+  {q:'Who was Ruth\'s kinsman-redeemer?',a:'Boaz — who became her husband',cat:'Characters'},
+  {q:'How many chapters did Paul write in the New Testament?',a:'Paul wrote approximately 87 chapters across 13 epistles',cat:'Characters'},
+  {q:'Who was the wisest man in the Old Testament?',a:'Solomon — God gave him wisdom surpassing all others (1 Kings 4:30-31)',cat:'Characters'},
+  {q:'Who was Elijah\'s successor?',a:'Elisha received a double portion of Elijah\'s spirit',cat:'Characters'},
+  {q:'What was Daniel\'s Hebrew name?',a:'Daniel — his Babylonian name was Belteshazzar',cat:'Characters'},
+  {q:'Who was the mother of John the Baptist?',a:'Elizabeth — a relative of Mary (Luke 1)',cat:'Characters'},
+  {q:'What was Matthew\'s occupation before following Jesus?',a:'Tax collector',cat:'Characters'},
+  {q:'Who was the first martyr in Acts?',a:'Stephen — stoned after his speech to the Sanhedrin (Acts 7)',cat:'Characters'},
+  {q:'What is the "Fruit of the Spirit"?',a:'Love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control (Galatians 5:22-23)',cat:'Christian Living'},
+  {q:'What does "pray without ceasing" mean?',a:'1 Thessalonians 5:17 — maintaining a constant attitude of prayerful communion with God',cat:'Christian Living'},
+  {q:'What is the "Lord\'s Prayer"?',a:'Jesus\' model prayer in Matthew 6:9-13 teaching how to pray',cat:'Christian Living'},
+  {q:'What does it mean to "love your neighbor"?',a:'To treat others as you would want to be treated (Matthew 22:39, Luke 10:27)',cat:'Christian Living'},
+  {q:'What is the "Golden Rule"?',a:'"Do unto others as you would have them do unto you" — Matthew 7:12',cat:'Christian Living'},
+  {q:'What are the two greatest commandments?',a:'1) Love God with all your heart; 2) Love your neighbor as yourself (Matthew 22:37-39)',cat:'Christian Living'},
+  {q:'What is "tithing"?',a:'Giving 10% of one\'s income to God — Malachi 3:10, Matthew 23:23',cat:'Christian Living'},
+  {q:'What does "forgive seventy times seven" mean?',a:'Matthew 18:22 — unlimited forgiveness, not keeping count',cat:'Christian Living'},
+  {q:'What is "the armor of God"?',a:'Ephesians 6:13-17: truth, righteousness, peace, faith, salvation, Word',cat:'Christian Living'},
+  {q:'What does "abide in Christ" mean?',a:'John 15:4-5 — remaining in close, dependent relationship with Jesus',cat:'Christian Living'},
+  {q:'What is the doctrine of "election"?',a:'God\'s sovereign choice of individuals for salvation before creation (Romans 8:29-30)',cat:'Doctrine'},
+  {q:'What is "total depravity"?',a:'Humans are completely corrupted by sin in every aspect of their being',cat:'Doctrine'},
+  {q:'What is "perseverance of the saints"?',a:'True believers will persevere in faith to the end and not lose salvation',cat:'Doctrine'},
+  {q:'What is "cessationism"?',a:'The view that miraculous spiritual gifts ceased after the apostolic age',cat:'Doctrine'},
+  {q:'What is "continuationism"?',a:'The view that all spiritual gifts including tongues and prophecy continue today',cat:'Doctrine'},
+  {q:'What does "sola scriptura" mean?',a:'"Scripture alone" — the Bible is the final authority on all matters of faith',cat:'Doctrine'},
+  {q:'What does "sola fide" mean?',a:'"Faith alone" — justification is by faith alone, not works',cat:'Doctrine'},
+  {q:'What does "sola gratia" mean?',a:'"Grace alone" — salvation is entirely by God\'s grace, not human merit',cat:'Doctrine'},
+  {q:'What is "the hypostatic union"?',a:'Jesus Christ is fully God and fully man in one person — two natures, one person',cat:'Doctrine'},
+  {q:'What is the "Immaculate Conception"?',a:'Roman Catholic doctrine that Mary was conceived without original sin',cat:'Doctrine'},
+  {q:'What does "infallible" mean regarding the Bible?',a:'The Bible is incapable of error in all that it affirms — it cannot fail or mislead',cat:'Doctrine'},
+  {q:'What is the "canon" of Scripture?',a:'The authoritative list of books recognized as belonging to the Bible',cat:'Doctrine'},
+  {q:'What is a "covenant"?',a:'A solemn binding agreement between God and man, with terms and promises',cat:'Doctrine'},
+  {q:'How many major covenants are in the Bible?',a:'Typically 6: Noahic, Abrahamic, Mosaic, Levitical, Davidic, New Covenant',cat:'Doctrine'},
+  {q:'What is the "New Covenant"?',a:'Jeremiah 31 / Luke 22:20 — God\'s covenant through Christ\'s blood for forgiveness and indwelling Spirit',cat:'Doctrine'}
+];
 
-function showTab(tab,btn){
-  curTab=tab;
-  ['videos','podcasts','audio'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===tab?'block':'none';});
-  document.querySelectorAll('.media-tab').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  renderAll();
+/* ═══════════════════════════════════════════════════════════════
+   TAB SWITCHING
+   ═══════════════════════════════════════════════════════════════ */
+var ALL_TABS = ['videos','podcasts','audio','calendar','topics','flash'];
+function showStudyTab(name){
+  for(var i=0;i<ALL_TABS.length;i++){
+    var t=ALL_TABS[i];
+    var cont=document.getElementById('stab-content-'+t);
+    var btn=document.getElementById('stab-'+t);
+    if(cont) cont.style.display=(t===name?'block':'none');
+    if(btn)  btn.className='study-tab'+(t===name?' active':'');
+  }
+  if(name==='calendar') renderCalendar();
+  if(name==='topics')   renderTopicCats();
+  if(name==='flash')    initFlashcards();
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   VIDEO STUDIES
+   ═══════════════════════════════════════════════════════════════ */
+var DEF_VIDEOS=[
+  {id:1000,title:'Understanding the Book of Genesis',desc:'In-depth study of creation, the fall, and the Abrahamic covenant.',url:'https://www.youtube.com/embed/dQw4w9WgXcQ',speaker:'GATE Faculty',cat:'Old Testament'},
+  {id:1001,title:'The Life of Jesus Christ — Gospel Overview',desc:'Comprehensive overview of the four Gospels.',url:'https://www.youtube.com/embed/dQw4w9WgXcQ',speaker:'GATE Faculty',cat:'New Testament'}
+];
+function getVideos(){return gl('gate_bs_videos')||DEF_VIDEOS;}
+function getPodcasts(){return gl('gate_bs_podcasts')||[];}
+function getAudios(){return gl('gate_bs_audios')||[];}
+function getPlatforms(){return gl('gate_bs_platforms')||{spotify:'',apple:'',rss:''};}
 
 function getYTId(url){
-  if(!url)return null;
+  if(!url) return null;
   var m=url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
-  return m?m[1]:(/^[a-zA-Z0-9_-]{11}$/.test(url.trim())?url.trim():null);
+  if(m) return m[1];
+  if(/^[a-zA-Z0-9_-]{11}$/.test(url.trim())) return url.trim();
+  return null;
 }
 
-function renderAll(){
-  renderVideos();
-  renderPodcasts();
-  renderAudios();
-}
-
-// ── VIDEOS ──────────────────────────────────────────────────────────────
 function renderVideos(){
   var videos=getVideos();
   var grid=document.getElementById('videoGrid');
   var none=document.getElementById('noVideos');
-  if(!videos.length){grid.innerHTML='';none.style.display='block';return;}
-  none.style.display='none';
-  grid.innerHTML=videos.map(function(v){
+  if(!grid) return;
+  if(!videos.length){grid.innerHTML='';if(none)none.style.display='block';return;}
+  if(none) none.style.display='none';
+  var html='';
+  for(var i=0;i<videos.length;i++){
+    var v=videos[i];
     var ytId=getYTId(v.url);
-    var thumbHtml=ytId?'<img src="https://img.youtube.com/vi/'+ytId+'/hqdefault.jpg" alt="'+v.title+'">':'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--gold);">▶</div>';
-    var removeBtn=adminUnlocked?'<button class="btn btn-danger btn-sm" style="margin-top:.5rem;" onclick="removeVideo('+v.id+')">🗑 Remove</button>':'';
-    return '<div class="video-card" onclick="playVideo('+v.id+')" data-url="'+v.url+'">'
-      +'<div class="video-thumb">'+thumbHtml
-      +'<div class="play-overlay"><div class="play-btn">▶</div></div></div>'
-      +'<div class="video-info">'
-      +'<div class="video-title">'+v.title+'</div>'
-      +'<div class="video-meta">'+(v.speaker?'👤 '+v.speaker:'')+(v.cat?' · 📂 '+v.cat:'')+'</div>'
-      +(v.desc?'<div style="color:var(--text2);font-size:.78rem;margin-top:.3rem;">'+v.desc+'</div>':'')
-      +removeBtn+'</div></div>';
-  }).join('');
+    var thumb=ytId?('<img src="https://img.youtube.com/vi/'+ytId+'/hqdefault.jpg" alt="'+esc(v.title)+'" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">'):'';
+    var rb=adminUnlocked?('<button class="btn btn-danger btn-sm" style="margin-top:.5rem;" onclick="removeVideo('+v.id+')">Remove</button>'):'';
+    html+='<div class="video-card" onclick="openVideoModal('+v.id+')">';
+    html+='<div class="video-thumb">'+thumb+'<div class="play-overlay"><div class="play-btn">&#9654;</div></div></div>';
+    html+='<div class="video-info"><div class="video-title">'+esc(v.title)+'</div>';
+    html+='<div class="video-meta">'+(v.speaker?'&#128100; '+esc(v.speaker):'')+(v.cat?' &middot; '+esc(v.cat):'')+'</div>';
+    if(v.desc) html+='<div style="color:var(--text2);font-size:.78rem;margin-top:.3rem;">'+esc(v.desc)+'</div>';
+    html+=rb+'</div></div>';
+  }
+  grid.innerHTML=html;
 }
 
-function playVideo(id){
-  var videos=getVideos();
-  var v=videos.find(function(x){return x.id===id;});
-  if(!v)return;
+function openVideoModal(id){
+  var v=getVideos().find(function(x){return x.id===id;});
+  if(!v) return;
   var ytId=getYTId(v.url);
-  var embedUrl=ytId?'https://www.youtube.com/embed/'+ytId+'?autoplay=1':v.url;
-  var modal=document.getElementById('videoModal');
-  if(!modal){
-    modal=document.createElement('div');
-    modal.id='videoModal';
-    modal.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.9);display:flex;flex-direction:column;';
-    modal.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:#162440;border-bottom:1px solid rgba(201,168,76,.3);"><div id="vmTitle" style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;"></div><button onclick="closeVideoModal()" style="background:rgba(139,32,32,.5);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:4px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">✕ Close</button></div><div style="flex:1;position:relative;"><iframe id="vmFrame" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="autoplay;fullscreen"></iframe></div>';
-    document.body.appendChild(modal);
+  var src=ytId?'https://www.youtube.com/embed/'+ytId+'?autoplay=1':v.url;
+  var m=document.getElementById('videoPlayerModal');
+  if(!m){
+    m=document.createElement('div');
+    m.id='videoPlayerModal';
+    m.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.9);display:flex;flex-direction:column;';
+    m.innerHTML='<div style="display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:#162440;border-bottom:1px solid rgba(201,168,76,.3);"><div id="vpTitle" style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;"></div><button onclick="closeVideoPlayer()" style="background:rgba(139,32,32,.5);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#10005; Close</button></div><iframe id="vpFrame" style="flex:1;border:none;background:#111;" allow="autoplay;fullscreen"></iframe>';
+    document.body.appendChild(m);
   }
-  document.getElementById('vmTitle').textContent=v.title;
-  document.getElementById('vmFrame').src=embedUrl;
-  modal.style.display='flex';
+  document.getElementById('vpTitle').textContent=v.title;
+  document.getElementById('vpFrame').src=src;
+  m.style.display='flex';
 }
-function closeVideoModal(){
-  var m=document.getElementById('videoModal');
-  if(m){document.getElementById('vmFrame').src='';m.style.display='none';}
-}
+function closeVideoPlayer(){var m=document.getElementById('videoPlayerModal');if(m){document.getElementById('vpFrame').src='';m.style.display='none';}}
 
 function addVideo(){
   var title=document.getElementById('vTitle').value.trim();
@@ -536,153 +1021,401 @@ function addVideo(){
   var msg=document.getElementById('vMsg');
   if(!title||!url){msg.innerHTML='<span style="color:#e05555">Title and URL required.</span>';return;}
   var videos=getVideos();
-  videos.unshift({id:Date.now(),title,url,speaker:document.getElementById('vSpeaker').value,desc:document.getElementById('vDesc').value,cat:document.getElementById('vCat').value});
-  gateSave('gate_bs_videos',videos);
-  ['vTitle','vUrl','vSpeaker','vDesc'].forEach(function(id){document.getElementById(id).value='';});
-  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  videos.unshift({id:Date.now(),title:title,url:url,speaker:document.getElementById('vSpeaker').value,desc:document.getElementById('vDesc').value,cat:document.getElementById('vCat').value});
+  gs('gate_bs_videos',videos);
+  document.getElementById('vTitle').value='';document.getElementById('vUrl').value='';
+  document.getElementById('vSpeaker').value='';document.getElementById('vDesc').value='';
+  msg.innerHTML='<span style="color:#4aad74">&#10003; Posted!</span>';
   setTimeout(function(){msg.innerHTML='';},3000);
   renderVideos();
 }
-function removeVideo(id){if(!confirm('Remove?'))return;gateSave('gate_bs_videos',getVideos().filter(function(v){return v.id!==id;}));renderVideos();}
+function removeVideo(id){if(!confirm('Remove?'))return;gs('gate_bs_videos',getVideos().filter(function(v){return v.id!==id;}));renderVideos();}
 
-// ── PODCASTS ─────────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════
+   PODCASTS
+   ═══════════════════════════════════════════════════════════════ */
 function renderPodcasts(){
   var plat=getPlatforms();
-  var hasPlat=plat.spotify||plat.apple||plat.rss;
-  var platDiv=document.getElementById('platformLinks');
-  if(platDiv){
-    platDiv.style.display=hasPlat?'flex':'none';
-    var sl=document.getElementById('spotifyLink');
-    var al=document.getElementById('appleLink');
-    var rl=document.getElementById('rssLink');
+  var hasPl=plat.spotify||plat.apple||plat.rss;
+  var pd=document.getElementById('platformLinks');
+  if(pd){
+    pd.style.display=hasPl?'flex':'none';
+    var sl=document.getElementById('spotifyLink');var al=document.getElementById('appleLink');var rl=document.getElementById('rssLink');
     if(sl){sl.href=plat.spotify||'#';sl.style.display=plat.spotify?'inline-flex':'none';}
     if(al){al.href=plat.apple||'#';al.style.display=plat.apple?'inline-flex':'none';}
     if(rl){rl.href=plat.rss||'#';rl.style.display=plat.rss?'inline-flex':'none';}
   }
-  var pods=getPodcasts();
-  var pList=document.getElementById('podcastList');
-  var none=document.getElementById('noPodcasts');
-  if(!pods.length&&!hasPlat){if(none)none.style.display='block';if(pList)pList.innerHTML='';return;}
+  var pods=getPodcasts();var pList=document.getElementById('podcastList');var none=document.getElementById('noPodcasts');
+  if(!pods.length&&!hasPl){if(none)none.style.display='block';if(pList)pList.innerHTML='';return;}
   if(none)none.style.display='none';
   if(!pList)return;
-  pList.innerHTML=pods.map(function(p){
-    var embedHtml='';
-    if(p.spotifyEmbed){
-      embedHtml='<div class="podcast-embed"><iframe src="'+p.spotifyEmbed+'" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>';
-    } else if(p.audioUrl){
-      embedHtml='<audio controls class="audio-player" style="width:100%;margin-top:.6rem;"><source src="'+p.audioUrl+'">Your browser does not support audio.</audio>';
-    }
-    var removeBtn=adminUnlocked?'<button class="btn btn-danger btn-sm" onclick="removePodcast('+p.id+')">🗑 Remove</button>':'';
-    return '<div class="podcast-card">'
-      +'<div class="podcast-icon">🎙</div>'
-      +'<div style="flex:1;min-width:0;">'
-      +'<div class="podcast-title">'+p.title+'</div>'
-      +'<div class="podcast-desc">'+(p.desc||'')+(p.speaker?' · 👤 '+p.speaker:'')+'</div>'
-      +embedHtml+removeBtn+'</div></div>';
-  }).join('');
+  var html='';
+  for(var i=0;i<pods.length;i++){
+    var p=pods[i];
+    var embed='';
+    if(p.spotifyEmbed) embed='<div style="margin-top:.7rem;border-radius:8px;overflow:hidden;"><iframe src="'+p.spotifyEmbed+'" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>';
+    else if(p.audioUrl) embed='<audio controls style="width:100%;margin-top:.6rem;accent-color:var(--gold);"><source src="'+p.audioUrl+'">Your browser does not support audio.</audio>';
+    var rb=adminUnlocked?('<button class="btn btn-danger btn-sm" onclick="removePodcast('+p.id+')">Remove</button>'):'';
+    html+='<div class="podcast-card"><div class="podcast-icon">&#127897;</div><div style="flex:1;"><div class="podcast-title">'+esc(p.title)+'</div><div class="podcast-desc">'+(p.desc?esc(p.desc):'')+(p.speaker?' &middot; &#128100; '+esc(p.speaker):'')+'</div>'+embed+rb+'</div></div>';
+  }
+  pList.innerHTML=html;
 }
-
 function savePlatformLinks(){
-  var plat={
-    spotify:document.getElementById('spotifyUrl').value.trim(),
-    apple:document.getElementById('appleUrl').value.trim(),
-    rss:document.getElementById('rssUrl').value.trim()
-  };
-  gateSave('gate_bs_platforms',plat);
-  document.getElementById('platformMsg').innerHTML='<span style="color:#4aad74">✅ Platform links saved! Visible to everyone.</span>';
+  var plat={spotify:document.getElementById('spotifyUrl').value.trim(),apple:document.getElementById('appleUrl').value.trim(),rss:document.getElementById('rssUrl').value.trim()};
+  gs('gate_bs_platforms',plat);
+  document.getElementById('platformMsg').innerHTML='<span style="color:#4aad74">&#10003; Saved!</span>';
   setTimeout(function(){document.getElementById('platformMsg').innerHTML='';},3000);
   renderPodcasts();
 }
-
 function addPodcast(){
   var title=document.getElementById('pTitle').value.trim();
-  var msg=document.getElementById('pMsg');
-  if(!title){msg.innerHTML='<span style="color:#e05555">Title required.</span>';return;}
+  if(!title){document.getElementById('pMsg').innerHTML='<span style="color:#e05555">Title required.</span>';return;}
   var pods=getPodcasts();
-  pods.unshift({id:Date.now(),title,desc:document.getElementById('pDesc').value,speaker:document.getElementById('pSpeaker').value,spotifyEmbed:document.getElementById('pSpotifyEmbed').value.trim(),audioUrl:document.getElementById('pAudioUrl').value.trim()});
-  gateSave('gate_bs_podcasts',pods);
-  ['pTitle','pDesc','pSpeaker','pSpotifyEmbed','pAudioUrl'].forEach(function(id){document.getElementById(id).value='';});
-  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
-  setTimeout(function(){msg.innerHTML='';},3000);
+  pods.unshift({id:Date.now(),title:title,desc:document.getElementById('pSpotifyEmbed')?document.getElementById('pTitle').value:'',speaker:document.getElementById('pSpeaker').value,spotifyEmbed:document.getElementById('pSpotifyEmbed').value.trim(),audioUrl:document.getElementById('pAudioUrl').value.trim()});
+  gs('gate_bs_podcasts',pods);
+  ['pTitle','pSpeaker','pSpotifyEmbed','pAudioUrl'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('pMsg').innerHTML='<span style="color:#4aad74">&#10003; Posted!</span>';
+  setTimeout(function(){document.getElementById('pMsg').innerHTML='';},3000);
   renderPodcasts();
 }
-function removePodcast(id){if(!confirm('Remove?'))return;gateSave('gate_bs_podcasts',getPodcasts().filter(function(p){return p.id!==id;}));renderPodcasts();}
+function removePodcast(id){if(!confirm('Remove?'))return;gs('gate_bs_podcasts',getPodcasts().filter(function(p){return p.id!==id;}));renderPodcasts();}
 
-// ── AUDIO ────────────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════
+   AUDIO
+   ═══════════════════════════════════════════════════════════════ */
 function renderAudios(){
-  var audios=getAudios();
-  var list=document.getElementById('audioList');
-  var none=document.getElementById('noAudio');
+  var audios=getAudios();var list=document.getElementById('audioList');var none=document.getElementById('noAudio');
   if(!audios.length){if(list)list.innerHTML='';if(none)none.style.display='block';return;}
   if(none)none.style.display='none';
-  list.innerHTML=audios.map(function(a){
-    var srcHtml=a.data?'<source src="'+a.data+'">':a.url?'<source src="'+a.url+'">':'';
-    var removeBtn=adminUnlocked?'<button class="btn btn-danger btn-sm" style="margin-top:.4rem;" onclick="removeAudio('+a.id+')">🗑 Remove</button>':'';
-    return '<div class="audio-card">'
-      +'<div class="audio-title">'+a.title+'</div>'
-      +(a.speaker?'<div style="font-size:.78rem;color:var(--text2);margin-bottom:.3rem;">👤 '+a.speaker+'</div>':'')
-      +(a.desc?'<div style="font-size:.82rem;color:var(--text2);margin-bottom:.4rem;">'+a.desc+'</div>':'')
-      +'<audio controls class="audio-player" style="width:100%;accent-color:var(--gold);">'+srcHtml+'Your browser does not support audio.</audio>'
-      +removeBtn+'</div>';
-  }).join('');
+  var html='';
+  for(var i=0;i<audios.length;i++){
+    var a=audios[i];
+    var src=a.data?('<source src="'+a.data+'">'):a.url?('<source src="'+a.url+'">'):'';
+    var rb=adminUnlocked?('<button class="btn btn-danger btn-sm" style="margin-top:.4rem;" onclick="removeAudio('+a.id+')">Remove</button>'):'';
+    html+='<div class="audio-card"><div class="audio-title">'+esc(a.title)+'</div>'+(a.speaker?'<div style="font-size:.78rem;color:var(--text2);margin-bottom:.3rem;">&#128100; '+esc(a.speaker)+'</div>':'')+
+    '<audio controls style="width:100%;margin-top:.5rem;accent-color:var(--gold);">'+src+'Your browser does not support audio.</audio>'+rb+'</div>';
+  }
+  list.innerHTML=html;
 }
-
 async function addAudio(){
   var title=document.getElementById('aTitle').value.trim();
   var msg=document.getElementById('aMsg');
   if(!title){msg.innerHTML='<span style="color:#e05555">Title required.</span>';return;}
   var file=document.getElementById('aFile').files[0];
   var extUrl=document.getElementById('aUrl').value.trim();
-  if(!file&&!extUrl){msg.innerHTML='<span style="color:#e05555">Please upload a file or enter a URL.</span>';return;}
+  if(!file&&!extUrl){msg.innerHTML='<span style="color:#e05555">Upload a file or enter URL.</span>';return;}
   msg.innerHTML='<span style="color:var(--text2)">Processing...</span>';
-  var data='', url=extUrl;
+  var data='',url=extUrl;
   if(file){
-    if(file.size>5*1024*1024){msg.innerHTML='<span style="color:#e05555">File too large (max 5MB). Use an external URL instead.</span>';return;}
+    if(file.size>5*1024*1024){msg.innerHTML='<span style="color:#e05555">File too large (max 5MB).</span>';return;}
     data=await new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result);};r.readAsDataURL(file);});
   }
   var audios=getAudios();
-  audios.unshift({id:Date.now(),title,speaker:document.getElementById('aSpeaker').value,desc:document.getElementById('aDesc').value,data,url});
-  gateSave('gate_bs_audios',audios);
-  ['aTitle','aSpeaker','aDesc','aUrl'].forEach(function(id){document.getElementById(id).value='';});
+  audios.unshift({id:Date.now(),title:title,speaker:document.getElementById('aSpeaker').value,data:data,url:url});
+  gs('gate_bs_audios',audios);
+  ['aTitle','aSpeaker','aUrl'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('aFile').value='';
-  msg.innerHTML='<span style="color:#4aad74">✅ Posted! Visible to everyone.</span>';
+  msg.innerHTML='<span style="color:#4aad74">&#10003; Posted!</span>';
   setTimeout(function(){msg.innerHTML='';},3000);
   renderAudios();
 }
-function removeAudio(id){if(!confirm('Remove?'))return;gateSave('gate_bs_audios',getAudios().filter(function(a){return a.id!==id;}));renderAudios();}
+function removeAudio(id){if(!confirm('Remove?'))return;gs('gate_bs_audios',getAudios().filter(function(a){return a.id!==id;}));renderAudios();}
 
-// ── ADMIN ────────────────────────────────────────────────────────────────
+/* ═══════════════════════════════════════════════════════════════
+   STUDY CALENDAR
+   ═══════════════════════════════════════════════════════════════ */
+var CAL_YEAR=new Date().getFullYear(), CAL_MONTH=new Date().getMonth();
+var MON_NAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function dayOfYear(y,m,d){
+  var start=new Date(y,0,0);
+  var dt=new Date(y,m,d);
+  return Math.floor((dt-start)/86400000);
+}
+
+function getTopicsForDate(y,m,d){
+  var doy=dayOfYear(y,m,d);
+  var result=[];
+  for(var i=0;i<5;i++){
+    var idx=((doy-1)*5+i)%ALL_TOPICS.length;
+    result.push(ALL_TOPICS[idx]);
+  }
+  return result;
+}
+
+function renderCalendar(){
+  var label=document.getElementById('calMonthLabel');
+  var grid=document.getElementById('calDays');
+  if(!label||!grid) return;
+  label.textContent=MON_NAMES[CAL_MONTH]+' '+CAL_YEAR;
+  var firstDay=new Date(CAL_YEAR,CAL_MONTH,1).getDay();
+  var daysInMonth=new Date(CAL_YEAR,CAL_MONTH+1,0).getDate();
+  var now=new Date();
+  var html='';
+  for(var i=0;i<firstDay;i++) html+='<div class="cal-day other"></div>';
+  for(var d=1;d<=daysInMonth;d++){
+    var isToday=(d===now.getDate()&&CAL_MONTH===now.getMonth()&&CAL_YEAR===now.getFullYear());
+    var dots='<span class="cal-dot"></span><span class="cal-dot"></span><span class="cal-dot"></span>';
+    html+='<div class="cal-day'+(isToday?' today':'')+'" onclick="openTopicModal('+CAL_YEAR+','+CAL_MONTH+','+d+')">';
+    html+='<div class="cal-day-n">'+d+'</div><div style="margin-top:2px;">'+dots+'</div></div>';
+  }
+  grid.innerHTML=html;
+}
+
+function calPrev(){CAL_MONTH--;if(CAL_MONTH<0){CAL_MONTH=11;CAL_YEAR--;}renderCalendar();}
+function calNext(){CAL_MONTH++;if(CAL_MONTH>11){CAL_MONTH=0;CAL_YEAR++;}renderCalendar();}
+
+function openTopicModal(y,m,d){
+  var modal=document.getElementById('topicModal');
+  var label=document.getElementById('topicDateLabel');
+  var list=document.getElementById('topicList');
+  if(!modal) return;
+  var dateStr=MON_NAMES[m]+' '+d+', '+y;
+  label.textContent='Study Topics for '+dateStr;
+  var topics=getTopicsForDate(y,m,d);
+  var html='';
+  for(var i=0;i<topics.length;i++){
+    var t=topics[i];
+    var docKey=t.doc;
+    html+='<div class="topic-item" onclick="openStudyDoc(\''+docKey+'\',\''+esc(t.title)+'\')">';
+    html+='<div class="topic-icon">'+t.icon+'</div>';
+    html+='<div><div class="topic-title">'+esc(t.title)+'</div><div class="topic-cat">'+esc(t.sub)+'</div></div>';
+    html+='<div style="color:var(--gold);font-size:.8rem;margin-left:auto;">Open &#8594;</div>';
+    html+='</div>';
+  }
+  list.innerHTML=html;
+  modal.style.display='flex';
+}
+
+function closeTopicModal(evt){
+  if(!evt||evt.target===document.getElementById('topicModal')) document.getElementById('topicModal').style.display='none';
+}
+
+function openStudyDoc(docKey,title){
+  var doc=DOCS[docKey];
+  if(!doc) return;
+  var modal=document.getElementById('pdfModal');
+  var frame=document.getElementById('pdfModalFrame');
+  var label=document.getElementById('pdfModalTitle');
+  var dl=document.getElementById('pdfModalDl');
+  if(!modal) return;
+  label.textContent=(title||doc.title);
+  frame.src=doc.src;
+  dl.href=doc.src;
+  document.getElementById('topicModal').style.display='none';
+  modal.style.display='flex';
+}
+
+function closePdfModal(){
+  var m=document.getElementById('pdfModal');
+  if(m){document.getElementById('pdfModalFrame').src='';m.style.display='none';}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BY TOPIC
+   ═══════════════════════════════════════════════════════════════ */
+var TOPIC_CATS=['Old Testament','New Testament','Theology','Biblical Characters','Christian Living','Bible Overview','Prophecy'];
+var TOPIC_CAT_ICONS={'Old Testament':'📜','New Testament':'✝','Theology':'&#9651;','Biblical Characters':'&#128100;','Christian Living':'&#127758;','Bible Overview':'&#128218;','Prophecy':'&#128302;'};
+
+function renderTopicCats(){
+  var grid=document.getElementById('topicCatGrid');
+  if(!grid) return;
+  var html='';
+  for(var i=0;i<TOPIC_CATS.length;i++){
+    var cat=TOPIC_CATS[i];
+    var count=ALL_TOPICS.filter(function(t){return t.cat===cat;}).length;
+    html+='<div class="topic-cat-card" onclick="showTopicDetail(\''+cat+'\')">';
+    html+='<div class="topic-cat-icon">'+(TOPIC_CAT_ICONS[cat]||'📖')+'</div>';
+    html+='<div class="topic-cat-name">'+cat+'</div>';
+    html+='<div class="topic-cat-count">'+count+' topics</div>';
+    html+='</div>';
+  }
+  grid.innerHTML=html;
+}
+
+function showTopicDetail(cat){
+  var catView=document.getElementById('topicCatView');
+  var detView=document.getElementById('topicDetailView');
+  var title=document.getElementById('topicDetailTitle');
+  var list=document.getElementById('topicDetailList');
+  if(!detView) return;
+  catView.style.display='none';
+  detView.style.display='block';
+  title.textContent=(TOPIC_CAT_ICONS[cat]||'')+'  '+cat;
+  var topics=ALL_TOPICS.filter(function(t){return t.cat===cat;});
+  var html='';
+  for(var i=0;i<topics.length;i++){
+    var t=topics[i];
+    html+='<div class="topic-list-item" onclick="openStudyDoc(\''+t.doc+'\',\''+esc(t.title)+'\')">';
+    html+='<div><div class="tli-name">'+t.icon+' '+esc(t.title)+'</div><div style="font-size:.72rem;color:var(--text2);margin-top:.1rem;">'+esc(t.sub)+'</div></div>';
+    html+='<div class="tli-arrow">Open &#8594;</div></div>';
+  }
+  list.innerHTML=html;
+}
+
+function showTopicCats(){
+  document.getElementById('topicCatView').style.display='block';
+  document.getElementById('topicDetailView').style.display='none';
+  document.getElementById('topicSearchResults').style.display='none';
+  document.getElementById('searchResultLabel').textContent='';
+}
+
+function filterTopicSearch(q){
+  var catView=document.getElementById('topicCatView');
+  var detView=document.getElementById('topicDetailView');
+  var srView=document.getElementById('topicSearchResults');
+  var label=document.getElementById('searchResultLabel');
+  var list=document.getElementById('searchResultList');
+  if(!q||q.length<2){
+    catView.style.display='block';
+    detView.style.display='none';
+    srView.style.display='none';
+    return;
+  }
+  catView.style.display='none';
+  detView.style.display='none';
+  srView.style.display='block';
+  var lq=q.toLowerCase();
+  var matches=ALL_TOPICS.filter(function(t){return t.title.toLowerCase().indexOf(lq)>-1||t.sub.toLowerCase().indexOf(lq)>-1||t.cat.toLowerCase().indexOf(lq)>-1;});
+  label.textContent='Search results for "'+q+'" ('+matches.length+' topics)';
+  var html='';
+  for(var i=0;i<matches.length;i++){
+    var t=matches[i];
+    html+='<div class="topic-list-item" onclick="openStudyDoc(\''+t.doc+'\',\''+esc(t.title)+'\')">';
+    html+='<div><div class="tli-name">'+t.icon+' '+esc(t.title)+'</div><div style="font-size:.72rem;color:var(--text2);margin-top:.1rem;">'+esc(t.cat)+' &middot; '+esc(t.sub)+'</div></div>';
+    html+='<div class="tli-arrow">Open &#8594;</div></div>';
+  }
+  if(!matches.length) html='<div style="color:var(--text2);padding:1.5rem;text-align:center;">No topics found for "'+esc(q)+'"</div>';
+  list.innerHTML=html;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FLASHCARDS
+   ═══════════════════════════════════════════════════════════════ */
+var FC_DECK=[], FC_IDX=0, FC_FLIPPED=false, FC_CORRECT=0, FC_WRONG=0;
+
+function initFlashcards(){FC_DECK=ALL_FLASHCARDS.slice();FC_IDX=0;FC_CORRECT=0;FC_WRONG=0;FC_FLIPPED=false;showCard();}
+
+function filterFlashcards(cat){
+  FC_DECK=cat==='all'?ALL_FLASHCARDS.slice():ALL_FLASHCARDS.filter(function(c){return c.cat===cat;});
+  FC_IDX=0;FC_CORRECT=0;FC_WRONG=0;FC_FLIPPED=false;showCard();
+}
+
+function showCard(){
+  var card=document.getElementById('fcCard');
+  var front=document.getElementById('fcFront');
+  var back=document.getElementById('fcBack');
+  var hint=document.getElementById('fcHint');
+  var label=document.getElementById('fcLabel');
+  var bar=document.getElementById('fcBar');
+  var score=document.getElementById('fcScore');
+  var btnC=document.getElementById('btnCorrect');
+  var btnW=document.getElementById('btnWrong');
+  if(!card||!FC_DECK.length) return;
+  if(FC_IDX>=FC_DECK.length){
+    front.textContent='Deck complete!';
+    back.style.display='none';
+    hint.textContent='Final score: '+FC_CORRECT+' correct, '+FC_WRONG+' wrong';
+    card.classList.remove('flipped');
+    label.textContent='Complete!';
+    if(btnC)btnC.style.display='none';
+    if(btnW)btnW.style.display='none';
+    return;
+  }
+  var c=FC_DECK[FC_IDX];
+  FC_FLIPPED=false;
+  card.classList.remove('flipped');
+  front.textContent=c.q;
+  back.textContent=c.a;
+  back.style.display='none';
+  label.textContent='Question ('+(FC_DECK[0].cat||'Bible Study')+')';
+  hint.textContent='Tap to reveal answer';
+  hint.style.display='block';
+  if(btnC)btnC.style.display='none';
+  if(btnW)btnW.style.display='none';
+  var pct=Math.round((FC_IDX/FC_DECK.length)*100);
+  if(bar)bar.style.width=pct+'%';
+  if(score)score.textContent='Card '+(FC_IDX+1)+' of '+FC_DECK.length+' \u00a0|\u00a0 \u2713 '+FC_CORRECT+' correct \u00a0 \u2717 '+FC_WRONG+' wrong';
+}
+
+function flipCard(){
+  if(FC_IDX>=FC_DECK.length) return;
+  FC_FLIPPED=!FC_FLIPPED;
+  var card=document.getElementById('fcCard');
+  var back=document.getElementById('fcBack');
+  var hint=document.getElementById('fcHint');
+  var label=document.getElementById('fcLabel');
+  var btnC=document.getElementById('btnCorrect');
+  var btnW=document.getElementById('btnWrong');
+  if(FC_FLIPPED){
+    card.classList.add('flipped');
+    if(back)back.style.display='block';
+    if(hint)hint.style.display='none';
+    if(label)label.textContent='Answer';
+    if(btnC)btnC.style.display='inline-flex';
+    if(btnW)btnW.style.display='inline-flex';
+  } else {
+    card.classList.remove('flipped');
+    if(back)back.style.display='none';
+    if(hint)hint.style.display='block';
+    if(label)label.textContent='Question';
+    if(btnC)btnC.style.display='none';
+    if(btnW)btnW.style.display='none';
+  }
+}
+
+function markCard(correct){if(correct)FC_CORRECT++;else FC_WRONG++;FC_IDX++;FC_FLIPPED=false;showCard();}
+function nextCard(){FC_IDX++;FC_FLIPPED=false;showCard();}
+function shuffleCards(){for(var i=FC_DECK.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=FC_DECK[i];FC_DECK[i]=FC_DECK[j];FC_DECK[j]=tmp;}FC_IDX=0;FC_CORRECT=0;FC_WRONG=0;FC_FLIPPED=false;showCard();}
+function resetCards(){initFlashcards();}
+
+/* ═══════════════════════════════════════════════════════════════
+   ADMIN
+   ═══════════════════════════════════════════════════════════════ */
 function promptAdmin(){
   if(adminUnlocked){document.getElementById('adminPanel').style.display='block';return;}
   var pw=prompt('Admin Password:');
   if(pw==='GATE2025admin'){
     adminUnlocked=true;
-    var s=gateLoad('td_gate_v6')||{};
+    var s=gl('td_gate_v6')||{};
     if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};
-    s.tier='admin';gateSave('td_gate_v6',s);
+    s.tier='admin';gs('td_gate_v6',s);
     document.getElementById('adminPanel').style.display='block';
-    // Pre-fill platform links
     var plat=getPlatforms();
-    document.getElementById('spotifyUrl').value=plat.spotify||'';
-    document.getElementById('appleUrl').value=plat.apple||'';
-    document.getElementById('rssUrl').value=plat.rss||'';
+    var su=document.getElementById('spotifyUrl');var au=document.getElementById('appleUrl');var ru=document.getElementById('rssUrl');
+    if(su)su.value=plat.spotify||'';if(au)au.value=plat.apple||'';if(ru)ru.value=plat.rss||'';
     renderAll();
-  }else if(pw!==null)alert('Incorrect password.');
+  } else if(pw!==null) alert('Incorrect password.');
 }
 
-(function(){
-  var s=gateLoad('td_gate_v6');
+function renderAll(){renderVideos();renderPodcasts();renderAudios();}
+
+function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+/* ─── INIT ─────────────────────────────────────────────────── */
+window.addEventListener('load',function(){
+  var s=gl('td_gate_v6');
   if(s&&s.tier==='admin'){
     adminUnlocked=true;
     document.getElementById('adminPanel').style.display='block';
     var plat=getPlatforms();
-    document.getElementById('spotifyUrl').value=plat.spotify||'';
-    document.getElementById('appleUrl').value=plat.apple||'';
-    document.getElementById('rssUrl').value=plat.rss||'';
+    var su=document.getElementById('spotifyUrl');var au=document.getElementById('appleUrl');var ru=document.getElementById('rssUrl');
+    if(su)su.value=plat.spotify||'';if(au)au.value=plat.apple||'';if(ru)ru.value=plat.rss||'';
   }
   renderAll();
+});
+
+/* ─── DROPDOWN NAV ─────────────────────────────────────────── */
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
 })();
-
-
 </script>
+
 </body></html>

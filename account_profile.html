@@ -147,6 +147,43 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 .item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem}
 .status-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
 
+
+.profile-wrap{display:grid;grid-template-columns:300px 1fr;gap:1.5rem;align-items:start}
+.profile-card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:1.5rem;text-align:center}
+.avatar-wrap{position:relative;width:110px;height:110px;margin:0 auto 1rem;cursor:pointer}
+.avatar-circle{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:2.5rem;color:var(--navy);font-weight:700;border:3px solid var(--gold);overflow:hidden}
+.avatar-circle img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.avatar-edit{position:absolute;bottom:0;right:0;width:28px;height:28px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;cursor:pointer;border:2px solid var(--navy)}
+.profile-name{font-family:'Cinzel',serif;color:var(--gold);font-size:1.1rem;margin-bottom:.25rem}
+.profile-email{color:var(--text2);font-size:.8rem;font-family:sans-serif}
+.profile-tier{display:inline-block;margin:.6rem auto;padding:.2rem .7rem;border-radius:10px;font-family:sans-serif;font-size:.72rem;font-weight:700}
+.tier-basic{background:rgba(100,150,200,.2);color:#6ea8fe;border:1px solid rgba(100,150,200,.4)}
+.tier-premium{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.tier-admin{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.tier-trial{background:rgba(180,120,20,.2);color:#d4a020;border:1px solid rgba(180,120,20,.5)}
+.profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1rem}
+.pstat{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:7px;padding:.6rem .5rem;text-align:center}
+.pstat-val{font-size:1.3rem;font-weight:700;color:var(--gold);font-family:sans-serif}
+.pstat-lbl{font-size:.65rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-top:.1rem}
+.info-card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.info-card h3{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
+.field-group label{display:block;color:var(--text2);font-size:.75rem;margin-bottom:.2rem;font-family:sans-serif}
+.field-group input,.field-group select,.field-group textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
+.field-group input:focus,.field-group select:focus{outline:none;border-color:var(--gold)}
+.doc-item{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:7px;padding:.8rem 1rem;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between;gap.5rem}
+.doc-name{font-family:sans-serif;font-size:.83rem;color:var(--cream)}
+.doc-size{font-size:.7rem;color:var(--text2);font-family:sans-serif}
+.save-btn{background:var(--gold);color:var(--navy);border:none;padding:.6rem 1.5rem;border-radius:6px;font-family:sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s}
+.save-btn:hover{background:var(--gold2)}
+.admin-view-card{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.3);border-radius:10px;padding:1.2rem;margin-top:1.5rem;display:none}
+.admin-view-card.visible{display:block}
+.student-row{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);gap.5rem}
+.student-row:last-child{border-bottom:none}
+.student-name{font-family:sans-serif;font-size:.83rem;color:var(--cream)}
+.student-email{font-size:.72rem;color:var(--text2);font-family:sans-serif}
+@media(max-width:800px){.profile-wrap{grid-template-columns:1fr}.field-row{grid-template-columns:1fr}}
+
 </style>
 </head><body>
 <nav class="gate-nav"><div class="gate-nav-inner">
@@ -208,301 +245,309 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   <div class="divider"></div>
 </div>
 <div class="container">
-
-<div class="admin-panel" id="adminPanel">
-  <div class="admin-panel-header">
-    <h3>⚙ Admin Control Panel</h3>
-    <button class="btn btn-outline btn-sm" onclick="hideAdmin()">✕ Close Admin</button>
-  </div>
-  <div class="admin-actions">
-    <button class="btn btn-gold btn-sm" onclick="document.getElementById('addForm').style.display=document.getElementById('addForm').style.display==='none'?'block':'none'">+ Add New Item</button>
-    <button class="btn btn-outline btn-sm" onclick="renderItems()">↻ Refresh</button>
-    <a href="admin.html" class="btn btn-outline btn-sm">Admin Console →</a>
-  </div>
-  <div id="addForm" style="display:none;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
-    <div class="grid2">
-      <div class="form-group"><label>Title *</label><input type="text" id="adm_title" placeholder="Item title..."></div>
-      <div class="form-group"><label>Status</label>
-        <select id="adm_status"><option value="active">Active</option><option value="approved">Approved</option><option value="verified">Verified</option><option value="draft">Draft</option></select>
+<div class="profile-wrap">
+  <!-- LEFT: Avatar + quick stats -->
+  <div>
+    <div class="profile-card">
+      <div class="avatar-wrap" onclick="document.getElementById('avatarInput').click()">
+        <div class="avatar-circle" id="avatarCircle">?</div>
+        <div class="avatar-edit">&#128247;</div>
+        <input type="file" id="avatarInput" accept="image/*" style="display:none;" onchange="uploadAvatar(this)">
+      </div>
+      <div class="profile-name" id="pName">Loading...</div>
+      <div class="profile-email" id="pEmail"></div>
+      <div class="profile-tier" id="pTier">Free Trial</div>
+      <div style="margin-top:.8rem;font-size:.78rem;color:var(--text2);font-family:sans-serif;" id="pGateEmail"></div>
+      <div class="profile-stats">
+        <div class="pstat"><div class="pstat-val" id="statExams">0</div><div class="pstat-lbl">Exams Taken</div></div>
+        <div class="pstat"><div class="pstat-val" id="statScore">—</div><div class="pstat-lbl">Best Score</div></div>
+        <div class="pstat"><div class="pstat-val" id="statDocs">0</div><div class="pstat-lbl">Documents</div></div>
+        <div class="pstat"><div class="pstat-val" id="statMember">—</div><div class="pstat-lbl">Member Since</div></div>
+      </div>
+      <div style="margin-top:1rem;">
+        <a href="account.html" style="display:block;text-align:center;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;text-decoration:none;margin-bottom:.5rem;">&#128272; Account Settings</a>
+        <a href="results.html" style="display:block;text-align:center;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:var(--gold);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;text-decoration:none;">&#128202; My Exam Results</a>
       </div>
     </div>
-    <div class="form-group"><label>Description / Content</label><textarea id="adm_body" rows="3" placeholder="Content, description, or notes..."></textarea></div>
-    <div class="grid2">
-      <div class="form-group"><label>URL / Link (optional)</label><input type="url" id="adm_url" placeholder="https://..."></div>
-      <div class="form-group"><label>Price / Amount (optional)</label><input type="text" id="adm_price" placeholder="e.g. 29.99"></div>
+  </div>
+
+  <!-- RIGHT: Info panels -->
+  <div>
+    <!-- Personal Info -->
+    <div class="info-card">
+      <h3>&#128100; Personal Information</h3>
+      <div class="field-row">
+        <div class="field-group"><label>First Name</label><input type="text" id="fFirst" placeholder="First name"></div>
+        <div class="field-group"><label>Last Name</label><input type="text" id="fLast" placeholder="Last name"></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Email Address</label><input type="email" id="fEmail" placeholder="your@email.com"></div>
+        <div class="field-group"><label>Phone Number</label><input type="tel" id="fPhone" placeholder="+1 (555) 000-0000"></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Date of Birth</label><input type="date" id="fDob"></div>
+        <div class="field-group"><label>Gender</label>
+          <select id="fGender"><option value="">Select</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Country</label><input type="text" id="fCountry" placeholder="Country"></div>
+        <div class="field-group"><label>City / State</label><input type="text" id="fCity" placeholder="City, State"></div>
+      </div>
+      <div style="margin-bottom:.8rem;"><div class="field-group"><label>Address</label><input type="text" id="fAddress" placeholder="Street address"></div></div>
+      <button class="save-btn" onclick="saveProfile()">&#128190; Save Personal Info</button>
+      <div id="profileMsg" style="font-size:.83rem;margin-top:.5rem;min-height:1rem;"></div>
     </div>
-    <div class="form-group"><label>Upload Image (optional)</label><input type="file" id="adm_img" accept="image/*"></div>
-    
-    <div style="display:flex;gap:.6rem;margin-top:.8rem;">
-      <button class="btn btn-gold" style="min-width:120px;font-size:.95rem;" onclick="addItem()">📢 POST</button>
-      <button class="btn btn-outline" onclick="document.getElementById('addForm').style.display='none'">Cancel</button>
+
+    <!-- Ministry Info -->
+    <div class="info-card">
+      <h3>&#9962; Ministry & Academic Information</h3>
+      <div class="field-row">
+        <div class="field-group"><label>Ministry / Church</label><input type="text" id="fMinistry" placeholder="Church or ministry name"></div>
+        <div class="field-group"><label>Denomination</label><input type="text" id="fDenom" placeholder="Baptist, Pentecostal, etc."></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Role / Title</label><input type="text" id="fRole" placeholder="Pastor, Elder, Student, etc."></div>
+        <div class="field-group"><label>Years in Ministry</label><input type="number" id="fYears" placeholder="0" min="0"></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label>Highest Education</label>
+          <select id="fEdu"><option value="">Select</option><option>High School</option><option>Associate Degree</option><option>Bachelor's Degree</option><option>Master's Degree</option><option>Doctorate / PhD</option><option>ThD</option><option>DMin</option></select>
+        </div>
+        <div class="field-group"><label>Field of Study</label><input type="text" id="fField" placeholder="Theology, Biblical Studies, etc."></div>
+      </div>
+      <div style="margin-bottom:.8rem;"><div class="field-group"><label>Biography / Statement of Faith</label><textarea id="fBio" rows="4" placeholder="Brief biography or personal statement of faith..."></textarea></div></div>
+      <button class="save-btn" onclick="saveProfile()">&#128190; Save Ministry Info</button>
     </div>
-    <div id="adm_msg" style="margin-top:.5rem;font-size:.84rem;min-height:1.2rem;"></div>
+
+    <!-- Documents -->
+    <div class="info-card">
+      <h3>&#128196; Documents & Uploads</h3>
+      <div style="color:var(--text2);font-size:.82rem;margin-bottom:1rem;">Upload identification, certificates, transcripts, or other documents for your GATE file.</div>
+      <div style="margin-bottom:1rem;">
+        <label style="display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);padding:.5rem 1.1rem;border-radius:6px;font-family:sans-serif;font-size:.83rem;font-weight:700;cursor:pointer;">
+          &#128196; Upload Document
+          <input type="file" id="docUpload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none;" onchange="uploadDoc(this)">
+        </label>
+        <span style="font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-left:.7rem;">PDF, DOC, or image (max 5MB)</span>
+      </div>
+      <div id="docList"></div>
+    </div>
   </div>
 </div>
 
-
-<div class="card"><div class="card-header"><h2><span>👤</span> Profile Information</h2></div>
-<div id="profileContent">
-  <div class="alert alert-info">Log in to view and edit your profile. <a href="account.html">Login →</a></div>
-</div></div>
-<div class="card"><div class="card-header"><h2><span>📋</span> Profile Resources</h2></div>
-<p style="color:var(--text2);font-size:.88rem;margin-bottom:1rem;">Admin-managed profile resources, guides, and support materials appear below.</p>
-<div id="items_list"></div></div>
-
-</div>
-
-<div class="admin-toolbar" id="adminToolbar">
-  <div class="admin-tb-inner">
-    <span class="admin-tb-label">⚙ ADMIN:</span>
-    <button class="atb-btn green" onclick="document.getElementById('addForm').style.display='block';document.getElementById('adminPanel').classList.add('visible');window.scrollTo(0,0)">+ Add</button>
-    <button class="atb-btn amber" onclick="renderItems()">✏ Edit Mode</button>
-    <button class="atb-btn" onclick="document.getElementById('adm_img')&&document.getElementById('adm_img').click()">📷 Upload</button>
-    <button class="atb-btn green" onclick="bulkSetStatus('approved')">✓ Approve All</button>
-    <button class="atb-btn" onclick="bulkSetStatus('verified')">🔍 Verify All</button>
-    <button class="atb-btn" style="background:rgba(180,120,20,.2);color:var(--gold2);" onclick="bulkSetStatus('suspended')">⊘ Suspend</button>
-    <button class="atb-btn" style="background:rgba(60,60,90,.3);color:#aaa;" onclick="bulkSetStatus('archived')">📦 Archive</button>
-    <button class="atb-btn green" onclick="bulkSetStatus('active')">↩ Restore All</button>
-    <button class="atb-btn red" onclick="confirmClearAll()">🗑 Remove All</button>
-    <span style="margin-left:auto;display:flex;gap:.4rem;">
-      <a href="admin.html" class="atb-btn amber">Admin Console</a>
-      <button class="atb-btn red" onclick="hideAdmin()">✕ Exit</button>
-    </span>
+<!-- Admin: View All Student Profiles -->
+<div class="admin-view-card" id="adminViewCard">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
+    <h3 style="font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">&#9881; Admin: All Student Profiles</h3>
+    <input type="text" id="studentSearch" placeholder="Search by name or email..." oninput="filterStudents(this.value)" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.4rem .8rem;font-family:sans-serif;font-size:.8rem;width:200px;">
+  </div>
+  <div id="studentList"></div>
+  <div style="margin-top:1rem;padding-top:.8rem;border-top:1px solid rgba(201,168,76,.15);">
+    <h4 style="font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem;margin-bottom:.7rem;">Admin: Request Information from Student</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
+      <div class="field-group"><label>Student Email</label><input type="email" id="reqEmail" placeholder="student@email.com"></div>
+      <div class="field-group"><label>Request Type</label>
+        <select id="reqType"><option>ID Verification</option><option>Transcript</option><option>Certificate of Ministry</option><option>Letter of Recommendation</option><option>Payment Confirmation</option><option>Other Document</option></select>
+      </div>
+    </div>
+    <div class="field-group"><label>Message to Student</label><textarea id="reqMsg" rows="3" placeholder="Please upload your document by..."></textarea></div>
+    <button class="save-btn" onclick="sendDocRequest()">&#128226; Send Request</button>
+    <div id="reqResult" style="font-size:.83rem;margin-top:.5rem;"></div>
   </div>
 </div>
-<div class="admin-float" id="adminFloat">
-  <button onclick="promptAdmin()">⚙ Admin</button>
-</div>
 
+<div style="text-align:center;margin-top:1.5rem;">
+  <button onclick="promptAdminProfile()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#9881; Admin View</button>
+</div>
+</div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
-
-const ADMIN_PASS = 'GATE2025admin';
-const PAGE_KEY = 'gate_page_' + window.location.pathname.split('/').pop().replace('.html','');
-let isAdmin = false;
-
 function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
 function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function getItems(){return gl(PAGE_KEY)||[]}
-function saveItems(items){gs(PAGE_KEY,items)}
-function fmtDate(ts){if(!ts)return'';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function esc(s){return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+var isAdminProfile=false;
 
-// Check if already admin
-(function(){
-  const s=gl('td_gate_v6');
-  if(s&&s.tier==='admin'){isAdmin=true;showAdmin();}
-})();
-
-function promptAdmin(){
-  if(isAdmin){showAdmin();return;}
-  const pw=prompt('Admin Password:');
-  if(pw===ADMIN_PASS){
-    isAdmin=true;
-    const s=gl('td_gate_v6')||{user:null,tier:null};
-    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};
-    s.tier='admin';gs('td_gate_v6',s);
-    showAdmin();
-  } else if(pw!==null){alert('Incorrect password.');}
-}
-
-function showAdmin(){
-  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.add('visible'));
-  document.querySelectorAll('.admin-toolbar').forEach(el=>el.classList.add('visible'));
-  document.querySelectorAll('.admin-float').forEach(el=>el.style.display='none');
-  renderItems();
-}
-
-function hideAdmin(){
-  isAdmin=false;
-  document.querySelectorAll('.admin-panel').forEach(el=>el.classList.remove('visible'));
-  document.querySelectorAll('.admin-toolbar').forEach(el=>el.classList.remove('visible'));
-  document.querySelectorAll('.admin-float').forEach(el=>el.style.display='block');
-}
-
-// Add new item
-async function addItem(){
-  const title=document.getElementById('adm_title').value.trim();
-  const body=document.getElementById('adm_body').value.trim();
-  const url=document.getElementById('adm_url').value.trim();
-  const price=document.getElementById('adm_price').value.trim();
-  const status=document.getElementById('adm_status').value;
-  const imgFile=document.getElementById('adm_img').files[0];
-  if(!title&&!body){alert('Please enter a title or description.');return;}
-  let img='';
-  if(imgFile){img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(imgFile);});}
-  const items=getItems();
-  items.unshift({id:Date.now(),title,body,url,price,img,status,created:Date.now(),updated:Date.now()});
-  saveItems(items);
-  clearForm();
-  renderItems();
-  document.getElementById('adm_msg').innerHTML='<span style="color:#4aad74">✅ Posted! Visible to all visitors.</span>';
-  setTimeout(()=>document.getElementById('adm_msg').innerHTML='',2500);
-}
-
-function clearForm(){
-  ['adm_title','adm_body','adm_url','adm_price'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  const img=document.getElementById('adm_img');if(img)img.value='';
-  const sel=document.getElementById('adm_status');if(sel)sel.value='active';
-}
-
-function editItem(id){
-  const items=getItems();
-  const item=items.find(i=>i.id===id);
-  if(!item)return;
-  const title=prompt('Edit title:',item.title||'');if(title===null)return;
-  const body=prompt('Edit description:',item.body||'');if(body===null)return;
-  const url=prompt('Edit URL/link:',item.url||'');if(url===null)return;
-  const price=prompt('Edit price/amount:',item.price||'');if(price===null)return;
-  const status=prompt('Status (active/approved/verified/suspended/archived):',item.status||'active');if(status===null)return;
-  Object.assign(item,{title,body,url,price,status:status||'active',updated:Date.now()});
-  saveItems(items);renderItems();
-}
-
-async function uploadImg(id){
-  const input=document.createElement('input');input.type='file';input.accept='image/*';
-  input.onchange=async()=>{
-    if(!input.files[0])return;
-    const img=await new Promise(res=>{const r=new FileReader();r.onload=()=>res(r.result);r.readAsDataURL(input.files[0]);});
-    const items=getItems();const item=items.find(i=>i.id===id);
-    if(item){item.img=img;item.updated=Date.now();saveItems(items);renderItems();}
-  };
-  input.click();
-}
-
-function setStatus(id,status){
-  const items=getItems();const item=items.find(i=>i.id===id);
-  if(!item)return;
-  item.status=status;item.updated=Date.now();
-  saveItems(items);renderItems();
-}
-
-function removeItem(id){
-  if(!confirm('Permanently remove this item?'))return;
-  saveItems(getItems().filter(i=>i.id!==id));renderItems();
-}
-
-function statusBadge(s){
-  const map={active:'badge-green',approved:'badge-green',verified:'badge-blue',suspended:'badge-red',archived:'badge-gray',draft:'badge-gold'};
-  return `<span class="badge ${map[s]||'badge-gray'}">${s||'active'}</span>`;
-}
-
-function renderItems(){
-  const list=document.getElementById('items_list');
-  if(!list)return;
-  const items=getItems();
-  if(!items.length){
-    // Only show admin message if admin logged in; public sees empty section quietly
-    if(isAdmin) list.innerHTML='<div style="color:var(--text2);text-align:center;padding:1.5rem;font-size:.85rem;border:1px dashed rgba(201,168,76,.2);border-radius:8px;">No posts yet. Use the form above and click 📢 POST to publish content here.</div>';
-    else list.innerHTML='';
+function loadProfile(){
+  var s=gl('td_gate_v6');
+  if(!s||!s.user){
+    document.getElementById('pName').textContent='Not logged in';
+    document.getElementById('pEmail').textContent='Log in to view your profile';
     return;
   }
-  list.innerHTML='<div class="item-grid">'+items.map(item=>`
-    <div class="content-item">
-      ${item.img?`<img src="${item.img}" alt="${item.title||''}">`:''}
-      <div class="status-bar">${statusBadge(item.status)}${item.price?`<span class="badge badge-gold">$${item.price}</span>`:''}</div>
-      <div class="item-title">${item.title||'(Untitled)'}</div>
-      <div class="item-body">${item.body||''}</div>
-      ${item.url?`<a href="${item.url}" target="_blank" class="btn btn-outline btn-sm" style="margin-bottom:.5rem;">Open Link →</a>`:''}
-      <div style="font-size:.72rem;color:var(--text2);margin-bottom:.5rem;">Added: ${fmtDate(item.created)}</div>
-      ${isAdmin?`<div class="item-actions">
-        <button class="btn btn-outline btn-sm" onclick="editItem(${item.id})">✏ Edit</button>
-        <button class="btn btn-outline btn-sm" onclick="uploadImg(${item.id})">📷 Upload</button>
-        <button class="btn btn-green btn-sm" onclick="setStatus(${item.id},'approved')">✓ Approve</button>
-        <button class="btn btn-outline btn-sm" onclick="setStatus(${item.id},'verified')">🔍 Verify</button>
-        <button class="btn btn-sm" style="background:rgba(180,120,20,.3);color:var(--gold2);border:1px solid rgba(180,120,20,.4);" onclick="setStatus(${item.id},'suspended')">⊘ Suspend</button>
-        <button class="btn btn-sm" style="background:rgba(60,60,90,.4);color:#aaa;border:1px solid rgba(100,100,150,.3);" onclick="setStatus(${item.id},'archived')">📦 Archive</button>
-        <button class="btn btn-green btn-sm" onclick="setStatus(${item.id},'active')">↩ Restore</button>
-        <button class="btn btn-danger btn-sm" onclick="removeItem(${item.id})">🗑 Remove</button>
-      </div>`:''}
-    </div>`).join('')+'</div>';
-}
-
-// Init on load
-document.addEventListener('DOMContentLoaded',renderItems);
-
-
-function bulkSetStatus(status){
-  const items=getItems();
-  items.forEach(i=>{i.status=status;i.updated=Date.now();});
-  saveItems(items);renderItems();
-}
-function confirmClearAll(){
-  if(!confirm('Remove ALL items from this page? This cannot be undone.'))return;
-  saveItems([]);renderItems();
-}
-
-
-(function(){
-  const s=JSON.parse(localStorage.getItem('td_gate_v6')||'{}');
-  const u=s.user;
-  const el=document.getElementById('profileContent');
-  if(u){
-    const extras=JSON.parse(localStorage.getItem('gate_profile_extras')||'{}')[u.email]||{};
-    el.innerHTML=`<div class="grid2">
-      <div><div style="font-family:'Cinzel',serif;font-size:1.3rem;color:var(--gold)">${u.name||u.email}</div>
-      <div style="color:var(--text2);font-size:.85rem;">${u.email}</div>
-      <div style="margin-top:.4rem;"><span class="badge badge-gold">${(s.tier||'none').toUpperCase()}</span></div></div>
-      <div style="font-size:.85rem;line-height:2;color:var(--text2);">
-        <div>📞 ${extras.phone||'—'}</div><div>📍 ${extras.city||'—'}</div>
-        <div>⛪ ${extras.ministry||'—'}</div>
-      </div></div>
-      <p style="margin-top:1rem;font-size:.85rem;color:var(--text2);">${extras.bio||''}</p>
-      <div style="margin-top:1rem;"><a href="account.html" class="btn btn-outline btn-sm">Edit Profile →</a></div>`;
+  var u=s.user;
+  var prof=gl('gate_profile_'+u.email)||{};
+  // Avatar
+  var circle=document.getElementById('avatarCircle');
+  if(prof.avatar){circle.innerHTML='<img src="'+prof.avatar+'" alt="avatar">';}
+  else{var ini=(u.name||u.email||'?').split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2);circle.textContent=ini;}
+  // Names
+  document.getElementById('pName').textContent=u.name||u.email||'Member';
+  document.getElementById('pEmail').textContent=u.email||'';
+  // Tier badge
+  var tierEl=document.getElementById('pTier');
+  var tier=s.tier||'trial';
+  var tierLabel={admin:'Administrator',premium:'Premium Member',basic:'Basic Member',trial:'Free Trial'}[tier]||tier;
+  var tierClass={admin:'tier-admin',premium:'tier-premium',basic:'tier-basic',trial:'tier-trial'}[tier]||'tier-trial';
+  tierEl.textContent=tierLabel;tierEl.className='profile-tier '+tierClass;
+  // Gate email
+  var nm=(u.name||u.email||'member');
+  var parts=nm.toLowerCase().split(/[^a-z0-9]+/).filter(function(x){return x.length>0;});
+  var gateEmail=parts.join('.')+'@gate-theology.org';
+  document.getElementById('pGateEmail').innerHTML='&#10003; <strong style="color:var(--gold);">'+esc(gateEmail)+'</strong>';
+  // Stats
+  var exams=0;var bestScore='&mdash;';
+  for(var i=1;i<=6;i++){var ed=gl('td_gate_e'+(i>1?i+'_':'')+'v'+(i===1?'6':'1'));if(ed&&ed.scores&&ed.scores.length){exams++;for(var j=0;j<ed.scores.length;j++){var pct=Math.round((ed.scores[j]/(250))*100);if(bestScore==='&mdash;'||pct>parseInt(bestScore))bestScore=pct+'%';}}}
+  document.getElementById('statExams').textContent=exams;
+  document.getElementById('statScore').innerHTML=bestScore;
+  // Docs
+  var docs=gl('gate_docs_'+u.email)||[];
+  document.getElementById('statDocs').textContent=docs.length;
+  // Member since
+  var since=s.memberSince?new Date(s.memberSince).toLocaleDateString('en-US',{month:'short',year:'numeric'}):'2025';
+  document.getElementById('statMember').textContent=since;
+  // Fill form fields
+  var fields={fFirst:'firstName',fLast:'lastName',fEmail:'email',fPhone:'phone',fDob:'dob',fGender:'gender',fCountry:'country',fCity:'city',fAddress:'address',fMinistry:'ministry',fDenom:'denomination',fRole:'role',fYears:'years',fEdu:'education',fField:'fieldOfStudy',fBio:'bio'};
+  for(var fid in fields){
+    var el=document.getElementById(fid);
+    var key=fields[fid];
+    if(el) el.value=(prof[key]||u[key]||'');
   }
-})();
+  renderDocs(u.email);
+}
 
-</script>
-<script>
-(function(){
-  var timers = {};
-  var DELAY = 320; // ms before closing dropdown
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd, i){
-    dd.setAttribute('data-dd', i);
-    dd.addEventListener('mouseenter', function(){
-      clearTimeout(timers[i]);
-      dd.classList.add('open');
-    });
-    dd.addEventListener('mouseleave', function(){
-      timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-    });
-    var menu = dd.querySelector('.gate-dropdown-menu');
-    if(menu){
-      menu.addEventListener('mouseenter', function(){ clearTimeout(timers[i]); });
-      menu.addEventListener('mouseleave', function(){
-        timers[i] = setTimeout(function(){ dd.classList.remove('open'); }, DELAY);
-      });
-    }
-  });
-})();
-</script>
+function saveProfile(){
+  var s=gl('td_gate_v6');
+  if(!s||!s.user){alert('Please log in first.');return;}
+  var u=s.user;
+  var prof=gl('gate_profile_'+u.email)||{};
+  var fields={fFirst:'firstName',fLast:'lastName',fEmail:'email',fPhone:'phone',fDob:'dob',fGender:'gender',fCountry:'country',fCity:'city',fAddress:'address',fMinistry:'ministry',fDenom:'denomination',fRole:'role',fYears:'years',fEdu:'education',fField:'fieldOfStudy',fBio:'bio'};
+  for(var fid in fields){var el=document.getElementById(fid);if(el)prof[fields[fid]]=el.value;}
+  gs('gate_profile_'+u.email,prof);
+  // Update name in session
+  var fn=document.getElementById('fFirst').value.trim();
+  var ln=document.getElementById('fLast').value.trim();
+  if(fn||ln){u.name=(fn+' '+ln).trim();gs('td_gate_v6',s);}
+  document.getElementById('pName').textContent=u.name||u.email;
+  document.getElementById('profileMsg').innerHTML='<span style="color:#4aad74">&#10003; Profile saved!</span>';
+  setTimeout(function(){document.getElementById('profileMsg').innerHTML='';},3000);
+}
 
-<script>
-/* Dropdown hover delay — keeps menu open 350ms after cursor leaves */
-(function(){
-  var timers={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    dd.setAttribute('data-ddi',i);
-    function open(){clearTimeout(timers[i]);dd.classList.add('open');}
-    function schedClose(){timers[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);
-    dd.addEventListener('mouseleave',schedClose);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(timers[i]);});m.addEventListener('mouseleave',schedClose);}
-  });
-})();
-</script>
-<script>
-/* Dropdown delay — 350ms before closing so you can click items */
-(function(){
-  var T={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    function open(){clearTimeout(T[i]);dd.classList.add('open');}
-    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);
-    dd.addEventListener('mouseleave',close);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
-  });
-})();
+function uploadAvatar(input){
+  if(!input.files[0]) return;
+  var s=gl('td_gate_v6');
+  if(!s||!s.user) return;
+  var r=new FileReader();
+  r.onload=function(e){
+    var prof=gl('gate_profile_'+s.user.email)||{};
+    prof.avatar=e.target.result;
+    gs('gate_profile_'+s.user.email,prof);
+    var circle=document.getElementById('avatarCircle');
+    circle.innerHTML='<img src="'+e.target.result+'" alt="avatar">';
+  };
+  r.readAsDataURL(input.files[0]);
+}
+
+function uploadDoc(input){
+  if(!input.files[0]) return;
+  var s=gl('td_gate_v6');
+  if(!s||!s.user){alert('Please log in first.');return;}
+  if(input.files[0].size>5*1024*1024){alert('File too large (max 5MB).');return;}
+  var r=new FileReader();
+  r.onload=function(e){
+    var docs=gl('gate_docs_'+s.user.email)||[];
+    docs.unshift({id:Date.now(),name:input.files[0].name,size:Math.round(input.files[0].size/1024)+'KB',type:input.files[0].type,data:e.target.result,uploaded:Date.now()});
+    gs('gate_docs_'+s.user.email,docs);
+    input.value='';
+    renderDocs(s.user.email);
+    document.getElementById('statDocs').textContent=docs.length;
+  };
+  r.readAsDataURL(input.files[0]);
+}
+
+function renderDocs(email){
+  var docs=gl('gate_docs_'+email)||[];
+  var list=document.getElementById('docList');
+  if(!list) return;
+  if(!docs.length){list.innerHTML='<div style="color:var(--text2);font-size:.82rem;text-align:center;padding:1rem;border:1px dashed rgba(201,168,76,.2);border-radius:7px;">No documents uploaded yet.</div>';return;}
+  var html='';
+  for(var i=0;i<docs.length;i++){
+    var d=docs[i];
+    var typeIcon=d.type&&d.type.indexOf('image')>-1?'&#128247;':'&#128196;';
+    html+='<div class="doc-item"><div style="display:flex;align-items:center;gap:.6rem;"><div style="font-size:1.2rem;">'+typeIcon+'</div><div><div class="doc-name">'+esc(d.name)+'</div><div class="doc-size">'+esc(d.size)+' &middot; '+new Date(d.uploaded).toLocaleDateString()+'</div></div></div><div style="display:flex;gap:.4rem;"><a href="'+d.data+'" download="'+esc(d.name)+'" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.2rem .5rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;text-decoration:none;">&#8681; Download</a><button onclick="deleteDoc(''+email+'','+d.id+')" style="background:rgba(139,32,32,.3);color:#e05555;border:1px solid #8b2020;padding:.2rem .5rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;cursor:pointer;">Remove</button></div></div>';
+  }
+  list.innerHTML=html;
+}
+
+function deleteDoc(email,id){if(!confirm('Delete this document?'))return;var docs=(gl('gate_docs_'+email)||[]).filter(function(d){return d.id!==id;});gs('gate_docs_'+email,docs);renderDocs(email);document.getElementById('statDocs').textContent=docs.length;}
+
+/* Admin panel */
+function promptAdminProfile(){
+  if(isAdminProfile){document.getElementById('adminViewCard').classList.add('visible');renderStudentList();return;}
+  var pw=prompt('Admin Password:');
+  if(pw==='GATE2025admin'){
+    isAdminProfile=true;
+    var s=gl('td_gate_v6')||{};
+    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};
+    s.tier='admin';gs('td_gate_v6',s);
+    document.getElementById('adminViewCard').classList.add('visible');
+    renderStudentList();
+  } else if(pw!==null) alert('Incorrect password.');
+}
+
+function renderStudentList(filter){
+  var users=gl('gate_users')||[];
+  var list=document.getElementById('studentList');
+  if(!list) return;
+  if(!users.length){list.innerHTML='<div style="color:var(--text2);font-size:.82rem;text-align:center;padding:1rem;">No registered students yet.</div>';return;}
+  var lf=(filter||'').toLowerCase();
+  var filtered=lf?users.filter(function(u){return (u.name||'').toLowerCase().indexOf(lf)>-1||(u.email||'').toLowerCase().indexOf(lf)>-1;}):users;
+  var html='';
+  for(var i=0;i<filtered.length;i++){
+    var u=filtered[i];
+    var prof=gl('gate_profile_'+u.email)||{};
+    var docs=(gl('gate_docs_'+u.email)||[]).length;
+    var ini=(u.name||u.email||'?').split(' ').map(function(w){return w[0]||'';}).join('').toUpperCase().slice(0,2);
+    html+='<div class="student-row"><div style="display:flex;align-items:center;gap:.7rem;"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-family:Cinzel,serif;font-size:.8rem;color:var(--navy);font-weight:700;">'+esc(ini)+'</div><div><div class="student-name">'+esc(u.name||'No name')+'</div><div class="student-email">'+esc(u.email||'')+'</div></div></div>';
+    html+='<div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;"><span style="font-size:.72rem;color:var(--text2);font-family:sans-serif;">'+docs+' docs</span>';
+    html+='<button onclick="viewStudentDocs(''+esc(u.email)+'')" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.2rem .5rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;cursor:pointer;">View Docs</button>';
+    if(prof.bio) html+='<span title="'+esc(prof.bio)+'" style="font-size:.72rem;color:#4aad74;font-family:sans-serif;">&#128196; Profile</span>';
+    html+='</div></div>';
+  }
+  list.innerHTML=html||'<div style="color:var(--text2);font-size:.82rem;text-align:center;padding:1rem;">No results.</div>';
+}
+
+function filterStudents(q){renderStudentList(q);}
+
+function viewStudentDocs(email){
+  var docs=gl('gate_docs_'+email)||[];
+  if(!docs.length){alert('No documents uploaded by this student yet.');return;}
+  var win=window.open('','_blank');
+  win.document.write('<html><head><title>Documents: '+email+'</title></head><body style="background:#0d1b2e;color:#e8e0d0;font-family:sans-serif;padding:2rem;">');
+  win.document.write('<h2 style="color:#c9a84c;">Documents for: '+email+'</h2>');
+  for(var i=0;i<docs.length;i++){
+    win.document.write('<div style="margin:.8rem 0;padding:1rem;background:#162440;border-radius:8px;"><strong>'+docs[i].name+'</strong><br><small>'+docs[i].size+' &middot; '+new Date(docs[i].uploaded).toLocaleDateString()+'</small><br><a href="'+docs[i].data+'" download="'+docs[i].name+'" style="color:#c9a84c;">Download</a></div>');
+  }
+  win.document.write('</body></html>');
+  win.document.close();
+}
+
+function sendDocRequest(){
+  var email=document.getElementById('reqEmail').value.trim();
+  var type=document.getElementById('reqType').value;
+  var msg=document.getElementById('reqMsg').value.trim();
+  if(!email){document.getElementById('reqResult').innerHTML='<span style="color:#e05555">Email required.</span>';return;}
+  var requests=gl('gate_doc_requests')||[];
+  requests.push({id:Date.now(),studentEmail:email,type:type,message:msg,sent:Date.now(),status:'pending'});
+  gs('gate_doc_requests',requests);
+  document.getElementById('reqEmail').value='';document.getElementById('reqMsg').value='';
+  document.getElementById('reqResult').innerHTML='<span style="color:#4aad74">&#10003; Request recorded. Student will see it next time they log in.</span>';
+  setTimeout(function(){document.getElementById('reqResult').innerHTML='';},4000);
+}
+
+window.addEventListener('load',function(){
+  loadProfile();
+  (function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
+});
 </script>
 </body></html>
