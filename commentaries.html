@@ -67,6 +67,12 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
       <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
       <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
     </div></div>
+    <div class="gate-dropdown"><button>COMMUNITY ▾</button><div class="gate-dropdown-menu">
+      <a href="world_religions.html">🌍 World Religions</a><a href="churches_member.html">⛪ Churches (Member)</a>
+      <a href="churches_hiring.html">👔 Churches (Hiring)</a><a href="prayer_requests.html">🙏 Prayer Requests</a>
+      <a href="radio.html">📻 Radio</a><a href="television.html">📺 Television</a>
+      <a href="art.html">🎨 Art</a>
+    </div></div>
     <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
       <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
       <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
@@ -156,50 +162,39 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
 
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · Bible Commentaries · All Rights Reserved</p></footer>
 
-<script>
-const ALL_BOOKS = [["genesis", "Genesis", "Old Testament"], ["exodus", "Exodus", "Old Testament"], ["leviticus", "Leviticus", "Old Testament"], ["numbers", "Numbers", "Old Testament"], ["deuteronomy", "Deuteronomy", "Old Testament"], ["joshua", "Joshua", "Old Testament"], ["judges", "Judges", "Old Testament"], ["ruth", "Ruth", "Old Testament"], ["1samuel", "1 Samuel", "Old Testament"], ["2samuel", "2 Samuel", "Old Testament"], ["1kings", "1 Kings", "Old Testament"], ["2kings", "2 Kings", "Old Testament"], ["1chronicles", "1 Chronicles", "Old Testament"], ["2chronicles", "2 Chronicles", "Old Testament"], ["ezra", "Ezra", "Old Testament"], ["nehemiah", "Nehemiah", "Old Testament"], ["esther", "Esther", "Old Testament"], ["job", "Job", "Old Testament"], ["psalms_1-41", "Psalms 1–41", "Old Testament"], ["psalms_42-72", "Psalms 42–72", "Old Testament"], ["psalms_73-89", "Psalms 73–89", "Old Testament"], ["psalms_90-106", "Psalms 90–106", "Old Testament"], ["psalms_107-150", "Psalms 107–150", "Old Testament"], ["proverbs", "Proverbs", "Old Testament"], ["ecclesiastes", "Ecclesiastes", "Old Testament"], ["song_of_solomon", "Song of Solomon", "Old Testament"], ["isaiah", "Isaiah", "Old Testament"], ["jeremiah", "Jeremiah", "Old Testament"], ["lamentations", "Lamentations", "Old Testament"], ["ezekiel", "Ezekiel", "Old Testament"], ["daniel", "Daniel", "Old Testament"], ["hosea", "Hosea", "Old Testament"], ["joel", "Joel", "Old Testament"], ["amos", "Amos", "Old Testament"], ["obadiah", "Obadiah", "Old Testament"], ["jonah", "Jonah", "Old Testament"], ["micah", "Micah", "Old Testament"], ["nahum", "Nahum", "Old Testament"], ["habakkuk", "Habakkuk", "Old Testament"], ["zephaniah", "Zephaniah", "Old Testament"], ["haggai", "Haggai", "Old Testament"], ["zechariah", "Zechariah", "Old Testament"], ["malachi", "Malachi", "Old Testament"], ["matthew", "Matthew", "New Testament"], ["mark", "Mark", "New Testament"], ["luke", "Luke", "New Testament"], ["john", "John", "New Testament"], ["acts", "Acts", "New Testament"], ["romans", "Romans", "New Testament"], ["1corinthians", "1 Corinthians", "New Testament"], ["2corinthians", "2 Corinthians", "New Testament"], ["galatians", "Galatians", "New Testament"], ["phi_col_eph", "Ephesians / Philippians / Colossians", "New Testament"], ["1thessalonians", "1 Thessalonians", "New Testament"], ["2thessalonians", "2 Thessalonians", "New Testament"], ["1timothy", "1 Timothy", "New Testament"], ["2timothy", "2 Timothy", "New Testament"], ["titus", "Titus", "New Testament"], ["philemon", "Philemon", "New Testament"], ["hebrews", "Hebrews", "New Testament"], ["james", "James", "New Testament"], ["1peter", "1 Peter", "New Testament"], ["2peter", "2 Peter", "New Testament"], ["1john", "1 John", "New Testament"], ["2john", "2 John", "New Testament"], ["3john", "3 John", "New Testament"], ["jude", "Jude", "New Testament"], ["revelation", "Revelation", "New Testament"]];
 
+<script>
+var ALL_BOOKS = [["genesis", "Genesis", "Old Testament"], ["exodus", "Exodus", "Old Testament"], ["leviticus", "Leviticus", "Old Testament"], ["numbers", "Numbers", "Old Testament"], ["deuteronomy", "Deuteronomy", "Old Testament"], ["joshua", "Joshua", "Old Testament"], ["judges", "Judges", "Old Testament"], ["ruth", "Ruth", "Old Testament"], ["1samuel", "1 Samuel", "Old Testament"], ["2samuel", "2 Samuel", "Old Testament"], ["1kings", "1 Kings", "Old Testament"], ["2kings", "2 Kings", "Old Testament"], ["1chronicles", "1 Chronicles", "Old Testament"], ["2chronicles", "2 Chronicles", "Old Testament"], ["ezra", "Ezra", "Old Testament"], ["nehemiah", "Nehemiah", "Old Testament"], ["esther", "Esther", "Old Testament"], ["job", "Job", "Old Testament"], ["psalms_1-41", "Psalms 1\u201341", "Old Testament"], ["psalms_42-72", "Psalms 42\u201372", "Old Testament"], ["psalms_73-89", "Psalms 73\u201389", "Old Testament"], ["psalms_90-106", "Psalms 90\u2013106", "Old Testament"], ["psalms_107-150", "Psalms 107\u2013150", "Old Testament"], ["proverbs", "Proverbs", "Old Testament"], ["ecclesiastes", "Ecclesiastes", "Old Testament"], ["song_of_solomon", "Song of Solomon", "Old Testament"], ["isaiah", "Isaiah", "Old Testament"], ["jeremiah", "Jeremiah", "Old Testament"], ["lamentations", "Lamentations", "Old Testament"], ["ezekiel", "Ezekiel", "Old Testament"], ["daniel", "Daniel", "Old Testament"], ["hosea", "Hosea", "Old Testament"], ["joel", "Joel", "Old Testament"], ["amos", "Amos", "Old Testament"], ["obadiah", "Obadiah", "Old Testament"], ["jonah", "Jonah", "Old Testament"], ["micah", "Micah", "Old Testament"], ["nahum", "Nahum", "Old Testament"], ["habakkuk", "Habakkuk", "Old Testament"], ["zephaniah", "Zephaniah", "Old Testament"], ["haggai", "Haggai", "Old Testament"], ["zechariah", "Zechariah", "Old Testament"], ["malachi", "Malachi", "Old Testament"], ["matthew", "Matthew", "New Testament"], ["mark", "Mark", "New Testament"], ["luke", "Luke", "New Testament"], ["john", "John", "New Testament"], ["acts", "Acts", "New Testament"], ["romans", "Romans", "New Testament"], ["1corinthians", "1 Corinthians", "New Testament"], ["2corinthians", "2 Corinthians", "New Testament"], ["galatians", "Galatians", "New Testament"], ["phi_col_eph", "Ephesians / Philippians / Colossians", "New Testament"], ["1thessalonians", "1 Thessalonians", "New Testament"], ["2thessalonians", "2 Thessalonians", "New Testament"], ["1timothy", "1 Timothy", "New Testament"], ["2timothy", "2 Timothy", "New Testament"], ["titus", "Titus", "New Testament"], ["philemon", "Philemon", "New Testament"], ["hebrews", "Hebrews", "New Testament"], ["james", "James", "New Testament"], ["1peter", "1 Peter", "New Testament"], ["2peter", "2 Peter", "New Testament"], ["1john", "1 John", "New Testament"], ["2john", "2 John", "New Testament"], ["3john", "3 John", "New Testament"], ["jude", "Jude", "New Testament"], ["revelation", "Revelation", "New Testament"]];
 function doSearch(q) {
   q = (q||'').trim().toLowerCase();
-  const resultsEl = document.getElementById('searchResults');
-  const otGrid = document.getElementById('otGrid');
-  const ntGrid = document.getElementById('ntGrid');
-  const otSection = document.getElementById('otSection');
-  const ntSection = document.getElementById('ntSection');
-
+  var el = document.getElementById('searchResults');
   if (!q) {
-    resultsEl.style.display = 'none';
-    resultsEl.innerHTML = '';
-    document.querySelectorAll('.book-card').forEach(c => c.classList.remove('hidden'));
-    otSection.style.display = ''; ntSection.style.display = '';
+    el.style.display='none'; el.innerHTML='';
+    document.querySelectorAll('.book-card').forEach(function(c){c.classList.remove('hidden');});
     return;
   }
-
-  // Filter cards live
-  let anyOT = false, anyNT = false;
-  document.querySelectorAll('#otGrid .book-card').forEach(c => {
-    const match = c.dataset.name.includes(q);
-    c.classList.toggle('hidden', !match);
-    if (match) anyOT = true;
+  document.querySelectorAll('#otGrid .book-card').forEach(function(c){
+    c.classList.toggle('hidden', !c.dataset.name.includes(q));
   });
-  document.querySelectorAll('#ntGrid .book-card').forEach(c => {
-    const match = c.dataset.name.includes(q);
-    c.classList.toggle('hidden', !match);
-    if (match) anyNT = true;
+  document.querySelectorAll('#ntGrid .book-card').forEach(function(c){
+    c.classList.toggle('hidden', !c.dataset.name.includes(q));
   });
-
-  // Show results list too
-  const matches = ALL_BOOKS.filter(b => b[1].toLowerCase().includes(q));
+  var matches = ALL_BOOKS.filter(function(b){ return b[1].toLowerCase().includes(q); });
   if (matches.length) {
-    resultsEl.style.display = 'block';
-    resultsEl.innerHTML = '<div style="font-size:.8rem;color:var(--text2);margin-bottom:.5rem;font-family:sans-serif;">' + matches.length + ' result(s):</div>' +
-      matches.map(b => '<div class="result-item"><div><div class="result-name">' + b[1] + '</div><div class="result-test">' + b[2] + '</div></div><a href="commentary_' + b[0] + '.html" style="background:var(--gold);color:var(--navy);padding:.35rem .8rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;">Open →</a></div>').join('');
+    var html = '<div style="font-size:.8rem;color:var(--text2);margin-bottom:.5rem;font-family:sans-serif;">' + matches.length + ' result(s):</div>';
+    for (var i=0;i<matches.length;i++) {
+      var b = matches[i];
+      html += '<div class="result-item">';
+      html += '<div><div class="result-name">'+b[1]+'</div><div class="result-test">'+b[2]+'</div></div>';
+      html += '<a href="commentary_'+b[0]+'.html" style="background:var(--gold);color:var(--navy);padding:.35rem .8rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap;">Open &rarr;</a>';
+      html += '</div>';
+    }
+    el.style.display='block'; el.innerHTML=html;
   } else {
-    resultsEl.style.display = 'block';
-    resultsEl.innerHTML = '<div class="no-results">No commentaries found for "' + q + '"</div>';
+    el.style.display='block';
+    el.innerHTML='<div class="no-results">No results for &ldquo;'+q+'&rdquo;</div>';
   }
 }
-
 (function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
 </script>
 </body></html>

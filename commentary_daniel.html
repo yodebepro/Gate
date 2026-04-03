@@ -111,6 +111,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
       <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
       <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
     </div></div>
+    <div class="gate-dropdown"><button>COMMUNITY ▾</button><div class="gate-dropdown-menu">
+      <a href="world_religions.html">🌍 World Religions</a><a href="churches_member.html">⛪ Churches (Member)</a>
+      <a href="churches_hiring.html">👔 Churches (Hiring)</a><a href="prayer_requests.html">🙏 Prayer Requests</a>
+      <a href="radio.html">📻 Radio</a><a href="television.html">📺 Television</a>
+      <a href="art.html">🎨 Art</a>
+    </div></div>
     <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
       <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
       <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
@@ -299,6 +305,11 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
         </div>
       </div>
       <iframe class="pdf-embed" src="commentary_daniel.pdf" title="Daniel Commentary PDF"></iframe>
+<div id="pdfFallback" style="display:none;padding:3rem;text-align:center;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.2);border-radius:8px;margin:1rem 0;">
+  <div style="font-size:2rem;margin-bottom:1rem;">📄</div>
+  <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;margin-bottom:.5rem;">PDF Not Found</div>
+  <div style="color:var(--text2);font-size:.85rem;margin-bottom:1.2rem;">The commentary PDF has not been uploaded to the server yet. Download it directly using the button above.</div>
+</div>
     </div>
 
     <!-- Public posts -->
@@ -391,4 +402,25 @@ function renderPosts(){
 document.addEventListener('DOMContentLoaded',renderPosts);
 </script>
 <script>(function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();</script>
+
+<script>
+// PDF load error handler
+document.addEventListener('DOMContentLoaded', function() {
+  var iframe = document.querySelector('.pdf-embed');
+  if (!iframe) return;
+  var fallback = document.getElementById('pdfFallback');
+  
+  // Check if PDF is accessible
+  var pdfSrc = iframe.src;
+  fetch(pdfSrc, {method:'HEAD'}).then(function(r) {
+    if (!r.ok) {
+      iframe.style.display = 'none';
+      if (fallback) fallback.style.display = 'block';
+    }
+  }).catch(function() {
+    iframe.style.display = 'none';
+    if (fallback) fallback.style.display = 'block';
+  });
+});
+</script>
 </body></html>
