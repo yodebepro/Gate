@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Study Material Store</title>
+<style>
+
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
+
+
+.gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap}
+.gate-dropdown{position:relative; display:inline-block}
+.gate-dropdown > a, .gate-dropdown > button{
+  color: var(--text2); font-size: 0.8rem; padding: 0.3rem 0.7rem;
+  border-radius: 4px; transition: all 0.2s; letter-spacing: 1px;
+  text-transform: uppercase; font-family: sans-serif; background:none; border:none; cursor:pointer;
+}
+.gate-dropdown > a:hover, .gate-dropdown > button:hover,
+.gate-dropdown > a.active, .gate-dropdown > button.active{
+  color: var(--gold); background: rgba(201,168,76,0.12); text-decoration:none;
+}
+.gate-dropdown-menu{
+  display:block;
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;
+  min-width:235px;
+  background:linear-gradient(160deg,#162440 0%,#0d1b2e 100%);
+  border:1px solid rgba(201,168,76,0.45);
+  border-top:3px solid var(--gold);
+  border-radius:0 0 10px 10px;
+  padding:0.4rem 0;
+  box-shadow:0 16px 45px rgba(0,0,0,0.75),0 0 0 1px rgba(201,168,76,0.06);
+  z-index:1000;
+  transform:translateY(-8px);
+  transition:opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+.gate-dropdown.open .gate-dropdown-menu,
+.gate-dropdown:hover .gate-dropdown-menu{
+  visibility:visible;
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.gate-dropdown-menu a{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  color:var(--text2) !important;
+  font-size:0.82rem !important;
+  padding:0.58rem 1rem !important;
+  font-family:sans-serif;
+  letter-spacing:0.3px !important;
+  text-transform:none !important;
+  text-decoration:none !important;
+  border-left:3px solid transparent;
+  transition:all 0.18s ease;
+  position:relative;
+}
+.gate-dropdown-menu a:hover{
+  color:var(--gold) !important;
+  background:linear-gradient(90deg,rgba(201,168,76,0.12),rgba(201,168,76,0.02));
+  border-left-color:var(--gold);
+  padding-left:1.3rem;
+  text-decoration:none;
+}
+.gate-nav-links .btn-nav{
+  background:var(--gold); color:var(--navy)!important; font-weight:700;
+  padding:0.35rem 1rem; border-radius:4px;
+}
+.gate-nav-links .btn-nav:hover{ background:var(--gold2); }
+
+
+.page-header{background:linear-gradient(180deg,var(--navy2),var(--charcoal));border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem;padding-bottom:5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.card-header h2 span{font-size:1.2rem}
+.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.55rem 1.2rem;border-radius:5px;font-family:sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2);text-decoration:none}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:#f5f0e8}.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f;text-decoration:none}
+.btn-sm{padding:.3rem .7rem;font-size:.78rem}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
+.badge-red{background:rgba(139,32,32,.2);color:#e05555;border:1px solid #8b2020}
+.badge-blue{background:rgba(30,80,150,.2);color:#6ea8fe;border:1px solid #3060a0}
+.badge-gray{background:rgba(100,100,100,.2);color:#888;border:1px solid #555}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+
+
+.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
+.admin-toolbar.visible{display:block}
+.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.admin-tb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif;margin-right:.2rem}
+.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600;transition:all .15s}
+.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
+.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
+.atb-btn.amber{background:rgba(201,168,76,.15);color:var(--gold);border-color:var(--gold)}
+.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
+.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
+.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
+/* Admin Panel on page */
+.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+.admin-panel.visible{display:block}
+.admin-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.admin-panel-header h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
+.admin-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
+/* Content items */
+.item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1rem}
+.content-item{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;transition:all .2s}
+.content-item:hover{border-color:rgba(201,168,76,.5)}
+.content-item img{width:100%;height:140px;object-fit:cover;border-radius:6px;margin-bottom:.7rem;border:1px solid rgba(201,168,76,.15)}
+.content-item .item-title{font-family:sans-serif;font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.3rem}
+.content-item .item-body{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:.6rem}
+.item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem}
+.status-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
+
+.item-price-tag{font-size:1.6rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin:.5rem 0 .7rem;letter-spacing:.5px;border-left:3px solid var(--gold);padding-left:.6rem;background:rgba(201,168,76,.06);border-radius:0 6px 6px 0;padding:.3rem .6rem;}
+
+/* ── STORE LAYOUT ── */
+.store-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
+.store-search{flex:1;min-width:200px;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .9rem;font-family:inherit;font-size:.88rem}
+.store-search:focus{outline:none;border-color:var(--gold)}
+.cart-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);border:none;padding:.55rem 1.1rem;border-radius:6px;font-family:sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;position:relative}
+.cart-badge{background:#e05555;color:#fff;border-radius:50%;width:18px;height:18px;font-size:.65rem;display:inline-flex;align-items:center;justify-content:center;font-family:sans-serif;font-weight:700}
+/* Category tabs */
+.cat-tabs{display:flex;gap:.3rem;margin-bottom:1.5rem;flex-wrap:wrap;border-bottom:2px solid rgba(201,168,76,.2);padding-bottom:.3rem}
+.cat-tab{background:transparent;border:none;color:var(--text2);padding:.5rem .9rem;cursor:pointer;font-family:sans-serif;font-size:.78rem;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
+.cat-tab.active,.cat-tab:hover{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.06)}
+/* Product grid */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;margin-bottom:2rem}
+.product-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;overflow:hidden;transition:all .2s;display:flex;flex-direction:column}
+.product-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
+.product-img{height:180px;background:rgba(201,168,76,.06);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:3rem;flex-shrink:0}
+.product-img img{width:100%;height:100%;object-fit:cover}
+.product-body{padding:1rem;flex:1;display:flex;flex-direction:column}
+.product-cat-tag{font-family:sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-bottom:.3rem}
+.product-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem;margin-bottom:.4rem;line-height:1.4}
+.product-desc{font-size:.78rem;color:var(--text2);line-height:1.6;flex:1;margin-bottom:.7rem}
+.product-price{font-size:1.4rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin-bottom:.7rem}
+.product-price.free{color:#4aad74;font-size:1rem}
+.product-actions{display:flex;gap:.4rem;flex-wrap:wrap}
+.btn-buy{background:var(--gold);color:var(--navy);border:none;padding:.45rem .9rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s;flex:1;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.3rem}
+.btn-buy:hover{background:var(--gold2)}
+.btn-cart{background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:.45rem .9rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-cart:hover{background:rgba(201,168,76,.1)}
+.btn-wish{background:transparent;border:1.5px solid rgba(201,168,76,.3);color:var(--text2);padding:.45rem .6rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s}
+.btn-wish.saved{border-color:#e05555;color:#e05555}
+.btn-wish:hover{border-color:rgba(255,100,100,.5);color:#e05555}
+/* Cart modal */
+.cart-modal{position:fixed;top:0;right:0;bottom:0;z-index:9999;width:min(420px,100vw);background:linear-gradient(180deg,#162440,#0d1b2e);border-left:2px solid rgba(201,168,76,.4);display:none;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
+.cart-modal.open{display:flex}
+.cart-modal-hdr{padding:1.2rem;border-bottom:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.cart-modal-hdr h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
+.cart-items{flex:1;overflow-y:auto;padding:1rem}
+.cart-item{display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:flex-start}
+.cart-item-img{width:52px;height:52px;border-radius:6px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden}
+.cart-item-img img{width:100%;height:100%;object-fit:cover}
+.cart-item-info{flex:1}
+.cart-item-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem;margin-bottom:.15rem}
+.cart-item-price{font-family:sans-serif;font-size:.88rem;color:var(--cream);font-weight:700}
+.cart-qty{display:flex;align-items:center;gap:.4rem;margin-top:.3rem}
+.qty-btn{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);width:22px;height:22px;border-radius:4px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+.qty-val{font-family:sans-serif;font-size:.82rem;color:var(--cream);min-width:20px;text-align:center}
+.cart-footer{padding:1.2rem;border-top:1px solid rgba(201,168,76,.2);flex-shrink:0}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.cart-total-label{font-family:sans-serif;font-size:.85rem;color:var(--text2)}
+.cart-total-val{font-family:sans-serif;font-size:1.2rem;font-weight:700;color:var(--gold)}
+.checkout-btn{width:100%;background:var(--gold);color:var(--navy);border:none;padding:.8rem;border-radius:7px;font-family:sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
+.checkout-btn:hover{background:var(--gold2)}
+/* Checkout modal */
+.checkout-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center}
+.checkout-overlay.open{display:flex}
+.checkout-box{background:linear-gradient(180deg,#162440,#0d1b2e);border:2px solid rgba(201,168,76,.4);border-radius:14px;padding:2rem;max-width:500px;width:90%;max-height:90vh;overflow-y:auto}
+/* Admin panel */
+.admin-store-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+.admin-store-panel.visible{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.fg label{display:block;color:var(--text2);font-size:.78rem;margin-bottom:.18rem;font-family:sans-serif}
+.fg input,.fg select,.fg textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--gold)}
+.admin-item-row{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:7px;padding:.8rem 1rem;margin-bottom:.4rem;display:flex;align-items:center;gap.5rem;flex-wrap:wrap;justify-content:space-between}
+.admin-item-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem}
+.admin-item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
+.abtn{padding:.22rem .55rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;border:1px solid;font-weight:600}
+.abtn-edit{background:rgba(201,168,76,.15);color:var(--gold);border-color:rgba(201,168,76,.4)}
+.abtn-pay{background:rgba(30,80,150,.2);color:#6ea8fe;border-color:rgba(30,80,150,.4)}
+.abtn-img{background:rgba(100,60,160,.2);color:#b090e0;border-color:rgba(100,60,160,.4)}
+.abtn-approve{background:rgba(45,122,79,.2);color:#4aad74;border-color:#2d7a4f}
+.abtn-suspend{background:rgba(180,120,20,.2);color:#d4a020;border-color:rgba(180,120,20,.4)}
+.abtn-archive{background:rgba(60,60,90,.3);color:#888;border-color:rgba(100,100,150,.3)}
+.abtn-restore{background:rgba(45,122,79,.2);color:#4aad74;border-color:#2d7a4f}
+.abtn-remove{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
+.abtn-verify{background:rgba(30,80,150,.2);color:#6ea8fe;border-color:rgba(100,130,200,.4)}
+
+</style>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#a09070}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.page-hero{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(30,50,100,.1));border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:2rem;margin-bottom:2rem;text-align:center}
+.page-hero h1{font-family:'Cinzel',serif;color:var(--gold);font-size:1.5rem;letter-spacing:3px;margin-bottom:.5rem}
+.page-hero p{color:var(--text2);font-size:.9rem;max-width:700px;margin:0 auto}
+.stats-bar{display:flex;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.7rem 1.2rem;text-align:center;flex:1;min-width:100px}
+.stat-val{font-family:'Cinzel',serif;color:var(--gold);font-size:1.3rem;font-weight:700}
+.stat-lbl{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:sans-serif}
+.search-wrap{display:flex;gap:.6rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.search-inp{flex:1;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem 1rem;font-family:inherit;font-size:.88rem}
+.search-inp:focus{outline:none;border-color:var(--gold)}
+.filter-sel{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem .9rem;font-family:sans-serif;font-size:.82rem;cursor:pointer}
+.church-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem;margin-bottom:2rem}
+.church-card{background:var(--navy2);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:1.1rem;transition:all .2s;display:flex;flex-direction:column}
+.church-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.church-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem;margin-bottom:.2rem}
+.church-denom{font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-bottom:.3rem}
+.church-location{font-size:.75rem;color:var(--cream);font-family:sans-serif;margin-bottom:.5rem}
+.church-badge{display:inline-block;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;padding:.15rem .45rem;border-radius:8px;font-family:sans-serif;font-weight:700;margin-bottom:.6rem}
+.badge-nat{background:rgba(30,80,150,.2);color:#6ea8fe}
+.badge-intl{background:rgba(201,168,76,.2);color:var(--gold)}
+.badge-online{background:rgba(45,122,79,.2);color:#4aad74}
+.church-btn{display:block;text-align:center;background:var(--gold);color:var(--navy);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;margin-top:auto;transition:all .2s}
+.church-btn:hover{background:var(--gold2)}
+.church-btn-outline{display:block;text-align:center;background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:600;text-decoration:none;margin-top:.4rem}
+.section-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;letter-spacing:1px;margin:.8rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.fg label{display:block;color:var(--text2);font-size:.75rem;margin-bottom:.18rem;font-family:sans-serif}
+.fg input,.fg select,.fg textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--gold)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.btn-gold{background:var(--gold);color:var(--navy);border:none;padding:.6rem 1.5rem;border-radius:6px;font-family:sans-serif;font-size:.88rem;font-weight:700;cursor:pointer}
+.admin-box{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.3);border-radius:10px;padding:1.5rem;margin-top:2rem;display:none}
+.admin-box.visible{display:block}
+</style></head><body>
+<body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <div class="gate-dropdown"><button>HOME ▾</button><div class="gate-dropdown-menu">
+      <a href="index.html">🏠 Home</a><a href="bible.html">📖 The Bible</a><a href="schedule.html">📅 Take The Test</a>
+      <a href="apply.html">🎓 Apply to School</a><a href="announcements.html">📢 Announcement</a>
+      <a href="events.html">🗓 Events</a><a href="livepanel.html">🔴 LIVE Panel</a>
+      <a href="biblestudies.html">✝ Bible Studies</a><a href="video.html">▶ Video</a>
+      <a href="ministry.html">⛪ Ministry</a><a href="donation.html">💛 Donation</a>
+    </div></div>
+    <div class="gate-dropdown"><button>COMMUNITY ▾</button><div class="gate-dropdown-menu">
+      <a href="world_religions.html">🌍 World Religions</a><a href="churches_member.html">⛪ Churches (Member)</a>
+      <a href="churches_hiring.html">👔 Churches (Hiring)</a><a href="prayer_requests.html">🙏 Prayer Requests</a>
+      <a href="radio.html">📻 Radio</a><a href="television.html">📺 Television</a>
+      <a href="art.html">🎨 Art</a>
+    </div></div>
+    <div class="gate-dropdown"><button>ACCOUNT ▾</button><div class="gate-dropdown-menu">
+      <a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 Profile</a>
+      <a href="account_settings.html">⚙ Settings</a><a href="account_subscriptions.html">📋 Subscriptions</a>
+      <a href="account_orders.html">📦 Orders</a><a href="account_billing.html">💳 Billing</a>
+      <a href="account_payment_methods.html">💰 Payment Methods</a><a href="account_messages.html">✉ Messages</a>
+      <a href="account_saved_items.html">🔖 Saved Items</a><a href="account_security.html">🔒 Security</a>
+      <a href="account_support_tickets.html">🎫 Support Tickets</a>
+    </div></div>
+    <div class="gate-dropdown"><button>BUNDLES ▾</button><div class="gate-dropdown-menu">
+      <a href="bundle.html">📦 Exam Bundles</a><a href="bundles_store.html">🛒 Store</a>
+      <a href="bundles_books.html">📚 Books</a><a href="bundles_ebooks.html">📱 eBooks</a>
+      <a href="bundles_courses.html">🎓 Courses</a><a href="bundles_study_guides.html">📝 Study Guides</a>
+      <a href="bundles_theology_materials.html">✝ Theology Materials</a><a href="bundles_divinity_materials.html">📖 Divinity Materials</a>
+      <a href="bundles_bundle_250.html">💵 $250 Bundle</a><a href="bundles_bundle_500.html">💵 $500 Bundle</a>
+      <a href="bundles_independent_tests.html">📄 Independent Tests</a>
+    </div></div>
+    <div class="gate-dropdown"><button>CONTACT ▾</button><div class="gate-dropdown-menu">
+      <a href="contact.html">✉ Contact Us</a><a href="contact_general_contact.html">📞 General Contact</a>
+      <a href="contact_support.html">🛠 Support</a><a href="contact_admissions.html">🎓 Admissions</a>
+      <a href="contact_theology_schools.html">⛪ Theology Schools</a><a href="contact_divinity_schools.html">📖 Divinity Schools</a>
+      <a href="contact_phd_directory.html">🏛 PhD Directory</a><a href="contact_university_directory.html">🏫 University Directory</a>
+      <a href="contact_ministry_contacts.html">⛪ Ministry Contacts</a><a href="contact_events_contact.html">🗓 Events Contact</a>
+      <a href="contact_submit_inquiry.html">📩 Submit Inquiry</a>
+    </div></div>
+    <div class="gate-dropdown"><button>FREE TRIAL ▾</button><div class="gate-dropdown-menu">
+      <a href="trial.html">🎓 Trial Examination</a><a href="free_trial_overview.html">📋 Trial Overview</a>
+      <a href="free_trial_trial_status.html">📊 Trial Status</a><a href="free_trial_fifty_questions.html">❓ 50 Questions</a>
+      <a href="free_trial_free_theology.html">✝ Free Theology</a><a href="free_trial_free_divinity.html">📖 Free Divinity</a>
+      <a href="free_trial_free_videos.html">▶ Free Videos</a><a href="free_trial_free_books.html">📚 Free Books</a>
+      <a href="free_trial_free_quizzes.html">❓ Free Quizzes</a><a href="free_trial_study_plan.html">📝 Study Plan</a>
+      <a href="free_trial_activation_help.html">🔑 Activation Help</a>
+    </div></div>
+    <div class="gate-dropdown"><button>REPORTS ▾</button><div class="gate-dropdown-menu">
+      <a href="reports.html">📈 Reports</a><a href="results.html">📊 My Results</a>
+      <a href="reports_performance.html">📈 Performance</a><a href="reports_scores.html">🏅 Scores</a>
+      <a href="reports_trial_reports.html">🎓 Trial Reports</a><a href="reports_bundle_access.html">📦 Bundle Access</a>
+      <a href="reports_purchase_history.html">💳 Purchase History</a><a href="reports_student_activity.html">👤 Student Activity</a>
+      <a href="reports_admin_reports.html">⚙ Admin Reports</a><a href="reports_exam_usage.html">📝 Exam Usage</a>
+      <a href="reports_downloads.html">⬇ Downloads</a><a href="reports_notifications.html">🔔 Notifications</a>
+    </div></div>
+    <a href="admin.html" class="btn-nav">ADMIN</a>
+  </div>
+</div></nav>
+<div class="container">
+  <div class="page-hero">
+    <h1>👔 Church Leadership Opportunities</h1>
+    <p>Browse churches nationally and internationally that are hiring pastors, ministers, worship leaders, and ministry staff. Click Apply to submit your application to the church directly.</p>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-val" id="hiringCount">20+</div><div class="stat-lbl">Openings</div></div>
+    <div class="stat-box"><div class="stat-val">US + Intl</div><div class="stat-lbl">Coverage</div></div>
+    <div class="stat-box"><div class="stat-val">All</div><div class="stat-lbl">Ministry Roles</div></div>
+    <div class="stat-box"><div class="stat-val">Live</div><div class="stat-lbl">Apply Now</div></div>
+  </div>
+  <div class="search-wrap">
+    <input class="search-inp" id="hireSearch" placeholder="Search by church, position, or location..." oninput="filterHiring(this.value)">
+    <select class="filter-sel" id="roleFilter" onchange="filterHiring(document.getElementById('hireSearch').value)">
+      <option value="all">All Roles</option>
+      <option value="Pastor">Senior Pastor</option>
+      <option value="Associate">Associate Pastor</option>
+      <option value="Youth">Youth Pastor</option>
+      <option value="Worship">Worship Leader</option>
+      <option value="Executive">Executive Pastor</option>
+      <option value="Children">Children's Pastor</option>
+      <option value="Admin">Church Administrator</option>
+    </select>
+  </div>
+  <div class="church-grid" id="hiringGrid"></div>
+  <!-- Admin -->
+  <div class="admin-box" id="adminHireBox">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
+      <h3 style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">&#9881; Admin: Add Hiring Opportunity</h3>
+      <button onclick="document.getElementById('adminHireBox').classList.remove('visible')" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">&#10005;</button>
+    </div>
+    <div class="form-row" style="margin-bottom:.8rem;">
+      <div class="fg"><label>Church Name *</label><input type="text" id="hChurch" placeholder="Church name"></div>
+      <div class="fg"><label>Position / Role *</label><input type="text" id="hRole" placeholder="e.g. Senior Pastor"></div>
+    </div>
+    <div class="form-row" style="margin-bottom:.8rem;">
+      <div class="fg"><label>Location</label><input type="text" id="hLoc" placeholder="City, State / Country"></div>
+      <div class="fg"><label>Salary Range (optional)</label><input type="text" id="hSalary" placeholder="e.g. $60,000-$80,000"></div>
+    </div>
+    <div class="fg" style="margin-bottom:.8rem;"><label>Job Description</label><textarea id="hDesc" rows="3" placeholder="Brief description of the role and requirements..."></textarea></div>
+    <div class="fg" style="margin-bottom:.8rem;"><label>Application URL *</label><input type="url" id="hUrl" placeholder="https://www.church.com/apply"></div>
+    <button class="btn-gold" onclick="addHiring()">&#128226; POST Position</button>
+    <div id="hireAddMsg" style="font-size:.83rem;margin-top:.5rem;"></div>
+  </div>
+  <div style="text-align:center;margin-top:1.5rem;">
+    <button onclick="promptAdminHire()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#9881; Admin Access</button>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}function esc(s){return(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+var DEFAULT_JOBS=[{"church": "Lakewood Church", "role": "Associate Pastor", "location": "Houston, TX", "salary": "$70,000-$90,000", "desc": "Seeking an experienced associate pastor to serve our growing congregation. Must have 5+ years ministry experience and seminary degree.", "url": "https://www.lakewoodchurch.com/jobs"}, {"church": "Life.Church", "role": "Campus Pastor", "location": "Edmond, OK (Multiple Campuses)", "salary": "$65,000-$85,000", "desc": "Lead one of our growing campuses. Strong leadership skills and a heart for multiplication required.", "url": "https://jobs.life.church"}, {"church": "Hillsong Church", "role": "Worship Leader", "location": "Sydney, Australia", "salary": "AUD $55,000-$75,000", "desc": "Lead worship for our flagship Sydney campus. Experience in contemporary worship production required.", "url": "https://hillsong.com/careers"}, {"church": "Gateway Church", "role": "Youth Pastor", "location": "Southlake, TX", "salary": "$55,000-$70,000", "desc": "Build and lead our youth ministry for students ages 12-18. Experience with youth programming and event planning required.", "url": "https://www.gatewaypeople.com/employment"}, {"church": "Elevation Church", "role": "Executive Pastor", "location": "Charlotte, NC", "salary": "$90,000-$120,000", "desc": "Oversee church operations, staff development, and strategic planning for our multi-site church network.", "url": "https://jobs.elevationchurch.org"}, {"church": "RCCG", "role": "Regional Overseer", "location": "Lagos, Nigeria / International", "salary": "Negotiable", "desc": "Oversee RCCG parishes in assigned region. Strong apostolic calling and administrative gifts required.", "url": "https://rccg.org/careers"}, {"church": "Bethel Church", "role": "Ministry School Director", "location": "Redding, CA", "salary": "$60,000-$80,000", "desc": "Lead Bethel School of Supernatural Ministry (BSSM) operations and curriculum. Strong prophetic and apostolic gifts desired.", "url": "https://www.bethel.com/jobs"}, {"church": "World Changers", "role": "Children"s Pastor", "location": "College Park, GA", "salary": "$50,000-$65,000", "desc": "Lead all children"s ministry programs and curriculum for birth through 5th grade. CPR certified required.", "url": "https://www.worldchangers.org/employment"}, {"church": "North Point Ministries", "role": "Small Groups Director", "location": "Alpharetta, GA", "salary": "$60,000-$78,000", "desc": "Develop and oversee our community groups ministry, training coaches and leaders across all campuses.", "url": "https://northpoint.org/jobs"}, {"church": "Redeemed Christian Church (UK)", "role": "Parish Pastor", "location": "London, UK", "salary": "£35,000-£50,000", "desc": "Lead an established RCCG parish. Leadership training, ordination certificate, and strong pastoral gifts required.", "url": "https://rccguk.church/vacancies"}, {"church": "Church of the Highlands", "role": "Worship Pastor", "location": "Birmingham, AL", "salary": "$65,000-$80,000", "desc": "Lead worship for our main campus and oversee worship team development across all campuses.", "url": "https://www.churchofthehighlands.com/jobs"}, {"church": "Planet Shakers Church", "role": "Creative Director", "location": "Melbourne, Australia", "salary": "AUD $70,000-$90,000", "desc": "Lead all creative outputs including music production, media, and branding for our international ministry.", "url": "https://planetshakers.com/careers"}, {"church": "Deeper Life Bible Church", "role": "Zonal Overseer", "location": "Nigeria (Various Zones)", "salary": "Honorarium + Housing", "desc": "Provide spiritual oversight, mentoring, and administrative leadership for assigned zone of churches.", "url": "https://deeperlifeonline.org/contact"}, {"church": "Brooklyn Tabernacle", "role": "Prayer Minister", "location": "Brooklyn, NY", "salary": "$45,000-$58,000", "desc": "Lead and coordinate our intercessory prayer ministry. Strong calling to prayer and intercession required.", "url": "https://brooklyntabernacle.org/about/employment"}, {"church": "Saddleback Church", "role": "Global Missions Director", "location": "Lake Forest, CA", "salary": "$75,000-$95,000", "desc": "Oversee Saddleback"s global missions strategy, partnerships, and PEACE Plan implementation worldwide.", "url": "https://saddleback.com/careers"}, {"church": "T.D. Jakes Ministries", "role": "Media Pastor", "location": "Dallas, TX", "salary": "$68,000-$88,000", "desc": "Oversee digital media strategy, live streaming, and content production for our global broadcast ministry.", "url": "https://thepottershouse.org/employment"}, {"church": "Hillsong Conference", "role": "Conference Coordinator", "location": "New York, NY", "salary": "$50,000-$65,000", "desc": "Plan and coordinate Hillsong NYC conference events, speaker bookings, and logistics.", "url": "https://hillsong.com/usa/jobs"}, {"church": "Yoido Full Gospel Church", "role": "International Ministry Coordinator", "location": "Seoul, South Korea", "salary": "KRW 40-55M", "desc": "Coordinate international ministry partnerships, oversee English-speaking ministry, and handle global outreach programs.", "url": "https://english.fgtv.com/contact"}, {"church": "Catch the Fire Church", "role": "Pastor of Evangelism", "location": "Toronto, Canada", "salary": "CAD $55,000-$70,000", "desc": "Lead evangelism training, outreach programs, and discipleship pathways for our Toronto congregation.", "url": "https://www.catchthefire.com/employment"}, {"church": "Mosaic Church", "role": "Lead Pastor of Arts", "location": "Los Angeles, CA", "salary": "$60,000-$80,000", "desc": "Develop and lead Mosaic"s arts and creative culture. Strong vision for the intersection of faith and creativity.", "url": "https://www.mosaic.org/careers"}];
+var isAdminHire=false;
+
+function getCustomJobs(){return gl('gate_hiring_jobs')||[];}
+
+function renderHiringGrid(q,role){
+  var all=getCustomJobs().concat(DEFAULT_JOBS);
+  if(q){var lq=q.toLowerCase();all=all.filter(function(j){return j.church.toLowerCase().indexOf(lq)>-1||j.role.toLowerCase().indexOf(lq)>-1||(j.location||'').toLowerCase().indexOf(lq)>-1;});}
+  if(role&&role!='all'){all=all.filter(function(j){return j.role.indexOf(role)>-1;});}
+  var cnt=document.getElementById('hiringCount');if(cnt)cnt.textContent=all.length;
+  var grid=document.getElementById('hiringGrid');if(!grid)return;
+  if(!all.length){grid.innerHTML='<div style="color:var(--text2);text-align:center;padding:2rem;grid-column:1/-1;">No positions found.</div>';return;}
+  var html='';
+  for(var i=0;i<all.length;i++){
+    var j=all[i];
+    html+='<div class="church-card"><div class="church-name">'+esc(j.church)+'</div><div style="font-family:Cinzel,serif;color:var(--cream);font-size:.78rem;margin-bottom:.2rem;">'+esc(j.role)+'</div><div class="church-location">&#128205; '+esc(j.location||'')+'</div>'+(j.salary?'<div style="font-size:.75rem;color:#4aad74;font-family:sans-serif;margin-bottom:.4rem;">&#128176; '+esc(j.salary)+'</div>':'')+'<div style="font-size:.78rem;color:var(--text2);font-family:sans-serif;margin-bottom:.7rem;line-height:1.6;">'+(j.desc?esc(j.desc.slice(0,100))+'...':'')+'</div><a href="'+esc(j.url||'#')+'" target="_blank" class="church-btn">&#128196; Apply Now</a></div>';
+  }
+  grid.innerHTML=html;
+}
+
+function filterHiring(q){
+  var role=document.getElementById('roleFilter').value;
+  renderHiringGrid(q,role);
+}
+
+function addHiring(){
+  var church=document.getElementById('hChurch').value.trim();
+  var role=document.getElementById('hRole').value.trim();
+  var url=document.getElementById('hUrl').value.trim();
+  if(!church||!role||!url){document.getElementById('hireAddMsg').innerHTML='<span style="color:#e05555">Church, role and URL required.</span>';return;}
+  var jobs=getCustomJobs();
+  jobs.unshift({church:church,role:role,location:document.getElementById('hLoc').value,salary:document.getElementById('hSalary').value,desc:document.getElementById('hDesc').value,url:url});
+  gs('gate_hiring_jobs',jobs);
+  ['hChurch','hRole','hLoc','hSalary','hDesc','hUrl'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('hireAddMsg').innerHTML='<span style="color:#4aad74">&#10003; Position posted!</span>';
+  setTimeout(function(){document.getElementById('hireAddMsg').innerHTML='';},3000);
+  renderHiringGrid('','all');
+}
+
+function promptAdminHire(){
+  if(isAdminHire){document.getElementById('adminHireBox').classList.add('visible');return;}
+  var pw=prompt('Admin Password:');
+  if(pw=='GATE2025admin'){isAdminHire=true;document.getElementById('adminHireBox').classList.add('visible');}
+  else if(pw!==null)alert('Incorrect.');
+}
+renderHiringGrid('','all');
+
+window.addEventListener('load',function(){
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();});</script>
+</body></html>
