@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GATE — Study Material Store</title>
 <style>
-
-:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
-a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
-
-
 .gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
 .gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
 .gate-logo{display:flex;align-items:center;gap:.7rem}
@@ -86,198 +75,61 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
 .page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
 .page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
 .divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
-.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem;padding-bottom:5rem}
-.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
-.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
-.card-header h2 span{font-size:1.2rem}
-.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.55rem 1.2rem;border-radius:5px;font-family:sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
-.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2);text-decoration:none}
-.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1);text-decoration:none}
-.btn-danger{background:#6b1d2e;color:#f5f0e8}.btn-danger:hover{background:#8b2540;text-decoration:none}
-.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f;text-decoration:none}
-.btn-sm{padding:.3rem .7rem;font-size:.78rem}
-input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
-label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
-.form-group{margin-bottom:.9rem}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:640px){.grid2{grid-template-columns:1fr}}
-.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
-.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
-.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
-.badge-red{background:rgba(139,32,32,.2);color:#e05555;border:1px solid #8b2020}
-.badge-blue{background:rgba(30,80,150,.2);color:#6ea8fe;border:1px solid #3060a0}
-.badge-gray{background:rgba(100,100,100,.2);color:#888;border:1px solid #555}
-.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
-.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
-.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
-.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
-table{width:100%;border-collapse:collapse}
-th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
-td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
-.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
-.gate-footer span{color:var(--gold)}
-
-
-.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
-.admin-toolbar.visible{display:block}
-.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
-.admin-tb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif;margin-right:.2rem}
-.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600;transition:all .15s}
-.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
-.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
-.atb-btn.amber{background:rgba(201,168,76,.15);color:var(--gold);border-color:var(--gold)}
-.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
-.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
-.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
-/* Admin Panel on page */
-.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
-.admin-panel.visible{display:block}
-.admin-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2)}
-.admin-panel-header h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
-.admin-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
-/* Content items */
-.item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1rem}
-.content-item{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;transition:all .2s}
-.content-item:hover{border-color:rgba(201,168,76,.5)}
-.content-item img{width:100%;height:140px;object-fit:cover;border-radius:6px;margin-bottom:.7rem;border:1px solid rgba(201,168,76,.15)}
-.content-item .item-title{font-family:sans-serif;font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.3rem}
-.content-item .item-body{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:.6rem}
-.item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem}
-.status-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
-
-.item-price-tag{font-size:1.6rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin:.5rem 0 .7rem;letter-spacing:.5px;border-left:3px solid var(--gold);padding-left:.6rem;background:rgba(201,168,76,.06);border-radius:0 6px 6px 0;padding:.3rem .6rem;}
-
-/* ── STORE LAYOUT ── */
-.store-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
-.store-search{flex:1;min-width:200px;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .9rem;font-family:inherit;font-size:.88rem}
-.store-search:focus{outline:none;border-color:var(--gold)}
-.cart-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);border:none;padding:.55rem 1.1rem;border-radius:6px;font-family:sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;position:relative}
-.cart-badge{background:#e05555;color:#fff;border-radius:50%;width:18px;height:18px;font-size:.65rem;display:inline-flex;align-items:center;justify-content:center;font-family:sans-serif;font-weight:700}
-/* Category tabs */
-.cat-tabs{display:flex;gap:.3rem;margin-bottom:1.5rem;flex-wrap:wrap;border-bottom:2px solid rgba(201,168,76,.2);padding-bottom:.3rem}
-.cat-tab{background:transparent;border:none;color:var(--text2);padding:.5rem .9rem;cursor:pointer;font-family:sans-serif;font-size:.78rem;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
-.cat-tab.active,.cat-tab:hover{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.06)}
-/* Product grid */
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;margin-bottom:2rem}
-.product-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;overflow:hidden;transition:all .2s;display:flex;flex-direction:column}
-.product-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
-.product-img{height:180px;background:rgba(201,168,76,.06);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:3rem;flex-shrink:0}
-.product-img img{width:100%;height:100%;object-fit:cover}
-.product-body{padding:1rem;flex:1;display:flex;flex-direction:column}
-.product-cat-tag{font-family:sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-bottom:.3rem}
-.product-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem;margin-bottom:.4rem;line-height:1.4}
-.product-desc{font-size:.78rem;color:var(--text2);line-height:1.6;flex:1;margin-bottom:.7rem}
-.product-price{font-size:1.4rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin-bottom:.7rem}
-.product-price.free{color:#4aad74;font-size:1rem}
-.product-actions{display:flex;gap:.4rem;flex-wrap:wrap}
-.btn-buy{background:var(--gold);color:var(--navy);border:none;padding:.45rem .9rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s;flex:1;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.3rem}
-.btn-buy:hover{background:var(--gold2)}
-.btn-cart{background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:.45rem .9rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-cart:hover{background:rgba(201,168,76,.1)}
-.btn-wish{background:transparent;border:1.5px solid rgba(201,168,76,.3);color:var(--text2);padding:.45rem .6rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s}
-.btn-wish.saved{border-color:#e05555;color:#e05555}
-.btn-wish:hover{border-color:rgba(255,100,100,.5);color:#e05555}
-/* Cart modal */
-.cart-modal{position:fixed;top:0;right:0;bottom:0;z-index:9999;width:min(420px,100vw);background:linear-gradient(180deg,#162440,#0d1b2e);border-left:2px solid rgba(201,168,76,.4);display:none;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
-.cart-modal.open{display:flex}
-.cart-modal-hdr{padding:1.2rem;border-bottom:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.cart-modal-hdr h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
-.cart-items{flex:1;overflow-y:auto;padding:1rem}
-.cart-item{display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:flex-start}
-.cart-item-img{width:52px;height:52px;border-radius:6px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden}
-.cart-item-img img{width:100%;height:100%;object-fit:cover}
-.cart-item-info{flex:1}
-.cart-item-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem;margin-bottom:.15rem}
-.cart-item-price{font-family:sans-serif;font-size:.88rem;color:var(--cream);font-weight:700}
-.cart-qty{display:flex;align-items:center;gap:.4rem;margin-top:.3rem}
-.qty-btn{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);width:22px;height:22px;border-radius:4px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center}
-.qty-val{font-family:sans-serif;font-size:.82rem;color:var(--cream);min-width:20px;text-align:center}
-.cart-footer{padding:1.2rem;border-top:1px solid rgba(201,168,76,.2);flex-shrink:0}
-.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-.cart-total-label{font-family:sans-serif;font-size:.85rem;color:var(--text2)}
-.cart-total-val{font-family:sans-serif;font-size:1.2rem;font-weight:700;color:var(--gold)}
-.checkout-btn{width:100%;background:var(--gold);color:var(--navy);border:none;padding:.8rem;border-radius:7px;font-family:sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
-.checkout-btn:hover{background:var(--gold2)}
-/* Checkout modal */
-.checkout-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center}
-.checkout-overlay.open{display:flex}
-.checkout-box{background:linear-gradient(180deg,#162440,#0d1b2e);border:2px solid rgba(201,168,76,.4);border-radius:14px;padding:2rem;max-width:500px;width:90%;max-height:90vh;overflow-y:auto}
-/* Admin panel */
-.admin-store-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
-.admin-store-panel.visible{display:block}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-.fg label{display:block;color:var(--text2);font-size:.78rem;margin-bottom:.18rem;font-family:sans-serif}
-.fg input,.fg select,.fg textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
-.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--gold)}
-.admin-item-row{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:7px;padding:.8rem 1rem;margin-bottom:.4rem;display:flex;align-items:center;gap.5rem;flex-wrap:wrap;justify-content:space-between}
-.admin-item-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem}
-.admin-item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
-.abtn{padding:.22rem .55rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;border:1px solid;font-weight:600}
-.abtn-edit{background:rgba(201,168,76,.15);color:var(--gold);border-color:rgba(201,168,76,.4)}
-.abtn-pay{background:rgba(30,80,150,.2);color:#6ea8fe;border-color:rgba(30,80,150,.4)}
-.abtn-img{background:rgba(100,60,160,.2);color:#b090e0;border-color:rgba(100,60,160,.4)}
-.abtn-approve{background:rgba(45,122,79,.2);color:#4aad74;border-color:#2d7a4f}
-.abtn-suspend{background:rgba(180,120,20,.2);color:#d4a020;border-color:rgba(180,120,20,.4)}
-.abtn-archive{background:rgba(60,60,90,.3);color:#888;border-color:rgba(100,100,150,.3)}
-.abtn-restore{background:rgba(45,122,79,.2);color:#4aad74;border-color:#2d7a4f}
-.abtn-remove{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
-.abtn-verify{background:rgba(30,80,150,.2);color:#6ea8fe;border-color:rgba(100,130,200,.4)}
-
-</style>
-
-<style>
 :root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#a09070}
+*{box-sizing:border-box}
+body{background:var(--navy);color:var(--text);font-family:'Georgia',serif;min-height:100vh}
 .container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 5rem}
-.page-hero{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(30,50,100,.1));border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:2rem;margin-bottom:2rem;text-align:center}
-.page-hero h1{font-family:'Cinzel',serif;color:var(--gold);font-size:1.6rem;letter-spacing:3px;margin-bottom:.5rem}
-.page-hero p{color:var(--text2);font-size:.9rem;max-width:700px;margin:0 auto}
-.stats-bar{display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.7rem 1.2rem;text-align:center;flex:1;min-width:100px}
-.stat-val{font-family:'Cinzel',serif;color:var(--gold);font-size:1.3rem;font-weight:700}
-.stat-lbl{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:sans-serif}
-.search-bar-wrap{margin-bottom:1.5rem;display:flex;gap:.6rem;flex-wrap:wrap}
-.search-bar{flex:1;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem 1rem;font-family:inherit;font-size:.9rem}
+.page-hero{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(30,50,100,.1));border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:2rem;margin-bottom:1.5rem;text-align:center}
+.page-hero h1{font-family:'Cinzel',serif;color:var(--gold);font-size:1.5rem;letter-spacing:3px;margin-bottom:.5rem}
+.page-hero p{color:var(--text2);font-size:.88rem;max-width:700px;margin:.5rem auto 0;line-height:1.7}
+.stats-bar{display:flex;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.7rem 1.2rem;text-align:center;flex:1;min-width:90px}
+.stat-val{font-family:'Cinzel',serif;color:var(--gold);font-size:1.2rem;font-weight:700}
+.stat-lbl{font-size:.62rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:sans-serif;margin-top:.1rem}
+.filter-bar{display:flex;gap:.6rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.search-bar{flex:1;min-width:200px;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem 1rem;font-family:inherit;font-size:.88rem}
 .search-bar:focus{outline:none;border-color:var(--gold)}
-.continent-section{margin-bottom:2.5rem}
-.cont-hdr{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(30,50,100,.08));border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:1rem 1.4rem;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;cursor:pointer}
-.cont-icon{font-size:1.6rem}
-.cont-title{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
-.cont-count{font-size:.75rem;color:var(--text2);font-family:sans-serif;margin-top:.1rem}
-.cont-toggle{margin-left:auto;color:var(--gold);font-size:.9rem}
-.religion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.8rem}
-.religion-card{background:var(--navy2);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:1rem 1.1rem;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:.8rem}
-.religion-card:hover{border-color:var(--gold);background:rgba(201,168,76,.06);transform:translateX(3px)}
-.rel-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
-.rel-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;margin-bottom:.2rem}
-.rel-countries{font-size:.72rem;color:var(--text2);font-family:sans-serif;line-height:1.5}
-.rel-type{display:inline-block;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;padding:.1rem .45rem;border-radius:8px;margin-top:.3rem;font-family:sans-serif;font-weight:700}
-.type-abrahamic{background:rgba(30,80,150,.2);color:#6ea8fe}
-.type-dharmic{background:rgba(120,40,200,.2);color:#b090e0}
-.type-indigenous{background:rgba(45,122,79,.2);color:#4aad74}
-.type-philosophical{background:rgba(201,168,76,.2);color:var(--gold)}
-.type-folk{background:rgba(200,80,40,.2);color:#e08060}
-.type-other{background:rgba(100,100,100,.2);color:#aaa}
-/* Religion detail modal */
-.rel-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,.85);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:2rem 1rem}
+.filter-sel{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem .9rem;font-family:sans-serif;font-size:.82rem;cursor:pointer}
+.continent-section{margin-bottom:.7rem}
+.cont-hdr{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(13,27,46,.85));border:1px solid rgba(201,168,76,.3);border-radius:10px;padding:.9rem 1.3rem;display:flex;align-items:center;gap:.8rem;cursor:pointer;user-select:none;transition:all .2s}
+.cont-hdr:hover{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.18),rgba(13,27,46,.9))}
+.cont-icon{font-size:1.5rem;flex-shrink:0}
+.cont-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;letter-spacing:1px}
+.cont-count{font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-top:.2rem}
+.cont-chevron{margin-left:auto;color:var(--gold);font-size:1.1rem;transition:transform .3s;line-height:1;display:block;flex-shrink:0}
+.cont-chevron.open{transform:rotate(180deg)}
+.religion-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.7rem;padding:.9rem 0 .4rem}
+.religion-grid.open{display:grid}
+.rel-card{background:var(--navy2);border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:.85rem 1rem;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:.7rem}
+.rel-card:hover{border-color:var(--gold);background:rgba(201,168,76,.07);transform:translateX(4px)}
+.rel-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem;line-height:1}
+.rel-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.83rem;margin-bottom:.18rem;line-height:1.3}
+.rel-countries{font-size:.7rem;color:var(--text2);font-family:sans-serif;line-height:1.5}
+.rel-type{display:inline-block;font-size:.6rem;text-transform:uppercase;letter-spacing:.6px;padding:.1rem .4rem;border-radius:8px;margin-top:.3rem;font-family:sans-serif;font-weight:700}
+.type-abrahamic{background:rgba(30,80,150,.25);color:#7ab0ff}
+.type-dharmic{background:rgba(120,40,200,.25);color:#c0a0ff}
+.type-indigenous{background:rgba(45,122,79,.25);color:#6fd498}
+.type-philosophical{background:rgba(201,168,76,.25);color:var(--gold)}
+.type-folk{background:rgba(200,80,40,.25);color:#ff9070}
+.type-ancient{background:rgba(150,100,20,.25);color:#d4b060}
+.type-other{background:rgba(100,100,100,.2);color:#bbb}
+.rel-modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999;background:rgba(0,0,0,.88);display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:2rem 1rem}
 .rel-modal.open{display:flex}
-.rel-modal-box{background:linear-gradient(180deg,#162440,#0d1b2e);border:2px solid rgba(201,168,76,.4);border-radius:14px;max-width:800px;width:100%;padding:2rem;position:relative;margin:auto}
-.rel-modal-title{font-family:'Cinzel',serif;color:var(--gold);font-size:1.2rem;margin-bottom:.5rem}
-.rel-modal-meta{font-size:.8rem;color:var(--text2);font-family:sans-serif;margin-bottom:1.2rem}
-.rel-modal-body{color:var(--cream);font-size:.88rem;line-height:1.85;margin-bottom:1.2rem}
-.rel-modal-pdf{width:100%;height:500px;border:none;background:#111;border-radius:8px}
-.doc-attach{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:7px;padding:.7rem 1rem;margin-bottom:.5rem;display:flex;align-items:center;justify-content:space-between}
-.doc-attach-name{font-family:sans-serif;font-size:.82rem;color:var(--cream)}
-/* Admin */
+.rel-modal-box{background:linear-gradient(180deg,#162440,#0d1b2e);border:2px solid rgba(201,168,76,.4);border-radius:14px;max-width:820px;width:100%;padding:2rem;position:relative;margin:auto}
+.rmt{font-family:'Cinzel',serif;color:var(--gold);font-size:1.15rem;margin-bottom:.4rem}
+.rms{font-size:.8rem;color:var(--text2);font-family:sans-serif;margin-bottom:1rem;line-height:1.6}
+.rmb{color:var(--cream);font-size:.87rem;line-height:1.88;margin-bottom:1.2rem}
+.doc-row{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-radius:7px;padding:.6rem .9rem;margin-bottom:.4rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.doc-row-name{font-family:sans-serif;font-size:.8rem;color:var(--cream)}
+.rm-pdf{width:100%;height:460px;border:none;background:#111;border-radius:8px;margin-top:.9rem}
 .admin-box{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.3);border-radius:10px;padding:1.5rem;margin-top:2rem;display:none}
 .admin-box.visible{display:block}
-.fg label{display:block;color:var(--text2);font-size:.75rem;margin-bottom:.2rem;font-family:sans-serif}
-.fg input,.fg select,.fg textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
-.fg input:focus,.fg select:focus{outline:none;border-color:var(--gold)}
+.fg label{display:block;color:var(--text2);font-size:.75rem;margin-bottom:.18rem;font-family:sans-serif}
+.fg input{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
+.fg input:focus{outline:none;border-color:var(--gold)}
 .btn-gold{background:var(--gold);color:var(--navy);border:none;padding:.6rem 1.5rem;border-radius:6px;font-family:sans-serif;font-size:.88rem;font-weight:700;cursor:pointer}
+@media(max-width:600px){.religion-grid{grid-template-columns:1fr}}
 </style>
-</head><body>
 <body>
 <nav class="gate-nav"><div class="gate-nav-inner">
   <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
@@ -340,302 +192,285 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 </div></nav>
 
 <div class="container">
-  <div class="page-hero">
-    <h1>🌍 World Religions & Spiritual Practices</h1>
-    <p>A comprehensive study of every major religion, indigenous tradition, cultural practice, and spiritual belief system across all continents and civilizations — organized for structured theological education.</p>
-  </div>
-  <div class="stats-bar">
-    <div class="stat-box"><div class="stat-val" id="totalRels">68+</div><div class="stat-lbl">Traditions</div></div>
-    <div class="stat-box"><div class="stat-val">7</div><div class="stat-lbl">Continents</div></div>
-    <div class="stat-box"><div class="stat-val">100+</div><div class="stat-lbl">Countries</div></div>
-    <div class="stat-box"><div class="stat-val">PDF</div><div class="stat-lbl">Study Materials</div></div>
-  </div>
-  <div class="search-bar-wrap">
-    <input class="search-bar" id="relSearch" placeholder="Search religions, countries, or practices..." oninput="searchReligions(this.value)">
-    <select id="typeFilter" onchange="filterByType(this.value)" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem .9rem;font-family:sans-serif;font-size:.85rem;cursor:pointer;">
-      <option value="all">All Types</option>
-      <option value="abrahamic">Abrahamic</option>
-      <option value="dharmic">Dharmic</option>
-      <option value="indigenous">Indigenous</option>
-      <option value="philosophical">Philosophical</option>
-      <option value="folk">Folk / Syncretic</option>
-      <option value="other">Other / Ancient</option>
-    </select>
-  </div>
-  <div id="searchResults" style="display:none;margin-bottom:1.5rem;">
-    <div style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;margin-bottom:.8rem;" id="searchResultLabel"></div>
-    <div class="religion-grid" id="searchResultGrid"></div>
-  </div>
-  <div id="continentsView"><div class="continent-section" id="cont-africa"><div class="cont-hdr" onclick="toggleContinent('africa')"><div class="cont-icon">🌍</div><div><div class="cont-title">Africa 🌍</div><div class="cont-count" id="cc-africa">Loading...</div></div><div class="cont-toggle" id="ct-africa">▼</div></div><div class="religion-grid" id="rg-africa" style="display:grid;"></div></div><div class="continent-section" id="cont-asia"><div class="cont-hdr" onclick="toggleContinent('asia')"><div class="cont-icon">🌏</div><div><div class="cont-title">Asia 🌏</div><div class="cont-count" id="cc-asia">Loading...</div></div><div class="cont-toggle" id="ct-asia">▼</div></div><div class="religion-grid" id="rg-asia" style="display:grid;"></div></div><div class="continent-section" id="cont-europe"><div class="cont-hdr" onclick="toggleContinent('europe')"><div class="cont-icon">🗺</div><div><div class="cont-title">Europe</div><div class="cont-count" id="cc-europe">Loading...</div></div><div class="cont-toggle" id="ct-europe">▼</div></div><div class="religion-grid" id="rg-europe" style="display:grid;"></div></div><div class="continent-section" id="cont-americas"><div class="cont-hdr" onclick="toggleContinent('americas')"><div class="cont-icon">🌎</div><div><div class="cont-title">The Americas 🌎</div><div class="cont-count" id="cc-americas">Loading...</div></div><div class="cont-toggle" id="ct-americas">▼</div></div><div class="religion-grid" id="rg-americas" style="display:grid;"></div></div><div class="continent-section" id="cont-oceania"><div class="cont-hdr" onclick="toggleContinent('oceania')"><div class="cont-icon">🌊</div><div><div class="cont-title">Oceania & Pacific</div><div class="cont-count" id="cc-oceania">Loading...</div></div><div class="cont-toggle" id="ct-oceania">▼</div></div><div class="religion-grid" id="rg-oceania" style="display:grid;"></div></div><div class="continent-section" id="cont-middleeast"><div class="cont-hdr" onclick="toggleContinent('middleeast')"><div class="cont-icon">🕌</div><div><div class="cont-title">Middle East & North Africa</div><div class="cont-count" id="cc-middleeast">Loading...</div></div><div class="cont-toggle" id="ct-middleeast">▼</div></div><div class="religion-grid" id="rg-middleeast" style="display:grid;"></div></div><div class="continent-section" id="cont-global"><div class="cont-hdr" onclick="toggleContinent('global')"><div class="cont-icon">🌐</div><div><div class="cont-title">Global / Cross-Cultural</div><div class="cont-count" id="cc-global">Loading...</div></div><div class="cont-toggle" id="ct-global">▼</div></div><div class="religion-grid" id="rg-global" style="display:grid;"></div></div>
-  </div>
-  <!-- Religion Detail Modal -->
-  <div class="rel-modal" id="relModal">
-    <div class="rel-modal-box">
-      <button onclick="closeRelModal()" style="position:absolute;top:1rem;right:1rem;background:rgba(139,32,32,.4);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">&#10005; Close</button>
-      <div class="rel-modal-title" id="relModalTitle"></div>
-      <div class="rel-modal-meta" id="relModalMeta"></div>
-      <div class="rel-modal-body" id="relModalBody"></div>
-      <div style="margin-bottom:.8rem;"><div style="font-family:Cinzel,serif;color:var(--gold);font-size:.78rem;letter-spacing:1px;margin-bottom:.6rem;">&#128196; Study Documents</div>
-        <div id="relModalDocs"></div>
-      </div>
-      <iframe class="rel-modal-pdf" id="relModalPdf" src=""></iframe>
-    </div>
-  </div>
-  <!-- Admin -->
-  <div class="admin-box" id="adminRelBox">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
-      <h3 style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">&#9881; Admin: Add Document to Religion</h3>
-      <button onclick="document.getElementById('adminRelBox').classList.remove('visible')" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">&#10005; Close</button>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>Religion ID (from page)</label><input type="text" id="relDocId" placeholder="e.g. r001"></div>
-      <div class="fg"><label>Document Title</label><input type="text" id="relDocTitle" placeholder="e.g. Vodun: A Complete Study"></div>
-    </div>
-    <div class="fg" style="margin-bottom:.8rem;"><label>Upload PDF (max 5MB)</label><input type="file" id="relDocFile" accept=".pdf" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text2);border-radius:5px;padding:.45rem .7rem;font-family:sans-serif;font-size:.82rem;width:100%;cursor:pointer;"></div>
-    <div class="fg" style="margin-bottom:.8rem;"><label>Or External PDF URL</label><input type="url" id="relDocUrl" placeholder="https://...pdf"></div>
-    <button class="btn-gold" onclick="addRelDoc()">&#128226; POST Document</button>
-    <div id="relDocMsg" style="font-size:.83rem;margin-top:.5rem;min-height:1rem;"></div>
-  </div>
-  <div style="text-align:center;margin-top:1.5rem;">
-    <button onclick="promptAdminRel()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#9881; Admin Access</button>
+<div class="page-hero"><h1>🌍 World Religions &amp; Spiritual Practices</h1><p>Every major religion, indigenous tradition, cultural practice, and spiritual belief across all continents — with study materials. Click any continent header to expand and explore its traditions.</p></div>
+<div class="stats-bar"><div class="stat-box"><div class="stat-val">100+</div><div class="stat-lbl">Traditions</div></div><div class="stat-box"><div class="stat-val">7</div><div class="stat-lbl">Continents</div></div><div class="stat-box"><div class="stat-val">190+</div><div class="stat-lbl">Countries</div></div><div class="stat-box"><div class="stat-val">PDF</div><div class="stat-lbl">Study Guides</div></div></div>
+<div class="filter-bar"><input class="search-bar" id="relSearch" placeholder="Search religion, country, or keyword..." oninput="doSearch(this.value)"><select class="filter-sel" id="typeFilter" onchange="doTypeFilter(this.value)"><option value="all">All Types</option><option value="abrahamic">Abrahamic</option><option value="dharmic">Dharmic</option><option value="indigenous">Indigenous</option><option value="philosophical">Philosophical</option><option value="folk">Folk / Syncretic</option><option value="ancient">Ancient / Historical</option><option value="other">Other</option></select></div>
+<div id="searchPanel" style="display:none;margin-bottom:1.5rem;"><div style="font-family:Cinzel,serif;color:var(--gold);font-size:.88rem;margin-bottom:.7rem;" id="searchLabel"></div><div class="religion-grid open" id="searchGrid"></div></div>
+<div id="continentsPanel">
+<div class="continent-section"><div class="cont-hdr" onclick="toggleContinent('africa')"><div class="cont-icon">🌍</div><div><div class="cont-name">Africa</div><div class="cont-count" id="cc-africa">Loading...</div></div><div class="cont-chevron" id="chv-africa">▼</div></div><div class="religion-grid" id="rg-africa"></div></div>
+<div class="continent-section"><div class="cont-hdr" onclick="toggleContinent('asia')"><div class="cont-icon">🌏</div><div><div class="cont-name">Asia</div><div class="cont-count" id="cc-asia">Loading...</div></div><div class="cont-chevron" id="chv-asia">▼</div></div><div class="religion-grid" id="rg-asia"></div></div>
+<div class="continent-section"><div class="cont-hdr" onclick="toggleContinent('europe')"><div class="cont-icon">🗺</div><div><div class="cont-name">Europe</div><div class="cont-count" id="cc-europe">Loading...</div></div><div class="cont-chevron" id="chv-europe">▼</div></div><div class="religion-grid" id="rg-europe"></div></div>
+<div class="continent-section"><div class="cont-hdr" onclick="toggleContinent('americas')"><div class="cont-icon">🌎</div><div><div class="cont-name">The Americas</div><div class="cont-count" id="cc-americas">Loading...</div></div><div class="cont-chevron" id="chv-americas">▼</div></div><div class="religion-grid" id="rg-americas"></div></div>
+<div class="continent-section"><div class="cont-hdr" onclick="toggleContinent('oceania')"><div class="cont-icon">🌊</div><div><div class="cont-name">Oceania & Pacific</div><div class="cont-count" id="cc-oceania">Loading...</div></div><div class="cont-chevron" id="chv-oceania">▼</div></div><div class="religion-grid" id="rg-oceania"></div></div>
+<div class="continent-section"><div class="cont-hdr" onclick="toggleContinent('middleeast')"><div class="cont-icon">🕌</div><div><div class="cont-name">Middle East & N. Africa</div><div class="cont-count" id="cc-middleeast">Loading...</div></div><div class="cont-chevron" id="chv-middleeast">▼</div></div><div class="religion-grid" id="rg-middleeast"></div></div>
+<div class="continent-section"><div class="cont-hdr" onclick="toggleContinent('global')"><div class="cont-icon">🌐</div><div><div class="cont-name">Global / Cross-Cultural</div><div class="cont-count" id="cc-global">Loading...</div></div><div class="cont-chevron" id="chv-global">▼</div></div><div class="religion-grid" id="rg-global"></div></div>
+</div>
+<div class="rel-modal" id="relModal">
+  <div class="rel-modal-box">
+    <button onclick="closeModal()" style="position:absolute;top:1rem;right:1rem;background:rgba(139,32,32,.5);color:#e05555;border:1px solid #8b2020;padding:.3rem .7rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">✕ Close</button>
+    <div class="rmt" id="rmTitle"></div>
+    <div class="rms" id="rmSub"></div>
+    <div class="rmb" id="rmBody"></div>
+    <div style="font-family:Cinzel,serif;color:var(--gold);font-size:.78rem;letter-spacing:1px;margin-bottom:.5rem;">📄 Study Documents</div>
+    <div id="rmDocs"></div>
+    <iframe class="rm-pdf" id="rmPdf" src=""></iframe>
   </div>
 </div>
+<div class="admin-box" id="adminBox">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
+    <span style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">⚙ Admin: Add Document to a Religion</span>
+    <button onclick="document.getElementById('adminBox').classList.remove('visible')" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">✕</button>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
+    <div class="fg"><label>Religion ID (e.g. af01, as05)</label><input type="text" id="adRelId" placeholder="Religion ID from data"></div>
+    <div class="fg"><label>Document Title</label><input type="text" id="adTitle" placeholder="Title of document"></div>
+  </div>
+  <div class="fg" style="margin-bottom:.8rem;"><label>Upload PDF (max 5MB)</label><input type="file" id="adFile" accept=".pdf" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text2);border-radius:5px;padding:.45rem .7rem;font-family:sans-serif;font-size:.78rem;width:100%;cursor:pointer;"></div>
+  <div class="fg" style="margin-bottom:.8rem;"><label>Or External PDF URL</label><input type="url" id="adUrl" placeholder="https://...pdf"></div>
+  <button class="btn-gold" onclick="addRelDoc()">📢 POST Document</button>
+  <div id="adMsg" style="font-size:.83rem;margin-top:.5rem;"></div>
+</div>
+<div style="text-align:center;margin-top:1.5rem;">
+  <button onclick="promptAdmin()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">⚙ Admin Access</button>
+</div>
+</div>
 
-<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
-function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
 function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function esc(s){return(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-var isAdminRel=false;
-
+function esc(s){return(s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 var CONTINENTS = [
-  {id:'africa',name:'Africa',icon:'🌍',religions:[
-    {id:'r001',name:'Christianity',icon:'✝',type:'abrahamic',countries:'Nigeria, Ethiopia, DRC, South Africa, Kenya, Ghana, Uganda, Cameroon, Tanzania',desc:'The largest religion in Africa. Brought largely through colonial missions; now deeply rooted across Sub-Saharan Africa with strong Evangelical, Catholic, and Pentecostal expressions.',study:'Religions-of-the-World.pdf'},
-    {id:'r002',name:'Islam',icon:'☪',type:'abrahamic',countries:'Egypt, Nigeria, Ethiopia, Algeria, Morocco, Sudan, Senegal, Mali, Somalia',desc:'Islam is the dominant religion across North Africa and the Sahel. Sunni Islam predominates, with strong Sufi traditions in West Africa.',study:'Religions-of-the-World.pdf'},
-    {id:'r003',name:'African Traditional Religions',icon:'🥁',type:'indigenous',countries:'All sub-Saharan African nations',desc:'Encompassing thousands of distinct ethnic beliefs, African Traditional Religion includes ancestor veneration, nature spirits, rites of passage, and oral cosmologies unique to each ethnic group.',study:'Religions-of-the-World.pdf'},
-    {id:'r004',name:'Voodoo (Vodun)',icon:'🌀',type:'folk',countries:'Benin, Togo, Haiti (diaspora), Nigeria (Yoruba roots)',desc:'Vodun is an ancient West African spiritual system originating among the Fon and Ewe peoples. It involves reverence of lwa (spirits), ritual possession, and powerful ceremonial practices.',study:'Religions-of-the-World.pdf'},
-    {id:'r005',name:'Yoruba Religion (Ifá)',icon:'🔮',type:'indigenous',countries:'Nigeria, Benin, Togo, Cuba (diaspora), Brazil (diaspora)',desc:'One of the largest traditional African religions. Centered on Olodumare (Supreme Being) and a pantheon of Orisha (divine spirits). Foundation for Santería, Candomblé, and Trinidad Orisha.',study:'Religions-of-the-World.pdf'},
-    {id:'r006',name:'Zulu Religion',icon:'🌿',type:'indigenous',countries:'South Africa (Zulu nation)',desc:'Centered on uNkulunkulu (the Creator) and the ancestors (amadlozi). Features strong tradition of spiritual healing through sangomas (diviner-healers).',study:'Religions-of-the-World.pdf'},
-    {id:'r007',name:'Ethiopian Orthodox Tewahedo',icon:'🕍',type:'abrahamic',countries:'Ethiopia, Eritrea',desc:'One of the oldest Christian churches in the world, established in the 4th century. Uses the Ethiopian Biblical canon (includes Enoch, Jubilees) and celebrates ancient Semitic-Christian rites.',study:'Religions-of-the-World.pdf'},
-    {id:'r008',name:'Coptic Christianity',icon:'☩',type:'abrahamic',countries:'Egypt, Sudan',desc:'Founded by the Apostle Mark in Alexandria (~42 AD). The Coptic Orthodox Church maintains the ancient Alexandrian liturgical tradition.',study:'Religions-of-the-World.pdf'},
-    {id:'r009',name:'Rastafari',icon:'🦁',type:'folk',countries:'Jamaica (origin), Ethiopia, Caribbean, worldwide diaspora',desc:'A religious and social movement that arose in Jamaica in the 1930s. Honors Haile Selassie I of Ethiopia as a messianic figure; draws from Pan-African theology and the Hebrew Bible.',study:'Religions-of-the-World.pdf'},
-    {id:'r010',name:'Sande Society',icon:'🌊',type:'indigenous',countries:'Sierra Leone, Liberia, Guinea',desc:'A secret society and initiation institution of the Mende, Temne, and Kpelle peoples. Governs female initiation, spiritual knowledge, and social order.',study:'Religions-of-the-World.pdf'},
-  ]},
-  {id:'asia',name:'Asia',icon:'🌏',religions:[
-    {id:'r011',name:'Hinduism',icon:'🕉',type:'dharmic',countries:'India, Nepal, Bali (Indonesia), Sri Lanka, Bangladesh, Pakistan (minority)',desc:'The world's oldest living religion (~4000+ years). Encompasses the Vedas, Upanishads, Bhagavad Gita, and thousands of traditions. Centers on dharma, karma, moksha, and an infinite pantheon of deities (forms of Brahman).',study:'Religions-of-the-World.pdf'},
-    {id:'r012',name:'Buddhism',icon:'☸',type:'dharmic',countries:'China, Thailand, Japan, Myanmar, Sri Lanka, Cambodia, Korea, Tibet, Vietnam',desc:'Founded by Siddhartha Gautama (~500 BC). The Four Noble Truths and Eightfold Path lead to liberation (Nirvana) from suffering. Major branches: Theravada, Mahayana, Vajrayana (Tibetan).',study:'Religions-of-the-World.pdf'},
-    {id:'r013',name:'Islam (Asia)',icon:'☪',type:'abrahamic',countries:'Indonesia, Pakistan, Bangladesh, India, Malaysia, Afghanistan, Iran, Iraq, Saudi Arabia, Turkey',desc:'Islam is the majority religion across the Middle East, Central Asia, and Southeast Asia. Indonesia holds the world's largest Muslim population.',study:'Religions-of-the-World.pdf'},
-    {id:'r014',name:'Sikhism',icon:'☬',type:'dharmic',countries:'India (Punjab), diaspora worldwide',desc:'Founded by Guru Nanak (~1469 AD). Teaches one God (Waheguru), equality of all humans, selfless service (seva), and daily prayer. Sacred text: Sri Guru Granth Sahib.',study:'Religions-of-the-World.pdf'},
-    {id:'r015',name:'Taoism',icon:'☯',type:'philosophical',countries:'China, Taiwan, Singapore, Vietnam, Korea',desc:'Founded by Laozi (~5th–4th century BC). Emphasizes living in harmony with the Tao (the Way): the fundamental force underlying the universe. Key texts: Tao Te Ching, Zhuangzi.',study:'Religions-of-the-World.pdf'},
-    {id:'r016',name:'Confucianism',icon:'📿',type:'philosophical',countries:'China, Korea, Japan, Vietnam, Taiwan',desc:'A social-philosophical tradition founded by Confucius (~551 BC). Emphasizes family piety, ritual propriety, benevolence (ren), and hierarchical social harmony.',study:'Religions-of-the-World.pdf'},
-    {id:'r017',name:'Shinto',icon:'⛩',type:'folk',countries:'Japan',desc:'Japan's indigenous spirituality. Reveres kami (spirits) residing in nature, ancestors, and sacred places. Practiced at shrines (jinja). Closely linked with Japanese national identity.',study:'Religions-of-the-World.pdf'},
-    {id:'r018',name:'Jainism',icon:'🤚',type:'dharmic',countries:'India (Gujarat, Rajasthan)',desc:'An ancient Indic religion founded on absolute non-violence (ahimsa). Teaches liberation through asceticism, right conduct, and self-discipline. Key figures: 24 Tirthankaras, especially Mahavira.',study:'Religions-of-the-World.pdf'},
-    {id:'r019',name:'Zoroastrianism',icon:'🔥',type:'abrahamic',countries:'Iran, India (Parsis), diaspora',desc:'One of the world's oldest monotheistic religions (~3500 years), founded by Zoroaster. Teaches the cosmic struggle between Ahura Mazda (good) and Angra Mainyu (evil). Sacred text: Avesta.',study:'Religions-of-the-World.pdf'},
-    {id:'r020',name:'Animism (SE Asia)',icon:'🌿',type:'indigenous',countries:'Philippines, Indonesia, Borneo, Vietnam highlands, Papua New Guinea',desc:'Indigenous animist traditions believe all natural objects possess spirit or soul. Practiced by hundreds of ethnic minority groups across Southeast Asia.',study:'Religions-of-the-World.pdf'},
-    {id:'r021',name:'Bon (Tibet)',icon:'🏔',type:'indigenous',countries:'Tibet, Bhutan, Nepal',desc:'The pre-Buddhist indigenous religion of Tibet. Includes shamanistic practices, cosmology, and spirit rituals. Now partly syncretized with Tibetan Buddhism.',study:'Religions-of-the-World.pdf'},
-    {id:'r022',name:'Yazidism',icon:'🦚',type:'other',countries:'Iraq, Syria, Turkey, diaspora',desc:'A syncretic religion of the Yazidi people combining elements of Zoroastrianism, Islam, and ancient Mesopotamian beliefs. Centers on Melek Taus (the Peacock Angel).',study:'Religions-of-the-World.pdf'},
-    {id:'r023',name:'Mandaeism',icon:'💧',type:'other',countries:'Iraq, Iran, diaspora',desc:'A Gnostic religion honoring John the Baptist. Emphasizes ritual water baptism, light vs. darkness dualism, and a complex cosmology of divine beings.',study:'Religions-of-the-World.pdf'},
-    {id:'r024',name:'Sumerian Religion',icon:'🏛',type:'other',countries:'Ancient Mesopotamia (modern Iraq)',desc:'One of the world's oldest recorded religions (~3500 BC). Worshipped a pantheon of gods (An, Enlil, Enki, Inanna). Features creation myths, flood narratives, and the Descent of Inanna.',study:'Religions-of-the-World.pdf'},
-    {id:'r025',name:'Babylonian Religion',icon:'⚡',type:'other',countries:'Ancient Babylonia (modern Iraq)',desc:'Developed from Sumerian roots. Worshipped Marduk as supreme god. The Enuma Elish (creation epic) and Epic of Gilgamesh (flood myth) are key sacred texts.',study:'Religions-of-the-World.pdf'},
-  ]},
-  {id:'europe',name:'Europe',icon:'🌍',religions:[
-    {id:'r026',name:'Roman Catholicism',icon:'✝',type:'abrahamic',countries:'Italy, Spain, Poland, France, Ireland, Portugal, Brazil (diaspora), worldwide',desc:'The largest branch of Christianity with 1.3 billion members. Led by the Pope in Rome. Practices seven sacraments, veneration of saints, and Marian devotion.',study:'Religions-of-the-World.pdf'},
-    {id:'r027',name:'Eastern Orthodoxy',icon:'☦',type:'abrahamic',countries:'Russia, Greece, Serbia, Romania, Bulgaria, Ukraine, Georgia',desc:'The second-largest Christian denomination. Separated from Rome in the 1054 Great Schism. Centers on theosis (deification), icons, Divine Liturgy, and the Church Fathers.',study:'Religions-of-the-World.pdf'},
-    {id:'r028',name:'Protestantism',icon:'✝',type:'abrahamic',countries:'Germany, UK, Scandinavia, USA, worldwide',desc:'Emerged from the 16th-century Reformation (Luther, Calvin, Zwingli). Includes Lutheran, Reformed/Presbyterian, Anglican, Baptist, Methodist, Pentecostal, and thousands of denominations.',study:'Religions-of-the-World.pdf'},
-    {id:'r029',name:'Norse Religion (Ásatrú)',icon:'⚡',type:'indigenous',countries:'Scandinavia, Iceland, Germany, worldwide revivals',desc:'The ancient religion of the Norse and Germanic peoples. Worships the Aesir (Odin, Thor, Freya) and Vanir gods. Sacred text: Eddas (Prose and Poetic). Modern revival: Ásatrú.',study:'Religions-of-the-World.pdf'},
-    {id:'r030',name:'Slavic Paganism (Rodnovery)',icon:'🌲',type:'indigenous',countries:'Russia, Poland, Ukraine, Czech Republic',desc:'The pre-Christian religion of Slavic peoples. Worships Rod, Perun, Mokosh, Veles, and other nature spirits. Modern revival movement: Rodnovery.',study:'Religions-of-the-World.pdf'},
-    {id:'r031',name:'Celtic Religion / Druidry',icon:'🌿',type:'indigenous',countries:'Ireland, Scotland, Wales, Brittany (France)',desc:'The ancient religion of the Celtic peoples. Druids served as priests, scholars, and judges. Honored nature, sacred groves, wells, and a polytheistic pantheon. Modern revival: Neo-Druidry.',study:'Religions-of-the-World.pdf'},
-    {id:'r032',name:'Greek Hellenism',icon:'🏛',type:'other',countries:'Greece (ancient and modern revival)',desc:'The polytheistic religion of ancient Greece. Olympian gods: Zeus, Athena, Apollo, Poseidon, etc. Foundation of Western philosophy, drama, and mythology. Revival: Hellenism (modern).',study:'Religions-of-the-World.pdf'},
-    {id:'r033',name:'Roman Religion',icon:'🦅',type:'other',countries:'Ancient Rome (modern revival worldwide)',desc:'The state religion of ancient Rome. Evolved from Latin-Etruscan roots. Heavily influenced by Greek religion. Gods: Jupiter, Juno, Mars, Venus, Mercury. Included Emperor worship.',study:'Religions-of-the-World.pdf'},
-    {id:'r034',name:'Judaism (Europe)',icon:'✡',type:'abrahamic',countries:'Israel, USA, France, UK, Germany, Russia, Hungary',desc:'The monotheistic religion of the Jewish people. Based on the Torah and Talmud. Major branches: Orthodox, Conservative, Reform, Hasidic. Deeply shaped by diaspora and the Holocaust.',study:'Religions-of-the-World.pdf'},
-    {id:'r035',name:'Wicca / Neo-Paganism',icon:'🌙',type:'other',countries:'UK, USA, worldwide',desc:'Modern pagan religion founded by Gerald Gardner (~1950). Venerates a God and Goddess, practices ritual magic (Wicca), and celebrates the Wheel of the Year (solstices, equinoxes).',study:'Religions-of-the-World.pdf'},
-  ]},
-  {id:'americas',name:'The Americas',icon:'🌎',religions:[
-    {id:'r036',name:'Christianity (Americas)',icon:'✝',type:'abrahamic',countries:'USA, Brazil, Mexico, Argentina, Colombia, Canada, Chile, Peru',desc:'Christianity is the dominant religion throughout the Americas. Catholicism dominates Latin America; Protestantism (especially Evangelical/Pentecostal) is rapidly growing across the region.',study:'Religions-of-the-World.pdf'},
-    {id:'r037',name:'Maya Religion',icon:'🏯',type:'indigenous',countries:'Mexico, Guatemala, Belize, Honduras (ancient and living traditions)',desc:'One of the most sophisticated ancient civilizations. Maya religion centered on time cycles (Tzolk'in, Haab), the creation epic Popol Vuh, deities like Kukulkan (feathered serpent), and sacred astronomy.',study:'Religions-of-the-World.pdf'},
-    {id:'r038',name:'Aztec (Nahuatl) Religion',icon:'☀',type:'indigenous',countries:'Mexico (ancient and syncretic living traditions)',desc:'The religious system of the Mexica (Aztec) people. Centered on sun worship, ritual sacrifice, and a complex pantheon (Huitzilopochtli, Tlaloc, Quetzalcoatl). Sacred calendar: Tonalpohualli.',study:'Religions-of-the-World.pdf'},
-    {id:'r039',name:'Inca (Andean) Religion',icon:'🦙',type:'indigenous',countries:'Peru, Bolivia, Ecuador, Chile, Colombia (ancient Inca Empire)',desc:'The religion of the Inca Empire. Worshipped Inti (Sun God), Pachamama (Earth Mother), and a hierarchy of huacas (sacred places). The Sapa Inca was considered divine.',study:'Religions-of-the-World.pdf'},
-    {id:'r040',name:'Native American Religions',icon:'🦅',type:'indigenous',countries:'USA, Canada (hundreds of distinct tribal traditions)',desc:'Encompasses hundreds of distinct traditions among First Nations/Native American peoples. Common elements: animism, vision quests, sweat lodges, ancestor honoring, medicine wheels, and ceremonial dances.',study:'Religions-of-the-World.pdf'},
-    {id:'r041',name:'Candomblé',icon:'🥁',type:'folk',countries:'Brazil (especially Bahia)',desc:'An Afro-Brazilian syncretic religion combining Yoruba Orisha worship with Catholic saints. Originated among enslaved West Africans. Features trance possession, ritual music (atabaque drums), and offerings.',study:'Religions-of-the-World.pdf'},
-    {id:'r042',name:'Santería (Lucumí)',icon:'🌺',type:'folk',countries:'Cuba, Puerto Rico, USA, Venezuela',desc:'An Afro-Cuban religion blending Yoruba religion with Roman Catholicism. Orishas are syncretized with Catholic saints. Key ceremonies: Bembe (drum feast), Ocha initiation.',study:'Religions-of-the-World.pdf'},
-    {id:'r043',name:'Voodoo (Haitian)',icon:'🌀',type:'folk',countries:'Haiti, Louisiana (USA), diaspora',desc:'Haitian Vodou is a syncretic religion of the Haitian people, blending West African Vodun with French Catholic elements. Centers on the lwa (spirits), the Gede (death spirits), and Rada/Petro rites.',study:'Religions-of-the-World.pdf'},
-    {id:'r044',name:'Mormonism (LDS)',icon:'📖',type:'abrahamic',countries:'USA (Utah), worldwide',desc:'The Church of Jesus Christ of Latter-day Saints, founded by Joseph Smith (1830). Accepts additional scriptures: Book of Mormon, Doctrine & Covenants. Believes in continuing revelation and additional prophets.',study:'Religions-of-the-World.pdf'},
-    {id:'r045',name:'Jehovah's Witnesses',icon:'📚',type:'abrahamic',countries:'Worldwide (190+ countries)',desc:'Founded in the late 19th century by Charles Taze Russell. Believes in a coming theocracy (Jehovah's Kingdom), rejects the Trinity, blood transfusions, and holidays. Uses the New World Translation.',study:'Religions-of-the-World.pdf'},
-    {id:'r046',name:'Seventh-day Adventism',icon:'✝',type:'abrahamic',countries:'USA, worldwide (growing fast in Africa, Latin America)',desc:'Founded 1863. Worships on Saturday (Sabbath), emphasizes the imminent Second Coming, healthful living, and prophetic interpretation. Ellen G. White is a foundational prophet.',study:'Religions-of-the-World.pdf'},
-    {id:'r047',name:'Indigenous Amazonian Shamanism',icon:'🌿',type:'indigenous',countries:'Brazil, Peru, Colombia, Ecuador, Venezuela',desc:'Hundreds of distinct Amazonian peoples practice shamanism: plant-medicine ceremonies (ayahuasca, peyote), spirit communication, healing rituals, and intricate cosmologies of the jungle realm.',study:'Religions-of-the-World.pdf'},
-  ]},
-  {id:'oceania',name:'Oceania & Pacific',icon:'🌊',religions:[
-    {id:'r048',name:'Christianity (Pacific)',icon:'✝',type:'abrahamic',countries:'Australia, New Zealand, Papua New Guinea, Fiji, Samoa, Tonga',desc:'Christianity is the dominant religion across the Pacific Islands, introduced through 19th-century British and American missions. Strong traditions in Methodism, Catholicism, and evangelical movements.',study:'Religions-of-the-World.pdf'},
-    {id:'r049',name:'Aboriginal Australian Spirituality',icon:'🐊',type:'indigenous',countries:'Australia',desc:'The oldest continuous religious tradition on Earth (~65,000+ years). Centered on the Dreamtime — the sacred era of creation. Features totemic relationships, sacred sites (Uluru), songlines, and law.',study:'Religions-of-the-World.pdf'},
-    {id:'r050',name:'Māori Religion',icon:'🌀',type:'indigenous',countries:'New Zealand (Aotearoa)',desc:'The spiritual system of the Māori people. Centers on whakapapa (genealogy connecting humans to gods), tapu (sacred prohibition), mana (spiritual authority), and the gods Tane, Tu, Tangaroa.',study:'Religions-of-the-World.pdf'},
-    {id:'r051',name:'Melanesian Cargo Cults',icon:'✈',type:'folk',countries:'Papua New Guinea, Vanuatu, Solomon Islands',desc:'Religious movements arising from contact with modern technology. Prophetic leaders promise material wealth (cargo) from ancestors or spirits. Most famous: John Frum movement (Vanuatu).',study:'Religions-of-the-World.pdf'},
-    {id:'r052',name:'Hawaiian Traditional Religion',icon:'🌺',type:'indigenous',countries:'Hawaii (USA)',desc:'The polytheistic religion of Native Hawaiians. Major gods: Kāne (creator), Kū (war), Lono (agriculture), Kanaloa (ocean). Hula is a sacred religious practice preserving oral tradition.',study:'Religions-of-the-World.pdf'},
-  ]},
-  {id:'middleeast',name:'Middle East & North Africa',icon:'🕌',religions:[
-    {id:'r053',name:'Islam (Sunni)',icon:'☪',type:'abrahamic',countries:'Saudi Arabia, Egypt, Turkey, Indonesia, Pakistan (Sunni majority worldwide)',desc:'The largest branch of Islam (~85-90% of all Muslims). Follows the Sunnah and hadith of the Prophet Muhammad alongside the Quran. Caliphate leadership passed to Abu Bakr after the Prophet.',study:'Religions-of-the-World.pdf'},
-    {id:'r054',name:'Islam (Shia)',icon:'☪',type:'abrahamic',countries:'Iran, Iraq, Lebanon, Bahrain, Yemen (significant minorities)',desc:'~10-15% of Muslims. Believe leadership after Muhammad should have passed to Ali ibn Abi Talib. Centers on the Imamate, the Husseini tragedy (Karbala), and awaiting the Hidden Imam.',study:'Religions-of-the-World.pdf'},
-    {id:'r055',name:'Judaism',icon:'✡',type:'abrahamic',countries:'Israel, diaspora worldwide',desc:'The monotheistic faith of the Jewish people. Based on the covenant with God through Abraham, Moses, and the Torah. Center: the Temple (now the Western Wall, Jerusalem). Modern state: Israel (1948).',study:'Religions-of-the-World.pdf'},
-    {id:'r056',name:'Druze Faith',icon:'⭐',type:'other',countries:'Lebanon, Syria, Israel',desc:'An esoteric Abrahamic monotheistic religion that developed from Ismaili Islam (~11th century). Believes in reincarnation, the unity of God (tawhid), and the divinity of Caliph Al-Hakim.',study:'Religions-of-the-World.pdf'},
-    {id:'r057',name:'Alawite',icon:'☪',type:'other',countries:'Syria (significant minority)',desc:'A syncretic offshoot of Shia Islam incorporating elements of Gnosticism, Christianity, and Neoplatonism. The Assad dynasty of Syria is Alawite. Highly secretive doctrines.',study:'Religions-of-the-World.pdf'},
-    {id:'r058',name:'Baha'i Faith',icon:'⭐',type:'abrahamic',countries:'Iran (origin), worldwide (most persecuted in Iran)',desc:'Founded by Bahá'u'lláh (~1844). Teaches the unity of all religions, all humans, and progressive revelation. Centers on world peace, gender equality, and universal education.',study:'Religions-of-the-World.pdf'},
-    {id:'r059',name:'Ancient Egyptian Religion',icon:'𓂀',type:'other',countries:'Ancient Egypt (modern Egypt)',desc:'One of the world's oldest religions (~3100 BC). Complex pantheon: Ra, Osiris, Isis, Horus, Anubis, Thoth. Centers on afterlife preparation, mummification, the Book of the Dead, and Ma'at (cosmic order).',study:'Religions-of-the-World.pdf'},
-    {id:'r060',name:'Canaanite Religion',icon:'🏛',type:'other',countries:'Ancient Canaan (modern Israel, Palestine, Lebanon, Syria)',desc:'The polytheistic religion of the ancient Canaanite peoples. Chief gods: El, Baal, Asherah, Mot, Yam. Directly interacted with and opposed the religion of ancient Israel in the Hebrew Bible.',study:'Religions-of-the-World.pdf'},
-  ]},
-  {id:'global',name:'Global / Cross-Cultural',icon:'🌐',religions:[
-    {id:'r061',name:'Atheism',icon:'🔬',type:'philosophical',countries:'Worldwide (highest in China, Japan, Scandinavia, Czech Republic)',desc:'The absence of belief in deities. Often tied to scientific rationalism and secular humanism. One of the fastest-growing worldviews globally, particularly in East Asia and Western Europe.',study:'Religions-of-the-World.pdf'},
-    {id:'r062',name:'Agnosticism',icon:'❓',type:'philosophical',countries:'Worldwide',desc:'The view that the existence of God or ultimate truth is unknown and perhaps unknowable. Distinct from atheism in not asserting non-existence, but uncertainty.',study:'Religions-of-the-World.pdf'},
-    {id:'r063',name:'Gnosticism',icon:'💫',type:'other',countries:'Ancient Mediterranean (2nd-3rd century); modern revivals worldwide',desc:'Ancient religious movements emphasizing gnosis (spiritual knowledge) over faith. Believed the material world was created by a lesser deity (Demiurge), and the true God is transcendent.',study:'Religions-of-the-World.pdf'},
-    {id:'r064',name:'Freemasonry',icon:'🔺',type:'other',countries:'USA, UK, France, Germany, worldwide',desc:'A fraternal organization with philosophical and symbolic religious elements. Uses Masonic ritual, symbolism (square and compass), and degrees. Traces symbolic origins to Solomon's Temple.',study:'Religions-of-the-World.pdf'},
-    {id:'r065',name:'New Age Spirituality',icon:'🔮',type:'other',countries:'Western countries, worldwide',desc:'A broad spectrum of Western esoteric and eclectic spiritual practices: crystal healing, chakras, astrology, channeling, and the belief in a coming spiritual transformation of humanity.',study:'Religions-of-the-World.pdf'},
-    {id:'r066',name:'Scientology',icon:'💎',type:'other',countries:'USA, UK, Germany, Australia, worldwide',desc:'Founded by L. Ron Hubbard (1953). Teaches that humans are immortal spiritual beings (thetans) separated from their true nature. Uses auditing to clear psychological trauma.',study:'Religions-of-the-World.pdf'},
-    {id:'r067',name:'Satanism (LaVeyan)',icon:'⛧',type:'other',countries:'USA, worldwide',desc:'Founded by Anton LaVey (1966). Primarily atheistic; uses Satan as a symbol of individualism and carnal nature, not a literal deity. Codified in The Satanic Bible.',study:'Religions-of-the-World.pdf'},
-    {id:'r068',name:'Theosophy',icon:'☯',type:'philosophical',countries:'India, USA, UK (Theosophical Society founded 1875)',desc:'A philosophical-spiritual movement founded by Helena Blavatsky. Synthesizes elements from Hinduism, Buddhism, and Western esotericism. Influenced New Age movements and Anthroposophy.',study:'Religions-of-the-World.pdf'},
-  ]}
+
+// ═══════════════════════════════════════════════════
+// AFRICA
+// ═══════════════════════════════════════════════════
+{id:'africa', name:'Africa', icon:'🌍', religions:[
+  {id:'af01',name:'Christianity (Africa)',type:'abrahamic',icon:'✝',countries:'Nigeria, Ethiopia, DRC, South Africa, Kenya, Ghana, Uganda, Cameroon, Tanzania, Angola, Rwanda, Malawi, Zambia, Zimbabwe, Mozambique',desc:'The largest religion in Sub-Saharan Africa with over 685 million adherents. Brought largely through missionary activity, it now has deep indigenous expressions including African Pentecostalism, Ethiopian Orthodox Tewahedo, Coptic Christianity, and hundreds of African Independent Churches blending faith with local culture.'},
+  {id:'af02',name:'Islam (Africa)',type:'abrahamic',icon:'☪',countries:'Egypt, Nigeria, Ethiopia, Algeria, Morocco, Sudan, Senegal, Mali, Somalia, Mauritania, Niger, Chad, Guinea, Libya, Tunisia, Gambia, Sierra Leone, Burkina Faso',desc:'Islam is the dominant religion across North Africa and the Sahel, with over 600 million African Muslims. Sunni Islam predominates. Strong Sufi brotherhoods (Tijaniyya, Qadiriyya, Mouridiyya) shape daily life in West Africa. Somalia, Mauritania, and the Maghreb are essentially fully Muslim nations.'},
+  {id:'af03',name:'Ethiopian Orthodox Tewahedo',type:'abrahamic',icon:'☩',countries:'Ethiopia, Eritrea',desc:'One of the oldest Christian churches in the world, established in the 4th century CE. Uses the unique 81-book Ethiopian Biblical canon including 1 Enoch, Jubilees, and Meqabyan. Observes ancient Semitic-Christian rites, fasting schedules, and the Ark of the Covenant tradition in Axum.'},
+  {id:'af04',name:'Coptic Orthodox Christianity',type:'abrahamic',icon:'☩',countries:'Egypt, Sudan, Libya',desc:'Founded by the Apostle Mark in Alexandria around 42 CE. The Coptic Orthodox Church is Egypt\'s largest Christian denomination (~10% of Egyptians). Maintains the ancient Alexandrian liturgical tradition, the Coptic language in worship, and a rich monastic heritage including Saint Anthony\'s Monastery.'},
+  {id:'af05',name:'African Traditional Religions (ATR)',type:'indigenous',icon:'🥁',countries:'All sub-Saharan African nations — embedded in local ethnic traditions',desc:'Encompasses thousands of distinct ethnic spiritual systems. Common elements include: ancestor veneration, belief in a Supreme Being, nature spirits, sacred kingship, rites of passage, divination, and oral cosmologies. Each ethnic group (Yoruba, Zulu, Akan, Igbo, Kikuyu, etc.) has its own distinct tradition.'},
+  {id:'af06',name:'Yoruba Religion (Ifá / Orisha)',type:'indigenous',icon:'🔮',countries:'Nigeria, Benin, Togo; diaspora in Cuba (Santería), Brazil (Candomblé), Trinidad (Orisha)',desc:'One of the most sophisticated ancient African religions. Centers on Olodumare (Supreme Creator), Orunmila (wisdom), and 401+ Orisha (divine spirits). The Ifá divination corpus is UNESCO-recognized as Intangible Cultural Heritage. Foundation for Santería, Candomblé, and Vodou traditions.'},
+  {id:'af07',name:'Voodoo / Vodun',type:'folk',icon:'🌀',countries:'Benin (state religion), Togo, Ghana, Nigeria; Haitian diaspora worldwide',desc:'An ancient West African spiritual system originating among the Fon and Ewe peoples of Benin and Togo. Involves reverence of Vodun spirits, ritual possession, healing ceremonies, and sacred priesthood. Benin has designated January 10 as National Voodoo Day. The religion was exported to the Americas through the slave trade.'},
+  {id:'af08',name:'Zulu Religion / Ubuntu Spirituality',type:'indigenous',icon:'🌿',countries:'South Africa (KwaZulu-Natal), Swaziland, Zimbabwe',desc:'Centers on uNkulunkulu (the Creator) and the ancestors (amadlozi / izinyanya). Features strong tradition of spiritual healing through sangomas (diviner-healers) and izinyanga (herbalists). Ubuntu ("I am because we are") is the philosophical-spiritual foundation of communal life.'},
+  {id:'af09',name:'Akan Religion (Sunsum / Nyame)',type:'indigenous',icon:'⭐',countries:'Ghana, Ivory Coast, parts of Togo',desc:'The spiritual system of the Akan people. Centers on Nyame (Supreme God), Asase Yaa (Earth Goddess), ancestral spirits (Nsamanfo), and personal soul (kra/okra/sunsum). Expressed through Adinkra symbols, festivals like Odwira, and the stool as sacred throne.'},
+  {id:'af10',name:'Igbo Traditional Religion (Odinani)',type:'indigenous',icon:'🌍',countries:'Nigeria (Igboland, southeastern region)',desc:'Odinani is the indigenous religious and cultural system of the Igbo people. Centers on Chukwu (Supreme Being), Chi (personal spirit), Ala (Earth Goddess), and Agwu (divination spirit). Features Ozo title societies, masquerade traditions (Mmanwu), and the Aro oracle.'},
+  {id:'af11',name:'Rastafari',type:'folk',icon:'🦁',countries:'Jamaica (origin), Ethiopia, Caribbean, worldwide diaspora',desc:'A religious and social movement arising in 1930s Jamaica. Venerates Haile Selassie I of Ethiopia as the returned Messiah prophesied in Revelation. Draws from Pan-African theology, the Hebrew Bible (especially Psalms), and Ethiopian Orthodox Christianity. Central beliefs: repatriation to Africa, Babylon as oppression, Ital (natural) living.'},
+  {id:'af12',name:'Sande and Poro Societies',type:'indigenous',icon:'🌊',countries:'Sierra Leone, Liberia, Guinea, Ivory Coast',desc:'Gender-segregated secret societies governing initiation, spiritual education, and social order. The Sande Society oversees female initiation; the Poro Society governs male initiation. Considered among the most powerful traditional institutions in West Africa.'},
+  {id:'af13',name:'Khoisan Spirituality',type:'indigenous',icon:'🏜',countries:'South Africa (San people), Botswana, Namibia, Zimbabwe',desc:'The spiritual traditions of the San (Bushmen) and Khoikhoi peoples — among the oldest living humans on Earth. Features trance healing dances, shamanic journeys to the spirit world, rock art as sacred communication, and reverence for the praying mantis (deity Kaggen).'},
+  {id:'af14',name:'Diola (Joola) Religion',type:'indigenous',icon:'🌾',countries:'Senegal (Casamance region), Guinea-Bissau, Gambia',desc:'The traditional religion of the Diola people, centered on Emitai (sky god) who controls rain and fertility. Features sacred forests, elaborate initiation ceremonies (Bukut for men, Karounaat for women), and spirit shrines (ukine). Maintained strong resistance to Islamization.'},
+  {id:'af15',name:'Candomblé (African-Brazil diaspora)',type:'folk',icon:'🥁',countries:'Brazil (Bahia, Rio de Janeiro); African roots in Yoruba, Fon, Bantu',desc:'An Afro-Brazilian syncretic religion that preserved West African Yoruba religious traditions under the cover of Catholic saints during slavery. Features Orisha worship, ritual drumming (atabaque), animal sacrifice, sacred dress, and trance possession. Recognized as a cultural heritage in Brazil.'},
+  {id:'af16',name:'Malagasy Traditional Religion (Razana)',type:'indigenous',icon:'🌺',countries:'Madagascar',desc:'The indigenous spiritual system of the Malagasy people, centered on Razana (ancestor veneration). Features Famadihana (turning of the bones) — a ceremony of exhuming ancestors to rewrap them and communicate. The Zanahary (Creator) is Supreme. Widely practiced alongside Christianity.'},
+]},
+
+// ═══════════════════════════════════════════════════
+// ASIA
+// ═══════════════════════════════════════════════════
+{id:'asia', name:'Asia', icon:'🌏', religions:[
+  {id:'as01',name:'Hinduism',type:'dharmic',icon:'🕉',countries:'India, Nepal, Bali (Indonesia), Sri Lanka, Bangladesh, Mauritius, Fiji, Trinidad, Guyana',desc:'The world\'s oldest living religion (~4,000+ years). Encompasses the Vedas, Upanishads, Bhagavad Gita, Puranas, and Agamas. Core concepts: Brahman (ultimate reality), dharma (cosmic order), karma (action/consequence), samsara (rebirth cycle), moksha (liberation). Approximately 1.2 billion adherents. Major traditions: Vaishnavism, Shaivism, Shaktism, Smartism.'},
+  {id:'as02',name:'Buddhism',type:'dharmic',icon:'☸',countries:'China, Thailand, Japan, Myanmar, Sri Lanka, Cambodia, Korea, Tibet, Vietnam, Bhutan, Laos, Mongolia',desc:'Founded by Siddhartha Gautama (~500 BC) in the Ganges plain of India. The Four Noble Truths and Noble Eightfold Path lead to liberation (Nirvana) from suffering. 500+ million adherents. Three major traditions: Theravada (Southeast Asia), Mahayana (East Asia), Vajrayana/Tibetan (Tibet, Mongolia, Bhutan).'},
+  {id:'as03',name:'Islam (Asia)',type:'abrahamic',icon:'☪',countries:'Indonesia, Pakistan, Bangladesh, India, Malaysia, Afghanistan, Iran, Iraq, Saudi Arabia, Turkey, Kazakhstan, Uzbekistan, Tajikistan, Azerbaijan, Maldives',desc:'Islam is the majority religion across the Middle East, Central Asia, and Southeast Asia. Indonesia holds the world\'s largest Muslim population (230M+). Pakistan, Bangladesh, and Malaysia are significant Muslim nations. Central Asian Islam was shaped by the Silk Road and Sufi orders.'},
+  {id:'as04',name:'Sikhism',type:'dharmic',icon:'☬',countries:'India (Punjab), United Kingdom, Canada, USA, Australia, Malaysia',desc:'Founded by Guru Nanak (~1469 AD) in the Punjab region. Teaches one God (Waheguru/Ik Onkar), equality of all humans, selfless service (seva), and daily naam simran (remembrance). Sacred text: Sri Guru Granth Sahib. Features the Golden Temple in Amritsar, the Panj Kakars (5 Ks), and the Khalsa brotherhood (~30 million adherents).'},
+  {id:'as05',name:'Taoism',type:'philosophical',icon:'☯',countries:'China, Taiwan, Singapore, Vietnam, Malaysia, Korea',desc:'Rooted in the Tao Te Ching attributed to Laozi (~5th–4th century BC). Emphasizes living in harmony with the Tao (the Way): the fundamental force underlying all existence. Features wu wei (non-action), yin-yang balance, and reverence for nature. Also includes religious Taoism with temples, immortality practices, and deity veneration.'},
+  {id:'as06',name:'Confucianism',type:'philosophical',icon:'📿',countries:'China, Korea, Japan, Vietnam, Taiwan, Singapore',desc:'A social-philosophical system founded by Confucius (Kong Qiu, 551–479 BC). Emphasizes: Ren (benevolence), Li (ritual propriety), Yi (righteousness), Xiao (filial piety), Zhengming (rectification of names). Foundational to East Asian civilization, governance, education, and ethics for 2,500+ years.'},
+  {id:'as07',name:'Shinto',type:'folk',icon:'⛩',countries:'Japan',desc:'Japan\'s indigenous spirituality with roots in prehistoric animism. Reveres kami (spirits) residing in nature, ancestors, shrines, and sacred objects. No official founder or scripture; transmitted through ritual, festivals (matsuri), and sacred spaces. An estimated 3–4 million devout practitioners, though cultural Shinto is practiced by most Japanese.'},
+  {id:'as08',name:'Jainism',type:'dharmic',icon:'🤚',countries:'India (Gujarat, Rajasthan, Maharashtra), diaspora worldwide',desc:'One of India\'s oldest religions, founded on absolute ahimsa (non-violence). Teaches liberation through right knowledge, right faith, and right conduct. Sacred figures: 24 Tirthankaras (ford-makers), especially Mahavira (6th century BC). Two main sects: Digambara and Shvetambara. ~4.5 million adherents, highly influential in Indian culture.'},
+  {id:'as09',name:'Zoroastrianism',type:'ancient',icon:'🔥',countries:'Iran (origin), India (Parsis), USA, UK, Canada (diaspora)',desc:'One of the world\'s oldest monotheistic religions (~3,500 years), founded by prophet Zoroaster (Zarathustra). Teaches cosmic struggle between Ahura Mazda (truth/light) and Angra Mainyu (evil/darkness). Sacred text: Avesta. Foundational to Persian civilization; influenced Judaism, Christianity, and Islam. ~100,000–200,000 adherents remain.'},
+  {id:'as10',name:'Animism (Southeast Asia)',type:'indigenous',icon:'🌿',countries:'Philippines, Indonesia, Borneo (Dayak), Vietnam highlands, Papua New Guinea, Laos (Hmong)',desc:'Hundreds of distinct animist traditions among indigenous peoples of Southeast Asia. Belief that all natural objects — mountains, rivers, trees, animals — possess spiritual essence. Shamans communicate with spirits for healing, divination, and ritual. Many traditions syncretized with Buddhism, Hinduism, or Christianity.'},
+  {id:'as11',name:'Bon (Tibet)',type:'indigenous',icon:'🏔',countries:'Tibet, Bhutan, Nepal, Yunnan (China)',desc:'The pre-Buddhist indigenous religion of Tibet, founded by Tonpa Shenrab. Includes cosmological teachings, shamanic practices (healing, divination, spirit ceremonies), and a theology of three realms. After Buddhism entered Tibet (7th century), Bon partly assimilated Buddhist forms while retaining its own distinct tradition and monasteries.'},
+  {id:'as12',name:'Yazidism',type:'ancient',icon:'🦚',countries:'Iraq (Sinjar region), Syria, Turkey, Armenia, Germany (diaspora)',desc:'A syncretic monotheistic religion of the Yazidi people, blending elements of ancient Iranian religion, Islam, Christianity, and Mesopotamian beliefs. Centers on Melek Taus (the Peacock Angel), a divine being misidentified by outsiders as Satan. The Yazidis suffered genocide (Firman) by ISIS in 2014. Sacred text: Kitab al-Jilwa and Mishefa Res.'},
+  {id:'as13',name:'Mandaeism',type:'ancient',icon:'💧',countries:'Iraq, Iran, Australia, Sweden, USA (diaspora)',desc:'One of the world\'s oldest Gnostic religions, honoring John the Baptist as the greatest prophet (not Jesus or Muhammad). Emphasizes ritual water baptism (masbuta), light vs. darkness dualism, and a complex cosmology of divine beings (uthra). Sacred text: the Ginza Rba. ~70,000 adherents remain after the 2003 Iraq War diaspora.'},
+  {id:'as14',name:'Sumerian Religion',type:'ancient',icon:'🏛',countries:'Ancient Mesopotamia (modern Iraq, 3500–2000 BC)',desc:'One of the world\'s oldest recorded religions (~3500 BC). Polytheistic: An (sky), Enlil (wind/storm), Enki (wisdom/water), Inanna (love/war). Features creation myths (Eridu Genesis), flood narrative (predating Genesis), and the Descent of Inanna to the Underworld — some of history\'s oldest written literature. Sacred temple complexes: ziggurats.'},
+  {id:'as15',name:'Babylonian Religion',type:'ancient',icon:'⚡',countries:'Ancient Babylonia (~2000–539 BC, modern Iraq)',desc:'Developed from Sumerian roots after Babylon rose to power. Marduk became the supreme god after defeating Tiamat (chaos). The Enuma Elish (creation epic) and Epic of Gilgamesh (flood myth) are foundational sacred texts. Featured elaborate astrology, divination, and the Tower of Babel (Etemenanki ziggurat).'},
+  {id:'as16',name:'Zoroastrian-derived: Manichaeism',type:'ancient',icon:'☀',countries:'Ancient Persia, spread to Roman Empire, China, Central Asia',desc:'Founded by the prophet Mani (216–276 AD) in Persia. A syncretic Gnostic religion combining Zoroastrian, Christian, and Buddhist elements. Taught a cosmic dualism of light vs. darkness. Once a major world religion from Rome to China. Heavily persecuted; virtually extinct today but historically significant.'},
+  {id:'as17',name:'Korean Shamanism (Musok)',type:'indigenous',icon:'🌀',countries:'Korea (North and South)',desc:'The indigenous shamanic tradition of Korea. Mudang (female shamans) and baksu (male shamans) conduct gut ceremonies — elaborate rituals with music, dance, and offerings to communicate with spirits and ancestors. Despite centuries of Buddhism and Confucianism, Musok persists widely in Korean society.'},
+  {id:'as18',name:'Tenrikyo',type:'other',icon:'🌿',countries:'Japan, Brazil, USA, Korea, worldwide',desc:'A Japanese new religion founded by Miki Nakayama in 1838. Teaches that God the Parent (Tenri-O-no-Mikoto) created humanity for joyous life (yoki-gurashi). Focuses on mental and physical cleanliness, charitable work, and self-reflection. ~2 million adherents. Headquartered in Tenri City, Japan.'},
+  {id:'as19',name:'Falun Gong (Falun Dafa)',type:'philosophical',icon:'🌸',countries:'China (origin), worldwide (150+ countries)',desc:'A spiritual practice founded by Li Hongzhi in 1992 in China. Based on the principles of Truthfulness, Compassion, and Forbearance (Zhen-Shan-Ren). Incorporates qigong meditation exercises. Banned and persecuted in China since 1999; practiced by millions worldwide. Significant controversy regarding suppression.'},
+  {id:'as20',name:'Druze Faith',type:'other',icon:'⭐',countries:'Lebanon, Syria, Israel',desc:'An esoteric Abrahamic monotheistic religion that developed from Ismaili Islam (~11th century). Believes in the unity of God (tawhid), reincarnation, and the divinity of the Fatimid Caliph Al-Hakim. Secretive doctrines shared only with initiated members (\'uqqal). ~1 million adherents, primarily in the Levant.'},
+]},
+
+// ═══════════════════════════════════════════════════
+// EUROPE
+// ═══════════════════════════════════════════════════
+{id:'europe', name:'Europe', icon:'🗺', religions:[
+  {id:'eu01',name:'Roman Catholicism',type:'abrahamic',icon:'✝',countries:'Italy, Spain, Poland, France, Ireland, Portugal, Belgium, Croatia, Slovakia, Hungary, Lithuania, Austria, Czech Republic',desc:'The largest branch of Christianity with ~1.3 billion members worldwide. Led by the Pope from Vatican City (established 1929). Practices seven sacraments, apostolic succession, veneration of saints, Marian devotion, and the Magisterium of the Church. Council of Trent (1545–1563) and Vatican II (1962–1965) shaped modern Catholic doctrine.'},
+  {id:'eu02',name:'Eastern Orthodox Christianity',type:'abrahamic',icon:'☦',countries:'Russia, Greece, Serbia, Romania, Bulgaria, Ukraine, Georgia, North Macedonia, Moldova, Montenegro, Belarus, Cyprus',desc:'The second-largest Christian denomination (~260 million). Separated from Rome in the Great Schism of 1054. Centers on theosis (deification through grace), veneration of icons, the Divine Liturgy of St. John Chrysostom, and the Church Fathers. Major patriarchates: Constantinople, Moscow, Alexandria, Antioch, Jerusalem.'},
+  {id:'eu03',name:'Protestantism',type:'abrahamic',icon:'✝',countries:'Germany, UK, Scandinavia, Netherlands, Switzerland, USA, worldwide',desc:'Emerged from the 16th-century Reformation (Luther 1517, Calvin, Zwingli). Core principles: Sola Scriptura, Sola Fide, Sola Gratia. Includes Lutheran, Reformed/Presbyterian, Anglican/Episcopal, Baptist, Methodist, Pentecostal, and thousands of denominations. ~900 million worldwide.'},
+  {id:'eu04',name:'Judaism',type:'abrahamic',icon:'✡',countries:'Israel (majority), France, UK, Germany, Russia, Hungary, Argentina, USA, worldwide',desc:'The monotheistic faith of the Jewish people based on the covenant relationship with God. Texts: Torah (Five Books of Moses), Talmud (rabbinic interpretation), Kabbalah (mysticism). Major branches: Orthodox, Conservative (Masorti), Reform (Liberal), Reconstructionist, Hasidic. ~15 million adherents worldwide. Deeply shaped by diaspora and the Holocaust (Shoah).'},
+  {id:'eu05',name:'Norse Religion / Ásatrú',type:'indigenous',icon:'⚡',countries:'Scandinavia, Iceland, Germany, UK; worldwide revival',desc:'The ancient religion of the Norse and Germanic peoples. Worships the Aesir (Odin, Thor, Freya, Tyr, Loki) and Vanir gods. Cosmology: Nine Worlds, Yggdrasil (World Tree), Ragnarok (end of gods). Sacred texts: Prose Edda and Poetic Edda (13th century). Modern revival: Ásatrú (recognized religion in Iceland 1972), Heathenry.'},
+  {id:'eu06',name:'Slavic Paganism / Rodnovery',type:'indigenous',icon:'🌲',countries:'Russia, Poland, Ukraine, Czech Republic, Slovakia, Serbia, Bulgaria; modern revival',desc:'The pre-Christian polytheistic religion of Slavic peoples. Worships Rod (creator), Perun (thunder/lightning), Mokosh (earth mother), Veles (underworld cattle wealth), Svarog (celestial fire), and Zorya (dawn spirits). Sacred celebrations tied to agricultural seasons. Modern revival: Rodnovery movement (~100,000 adherents).'},
+  {id:'eu07',name:'Celtic Religion / Druidry',type:'indigenous',icon:'🌿',countries:'Ireland, Scotland, Wales, Brittany (France), Cornwall; worldwide revival',desc:'The ancient religion of the Celtic peoples of Iron Age Europe. Druids served as priests, philosophers, judges, and lorekeepers. Sacred: oak groves, mistletoe, sacred wells, solstices. Deities: Cernunnos, Brigid, Lugh, Morrigan, Dagda. Modern revival: Reformed Druidry and Order of Bards, Ovates and Druids (OBOD).'},
+  {id:'eu08',name:'Ancient Greek Religion (Hellenism)',type:'ancient',icon:'🏛',countries:'Ancient Greece; modern revival worldwide (especially Greece)',desc:'The polytheistic religion of ancient Greece (800 BC–400 AD). Olympian pantheon: Zeus, Athena, Apollo, Poseidon, Artemis, Ares, Aphrodite, Hephaestus, Hermes, Demeter, Dionysus, Hestia. Features: oracles (Delphi), mystery religions (Eleusinian Mysteries), epic mythology (Homer). Modern revival: Hellenism/Dodekatheism.'},
+  {id:'eu09',name:'Ancient Roman Religion',type:'ancient',icon:'🦅',countries:'Ancient Roman Empire; modern revival worldwide',desc:'The polytheistic state religion of ancient Rome, heavily influenced by Etruscan and Greek religion. Gods: Jupiter (king), Juno (queen), Mars (war), Venus (love), Mercury (commerce), Minerva (wisdom), Saturn, Bacchus. Included Emperor worship (Imperial Cult). Vestal Virgins maintained the sacred flame. Supplanted by Christianity in the 4th century.'},
+  {id:'eu10',name:'Wicca / Neo-Paganism',type:'other',icon:'🌙',countries:'UK, USA, Australia, Canada, Germany; worldwide',desc:'Modern nature-based religion founded by Gerald Gardner (1954). Venerates a Goddess (moon, earth, nature) and a Horned God. Practices ritual magic, celebrates the Wheel of the Year (8 sabbats: Samhain, Yule, Imbolc, Ostara, Beltane, Litha, Lammas, Mabon). ~1–3 million worldwide. Grew from Western occult traditions and folk magic.'},
+  {id:'eu11',name:'Scientology',type:'other',icon:'💎',countries:'USA (origin), UK, Germany, Australia, worldwide',desc:'Founded by L. Ron Hubbard in 1952. Teaches that humans are immortal spiritual beings (thetans) trapped in a cycle of reincarnation. Uses auditing (a form of counseling using the E-meter) to clear traumatic memories (engrams). Established as a religious organization; classified as a cult in some countries. Highly controversial.'},
+  {id:'eu12',name:'Alawite (Nusayri)',type:'other',icon:'☪',countries:'Syria (~10–12% of population), Turkey, Lebanon',desc:'A syncretic offshoot of Ismaili Shia Islam incorporating Gnostic, Christian, and Neoplatonic elements. The Assad dynasty of Syria is Alawite. Practices are largely secret; venerate Ali ibn Abi Talib as a divine figure. Features belief in reincarnation. Sometimes classified as part of Islam, sometimes as a distinct religion.'},
+]},
+
+// ═══════════════════════════════════════════════════
+// THE AMERICAS
+// ═══════════════════════════════════════════════════
+{id:'americas', name:'The Americas', icon:'🌎', religions:[
+  {id:'am01',name:'Christianity (Americas)',type:'abrahamic',icon:'✝',countries:'USA, Brazil, Mexico, Argentina, Colombia, Canada, Chile, Peru, Venezuela, Cuba, Haiti, Dominican Republic, Bolivia, Ecuador, Paraguay, Uruguay',desc:'Christianity dominates the Americas with ~770 million adherents. Catholicism (brought by Spanish/Portuguese colonists) dominates Latin America. Protestantism (especially Evangelical/Pentecostal) is rapidly growing throughout the region. The USA has the world\'s largest absolute Christian population (~240 million).'},
+  {id:'am02',name:'Maya Religion',type:'indigenous',icon:'🏯',countries:'Mexico (Yucatan, Chiapas, Oaxaca), Guatemala, Belize, Honduras, El Salvador',desc:'One of the most sophisticated ancient civilizations (~2000 BC–1500 AD). Maya religion centered on cyclical time (Tzolk\'in 260-day calendar, Haab 365-day calendar, Long Count), the creation epic Popol Vuh (humans made from corn by Heart of Sky), and deities including Kukulkan (feathered serpent), Chaac (rain), and Ixchel (moon/medicine). Living Maya still practice blended traditions.'},
+  {id:'am03',name:'Aztec (Nahuatl / Mexica) Religion',type:'indigenous',icon:'☀',countries:'Mexico (ancient and syncretic living traditions)',desc:'The religion of the Mexica (Aztec) people (1300–1521 AD). Centered on sun worship requiring ritual sacrifice to keep the Fifth Sun (current age) alive. Major gods: Huitzilopochtli (sun/war), Tlaloc (rain), Quetzalcoatl (wind/learning), Coatlicue (earth mother), Xipe Totec (agriculture). Sacred calendar: Tonalpohualli (260 days). Great Temple (Templo Mayor) in Tenochtitlan was the cosmic center.'},
+  {id:'am04',name:'Inca (Andean / Tawantinsuyu) Religion',type:'indigenous',icon:'🦙',countries:'Peru, Bolivia, Ecuador, Chile, Colombia, Argentina (ancient Inca Empire)',desc:'The religion of the Inca Empire (1438–1533 AD). Worshipped Inti (Sun God, father of the Sapa Inca), Pachamama (Earth Mother), Viracocha (Creator God), and Supay (underworld). The Sapa Inca was considered a divine son of the sun. Huacas (sacred places) dotted the land. Living Andean communities still practice Pachamama ceremonies.'},
+  {id:'am05',name:'Native American Religions',type:'indigenous',icon:'🦅',countries:'USA, Canada (500+ distinct tribal nations)',desc:'Encompasses 500+ distinct spiritual traditions among First Nations and Native American peoples. Common elements include: animism (all living and non-living things have spirit), vision quests (seeking spiritual guidance), sweat lodges (purification), medicine wheels (cosmological maps), potlatch ceremonies, sun dances, corn dances, and ancestor honoring. Sacred land is central to identity.'},
+  {id:'am06',name:'Candomblé',type:'folk',icon:'🥁',countries:'Brazil (especially Bahia, Rio de Janeiro, Recife)',desc:'An Afro-Brazilian syncretic religion combining Yoruba Orisha worship with Catholic saints (syncretized during slavery to protect practitioners). Features trance possession by Orishas, ritual drumming (atabaque), sacred beads (ileke), animal offerings, and the terreiro (sacred community space). Recognized as Brazilian cultural heritage. ~2 million adherents.'},
+  {id:'am07',name:'Santería (Lucumí / Regla de Ocha)',type:'folk',icon:'🌺',countries:'Cuba, Puerto Rico, USA (Miami, New York), Venezuela, Colombia',desc:'An Afro-Cuban religion blending Yoruba religion with Roman Catholicism, developed by enslaved Yoruba people in Cuba. Orishas are syncretized with Catholic saints (Shango = St. Barbara; Yemoja = Our Lady of Regla). Key ceremonies: Bembe (drum feast), Ocha initiation, ebbo (offering). ~1 million in Cuba, millions in diaspora.'},
+  {id:'am08',name:'Haitian Vodou',type:'folk',icon:'🌀',countries:'Haiti, New Orleans (USA), France, Canada, diaspora',desc:'Haitian Vodou is a syncretic religion of the Haitian people, blending West African Vodun (Fon/Ewe) with French Catholicism and indigenous Taino elements. Centers on the lwa (spirits): Rada (cool, beneficent) and Petro (hot, intense). The Gede spirits govern death and sexuality. The houngan (male priest) and mambo (female priest) lead ceremonies. Widely misunderstood but deeply significant.'},
+  {id:'am09',name:'Mormonism (The Church of Jesus Christ of LDS)',type:'abrahamic',icon:'📖',countries:'USA (Utah headquarters), Chile, Brazil, Mexico, Philippines, worldwide (16M+ members)',desc:'Founded by Joseph Smith in 1830 in New York. Accepts the Bible alongside additional scriptures: Book of Mormon, Doctrine & Covenants, Pearl of Great Price. Believes in continuing revelation through a living prophet, eternal family units, pre-mortal existence, and potential for human deification. Practices: baptism for the dead, tithe, temple endowment ceremonies.'},
+  {id:'am10',name:'Jehovah\'s Witnesses',type:'abrahamic',icon:'📚',countries:'Worldwide (8.7 million in 240 countries), USA, Mexico, Brazil, Nigeria, Congo',desc:'Founded in the late 19th century by Charles Taze Russell. Believe in a coming theocratic government (Jehovah\'s Kingdom replacing human governments), reject the Trinity (Jesus is "a god," not God Almighty), prohibit blood transfusions, and decline to celebrate holidays or salute flags. Use the New World Translation. Governed by the Governing Body in New York.'},
+  {id:'am11',name:'Seventh-day Adventism',type:'abrahamic',icon:'✝',countries:'USA, worldwide (21 million in 200 countries — especially Africa, Latin America, Caribbean)',desc:'Founded 1863 from the Millerite movement. Worships on Saturday (seventh-day Sabbath), emphasizes the imminent Second Coming of Christ, the sleep of the dead (soul sleep), and healthful living (vegetarianism encouraged). Ellen G. White is considered a prophetic voice. Operates a massive global health and education network (Loma Linda University, Adventist Health).'},
+  {id:'am12',name:'Indigenous Amazonian Shamanism',type:'indigenous',icon:'🌿',countries:'Brazil, Peru, Colombia, Ecuador, Venezuela, Bolivia, Guyana',desc:'Hundreds of distinct Amazonian indigenous peoples practice shamanism. Plant-medicine ceremonies (ayahuasca/yagé as teacher plant), peyote, and tobacco are used by shamans (curanderos/pajés) to access the spirit world for healing, divination, and community guidance. Each indigenous nation (Shipibo, Yawanapi, Yanomami, Tukano) has a unique cosmology.'},
+  {id:'am13',name:'Umbanda',type:'folk',icon:'🌟',countries:'Brazil (São Paulo, Rio de Janeiro, southern states)',desc:'A Brazilian syncretic religion founded in Rio de Janeiro (~1908). Blends Afro-Brazilian religion (Candomblé), Spiritism (Kardecism), Catholicism, and indigenous shamanism. Features mediumship, spirit incorporation (caboclos, pretos-velhos, exus), and white magic for healing. ~2–30 million adherents (estimates vary widely).'},
+  {id:'am14',name:'Spiritism (Kardecism)',type:'philosophical',icon:'💫',countries:'Brazil (world\'s largest Spiritist population), France (origin), Argentina, Portugal',desc:'Founded by Allan Kardec (Hippolyte Léon Denizard Rivail) in France (1857). Teaches reincarnation, the evolution of the soul through multiple lives, communication with spirits, and moral progress. Sacred texts: The Spirits\' Book, The Gospel According to Spiritism. Brazil has 4+ million self-identified Spiritists; culturally influential on millions more.'},
+  {id:'am15',name:'Taino Indigenous Religion',type:'indigenous',icon:'☀',countries:'Caribbean (Cuba, Haiti, Dominican Republic, Puerto Rico) — ancient, with revival',desc:'The indigenous spiritual system of the Taino people (Arawak) of the Caribbean. Centered on the zemí (spiritual beings), duho (sacred stools), cohoba (sacred snuff ceremony), and the ball court game (batey) as ritual space. Suppressed after Spanish conquest (1492+); experiencing modern revival among descendants in the Caribbean and diaspora.'},
+]},
+
+// ═══════════════════════════════════════════════════
+// OCEANIA & PACIFIC
+// ═══════════════════════════════════════════════════
+{id:'oceania', name:'Oceania & Pacific', icon:'🌊', religions:[
+  {id:'oc01',name:'Christianity (Pacific)',type:'abrahamic',icon:'✝',countries:'Australia, New Zealand, Papua New Guinea, Fiji, Samoa, Tonga, Solomon Islands, Vanuatu, Kiribati, Marshall Islands, Micronesia, Cook Islands',desc:'Christianity is the dominant religion across Pacific Island nations, introduced through 18th–19th century British, American, and Catholic missions. Strong traditions in Methodism (Fiji, Tonga), Catholicism (PNG, New Caledonia), and evangelical/charismatic movements. PNG is ~95% Christian; Samoa, Tonga, and Solomon Islands are overwhelmingly Christian.'},
+  {id:'oc02',name:'Aboriginal Australian Spirituality',type:'indigenous',icon:'🐊',countries:'Australia (Aboriginal and Torres Strait Islander peoples)',desc:'The oldest continuous religious tradition on Earth (~65,000+ years). Centered on the Dreamtime (Tjukurpa) — the sacred eternal era when Ancestral Beings created the world through song, story, and ceremony. Features totemic relationships (animals/plants as spiritual kin), sacred sites (Uluru/Ayers Rock), songlines (sacred geographical paths), and elaborate initiation ceremonies. 500+ distinct language groups with distinct traditions.'},
+  {id:'oc03',name:'Māori Religion (Whakapapa)',type:'indigenous',icon:'🌀',countries:'New Zealand (Aotearoa)',desc:'The spiritual system of the Māori people. Centers on whakapapa (genealogy connecting humans to gods), tapu (sacred prohibition/restriction), noa (ordinary/freed from tapu), mana (spiritual authority and prestige), and the gods: Tane (forests/humans), Tu (war), Tangaroa (sea), Rongo (agriculture), Haumia (wild food). The marae (sacred meeting ground) is the spiritual center of community life.'},
+  {id:'oc04',name:'Melanesian Cargo Cults',type:'folk',icon:'✈',countries:'Papua New Guinea, Vanuatu, Solomon Islands, Fiji',desc:'Religious movements arising from contact with modern technology and goods ("cargo") during colonial expansion. Prophetic leaders promise material wealth from ancestors or supernatural beings. Most famous: John Frum movement (Vanuatu, worships "John Frum" as a messianic figure from America who will bring goods); Prince Philip Movement (worships Prince Philip as divine ancestor).'},
+  {id:'oc05',name:'Hawaiian Traditional Religion',type:'indigenous',icon:'🌺',countries:'Hawaii (USA)',desc:'The polytheistic religion of Native Hawaiians (kanaka maoli). Major akua (gods): Kāne (creator, light), Kū (war, strength), Lono (agriculture, peace, fertility), Kanaloa (ocean, healing). Kapu system governed sacred social order. Hula is a sacred religious practice preserving genealogies and stories. Heiau (temples) were sacred worship spaces. Revival after 1970s Hawaiian Renaissance.'},
+  {id:'oc06',name:'Fijian Traditional Religion',type:'indigenous',icon:'🌊',countries:'Fiji',desc:'Pre-Christian Fijian religion centered on kalou-vu (ancestral gods/spirits), yalo (soul), and the sacred chiefs (ratu) as intermediaries with the divine. Features the kava (yaqona) ceremony as sacred communion and diplomacy ritual, bure kalou (spirit houses), and elaborate mortuary practices. Now largely syncretized with Christianity (Methodism predominates).'},
+  {id:'oc07',name:'Polynesian Traditional Religion',type:'indigenous',icon:'🌺',countries:'Samoa, Tonga, Cook Islands, French Polynesia, Hawaii, Marquesas, Easter Island (Rapa Nui)',desc:'A family of related indigenous religions across the Polynesian Triangle. Common features: belief in mana (spiritual power), tapu (sacred restrictions), atua (gods/spiritual beings), and the importance of genealogy connecting humans to gods. Specific traditions vary significantly: Māori, Hawaiian, Samoan fa\'asamoa, Tongan, and Rapa Nui (Easter Island moai cult) are distinct expressions.'},
+  {id:'oc08',name:'Rapa Nui Religion (Easter Island)',type:'indigenous',icon:'🗿',countries:'Easter Island (Rapa Nui), Chile',desc:'The religion of the Rapa Nui people of Easter Island. Centers on the construction of moai (giant stone ancestor statues) as embodiments of ancestor mana (spiritual power). The Birdman cult (Tangata Manu) replaced moai veneration (~1600 AD), selecting the tribe\'s annual leader through a sacred egg-gathering competition at Orongo.'},
+]},
+
+// ═══════════════════════════════════════════════════
+// MIDDLE EAST & NORTH AFRICA
+// ═══════════════════════════════════════════════════
+{id:'middleeast', name:'Middle East & North Africa', icon:'🕌', religions:[
+  {id:'me01',name:'Islam (Sunni)',type:'abrahamic',icon:'☪',countries:'Saudi Arabia, Egypt, Turkey, Jordan, Morocco, Algeria, Tunisia, Libya, Kuwait, UAE, Qatar, Bahrain, Oman, Pakistan, Indonesia (majority Sunni)',desc:'The largest branch of Islam (~85–90% of all Muslims, ~1.5 billion). Follows the Sunnah (words and practices of the Prophet Muhammad) alongside the Quran. Leadership (caliphate) passed to Abu Bakr after the Prophet. Major schools of jurisprudence: Hanafi, Maliki, Shafi\'i, Hanbali. Sunni Islam shapes law, education, and governance across the Arab world.'},
+  {id:'me02',name:'Islam (Shia)',type:'abrahamic',icon:'☪',countries:'Iran (~95% Shia), Iraq (~65%), Lebanon (Hezbollah/Amal), Bahrain, Yemen (Houthi), parts of Saudi Arabia (Eastern Province), Pakistan, Afghanistan, India',desc:'~10–15% of all Muslims (~200 million). Believe that leadership after the Prophet should have passed to Ali ibn Abi Talib (his cousin and son-in-law). The tragedy of Karbala (680 AD, martyrdom of Hussein) is central. Centers on the Imamate, the 12 Imams, the Hidden Imam (Mahdi), and awaiting his return. Ashura mourning ceremonies are the defining annual observance.'},
+  {id:'me03',name:'Judaism',type:'abrahamic',icon:'✡',countries:'Israel (majority — ~7 million Jews), diaspora: USA, France, Argentina, UK, Canada, Germany, Russia, Australia',desc:'The covenant-based monotheistic faith of the Jewish people. Based on the Torah (Five Books of Moses given at Sinai), the Prophets (Nevi\'im), and the Writings (Ketuvim) — collectively the Tanakh. Rabbinic Judaism interprets these through the Talmud (Mishnah + Gemara). Major branches: Orthodox, Conservative, Reform, Reconstructionist. Israel was re-established in 1948.'},
+  {id:'me04',name:'Christianity (Middle East)',type:'abrahamic',icon:'✝',countries:'Egypt (Coptic ~10%), Lebanon (~35%), Jordan (~2%), Syria (~5%), Israel/Palestine (~2%), Iraq (Chaldean Christians ~<3%)',desc:'Middle Eastern Christianity predates European Christianity. Ancient communities: Coptic (Egypt), Maronite (Lebanon), Syriac/Chaldean (Iraq/Syria), Greek Orthodox (throughout), Armenian Apostolic, and Melkite. These are the ancient churches of the apostolic era. Significant decline due to conflict, emigration, and persecution in the 20th–21st centuries.'},
+  {id:'me05',name:'Baha\'i Faith',type:'abrahamic',icon:'⭐',countries:'Iran (origin, now severely persecuted), India, USA, Kenya, Bolivia, worldwide (5–8 million)',desc:'Founded by Bahá\'u\'lláh in 19th-century Persia. Teaches the unity of all religions (progressive revelation from Abraham through Muhammad to Bahá\'u\'lláh), the oneness of all humanity, and the equality of men and women. The Bab (forerunner) and Bahá\'u\'lláh are the central figures. The Baha\'i World Centre is in Haifa, Israel. Among the most persecuted minorities in Iran.'},
+  {id:'me06',name:'Ancient Egyptian Religion',type:'ancient',icon:'𓂀',countries:'Ancient Egypt (modern Egypt) — 3100–30 BC',desc:'One of the world\'s oldest and longest-lasting religions (~3,100 years). Complex polytheistic pantheon: Ra/Amun-Ra (sun god), Osiris (afterlife), Isis (magic, motherhood), Horus (kingship), Set (chaos), Anubis (embalming), Thoth (writing). Concepts: Ma\'at (cosmic order/justice), the Book of the Dead, mummification, Ka/Ba soul. Pharaoh was divine incarnation of Horus.'},
+  {id:'me07',name:'Canaanite / Phoenician Religion',type:'ancient',icon:'🏛',countries:'Ancient Canaan (modern Israel, Palestine, Lebanon, Syria) — 2000–200 BC',desc:'The polytheistic religion of the ancient Canaanite and Phoenician peoples. Chief gods: El (father of gods), Baal (storm, rain, fertility — primary Canaanite deity), Asherah (El\'s consort, fertility), Mot (death), Yam (sea/chaos), Astarte (war, love). Directly referenced and opposed in the Hebrew Bible. Phoenician religion spread to Carthage and the Western Mediterranean.'},
+  {id:'me08',name:'Zoroastrianism (Persia)',type:'ancient',icon:'🔥',countries:'Ancient Persia (modern Iran); surviving communities in India (Parsis) and Iran (~25,000 remain)',desc:'The state religion of the Persian Achaemenid, Parthian, and Sassanid Empires for over 1,000 years. Founded by prophet Zoroaster on cosmic dualism: Ahura Mazda (Wise Lord, truth) vs. Angra Mainyu (Destructive Spirit, lies). Deeply influenced Judaism (during Babylonian exile), early Christianity, and Islam. Concepts: Last Judgment, resurrection, heaven and hell all appear in Zoroastrianism first.'},
+  {id:'me09',name:'Sufism (Islamic Mysticism)',type:'abrahamic',icon:'🌀',countries:'Widespread across all Muslim-majority nations; especially Turkey, Iran, Senegal, Morocco, Egypt, Pakistan, India',desc:'The mystical dimension of Islam focused on direct experience of God (\'ilm al-yaqin — knowledge of certainty). Major Sufi orders (tariqas): Qadiriyya, Naqshbandiyya, Tijaniyya, Mevlevi (Whirling Dervishes of Rumi), Chishti. Rumi\'s Masnavi is among world\'s greatest mystical literature. Sufism has produced poets (Rumi, Hafez, Ibn Arabi) and contributed enormously to Islamic art and music.'},
+  {id:'me10',name:'Yazidi Religion',type:'ancient',icon:'🦚',countries:'Iraq (Sinjar), Syria, Turkey, Armenia; diaspora in Germany (~200,000)',desc:'A pre-Islamic monotheistic religion of the Yazidi Kurdish people, incorporating Zoroastrian, Sufi, and ancient Mesopotamian elements. Centers on Melek Taus (Peacock Angel), a divine being who refused to bow to Adam but was redeemed — misidentified by some Muslims as Satan. Yazidis practice endogamy, ritual prayer (five times daily facing the sun), and pilgrimage to Lalish. Suffered genocide by ISIS in 2014 (Sinjar massacre).'},
+]},
+
+// ═══════════════════════════════════════════════════
+// GLOBAL / CROSS-CULTURAL
+// ═══════════════════════════════════════════════════
+{id:'global', name:'Global & Cross-Cultural', icon:'🌐', religions:[
+  {id:'gl01',name:'Atheism',type:'philosophical',icon:'🔬',countries:'Worldwide (highest: China, Japan, Czech Republic, France, Scandinavia, Australia)',desc:'The absence of belief in deities. Often tied to scientific naturalism, secular humanism, and rationalism. One of the fastest-growing worldviews globally. China likely has the world\'s largest atheist population (~700 million irreligious). The "New Atheism" movement (Dawkins, Hitchens, Harris, Dennett) rose to prominence in the 2000s. Distinguished from agnosticism: atheism is a claim about belief; agnosticism is a claim about knowledge.'},
+  {id:'gl02',name:'Agnosticism',type:'philosophical',icon:'❓',countries:'Worldwide',desc:'The philosophical position that the existence of God or ultimate transcendent truth is unknown and perhaps unknowable. Thomas Huxley coined the term in 1869. Strong agnosticism: it is impossible to know if God exists. Weak agnosticism: it is not currently known. Distinct from atheism (which asserts non-belief) and theism (which asserts belief).'},
+  {id:'gl03',name:'Gnosticism',type:'ancient',icon:'💫',countries:'Ancient Mediterranean (2nd–3rd century AD); modern revivals in Western esotericism',desc:'Ancient religious movements emphasizing gnosis (experiential knowledge of the divine) over faith or works. Believed the material world was created by a lesser deity (Demiurge, often identified with the OT God), while the true transcendent God is pure spirit. Key groups: Valentinians, Sethians, Mandaeans, Manichaeans. Sacred texts: Gospel of Thomas, Gospel of Truth, Apocryphon of John. Rediscovered through the Nag Hammadi Library (1945).'},
+  {id:'gl04',name:'New Age Spirituality',type:'other',icon:'🔮',countries:'Western countries especially; USA, UK, Australia, Brazil, Germany; global spread',desc:'A broad, decentralized Western spiritual movement drawing from Eastern religions, Western esotericism, parapsychology, and pop psychology. Features: crystal healing, chakra alignment, astrology, channeling spirits, past-life regression, law of attraction, and belief in a coming "Age of Aquarius." No central authority, text, or founder. Estimated ~1–2 billion people engage with some New Age practices.'},
+  {id:'gl05',name:'Theosophy',type:'philosophical',icon:'☯',countries:'India, USA, UK, Netherlands (Theosophical Society founded 1875)',desc:'A philosophical-spiritual movement founded by Helena Petrovna Blavatsky and Henry Steel Olcott. Synthesizes Hinduism, Buddhism, Kabbalah, and Western occultism. Teaches a Secret Doctrine of cosmic cycles, root races, karma, and reincarnation. Enormously influential: contributed to the Indian independence movement (Annie Besant), the founding of Anthroposophy (Rudolf Steiner), and the New Age movement.'},
+  {id:'gl06',name:'Anthroposophy',type:'philosophical',icon:'🌱',countries:'Germany, Netherlands, Switzerland, UK, USA; worldwide',desc:'A spiritual philosophy founded by Rudolf Steiner (1913). Teaches that spiritual reality exists alongside material reality and can be perceived through trained intuition. Gave rise to: Waldorf Education (1,200+ schools worldwide), Biodynamic Farming, Camphill Communities (for people with disabilities), and Anthroposophic medicine. Centers on the spiritual development of humanity through Christ as "the Logos."'},
+  {id:'gl07',name:'Freemasonry',type:'other',icon:'🔺',countries:'USA, UK, France, Germany, Italy, Brazil, worldwide (6+ million members)',desc:'A fraternal organization with philosophical and symbolic religious elements, tracing symbolic origins to the medieval stonemasons\' guilds and Solomon\'s Temple. Uses Masonic ritual (three degrees: Entered Apprentice, Fellow Craft, Master Mason), symbolism (square and compass, all-seeing eye, G for God/Geometry), and moral teachings. The Grand Lodge of London (1717) is the first modern Grand Lodge. Historically controversial in Catholic circles.'},
+  {id:'gl08',name:'Unitarian Universalism',type:'philosophical',icon:'🕯',countries:'USA (headquarters), Canada, UK, Australia, worldwide',desc:'A theologically liberal religion rejecting traditional Christian creeds. Affirms the free search for truth and meaning; draws from Christianity, Judaism, Humanism, Earth-centered spirituality, Buddhism, and other traditions. Six Sources and Seven Principles guide congregational life. ~800,000 members in North America. Roots in Unitarian Christianity (rejecting Trinity) and Universalism (all will be saved).'},
+  {id:'gl09',name:'Baha\'i Faith (Global)',type:'abrahamic',icon:'⭐',countries:'Worldwide (5–8 million in 235+ countries — most geographically widespread religion after Christianity)',desc:'The youngest of the major world religions. Founded by Bahá\'u\'lláh (1817–1892) in Persia. Core teachings: unity of God, unity of religion (all major religions reveal the same God progressively), unity of humanity (one human race). No clergy; local Spiritual Assemblies govern communities. Sacred texts: Kitáb-i-Aqdas (Most Holy Book), Kitáb-i-Íqán. Lotus Temple in Delhi is among the world\'s most visited buildings.'},
+  {id:'gl10',name:'Humanistic Judaism',type:'philosophical',icon:'✡',countries:'USA, Canada, Israel, worldwide',desc:'Founded by Rabbi Sherwin Wine in 1963. Affirms Jewish identity, culture, and history without requiring belief in God. Celebrates Jewish holidays and lifecycle events with secular humanistic content. ~50,000 members in the Society for Humanistic Judaism. Part of the broader humanistic movement that values reason, ethics, and human dignity as primary.'},
+]}
 ];
 
-var TYPE_LABELS={abrahamic:'Abrahamic',dharmic:'Dharmic',indigenous:'Indigenous',philosophical:'Philosophical',folk:'Folk / Syncretic',other:'Other / Ancient'};
-var TYPE_CLASSES={abrahamic:'type-abrahamic',dharmic:'type-dharmic',indigenous:'type-indigenous',philosophical:'type-philosophical',folk:'type-folk',other:'type-other'};
+var TL={abrahamic:"Abrahamic",dharmic:"Dharmic",indigenous:"Indigenous",philosophical:"Philosophical",folk:"Folk / Syncretic",ancient:"Ancient / Historical",other:"Other"};
+var TC={abrahamic:"type-abrahamic",dharmic:"type-dharmic",indigenous:"type-indigenous",philosophical:"type-philosophical",folk:"type-folk",ancient:"type-ancient",other:"type-other"};
 
-function renderContinent(cid){
+function cardHtml(r,cid){
+  var extra=gl("gate_rel_docs_"+r.id)||[];
+  var edoc=extra.length?' <span style="font-size:.62rem;color:var(--text2);">+'+extra.length+' doc(s)</span>':"";
+  return '<div class="rel-card" data-rid="'+r.id+'" data-cid="'+cid+'">'
+    +'<div class="rel-icon">'+r.icon+'</div>'
+    +'<div style="flex:1;min-width:0;">'
+    +'<div class="rel-name">'+esc(r.name)+'</div>'
+    +'<div class="rel-countries">'+esc((r.countries||"").split(",").slice(0,4).join(", "))+((r.countries||"").split(",").length>4?"...":"")+'</div>'
+    +'<div><span class="rel-type '+(TC[r.type]||"type-other")+'">'+(TL[r.type]||r.type)+'</span>'+edoc+'</div>'
+    +'</div></div>';
+}
+
+function attachCards(container){
+  container.querySelectorAll(".rel-card").forEach(function(card){
+    card.addEventListener("click",function(){openModal(card.getAttribute("data-rid"),card.getAttribute("data-cid"));});
+  });
+}
+
+function renderGrid(cid){
   var cont=CONTINENTS.find(function(c){return c.id===cid;});
   if(!cont)return;
-  var grid=document.getElementById('rg-'+cid);
-  var cc=document.getElementById('cc-'+cid);
+  var grid=document.getElementById("rg-"+cid);
+  var cc=document.getElementById("cc-"+cid);
   if(!grid)return;
   var rels=cont.religions;
-  if(cc)cc.textContent=rels.length+' traditions';
-  var html='';
-  for(var i=0;i<rels.length;i++){
-    var r=rels[i];
-    var extra=gl('gate_rel_docs_'+r.id)||[];
-    html+='<div class="religion-card" onclick="openRelModal(''+r.id+'',''+cid+'')"><div class="rel-icon">'+r.icon+'</div><div><div class="rel-name">'+esc(r.name)+'</div><div class="rel-countries">'+esc(r.countries.split(',').slice(0,3).join(', '))+(r.countries.split(',').length>3?'...':'')+'</div><div><span class="rel-type '+TYPE_CLASSES[r.type]+'">'+TYPE_LABELS[r.type]+'</span>'+(extra.length?' <span style="font-size:.65rem;color:var(--text2);font-family:sans-serif;">+'+extra.length+' doc(s)</span>':'')+'</div></div></div>';
-  }
+  if(cc)cc.textContent=rels.length+" traditions";
+  var html="";
+  for(var i=0;i<rels.length;i++)html+=cardHtml(rels[i],cid);
   grid.innerHTML=html;
+  attachCards(grid);
 }
 
 function toggleContinent(cid){
-  var grid=document.getElementById('rg-'+cid);
-  var tog=document.getElementById('ct-'+cid);
+  var grid=document.getElementById("rg-"+cid);
+  var chv=document.getElementById("chv-"+cid);
   if(!grid)return;
-  var isOpen=grid.style.display!=='none';
-  grid.style.display=isOpen?'none':'grid';
-  if(tog)tog.textContent=isOpen?'▶':'▼';
+  var isOpen=grid.classList.contains("open");
+  if(isOpen){grid.classList.remove("open");if(chv)chv.classList.remove("open");}
+  else{grid.classList.add("open");if(chv)chv.classList.add("open");}
 }
 
-function openRelModal(rid,cid){
+function openModal(rid,cid){
   var cont=CONTINENTS.find(function(c){return c.id===cid;});
   if(!cont)return;
   var r=cont.religions.find(function(x){return x.id===rid;});
   if(!r)return;
-  document.getElementById('relModalTitle').textContent=r.icon+' '+r.name;
-  document.getElementById('relModalMeta').innerHTML='<span class="rel-type '+TYPE_CLASSES[r.type]+'">'+TYPE_LABELS[r.type]+'</span> &nbsp; &#127758; '+esc(r.countries);
-  document.getElementById('relModalBody').textContent=r.desc;
-  // Docs
-  var extra=gl('gate_rel_docs_'+rid)||[];
-  var docsHtml='<div class="doc-attach"><div style="display:flex;align-items:center;gap:.6rem;"><span style="font-size:1.1rem;">&#128196;</span><div class="doc-attach-name">Religions of the World — Study Guide</div></div><a href="'+r.study+'" target="_blank" style="background:var(--gold);color:var(--navy);padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;font-weight:700;text-decoration:none;">Open PDF</a></div>';
-  for(var i=0;i<extra.length;i++){
-    var d=extra[i];
-    docsHtml+='<div class="doc-attach"><div style="display:flex;align-items:center;gap:.6rem;"><span style="font-size:1.1rem;">&#128196;</span><div class="doc-attach-name">'+esc(d.title)+'</div></div><a href="'+(d.data||d.url)+'" target="_blank" style="background:var(--gold);color:var(--navy);padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;font-weight:700;text-decoration:none;">Open</a></div>';
-  }
-  document.getElementById('relModalDocs').innerHTML=docsHtml;
-  document.getElementById('relModalPdf').src=r.study;
-  document.getElementById('relModal').classList.add('open');
+  document.getElementById("rmTitle").textContent=r.icon+"  "+r.name;
+  document.getElementById("rmSub").innerHTML='<span class="rel-type '+(TC[r.type]||"type-other")+'">'+(TL[r.type]||r.type)+'</span>&nbsp;&nbsp;🌍 '+esc(r.countries);
+  document.getElementById("rmBody").textContent=r.desc||"";
+  var extra=gl("gate_rel_docs_"+rid)||[];
+  var dh='<div class="doc-row"><div class="doc-row-name">📄 Religions of the World — Study Guide (Part 1)</div><a href="Religions-of-the-World-Part1.pdf" target="_blank" style="background:var(--gold);color:var(--navy);padding:.22rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;font-weight:700;text-decoration:none;white-space:nowrap;">Open PDF</a></div>'
+    +'<div class="doc-row"><div class="doc-row-name">📄 Religions of the World — Study Guide (Part 2)</div><a href="Religions-of-the-World-Part2.pdf" target="_blank" style="background:var(--gold);color:var(--navy);padding:.22rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;font-weight:700;text-decoration:none;white-space:nowrap;">Open PDF</a></div>';
+  for(var i=0;i<extra.length;i++){var d=extra[i];dh+='<div class="doc-row"><div class="doc-row-name">📄 '+esc(d.title)+'</div><a href="'+esc(d.data||d.url)+'" target="_blank" style="background:var(--gold);color:var(--navy);padding:.22rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.72rem;font-weight:700;text-decoration:none;">Open</a></div>';}
+  document.getElementById("rmDocs").innerHTML=dh;
+  document.getElementById("rmPdf").src="Religions-of-the-World-Part1.pdf";
+  document.getElementById("relModal").classList.add("open");
 }
 
-function closeRelModal(){
-  document.getElementById('relModal').classList.remove('open');
-  document.getElementById('relModalPdf').src='';
+function closeModal(){document.getElementById("relModal").classList.remove("open");document.getElementById("rmPdf").src="";}
+
+function doSearch(q){
+  var sp=document.getElementById("searchPanel");var cp=document.getElementById("continentsPanel");var sg=document.getElementById("searchGrid");var sl=document.getElementById("searchLabel");
+  if(!q||q.length<2){sp.style.display="none";cp.style.display="block";return;}
+  sp.style.display="block";cp.style.display="none";
+  var lq=q.toLowerCase();var hits=[];
+  for(var c=0;c<CONTINENTS.length;c++){var cont=CONTINENTS[c];for(var r=0;r<cont.religions.length;r++){var rel=cont.religions[r];if((rel.name||"").toLowerCase().indexOf(lq)>-1||(rel.countries||"").toLowerCase().indexOf(lq)>-1||(rel.desc||"").toLowerCase().indexOf(lq)>-1||(rel.type||"").toLowerCase().indexOf(lq)>-1)hits.push({rel:rel,cid:cont.id});}}
+  sl.textContent="Search: “"+q+"” — "+hits.length+" tradition(s) found";
+  var html="";for(var i=0;i<hits.length;i++)html+=cardHtml(hits[i].rel,hits[i].cid);
+  if(!hits.length)html='<div style="color:var(--text2);padding:1.5rem;text-align:center;grid-column:1/-1;">No results for “'+esc(q)+'”</div>';
+  sg.innerHTML=html;attachCards(sg);
 }
 
-function searchReligions(q){
-  var sr=document.getElementById('searchResults');
-  var cv=document.getElementById('continentsView');
-  var lbl=document.getElementById('searchResultLabel');
-  var grid=document.getElementById('searchResultGrid');
-  if(!q||q.length<2){sr.style.display='none';cv.style.display='block';return;}
-  sr.style.display='block';cv.style.display='none';
-  var lq=q.toLowerCase();
-  var matches=[];
+function doTypeFilter(type){
+  document.getElementById("relSearch").value="";
+  document.getElementById("searchPanel").style.display="none";
+  document.getElementById("continentsPanel").style.display="block";
   for(var c=0;c<CONTINENTS.length;c++){
-    for(var r=0;r<CONTINENTS[c].religions.length;r++){
-      var rel=CONTINENTS[c].religions[r];
-      if(rel.name.toLowerCase().indexOf(lq)>-1||rel.countries.toLowerCase().indexOf(lq)>-1||rel.desc.toLowerCase().indexOf(lq)>-1){
-        matches.push({rel:rel,cid:CONTINENTS[c].id});
-      }
-    }
-  }
-  lbl.textContent='Search results for "'+q+'" ('+matches.length+' found)';
-  var html='';
-  for(var i=0;i<matches.length;i++){
-    var item=matches[i];var r=item.rel;
-    html+='<div class="religion-card" onclick="openRelModal(''+r.id+'',''+item.cid+'')"><div class="rel-icon">'+r.icon+'</div><div><div class="rel-name">'+esc(r.name)+'</div><div class="rel-countries">'+esc(r.countries.split(',').slice(0,3).join(', '))+'</div><span class="rel-type '+TYPE_CLASSES[r.type]+'">'+TYPE_LABELS[r.type]+'</span></div></div>';
-  }
-  if(!matches.length)html='<div style="color:var(--text2);font-size:.85rem;padding:1.5rem;text-align:center;">No results for "'+esc(q)+'"</div>';
-  grid.innerHTML=html;
-}
-
-function filterByType(type){
-  document.getElementById('relSearch').value='';
-  document.getElementById('searchResults').style.display='none';
-  document.getElementById('continentsView').style.display='block';
-  for(var c=0;c<CONTINENTS.length;c++){
-    var cont=CONTINENTS[c];
-    var grid=document.getElementById('rg-'+cont.id);
-    if(!grid)continue;
-    var filtered=type==='all'?cont.religions:cont.religions.filter(function(r){return r.type===type;});
-    var html='';
-    for(var i=0;i<filtered.length;i++){
-      var r=filtered[i];
-      html+='<div class="religion-card" onclick="openRelModal(''+r.id+'',''+cont.id+'')"><div class="rel-icon">'+r.icon+'</div><div><div class="rel-name">'+esc(r.name)+'</div><div class="rel-countries">'+esc(r.countries.split(',').slice(0,3).join(', '))+'</div><span class="rel-type '+TYPE_CLASSES[r.type]+'">'+TYPE_LABELS[r.type]+'</span></div></div>';
-    }
-    grid.innerHTML=html||'<div style="color:var(--text2);font-size:.82rem;padding:.5rem;">None in this continent.</div>';
-    var cc=document.getElementById('cc-'+cont.id);
-    if(cc)cc.textContent=filtered.length+' traditions';
+    var cont=CONTINENTS[c];var grid=document.getElementById("rg-"+cont.id);if(!grid)continue;
+    var filtered=type==="all"?cont.religions:cont.religions.filter(function(r){return r.type===type;});
+    var cc=document.getElementById("cc-"+cont.id);if(cc)cc.textContent=filtered.length+" traditions"+(type!=="all"?" ("+type+")":"");
+    var html="";for(var r=0;r<filtered.length;r++)html+=cardHtml(filtered[r],cont.id);
+    if(!filtered.length)html='<div style="color:var(--text2);font-size:.82rem;padding:1rem;text-align:center;grid-column:1/-1;">None in this region for this type.</div>';
+    grid.innerHTML=html;attachCards(grid);
   }
 }
 
-function promptAdminRel(){
-  if(isAdminRel){document.getElementById('adminRelBox').classList.add('visible');return;}
-  var pw=prompt('Admin Password:');
-  if(pw==='GATE2025admin'){isAdminRel=true;document.getElementById('adminRelBox').classList.add('visible');}
-  else if(pw!==null)alert('Incorrect.');
-}
+var isAdmin=false;
+function promptAdmin(){if(isAdmin){document.getElementById("adminBox").classList.add("visible");return;}var pw=prompt("Admin Password:");if(pw==="GATE2025admin"){isAdmin=true;document.getElementById("adminBox").classList.add("visible");}else if(pw!==null)alert("Incorrect.");}
+async function addRelDoc(){var rid=document.getElementById("adRelId").value.trim();var title=document.getElementById("adTitle").value.trim();var msg=document.getElementById("adMsg");if(!rid||!title){msg.innerHTML='<span style="color:#e05555">ID and title required.</span>';return;}var file=document.getElementById("adFile").files[0];var extUrl=document.getElementById("adUrl").value.trim();if(!file&&!extUrl){msg.innerHTML='<span style="color:#e05555">File or URL required.</span>';return;}var data="";if(file){if(file.size>5*1024*1024){msg.innerHTML='<span style="color:#e05555">Max 5MB.</span>';return;}data=await new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result);};r.readAsDataURL(file);});}var docs=gl("gate_rel_docs_"+rid)||[];docs.push({id:Date.now(),title:title,data:data,url:extUrl});gs("gate_rel_docs_"+rid,docs);msg.innerHTML='<span style="color:#4aad74">✓ Added to '+rid+'!</span>';setTimeout(function(){msg.innerHTML="";},3000);}
 
-async function addRelDoc(){
-  var rid=document.getElementById('relDocId').value.trim();
-  var title=document.getElementById('relDocTitle').value.trim();
-  var msg=document.getElementById('relDocMsg');
-  if(!rid||!title){msg.innerHTML='<span style="color:#e05555">ID and title required.</span>';return;}
-  var file=document.getElementById('relDocFile').files[0];
-  var extUrl=document.getElementById('relDocUrl').value.trim();
-  if(!file&&!extUrl){msg.innerHTML='<span style="color:#e05555">Upload a file or enter URL.</span>';return;}
-  var data='',url=extUrl;
-  if(file){
-    if(file.size>5*1024*1024){msg.innerHTML='<span style="color:#e05555">Max 5MB.</span>';return;}
-    data=await new Promise(function(res){var r=new FileReader();r.onload=function(){res(r.result);};r.readAsDataURL(file);});
-  }
-  var docs=gl('gate_rel_docs_'+rid)||[];
-  docs.push({id:Date.now(),title:title,data:data,url:url});
-  gs('gate_rel_docs_'+rid,docs);
-  msg.innerHTML='<span style="color:#4aad74">&#10003; Document added!</span>';
-  setTimeout(function(){msg.innerHTML='';},3000);
-}
-
-window.addEventListener('load',function(){
-  var total=0;
-  for(var i=0;i<CONTINENTS.length;i++){renderContinent(CONTINENTS[i].id);total+=CONTINENTS[i].religions.length;}
-  var el=document.getElementById('totalRels');if(el)el.textContent=total+'+';
-  
-(function(){
-  var T={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    function open(){clearTimeout(T[i]);dd.classList.add('open');}
-    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
-  });
-})();
+window.addEventListener("load",function(){
+  for(var i=0;i<CONTINENTS.length;i++)renderGrid(CONTINENTS[i].id);
+  (function(){var T={};document.querySelectorAll(".gate-dropdown").forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add("open");}function close(){T[i]=setTimeout(function(){dd.classList.remove("open");},350);}dd.addEventListener("mouseenter",open);dd.addEventListener("mouseleave",close);var m=dd.querySelector(".gate-dropdown-menu");if(m){m.addEventListener("mouseenter",function(){clearTimeout(T[i]);});m.addEventListener("mouseleave",close);}});})();
 });
 </script>
 </body></html>

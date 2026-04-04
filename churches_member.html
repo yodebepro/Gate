@@ -3,13 +3,6 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GATE — Study Material Store</title>
 <style>
-
-:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
-a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
-
-
 .gate-nav{background:linear-gradient(135deg,var(--navy2),var(--charcoal));border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
 .gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
 .gate-logo{display:flex;align-items:center;gap:.7rem}
@@ -86,182 +79,43 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
 .page-header h1{font-family:'Cinzel',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
 .page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
 .divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
-.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem;padding-bottom:5rem}
-.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
-.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
-.card-header h2 span{font-size:1.2rem}
-.btn{display:inline-flex;align-items:center;gap:.3rem;padding:.55rem 1.2rem;border-radius:5px;font-family:sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
-.btn-gold{background:var(--gold);color:var(--navy)}.btn-gold:hover{background:var(--gold2);text-decoration:none}
-.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}.btn-outline:hover{background:rgba(201,168,76,.1);text-decoration:none}
-.btn-danger{background:#6b1d2e;color:#f5f0e8}.btn-danger:hover{background:#8b2540;text-decoration:none}
-.btn-green{background:#2d7a4f;color:#fff}.btn-green:hover{background:#38945f;text-decoration:none}
-.btn-sm{padding:.3rem .7rem;font-size:.78rem}
-input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
-label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
-.form-group{margin-bottom:.9rem}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:640px){.grid2{grid-template-columns:1fr}}
-.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
-.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
-.badge-green{background:rgba(45,122,79,.2);color:#4aad74;border:1px solid #2d7a4f}
-.badge-red{background:rgba(139,32,32,.2);color:#e05555;border:1px solid #8b2020}
-.badge-blue{background:rgba(30,80,150,.2);color:#6ea8fe;border:1px solid #3060a0}
-.badge-gray{background:rgba(100,100,100,.2);color:#888;border:1px solid #555}
-.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
-.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
-.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
-.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
-table{width:100%;border-collapse:collapse}
-th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
-td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
-.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;color:var(--text2);font-size:.78rem}
-.gate-footer span{color:var(--gold)}
-
-
-.admin-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(135deg,#0d1b2e,#162440);border-top:2px solid var(--gold);padding:.4rem 1rem;display:none}
-.admin-toolbar.visible{display:block}
-.admin-tb-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
-.admin-tb-label{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:1px;font-family:sans-serif;margin-right:.2rem}
-.atb-btn{background:#1e2d3d;color:var(--text2);border:1px solid rgba(201,168,76,.3);padding:.28rem .65rem;border-radius:4px;font-size:.72rem;cursor:pointer;font-family:sans-serif;font-weight:600;transition:all .15s}
-.atb-btn:hover{color:var(--gold);border-color:var(--gold)}
-.atb-btn.green{background:rgba(45,122,79,.3);color:#4aad74;border-color:#2d7a4f}
-.atb-btn.amber{background:rgba(201,168,76,.15);color:var(--gold);border-color:var(--gold)}
-.atb-btn.red{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
-.admin-float{position:fixed;bottom:1rem;right:1rem;z-index:8999}
-.admin-float button{background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4)}
-/* Admin Panel on page */
-.admin-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
-.admin-panel.visible{display:block}
-.admin-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2)}
-.admin-panel-header h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
-.admin-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem}
-/* Content items */
-.item-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1rem}
-.content-item{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1rem;transition:all .2s}
-.content-item:hover{border-color:rgba(201,168,76,.5)}
-.content-item img{width:100%;height:140px;object-fit:cover;border-radius:6px;margin-bottom:.7rem;border:1px solid rgba(201,168,76,.15)}
-.content-item .item-title{font-family:sans-serif;font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.3rem}
-.content-item .item-body{font-size:.82rem;color:var(--text2);line-height:1.6;margin-bottom:.6rem}
-.item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem}
-.status-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
-
-.item-price-tag{font-size:1.6rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin:.5rem 0 .7rem;letter-spacing:.5px;border-left:3px solid var(--gold);padding-left:.6rem;background:rgba(201,168,76,.06);border-radius:0 6px 6px 0;padding:.3rem .6rem;}
-
-/* ── STORE LAYOUT ── */
-.store-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem}
-.store-search{flex:1;min-width:200px;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .9rem;font-family:inherit;font-size:.88rem}
-.store-search:focus{outline:none;border-color:var(--gold)}
-.cart-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);border:none;padding:.55rem 1.1rem;border-radius:6px;font-family:sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;position:relative}
-.cart-badge{background:#e05555;color:#fff;border-radius:50%;width:18px;height:18px;font-size:.65rem;display:inline-flex;align-items:center;justify-content:center;font-family:sans-serif;font-weight:700}
-/* Category tabs */
-.cat-tabs{display:flex;gap:.3rem;margin-bottom:1.5rem;flex-wrap:wrap;border-bottom:2px solid rgba(201,168,76,.2);padding-bottom:.3rem}
-.cat-tab{background:transparent;border:none;color:var(--text2);padding:.5rem .9rem;cursor:pointer;font-family:sans-serif;font-size:.78rem;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
-.cat-tab.active,.cat-tab:hover{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.06)}
-/* Product grid */
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;margin-bottom:2rem}
-.product-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:10px;overflow:hidden;transition:all .2s;display:flex;flex-direction:column}
-.product-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.3)}
-.product-img{height:180px;background:rgba(201,168,76,.06);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:3rem;flex-shrink:0}
-.product-img img{width:100%;height:100%;object-fit:cover}
-.product-body{padding:1rem;flex:1;display:flex;flex-direction:column}
-.product-cat-tag{font-family:sans-serif;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--text2);margin-bottom:.3rem}
-.product-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem;margin-bottom:.4rem;line-height:1.4}
-.product-desc{font-size:.78rem;color:var(--text2);line-height:1.6;flex:1;margin-bottom:.7rem}
-.product-price{font-size:1.4rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin-bottom:.7rem}
-.product-price.free{color:#4aad74;font-size:1rem}
-.product-actions{display:flex;gap:.4rem;flex-wrap:wrap}
-.btn-buy{background:var(--gold);color:var(--navy);border:none;padding:.45rem .9rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s;flex:1;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:.3rem}
-.btn-buy:hover{background:var(--gold2)}
-.btn-cart{background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:.45rem .9rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-cart:hover{background:rgba(201,168,76,.1)}
-.btn-wish{background:transparent;border:1.5px solid rgba(201,168,76,.3);color:var(--text2);padding:.45rem .6rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s}
-.btn-wish.saved{border-color:#e05555;color:#e05555}
-.btn-wish:hover{border-color:rgba(255,100,100,.5);color:#e05555}
-/* Cart modal */
-.cart-modal{position:fixed;top:0;right:0;bottom:0;z-index:9999;width:min(420px,100vw);background:linear-gradient(180deg,#162440,#0d1b2e);border-left:2px solid rgba(201,168,76,.4);display:none;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
-.cart-modal.open{display:flex}
-.cart-modal-hdr{padding:1.2rem;border-bottom:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.cart-modal-hdr h3{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:1px}
-.cart-items{flex:1;overflow-y:auto;padding:1rem}
-.cart-item{display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:flex-start}
-.cart-item-img{width:52px;height:52px;border-radius:6px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;overflow:hidden}
-.cart-item-img img{width:100%;height:100%;object-fit:cover}
-.cart-item-info{flex:1}
-.cart-item-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem;margin-bottom:.15rem}
-.cart-item-price{font-family:sans-serif;font-size:.88rem;color:var(--cream);font-weight:700}
-.cart-qty{display:flex;align-items:center;gap:.4rem;margin-top:.3rem}
-.qty-btn{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);width:22px;height:22px;border-radius:4px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center}
-.qty-val{font-family:sans-serif;font-size:.82rem;color:var(--cream);min-width:20px;text-align:center}
-.cart-footer{padding:1.2rem;border-top:1px solid rgba(201,168,76,.2);flex-shrink:0}
-.cart-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
-.cart-total-label{font-family:sans-serif;font-size:.85rem;color:var(--text2)}
-.cart-total-val{font-family:sans-serif;font-size:1.2rem;font-weight:700;color:var(--gold)}
-.checkout-btn{width:100%;background:var(--gold);color:var(--navy);border:none;padding:.8rem;border-radius:7px;font-family:sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s}
-.checkout-btn:hover{background:var(--gold2)}
-/* Checkout modal */
-.checkout-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99999;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center}
-.checkout-overlay.open{display:flex}
-.checkout-box{background:linear-gradient(180deg,#162440,#0d1b2e);border:2px solid rgba(201,168,76,.4);border-radius:14px;padding:2rem;max-width:500px;width:90%;max-height:90vh;overflow-y:auto}
-/* Admin panel */
-.admin-store-panel{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.35);border-radius:10px;padding:1.5rem;margin-bottom:1.5rem;display:none}
-.admin-store-panel.visible{display:block}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-.fg label{display:block;color:var(--text2);font-size:.78rem;margin-bottom:.18rem;font-family:sans-serif}
-.fg input,.fg select,.fg textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
-.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--gold)}
-.admin-item-row{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);border-radius:7px;padding:.8rem 1rem;margin-bottom:.4rem;display:flex;align-items:center;gap.5rem;flex-wrap:wrap;justify-content:space-between}
-.admin-item-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem}
-.admin-item-actions{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.3rem}
-.abtn{padding:.22rem .55rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;border:1px solid;font-weight:600}
-.abtn-edit{background:rgba(201,168,76,.15);color:var(--gold);border-color:rgba(201,168,76,.4)}
-.abtn-pay{background:rgba(30,80,150,.2);color:#6ea8fe;border-color:rgba(30,80,150,.4)}
-.abtn-img{background:rgba(100,60,160,.2);color:#b090e0;border-color:rgba(100,60,160,.4)}
-.abtn-approve{background:rgba(45,122,79,.2);color:#4aad74;border-color:#2d7a4f}
-.abtn-suspend{background:rgba(180,120,20,.2);color:#d4a020;border-color:rgba(180,120,20,.4)}
-.abtn-archive{background:rgba(60,60,90,.3);color:#888;border-color:rgba(100,100,150,.3)}
-.abtn-restore{background:rgba(45,122,79,.2);color:#4aad74;border-color:#2d7a4f}
-.abtn-remove{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
-.abtn-verify{background:rgba(30,80,150,.2);color:#6ea8fe;border-color:rgba(100,130,200,.4)}
-
-</style>
-<style>
 :root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#a09070}
-.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 5rem}
-.page-hero{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(30,50,100,.1));border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:2rem;margin-bottom:2rem;text-align:center}
-.page-hero h1{font-family:'Cinzel',serif;color:var(--gold);font-size:1.5rem;letter-spacing:3px;margin-bottom:.5rem}
-.page-hero p{color:var(--text2);font-size:.9rem;max-width:700px;margin:0 auto}
+*{box-sizing:border-box}
+body{background:var(--navy);color:var(--text);font-family:'Georgia',serif;min-height:100vh}
+.container{max-width:1300px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.page-hero{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(30,50,100,.1));border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:1.8rem;margin-bottom:1.5rem;text-align:center}
+.page-hero h1{font-family:'Cinzel',serif;color:var(--gold);font-size:1.4rem;letter-spacing:3px;margin-bottom:.4rem}
+.page-hero p{color:var(--text2);font-size:.87rem;max-width:700px;margin:.3rem auto 0;line-height:1.7}
 .stats-bar{display:flex;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.7rem 1.2rem;text-align:center;flex:1;min-width:100px}
-.stat-val{font-family:'Cinzel',serif;color:var(--gold);font-size:1.3rem;font-weight:700}
-.stat-lbl{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:sans-serif}
-.search-wrap{display:flex;gap:.6rem;margin-bottom:1.2rem;flex-wrap:wrap}
-.search-inp{flex:1;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem 1rem;font-family:inherit;font-size:.88rem}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.65rem 1rem;text-align:center;flex:1;min-width:90px}
+.stat-val{font-family:'Cinzel',serif;color:var(--gold);font-size:1.1rem;font-weight:700}
+.stat-lbl{font-size:.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:sans-serif;margin-top:.1rem}
+.filter-bar{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.search-inp{flex:1;min-width:200px;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.55rem .9rem;font-family:inherit;font-size:.87rem}
 .search-inp:focus{outline:none;border-color:var(--gold)}
-.filter-sel{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem .9rem;font-family:sans-serif;font-size:.82rem;cursor:pointer}
-.church-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem;margin-bottom:2rem}
-.church-card{background:var(--navy2);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:1.1rem;transition:all .2s;display:flex;flex-direction:column}
+.filter-sel{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.55rem .8rem;font-family:sans-serif;font-size:.8rem;cursor:pointer}
+.section-hdr{font-family:'Cinzel',serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;margin:1.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.church-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.75rem;margin-bottom:1.5rem}
+.church-card{background:var(--navy2);border:1px solid rgba(201,168,76,.15);border-radius:9px;padding:1rem;display:flex;flex-direction:column;transition:all .2s}
 .church-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
-.church-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem;margin-bottom:.2rem}
-.church-denom{font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-bottom:.3rem}
-.church-location{font-size:.75rem;color:var(--cream);font-family:sans-serif;margin-bottom:.5rem}
-.church-badge{display:inline-block;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;padding:.15rem .45rem;border-radius:8px;font-family:sans-serif;font-weight:700;margin-bottom:.6rem}
-.badge-nat{background:rgba(30,80,150,.2);color:#6ea8fe}
+.ch-badge{display:inline-block;font-size:.6rem;text-transform:uppercase;letter-spacing:.7px;padding:.12rem .42rem;border-radius:8px;font-family:sans-serif;font-weight:700;margin-bottom:.4rem}
+.badge-us{background:rgba(30,80,150,.2);color:#7ab0ff}
 .badge-intl{background:rgba(201,168,76,.2);color:var(--gold)}
-.badge-online{background:rgba(45,122,79,.2);color:#4aad74}
-.church-btn{display:block;text-align:center;background:var(--gold);color:var(--navy);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;margin-top:auto;transition:all .2s}
-.church-btn:hover{background:var(--gold2)}
-.church-btn-outline{display:block;text-align:center;background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:600;text-decoration:none;margin-top:.4rem}
-.section-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;letter-spacing:1px;margin:.8rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.ch-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.82rem;margin-bottom:.15rem;line-height:1.3}
+.ch-denom{font-size:.7rem;color:var(--text2);font-family:sans-serif;margin-bottom:.2rem}
+.ch-loc{font-size:.73rem;color:var(--cream);font-family:sans-serif;margin-bottom:.5rem}
+.ch-btn{display:block;text-align:center;background:var(--gold);color:var(--navy);padding:.38rem;border-radius:5px;font-family:sans-serif;font-size:.75rem;font-weight:700;text-decoration:none;margin-top:auto;transition:all .2s}
+.ch-btn:hover{background:var(--gold2)}
+.ch-btn-out{display:block;text-align:center;background:transparent;border:1.5px solid rgba(201,168,76,.4);color:var(--gold);padding:.38rem;border-radius:5px;font-family:sans-serif;font-size:.73rem;text-decoration:none;margin-top:.35rem}
+.admin-box{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.3);border-radius:10px;padding:1.5rem;margin-top:2rem;display:none}
+.admin-box.visible{display:block}
 .fg label{display:block;color:var(--text2);font-size:.75rem;margin-bottom:.18rem;font-family:sans-serif}
-.fg input,.fg select,.fg textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
+.fg input,.fg select{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
 .fg input:focus,.fg select:focus{outline:none;border-color:var(--gold)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
 .btn-gold{background:var(--gold);color:var(--navy);border:none;padding:.6rem 1.5rem;border-radius:6px;font-family:sans-serif;font-size:.88rem;font-weight:700;cursor:pointer}
-.admin-box{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.3);border-radius:10px;padding:1.5rem;margin-top:2rem;display:none}
-.admin-box.visible{display:block}
-</style></head><body>
+@media(max-width:600px){.church-grid{grid-template-columns:1fr}}
+</style>
 <body>
 <nav class="gate-nav"><div class="gate-nav-inner">
   <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
@@ -323,126 +177,329 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   </div>
 </div></nav>
 <div class="container">
-  <div class="page-hero">
-    <h1>⛪ Find Your Church Home</h1>
-    <p>Browse thousands of churches nationally and internationally. Click any church to visit their website and become a member or locate a branch nearest to you.</p>
+<div class="page-hero">
+  <h1>⛪ Find Your Church Home</h1>
+  <p>Browse 102+ United States churches and 93+ international churches with official websites. Click any church to visit their website, follow their ministry, support their work, or become a member.</p>
+</div>
+<div class="stats-bar">
+  <div class="stat-box"><div class="stat-val" id="stUs">102</div><div class="stat-lbl">US Churches</div></div>
+  <div class="stat-box"><div class="stat-val" id="stIntl">93</div><div class="stat-lbl">International</div></div>
+  <div class="stat-box"><div class="stat-val">190+</div><div class="stat-lbl">Countries</div></div>
+  <div class="stat-box"><div class="stat-val">All</div><div class="stat-lbl">Denominations</div></div>
+</div>
+<div class="filter-bar">
+  <input class="search-inp" id="churchSearch" placeholder="Search church, city, or denomination..." oninput="filterChurches(this.value)">
+  <select class="filter-sel" id="regionFilter" onchange="filterChurches(document.getElementById('churchSearch').value)">
+    <option value="all">All Regions</option>
+    <option value="US">United States</option>
+    <option value="INTL">International</option>
+  </select>
+  <select class="filter-sel" id="denomFilter" onchange="filterChurches(document.getElementById('churchSearch').value)">
+    <option value="all">All Denominations</option>
+    <option value="Non-denominational">Non-Denominational</option>
+    <option value="Baptist">Baptist</option>
+    <option value="Pentecostal">Pentecostal</option>
+    <option value="Catholic">Catholic</option>
+    <option value="Anglican">Anglican / Episcopal</option>
+    <option value="Methodist">Methodist</option>
+    <option value="Presbyterian">Presbyterian</option>
+    <option value="Charismatic">Charismatic</option>
+    <option value="African Methodist">AME</option>
+    <option value="Seventh-day Adventist">Seventh-day Adventist</option>
+    <option value="Lutheran">Lutheran</option>
+  </select>
+</div>
+<div id="resultsInfo" style="font-size:.78rem;color:var(--text2);font-family:sans-serif;margin-bottom:.8rem;"></div>
+<div id="usSection"><div class="section-hdr">🇺🇸 United States Churches</div><div class="church-grid" id="usGrid"></div></div>
+<div id="intlSection"><div class="section-hdr">🌍 International Churches</div><div class="church-grid" id="intlGrid"></div></div>
+
+<!-- Admin -->
+<div class="admin-box" id="adminChurchBox">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
+    <span style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">⚙ Admin: Add Church</span>
+    <button onclick="document.getElementById('adminChurchBox').classList.remove('visible')" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">✕</button>
   </div>
-  <div class="stats-bar">
-    <div class="stat-box"><div class="stat-val">50+</div><div class="stat-lbl">US Churches</div></div>
-    <div class="stat-box"><div class="stat-val">25+</div><div class="stat-lbl">International</div></div>
-    <div class="stat-box"><div class="stat-val">190+</div><div class="stat-lbl">Countries Covered</div></div>
-    <div class="stat-box"><div class="stat-val">All</div><div class="stat-lbl">Denominations</div></div>
+  <div class="form-row" style="margin-bottom:.8rem;">
+    <div class="fg"><label>Church Name *</label><input type="text" id="cName" placeholder="Church name"></div>
+    <div class="fg"><label>Denomination</label><input type="text" id="cDenom" placeholder="e.g. Non-denominational"></div>
   </div>
-  <div class="search-wrap">
-    <input class="search-inp" id="churchSearch" placeholder="Search church name, city, or denomination..." oninput="filterChurches(this.value)">
-    <select class="filter-sel" id="regionFilter" onchange="filterChurches(document.getElementById('churchSearch').value)">
-      <option value="all">All Regions</option>
-      <option value="US">United States</option>
-      <option value="INTL">International</option>
-    </select>
-    <select class="filter-sel" id="denomFilter" onchange="filterChurches(document.getElementById('churchSearch').value)">
-      <option value="all">All Denominations</option>
-      <option value="Non-denominational">Non-Denominational</option>
-      <option value="Baptist">Baptist</option>
-      <option value="Pentecostal">Pentecostal</option>
-      <option value="Catholic">Catholic</option>
-      <option value="Anglican">Anglican</option>
-      <option value="Methodist">Methodist</option>
-      <option value="Presbyterian">Presbyterian</option>
-      <option value="Episcopal">Episcopal</option>
-    </select>
+  <div class="form-row" style="margin-bottom:.8rem;">
+    <div class="fg"><label>Location (City, State / Country)</label><input type="text" id="cLoc" placeholder="e.g. Houston, TX"></div>
+    <div class="fg"><label>Region</label><select id="cRegion"><option value="US">United States</option><option value="INTL">International</option></select></div>
   </div>
-  <div class="section-title">&#127482;&#127480; United States Churches</div>
-  <div class="church-grid" id="usChurchGrid"></div>
-  <div class="section-title">&#127758; International Churches</div>
-  <div class="church-grid" id="intlChurchGrid"></div>
-  <!-- Admin -->
-  <div class="admin-box" id="adminChurchBox">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
-      <h3 style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">&#9881; Admin: Add Church</h3>
-      <button onclick="document.getElementById('adminChurchBox').classList.remove('visible')" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">&#10005;</button>
-    </div>
-    <div class="form-row" style="margin-bottom:.8rem;">
-      <div class="fg"><label>Church Name *</label><input type="text" id="cName" placeholder="Church name"></div>
-      <div class="fg"><label>Denomination</label><input type="text" id="cDenom" placeholder="e.g. Non-denominational"></div>
-    </div>
-    <div class="form-row" style="margin-bottom:.8rem;">
-      <div class="fg"><label>Location (City, State/Country)</label><input type="text" id="cLocation" placeholder="e.g. Houston, TX"></div>
-      <div class="fg"><label>Region</label><select id="cRegion"><option value="US">United States</option><option value="INTL">International</option></select></div>
-    </div>
-    <div class="fg" style="margin-bottom:.8rem;"><label>Church Website URL *</label><input type="url" id="cUrl" placeholder="https://www.churchwebsite.com"></div>
-    <button class="btn-gold" onclick="addChurch()">&#128226; POST Church</button>
-    <div id="churchAddMsg" style="font-size:.83rem;margin-top:.5rem;"></div>
-  </div>
-  <div style="text-align:center;margin-top:1.5rem;">
-    <button onclick="promptAdminChurch()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#9881; Admin Access</button>
-  </div>
+  <div class="fg" style="margin-bottom:.8rem;"><label>Church Website URL *</label><input type="url" id="cUrl" placeholder="https://www.churchwebsite.com"></div>
+  <button class="btn-gold" onclick="addChurch()">📢 POST Church</button>
+  <div id="cMsg" style="font-size:.83rem;margin-top:.5rem;"></div>
+</div>
+<div style="text-align:center;margin-top:1.5rem;">
+  <button onclick="promptAdminChurch()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">⚙ Admin Access</button>
+</div>
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
-<script>function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}function esc(s){return(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-var US_CHURCHES=[["Lakewood Church", "Non-denominational", "Houston, TX", "https://www.lakewoodchurch.com"], ["Saddleback Church", "Southern Baptist", "Lake Forest, CA", "https://www.saddleback.com"], ["North Point Ministries", "Non-denominational", "Alpharetta, GA", "https://northpoint.org"], ["Life.Church", "Non-denominational", "Edmond, OK", "https://www.life.church"], ["Willow Creek Community Church", "Non-denominational", "South Barrington, IL", "https://www.willowcreek.com"], ["Gateway Church", "Non-denominational", "Southlake, TX", "https://www.gatewaypeople.com"], ["Church of the Highlands", "Non-denominational", "Birmingham, AL", "https://www.churchofthehighlands.com"], ["Elevation Church", "Non-denominational", "Charlotte, NC", "https://elevationchurch.org"], ["Bethel Church", "Non-denominational", "Redding, CA", "https://www.bethel.com"], ["World Changers Church", "Non-denominational", "College Park, GA", "https://www.worldchangers.org"], ["T.D. Jakes Ministries / The Potter"s House", "Non-denominational", "Dallas, TX", "https://www.thepottershouse.org"], ["Brooklyn Tabernacle", "Non-denominational", "Brooklyn, NY", "https://brooklyntabernacle.org"], ["Hillsong Church USA", "Non-denominational", "New York, NY", "https://hillsong.com/usa"], ["Church of God in Christ (COGIC)", "Pentecostal", "Memphis, TN", "https://www.cogic.org"], ["Assemblies of God", "Pentecostal", "Springfield, MO", "https://ag.org"], ["First Baptist Church Dallas", "Southern Baptist", "Dallas, TX", "https://www.firstdallas.org"], ["National Cathedral", "Episcopal", "Washington, D.C.", "https://cathedral.org"], ["Redeemer Presbyterian Church", "Presbyterian", "New York, NY", "https://www.redeemer.com"], ["Saint Patrick"s Cathedral", "Catholic", "New York, NY", "https://www.saintpatrickscathedral.org"], ["Mosaic Church", "Non-denominational", "Los Angeles, CA", "https://www.mosaic.org"], ["Christian Cultural Center", "Non-denominational", "Brooklyn, NY", "https://www.christianculturalcenter.org"], ["Greater Allen AME Cathedral", "African Methodist Episcopal", "Jamaica, NY", "https://www.allencathedral.org"], ["Antioch Community Church", "Non-denominational", "Waco, TX", "https://antiochcc.net"], ["Freedom Church", "Non-denominational", "Acworth, GA", "https://myfreedomchurch.com"], ["Cedar Creek Church", "Non-denominational", "Perrysburg, OH", "https://www.cedarcreek.tv"]];
-var INTL_CHURCHES=[["Yoido Full Gospel Church", "Pentecostal", "Seoul, South Korea", "https://english.fgtv.com"], ["Hillsong Church", "Non-denominational", "Sydney, Australia", "https://hillsong.com"], ["Winners" Chapel (Living Faith)", "Non-denominational", "Ota, Nigeria", "https://www.winnersclifeabuja.org"], ["Deeper Life Bible Church", "Non-denominational", "Lagos, Nigeria", "https://deeperlifeonline.org"], ["Redeemed Christian Church of God", "Pentecostal", "Worldwide / Lagos, Nigeria", "https://rccg.org"], ["Christ Embassy (Believers LoveWorld)", "Non-denominational", "Lagos, Nigeria", "https://www.christembassy.org"], ["Kingsway International Christian Centre", "Non-denominational", "London, UK", "https://www.kicc.org.uk"], ["YMCA Kingsway Church", "Non-denominational", "Toronto, Canada", "https://kingswaychurch.com"], ["New Life Church", "Non-denominational", "Colorado Springs, CO / Intl", "https://newlifechurch.org"], ["Newspring Church", "Non-denominational", "Anderson, SC / Intl", "https://newspring.cc"], ["The Church International", "Non-denominational", "Southwark, London, UK", "https://www.thechurchinternational.com"], ["Rhema Bible Church", "Non-denominational", "Johannesburg, South Africa", "https://www.rhema.co.za"], ["Planet Shakers Church", "Non-denominational", "Melbourne, Australia", "https://planetshakers.com"], ["CityHill Church", "Non-denominational", "Pretoria, South Africa", "https://cityhillchurch.co.za"], ["New Life Center Church", "Non-denominational", "Bangkok, Thailand", "https://www.newlifecenter.org"], ["Grace Covenant Church", "Non-denominational", "Kampala, Uganda", "https://gracecovenantuganda.org"], ["Church of England", "Anglican", "London, UK", "https://www.churchofengland.org"], ["Catholic Diocese of Rome", "Catholic", "Vatican City", "https://www.diocesidiroma.it"], ["Westminster Abbey", "Anglican", "London, UK", "https://www.westminster-abbey.org"], ["Cathedral Notre-Dame de Paris", "Catholic", "Paris, France", "https://www.notredamedeparis.fr/en"], ["Emmanuel Church", "Non-denominational", "Accra, Ghana", "https://www.emmanuelghana.org"], ["Word of Life Church", "Non-denominational", "São Paulo, Brazil", "https://www.igrejapalaviradavida.com.br"], ["All Nations Church", "Non-denominational", "Cape Town, South Africa", "https://www.allnations.org.za"], ["Catch the Fire Church", "Non-denominational", "Toronto, Canada", "https://www.catchthefire.com"], ["Zoe Church", "Non-denominational", "Los Angeles / International", "https://zoechurch.com"]];
-var isAdminChurch=false;
+<script>
+function gl(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function esc(s){return(s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+var isAdminC=false;
+var US_CHURCHES=[
+  {name:'Lakewood Church',denom:'Non-denominational',loc:'Houston, TX',url:'https://www.lakewoodchurch.com',region:"US"},
+  {name:'Life.Church',denom:'Non-denominational',loc:'Edmond, OK',url:'https://www.life.church',region:"US"},
+  {name:'Church of the Highlands',denom:'Non-denominational',loc:'Birmingham, AL',url:'https://www.churchofthehighlands.com',region:"US"},
+  {name:'North Point Ministries',denom:'Non-denominational',loc:'Alpharetta, GA',url:'https://northpoint.org',region:"US"},
+  {name:'Elevation Church',denom:'Non-denominational',loc:'Charlotte, NC',url:'https://elevationchurch.org',region:"US"},
+  {name:'Gateway Church',denom:'Non-denominational',loc:'Southlake, TX',url:'https://www.gatewaypeople.com',region:"US"},
+  {name:'Saddleback Church',denom:'Southern Baptist',loc:'Lake Forest, CA',url:'https://www.saddleback.com',region:"US"},
+  {name:'Willow Creek Community Church',denom:'Non-denominational',loc:'South Barrington, IL',url:'https://www.willowcreek.com',region:"US"},
+  {name:'Bethel Church',denom:'Non-denominational',loc:'Redding, CA',url:'https://www.bethel.com',region:"US"},
+  {name:'World Changers Church',denom:'Non-denominational',loc:'College Park, GA',url:'https://www.worldchangers.org',region:"US"},
+  {name:"The Potter's House (T.D. Jakes)",denom:'Non-denominational',loc:'Dallas, TX',url:'https://www.thepottershouse.org',region:"US"},
+  {name:'Brooklyn Tabernacle',denom:'Non-denominational',loc:'Brooklyn, NY',url:'https://brooklyntabernacle.org',region:"US"},
+  {name:'Hillsong NYC',denom:'Non-denominational',loc:'New York, NY',url:'https://hillsong.com/usa',region:"US"},
+  {name:'Mosaic Church',denom:'Non-denominational',loc:'Los Angeles, CA',url:'https://www.mosaic.org',region:"US"},
+  {name:'Zoe Church',denom:'Non-denominational',loc:'Los Angeles, CA',url:'https://zoechurch.com',region:"US"},
+  {name:'Newspring Church',denom:'Non-denominational',loc:'Anderson, SC',url:'https://newspring.cc',region:"US"},
+  {name:'Transformation Church',denom:'Non-denominational',loc:'Tulsa, OK',url:'https://transformationchurch.tc',region:"US"},
+  {name:'Victory World Church',denom:'Non-denominational',loc:'Norcross, GA',url:'https://www.victory.com',region:"US"},
+  {name:'Crossroads Church',denom:'Non-denominational',loc:'Cincinnati, OH',url:'https://www.crossroads.net',region:"US"},
+  {name:'Seacoast Church',denom:'Non-denominational',loc:'Mount Pleasant, SC',url:'https://seacoast.org',region:"US"},
+  {name:'Eagle Brook Church',denom:'Non-denominational',loc:'White Bear Lake, MN',url:'https://eaglebrook.org',region:"US"},
+  {name:'Bayside Church',denom:'Non-denominational',loc:'Granite Bay, CA',url:'https://baysideonline.com',region:"US"},
+  {name:'Real Life Church',denom:'Non-denominational',loc:'Valencia, CA',url:'https://reallifechurch.org',region:"US"},
+  {name:'New Life Church',denom:'Non-denominational',loc:'Colorado Springs, CO',url:'https://newlifechurch.org',region:"US"},
+  {name:'Antioch Community Church',denom:'Non-denominational',loc:'Waco, TX',url:'https://antiochcc.net',region:"US"},
+  {name:'Christian Cultural Center',denom:'Non-denominational',loc:'Brooklyn, NY',url:'https://www.christianculturalcenter.org',region:"US"},
+  {name:'Greater Allen AME Cathedral',denom:'African Methodist Episcopal',loc:'Jamaica, NY',url:'https://www.allencathedral.org',region:"US"},
+  {name:'Abundant Life Christian Center',denom:'Non-denominational',loc:'Madison, WI',url:'https://www.abundantlife.com',region:"US"},
+  {name:'Rock Church',denom:'Non-denominational',loc:'San Diego, CA',url:'https://sdrock.com',region:"US"},
+  {name:'Celebration Church',denom:'Non-denominational',loc:'Jacksonville, FL',url:'https://celebrationchurch.org',region:"US"},
+  {name:'Bay Area Christian Church',denom:'Non-denominational',loc:'San Francisco, CA',url:'https://www.bacc.cc',region:"US"},
+  {name:'Mars Hill Bible Church',denom:'Non-denominational',loc:'Grandville, MI',url:'https://mhbible.com',region:"US"},
+  {name:'Granger Community Church',denom:'Non-denominational',loc:'Granger, IN',url:'https://gccwired.com',region:"US"},
+  {name:'Cedar Creek Church',denom:'Non-denominational',loc:'Perrysburg, OH',url:'https://www.cedarcreek.tv',region:"US"},
+  {name:'Freedom Church',denom:'Non-denominational',loc:'Acworth, GA',url:'https://myfreedomchurch.com',region:"US"},
+  {name:'Substance Church',denom:'Non-denominational',loc:'Minneapolis, MN',url:'https://substancechurch.com',region:"US"},
+  {name:'Soul City Church',denom:'Non-denominational',loc:'Chicago, IL',url:'https://soulcity.church',region:"US"},
+  {name:'Passion City Church',denom:'Non-denominational',loc:'Atlanta, GA',url:'https://passioncitychurch.com',region:"US"},
+  {name:'One Church LA',denom:'Non-denominational',loc:'Los Angeles, CA',url:'https://www.onechurchla.com',region:"US"},
+  {name:'City Light Church',denom:'Non-denominational',loc:'Omaha, NE',url:'https://citylightomaha.org',region:"US"},
+  {name:'Assemblies of God (National)',denom:'Pentecostal',loc:'Springfield, MO',url:'https://ag.org',region:"US"},
+  {name:'Church of God in Christ (COGIC)',denom:'Pentecostal',loc:'Memphis, TN',url:'https://www.cogic.org',region:"US"},
+  {name:'United Pentecostal Church Intl.',denom:'Pentecostal',loc:'Weldon Spring, MO',url:'https://www.upci.org',region:"US"},
+  {name:'Church of God (Cleveland, TN)',denom:'Pentecostal',loc:'Cleveland, TN',url:'https://www.churchofgod.org',region:"US"},
+  {name:'Calvary Chapel',denom:'Charismatic',loc:'Murrieta, CA',url:'https://calvarychapel.com',region:"US"},
+  {name:'Dream City Church',denom:'Pentecostal',loc:'Phoenix, AZ',url:'https://dreamcitychurch.us',region:"US"},
+  {name:'Covenant Church',denom:'Charismatic',loc:'Colleyville, TX',url:'https://www.covenantchurch.org',region:"US"},
+  {name:'First Baptist Church Dallas',denom:'Southern Baptist',loc:'Dallas, TX',url:'https://www.firstdallas.org',region:"US"},
+  {name:'Southeast Christian Church',denom:'Non-denominational / Baptist',loc:'Louisville, KY',url:'https://southeastchristian.org',region:"US"},
+  {name:'Second Baptist Church Houston',denom:'Southern Baptist',loc:'Houston, TX',url:'https://www.second.org',region:"US"},
+  {name:'Prestonwood Baptist Church',denom:'Southern Baptist',loc:'Plano, TX',url:'https://prestonwood.org',region:"US"},
+  {name:'First Baptist Church Orlando',denom:'Southern Baptist',loc:'Orlando, FL',url:'https://www.fbcorlando.org',region:"US"},
+  {name:'Highview Baptist Church',denom:'Southern Baptist',loc:'Louisville, KY',url:'https://www.highview.org',region:"US"},
+  {name:'National Baptist Convention',denom:'National Baptist',loc:'Nashville, TN',url:'https://www.nationalbaptist.com',region:"US"},
+  {name:'Progressive National Baptist Convention',denom:'Baptist',loc:'Washington, DC',url:'https://pnbc.org',region:"US"},
+  {name:'Alfred Street Baptist Church',denom:'Baptist',loc:'Alexandria, VA',url:'https://www.alfredstreet.org',region:"US"},
+  {name:'Ebenezer Baptist Church',denom:'Baptist',loc:'Atlanta, GA',url:'https://www.ebenezeratl.org',region:"US"},
+  {name:'Concord Church',denom:'Baptist',loc:'Dallas, TX',url:'https://www.concorddallas.org',region:"US"},
+  {name:'Windsor Village United Methodist',denom:'Methodist',loc:'Houston, TX',url:'https://www.wvumc.org',region:"US"},
+  {name:'New Mount Zion Baptist Church',denom:'Baptist',loc:'Minneapolis, MN',url:'https://newmountzion.org',region:"US"},
+  {name:'True Bethel Baptist Church',denom:'Baptist',loc:'Buffalo, NY',url:'https://truebethel.com',region:"US"},
+  {name:'United Methodist Church (National)',denom:'United Methodist',loc:'Nashville, TN',url:'https://www.umc.org',region:"US"},
+  {name:'Frazer United Methodist Church',denom:'United Methodist',loc:'Montgomery, AL',url:'https://frazermethodist.org',region:"US"},
+  {name:'Hyde Park United Methodist',denom:'United Methodist',loc:'Tampa, FL',url:'https://hydeparkumc.org',region:"US"},
+  {name:'Washington National Cathedral',denom:'Episcopal',loc:'Washington, DC',url:'https://cathedral.org',region:"US"},
+  {name:"Saint Patrick's Cathedral",denom:'Catholic',loc:'New York, NY',url:'https://www.saintpatrickscathedral.org',region:"US"},
+  {name:'Basilica of the National Shrine',denom:'Catholic',loc:'Washington, DC',url:'https://www.nationalshrine.org',region:"US"},
+  {name:'St. Louis Cathedral',denom:'Catholic',loc:'New Orleans, LA',url:'https://stlouiscathedral.org',region:"US"},
+  {name:'Cathedral of Our Lady of the Angels',denom:'Catholic',loc:'Los Angeles, CA',url:'https://www.olacathedral.org',region:"US"},
+  {name:'Redeemer Presbyterian Church',denom:'Presbyterian',loc:'New York, NY',url:'https://www.redeemer.com',region:"US"},
+  {name:'Park Cities Presbyterian Church',denom:'Presbyterian',loc:'Dallas, TX',url:'https://www.pcpc.org',region:"US"},
+  {name:'McLean Presbyterian Church',denom:'Presbyterian',loc:'McLean, VA',url:'https://mcleanpres.org',region:"US"},
+  {name:'Hosanna! Lutheran Church',denom:'Lutheran',loc:'Lakeville, MN',url:'https://hosannalc.org',region:"US"},
+  {name:'Wooddale Church',denom:'Evangelical Free',loc:'Eden Prairie, MN',url:'https://wooddale.org',region:"US"},
+  {name:'Sligo Seventh-day Adventist',denom:'Seventh-day Adventist',loc:'Takoma Park, MD',url:'https://sligochurch.org',region:"US"},
+  {name:'Pioneer Memorial Church (Andrews)',denom:'Seventh-day Adventist',loc:'Berrien Springs, MI',url:'https://pmc.andrews.edu',region:"US"},
+  {name:'Riverside Church',denom:'Interdenominational',loc:'New York, NY',url:'https://www.trcnyc.org',region:"US"},
+  {name:'Glide Memorial Church',denom:'United Methodist',loc:'San Francisco, CA',url:'https://www.glide.org',region:"US"},
+  {name:'Trinity Church Wall Street',denom:'Episcopal',loc:'New York, NY',url:'https://trinitywallstreet.org',region:"US"},
+  {name:'Marble Collegiate Church',denom:'Reformed Church in America',loc:'New York, NY',url:'https://www.marblechurch.org',region:"US"},
+  {name:'Greater Grace Temple COGIC',denom:'Pentecostal',loc:'Detroit, MI',url:'https://www.ggtemple.org',region:"US"},
+  {name:'Reid Temple AME Church',denom:'African Methodist Episcopal',loc:'Glenn Dale, MD',url:'https://reidtemple.org',region:"US"},
+  {name:'Mother Bethel AME Church',denom:'African Methodist Episcopal',loc:'Philadelphia, PA',url:'https://www.motherbethel.org',region:"US"},
+  {name:'St. Paul AME Church',denom:'African Methodist Episcopal',loc:'Tampa, FL',url:'https://stpaulameflorida.org',region:"US"},
+  {name:'The Church of Eleven22',denom:'Non-denominational',loc:'Jacksonville, FL',url:'https://coe22.com',region:"US"},
+  {name:'Elevation Ballantyne',denom:'Non-denominational',loc:'Charlotte, NC',url:'https://elevationchurch.org',region:"US"},
+  {name:'Northpoint Church',denom:'Non-denominational',loc:'Coppell, TX',url:'https://northpointchurch.com',region:"US"},
+  {name:'Cross Point Church',denom:'Non-denominational',loc:'Nashville, TN',url:'https://crosspoint.tv',region:"US"},
+  {name:'Hillcrest Church',denom:'Non-denominational',loc:'Dallas, TX',url:'https://hillcrest.church',region:"US"},
+  {name:'The Journey Church',denom:'Non-denominational',loc:'St. Louis, MO',url:'https://www.journeyon.net',region:"US"},
+  {name:'Peoples Church',denom:'Interdenominational',loc:'Fresno, CA',url:'https://www.peopleschurchfresno.com',region:"US"},
+  {name:'Oasis Church',denom:'Non-denominational',loc:'Los Angeles, CA',url:'https://oasischurch.org',region:"US"},
+  {name:'Impact Church',denom:'Non-denominational',loc:'Atlanta, GA',url:'https://www.impactchurch.com',region:"US"},
+  {name:'Westside Family Church',denom:'Non-denominational',loc:'Lenexa, KS',url:'https://westsidekc.org',region:"US"},
+  {name:'Covenant Life Church',denom:'Non-denominational',loc:'Gaithersburg, MD',url:'https://www.covlife.org',region:"US"},
+  {name:'National Community Church',denom:'Non-denominational',loc:'Washington, DC',url:'https://theaterchurch.com',region:"US"},
+  {name:'Vintage Church',denom:'Non-denominational',loc:'Raleigh, NC',url:'https://vintagenc.com',region:"US"},
+  {name:'Highlands Fellowship',denom:'Non-denominational',loc:'Abingdon, VA',url:'https://hfchurch.com',region:"US"},
+  {name:'Lifeline Church',denom:'Non-denominational',loc:'North Little Rock, AR',url:'https://www.lifelinechurch.net',region:"US"},
+  {name:'Church Unlimited',denom:'Non-denominational',loc:'Corpus Christi, TX',url:'https://churchunlimited.com',region:"US"},
+  {name:'Summit Church',denom:'Non-denominational',loc:'Durham, NC',url:'https://summitrdu.com',region:"US"},
+  {name:'Mercy Church',denom:'Non-denominational',loc:'Mauldin, SC',url:'https://mercychurchsc.com',region:"US"}
+];
+var INTL_CHURCHES=[
+  {name:"Winners' Chapel (Living Faith Church)",denom:'Non-denominational',loc:'Ota, Nigeria',url:'https://www.davidoyedepoministries.org',region:"INTL"},
+  {name:'Redeemed Christian Church of God',denom:'Pentecostal',loc:'Lagos, Nigeria',url:'https://rccg.org',region:"INTL"},
+  {name:'Deeper Life Bible Church',denom:'Non-denominational',loc:'Lagos, Nigeria',url:'https://deeperlifeonline.org',region:"INTL"},
+  {name:'Christ Embassy (Believers LoveWorld)',denom:'Non-denominational',loc:'Lagos, Nigeria',url:'https://www.christembassy.org',region:"INTL"},
+  {name:'Mountain of Fire and Miracles',denom:'Pentecostal',loc:'Lagos, Nigeria',url:'https://www.mountainoffire.org',region:"INTL"},
+  {name:'Daystar Christian Centre',denom:'Non-denominational',loc:'Lagos, Nigeria',url:'https://daystarng.org',region:"INTL"},
+  {name:'House on the Rock',denom:'Non-denominational',loc:'Lagos, Nigeria',url:'https://houseontherock.org.ng',region:"INTL"},
+  {name:'Covenant Christian Centre',denom:'Non-denominational',loc:'Lagos, Nigeria',url:'https://www.covenantchristiancentre.org',region:"INTL"},
+  {name:'Church of Pentecost',denom:'Pentecostal',loc:'Accra, Ghana',url:'https://thecop.org',region:"INTL"},
+  {name:'Action Chapel International',denom:'Non-denominational',loc:'Accra, Ghana',url:'https://actionchapel.org',region:"INTL"},
+  {name:'International Central Gospel Church',denom:'Non-denominational',loc:'Accra, Ghana',url:'https://icgc.org',region:"INTL"},
+  {name:'Transformation International (Archbishop Duncan Williams)',denom:'Charismatic',loc:'Accra, Ghana',url:'https://christtemple.net',region:"INTL"},
+  {name:'KICC (Kingsway Intl Christian Centre)',denom:'Non-denominational',loc:'London, UK',url:'https://www.kicc.org.uk',region:"INTL"},
+  {name:'Rhema Bible Church',denom:'Non-denominational',loc:'Johannesburg, South Africa',url:'https://www.rhema.co.za',region:"INTL"},
+  {name:'Grace Bible Church',denom:'Non-denominational',loc:'Johannesburg, South Africa',url:'https://gracechurch.co.za',region:"INTL"},
+  {name:'CityHill Church',denom:'Non-denominational',loc:'Pretoria, South Africa',url:'https://cityhillchurch.co.za',region:"INTL"},
+  {name:'All Nations Church',denom:'Non-denominational',loc:'Cape Town, South Africa',url:'https://www.allnations.org.za',region:"INTL"},
+  {name:'Christian Life City Church',denom:'Non-denominational',loc:'Cape Town, South Africa',url:'https://clcc.co.za',region:"INTL"},
+  {name:'Victory Christian Church',denom:'Non-denominational',loc:'Nairobi, Kenya',url:'https://victorynairobi.org',region:"INTL"},
+  {name:'Mavuno Church',denom:'Non-denominational',loc:'Nairobi, Kenya',url:'https://mavuno.org',region:"INTL"},
+  {name:'Nairobi Chapel',denom:'Non-denominational',loc:'Nairobi, Kenya',url:'https://nairobichapel.com',region:"INTL"},
+  {name:'Watoto Church',denom:'Non-denominational',loc:'Kampala, Uganda',url:'https://watoto.com',region:"INTL"},
+  {name:'Grace Covenant Church',denom:'Non-denominational',loc:'Kampala, Uganda',url:'https://gracecovenantuganda.org',region:"INTL"},
+  {name:'Anointed Chapel International',denom:'Pentecostal',loc:'Accra, Ghana',url:'https://anointedchapel.org',region:"INTL"},
+  {name:'Church of Enlightenment',denom:'Non-denominational',loc:'Addis Ababa, Ethiopia',url:'https://churchofenlightenment.org',region:"INTL"},
+  {name:'Word of Life Church Zambia',denom:'Non-denominational',loc:'Lusaka, Zambia',url:'https://wolzambia.org',region:"INTL"},
+  {name:'Celebration Church Zimbabwe',denom:'Non-denominational',loc:'Harare, Zimbabwe',url:'https://celebration.co.zw',region:"INTL"},
+  {name:'Yoido Full Gospel Church',denom:'Pentecostal',loc:'Seoul, South Korea',url:'https://english.fgtv.com',region:"INTL"},
+  {name:'Onnuri Community Church',denom:'Non-denominational',loc:'Seoul, South Korea',url:'https://www.onnuri.org',region:"INTL"},
+  {name:'Young Nak Presbyterian Church',denom:'Presbyterian',loc:'Seoul, South Korea',url:'https://www.youngnak.net',region:"INTL"},
+  {name:'Sarang Community Church',denom:'Reformed',loc:'Seoul, South Korea',url:'https://sarang.org',region:"INTL"},
+  {name:'City Harvest Church',denom:'Charismatic',loc:'Singapore',url:'https://www.chc.org.sg',region:"INTL"},
+  {name:'New Creation Church',denom:'Charismatic',loc:'Singapore',url:'https://www.newcreation.org.sg',region:"INTL"},
+  {name:'Rock Community Church',denom:'Non-denominational',loc:'Singapore',url:'https://www.rockcomm.sg',region:"INTL"},
+  {name:'Faith Community Baptist Church',denom:'Baptist',loc:'Singapore',url:'https://www.fcbc.org.sg',region:"INTL"},
+  {name:'Bethany International Church',denom:'Non-denominational',loc:'Singapore',url:'https://bethanyi.org',region:"INTL"},
+  {name:'Word of Life Church Thailand',denom:'Non-denominational',loc:'Bangkok, Thailand',url:'https://www.wolthailand.org',region:"INTL"},
+  {name:'New Life Center Church',denom:'Non-denominational',loc:'Chiang Mai, Thailand',url:'https://www.newlifecenter.org',region:"INTL"},
+  {name:'Hillsong Church Philippines',denom:'Non-denominational',loc:'Manila, Philippines',url:'https://hillsong.com/philippines',region:"INTL"},
+  {name:'Victory (Every Nation)',denom:'Non-denominational',loc:'Manila, Philippines',url:'https://victory.org.ph',region:"INTL"},
+  {name:'Jesus Is Lord Church',denom:'Non-denominational',loc:'Manila, Philippines',url:'https://jil.org.ph',region:"INTL"},
+  {name:'Full Gospel Central Church Japan',denom:'Pentecostal',loc:'Tokyo, Japan',url:'https://www.fgcctokyo.com',region:"INTL"},
+  {name:'Calvary Cathedral International',denom:'Non-denominational',loc:'Kuala Lumpur, Malaysia',url:'https://calvary.org.my',region:"INTL"},
+  {name:'DUMC (Damansara Utama Methodist)',denom:'Methodist',loc:'Petaling Jaya, Malaysia',url:'https://dumc.my',region:"INTL"},
+  {name:'Hillsong Church Australia',denom:'Non-denominational',loc:'Sydney, Australia',url:'https://hillsong.com/australia',region:"INTL"},
+  {name:'Planet Shakers Church',denom:'Non-denominational',loc:'Melbourne, Australia',url:'https://planetshakers.com',region:"INTL"},
+  {name:'C3 Church (Christian City Church)',denom:'Charismatic',loc:'Sydney, Australia',url:'https://c3church.com',region:"INTL"},
+  {name:'Influencers Church',denom:'Non-denominational',loc:'Melbourne, Australia',url:'https://influencers.church',region:"INTL"},
+  {name:'Shine Church',denom:'Non-denominational',loc:'Brisbane, Australia',url:'https://shinechurch.org',region:"INTL"},
+  {name:'Elim Church',denom:'Non-denominational',loc:'Auckland, New Zealand',url:'https://elim.org.nz',region:"INTL"},
+  {name:'City Impact Church',denom:'Non-denominational',loc:'Auckland, New Zealand',url:'https://cityimpact.com',region:"INTL"},
+  {name:'Parachute / C3 Auckland',denom:'Charismatic',loc:'Auckland, New Zealand',url:'https://c3auckland.org',region:"INTL"},
+  {name:'Hillsong Church London',denom:'Non-denominational',loc:'London, UK',url:'https://hillsong.com/london',region:"INTL"},
+  {name:'Holy Trinity Brompton (HTB)',denom:'Anglican',loc:'London, UK',url:'https://www.htb.org',region:"INTL"},
+  {name:'Westminster Abbey',denom:'Anglican',loc:'London, UK',url:'https://www.westminster-abbey.org',region:"INTL"},
+  {name:"St Paul's Cathedral",denom:'Anglican',loc:'London, UK',url:'https://www.stpauls.co.uk',region:"INTL"},
+  {name:'Ruach City Church',denom:'Non-denominational',loc:'London, UK',url:'https://ruach.org.uk',region:"INTL"},
+  {name:'Hope City Church',denom:'Non-denominational',loc:'Sheffield, UK',url:'https://hopecity.co.uk',region:"INTL"},
+  {name:"King's Church",denom:'Non-denominational',loc:'Birmingham, UK',url:'https://kingschurch.eu',region:"INTL"},
+  {name:'Causeway Coast Vineyard',denom:'Vineyard',loc:'Coleraine, Northern Ireland',url:'https://ccvineyard.org',region:"INTL"},
+  {name:'Livets Ord (Word of Life)',denom:'Charismatic',loc:'Uppsala, Sweden',url:'https://livetsord.se',region:"INTL"},
+  {name:'Filadelfia Stockholm',denom:'Pentecostal',loc:'Stockholm, Sweden',url:'https://www.filadelfiastockholm.se',region:"INTL"},
+  {name:'Hillsong Church Paris',denom:'Non-denominational',loc:'Paris, France',url:'https://hillsong.com/paris',region:"INTL"},
+  {name:'Christian Centre Abidjan',denom:'Non-denominational',loc:'Abidjan, Ivory Coast',url:'https://ccabidjan.com',region:"INTL"},
+  {name:'Embassy of the Blessed Kingdom',denom:'Non-denominational',loc:'Kyiv, Ukraine',url:'https://www.embassy.org.ua',region:"INTL"},
+  {name:'Hillsong Kiev',denom:'Non-denominational',loc:'Kyiv, Ukraine',url:'https://hillsong.com/ukraine',region:"INTL"},
+  {name:'Word of Life Russia',denom:'Charismatic',loc:'St. Petersburg, Russia',url:'https://wordoflife.ru',region:"INTL"},
+  {name:'Church of Grace (Gnadenkirche)',denom:'Evangelical',loc:'Frankfurt, Germany',url:'https://gnadenkirche.de',region:"INTL"},
+  {name:'International Christian Fellowship',denom:'Non-denominational',loc:'Berlin, Germany',url:'https://icf-berlin.de',region:"INTL"},
+  {name:'Comunità Ebraico-Cristiana',denom:'Messianic',loc:'Rome, Italy',url:'https://www.cec-roma.it',region:"INTL"},
+  {name:'Hillsong Barcelona',denom:'Non-denominational',loc:'Barcelona, Spain',url:'https://hillsong.com/barcelona',region:"INTL"},
+  {name:'Redeemed Christian Church (UK/Global)',denom:'Pentecostal',loc:'Worldwide / Nigeria',url:'https://rccguk.church',region:"INTL"},
+  {name:'Word of Life Church Brazil',denom:'Non-denominational',loc:'São Paulo, Brazil',url:'https://www.igrejapalaviradavida.com.br',region:"INTL"},
+  {name:'Sara Nossa Terra',denom:'Non-denominational',loc:'São Paulo, Brazil',url:'https://saranossaterra.com.br',region:"INTL"},
+  {name:'Comunidade Evangélica Sara',denom:'Non-denominational',loc:'Brasília, Brazil',url:'https://sarabrasiliaoficial.com.br',region:"INTL"},
+  {name:'Igreja Bola de Neve Church',denom:'Surf / Non-denominational',loc:'São Paulo, Brazil',url:'https://www.boladenevechurch.com.br',region:"INTL"},
+  {name:'King of Kings Church',denom:'Non-denominational',loc:'Buenos Aires, Argentina',url:'https://www.reydereyesba.com',region:"INTL"},
+  {name:'Ondas de Amor y Paz',denom:'Non-denominational',loc:'Bogotá, Colombia',url:'https://ondas.org',region:"INTL"},
+  {name:'G12 Vision Church',denom:'Non-denominational',loc:'Bogotá, Colombia',url:'https://g12.tv',region:"INTL"},
+  {name:'Casa de Dios',denom:'Non-denominational',loc:'Guatemala City, Guatemala',url:'https://www.casadedios.org',region:"INTL"},
+  {name:'Elim Church El Salvador',denom:'Non-denominational',loc:'San Salvador, El Salvador',url:'https://elim.org.sv',region:"INTL"},
+  {name:'Fraternidad Cristiana',denom:'Non-denominational',loc:'Guatemala City, Guatemala',url:'https://fraternidad.com',region:"INTL"},
+  {name:'Light of the World Church',denom:'Non-denominational',loc:'Guadalajara, Mexico',url:'https://www.lldm.org',region:"INTL"},
+  {name:'Centro Cristiano Comunidad',denom:'Non-denominational',loc:'Monterrey, Mexico',url:'https://comunidad.org.mx',region:"INTL"},
+  {name:'Victory Chapel Dominican Republic',denom:'Non-denominational',loc:'Santo Domingo, Dominican Republic',url:'https://victorychapel.com.do',region:"INTL"},
+  {name:'Catch the Fire Church',denom:'Non-denominational',loc:'Toronto, Canada',url:'https://www.catchthefire.com',region:"INTL"},
+  {name:'Connexus Church',denom:'Non-denominational',loc:'Barrie, Canada',url:'https://connexuschurch.com',region:"INTL"},
+  {name:'Elevation Church Canada',denom:'Non-denominational',loc:'Toronto, Canada',url:'https://elevationchurch.org/canada',region:"INTL"},
+  {name:'Beirut Baptist Church',denom:'Baptist',loc:'Beirut, Lebanon',url:'https://beirutbaptist.org',region:"INTL"},
+  {name:'International Christian Fellowship Bahrain',denom:'Non-denominational',loc:'Manama, Bahrain',url:'https://icf-bahrain.com',region:"INTL"},
+  {name:'Dubai City Church',denom:'Non-denominational',loc:'Dubai, UAE',url:'https://dubaicitychurch.org',region:"INTL"},
+  {name:'Resurrection Church',denom:'Non-denominational',loc:'Jerusalem, Israel',url:'https://www.resurrection.org.il',region:"INTL"},
+  {name:'King of Kings Jerusalem',denom:'Messianic',loc:'Jerusalem, Israel',url:'https://www.kkj.co.il',region:"INTL"}
+];
+function getCustom(r){return gl("gate_churches_"+r)||[];}
 
-function getCustomChurches(region){return gl('gate_churches_'+region)||[];}
-
-function renderChurchGrid(data,elId,region,q,denom){
+function renderGrid(data,elId,q,denom){
   var el=document.getElementById(elId);if(!el)return;
-  var extra=getCustomChurches(region);
-  var all=extra.concat(data.map(function(c){return {name:c[0],denom:c[1],location:c[2],url:c[3],region:region};}));
-  if(q){var lq=q.toLowerCase();all=all.filter(function(c){return c.name.toLowerCase().indexOf(lq)>-1||(c.denom||'').toLowerCase().indexOf(lq)>-1||(c.location||'').toLowerCase().indexOf(lq)>-1;});}
-  if(denom&&denom!='all'){all=all.filter(function(c){return (c.denom||'').indexOf(denom)>-1;});}
-  if(!all.length){el.innerHTML='<div style="color:var(--text2);font-size:.85rem;text-align:center;padding:2rem;grid-column:1/-1;">No churches found. Admin can add more.</div>';return;}
-  var html='';
+  var extra=getCustom(data[0]?data[0].region:"US");
+  var all=extra.concat(data);
+  var lq=(q||"").toLowerCase();
+  if(lq)all=all.filter(function(c){return (c.name||"").toLowerCase().indexOf(lq)>-1||(c.denom||"").toLowerCase().indexOf(lq)>-1||(c.loc||"").toLowerCase().indexOf(lq)>-1;});
+  if(denom&&denom!="all")all=all.filter(function(c){return (c.denom||"").indexOf(denom)>-1;});
+  if(!all.length){el.innerHTML='<div style="color:var(--text2);font-size:.85rem;text-align:center;padding:2rem;grid-column:1/-1;">No churches match your search. Admin can add more.</div>';return;}
+  var html="";
   for(var i=0;i<all.length;i++){
     var c=all[i];
-    var badge=region=='US'?'<span class="church-badge badge-nat">National</span>':'<span class="church-badge badge-intl">International</span>';
-    html+='<div class="church-card">'+badge+'<div class="church-name">'+esc(c.name)+'</div><div class="church-denom">'+esc(c.denom||'')+'</div><div class="church-location">&#128205; '+esc(c.location||'')+'</div><a href="'+esc(c.url||'#')+'" target="_blank" class="church-btn">&#127968; Visit Church Website</a><a href="'+esc(c.url||'#')+'" target="_blank" class="church-btn-outline">Become a Member &#8594;</a></div>';
+    var badge=c.region=="US"?'<span class="ch-badge badge-us">National</span>':'<span class="ch-badge badge-intl">International</span>';
+    html+='<div class="church-card">'+badge+'<div class="ch-name">'+esc(c.name)+'</div><div class="ch-denom">'+esc(c.denom||"")+'</div><div class="ch-loc">📍 '+esc(c.loc||"")+'</div><a href="'+esc(c.url||"#")+'" target="_blank" class="ch-btn">Visit Church Website →</a><a href="'+esc(c.url||"#")+'" target="_blank" class="ch-btn-out">Become a Member ⛪</a></div>';
   }
   el.innerHTML=html;
+  return all.length;
 }
 
 function filterChurches(q){
-  var region=document.getElementById('regionFilter').value;
-  var denom=document.getElementById('denomFilter').value;
-  if(region=='all'||region=='US') renderChurchGrid(US_CHURCHES,'usChurchGrid','US',q,denom);
-  else document.getElementById('usChurchGrid').innerHTML='';
-  if(region=='all'||region=='INTL') renderChurchGrid(INTL_CHURCHES,'intlChurchGrid','INTL',q,denom);
-  else document.getElementById('intlChurchGrid').innerHTML='';
+  var region=document.getElementById("regionFilter").value;
+  var denom=document.getElementById("denomFilter").value;
+  var usCount=0,intlCount=0;
+  var usSection=document.getElementById("usSection");
+  var intlSection=document.getElementById("intlSection");
+  if(region=="all"||region=="US"){usCount=renderGrid(US_CHURCHES,"usGrid",q,denom)||0;usSection.style.display="block";}
+  else{usSection.style.display="none";}
+  if(region=="all"||region=="INTL"){intlCount=renderGrid(INTL_CHURCHES,"intlGrid",q,denom)||0;intlSection.style.display="block";}
+  else{intlSection.style.display="none";}
+  var ri=document.getElementById("resultsInfo");
+  if(ri&&(q||(denom!="all")||(region!="all"))){
+    ri.textContent="Showing "+(region!="all"?(region=="US"?usCount:intlCount):(usCount+intlCount))+" church(es)";
+  } else if(ri){ri.textContent="";}
 }
 
 function addChurch(){
-  var name=document.getElementById('cName').value.trim();
-  var url=document.getElementById('cUrl').value.trim();
-  if(!name||!url){document.getElementById('churchAddMsg').innerHTML='<span style="color:#e05555">Name and URL required.</span>';return;}
-  var region=document.getElementById('cRegion').value;
-  var churches=getCustomChurches(region);
-  churches.unshift({name:name,denom:document.getElementById('cDenom').value,location:document.getElementById('cLocation').value,url:url,region:region});
-  gs('gate_churches_'+region,churches);
-  ['cName','cDenom','cLocation','cUrl'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
-  document.getElementById('churchAddMsg').innerHTML='<span style="color:#4aad74">&#10003; Church added!</span>';
-  setTimeout(function(){document.getElementById('churchAddMsg').innerHTML='';},3000);
-  filterChurches('');
+  var name=document.getElementById("cName").value.trim();
+  var url=document.getElementById("cUrl").value.trim();
+  if(!name||!url){document.getElementById("cMsg").innerHTML='<span style="color:#e05555">Name and URL required.</span>';return;}
+  var region=document.getElementById("cRegion").value;
+  var churches=getCustom(region);
+  churches.unshift({name:name,denom:document.getElementById("cDenom").value,loc:document.getElementById("cLoc").value,url:url,region:region});
+  gs("gate_churches_"+region,churches);
+  ["cName","cDenom","cLoc","cUrl"].forEach(function(id){var el=document.getElementById(id);if(el)el.value="";});
+  document.getElementById("cMsg").innerHTML='<span style="color:#4aad74">✓ Church added!</span>';
+  setTimeout(function(){document.getElementById("cMsg").innerHTML="";},3000);
+  filterChurches("");
 }
 
 function promptAdminChurch(){
-  if(isAdminChurch){document.getElementById('adminChurchBox').classList.add('visible');return;}
-  var pw=prompt('Admin Password:');
-  if(pw=='GATE2025admin'){isAdminChurch=true;document.getElementById('adminChurchBox').classList.add('visible');}
-  else if(pw!==null)alert('Incorrect.');
+  if(isAdminC){document.getElementById("adminChurchBox").classList.add("visible");return;}
+  var pw=prompt("Admin Password:");
+  if(pw=="GATE2025admin"){isAdminC=true;document.getElementById("adminChurchBox").classList.add("visible");}
+  else if(pw!==null)alert("Incorrect.");
 }
 
-filterChurches('');
-
-window.addEventListener('load',function(){
-(function(){
-  var T={};
-  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
-    function open(){clearTimeout(T[i]);dd.classList.add('open');}
-    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
-    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
-    var m=dd.querySelector('.gate-dropdown-menu');
-    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
-  });
-})();});</script>
+window.addEventListener("load",function(){
+  filterChurches("");
+  (function(){var T={};document.querySelectorAll(".gate-dropdown").forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add("open");}function close(){T[i]=setTimeout(function(){dd.classList.remove("open");},350);}dd.addEventListener("mouseenter",open);dd.addEventListener("mouseleave",close);var m=dd.querySelector(".gate-dropdown-menu");if(m){m.addEventListener("mouseenter",function(){clearTimeout(T[i]);});m.addEventListener("mouseleave",close);}});}());
+});
+</script>
 </body></html>
