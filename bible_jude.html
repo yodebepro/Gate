@@ -83,6 +83,15 @@ a:hover{color:var(--gold2)}
 .gate-nav-links .btn-nav{background:#c9a84c;color:#0d1b2e!important;font-weight:700;padding:.35rem 1rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;text-decoration:none;display:inline-block}
 .gate-nav-links .btn-nav:hover{background:#e8c96e}
 @media(max-width:768px){.gate-nav-links{display:none}}
+
+/* ── KJV Audio Player ─────────────────────────────────────── */
+.kjv-audio-wrap{display:flex;align-items:center;gap:.7rem;background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(30,50,80,.15));border:1px solid rgba(201,168,76,.35);border-radius:8px;padding:.6rem .9rem;margin:.4rem 0 1rem;flex-wrap:wrap;}
+.kjv-audio-label{font-family:'Cinzel',serif;color:var(--gold);font-size:.75rem;letter-spacing:1px;white-space:nowrap;flex-shrink:0;}
+.kjv-audio-label span{font-size:.9rem;margin-right:.3rem;}
+.kjv-audio-player{flex:1;min-width:200px;accent-color:var(--gold,#c9a84c);height:32px;}
+.kjv-audio-dl{background:var(--gold,#c9a84c);color:#0d1b2e;padding:.25rem .65rem;border-radius:5px;font-family:sans-serif;font-size:.7rem;font-weight:700;text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.kjv-audio-dl:hover{background:var(--gold2,#e8c96e);}
+
 </style>
 </head>
 <body>
@@ -208,6 +217,7 @@ a:hover{color:var(--gold2)}
       <section class="panel">
         <h3>Full Text</h3>
         <div class="scripture"><div></div><h4 id="chapter-1">Chapter 1</h4><div>
+<div class="kjv-audio-wrap"><div class="kjv-audio-label"><span>🎧</span> KJV Audio — Jude Ch. 1</div><audio class="kjv-audio-player" controls preload="none"><source src="https://archive.org/download/siv_KJV_Audio_Bible_Jude/65_KJV_JUD001.mp3" type="audio/mpeg">Your browser does not support audio.</audio><a href="https://archive.org/download/siv_KJV_Audio_Bible_Jude/65_KJV_JUD001.mp3" target="_blank" class="kjv-audio-dl">⬇ Download</a></div>
 1 Jude, the servant of Jesus Christ, and brother of James, to
 them that are sanctified by God the Father, and preserved in
 Jesus Christ, and called:
