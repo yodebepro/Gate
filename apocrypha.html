@@ -477,18 +477,20 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
         <div class="comm-desc">David's psalm about defeating Goliath; found in LXX and Dead Sea Scrolls</div>
         <div class="comm-link">Study Commentary →</div>
       </div>
-    </a><a href="apocrypha_enoch1.html" class="comm-card">
-      <div class="comm-card-top"><span class="comm-icon">📜</span></div>
+    </a><a href="apocrypha_enoch1.html" class="comm-card" style="border-color:rgba(201,168,76,.45);background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(30,50,100,.06));">
+      <div class="comm-card-top"><span class="comm-icon">📖</span></div>
       <div class="comm-card-body">
-        <div class="comm-book">1 Enoch</div>
-        <div class="comm-desc">Watchers, fallen angels, cosmic journeys; vital to NT authors</div>
+        <div class="comm-book">1 Enoch — The Book of Enoch</div>
+        <div class="comm-desc">Watchers, Nephilim, fallen angels &amp; cosmic journeys. Quoted by Jude 1:14–15; foundational to NT theology. Ethiopian Orthodox canon. Full PDF included.</div>
+        <div style="display:inline-block;font-size:.65rem;background:rgba(201,168,76,.2);color:var(--gold);padding:.12rem .45rem;border-radius:8px;font-family:sans-serif;font-weight:700;letter-spacing:.5px;margin-bottom:.3rem;">DEDICATED PDF</div>
         <div class="comm-link">Study Commentary →</div>
       </div>
-    </a><a href="apocrypha_enoch2.html" class="comm-card">
-      <div class="comm-card-top"><span class="comm-icon">📜</span></div>
+    </a><a href="apocrypha_enoch2.html" class="comm-card" style="border-color:rgba(201,168,76,.35);">
+      <div class="comm-card-top"><span class="comm-icon">📖</span></div>
       <div class="comm-card-body">
-        <div class="comm-book">2 Enoch</div>
-        <div class="comm-desc">Slavonic Enoch — heavenly ascent and cosmological revelation</div>
+        <div class="comm-book">2 Enoch — Slavonic Book of Enoch</div>
+        <div class="comm-desc">Heavenly ascent through ten heavens, cosmological secrets, and divine revelation. Also called "The Book of the Secrets of Enoch." Uses the Complete Book of Enoch PDF.</div>
+        <div style="display:inline-block;font-size:.65rem;background:rgba(201,168,76,.2);color:var(--gold);padding:.12rem .45rem;border-radius:8px;font-family:sans-serif;font-weight:700;letter-spacing:.5px;margin-bottom:.3rem;">DEDICATED PDF</div>
         <div class="comm-link">Study Commentary →</div>
       </div>
     </a><a href="apocrypha_jubilees.html" class="comm-card">
@@ -565,9 +567,7 @@ a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2)}
     <button onclick="addApocrDoc()" style="background:var(--gold);color:var(--navy);border:none;padding:.6rem 1.5rem;border-radius:6px;font-family:sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;">📢 POST Document</button>
     <div id="apocrDocMsg" style="font-size:.83rem;margin-top:.5rem;min-height:1rem;"></div>
   </div>
-  <div style="text-align:center;margin-top:1.5rem;">
-    <button onclick="promptAdminApocr()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">⚙ Admin Access</button>
-  </div>
+  <!-- admin-btn-hidden -->
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
@@ -628,4 +628,59 @@ window.addEventListener('load',function(){
 })();
 });
 </script>
+
+<script>
+/* Admin access via URL: add ?admin=GATE2025admin to any page URL */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var key = params.get('admin');
+  if(key === 'GATE2025admin'){
+    /* Set session flag */
+    try{ sessionStorage.setItem('gate_admin_url','1'); }catch(e){}
+    /* Trigger existing admin unlock functions if they exist */
+    var fns=['promptAdmin','promptAdminStore','promptAdminHire','promptAdminChurch',
+             'promptAdminRel','promptAdminTv','promptAdminRadio','promptAdminArt',
+             'promptAdminProfile','promptAdminHire'];
+    window.addEventListener('load', function(){
+      /* Mark admin as active without showing prompt */
+      if(typeof isAdmin !== 'undefined') isAdmin = true;
+      if(typeof isAdminH !== 'undefined') isAdminH = true;
+      if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+      if(typeof isAdminC !== 'undefined') isAdminC = true;
+      if(typeof isAdminRel !== 'undefined') isAdminRel = true;
+      if(typeof isAdminTv !== 'undefined') isAdminTv = true;
+      if(typeof isAdminRadio !== 'undefined') isAdminRadio = true;
+      if(typeof isAdminArt !== 'undefined') isAdminArt = true;
+      /* Show all admin panels */
+      document.querySelectorAll('.admin-box,.admin-panel,[id*="admin"],[id*="Admin"]').forEach(function(el){
+        if(el.id && (el.id.toLowerCase().includes('box') || el.id.toLowerCase().includes('panel'))){
+          el.classList.add('visible');
+          el.style.display='block';
+        }
+      });
+      /* Rebuild any admin-aware UI */
+      if(typeof buildTabs==='function') buildTabs();
+      if(typeof renderApplications==='function') renderApplications();
+      if(typeof renderStatusAdmin==='function') renderStatusAdmin();
+      if(typeof updateAppCount==='function') updateAppCount();
+      console.log('[GATE] Admin mode active via URL');
+    });
+  }
+  /* Also check sessionStorage for persistence across page loads */
+  try{
+    if(sessionStorage.getItem('gate_admin_url')==='1'){
+      window.addEventListener('load', function(){
+        if(typeof isAdmin !== 'undefined') isAdmin = true;
+        if(typeof isAdminH !== 'undefined') isAdminH = true;
+        if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+        document.querySelectorAll('.admin-box,.admin-panel').forEach(function(el){
+          el.classList.add('visible');
+        });
+        if(typeof buildTabs==='function') buildTabs();
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
 </body></html>

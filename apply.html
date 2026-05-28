@@ -199,6 +199,16 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
     </div>
 
     <div class="gate-dropdown">
+      <button>COMMUNITY ▾</button>
+      <div class="gate-dropdown-menu">
+        <a href="world_religions.html">🌍 World Religions</a><a href="churches_member.html">⛪ Churches (Member)</a>
+        <a href="churches_hiring.html">👔 Churches (Hiring)</a><a href="prayer_requests.html">🙏 Prayer Requests</a>
+        <a href="radio.html">📻 Radio</a><a href="television.html">📺 Television</a>
+        <a href="art.html">🎨 Art</a>
+      </div>
+    </div>
+
+    <div class="gate-dropdown">
       <button>ACCOUNT ▾</button>
       <div class="gate-dropdown-menu">
         <a href="account.html">🔐 Login / Register</a>
@@ -338,9 +348,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
     </div>
   </div>
 
-  <div style="text-align:center;margin-top:1.5rem;">
-    <button class="btn btn-secondary btn-sm" onclick="promptAdmin()">⚙ Admin — Add / Remove Schools</button>
-  </div>
+  <!-- admin-btn-hidden -->
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
@@ -600,4 +608,59 @@ function promptAdmin(){
 
 (function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
 </script>
+
+<script>
+/* Admin access via URL: add ?admin=GATE2025admin to any page URL */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var key = params.get('admin');
+  if(key === 'GATE2025admin'){
+    /* Set session flag */
+    try{ sessionStorage.setItem('gate_admin_url','1'); }catch(e){}
+    /* Trigger existing admin unlock functions if they exist */
+    var fns=['promptAdmin','promptAdminStore','promptAdminHire','promptAdminChurch',
+             'promptAdminRel','promptAdminTv','promptAdminRadio','promptAdminArt',
+             'promptAdminProfile','promptAdminHire'];
+    window.addEventListener('load', function(){
+      /* Mark admin as active without showing prompt */
+      if(typeof isAdmin !== 'undefined') isAdmin = true;
+      if(typeof isAdminH !== 'undefined') isAdminH = true;
+      if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+      if(typeof isAdminC !== 'undefined') isAdminC = true;
+      if(typeof isAdminRel !== 'undefined') isAdminRel = true;
+      if(typeof isAdminTv !== 'undefined') isAdminTv = true;
+      if(typeof isAdminRadio !== 'undefined') isAdminRadio = true;
+      if(typeof isAdminArt !== 'undefined') isAdminArt = true;
+      /* Show all admin panels */
+      document.querySelectorAll('.admin-box,.admin-panel,[id*="admin"],[id*="Admin"]').forEach(function(el){
+        if(el.id && (el.id.toLowerCase().includes('box') || el.id.toLowerCase().includes('panel'))){
+          el.classList.add('visible');
+          el.style.display='block';
+        }
+      });
+      /* Rebuild any admin-aware UI */
+      if(typeof buildTabs==='function') buildTabs();
+      if(typeof renderApplications==='function') renderApplications();
+      if(typeof renderStatusAdmin==='function') renderStatusAdmin();
+      if(typeof updateAppCount==='function') updateAppCount();
+      console.log('[GATE] Admin mode active via URL');
+    });
+  }
+  /* Also check sessionStorage for persistence across page loads */
+  try{
+    if(sessionStorage.getItem('gate_admin_url')==='1'){
+      window.addEventListener('load', function(){
+        if(typeof isAdmin !== 'undefined') isAdmin = true;
+        if(typeof isAdminH !== 'undefined') isAdminH = true;
+        if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+        document.querySelectorAll('.admin-box,.admin-panel').forEach(function(el){
+          el.classList.add('visible');
+        });
+        if(typeof buildTabs==='function') buildTabs();
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
 </body></html>

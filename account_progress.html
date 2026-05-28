@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — My Learning Progress</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+/* TOP NAV WITH DROPDOWNS */
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap;position:relative}
+.gate-nav-links > a, .nav-dropdown > .nav-dlink{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;display:inline-block;cursor:pointer;white-space:nowrap}
+.gate-nav-links > a:hover,.gate-nav-links > a.active,.nav-dropdown:hover > .nav-dlink{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.3rem 1rem;border-radius:4px}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+
+/* SECONDARY NAV */
+.gate-nav2{background:rgba(10,20,40,.95);border-bottom:1px solid rgba(201,168,76,.25);position:sticky;top:58px;z-index:99}
+.nav2-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.05rem;overflow-x:auto}
+.nav2-inner a{color:var(--text2);font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;transition:all .2s}
+.nav2-inner a:hover,.nav2-inner a.active{color:var(--gold);background:rgba(201,168,76,.1)}
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:5px;font-family:sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:var(--cream)}
+.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-sm{padding:.3rem .8rem;font-size:.78rem}
+.btn-green{background:#2d7a4f;color:#fff;border:none}
+.btn-green:hover{background:#38945f;text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+.img-thumb{width:80px;height:60px;object-fit:cover;border-radius:4px;border:1px solid rgba(201,168,76,.2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <div class="dd"><a href="trial.html">Free Trial</a><div class="dd-menu"><a href="trial.html">🎓 Trial Examination</a><a href="freetrial_materials.html">📚 Free Study Materials</a><a href="freetrial_resources.html">🔗 Free Theology Resources</a></div></div>
+    <div class="dd"><a href="account.html" class="active">Account</a><div class="dd-menu"><a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 My Profile</a><a href="account_progress.html">📈 My Progress</a><a href="account_certificates.html">🏅 My Certificates</a></div></div>
+    <div class="dd"><a href="bundle.html">Bundles</a><div class="dd-menu"><a href="bundle.html">📦 Exam Bundles</a><a href="store.html">🛒 Study Material Store</a></div></div>
+    <div class="dd"><a href="contact.html">Contact</a><div class="dd-menu"><a href="contact.html">✉️ Contact Us</a><a href="contact_schools.html">🎓 School Directory</a><a href="contact_faq.html">❓ FAQ & Help</a></div></div>
+    <a href="admin.html">Admin</a>
+    <div class="dd"><a href="reports.html">Reports</a><div class="dd-menu"><a href="results.html">📊 My Scores</a><a href="reports.html">📈 Progress Report</a><a href="reports_leaderboard.html">🏆 Leaderboard</a></div></div>
+  </div>
+</div></nav>
+<nav style="background:rgba(10,20,40,0.95);border-bottom:1px solid rgba(201,168,76,.25);position:sticky;top:62px;z-index:99;">
+  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.05rem;overflow-x:auto;">
+    <a href="bible.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">📖 The Bible</a>
+    <a href="schedule.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">📅 Take The Test</a>
+    <a href="apply.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">🎓 Apply to School</a>
+    <a href="announcements.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">📢 Announcement</a>
+    <a href="events.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">🗓 Events</a>
+    <a href="livepanel.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">🔴 LIVE Panel</a>
+    <a href="biblestudies.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">✝ Bible Studies</a>
+    <a href="video.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">▶ Video</a>
+    <a href="ministry.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">⛪ Ministry</a>
+    <a href="donation.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">💛 Donation</a>
+  </div>
+</nav>
+
+<div class="page-header"><h1>📈 My Learning Progress</h1><p>Track your academic journey</p><div class="divider"></div></div>
+<div class="container">
+  <div id="notLoggedIn" class="alert alert-warning">Not logged in. <a href="account.html">Login →</a></div>
+  <div id="progressContent" style="display:none;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem;" id="statsGrid"></div>
+    <div class="card" style="margin-bottom:1.5rem;"><div class="card-header"><span>📊</span><h2>Examination Results</h2></div><div id="examResults"></div></div>
+    <div class="card"><div class="card-header"><span>📅</span><h2>Attempt History</h2></div><div id="attemptHistory"></div></div>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+
+const GATE_KEY='td_gate_v6';
+const ADMIN_PASS='GATE2025admin';
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function gateState(){return gateLoad(GATE_KEY)||{user:null,tier:null,scores:{},attempts:{}}}
+function saveState(s){gateSave(GATE_KEY,s)}
+function fmtDate(ts){if(!ts)return'—';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+let adminUnlocked=false;
+function promptAdmin(cb){
+  if(adminUnlocked){if(cb)cb();return;}
+  const pw=prompt('Admin password:');
+  if(pw===ADMIN_PASS){adminUnlocked=true;if(cb)cb();}
+  else if(pw!==null)alert('Incorrect password.');
+}
+async function toBase64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);})}
+
+
+const SUBJ={"1":"Theology Proper & Christology","2":"Pneumatology & Soteriology","3":"Ecclesiology & Eschatology","4":"Biblical Hermeneutics & Bibliology","5":"Ethics, Anthropology & Hamartiology","6":"Angelology, Demonology & Apologetics"};
+function init(){
+  const s=gateState();
+  if(!s.user){document.getElementById('notLoggedIn').style.display='block';return;}
+  document.getElementById('notLoggedIn').style.display='none';
+  document.getElementById('progressContent').style.display='block';
+  const scores=s.scores||{};const attempts=s.attempts||{};
+  const allAtts=gateLoad('td_gate_attempts_v6')||{};
+  const vals=Object.values(scores).filter(x=>x!==undefined);
+  const taken=vals.length,passing=vals.filter(x=>x>=65).length;
+  const best=vals.length?Math.max(...vals):0,avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):0;
+  document.getElementById('statsGrid').innerHTML=`
+    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;text-align:center;"><div style="font-size:2rem;font-weight:700;color:var(--gold);font-family:sans-serif;">${taken}/6</div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;">Taken</div></div>
+    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;text-align:center;"><div style="font-size:2rem;font-weight:700;color:${passing===taken&&taken>0?'#4aad74':'var(--gold)'};font-family:sans-serif;">${passing}</div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;">Passed</div></div>
+    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;text-align:center;"><div style="font-size:2rem;font-weight:700;color:var(--gold);font-family:sans-serif;">${avg||'—'}${avg?'%':''}</div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;">Average</div></div>
+    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;text-align:center;"><div style="font-size:2rem;font-weight:700;color:var(--gold);font-family:sans-serif;">${best||'—'}${best?'%':''}</div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;">Best</div></div>`;
+  let rHtml='';
+  for(let n=1;n<=6;n++){
+    const sc=scores[n]!==undefined?scores[n]:null,att=attempts[n]||0,pct=sc!==null?Math.round(sc):0;
+    rHtml+=`<div style="margin-bottom:1rem;"><div style="display:flex;justify-content:space-between;margin-bottom:.3rem;"><span style="font-size:.85rem;color:var(--cream);">Exam ${n}: ${SUBJ[n]}</span><span style="font-family:sans-serif;font-weight:700;color:${sc===null?'#b8a88a':sc>=65?'#4aad74':'#e05555'}">${sc!==null?pct+'%':'Not taken'}</span></div><div style="background:var(--charcoal);border-radius:10px;height:10px;overflow:hidden;"><div style="height:100%;border-radius:10px;background:${sc===null?'rgba(255,255,255,.1)':sc>=65?'#2d7a4f':'#8b2020'};width:${pct}%;transition:width .5s;"></div></div><div style="font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-top:.2rem;">${att} attempt${att!==1?'s':''}</div></div>`;
+  }
+  document.getElementById('examResults').innerHTML=rHtml||'<div style="color:var(--text2);">No exams taken yet.</div>';
+  let histHtml='';let hasAny=false;
+  for(let n=1;n<=6;n++){const atts=allAtts[n];if(atts&&atts.length){hasAny=true;atts.slice().reverse().slice(0,5).forEach(a=>{const el=Math.floor((a.elapsed||0)/60)+'m '+((a.elapsed||0)%60)+'s';histHtml+=`<div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.05);flex-wrap:wrap;gap:.4rem;"><span style="color:var(--gold);font-size:.82rem;">Exam ${n}</span><span style="color:var(--text2);font-size:.76rem;">${fmtDate(a.date)}</span><span style="font-weight:700;color:${a.score>=65?'#4aad74':'#e05555'}">${a.score}%</span><span style="font-size:.75rem;color:var(--text2);">${a.correct}/${a.total} · ${el}</span></div>`;});}}
+  document.getElementById('attemptHistory').innerHTML=hasAny?histHtml:'<div style="color:var(--text2);">No attempts recorded.</div>';
+}
+init();
+
+</script></body></html>

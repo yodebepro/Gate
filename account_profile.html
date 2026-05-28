@@ -363,9 +363,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   </div>
 </div>
 
-<div style="text-align:center;margin-top:1.5rem;">
-  <button onclick="promptAdminProfile()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">&#9881; Admin View</button>
-</div>
+<!-- admin-btn-hidden -->
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
 <script>
@@ -534,7 +532,62 @@ function viewStudentDocs(email){
   for(var i=0;i<docs.length;i++){
     win.document.write('<div style="margin:.8rem 0;padding:1rem;background:#162440;border-radius:8px;"><strong>'+docs[i].name+'</strong><br><small>'+docs[i].size+' &middot; '+new Date(docs[i].uploaded).toLocaleDateString()+'</small><br><a href="'+docs[i].data+'" download="'+docs[i].name+'" style="color:#c9a84c;">Download</a></div>');
   }
-  win.document.write('</body></html>');
+  win.document.write('
+<script>
+/* Admin access via URL: add ?admin=GATE2025admin to any page URL */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var key = params.get('admin');
+  if(key === 'GATE2025admin'){
+    /* Set session flag */
+    try{ sessionStorage.setItem('gate_admin_url','1'); }catch(e){}
+    /* Trigger existing admin unlock functions if they exist */
+    var fns=['promptAdmin','promptAdminStore','promptAdminHire','promptAdminChurch',
+             'promptAdminRel','promptAdminTv','promptAdminRadio','promptAdminArt',
+             'promptAdminProfile','promptAdminHire'];
+    window.addEventListener('load', function(){
+      /* Mark admin as active without showing prompt */
+      if(typeof isAdmin !== 'undefined') isAdmin = true;
+      if(typeof isAdminH !== 'undefined') isAdminH = true;
+      if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+      if(typeof isAdminC !== 'undefined') isAdminC = true;
+      if(typeof isAdminRel !== 'undefined') isAdminRel = true;
+      if(typeof isAdminTv !== 'undefined') isAdminTv = true;
+      if(typeof isAdminRadio !== 'undefined') isAdminRadio = true;
+      if(typeof isAdminArt !== 'undefined') isAdminArt = true;
+      /* Show all admin panels */
+      document.querySelectorAll('.admin-box,.admin-panel,[id*="admin"],[id*="Admin"]').forEach(function(el){
+        if(el.id && (el.id.toLowerCase().includes('box') || el.id.toLowerCase().includes('panel'))){
+          el.classList.add('visible');
+          el.style.display='block';
+        }
+      });
+      /* Rebuild any admin-aware UI */
+      if(typeof buildTabs==='function') buildTabs();
+      if(typeof renderApplications==='function') renderApplications();
+      if(typeof renderStatusAdmin==='function') renderStatusAdmin();
+      if(typeof updateAppCount==='function') updateAppCount();
+      console.log('[GATE] Admin mode active via URL');
+    });
+  }
+  /* Also check sessionStorage for persistence across page loads */
+  try{
+    if(sessionStorage.getItem('gate_admin_url')==='1'){
+      window.addEventListener('load', function(){
+        if(typeof isAdmin !== 'undefined') isAdmin = true;
+        if(typeof isAdminH !== 'undefined') isAdminH = true;
+        if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+        document.querySelectorAll('.admin-box,.admin-panel').forEach(function(el){
+          el.classList.add('visible');
+        });
+        if(typeof buildTabs==='function') buildTabs();
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
+</body></html>');
   win.document.close();
 }
 

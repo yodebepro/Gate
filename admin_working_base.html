@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — Admin Console</title>
+<style>
+:root {
+  --navy: #0d1b2e;
+  --navy2: #162440;
+  --charcoal: #1e2d3d;
+  --gold: #c9a84c;
+  --gold2: #e8c96e;
+  --burgundy: #6b1d2e;
+  --burgundy2: #8b2540;
+  --cream: #f5f0e8;
+  --cream2: #ede5d4;
+  --text: #e8e0d0;
+  --text2: #b8a88a;
+  --success: #2d7a4f;
+  --danger: #8b2020;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: 'Georgia', 'EB Garamond', serif;
+  background: var(--navy);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+a { color: var(--gold); text-decoration: none; }
+a:hover { color: var(--gold2); text-decoration: underline; }
+
+/* NAV */
+.gate-nav {
+  background: linear-gradient(135deg, var(--navy2) 0%, var(--charcoal) 100%);
+  border-bottom: 2px solid var(--gold);
+  padding: 0;
+  position: sticky; top: 0; z-index: 100;
+}
+.gate-nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 1.5rem;
+}
+.gate-logo {
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.gate-logo .crest {
+  font-size: 2rem; color: var(--gold);
+}
+.gate-logo-text .title {
+  font-family: 'Cinzel', 'Palatino Linotype', serif;
+  font-size: 1.3rem; font-weight: 700; color: var(--gold);
+  letter-spacing: 2px;
+}
+.gate-logo-text .sub {
+  font-size: 0.65rem; color: var(--text2); letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.gate-nav-links { display: flex; gap: 0.3rem; align-items: center; flex-wrap: wrap; }
+.gate-nav-links a {
+  color: var(--text2); font-size: 0.8rem; padding: 0.3rem 0.7rem;
+  border-radius: 4px; transition: all 0.2s; letter-spacing: 1px;
+  text-transform: uppercase; font-family: sans-serif;
+}
+.gate-nav-links a:hover, .gate-nav-links a.active {
+  color: var(--gold); background: rgba(201,168,76,0.12); text-decoration: none;
+}
+.gate-nav-links .btn-nav {
+  background: var(--gold); color: var(--navy) !important; font-weight: 700;
+  padding: 0.35rem 1rem; border-radius: 4px;
+}
+.gate-nav-links .btn-nav:hover { background: var(--gold2); }
+
+/* PAGE HEADER */
+.page-header {
+  background: linear-gradient(180deg, var(--navy2) 0%, var(--charcoal) 100%);
+  border-bottom: 1px solid rgba(201,168,76,0.3);
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+}
+.page-header h1 {
+  font-family: 'Cinzel', 'Palatino Linotype', serif;
+  font-size: 2rem; color: var(--gold); letter-spacing: 3px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.page-header p {
+  color: var(--text2); margin-top: 0.5rem; font-size: 0.95rem;
+}
+.divider {
+  width: 120px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 1rem auto 0;
+}
+
+/* CARDS */
+.container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+.card {
+  background: var(--navy2);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 8px; padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.card-header {
+  display: flex; align-items: center; gap: 0.8rem;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  padding-bottom: 0.8rem; margin-bottom: 1rem;
+}
+.card-header h2 {
+  font-family: 'Cinzel', 'Palatino Linotype', serif;
+  font-size: 1.1rem; color: var(--gold); letter-spacing: 1px;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block; padding: 0.65rem 1.5rem;
+  border-radius: 5px; font-family: sans-serif; font-size: 0.9rem;
+  font-weight: 600; cursor: pointer; border: none;
+  transition: all 0.2s; letter-spacing: 0.5px;
+}
+.btn-primary { background: var(--gold); color: var(--navy); }
+.btn-primary:hover { background: var(--gold2); color: var(--navy); text-decoration: none; }
+.btn-secondary { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); }
+.btn-secondary:hover { background: rgba(201,168,76,0.1); text-decoration: none; }
+.btn-danger { background: var(--burgundy); color: var(--cream); }
+.btn-danger:hover { background: var(--burgundy2); text-decoration: none; }
+.btn-sm { padding: 0.35rem 0.9rem; font-size: 0.8rem; }
+.btn-lg { padding: 0.85rem 2rem; font-size: 1rem; }
+
+/* BADGES */
+.badge {
+  display: inline-block; padding: 0.15rem 0.5rem;
+  border-radius: 12px; font-size: 0.72rem; font-family: sans-serif;
+  font-weight: 700; letter-spacing: 0.5px;
+}
+.badge-gold { background: rgba(201,168,76,0.2); color: var(--gold); border: 1px solid var(--gold); }
+.badge-green { background: rgba(45,122,79,0.2); color: #4aad74; border: 1px solid #2d7a4f; }
+.badge-red { background: rgba(139,32,32,0.2); color: #e05555; border: 1px solid #8b2020; }
+.badge-blue { background: rgba(30,80,150,0.2); color: #6ea8fe; border: 1px solid #3060a0; }
+
+/* FORMS */
+input, select, textarea {
+  background: var(--charcoal); border: 1px solid rgba(201,168,76,0.3);
+  color: var(--text); border-radius: 5px; padding: 0.6rem 0.9rem;
+  font-family: inherit; font-size: 0.95rem; width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201,168,76,0.2);
+}
+label { display: block; color: var(--text2); font-size: 0.85rem; margin-bottom: 0.3rem; }
+.form-group { margin-bottom: 1rem; }
+
+/* TABLES */
+table { width: 100%; border-collapse: collapse; }
+th {
+  background: rgba(201,168,76,0.1); color: var(--gold);
+  font-family: sans-serif; font-size: 0.8rem; letter-spacing: 1px;
+  text-transform: uppercase; padding: 0.7rem 1rem; text-align: left;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+td {
+  padding: 0.7rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.9rem;
+}
+tr:hover td { background: rgba(201,168,76,0.05); }
+
+/* ALERTS */
+.alert {
+  border-radius: 6px; padding: 0.9rem 1.2rem;
+  font-size: 0.9rem; margin-bottom: 1rem;
+}
+.alert-info { background: rgba(30,80,150,0.2); border: 1px solid rgba(100,150,255,0.3); color: #6ea8fe; }
+.alert-success { background: rgba(45,122,79,0.2); border: 1px solid rgba(45,122,79,0.4); color: #4aad74; }
+.alert-warning { background: rgba(180,120,20,0.2); border: 1px solid rgba(201,168,76,0.4); color: var(--gold2); }
+.alert-danger { background: rgba(139,32,32,0.2); border: 1px solid rgba(139,32,32,0.4); color: #e05555; }
+
+/* PROGRESS */
+.progress-bar {
+  background: var(--charcoal); border-radius: 10px; height: 8px;
+  overflow: hidden; border: 1px solid rgba(201,168,76,0.15);
+}
+.progress-fill {
+  height: 100%; border-radius: 10px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold2) 100%);
+  transition: width 0.4s ease;
+}
+
+/* FOOTER */
+.gate-footer {
+  background: var(--navy2); border-top: 1px solid rgba(201,168,76,0.2);
+  padding: 1.5rem; text-align: center; margin-top: 3rem;
+  color: var(--text2); font-size: 0.8rem;
+}
+.gate-footer span { color: var(--gold); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .gate-nav-links { display: none; }
+  .container { padding: 1rem; }
+  .page-header h1 { font-size: 1.4rem; }
+}
+
+.admin-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.5rem; }
+@media(max-width:700px){ .admin-grid{ grid-template-columns:1fr; } }
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <a href="trial.html">Free Trial</a>
+    <a href="account.html">Account</a>
+    <a href="admin.html" class="active">Admin</a>
+    <a href="reports.html">Reports</a>
+  </div>
+</div></nav>
+<div class="page-header"><h1>Admin Console</h1><p>Platform administration and user management</p><div class="divider"></div></div>
+<div class="container">
+<div id="adminGate">
+  <div class="card" style="max-width:400px;margin:0 auto;">
+    <div class="card-header"><span>🔐</span><h2>Admin Access</h2></div>
+    <div class="form-group"><label>Admin Password</label><input type="password" id="adminPassInput" placeholder="Enter admin password"></div>
+    <button class="btn btn-primary" onclick="checkAdmin()">Access Admin Console</button>
+    <div id="adminMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    <div style="margin-top:1rem;font-size:.78rem;color:var(--text2);">Default: <code style="color:var(--gold);">GATE2025admin</code></div>
+  </div>
+</div>
+<div id="adminContent" style="display:none;">
+  <div class="admin-grid">
+    <div class="card">
+      <div class="card-header"><span>👤</span><h2>Grant Access</h2></div>
+      <div class="form-group"><label>User Email</label><input type="email" id="grantEmail" placeholder="user@email.com"></div>
+      <div class="form-group"><label>Tier</label>
+        <select id="grantTier"><option value="basic">Basic (Exams 1–3)</option><option value="premium">Premium (All 6)</option><option value="admin">Admin</option></select>
+      </div>
+      <button class="btn btn-primary" onclick="grantAccess()">Grant Access</button>
+      <div id="grantMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span>📊</span><h2>Platform Stats</h2></div>
+      <div id="platformStats"></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:1.5rem;">
+    <div class="card-header"><span>👥</span><h2>All Users</h2></div>
+    <div id="userList"></div>
+  </div>
+  <div class="card" style="margin-top:1.5rem;">
+    <div class="card-header"><span>🗑</span><h2>Data Management</h2></div>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+      <button class="btn btn-danger btn-sm" onclick="if(confirm('Reset all GATE data?')){ localStorage.clear(); location.reload(); }">Reset All Data</button>
+      <button class="btn btn-secondary btn-sm" onclick="exportData()">Export Data (JSON)</button>
+    </div>
+  </div>
+</div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+
+// GATE Utilities
+const GATE_KEY = 'td_gate_v6';
+const GATE_ATTEMPTS = 'td_gate_attempts_v6';
+
+function gateLoad(key) {
+  try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch(e) { return null; }
+}
+function gateSave(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch(e) {}
+}
+function gateState() {
+  return gateLoad(GATE_KEY) || {
+    user: null, tier: null, purchased: false,
+    exams: {}, scores: {}, attempts: {}
+  };
+}
+function saveState(s) { gateSave(GATE_KEY, s); }
+
+function fmtDate(ts) {
+  if (!ts) return '—';
+  const d = new Date(ts);
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+}
+function fmtScore(pct) {
+  if (pct === null || pct === undefined) return '—';
+  return Math.round(pct) + '%';
+}
+function gradeColor(pct) {
+  if (pct >= 80) return '#4aad74';
+  if (pct >= 65) return '#c9a84c';
+  return '#e05555';
+}
+function gradeLabel(pct) {
+  if (pct >= 90) return 'Distinction';
+  if (pct >= 80) return 'Merit';
+  if (pct >= 65) return 'Pass';
+  return 'Needs Review';
+}
+
+const ADMIN_PASS='GATE2025admin';
+let adminAuthed=false;
+function checkAdmin(){
+  const p=document.getElementById('adminPassInput').value;
+  if(p===ADMIN_PASS||p===btoa(ADMIN_PASS)){
+    adminAuthed=true;
+    document.getElementById('adminGate').style.display='none';
+    document.getElementById('adminContent').style.display='block';
+    // Also auto-login as admin
+    const s=gateState();
+    if(!s.user){ s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};s.tier='admin';saveState(s); }
+    loadAdminData();
+  } else {
+    document.getElementById('adminMsg').innerHTML='<span style="color:#e05555;">Incorrect password.</span>';
+  }
+}
+function loadAdminData(){
+  const users=gateLoad('gate_users_v6')||{};
+  const uList=document.getElementById('userList');
+  const uArr=Object.values(users);
+  if(!uArr.length){ uList.innerHTML='<div style="color:var(--text2);">No users registered yet.</div>';}
+  else{
+    let t='<table><thead><tr><th>Name</th><th>Email</th><th>Tier</th><th>Enrolled</th><th>Action</th></tr></thead><tbody>';
+    uArr.forEach(u=>{
+      t+=`<tr><td>${u.name||'—'}</td><td style="font-size:.82rem;">${u.email}</td><td><span class="badge badge-gold">${(u.tier||'none').toUpperCase()}</span></td><td style="font-size:.78rem;">${fmtDate(u.enrolled)}</td><td><button class="btn btn-danger btn-sm" onclick="deleteUser('${u.email}')">Delete</button></td></tr>`;
+    });
+    t+='</tbody></table>';
+    uList.innerHTML=t;
+  }
+  // Stats
+  const allAtts=gateLoad('td_gate_attempts_v6')||{};
+  let totalAtts=0;
+  Object.values(allAtts).forEach(a=>{ if(Array.isArray(a))totalAtts+=a.length; });
+  document.getElementById('platformStats').innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div style="text-align:center;"><div style="font-size:1.5rem;font-weight:700;color:var(--gold);font-family:sans-serif;">${uArr.length}</div><div style="font-size:.72rem;color:var(--text2);">Users</div></div>
+      <div style="text-align:center;"><div style="font-size:1.5rem;font-weight:700;color:var(--gold);font-family:sans-serif;">${totalAtts}</div><div style="font-size:.72rem;color:var(--text2);">Exam Attempts</div></div>
+    </div>
+  `;
+}
+function grantAccess(){
+  const email=document.getElementById('grantEmail').value.trim().toLowerCase();
+  const tier=document.getElementById('grantTier').value;
+  const msg=document.getElementById('grantMsg');
+  if(!email){msg.innerHTML='<span style="color:#e05555;">Enter email.</span>';return;}
+  const users=gateLoad('gate_users_v6')||{};
+  if(!users[email])users[email]={name:email,email,pass:btoa('gate123'),tier,enrolled:Date.now()};
+  else users[email].tier=tier;
+  gateSave('gate_users_v6',users);
+  msg.innerHTML='<span style="color:#4aad74;">Access granted: '+tier.toUpperCase()+'</span>';
+  loadAdminData();
+}
+function deleteUser(email){
+  if(!confirm('Delete user: '+email+'?'))return;
+  const users=gateLoad('gate_users_v6')||{};
+  delete users[email];
+  gateSave('gate_users_v6',users);
+  loadAdminData();
+}
+function exportData(){
+  const data={users:gateLoad('gate_users_v6'),state:gateLoad(GATE_KEY),attempts:gateLoad('td_gate_attempts_v6')};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='gate_data.json'; a.click();
+}
+</script></body></html>
