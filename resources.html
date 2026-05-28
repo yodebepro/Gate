@@ -291,7 +291,7 @@ input[type="file"]{background:var(--charcoal);border:1px solid rgba(201,168,76,.
 
   <!-- Admin float button -->
   <div id="adminFloat" style="position:fixed;bottom:1rem;right:1rem;z-index:8999;">
-    <button onclick="promptAdmin()" style="background:linear-gradient(135deg,#162440,#0d1b2e);color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:.5rem .9rem;border-radius:20px;font-family:sans-serif;font-size:.72rem;cursor:pointer;font-weight:600;box-shadow:0 4px 15px rgba(0,0,0,.4);">⚙ Admin</button>
+    <!-- admin-btn-hidden -->
   </div>
 
   <!-- Admin toolbar -->
@@ -561,4 +561,59 @@ document.addEventListener('DOMContentLoaded',renderPostedResources);
 
 (function(){var T={};document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add('open');}function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);var m=dd.querySelector('.gate-dropdown-menu');if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}});})();
 </script>
+
+<script>
+/* Admin access via URL: add ?admin=GATE2025admin to any page URL */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var key = params.get('admin');
+  if(key === 'GATE2025admin'){
+    /* Set session flag */
+    try{ sessionStorage.setItem('gate_admin_url','1'); }catch(e){}
+    /* Trigger existing admin unlock functions if they exist */
+    var fns=['promptAdmin','promptAdminStore','promptAdminHire','promptAdminChurch',
+             'promptAdminRel','promptAdminTv','promptAdminRadio','promptAdminArt',
+             'promptAdminProfile','promptAdminHire'];
+    window.addEventListener('load', function(){
+      /* Mark admin as active without showing prompt */
+      if(typeof isAdmin !== 'undefined') isAdmin = true;
+      if(typeof isAdminH !== 'undefined') isAdminH = true;
+      if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+      if(typeof isAdminC !== 'undefined') isAdminC = true;
+      if(typeof isAdminRel !== 'undefined') isAdminRel = true;
+      if(typeof isAdminTv !== 'undefined') isAdminTv = true;
+      if(typeof isAdminRadio !== 'undefined') isAdminRadio = true;
+      if(typeof isAdminArt !== 'undefined') isAdminArt = true;
+      /* Show all admin panels */
+      document.querySelectorAll('.admin-box,.admin-panel,[id*="admin"],[id*="Admin"]').forEach(function(el){
+        if(el.id && (el.id.toLowerCase().includes('box') || el.id.toLowerCase().includes('panel'))){
+          el.classList.add('visible');
+          el.style.display='block';
+        }
+      });
+      /* Rebuild any admin-aware UI */
+      if(typeof buildTabs==='function') buildTabs();
+      if(typeof renderApplications==='function') renderApplications();
+      if(typeof renderStatusAdmin==='function') renderStatusAdmin();
+      if(typeof updateAppCount==='function') updateAppCount();
+      console.log('[GATE] Admin mode active via URL');
+    });
+  }
+  /* Also check sessionStorage for persistence across page loads */
+  try{
+    if(sessionStorage.getItem('gate_admin_url')==='1'){
+      window.addEventListener('load', function(){
+        if(typeof isAdmin !== 'undefined') isAdmin = true;
+        if(typeof isAdminH !== 'undefined') isAdminH = true;
+        if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+        document.querySelectorAll('.admin-box,.admin-panel').forEach(function(el){
+          el.classList.add('visible');
+        });
+        if(typeof buildTabs==='function') buildTabs();
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
 </body></html>

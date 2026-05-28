@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GATE — Study Material Store</title>
+<title>GATE — Free Theology Resources</title>
 <style>
 :root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -70,9 +70,9 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   <div class="gate-nav-links">
     <a href="index.html">Home</a>
     <a href="exam.html" class="btn-nav">Exams</a>
-    <div class="dd"><a href="trial.html">Free Trial</a><div class="dd-menu"><a href="trial.html">🎓 Trial Examination</a><a href="freetrial_materials.html">📚 Free Study Materials</a><a href="freetrial_resources.html">🔗 Free Theology Resources</a></div></div>
+    <div class="dd"><a href="trial.html" class="active">Free Trial</a><div class="dd-menu"><a href="trial.html">🎓 Trial Examination</a><a href="freetrial_materials.html">📚 Free Study Materials</a><a href="freetrial_resources.html">🔗 Free Theology Resources</a></div></div>
     <div class="dd"><a href="account.html">Account</a><div class="dd-menu"><a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 My Profile</a><a href="account_progress.html">📈 My Progress</a><a href="account_certificates.html">🏅 My Certificates</a></div></div>
-    <div class="dd"><a href="bundle.html" class="active">Bundles</a><div class="dd-menu"><a href="bundle.html">📦 Exam Bundles</a><a href="store.html">🛒 Study Material Store</a></div></div>
+    <div class="dd"><a href="bundle.html">Bundles</a><div class="dd-menu"><a href="bundle.html">📦 Exam Bundles</a><a href="store.html">🛒 Study Material Store</a></div></div>
     <div class="dd"><a href="contact.html">Contact</a><div class="dd-menu"><a href="contact.html">✉️ Contact Us</a><a href="contact_schools.html">🎓 School Directory</a><a href="contact_faq.html">❓ FAQ & Help</a></div></div>
     <a href="admin.html">Admin</a>
     <div class="dd"><a href="reports.html">Reports</a><div class="dd-menu"><a href="results.html">📊 My Scores</a><a href="reports.html">📈 Progress Report</a><a href="reports_leaderboard.html">🏆 Leaderboard</a></div></div>
@@ -93,46 +93,37 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   </div>
 </nav>
 
-<div class="page-header"><h1>🛒 Study Material Store</h1><p>Books, study guides &amp; theological resources</p><div class="divider"></div></div>
+<div class="page-header"><h1>🔗 Free Theology Resources</h1><p>Curated external resources for theological &amp; divinity study</p><div class="divider"></div></div>
 <div class="container">
-  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;">
-    <input type="text" id="searchStore" placeholder="Search books, titles, authors..." oninput="filterStore()" style="max-width:280px;">
-    <select id="filterCat" onchange="filterStore()" style="max-width:180px;">
-      <option value="">All Categories</option>
-      <option>Textbook</option><option>Study Guide</option><option>Devotional</option>
-      <option>Commentary</option><option>Bible Dictionary</option><option>Church History</option>
-      <option>Systematic Theology</option><option>Other</option>
+  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+    <input type="text" id="resSearch" placeholder="Search resources..." oninput="filterRes()" style="max-width:260px;">
+    <select id="resCat" onchange="filterRes()" style="max-width:180px;">
+      <option value="">All Categories</option><option>Bible Tools</option><option>Theology</option><option>Church History</option><option>Ministry</option><option>Academic</option><option>Commentary</option>
     </select>
   </div>
-  <div id="storeGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;"></div>
-  <div id="noItems" style="display:none;color:var(--text2);text-align:center;padding:3rem;">No items found.</div>
+  <div id="resGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;"></div>
 
-  <!-- Admin Panel -->
   <div id="adminPanel" style="display:none;margin-top:2rem;">
     <div class="card" style="border-color:rgba(201,168,76,.4);">
-      <div class="card-header"><span>➕</span><h2>Add Store Item (Admin)</h2></div>
+      <div class="card-header"><span>➕</span><h2>Add Resource (Admin)</h2></div>
       <div class="grid2">
-        <div class="form-group"><label>Title *</label><input type="text" id="addTitle" placeholder="Book title"></div>
-        <div class="form-group"><label>Author</label><input type="text" id="addAuthor" placeholder="Author name"></div>
-        <div class="form-group"><label>Price ($) *</label><input type="number" id="addPrice" placeholder="e.g., 29.99" step="0.01"></div>
+        <div class="form-group"><label>Title *</label><input type="text" id="addTitle" placeholder="Resource name"></div>
         <div class="form-group"><label>Category</label>
-          <select id="addCat"><option>Textbook</option><option>Study Guide</option><option>Devotional</option><option>Commentary</option><option>Bible Dictionary</option><option>Church History</option><option>Systematic Theology</option><option>Other</option></select>
+          <select id="addCat"><option>Bible Tools</option><option>Theology</option><option>Church History</option><option>Ministry</option><option>Academic</option><option>Commentary</option></select>
         </div>
       </div>
-      <div class="form-group"><label>Description</label><textarea id="addDesc" rows="2" placeholder="Brief description..."></textarea></div>
-      <div class="form-group"><label>Purchase / Download Link</label><input type="url" id="addUrl" placeholder="https://..."></div>
+      <div class="form-group"><label>Description</label><input type="text" id="addDesc" placeholder="Brief description..."></div>
+      <div class="form-group"><label>URL *</label><input type="url" id="addUrl" placeholder="https://..."></div>
       <div class="form-group">
-        <label>Cover Image</label>
-        <input type="file" id="addImage" accept="image/*" style="padding:.3rem;">
-        <div style="font-size:.74rem;color:var(--text2);margin-top:.2rem;">Or paste image URL: <input type="url" id="addImageUrl" placeholder="https://..." style="display:inline;width:auto;max-width:300px;padding:.2rem .5rem;font-size:.8rem;"></div>
+        <label>Icon / Logo</label>
+        <input type="file" id="addImg" accept="image/*" style="padding:.3rem;">
       </div>
-      <div class="form-group" style="display:flex;align-items:center;gap:.5rem;"><input type="checkbox" id="addFeatured" style="width:auto;"> <label style="display:inline;margin:0;">Feature this item (show at top)</label></div>
-      <button class="btn btn-primary" onclick="addItem()">Add to Store</button>
-      <div id="storeMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+      <button class="btn btn-primary" onclick="addRes()">Add Resource</button>
+      <div id="resMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
     </div>
   </div>
   <div style="text-align:center;margin-top:1rem;">
-    <button class="btn btn-secondary btn-sm" onclick="promptAdmin(()=>{document.getElementById('adminPanel').style.display='block';renderStore();})">⚙ Admin Access</button>
+    <button class="btn btn-secondary btn-sm" onclick="promptAdmin(()=>{document.getElementById('adminPanel').style.display='block';})">⚙ Admin Access</button>
   </div>
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
@@ -155,76 +146,59 @@ function promptAdmin(cb){
 async function toBase64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);})}
 
 
-const DEFAULT_ITEMS=[
-  {title:"Systematic Theology",author:"Wayne Grudem",price:49.99,cat:"Systematic Theology",desc:"The standard evangelical systematic theology textbook covering all major doctrines.",url:"https://www.amazon.com/s?k=Systematic+Theology+Grudem",img:"",featured:true,ts:1000},
-  {title:"The Moody Handbook of Theology",author:"Paul Enns",price:39.99,cat:"Systematic Theology",desc:"Comprehensive handbook covering systematic, biblical, historical, and contemporary theology.",url:"https://www.amazon.com/s?k=Moody+Handbook+Theology",img:"",featured:false,ts:1001},
-  {title:"Strong's Exhaustive Concordance",author:"James Strong",price:24.99,cat:"Bible Dictionary",desc:"Complete word study resource for the KJV Bible — the definitive biblical concordance.",url:"https://www.amazon.com/s?k=Strong's+Exhaustive+Concordance",img:"",featured:true,ts:1002},
-  {title:"Vine's Complete Expository Dictionary",author:"W.E. Vine",price:22.99,cat:"Bible Dictionary",desc:"Old and New Testament word studies — essential for theological study.",url:"https://www.amazon.com/s?k=Vine's+Expository+Dictionary",img:"",featured:false,ts:1003},
-  {title:"A Survey of the Old Testament",author:"Andrew Hill & John Walton",price:44.99,cat:"Textbook",desc:"Comprehensive introduction to every Old Testament book for academic study.",url:"https://www.amazon.com/s?k=Survey+Old+Testament+Hill+Walton",img:"",featured:false,ts:1004},
-  {title:"The New Testament: Its Background and Message",author:"Thomas Lea & David Black",price:34.99,cat:"Textbook",desc:"Academic introduction to New Testament books, backgrounds, and theological themes.",url:"https://www.amazon.com/s?k=New+Testament+Background+Lea+Black",img:"",featured:false,ts:1005},
+const DEFAULT_RES=[
+  {title:"Bible Gateway",cat:"Bible Tools",desc:"Read, search, and compare Bible passages in hundreds of translations including KJV.",url:"https://www.biblegateway.com",img:"",ts:1000},
+  {title:"Blue Letter Bible",cat:"Bible Tools",desc:"Free online Bible study tool with Strong's concordance, lexicons, and commentaries.",url:"https://www.blueletterbible.org",img:"",ts:1001},
+  {title:"Logos Bible Software (Free)",cat:"Bible Tools",desc:"Free version of the industry standard Bible software with basic study tools.",url:"https://www.logos.com/free",img:"",ts:1002},
+  {title:"Bible Hub",cat:"Bible Tools",desc:"Free parallel Bible with interlinear texts, concordances, and commentaries.",url:"https://biblehub.com",img:"",ts:1003},
+  {title:"Christian Classics Ethereal Library",cat:"Church History",desc:"Thousands of classic Christian books and documents freely available online.",url:"https://www.ccel.org",img:"",ts:1004},
+  {title:"Monergism.com",cat:"Theology",desc:"Extensive collection of Reformed theology articles, sermons, and resources.",url:"https://www.monergism.com",img:"",ts:1005},
+  {title:"The Gospel Coalition",cat:"Theology",desc:"Theological resources, articles, and courses from leading evangelical scholars.",url:"https://www.thegospelcoalition.org",img:"",ts:1006},
+  {title:"Desiring God",cat:"Ministry",desc:"Thousands of free articles, sermons, and books on Christian theology and living.",url:"https://www.desiringgod.org",img:"",ts:1007},
+  {title:"Digital Theological Library",cat:"Academic",desc:"Open-access theological journals and academic resources for students and scholars.",url:"https://dtl.org",img:"",ts:1008},
+  {title:"Henry's Commentary on the Whole Bible",cat:"Commentary",desc:"Classic Matthew Henry commentary available free online — verse-by-verse KJV notes.",url:"https://www.biblestudytools.com/commentaries/matthew-henry-complete/",img:"",ts:1009},
+  {title:"Calvin's Institutes (Free)",cat:"Theology",desc:"John Calvin's Institutes of the Christian Religion — full text freely available.",url:"https://ccel.org/ccel/calvin/institutes.html",img:"",ts:1010},
+  {title:"JSTOR Free Access",cat:"Academic",desc:"Free access to hundreds of academic theology and religious studies journal articles.",url:"https://www.jstor.org/stable/free",img:"",ts:1011},
 ];
-function getItems(){return gateLoad('gate_store_items')||(gateSave('gate_store_items',DEFAULT_ITEMS),DEFAULT_ITEMS);}
-let allItems=[];
 
-function init(){allItems=getItems();renderStore();}
-
-function renderStore(){
-  const q=document.getElementById('searchStore').value.toLowerCase();
-  const cat=document.getElementById('filterCat').value;
-  let list=allItems;
-  if(cat)list=list.filter(i=>i.cat===cat);
-  if(q)list=list.filter(i=>(i.title+i.author+i.desc).toLowerCase().includes(q));
-  list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
-  const grid=document.getElementById('storeGrid');
-  if(!list.length){grid.innerHTML='';document.getElementById('noItems').style.display='block';return;}
-  document.getElementById('noItems').style.display='none';
-  grid.innerHTML=list.map(item=>`
-    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;overflow:hidden;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(201,168,76,.2)';this.style.transform='none'">
-      <div style="height:160px;background:var(--charcoal);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-        ${item.img?`<img src="${item.img}" style="width:100%;height:100%;object-fit:cover;" alt="${item.title}" onerror="this.style.display='none'">`:`<div style="font-size:3rem;color:rgba(201,168,76,.3);">📚</div>`}
-      </div>
-      <div style="padding:1rem;">
-        ${item.featured?'<span class="badge badge-gold" style="margin-bottom:.4rem;">⭐ Featured</span><br>':''}
-        <div style="font-family:sans-serif;font-size:.88rem;font-weight:600;color:var(--cream);margin-bottom:.2rem;">${item.title}</div>
-        ${item.author?`<div style="font-size:.75rem;color:var(--text2);">by ${item.author}</div>`:''}
-        <div style="font-size:.7rem;color:var(--text2);font-family:sans-serif;margin:.3rem 0;">${item.cat}</div>
-        <div style="font-size:.8rem;color:var(--text2);line-height:1.5;margin:.4rem 0;">${item.desc||''}</div>
-        <div style="font-size:1.2rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin:.5rem 0;">$${item.price.toFixed(2)}</div>
-        <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
-          ${item.url?`<a href="${item.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Buy Now →</a>`:''}
-          ${adminUnlocked?`<button class="btn btn-danger btn-sm" onclick="removeItem(${item.ts})">Remove</button>`:''}
-          ${adminUnlocked?`<button class="btn btn-secondary btn-sm" onclick="toggleFeatured(${item.ts})">${item.featured?'Unfeature':'Feature'}</button>`:''}
-        </div>
-      </div>
+let allRes=[];
+function init(){allRes=[...(gateLoad('gate_free_resources')||[]),...DEFAULT_RES];renderRes();}
+function renderRes(){
+  const q=document.getElementById('resSearch').value.toLowerCase();
+  const cat=document.getElementById('resCat').value;
+  let list=allRes;
+  if(cat)list=list.filter(r=>r.cat===cat);
+  if(q)list=list.filter(r=>(r.title+r.desc).toLowerCase().includes(q));
+  const cats=[...new Set(list.map(r=>r.cat))];
+  const grid=document.getElementById('resGrid');
+  grid.innerHTML=list.map(r=>`
+    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(201,168,76,.2)'">
+      ${r.img?`<img src="${r.img}" style="height:40px;width:auto;margin-bottom:.6rem;" alt="" onerror="this.style.display='none'">`:'' }
+      <div style="font-size:.65rem;color:var(--text2);font-family:sans-serif;text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem;">${r.cat}</div>
+      <div style="font-family:sans-serif;font-size:.9rem;font-weight:600;color:var(--cream);margin-bottom:.3rem;">${r.title}</div>
+      <div style="font-size:.82rem;color:var(--text2);line-height:1.5;margin-bottom:.7rem;">${r.desc}</div>
+      <a href="${r.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Visit Resource →</a>
+      ${adminUnlocked?`<button class="btn btn-danger btn-sm" style="margin-left:.4rem;" onclick="removeRes(${r.ts})">Remove</button>`:''}
     </div>`).join('');
 }
-
-function filterStore(){renderStore();}
-
-async function addItem(){
+function filterRes(){renderRes();}
+async function addRes(){
   if(!adminUnlocked){alert('Admin required.');return;}
   const title=document.getElementById('addTitle').value.trim();
-  const price=parseFloat(document.getElementById('addPrice').value);
-  if(!title||isNaN(price)){document.getElementById('storeMsg').innerHTML='<span style="color:#e05555;">Title and price required.</span>';return;}
-  let img=document.getElementById('addImageUrl').value.trim();
-  const imgFile=document.getElementById('addImage').files[0];
+  const url=document.getElementById('addUrl').value.trim();
+  if(!title||!url){document.getElementById('resMsg').innerHTML='<span style="color:#e05555;">Title and URL required.</span>';return;}
+  let img='';const imgFile=document.getElementById('addImg').files[0];
   if(imgFile)img=await toBase64(imgFile);
-  const items=getItems();
-  items.push({title,author:document.getElementById('addAuthor').value,price,cat:document.getElementById('addCat').value,desc:document.getElementById('addDesc').value,url:document.getElementById('addUrl').value,img,featured:document.getElementById('addFeatured').checked,ts:Date.now()});
-  gateSave('gate_store_items',items);allItems=items;renderStore();
-  document.getElementById('storeMsg').innerHTML='<span style="color:#4aad74;">✓ Item added!</span>';
-  ['addTitle','addAuthor','addPrice','addDesc','addUrl','addImageUrl'].forEach(id=>document.getElementById(id).value='');
+  const custom=gateLoad('gate_free_resources')||[];
+  custom.push({title,cat:document.getElementById('addCat').value,desc:document.getElementById('addDesc').value,url,img,ts:Date.now()});
+  gateSave('gate_free_resources',custom);allRes=[...custom,...DEFAULT_RES];renderRes();
+  document.getElementById('resMsg').innerHTML='<span style="color:#4aad74;">✓ Added!</span>';
+  ['addTitle','addDesc','addUrl'].forEach(id=>document.getElementById(id).value='');
 }
-
-function removeItem(ts){
-  if(!confirm('Remove this item?'))return;
-  const items=getItems().filter(i=>i.ts!==ts);
-  gateSave('gate_store_items',items);allItems=items;renderStore();
-}
-function toggleFeatured(ts){
-  const items=getItems();const item=items.find(i=>i.ts===ts);
-  if(item)item.featured=!item.featured;
-  gateSave('gate_store_items',items);allItems=items;renderStore();
+function removeRes(ts){
+  if(!confirm('Remove?'))return;
+  const custom=(gateLoad('gate_free_resources')||[]).filter(r=>r.ts!==ts);
+  gateSave('gate_free_resources',custom);allRes=[...custom,...DEFAULT_RES];renderRes();
 }
 init();
 

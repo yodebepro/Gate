@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GATE — Study Material Store</title>
+<title>GATE — Leaderboard</title>
 <style>
 :root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -72,10 +72,10 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
     <a href="exam.html" class="btn-nav">Exams</a>
     <div class="dd"><a href="trial.html">Free Trial</a><div class="dd-menu"><a href="trial.html">🎓 Trial Examination</a><a href="freetrial_materials.html">📚 Free Study Materials</a><a href="freetrial_resources.html">🔗 Free Theology Resources</a></div></div>
     <div class="dd"><a href="account.html">Account</a><div class="dd-menu"><a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 My Profile</a><a href="account_progress.html">📈 My Progress</a><a href="account_certificates.html">🏅 My Certificates</a></div></div>
-    <div class="dd"><a href="bundle.html" class="active">Bundles</a><div class="dd-menu"><a href="bundle.html">📦 Exam Bundles</a><a href="store.html">🛒 Study Material Store</a></div></div>
+    <div class="dd"><a href="bundle.html">Bundles</a><div class="dd-menu"><a href="bundle.html">📦 Exam Bundles</a><a href="store.html">🛒 Study Material Store</a></div></div>
     <div class="dd"><a href="contact.html">Contact</a><div class="dd-menu"><a href="contact.html">✉️ Contact Us</a><a href="contact_schools.html">🎓 School Directory</a><a href="contact_faq.html">❓ FAQ & Help</a></div></div>
     <a href="admin.html">Admin</a>
-    <div class="dd"><a href="reports.html">Reports</a><div class="dd-menu"><a href="results.html">📊 My Scores</a><a href="reports.html">📈 Progress Report</a><a href="reports_leaderboard.html">🏆 Leaderboard</a></div></div>
+    <div class="dd"><a href="reports.html" class="active">Reports</a><div class="dd-menu"><a href="results.html">📊 My Scores</a><a href="reports.html">📈 Progress Report</a><a href="reports_leaderboard.html">🏆 Leaderboard</a></div></div>
   </div>
 </div></nav>
 <nav style="background:rgba(10,20,40,0.95);border-bottom:1px solid rgba(201,168,76,.25);position:sticky;top:62px;z-index:99;">
@@ -93,46 +93,16 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   </div>
 </nav>
 
-<div class="page-header"><h1>🛒 Study Material Store</h1><p>Books, study guides &amp; theological resources</p><div class="divider"></div></div>
+<div class="page-header"><h1>🏆 Leaderboard</h1><p>Top performers across GATE examinations</p><div class="divider"></div></div>
 <div class="container">
-  <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem;align-items:center;">
-    <input type="text" id="searchStore" placeholder="Search books, titles, authors..." oninput="filterStore()" style="max-width:280px;">
-    <select id="filterCat" onchange="filterStore()" style="max-width:180px;">
-      <option value="">All Categories</option>
-      <option>Textbook</option><option>Study Guide</option><option>Devotional</option>
-      <option>Commentary</option><option>Bible Dictionary</option><option>Church History</option>
-      <option>Systematic Theology</option><option>Other</option>
-    </select>
+  <div class="alert alert-info">🔒 Scores are displayed anonymously. Only your own name is shown in full.</div>
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="card-header"><span>🏆</span><h2>Overall Top Scores</h2></div>
+    <div id="leaderboard"></div>
   </div>
-  <div id="storeGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;"></div>
-  <div id="noItems" style="display:none;color:var(--text2);text-align:center;padding:3rem;">No items found.</div>
-
-  <!-- Admin Panel -->
-  <div id="adminPanel" style="display:none;margin-top:2rem;">
-    <div class="card" style="border-color:rgba(201,168,76,.4);">
-      <div class="card-header"><span>➕</span><h2>Add Store Item (Admin)</h2></div>
-      <div class="grid2">
-        <div class="form-group"><label>Title *</label><input type="text" id="addTitle" placeholder="Book title"></div>
-        <div class="form-group"><label>Author</label><input type="text" id="addAuthor" placeholder="Author name"></div>
-        <div class="form-group"><label>Price ($) *</label><input type="number" id="addPrice" placeholder="e.g., 29.99" step="0.01"></div>
-        <div class="form-group"><label>Category</label>
-          <select id="addCat"><option>Textbook</option><option>Study Guide</option><option>Devotional</option><option>Commentary</option><option>Bible Dictionary</option><option>Church History</option><option>Systematic Theology</option><option>Other</option></select>
-        </div>
-      </div>
-      <div class="form-group"><label>Description</label><textarea id="addDesc" rows="2" placeholder="Brief description..."></textarea></div>
-      <div class="form-group"><label>Purchase / Download Link</label><input type="url" id="addUrl" placeholder="https://..."></div>
-      <div class="form-group">
-        <label>Cover Image</label>
-        <input type="file" id="addImage" accept="image/*" style="padding:.3rem;">
-        <div style="font-size:.74rem;color:var(--text2);margin-top:.2rem;">Or paste image URL: <input type="url" id="addImageUrl" placeholder="https://..." style="display:inline;width:auto;max-width:300px;padding:.2rem .5rem;font-size:.8rem;"></div>
-      </div>
-      <div class="form-group" style="display:flex;align-items:center;gap:.5rem;"><input type="checkbox" id="addFeatured" style="width:auto;"> <label style="display:inline;margin:0;">Feature this item (show at top)</label></div>
-      <button class="btn btn-primary" onclick="addItem()">Add to Store</button>
-      <div id="storeMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
-    </div>
-  </div>
-  <div style="text-align:center;margin-top:1rem;">
-    <button class="btn btn-secondary btn-sm" onclick="promptAdmin(()=>{document.getElementById('adminPanel').style.display='block';renderStore();})">⚙ Admin Access</button>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;">
+    <div class="card"><div class="card-header"><span>📊</span><h2>My Standing</h2></div><div id="myStanding"></div></div>
+    <div class="card"><div class="card-header"><span>📈</span><h2>Platform Stats</h2></div><div id="platformStats"></div></div>
   </div>
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
@@ -155,76 +125,63 @@ function promptAdmin(cb){
 async function toBase64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);})}
 
 
-const DEFAULT_ITEMS=[
-  {title:"Systematic Theology",author:"Wayne Grudem",price:49.99,cat:"Systematic Theology",desc:"The standard evangelical systematic theology textbook covering all major doctrines.",url:"https://www.amazon.com/s?k=Systematic+Theology+Grudem",img:"",featured:true,ts:1000},
-  {title:"The Moody Handbook of Theology",author:"Paul Enns",price:39.99,cat:"Systematic Theology",desc:"Comprehensive handbook covering systematic, biblical, historical, and contemporary theology.",url:"https://www.amazon.com/s?k=Moody+Handbook+Theology",img:"",featured:false,ts:1001},
-  {title:"Strong's Exhaustive Concordance",author:"James Strong",price:24.99,cat:"Bible Dictionary",desc:"Complete word study resource for the KJV Bible — the definitive biblical concordance.",url:"https://www.amazon.com/s?k=Strong's+Exhaustive+Concordance",img:"",featured:true,ts:1002},
-  {title:"Vine's Complete Expository Dictionary",author:"W.E. Vine",price:22.99,cat:"Bible Dictionary",desc:"Old and New Testament word studies — essential for theological study.",url:"https://www.amazon.com/s?k=Vine's+Expository+Dictionary",img:"",featured:false,ts:1003},
-  {title:"A Survey of the Old Testament",author:"Andrew Hill & John Walton",price:44.99,cat:"Textbook",desc:"Comprehensive introduction to every Old Testament book for academic study.",url:"https://www.amazon.com/s?k=Survey+Old+Testament+Hill+Walton",img:"",featured:false,ts:1004},
-  {title:"The New Testament: Its Background and Message",author:"Thomas Lea & David Black",price:34.99,cat:"Textbook",desc:"Academic introduction to New Testament books, backgrounds, and theological themes.",url:"https://www.amazon.com/s?k=New+Testament+Background+Lea+Black",img:"",featured:false,ts:1005},
-];
-function getItems(){return gateLoad('gate_store_items')||(gateSave('gate_store_items',DEFAULT_ITEMS),DEFAULT_ITEMS);}
-let allItems=[];
-
-function init(){allItems=getItems();renderStore();}
-
-function renderStore(){
-  const q=document.getElementById('searchStore').value.toLowerCase();
-  const cat=document.getElementById('filterCat').value;
-  let list=allItems;
-  if(cat)list=list.filter(i=>i.cat===cat);
-  if(q)list=list.filter(i=>(i.title+i.author+i.desc).toLowerCase().includes(q));
-  list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
-  const grid=document.getElementById('storeGrid');
-  if(!list.length){grid.innerHTML='';document.getElementById('noItems').style.display='block';return;}
-  document.getElementById('noItems').style.display='none';
-  grid.innerHTML=list.map(item=>`
-    <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;overflow:hidden;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(201,168,76,.2)';this.style.transform='none'">
-      <div style="height:160px;background:var(--charcoal);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-        ${item.img?`<img src="${item.img}" style="width:100%;height:100%;object-fit:cover;" alt="${item.title}" onerror="this.style.display='none'">`:`<div style="font-size:3rem;color:rgba(201,168,76,.3);">📚</div>`}
-      </div>
-      <div style="padding:1rem;">
-        ${item.featured?'<span class="badge badge-gold" style="margin-bottom:.4rem;">⭐ Featured</span><br>':''}
-        <div style="font-family:sans-serif;font-size:.88rem;font-weight:600;color:var(--cream);margin-bottom:.2rem;">${item.title}</div>
-        ${item.author?`<div style="font-size:.75rem;color:var(--text2);">by ${item.author}</div>`:''}
-        <div style="font-size:.7rem;color:var(--text2);font-family:sans-serif;margin:.3rem 0;">${item.cat}</div>
-        <div style="font-size:.8rem;color:var(--text2);line-height:1.5;margin:.4rem 0;">${item.desc||''}</div>
-        <div style="font-size:1.2rem;font-weight:700;color:var(--gold);font-family:sans-serif;margin:.5rem 0;">$${item.price.toFixed(2)}</div>
-        <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
-          ${item.url?`<a href="${item.url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Buy Now →</a>`:''}
-          ${adminUnlocked?`<button class="btn btn-danger btn-sm" onclick="removeItem(${item.ts})">Remove</button>`:''}
-          ${adminUnlocked?`<button class="btn btn-secondary btn-sm" onclick="toggleFeatured(${item.ts})">${item.featured?'Unfeature':'Feature'}</button>`:''}
-        </div>
-      </div>
-    </div>`).join('');
-}
-
-function filterStore(){renderStore();}
-
-async function addItem(){
-  if(!adminUnlocked){alert('Admin required.');return;}
-  const title=document.getElementById('addTitle').value.trim();
-  const price=parseFloat(document.getElementById('addPrice').value);
-  if(!title||isNaN(price)){document.getElementById('storeMsg').innerHTML='<span style="color:#e05555;">Title and price required.</span>';return;}
-  let img=document.getElementById('addImageUrl').value.trim();
-  const imgFile=document.getElementById('addImage').files[0];
-  if(imgFile)img=await toBase64(imgFile);
-  const items=getItems();
-  items.push({title,author:document.getElementById('addAuthor').value,price,cat:document.getElementById('addCat').value,desc:document.getElementById('addDesc').value,url:document.getElementById('addUrl').value,img,featured:document.getElementById('addFeatured').checked,ts:Date.now()});
-  gateSave('gate_store_items',items);allItems=items;renderStore();
-  document.getElementById('storeMsg').innerHTML='<span style="color:#4aad74;">✓ Item added!</span>';
-  ['addTitle','addAuthor','addPrice','addDesc','addUrl','addImageUrl'].forEach(id=>document.getElementById(id).value='');
-}
-
-function removeItem(ts){
-  if(!confirm('Remove this item?'))return;
-  const items=getItems().filter(i=>i.ts!==ts);
-  gateSave('gate_store_items',items);allItems=items;renderStore();
-}
-function toggleFeatured(ts){
-  const items=getItems();const item=items.find(i=>i.ts===ts);
-  if(item)item.featured=!item.featured;
-  gateSave('gate_store_items',items);allItems=items;renderStore();
+const SUBJ={"1":"Theology Proper","2":"Pneumatology","3":"Ecclesiology","4":"Hermeneutics","5":"Ethics","6":"Angelology"};
+function init(){
+  const s=gateState();
+  const scores=s.scores||{};
+  const attempts=s.attempts||{};
+  const allAtts=gateLoad('td_gate_attempts_v6')||{};
+  const users=gateLoad('gate_users_v6')||{};
+  
+  // Build leaderboard from all users with scores
+  const entries=[];
+  Object.entries(users).forEach(([email,u])=>{
+    const uState=gateLoad('td_gate_v6');
+    // Use platform attempts data (anonymous)
+  });
+  
+  // Show current user's scores
+  const vals=Object.values(scores);
+  const avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):null;
+  const taken=vals.length;
+  const passing=vals.filter(x=>x>=65).length;
+  
+  let myHtml=`<div style="text-align:center;margin-bottom:1rem;">
+    <div style="font-size:2.5rem;font-weight:700;color:var(--gold);font-family:sans-serif;">${avg!==null?avg+'%':'—'}</div>
+    <div style="font-size:.78rem;color:var(--text2);">Your Average Score</div>
+  </div>`;
+  myHtml+=`<div style="font-size:.88rem;line-height:2;">`;
+  myHtml+=`<div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:.3rem 0;"><span style="color:var(--text2);">Exams Taken</span><span style="color:var(--cream);">${taken}/6</span></div>`;
+  myHtml+=`<div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:.3rem 0;"><span style="color:var(--text2);">Passed</span><span style="color:#4aad74;">${passing}</span></div>`;
+  myHtml+=`<div style="display:flex;justify-content:space-between;padding:.3rem 0;"><span style="color:var(--text2);">Standing</span><span style="color:var(--gold);">${avg>=90?'Distinction Candidate':avg>=80?'Merit Candidate':avg>=65?'Pass Standing':taken?'In Progress':'Not Started'}</span></div>`;
+  myHtml+=`</div>`;
+  if(!s.user)myHtml='<div style="color:var(--text2);font-size:.88rem;">Login to see your standing. <a href="account.html">Login →</a></div>';
+  document.getElementById('myStanding').innerHTML=myHtml;
+  
+  // Platform stats
+  const allExamAtts=gateLoad('td_gate_attempts_v6')||{};
+  let totalAtts=0;Object.values(allExamAtts).forEach(a=>{if(Array.isArray(a))totalAtts+=a.length;});
+  const regUsers=Object.keys(users).length;
+  document.getElementById('platformStats').innerHTML=`
+    <div style="font-size:.88rem;line-height:2;">
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:.3rem 0;"><span style="color:var(--text2);">Registered Users</span><span style="color:var(--gold);">${regUsers}</span></div>
+      <div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding:.3rem 0;"><span style="color:var(--text2);">Total Attempts</span><span style="color:var(--gold);">${totalAtts}</span></div>
+      <div style="display:flex;justify-content:space-between;padding:.3rem 0;"><span style="color:var(--text2);">Questions in Platform</span><span style="color:var(--gold);">1,538</span></div>
+    </div>`;
+  
+  // Simple leaderboard — show exam top scores by exam
+  let lbHtml='<table><thead><tr><th>#</th><th>Exam</th><th>Score</th><th>Grade</th></tr></thead><tbody>';
+  for(let n=1;n<=6;n++){
+    const sc=scores[n]!==undefined?scores[n]:null;
+    if(sc!==null){
+      const grade=sc>=90?'Distinction':sc>=80?'Merit':sc>=65?'Pass':'Fail';
+      const color=sc>=65?'#4aad74':'#e05555';
+      lbHtml+=`<tr><td style="font-weight:700;color:var(--gold);">${n}</td><td style="color:var(--text2);font-size:.82rem;">Exam ${n}: ${SUBJ[n]}</td><td style="font-weight:700;color:${color};">${Math.round(sc)}%</td><td><span style="color:${color};font-size:.8rem;">${grade}</span></td></tr>`;
+    }
+  }
+  if(!Object.keys(scores).length)lbHtml+='<tr><td colspan="4" style="text-align:center;color:var(--text2);padding:1.5rem;">No exam scores yet. <a href="exam.html">Take an exam →</a></td></tr>';
+  lbHtml+='</tbody></table>';
+  document.getElementById('leaderboard').innerHTML=lbHtml;
 }
 init();
 
