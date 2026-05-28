@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GATE — FAQ & Help Center</title>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--burgundy:#6b1d2e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#b8a88a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Georgia','EB Garamond',serif;background:var(--navy);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold2);text-decoration:underline}
+.gate-nav{background:linear-gradient(135deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200}
+.gate-nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.5rem 1.5rem}
+.gate-logo{display:flex;align-items:center;gap:.7rem}
+.gate-logo .crest{font-size:1.8rem;color:var(--gold)}
+.gate-logo-text .title{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.2rem;font-weight:700;color:var(--gold);letter-spacing:2px}
+.gate-logo-text .sub{font-size:.6rem;color:var(--text2);letter-spacing:3px;text-transform:uppercase}
+/* TOP NAV WITH DROPDOWNS */
+.gate-nav-links{display:flex;gap:.2rem;align-items:center;flex-wrap:wrap;position:relative}
+.gate-nav-links > a, .nav-dropdown > .nav-dlink{color:var(--text2);font-size:.78rem;padding:.3rem .7rem;border-radius:4px;transition:all .2s;letter-spacing:1px;text-transform:uppercase;font-family:sans-serif;display:inline-block;cursor:pointer;white-space:nowrap}
+.gate-nav-links > a:hover,.gate-nav-links > a.active,.nav-dropdown:hover > .nav-dlink{color:var(--gold);background:rgba(201,168,76,.12);text-decoration:none}
+.gate-nav-links .btn-nav{background:var(--gold);color:var(--navy)!important;font-weight:700;padding:.3rem 1rem;border-radius:4px}
+.gate-nav-links .btn-nav:hover{background:var(--gold2)}
+
+/* SECONDARY NAV */
+.gate-nav2{background:rgba(10,20,40,.95);border-bottom:1px solid rgba(201,168,76,.25);position:sticky;top:58px;z-index:99}
+.nav2-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.05rem;overflow-x:auto}
+.nav2-inner a{color:var(--text2);font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;transition:all .2s}
+.nav2-inner a:hover,.nav2-inner a.active{color:var(--gold);background:rgba(201,168,76,.1)}
+/* PAGE */
+.page-header{background:linear-gradient(180deg,var(--navy2) 0%,var(--charcoal) 100%);border-bottom:1px solid rgba(201,168,76,.3);padding:2rem 1.5rem 1.5rem;text-align:center}
+.page-header h1{font-family:'Cinzel','Palatino Linotype',serif;font-size:1.8rem;color:var(--gold);letter-spacing:3px}
+.page-header p{color:var(--text2);margin-top:.4rem;font-size:.9rem}
+.divider{width:100px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:.8rem auto 0}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+.card{background:var(--navy2);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.card-header{display:flex;align-items:center;gap:.7rem;border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.7rem;margin-bottom:1rem}
+.card-header h2{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);letter-spacing:1px}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:5px;font-family:sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold2);color:var(--navy);text-decoration:none}
+.btn-secondary{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.1);text-decoration:none}
+.btn-danger{background:#6b1d2e;color:var(--cream)}
+.btn-danger:hover{background:#8b2540;text-decoration:none}
+.btn-sm{padding:.3rem .8rem;font-size:.78rem}
+.btn-green{background:#2d7a4f;color:#fff;border:none}
+.btn-green:hover{background:#38945f;text-decoration:none}
+input,select,textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .8rem;font-family:inherit;font-size:.9rem;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,168,76,.2)}
+label{display:block;color:var(--text2);font-size:.82rem;margin-bottom:.25rem}
+.form-group{margin-bottom:.9rem}
+.alert{border-radius:6px;padding:.85rem 1.1rem;font-size:.88rem;margin-bottom:1rem}
+.alert-info{background:rgba(30,80,150,.2);border:1px solid rgba(100,150,255,.3);color:#6ea8fe}
+.alert-success{background:rgba(45,122,79,.2);border:1px solid rgba(45,122,79,.4);color:#4aad74}
+.alert-warning{background:rgba(180,120,20,.2);border:1px solid rgba(201,168,76,.4);color:var(--gold2)}
+.badge{display:inline-block;padding:.12rem .45rem;border-radius:10px;font-size:.7rem;font-family:sans-serif;font-weight:700}
+.badge-gold{background:rgba(201,168,76,.2);color:var(--gold);border:1px solid var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse}
+th{background:rgba(201,168,76,.1);color:var(--gold);font-family:sans-serif;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;padding:.65rem .9rem;text-align:left;border-bottom:1px solid rgba(201,168,76,.2)}
+td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+.gate-footer{background:var(--navy2);border-top:1px solid rgba(201,168,76,.2);padding:1.2rem;text-align:center;margin-top:3rem;color:var(--text2);font-size:.78rem}
+.gate-footer span{color:var(--gold)}
+.img-thumb{width:80px;height:60px;object-fit:cover;border-radius:4px;border:1px solid rgba(201,168,76,.2)}
+@media(max-width:768px){.gate-nav-links{display:none}}
+</style>
+</head><body>
+<nav class="gate-nav"><div class="gate-nav-inner">
+  <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
+  <div class="gate-nav-links">
+    <a href="index.html">Home</a>
+    <a href="exam.html" class="btn-nav">Exams</a>
+    <div class="dd"><a href="trial.html">Free Trial</a><div class="dd-menu"><a href="trial.html">🎓 Trial Examination</a><a href="freetrial_materials.html">📚 Free Study Materials</a><a href="freetrial_resources.html">🔗 Free Theology Resources</a></div></div>
+    <div class="dd"><a href="account.html">Account</a><div class="dd-menu"><a href="account.html">🔐 Login / Register</a><a href="account_profile.html">👤 My Profile</a><a href="account_progress.html">📈 My Progress</a><a href="account_certificates.html">🏅 My Certificates</a></div></div>
+    <div class="dd"><a href="bundle.html">Bundles</a><div class="dd-menu"><a href="bundle.html">📦 Exam Bundles</a><a href="store.html">🛒 Study Material Store</a></div></div>
+    <div class="dd"><a href="contact.html" class="active">Contact</a><div class="dd-menu"><a href="contact.html">✉️ Contact Us</a><a href="contact_schools.html">🎓 School Directory</a><a href="contact_faq.html">❓ FAQ & Help</a></div></div>
+    <a href="admin.html">Admin</a>
+    <div class="dd"><a href="reports.html">Reports</a><div class="dd-menu"><a href="results.html">📊 My Scores</a><a href="reports.html">📈 Progress Report</a><a href="reports_leaderboard.html">🏆 Leaderboard</a></div></div>
+  </div>
+</div></nav>
+<nav style="background:rgba(10,20,40,0.95);border-bottom:1px solid rgba(201,168,76,.25);position:sticky;top:62px;z-index:99;">
+  <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;flex-wrap:wrap;padding:.3rem 1.5rem;gap:.05rem;overflow-x:auto;">
+    <a href="bible.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">📖 The Bible</a>
+    <a href="schedule.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">📅 Take The Test</a>
+    <a href="apply.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">🎓 Apply to School</a>
+    <a href="announcements.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">📢 Announcement</a>
+    <a href="events.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">🗓 Events</a>
+    <a href="livepanel.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">🔴 LIVE Panel</a>
+    <a href="biblestudies.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">✝ Bible Studies</a>
+    <a href="video.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">▶ Video</a>
+    <a href="ministry.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">⛪ Ministry</a>
+    <a href="donation.html" style="color:#b8a88a;font-size:.73rem;padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;white-space:nowrap;text-decoration:none;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='#b8a88a'">💛 Donation</a>
+  </div>
+</nav>
+
+<div class="page-header"><h1>❓ FAQ &amp; Help Center</h1><p>Frequently asked questions about GATE</p><div class="divider"></div></div>
+<div class="container" style="max-width:900px;">
+  <div style="display:flex;gap:.5rem;margin-bottom:1.5rem;">
+    <input type="text" id="faqSearch" placeholder="Search questions..." oninput="filterFAQ()" style="max-width:320px;">
+    <select id="faqCat" onchange="filterFAQ()" style="max-width:180px;">
+      <option value="">All Topics</option><option>Enrollment</option><option>Exams</option><option>Payment</option><option>Account</option><option>Technical</option>
+    </select>
+  </div>
+  <div id="faqList"></div>
+
+  <div id="adminPanel" style="display:none;margin-top:2rem;">
+    <div class="card" style="border-color:rgba(201,168,76,.4);">
+      <div class="card-header"><span>➕</span><h2>Add FAQ (Admin)</h2></div>
+      <div class="form-group"><label>Category</label>
+        <select id="addCat"><option>Enrollment</option><option>Exams</option><option>Payment</option><option>Account</option><option>Technical</option></select>
+      </div>
+      <div class="form-group"><label>Question *</label><input type="text" id="addQ" placeholder="The question..."></div>
+      <div class="form-group"><label>Answer *</label><textarea id="addA" rows="3" placeholder="Detailed answer..."></textarea></div>
+      <div class="form-group" style="display:flex;gap:.5rem;align-items:center;"><input type="checkbox" id="addFeatured" style="width:auto;"> <label style="display:inline;margin:0;">Pin to top</label></div>
+      <button class="btn btn-primary" onclick="addFAQ()">Add FAQ</button>
+      <div id="faqMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:1rem;">
+    <button class="btn btn-secondary btn-sm" onclick="promptAdmin(()=>{document.getElementById('adminPanel').style.display='block';})">⚙ Admin Access</button>
+  </div>
+</div>
+<footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
+<script>
+
+const GATE_KEY='td_gate_v6';
+const ADMIN_PASS='GATE2025admin';
+function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function gateSave(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function gateState(){return gateLoad(GATE_KEY)||{user:null,tier:null,scores:{},attempts:{}}}
+function saveState(s){gateSave(GATE_KEY,s)}
+function fmtDate(ts){if(!ts)return'—';return new Date(ts).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+let adminUnlocked=false;
+function promptAdmin(cb){
+  if(adminUnlocked){if(cb)cb();return;}
+  const pw=prompt('Admin password:');
+  if(pw===ADMIN_PASS){adminUnlocked=true;if(cb)cb();}
+  else if(pw!==null)alert('Incorrect password.');
+}
+async function toBase64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);})}
+
+
+const DEFAULT_FAQS=[
+  {cat:"Enrollment",q:"How do I enroll in GATE examinations?",a:"Create a free account on the Account page, then purchase the Basic ($250 — Exams 1–3) or Premium ($500 — All 6 Exams) bundle via Stripe. After payment, notify the admin and your access will be activated within 24–48 hours.",featured:true,ts:100},
+  {cat:"Payment",q:"What payment methods are accepted?",a:"GATE uses Stripe for secure payment processing. All major credit and debit cards are accepted. After completing payment, return to the Bundle page and notify the admin to confirm your purchase.",featured:false,ts:101},
+  {cat:"Exams",q:"How many questions are in each examination?",a:"Each of the 6 GATE examinations contains 250 passage-based multiple-choice questions drawn from the KJV Bible. Each question is preceded by a Scripture passage. The time limit is 1 hour 30 minutes per exam.",featured:true,ts:102},
+  {cat:"Exams",q:"What is the passing score?",a:"The passing score for all GATE examinations is 65%. Scoring 80% or higher earns a Merit certificate. Scoring 90% or higher earns a Distinction certificate.",featured:false,ts:103},
+  {cat:"Exams",q:"Can I retake a failed examination?",a:"Yes. Unlimited retakes are included with your bundle purchase at no additional cost. Each attempt is logged in your score history.",featured:false,ts:104},
+  {cat:"Account",q:"What do I get with a free account?",a:"A free account gives you access to the 38-question Trial Examination, the secondary navigation resources (Bible, Announcements, Events, etc.), and the ability to purchase exam bundles.",featured:false,ts:105},
+  {cat:"Technical",q:"Does the platform require internet?",a:"After opening the HTML files, all 1,500 exam questions and passages are embedded locally. No internet is required to take examinations. However, internet is required to access YouTube streams, podcast embeds, and external links.",featured:false,ts:106},
+  {cat:"Payment",q:"How do I pay for the GATE Test ($330 test fee)?",a:"Visit the 'Take The Test' page from the secondary navigation. Select a date and time, fill in the registration form, then pay the $330 test fee via the Stripe link provided. After payment, notify the admin who will confirm your scheduling.",featured:true,ts:107},
+  {cat:"Account",q:"I forgot my password. What do I do?",a:"Click 'Forgot your password?' on the login page, or visit the Contact page. Enter your registered email to send a password reset request to the GATE admin at yodebepro@gmail.com. The admin will verify your identity and assist you within 24–48 hours.",featured:false,ts:108},
+  {cat:"Technical",q:"How do I access my examination results and certificates?",a:"Go to Account → My Progress for score history, or Account → My Certificates to view and print your earned certificates for passed examinations.",featured:false,ts:109},
+];
+
+let allFaqs=[];
+function init(){allFaqs=[...(gateLoad('gate_faqs')||[]),...DEFAULT_FAQS];renderFAQs();}
+
+function renderFAQs(){
+  const q=document.getElementById('faqSearch').value.toLowerCase();
+  const cat=document.getElementById('faqCat').value;
+  let list=allFaqs;
+  if(cat)list=list.filter(f=>f.cat===cat);
+  if(q)list=list.filter(f=>(f.q+f.a).toLowerCase().includes(q));
+  list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
+  const cats=[...new Set(list.map(f=>f.cat))];
+  const div=document.getElementById('faqList');
+  div.innerHTML=cats.map(c=>{
+    const items=list.filter(f=>f.cat===c);
+    return `<div class="card" style="margin-bottom:1.2rem;">
+      <div class="card-header"><span>📂</span><h2>${c}</h2></div>
+      ${items.map((f,i)=>`
+        <div style="border-bottom:1px solid rgba(255,255,255,.06);padding:.8rem 0;" id="faq${f.ts}">
+          <div onclick="toggleFaq('faq${f.ts}')" style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;">
+            <span style="color:var(--cream);font-size:.9rem;font-weight:500;">${f.featured?'📌 ':''} ${f.q}</span>
+            <span style="color:var(--gold);font-size:1.1rem;transition:transform .2s;" id="arr${f.ts}">▾</span>
+          </div>
+          <div id="ans${f.ts}" style="display:none;color:var(--text2);font-size:.88rem;line-height:1.75;margin-top:.5rem;padding-left:.5rem;border-left:2px solid rgba(201,168,76,.3);">
+            ${f.a}
+            ${adminUnlocked?`<br><button class="btn btn-danger btn-sm" style="margin-top:.5rem;" onclick="removeFaq(${f.ts})">Remove</button>`:''}
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+function toggleFaq(id){
+  const ans=document.getElementById('ans'+id.replace('faq',''));
+  const arr=document.getElementById('arr'+id.replace('faq',''));
+  const show=ans.style.display==='none';
+  ans.style.display=show?'block':'none';
+  if(arr)arr.style.transform=show?'rotate(180deg)':'rotate(0)';
+}
+
+function filterFAQ(){renderFAQs();}
+
+function addFAQ(){
+  if(!adminUnlocked){alert('Admin required.');return;}
+  const q=document.getElementById('addQ').value.trim();
+  const a=document.getElementById('addA').value.trim();
+  if(!q||!a){document.getElementById('faqMsg').innerHTML='<span style="color:#e05555;">Question and answer required.</span>';return;}
+  const custom=gateLoad('gate_faqs')||[];
+  custom.push({cat:document.getElementById('addCat').value,q,a,featured:document.getElementById('addFeatured').checked,ts:Date.now(),custom:true});
+  gateSave('gate_faqs',custom);allFaqs=[...custom,...DEFAULT_FAQS];renderFAQs();
+  document.getElementById('faqMsg').innerHTML='<span style="color:#4aad74;">✓ FAQ added!</span>';
+  document.getElementById('addQ').value='';document.getElementById('addA').value='';
+}
+function removeFaq(ts){
+  if(!confirm('Remove?'))return;
+  const custom=(gateLoad('gate_faqs')||[]).filter(f=>f.ts!==ts);
+  gateSave('gate_faqs',custom);allFaqs=[...custom,...DEFAULT_FAQS];renderFAQs();
+}
+init();
+
+</script></body></html>

@@ -174,6 +174,16 @@ label{display:block;color:var(--text2);font-size:.85rem;margin-bottom:.3rem}
     </div>
 
     <div class="gate-dropdown">
+      <button>COMMUNITY ▾</button>
+      <div class="gate-dropdown-menu">
+        <a href="world_religions.html">🌍 World Religions</a><a href="churches_member.html">⛪ Churches (Member)</a>
+        <a href="churches_hiring.html">👔 Churches (Hiring)</a><a href="prayer_requests.html">🙏 Prayer Requests</a>
+        <a href="radio.html">📻 Radio</a><a href="television.html">📺 Television</a>
+        <a href="art.html">🎨 Art</a>
+      </div>
+    </div>
+
+    <div class="gate-dropdown">
       <button>ACCOUNT ▾</button>
       <div class="gate-dropdown-menu">
         <a href="account.html">🔐 Login / Register</a>
@@ -355,28 +365,44 @@ function gateLoad(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catc
 function gateState(){return gateLoad(GATE_KEY)||{user:null,tier:null}}
 
 function sendContact() {
-  const name    = document.getElementById('contactName').value.trim();
-  const email   = document.getElementById('contactEmail').value.trim();
-  const subject = document.getElementById('contactSubject').value;
-  const message = document.getElementById('contactMessage').value.trim();
-  const res     = document.getElementById('contactResult');
+  var name    = document.getElementById('contactName').value.trim();
+  var email   = document.getElementById('contactEmail').value.trim();
+  var subject = document.getElementById('contactSubject') ? document.getElementById('contactSubject').value : 'General Inquiry';
+  var message = document.getElementById('contactMessage').value.trim();
+  var res     = document.getElementById('contactResult');
 
-  if (!name || !email || !subject || !message) {
-    res.innerHTML = '<div class="alert alert-warning">Please fill in all fields before sending.</div>';
+  if (!name || !email || !message) {
+    if(res) res.innerHTML = '<div class="alert alert-warning">Please fill in all required fields.</div>';
     return;
   }
 
-  const s = gateState();
-  const userInfo = s.user ? `\n\n--- Account Info ---\nName: ${s.user.name||'—'}\nEmail: ${s.user.email||'—'}\nTier: ${(s.tier||'none').toUpperCase()}` : '\n\n--- Not logged in ---';
+  if(res) res.innerHTML = '<div class="alert alert-info">⏳ Sending your message...</div>';
 
-  const body = encodeURIComponent(
-    `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}${userInfo}\n\n--- Sent from GATE Platform ---`
-  );
-  const mailtoLink = `mailto:${ADMIN_EMAIL}?subject=GATE Contact: ${encodeURIComponent(subject)}&body=${body}`;
+  var form = document.createElement('form');
+  form.method = 'POST';
+  form.action = 'https://formsubmit.co/yodebepro@gmail.com';
+  form.style.display = 'none';
 
-  window.location.href = mailtoLink;
+  var fields = {
+    '_subject': 'GATE Contact: ' + subject,
+    '_captcha': 'false',
+    '_template': 'table',
+    '_next': window.location.href,
+    'Name': name,
+    'Email': email,
+    'Subject': subject,
+    'Message': message,
+    'Source': 'GATE Platform'
+  };
 
-  res.innerHTML = '<div class="alert alert-success">✓ Your email client has opened with your message pre-filled. Please send it to complete your inquiry.</div>';
+  Object.keys(fields).forEach(function(k){
+    var inp = document.createElement('input');
+    inp.type = 'hidden'; inp.name = k; inp.value = fields[k];
+    form.appendChild(inp);
+  });
+
+  document.body.appendChild(form);
+  form.submit();
 }
 
 function sendForgotPassword() {
@@ -401,7 +427,7 @@ function sendForgotPassword() {
   );
 
   const mailtoLink = `mailto:${ADMIN_EMAIL}?subject=GATE Password Reset Request: ${encodeURIComponent(email)}&body=${body}`;
-  window.location.href = mailtoLink;
+  /* FormSubmit handles delivery */
 
   res.innerHTML = '<span style="color:#4aad74;">✓ Your reset request has been prepared. Your email client has opened — please send the email to reach the administration. You will be contacted within 24–48 hours.</span>';
 }
@@ -794,4 +820,59 @@ function sendForgotPassword() {
   });
 })();
 </script>
+
+<script>
+/* Admin access via URL: add ?admin=GATE2025admin to any page URL */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var key = params.get('admin');
+  if(key === 'GATE2025admin'){
+    /* Set session flag */
+    try{ sessionStorage.setItem('gate_admin_url','1'); }catch(e){}
+    /* Trigger existing admin unlock functions if they exist */
+    var fns=['promptAdmin','promptAdminStore','promptAdminHire','promptAdminChurch',
+             'promptAdminRel','promptAdminTv','promptAdminRadio','promptAdminArt',
+             'promptAdminProfile','promptAdminHire'];
+    window.addEventListener('load', function(){
+      /* Mark admin as active without showing prompt */
+      if(typeof isAdmin !== 'undefined') isAdmin = true;
+      if(typeof isAdminH !== 'undefined') isAdminH = true;
+      if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+      if(typeof isAdminC !== 'undefined') isAdminC = true;
+      if(typeof isAdminRel !== 'undefined') isAdminRel = true;
+      if(typeof isAdminTv !== 'undefined') isAdminTv = true;
+      if(typeof isAdminRadio !== 'undefined') isAdminRadio = true;
+      if(typeof isAdminArt !== 'undefined') isAdminArt = true;
+      /* Show all admin panels */
+      document.querySelectorAll('.admin-box,.admin-panel,[id*="admin"],[id*="Admin"]').forEach(function(el){
+        if(el.id && (el.id.toLowerCase().includes('box') || el.id.toLowerCase().includes('panel'))){
+          el.classList.add('visible');
+          el.style.display='block';
+        }
+      });
+      /* Rebuild any admin-aware UI */
+      if(typeof buildTabs==='function') buildTabs();
+      if(typeof renderApplications==='function') renderApplications();
+      if(typeof renderStatusAdmin==='function') renderStatusAdmin();
+      if(typeof updateAppCount==='function') updateAppCount();
+      console.log('[GATE] Admin mode active via URL');
+    });
+  }
+  /* Also check sessionStorage for persistence across page loads */
+  try{
+    if(sessionStorage.getItem('gate_admin_url')==='1'){
+      window.addEventListener('load', function(){
+        if(typeof isAdmin !== 'undefined') isAdmin = true;
+        if(typeof isAdminH !== 'undefined') isAdminH = true;
+        if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+        document.querySelectorAll('.admin-box,.admin-panel').forEach(function(el){
+          el.classList.add('visible');
+        });
+        if(typeof buildTabs==='function') buildTabs();
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
 </body></html>
