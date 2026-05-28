@@ -225,50 +225,43 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 .abtn-remove{background:rgba(139,32,32,.3);color:#e05555;border-color:#8b2020}
 .abtn-verify{background:rgba(30,80,150,.2);color:#6ea8fe;border-color:rgba(100,130,200,.4)}
 
-
-.role-tab-bar{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1.5rem;border-bottom:2px solid rgba(201,168,76,.2);padding-bottom:.3rem}
-.role-tab{background:transparent;border:none;color:var(--text2);padding:.55rem .95rem;cursor:pointer;font-family:sans-serif;font-size:.8rem;font-weight:600;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;letter-spacing:.3px}
-.role-tab.active,.role-tab:hover{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.07)}
-
-.role-tab-bar{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:1.5rem;border-bottom:2px solid rgba(201,168,76,.2);padding-bottom:.3rem}
-.role-tab{background:transparent;border:none;color:var(--text2);padding:.55rem .95rem;cursor:pointer;font-family:sans-serif;font-size:.8rem;font-weight:600;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap;letter-spacing:.3px}
-.role-tab.active,.role-tab:hover{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,168,76,.07)}
-/* Application form */
-.apply-section{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(30,50,100,.06));border:2px solid rgba(201,168,76,.35);border-radius:14px;padding:2rem;margin:2rem 0}
-.apply-section h2{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:.3rem}
-.apply-section p{color:var(--text2);font-size:.82rem;margin-bottom:1.5rem;line-height:1.7}
-.apply-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
-.step-badge{text-align:center;padding:.5rem;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:8px;font-family:sans-serif;font-size:.72rem;color:var(--text2)}
-.step-badge span{display:block;font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;margin-bottom:.15rem}
-.form-section{background:rgba(0,0,0,.2);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:1.2rem;margin-bottom:1.2rem}
-.form-section-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.85rem;letter-spacing:1px;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.15);display:flex;align-items:center;gap:.5rem}
-.doc-upload-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.8rem}
-.doc-upload-item{background:var(--charcoal);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.9rem}
-.doc-upload-label{font-family:sans-serif;font-size:.75rem;color:var(--text2);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
-.doc-upload-label span{font-size:1rem}
-.doc-upload-input{background:rgba(201,168,76,.06);border:1px dashed rgba(201,168,76,.3);border-radius:5px;padding:.4rem .5rem;font-family:sans-serif;font-size:.75rem;width:100%;cursor:pointer;color:var(--text2)}
-.doc-status{font-size:.68rem;color:#4aad74;font-family:sans-serif;margin-top:.3rem;min-height:.9rem}
-/* Church list at bottom */
-.all-churches-section{margin-top:3rem}
-.all-churches-section h2{font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2)}
-.ch-all-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.6rem;margin-top:1rem}
-.ch-all-card{background:var(--navy2);border:1px solid rgba(201,168,76,.12);border-radius:7px;padding:.75rem .9rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.6rem}
-.ch-all-card:hover,.ch-all-card.selected{border-color:var(--gold);background:rgba(201,168,76,.08)}
-.ch-all-card.selected{border-color:var(--gold2);box-shadow:0 0 0 2px rgba(201,168,76,.25)}
-.ch-all-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.75rem;line-height:1.3}
-.ch-all-loc{font-size:.67rem;color:var(--text2);font-family:sans-serif;margin-top:.1rem}
-/* Applications admin */
-.app-card{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:9px;padding:1rem;margin-bottom:.7rem}
-.app-card-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.5rem;flex-wrap:wrap;gap.4rem}
-.app-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem}
-.app-role{font-size:.72rem;color:var(--text2);font-family:sans-serif}
-.app-status{display:inline-block;padding:.15rem .5rem;border-radius:8px;font-family:sans-serif;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.status-new{background:rgba(30,80,150,.25);color:#7ab0ff}
-.status-reviewed{background:rgba(201,168,76,.2);color:var(--gold)}
-.status-forwarded{background:rgba(45,122,79,.25);color:#6fd498}
-.status-declined{background:rgba(139,32,32,.25);color:#e05555}
-@media(max-width:600px){.apply-steps{grid-template-columns:1fr}.doc-upload-grid{grid-template-columns:1fr}.ch-all-grid{grid-template-columns:1fr 1fr}}
 </style>
+<style>
+:root{--navy:#0d1b2e;--navy2:#162440;--charcoal:#1e2d3d;--gold:#c9a84c;--gold2:#e8c96e;--cream:#f5f0e8;--text:#e8e0d0;--text2:#a09070}
+.container{max-width:1200px;margin:0 auto;padding:2rem 1.5rem 5rem}
+.page-hero{background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(30,50,100,.1));border:1px solid rgba(201,168,76,.3);border-radius:14px;padding:2rem;margin-bottom:2rem;text-align:center}
+.page-hero h1{font-family:'Cinzel',serif;color:var(--gold);font-size:1.5rem;letter-spacing:3px;margin-bottom:.5rem}
+.page-hero p{color:var(--text2);font-size:.9rem;max-width:700px;margin:0 auto}
+.stats-bar{display:flex;gap:.8rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.stat-box{background:var(--navy2);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:.7rem 1.2rem;text-align:center;flex:1;min-width:100px}
+.stat-val{font-family:'Cinzel',serif;color:var(--gold);font-size:1.3rem;font-weight:700}
+.stat-lbl{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:sans-serif}
+.search-wrap{display:flex;gap:.6rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.search-inp{flex:1;background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem 1rem;font-family:inherit;font-size:.88rem}
+.search-inp:focus{outline:none;border-color:var(--gold)}
+.filter-sel{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:6px;padding:.6rem .9rem;font-family:sans-serif;font-size:.82rem;cursor:pointer}
+.church-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.9rem;margin-bottom:2rem}
+.church-card{background:var(--navy2);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:1.1rem;transition:all .2s;display:flex;flex-direction:column}
+.church-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.church-name{font-family:'Cinzel',serif;color:var(--gold);font-size:.88rem;margin-bottom:.2rem}
+.church-denom{font-size:.72rem;color:var(--text2);font-family:sans-serif;margin-bottom:.3rem}
+.church-location{font-size:.75rem;color:var(--cream);font-family:sans-serif;margin-bottom:.5rem}
+.church-badge{display:inline-block;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;padding:.15rem .45rem;border-radius:8px;font-family:sans-serif;font-weight:700;margin-bottom:.6rem}
+.badge-nat{background:rgba(30,80,150,.2);color:#6ea8fe}
+.badge-intl{background:rgba(201,168,76,.2);color:var(--gold)}
+.badge-online{background:rgba(45,122,79,.2);color:#4aad74}
+.church-btn{display:block;text-align:center;background:var(--gold);color:var(--navy);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;margin-top:auto;transition:all .2s}
+.church-btn:hover{background:var(--gold2)}
+.church-btn-outline{display:block;text-align:center;background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:.45rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:600;text-decoration:none;margin-top:.4rem}
+.section-title{font-family:'Cinzel',serif;color:var(--gold);font-size:.95rem;letter-spacing:1px;margin:.8rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.2)}
+.fg label{display:block;color:var(--text2);font-size:.75rem;margin-bottom:.18rem;font-family:sans-serif}
+.fg input,.fg select,.fg textarea{background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--gold)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.btn-gold{background:var(--gold);color:var(--navy);border:none;padding:.6rem 1.5rem;border-radius:6px;font-family:sans-serif;font-size:.88rem;font-weight:700;cursor:pointer}
+.admin-box{background:rgba(201,168,76,.04);border:2px solid rgba(201,168,76,.3);border-radius:10px;padding:1.5rem;margin-top:2rem;display:none}
+.admin-box.visible{display:block}
+</style></head><body>
 <body>
 <nav class="gate-nav"><div class="gate-nav-inner">
   <div class="gate-logo"><div class="crest">✝</div><div class="gate-logo-text"><div class="title">GATE</div><div class="sub">Global Association Theological Education</div></div></div>
@@ -330,831 +323,164 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   </div>
 </div></nav>
 <div class="container">
-<div class="page-hero">
-  <h1>👔 Church Leadership Opportunities</h1>
-  <p>Browse 165+ church ministry positions nationally and internationally. Select a role tab to browse openings, then submit your application below — all in one place.</p>
-</div>
-<div class="stats-bar">
-  <div class="stat-box"><div class="stat-val" id="stTotal">165+</div><div class="stat-lbl">Openings</div></div>
-  <div class="stat-box"><div class="stat-val">7</div><div class="stat-lbl">Role Types</div></div>
-  <div class="stat-box"><div class="stat-val">US + Intl</div><div class="stat-lbl">Coverage</div></div>
-  <div class="stat-box"><div class="stat-val" id="stApps">0</div><div class="stat-lbl">Applications</div></div>
-</div>
-
-<!-- ═══ ROLE TABS ═══ -->
-<div class="role-tab-bar" id="roleTabs"></div>
-
-<!-- Search + filter -->
-<div style="display:flex;gap:.6rem;margin-bottom:1rem;flex-wrap:wrap;">
-  <input class="search-inp" id="hireSearch" placeholder="Search by church name, location..." oninput="filterListings(this.value)">
-  <select class="filter-sel" id="regionFilter" onchange="filterListings(document.getElementById('hireSearch').value)">
-    <option value="all">All Regions</option><option value="US">United States</option><option value="INTL">International</option>
-  </select>
-  <button onclick="checkUpdates()" style="background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.45rem .9rem;border-radius:6px;font-family:sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;" title="Refresh position statuses">🔄 Check Updates</button>
-</div>
-<div id="resultsInfo" style="font-size:.78rem;color:var(--text2);font-family:sans-serif;margin-bottom:.8rem;"></div>
-<div class="church-grid" id="hiringGrid"></div>
-
-<!-- ═══ APPLICATION FORM ═══ -->
-<div class="apply-section" id="applySection">
-  <h2>📄 Submit Your Application</h2>
-  <p>Complete all fields below. Select the church you are applying to from the full church list at the bottom of this page, then click Submit. Your application will be received by the GATE admin and forwarded to your chosen church.</p>
-
-  <div class="apply-steps">
-    <div class="step-badge"><span>Step 1</span>Browse positions above &amp; choose a role</div>
-    <div class="step-badge"><span>Step 2</span>Fill in your personal &amp; ministry details</div>
-    <div class="step-badge"><span>Step 3</span>Select your church &amp; submit below</div>
+  <div class="page-hero">
+    <h1>👔 Church Leadership Opportunities</h1>
+    <p>Browse churches nationally and internationally that are hiring pastors, ministers, worship leaders, and ministry staff. Click Apply to submit your application to the church directly.</p>
   </div>
-
-  <!-- ── POSITION INFO ── -->
-  <div class="form-section">
-    <div class="form-section-title">🎯 Position Information</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>Applying for Role *</label>
-        <select id="appRole">
-          <option value="">— Select Position —</option>
-          <option>Senior Pastor</option><option>Associate Pastor</option><option>Youth Pastor</option>
-          <option>Worship Leader</option><option>Executive Pastor</option><option>Children's Pastor</option>
-          <option>Church Administrator</option>
-        </select>
-      </div>
-      <div class="fg"><label>Preferred Region *</label>
-        <select id="appRegion">
-          <option value="">— Select Region —</option>
-          <option value="US">United States (National)</option>
-          <option value="INTL">International</option>
-          <option value="any">Open to Either</option>
-        </select>
-      </div>
-    </div>
-    <div class="fg"><label>Selected Church (choose from the list below or type here) *</label>
-      <input type="text" id="appChurchName" placeholder="Click a church from the list below or type the name here...">
-    </div>
-    <div id="appChurchLoc" style="font-size:.75rem;color:#4aad74;font-family:sans-serif;margin-top:.3rem;min-height:1rem;"></div>
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-val" id="hiringCount">20+</div><div class="stat-lbl">Openings</div></div>
+    <div class="stat-box"><div class="stat-val">US + Intl</div><div class="stat-lbl">Coverage</div></div>
+    <div class="stat-box"><div class="stat-val">All</div><div class="stat-lbl">Ministry Roles</div></div>
+    <div class="stat-box"><div class="stat-val">Live</div><div class="stat-lbl">Apply Now</div></div>
   </div>
-
-  <!-- ── PERSONAL INFO ── -->
-  <div class="form-section">
-    <div class="form-section-title">👤 Personal Information</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>First Name *</label><input type="text" id="appFirst" placeholder="First name"></div>
-      <div class="fg"><label>Last Name *</label><input type="text" id="appLast" placeholder="Last name"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>Email Address *</label><input type="email" id="appEmail" placeholder="your@email.com"></div>
-      <div class="fg"><label>Phone Number *</label><input type="tel" id="appPhone" placeholder="+1 (555) 000-0000"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>Marital Status *</label>
-        <select id="appMarital">
-          <option value="">— Select —</option>
-          <option>Single</option><option>Married</option><option>Widowed</option><option>Divorced</option><option>Separated</option>
-        </select>
-      </div>
-      <div class="fg"><label>Spouse Name (if married)</label><input type="text" id="appSpouse" placeholder="Spouse full name"></div>
-    </div>
-    <div class="fg" style="margin-bottom:.8rem;"><label>Current Address *</label><input type="text" id="appAddress" placeholder="Street address, City, State/Country, ZIP"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;">
-      <div class="fg"><label>Date of Birth</label><input type="date" id="appDob"></div>
-      <div class="fg"><label>Nationality / Citizenship</label><input type="text" id="appNationality" placeholder="e.g. United States, Nigerian"></div>
-    </div>
-  </div>
-
-  <!-- ── MINISTRY INFO ── -->
-  <div class="form-section">
-    <div class="form-section-title">⛪ Ministry Background</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>Current / Previous Church</label><input type="text" id="appCurrChurch" placeholder="Current or most recent church"></div>
-      <div class="fg"><label>Years in Ministry</label><input type="number" id="appYears" placeholder="e.g. 8" min="0"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>Denomination / Affiliation</label><input type="text" id="appDenom" placeholder="e.g. Non-denominational, Baptist, Pentecostal"></div>
-      <div class="fg"><label>Highest Education Level</label>
-        <select id="appEdu">
-          <option value="">— Select —</option>
-          <option>High School Diploma</option><option>Associate Degree</option><option>Bachelor's Degree</option>
-          <option>Master's Degree (MA/MS)</option><option>Master of Divinity (MDiv)</option>
-          <option>Doctor of Ministry (DMin)</option><option>PhD / ThD</option><option>Other Theological Training</option>
-        </select>
-      </div>
-    </div>
-    <div class="fg"><label>Personal Statement / Cover Letter *</label>
-      <textarea id="appStatement" rows="5" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.55rem .9rem;font-family:inherit;font-size:.85rem;width:100%;resize:vertical;" placeholder="Share your calling, ministry vision, and why you are applying for this position (minimum 100 words)..."></textarea>
-    </div>
-  </div>
-
-  <!-- ── DOCUMENT UPLOADS (7) ── -->
-  <div class="form-section">
-    <div class="form-section-title">📎 Required Documents <span style="font-size:.7rem;font-weight:400;color:var(--text2);letter-spacing:0;font-family:sans-serif;">(PDF, DOC, or Image — max 5MB each)</span></div>
-    <div class="doc-upload-grid">
-      <div class="doc-upload-item">
-        <div class="doc-upload-label"><span>🪪</span> Birth Certificate *</div>
-        <input type="file" class="doc-upload-input" id="doc1" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="handleDocUpload(this,'doc1','stat1')">
-        <div class="doc-status" id="stat1"></div>
-      </div>
-      <div class="doc-upload-item">
-        <div class="doc-upload-label"><span>🪪</span> Driver's License / ID Card *</div>
-        <input type="file" class="doc-upload-input" id="doc2" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="handleDocUpload(this,'doc2','stat2')">
-        <div class="doc-status" id="stat2"></div>
-      </div>
-      <div class="doc-upload-item">
-        <div class="doc-upload-label"><span>🎓</span> PhD / Certificate / Ordination *</div>
-        <input type="file" class="doc-upload-input" id="doc3" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="handleDocUpload(this,'doc3','stat3')">
-        <div class="doc-status" id="stat3"></div>
-      </div>
-      <div class="doc-upload-item">
-        <div class="doc-upload-label"><span>💍</span> Marriage Certificate (if married)</div>
-        <input type="file" class="doc-upload-input" id="doc4" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="handleDocUpload(this,'doc4','stat4')">
-        <div class="doc-status" id="stat4"></div>
-      </div>
-      <div class="doc-upload-item">
-        <div class="doc-upload-label"><span>📷</span> Professional Photo *</div>
-        <input type="file" class="doc-upload-input" id="doc5" accept=".jpg,.jpeg,.png,.webp" onchange="handleDocUpload(this,'doc5','stat5')">
-        <div class="doc-status" id="stat5"></div>
-      </div>
-      <div class="doc-upload-item">
-        <div class="doc-upload-label"><span>📝</span> Biography / Ministry Profile *</div>
-        <input type="file" class="doc-upload-input" id="doc6" accept=".pdf,.doc,.docx,.txt" onchange="handleDocUpload(this,'doc6','stat6')">
-        <div class="doc-status" id="stat6"></div>
-      </div>
-      <div class="doc-upload-item">
-        <div class="doc-upload-label"><span>📄</span> Resume / CV *</div>
-        <input type="file" class="doc-upload-input" id="doc7" accept=".pdf,.doc,.docx" onchange="handleDocUpload(this,'doc7','stat7')">
-        <div class="doc-status" id="stat7"></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="appFormMsg" style="margin-bottom:.8rem;font-size:.85rem;min-height:1rem;"></div>
-  <button onclick="submitApplication()" style="width:100%;background:var(--gold);color:var(--navy);border:none;padding:.9rem;border-radius:8px;font-family:sans-serif;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .2s;">📢 SUBMIT APPLICATION</button>
-  <div id="appSubmitResult" style="margin-top:1rem;font-size:.85rem;text-align:center;"></div>
-</div>
-
-
-
-<!-- ═══ ALL 165+ POSITIONS — CARD GRID ═══ -->
-<div style="margin-top:3rem;">
-  <div style="font-family:'Cinzel',serif;color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:.4rem;padding-bottom:.6rem;border-bottom:2px solid rgba(201,168,76,.25);">
-    ⛪ All 165+ Church Ministry Positions — National &amp; International
-  </div>
-  <p style="font-size:.82rem;color:var(--text2);font-family:sans-serif;line-height:1.75;margin:.6rem 0 1rem;">
-    Every church currently hiring — nationally and internationally. Click
-    <strong style="color:var(--gold);">Visit Website</strong> to go directly to that church's official website,
-    or <strong style="color:var(--gold);">📝 Apply</strong> to pre-fill your application above.
-  </p>
-
-  <!-- Filter bar (same as Churches Member page) -->
-  <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap;">
-    <input class="search-inp" id="pos165Search"
-           placeholder="Search church name, position, or city..."
-           oninput="render165(this.value)"
-           style="flex:1;min-width:200px;">
-    <select class="filter-sel" id="pos165Role"
-            onchange="render165(document.getElementById('pos165Search').value)">
-      <option value="all">All Positions</option>
-      <option value="Senior Pastor">👑 Senior Pastor</option>
-      <option value="Associate Pastor">🤝 Associate Pastor</option>
-      <option value="Youth Pastor">🎯 Youth Pastor</option>
-      <option value="Worship Leader">🎵 Worship Leader</option>
-      <option value="Executive Pastor">⚙️ Executive Pastor</option>
-      <option value="Children's Pastor">👶 Children's Pastor</option>
-      <option value="Church Administrator">📋 Church Administrator</option>
-    </select>
-    <select class="filter-sel" id="pos165Region"
-            onchange="render165(document.getElementById('pos165Search').value)">
-      <option value="all">All Regions</option>
-      <option value="US">🇺🇸 United States</option>
-      <option value="INTL">🌍 International</option>
+  <div class="search-wrap">
+    <input class="search-inp" id="hireSearch" placeholder="Search by church, position, or location..." oninput="filterHiring(this.value)">
+    <select class="filter-sel" id="roleFilter" onchange="filterHiring(document.getElementById('hireSearch').value)">
+      <option value="all">All Roles</option>
+      <option value="Pastor">Senior Pastor</option>
+      <option value="Associate">Associate Pastor</option>
+      <option value="Youth">Youth Pastor</option>
+      <option value="Worship">Worship Leader</option>
+      <option value="Executive">Executive Pastor</option>
+      <option value="Children">Children's Pastor</option>
+      <option value="Admin">Church Administrator</option>
     </select>
   </div>
-
-  <div id="pos165Count"
-       style="font-size:.75rem;color:var(--text2);font-family:sans-serif;margin-bottom:.8rem;"></div>
-
-  <!-- US section -->
-  <div id="pos165UsSection">
-    <div class="section-hdr">🇺🇸 United States Ministry Positions</div>
-    <div class="church-grid" id="pos165UsGrid"></div>
-  </div>
-
-  <!-- International section -->
-  <div id="pos165IntlSection" style="margin-top:1.2rem;">
-    <div class="section-hdr">🌍 International Ministry Positions</div>
-    <div class="church-grid" id="pos165IntlGrid"></div>
-  </div>
-</div>
-
-
-<!-- ═══ ADMIN PANEL ═══ -->
-<div class="admin-box" id="adminHireBox">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
-    <span style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">⚙ Admin Panel — Church Hiring</span>
-    <button onclick="document.getElementById('adminHireBox').classList.remove('visible')" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">✕</button>
-  </div>
-
-  <!-- Admin tabs -->
-  <div style="display:flex;gap:.4rem;margin-bottom:1.2rem;flex-wrap:wrap;">
-    <button onclick="showAdminTab('apps')" id="atab-apps" class="role-tab active" style="font-size:.78rem;">📋 Applications</button>
-    <button onclick="showAdminTab('positions')" id="atab-positions" class="role-tab" style="font-size:.78rem;">➕ Add Position</button>
-    <button onclick="showAdminTab('statuses')" id="atab-statuses" class="role-tab" style="font-size:.78rem;">🔄 Position Status</button>
-  </div>
-
-  <!-- Applications view -->
-  <div id="admin-tab-apps">
-    <div style="font-family:Cinzel,serif;color:var(--gold);font-size:.82rem;margin-bottom:.7rem;letter-spacing:1px;">Submitted Applications (<span id="appCount">0</span>)</div>
-    <div id="applicationsList"><div style="color:var(--text2);font-size:.82rem;text-align:center;padding:2rem;">No applications submitted yet.</div></div>
-  </div>
-
-  <!-- Add position -->
-  <div id="admin-tab-positions" style="display:none;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
+  <div class="church-grid" id="hiringGrid"></div>
+  <!-- Admin -->
+  <div class="admin-box" id="adminHireBox">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid rgba(201,168,76,.2);">
+      <h3 style="font-family:Cinzel,serif;color:var(--gold);font-size:.9rem;letter-spacing:1px;">&#9881; Admin: Add Hiring Opportunity</h3>
+      <button onclick="document.getElementById('adminHireBox').classList.remove('visible')" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:.25rem .65rem;border-radius:5px;cursor:pointer;font-family:sans-serif;font-size:.78rem;">&#10005;</button>
+    </div>
+    <div class="form-row" style="margin-bottom:.8rem;">
       <div class="fg"><label>Church Name *</label><input type="text" id="hChurch" placeholder="Church name"></div>
-      <div class="fg"><label>Position / Role *</label>
-        <select id="hRole">
-          <option>Senior Pastor</option><option>Associate Pastor</option><option>Youth Pastor</option>
-          <option>Worship Leader</option><option>Executive Pastor</option><option>Children's Pastor</option>
-          <option>Church Administrator</option>
-        </select>
-      </div>
+      <div class="fg"><label>Position / Role *</label><input type="text" id="hRole" placeholder="e.g. Senior Pastor"></div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
+    <div class="form-row" style="margin-bottom:.8rem;">
       <div class="fg"><label>Location</label><input type="text" id="hLoc" placeholder="City, State / Country"></div>
-      <div class="fg"><label>Salary Range</label><input type="text" id="hSalary" placeholder="e.g. $60,000–$80,000"></div>
+      <div class="fg"><label>Salary Range (optional)</label><input type="text" id="hSalary" placeholder="e.g. $60,000-$80,000"></div>
     </div>
-    <div class="fg" style="margin-bottom:.8rem;"><label>Position Description</label><textarea id="hDesc" rows="3" style="background:var(--charcoal);border:1px solid rgba(201,168,76,.3);color:var(--text);border-radius:5px;padding:.5rem .8rem;font-family:inherit;font-size:.85rem;width:100%;resize:vertical;"></textarea></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem;">
-      <div class="fg"><label>Application URL *</label><input type="url" id="hUrl" placeholder="https://church.com/apply"></div>
-      <div class="fg"><label>Region</label><select id="hRegion"><option value="US">United States</option><option value="INTL">International</option></select></div>
-    </div>
-    <button class="btn-gold" onclick="addHiring()">📢 POST Position</button>
-    <div id="hMsg" style="font-size:.83rem;margin-top:.5rem;"></div>
+    <div class="fg" style="margin-bottom:.8rem;"><label>Job Description</label><textarea id="hDesc" rows="3" placeholder="Brief description of the role and requirements..."></textarea></div>
+    <div class="fg" style="margin-bottom:.8rem;"><label>Application URL *</label><input type="url" id="hUrl" placeholder="https://www.church.com/apply"></div>
+    <button class="btn-gold" onclick="addHiring()">&#128226; POST Position</button>
+    <div id="hireAddMsg" style="font-size:.83rem;margin-top:.5rem;"></div>
   </div>
-
-  <!-- Position statuses -->
-  <div id="admin-tab-statuses" style="display:none;">
-    <div style="font-size:.82rem;color:var(--text2);margin-bottom:.8rem;font-family:sans-serif;">Mark positions as filled or reopen them. Changes update immediately for all visitors.</div>
-    <div id="statusListAdmin"></div>
-  </div>
-</div>
-
-<div style="text-align:center;margin-top:1.5rem;">
-  <button onclick="promptAdminHire()" style="background:transparent;border:1px solid rgba(201,168,76,.3);color:var(--text2);padding:.35rem .9rem;border-radius:5px;font-family:sans-serif;font-size:.78rem;cursor:pointer;">⚙ Admin Access</button>
-</div>
+  <!-- admin-btn-hidden -->
 </div>
 <footer class="gate-footer"><p>© 2025 <span>GATE</span> — Global Association Theological Education · All Rights Reserved</p></footer>
-<script>
-function gl(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
-function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-function esc(s){return(s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+<script>function gl(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}function gs(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}function esc(s){return(s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+var DEFAULT_JOBS=[{"church": "Lakewood Church", "role": "Associate Pastor", "location": "Houston, TX", "salary": "$70,000-$90,000", "desc": "Seeking an experienced associate pastor to serve our growing congregation. Must have 5+ years ministry experience and seminary degree.", "url": "https://www.lakewoodchurch.com/jobs"}, {"church": "Life.Church", "role": "Campus Pastor", "location": "Edmond, OK (Multiple Campuses)", "salary": "$65,000-$85,000", "desc": "Lead one of our growing campuses. Strong leadership skills and a heart for multiplication required.", "url": "https://jobs.life.church"}, {"church": "Hillsong Church", "role": "Worship Leader", "location": "Sydney, Australia", "salary": "AUD $55,000-$75,000", "desc": "Lead worship for our flagship Sydney campus. Experience in contemporary worship production required.", "url": "https://hillsong.com/careers"}, {"church": "Gateway Church", "role": "Youth Pastor", "location": "Southlake, TX", "salary": "$55,000-$70,000", "desc": "Build and lead our youth ministry for students ages 12-18. Experience with youth programming and event planning required.", "url": "https://www.gatewaypeople.com/employment"}, {"church": "Elevation Church", "role": "Executive Pastor", "location": "Charlotte, NC", "salary": "$90,000-$120,000", "desc": "Oversee church operations, staff development, and strategic planning for our multi-site church network.", "url": "https://jobs.elevationchurch.org"}, {"church": "RCCG", "role": "Regional Overseer", "location": "Lagos, Nigeria / International", "salary": "Negotiable", "desc": "Oversee RCCG parishes in assigned region. Strong apostolic calling and administrative gifts required.", "url": "https://rccg.org/careers"}, {"church": "Bethel Church", "role": "Ministry School Director", "location": "Redding, CA", "salary": "$60,000-$80,000", "desc": "Lead Bethel School of Supernatural Ministry (BSSM) operations and curriculum. Strong prophetic and apostolic gifts desired.", "url": "https://www.bethel.com/jobs"}, {"church": "World Changers", "role": "Children"s Pastor", "location": "College Park, GA", "salary": "$50,000-$65,000", "desc": "Lead all children"s ministry programs and curriculum for birth through 5th grade. CPR certified required.", "url": "https://www.worldchangers.org/employment"}, {"church": "North Point Ministries", "role": "Small Groups Director", "location": "Alpharetta, GA", "salary": "$60,000-$78,000", "desc": "Develop and oversee our community groups ministry, training coaches and leaders across all campuses.", "url": "https://northpoint.org/jobs"}, {"church": "Redeemed Christian Church (UK)", "role": "Parish Pastor", "location": "London, UK", "salary": "£35,000-£50,000", "desc": "Lead an established RCCG parish. Leadership training, ordination certificate, and strong pastoral gifts required.", "url": "https://rccguk.church/vacancies"}, {"church": "Church of the Highlands", "role": "Worship Pastor", "location": "Birmingham, AL", "salary": "$65,000-$80,000", "desc": "Lead worship for our main campus and oversee worship team development across all campuses.", "url": "https://www.churchofthehighlands.com/jobs"}, {"church": "Planet Shakers Church", "role": "Creative Director", "location": "Melbourne, Australia", "salary": "AUD $70,000-$90,000", "desc": "Lead all creative outputs including music production, media, and branding for our international ministry.", "url": "https://planetshakers.com/careers"}, {"church": "Deeper Life Bible Church", "role": "Zonal Overseer", "location": "Nigeria (Various Zones)", "salary": "Honorarium + Housing", "desc": "Provide spiritual oversight, mentoring, and administrative leadership for assigned zone of churches.", "url": "https://deeperlifeonline.org/contact"}, {"church": "Brooklyn Tabernacle", "role": "Prayer Minister", "location": "Brooklyn, NY", "salary": "$45,000-$58,000", "desc": "Lead and coordinate our intercessory prayer ministry. Strong calling to prayer and intercession required.", "url": "https://brooklyntabernacle.org/about/employment"}, {"church": "Saddleback Church", "role": "Global Missions Director", "location": "Lake Forest, CA", "salary": "$75,000-$95,000", "desc": "Oversee Saddleback"s global missions strategy, partnerships, and PEACE Plan implementation worldwide.", "url": "https://saddleback.com/careers"}, {"church": "T.D. Jakes Ministries", "role": "Media Pastor", "location": "Dallas, TX", "salary": "$68,000-$88,000", "desc": "Oversee digital media strategy, live streaming, and content production for our global broadcast ministry.", "url": "https://thepottershouse.org/employment"}, {"church": "Hillsong Conference", "role": "Conference Coordinator", "location": "New York, NY", "salary": "$50,000-$65,000", "desc": "Plan and coordinate Hillsong NYC conference events, speaker bookings, and logistics.", "url": "https://hillsong.com/usa/jobs"}, {"church": "Yoido Full Gospel Church", "role": "International Ministry Coordinator", "location": "Seoul, South Korea", "salary": "KRW 40-55M", "desc": "Coordinate international ministry partnerships, oversee English-speaking ministry, and handle global outreach programs.", "url": "https://english.fgtv.com/contact"}, {"church": "Catch the Fire Church", "role": "Pastor of Evangelism", "location": "Toronto, Canada", "salary": "CAD $55,000-$70,000", "desc": "Lead evangelism training, outreach programs, and discipleship pathways for our Toronto congregation.", "url": "https://www.catchthefire.com/employment"}, {"church": "Mosaic Church", "role": "Lead Pastor of Arts", "location": "Los Angeles, CA", "salary": "$60,000-$80,000", "desc": "Develop and lead Mosaic"s arts and creative culture. Strong vision for the intersection of faith and creativity.", "url": "https://www.mosaic.org/careers"}];
+var isAdminHire=false;
 
-var HIRING_DATA = {"senior_pastor": [{"church": "Grace Church", "loc": "Eden Prairie, MN", "desc": "Lead a vibrant multi-site congregation of 4,000+. Doctorate preferred. 10+ years senior leadership experience required.", "url": "https://jobs.gracechurch.com", "region": "US", "salary": "$95,000–$130,000", "role": "Senior Pastor"}, {"church": "Westside Church", "loc": "Bend, OR", "desc": "Guide a growing non-denominational church. Strong preaching, vision-casting, and team leadership essential.", "url": "https://westsidechurch.com/careers", "region": "US", "salary": "$80,000–$110,000", "role": "Senior Pastor"}, {"church": "Bayside Community Church", "loc": "Bradenton, FL", "desc": "Seek a shepherd-leader for our 3,500-member congregation. Relational, visionary, theologically grounded.", "url": "https://baysidecommunity.org/careers", "region": "US", "salary": "$90,000–$120,000", "role": "Senior Pastor"}, {"church": "The Heights Baptist Church", "loc": "Richardson, TX", "desc": "Seeking a Senior Pastor to lead our historic congregation forward. Southern Baptist alignment preferred.", "url": "https://theheights.org/employment", "region": "US", "salary": "$85,000–$115,000", "role": "Senior Pastor"}, {"church": "Christ Fellowship Church", "loc": "Palm Beach Gardens, FL", "desc": "Lead one of South Florida's fastest-growing churches. Multi-site vision, charismatic background welcomed.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$100,000–$140,000", "role": "Senior Pastor"}, {"church": "Valley Bible Church", "loc": "Hercules, CA", "desc": "Pastor-teacher role for a congregation committed to expository preaching and discipleship. Masters/Doctorate required.", "url": "https://valleybible.net/employment", "region": "US", "salary": "$85,000–$110,000", "role": "Senior Pastor"}, {"church": "Harvest Bible Chapel", "loc": "Rolling Meadows, IL", "desc": "Lead our restored congregation. Commitment to verse-by-verse preaching and church health essential.", "url": "https://harvestbiblechapel.org/careers", "region": "US", "salary": "$90,000–$120,000", "role": "Senior Pastor"}, {"church": "Calvary Church", "loc": "Charlotte, NC", "desc": "Senior pastor sought for Calvary's next chapter. Preaching excellence, missional heart, team culture.", "url": "https://calvarychurch.com/jobs", "region": "US", "salary": "$95,000–$125,000", "role": "Senior Pastor"}, {"church": "Central Christian Church", "loc": "Mesa, AZ", "desc": "Lead a congregation of 12,000+. Multi-site experience and strong communicator required.", "url": "https://centralaz.com/jobs", "region": "US", "salary": "$110,000–$150,000", "role": "Senior Pastor"}, {"church": "Emmanuel Church", "loc": "Burbank, CA", "desc": "Shepherd a diverse, multigenerational church in the heart of the entertainment industry.", "url": "https://emmanuel.church/careers", "region": "US", "salary": "Negotiable", "role": "Senior Pastor"}, {"church": "FBC Woodstock", "loc": "Woodstock, GA", "desc": "Lead this historic Southern Baptist congregation. Seminary degree, evangelistic heart required.", "url": "https://fbcwoodstock.org/employment", "region": "US", "salary": "$100,000–$135,000", "role": "Senior Pastor"}, {"church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Senior Pastor for a congregation of 5,000. Strong preacher, strategic leader, family-oriented.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$95,000–$130,000", "role": "Senior Pastor"}, {"church": "Shoreline Church", "loc": "Monterey, CA", "desc": "Coastal California church seeks a visionary senior pastor. Relational, community-focused leadership.", "url": "https://shorelinechurch.org/jobs", "region": "US", "salary": "$80,000–$105,000", "role": "Senior Pastor"}, {"church": "Gracepoint Church", "loc": "Berkeley, CA", "desc": "Multicultural, college-ministry-rooted congregation seeks a teaching pastor with cross-cultural competency.", "url": "https://gracepointchurch.org/employment", "region": "US", "salary": "$85,000–$115,000", "role": "Senior Pastor"}, {"church": "Lighthouse Chapel International", "loc": "Accra, Ghana", "desc": "Lead one of West Africa's fastest-growing church networks. Apostolic calling and international ministry experience.", "url": "https://lighthousechapel.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Senior Pastor"}, {"church": "Church of God Mission Intl", "loc": "Lagos, Nigeria", "desc": "Lead a mission-focused congregation in Lagos. Evangelistic, apostolic, strong theological grounding.", "url": "https://cogmission.org/apply", "region": "INTL", "salary": "Negotiable", "role": "Senior Pastor"}, {"church": "Abundant Life Church", "loc": "Bradford, UK", "desc": "Lead a growing multicultural congregation in northern England. Charismatic, family-friendly vision.", "url": "https://alc.org.uk/vacancies", "region": "INTL", "salary": "£55,000–£75,000", "role": "Senior Pastor"}, {"church": "Kings Church International", "loc": "London, UK", "desc": "Senior pastor sought for a thriving London congregation. Visionary leadership, global perspective.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£60,000–£80,000", "role": "Senior Pastor"}, {"church": "New Covenant Church", "loc": "Johannesburg, South Africa", "desc": "Lead an established multiracial congregation post-apartheid. Strong pastoral and teaching gifts.", "url": "https://ncc.org.za/employment", "region": "INTL", "salary": "ZAR 450,000–650,000", "role": "Senior Pastor"}, {"church": "Grace Church Melbourne", "loc": "Melbourne, Australia", "desc": "Senior pastor for a growing evangelical congregation. Gospel-centered, community-engaged.", "url": "https://gracechurchmelbourne.com/careers", "region": "INTL", "salary": "AUD $85,000–$110,000", "role": "Senior Pastor"}, {"church": "Every Nation Church", "loc": "Manila, Philippines", "desc": "Lead Every Nation's flagship campus. Church planting heart, theological depth, leadership development.", "url": "https://everynation.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Senior Pastor"}, {"church": "Faith Tabernacle", "loc": "Ota, Nigeria", "desc": "Lead a growing congregation under Bishop David Oyedepo's network. Apostolic calling essential.", "url": "https://faithtabernacle.org.ng/careers", "region": "INTL", "salary": "Negotiable", "role": "Senior Pastor"}, {"church": "New Frontiers Church", "loc": "Brighton, UK", "desc": "Apostolic senior pastor sought. Reformed charismatic theology, church planting DNA.", "url": "https://newfrontierstogether.com/jobs", "region": "INTL", "salary": "£50,000–£70,000", "role": "Senior Pastor"}, {"church": "Auckland City Church", "loc": "Auckland, New Zealand", "desc": "Lead a city-centre congregation committed to justice and renewal. Ecumenical, community-focused.", "url": "https://acc.nz/jobs", "region": "INTL", "salary": "NZD $80,000–$105,000", "role": "Senior Pastor"}], "associate_pastor": [{"church": "Lakewood Church", "loc": "Houston, TX", "desc": "Associate Pastor to serve under senior leadership in pastoral care, preaching rotation, and ministry oversight. MDiv required.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$70,000–$90,000", "role": "Associate Pastor"}, {"church": "North Point Community Church", "loc": "Alpharetta, GA", "desc": "Associate Pastor – Teaching focus. Serve on our preaching team and develop small group curriculum.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$72,000–$92,000", "role": "Associate Pastor"}, {"church": "Gateway Church", "loc": "Southlake, TX", "desc": "Associate Pastor for Discipleship. Develop spiritual formation pathways for our 36,000 members.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$75,000–$95,000", "role": "Associate Pastor"}, {"church": "Southeast Christian Church", "loc": "Louisville, KY", "desc": "Associate Pastor – Pastoral Care. Counsel, visit, and shepherd our large congregation alongside senior leadership.", "url": "https://southeastchristian.org/jobs", "region": "US", "salary": "$68,000–$88,000", "role": "Associate Pastor"}, {"church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Associate Teaching Pastor. Join our preaching team at multiple campuses. High-capacity communicator needed.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$80,000–$105,000", "role": "Associate Pastor"}, {"church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Associate Pastor – Groups. Lead our Life Group ministry and spiritual growth strategy.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$70,000–$90,000", "role": "Associate Pastor"}, {"church": "Bethel Church", "loc": "Redding, CA", "desc": "Associate Pastor – Prophetic Ministry. Oversee prophetic culture, training school, and activation ministry.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$65,000–$85,000", "role": "Associate Pastor"}, {"church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Associate Pastor – Global Outreach. Coordinate our PEACE plan and international missions partnerships.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$75,000–$95,000", "role": "Associate Pastor"}, {"church": "Life.Church", "loc": "Edmond, OK", "desc": "Associate Pastor – Campus. Lead spiritual growth and community at an assigned campus location.", "url": "https://jobs.life.church", "region": "US", "salary": "$68,000–$88,000", "role": "Associate Pastor"}, {"church": "First Baptist Dallas", "loc": "Dallas, TX", "desc": "Associate Pastor – Pastoral Ministries. SBC-aligned. Seminary degree, evangelistic gifting required.", "url": "https://www.firstdallas.org/employment", "region": "US", "salary": "$70,000–$90,000", "role": "Associate Pastor"}, {"church": "National Community Church", "loc": "Washington, DC", "desc": "Associate Pastor – Young Adults. Lead our Capitol Hill young adult ministry and discipleship track.", "url": "https://theaterchurch.com/jobs", "region": "US", "salary": "$65,000–$85,000", "role": "Associate Pastor"}, {"church": "Christ Fellowship", "loc": "Palm Beach Gardens, FL", "desc": "Associate Pastor – Multicampus Coordination. Oversee campus health across all 9 South Florida locations.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$72,000–$92,000", "role": "Associate Pastor"}, {"church": "Hillsong Church", "loc": "London, UK", "desc": "Associate Pastor – Pastoral Care. Serve London's diverse congregation in counseling, crisis care, and community.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "£45,000–£60,000", "role": "Associate Pastor"}, {"church": "Holy Trinity Brompton", "loc": "London, UK", "desc": "Associate Vicar. Lead Alpha Course nationally and pastoral ministry within HTB's network.", "url": "https://www.htb.org/jobs", "region": "INTL", "salary": "£42,000–£58,000", "role": "Associate Pastor"}, {"church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Associate Pastor – Discipleship. Build discipleship infrastructure for our national and international network.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $70,000–$90,000", "role": "Associate Pastor"}, {"church": "RCCG", "loc": "Lagos, Nigeria", "desc": "Associate Pastor – Zonal Administration. Serve under the General Overseer in parish oversight and training.", "url": "https://rccg.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Associate Pastor"}, {"church": "C3 Church", "loc": "Sydney, Australia", "desc": "Associate Pastor – Creative Culture. Lead C3's creative and artistic ministry alongside the senior pastor.", "url": "https://c3church.com/careers", "region": "INTL", "salary": "AUD $68,000–$88,000", "role": "Associate Pastor"}, {"church": "Catch the Fire", "loc": "Toronto, Canada", "desc": "Associate Pastor – Prayer & Intercession. Lead 24/7 prayer initiatives and prophetic community.", "url": "https://www.catchthefire.com/employment", "region": "INTL", "salary": "CAD $60,000–$78,000", "role": "Associate Pastor"}, {"church": "Elim Church", "loc": "Auckland, NZ", "desc": "Associate Pastor – Outreach. Coordinate evangelism, community partnerships, and social impact ministry.", "url": "https://elim.org.nz/jobs", "region": "INTL", "salary": "NZD $65,000–$82,000", "role": "Associate Pastor"}, {"church": "Rhema Bible Church", "loc": "Johannesburg, South Africa", "desc": "Associate Pastor – Teaching. Join our preaching team and oversee our Bible training college.", "url": "https://www.rhema.co.za/employment", "region": "INTL", "salary": "ZAR 380,000–520,000", "role": "Associate Pastor"}], "youth_pastor": [{"church": "Transformation Church", "loc": "Tulsa, OK", "desc": "Student Ministries Pastor. Lead our middle and high school ministry (500+ students). Creative, energetic, discipleship-focused.", "url": "https://transformationchurch.tc/careers", "region": "US", "salary": "$55,000–$72,000", "role": "Youth Pastor"}, {"church": "Gateway Church", "loc": "Southlake, TX", "desc": "Youth Pastor – Student Life. Develop and lead our student ministry across multiple campuses.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$58,000–$75,000", "role": "Youth Pastor"}, {"church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Youth Pastor. Lead one of America's largest student ministries (2,000+ teens). SBC alignment. Seminary preferred.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$60,000–$80,000", "role": "Youth Pastor"}, {"church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Student Pastor – Campus. Lead student ministry for an assigned Highlands campus. High energy, relational.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$55,000–$72,000", "role": "Youth Pastor"}, {"church": "Lakewood Church", "loc": "Houston, TX", "desc": "Junior High/High School Pastor. Shepherd 800+ students alongside the Lakewood student team.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$58,000–$75,000", "role": "Youth Pastor"}, {"church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Youth Pastor – Fuse. Lead Elevation Fuse student ministry at an assigned campus. Gifted communicator needed.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$57,000–$74,000", "role": "Youth Pastor"}, {"church": "Bethel Church", "loc": "Redding, CA", "desc": "Youth Pastor. Lead Bethel Student Ministries with a supernatural culture, creative programming, and discipleship depth.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$52,000–$68,000", "role": "Youth Pastor"}, {"church": "Summit Church", "loc": "Durham, NC", "desc": "Student Ministries Director. Vision, strategy, and pastoral leadership for 600+ middle and high schoolers.", "url": "https://summitrdu.com/jobs", "region": "US", "salary": "$55,000–$70,000", "role": "Youth Pastor"}, {"church": "Cross Point Church", "loc": "Nashville, TN", "desc": "Youth Pastor. Build authentic community with Nashville-area students through weekend programming and small groups.", "url": "https://crosspoint.tv/careers", "region": "US", "salary": "$54,000–$70,000", "role": "Youth Pastor"}, {"church": "The Journey Church", "loc": "St. Louis, MO", "desc": "Student Pastor. Lead student ministry with excellence and authenticity. Relational, outreach-minded required.", "url": "https://www.journeyon.net/employment", "region": "US", "salary": "$52,000–$68,000", "role": "Youth Pastor"}, {"church": "Central Christian Church", "loc": "Mesa, AZ", "desc": "High School Pastor. Oversee weekend programming, mission trips, and discipleship for 500+ high schoolers.", "url": "https://centralaz.com/jobs", "region": "US", "salary": "$56,000–$73,000", "role": "Youth Pastor"}, {"church": "First Baptist Orlando", "loc": "Orlando, FL", "desc": "Youth Pastor. SBC-aligned. Lead student discipleship, parent partnership, and summer camp ministry.", "url": "https://www.fbcorlando.org/employment", "region": "US", "salary": "$55,000–$70,000", "role": "Youth Pastor"}, {"church": "McLean Presbyterian", "loc": "McLean, VA", "desc": "Youth Director. Lead PCA-aligned student ministry in the Washington, DC metro area. Reformed theology required.", "url": "https://mcleanpres.org/jobs", "region": "US", "salary": "$58,000–$75,000", "role": "Youth Pastor"}, {"church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Student Ministries Pastor. Shepherd a large student ministry in a Spirit-filled, evangelical culture.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$55,000–$72,000", "role": "Youth Pastor"}, {"church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Youth and Young Adults Pastor. Lead multigenerational ministry for teens and college-age congregation.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$54,000–$70,000", "role": "Youth Pastor"}, {"church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Youth Pastor – Hillsong Y&F. Lead youth ministry for Hillsong's flagship campus. High energy, creative, missional.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $58,000–$75,000", "role": "Youth Pastor"}, {"church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Youth Pastor. Lead PlanetX (youth ministry) with vision, creativity, and discipleship excellence.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $56,000–$72,000", "role": "Youth Pastor"}, {"church": "Daystar Christian Centre", "loc": "Lagos, Nigeria", "desc": "Youth Pastor. Energize and disciple Lagos youth (16–30). Evangelistic, creative, social media savvy.", "url": "https://daystarng.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Youth Pastor"}, {"church": "Kings Church International", "loc": "London, UK", "desc": "Youth Pastor. Lead Kingdom youth across London. Creative programming, small groups, mission trips.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£38,000–£52,000", "role": "Youth Pastor"}, {"church": "City Harvest Church", "loc": "Singapore", "desc": "Youth Pastor. Serve in CHC's vibrant youth ministry. Multicultural, Spirit-filled, excellence-driven.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $48,000–$65,000", "role": "Youth Pastor"}, {"church": "Onnuri Community Church", "loc": "Seoul, South Korea", "desc": "Youth Pastor (English Ministry). Lead student ministry for Onnuri's international English-speaking congregation.", "url": "https://www.onnuri.org/careers", "region": "INTL", "salary": "KRW 35M–50M", "role": "Youth Pastor"}, {"church": "Mavuno Church", "loc": "Nairobi, Kenya", "desc": "Youth Pastor. Champion discipleship for Nairobi's urban youth. Creative, entrepreneurial, Spirit-filled.", "url": "https://mavuno.org/jobs", "region": "INTL", "salary": "Negotiable", "role": "Youth Pastor"}, {"church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Youth Pastor. Lead youth ministry for one of Uganda's largest congregations. Pastoral care, leadership development.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable", "role": "Youth Pastor"}, {"church": "New Creation Church", "loc": "Singapore", "desc": "Youth Pastor. Serve in NCC's grace-based youth ministry. Theological depth + relational warmth required.", "url": "https://www.newcreation.org.sg/careers", "region": "INTL", "salary": "SGD $50,000–$68,000", "role": "Youth Pastor"}, {"church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Youth Pastor. Lead youth ministry across Hope City's growing network of campuses.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£35,000–£48,000", "role": "Youth Pastor"}], "worship_leader": [{"church": "Passion City Church", "loc": "Atlanta, GA", "desc": "Worship Pastor. Lead Sunday worship, oversee worship team development, and contribute to original music creation.", "url": "https://passioncitychurch.com/jobs", "region": "US", "salary": "$65,000–$85,000", "role": "Worship Leader"}, {"church": "Bethel Church", "loc": "Redding, CA", "desc": "Worship Leader. Contribute to Bethel Music's global worship culture. Recording, leading, and team development.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$60,000–$80,000", "role": "Worship Leader"}, {"church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Worship Pastor – Campus. Lead worship ministry at an assigned Elevation campus. Strong vocalist/musician required.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$60,000–$78,000", "role": "Worship Leader"}, {"church": "Life.Church", "loc": "Edmond, OK", "desc": "Worship Leader. Lead Life.Church's weekend worship experience across campuses and online streaming.", "url": "https://jobs.life.church", "region": "US", "salary": "$58,000–$75,000", "role": "Worship Leader"}, {"church": "Gateway Church", "loc": "Southlake, TX", "desc": "Worship Pastor. Oversee Gateway Worship team, contribute to published worship resources, lead Sunday experiences.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$65,000–$85,000", "role": "Worship Leader"}, {"church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Worship Leader – Campus. Lead authentic, Spirit-filled worship at an assigned Highlands campus.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$58,000–$75,000", "role": "Worship Leader"}, {"church": "Hillsong USA", "loc": "New York, NY", "desc": "Worship Pastor. Lead the Hillsong NYC worship team. Contribute to global Hillsong worship projects and recordings.", "url": "https://hillsong.com/usa/jobs", "region": "US", "salary": "$62,000–$80,000", "role": "Worship Leader"}, {"church": "Mosaic Church", "loc": "Los Angeles, CA", "desc": "Worship Arts Director. Lead Mosaic's worship and creative arts integration. Original music and interdisciplinary vision.", "url": "https://www.mosaic.org/careers", "region": "US", "salary": "$60,000–$78,000", "role": "Worship Leader"}, {"church": "Transformation Church", "loc": "Tulsa, OK", "desc": "Worship Pastor. Lead transformational worship experiences. Songwriting, production, team leadership required.", "url": "https://transformationchurch.tc/careers", "region": "US", "salary": "$58,000–$75,000", "role": "Worship Leader"}, {"church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Minister of Music & Worship. Lead our 400-voice choir, orchestra, and contemporary worship teams.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$70,000–$90,000", "role": "Worship Leader"}, {"church": "Lakewood Church", "loc": "Houston, TX", "desc": "Worship Team Leader. Serve under Don Moen/Israel Houghton-legacy worship culture. Vocalist and musician required.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$60,000–$78,000", "role": "Worship Leader"}, {"church": "Brooklyn Tabernacle", "loc": "Brooklyn, NY", "desc": "Worship Leader. Lead the Brooklyn Tabernacle choir tradition with excellence, prayer culture, and musical depth.", "url": "https://brooklyntabernacle.org/employment", "region": "US", "salary": "$58,000–$75,000", "role": "Worship Leader"}, {"church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Worship Pastor. Lead weekend worship, songwriter culture, and NextGen worship development.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$60,000–$78,000", "role": "Worship Leader"}, {"church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Worship Leader. High-energy, Spirit-led worship ministry. Multicampus coordination and original music required.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$55,000–$72,000", "role": "Worship Leader"}, {"church": "Cross Point Church", "loc": "Nashville, TN", "desc": "Worship Director. Lead worship in America's music city. Songwriting background and team development skills needed.", "url": "https://crosspoint.tv/careers", "region": "US", "salary": "$60,000–$78,000", "role": "Worship Leader"}, {"church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Worship Pastor. Lead robust Sunday worship and develop worship school curriculum.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$58,000–$75,000", "role": "Worship Leader"}, {"church": "Rock Church", "loc": "San Diego, CA", "desc": "Worship Leader. Lead diverse, high-energy worship ministry. Multicultural competency and vocal excellence required.", "url": "https://sdrock.com/jobs", "region": "US", "salary": "$55,000–$70,000", "role": "Worship Leader"}, {"church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Worship Leader. Serve the North Point network's worship culture. Songwriter, team developer, excellence-driven.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$62,000–$80,000", "role": "Worship Leader"}, {"church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Worship Leader. Serve Hillsong's global worship brand. Recording opportunities, touring, team leading.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $60,000–$80,000", "role": "Worship Leader"}, {"church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Worship Pastor. Lead PlanetShakers worship band, recording projects, and annual conference worship.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $58,000–$75,000", "role": "Worship Leader"}, {"church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Worship Director. Lead Watoto's renowned worship and recording ministry across Uganda campuses.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable", "role": "Worship Leader"}, {"church": "Vineyard Church UK", "loc": "Birmingham, UK", "desc": "Worship Leader. Lead Spirit-led, theologically rich worship in the Vineyard tradition.", "url": "https://vineyardchurchuk.org/jobs", "region": "INTL", "salary": "£38,000–£52,000", "role": "Worship Leader"}, {"church": "Kings Church International", "loc": "London, UK", "desc": "Worship Leader. Lead dynamic worship across King's London campuses. Charismatic, excellent musician.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£40,000–$55,000", "role": "Worship Leader"}, {"church": "New Creation Church", "loc": "Singapore", "desc": "Worship Leader. Lead grace-focused, Spirit-filled worship. Excellent vocalist, heart for people required.", "url": "https://www.newcreation.org.sg/careers", "region": "INTL", "salary": "SGD $52,000–$68,000", "role": "Worship Leader"}, {"church": "City Harvest Church", "loc": "Singapore", "desc": "Worship Pastor. Lead CHC's contemporary worship ministry and contribute to original music recordings.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $55,000–$72,000", "role": "Worship Leader"}, {"church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Worship Leader. Lead worship across Hope City's growing network. Songwriter culture, team builder.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£36,000–£50,000", "role": "Worship Leader"}, {"church": "Emmanuel Church", "loc": "Accra, Ghana", "desc": "Worship Pastor. Lead worship across Emmanuel's congregations. Songwriter, Spirit-filled musician.", "url": "https://emmanuelghana.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Worship Leader"}, {"church": "Daystar Christian Centre", "loc": "Lagos, Nigeria", "desc": "Worship Director. Lead Daystar's contemporary worship ministry. Production experience a plus.", "url": "https://daystarng.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Worship Leader"}], "executive_pastor": [{"church": "Life.Church", "loc": "Edmond, OK", "desc": "Executive Pastor – Operations. Oversee all campus operations, staff development, and strategic planning for 40+ campuses.", "url": "https://jobs.life.church", "region": "US", "salary": "$110,000–$145,000", "role": "Executive Pastor"}, {"church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Executive Pastor. Lead operations, staff culture, and campus expansion strategy for Alabama's largest church.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$110,000–$150,000", "role": "Executive Pastor"}, {"church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Executive Director. Oversee ministry programming, staff teams, and strategic alignment across 7 campuses.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$115,000–$150,000", "role": "Executive Pastor"}, {"church": "Gateway Church", "loc": "Southlake, TX", "desc": "Executive Pastor – Administration. Lead finance, HR, and church operations for 36,000-member congregation.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$110,000–$145,000", "role": "Executive Pastor"}, {"church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Executive Pastor – Global. Oversee Saddleback's international church plants and PEACE Plan partnerships.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$115,000–$150,000", "role": "Executive Pastor"}, {"church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Executive Pastor – Campuses. Oversee health, leadership, and operations of all 30+ Elevation campus locations.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$110,000–$145,000", "role": "Executive Pastor"}, {"church": "Lakewood Church", "loc": "Houston, TX", "desc": "Executive Pastor – Ministries. Oversee all Lakewood ministry departments and staff, reporting to senior leadership.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$115,000–$150,000", "role": "Executive Pastor"}, {"church": "Central Christian Church", "loc": "Mesa, AZ", "desc": "Executive Pastor. Drive operational excellence, staff leadership, and long-range strategic planning.", "url": "https://centralaz.com/jobs", "region": "US", "salary": "$105,000–$140,000", "role": "Executive Pastor"}, {"church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Executive Pastor – Innovation. Lead digital ministry, online church, and technology-forward strategy.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$100,000–$135,000", "role": "Executive Pastor"}, {"church": "Christ Fellowship", "loc": "Palm Beach Gardens, FL", "desc": "Executive Pastor – People. Champion staff culture, leadership pipeline, and HR across all campuses.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$105,000–$140,000", "role": "Executive Pastor"}, {"church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Executive Pastor. Oversee all ministry departments, staff operations, and campus expansion planning.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$100,000–$135,000", "role": "Executive Pastor"}, {"church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Executive Pastor – Finance & Operations. MBA or CPA preferred. Oversee $12M budget and all business operations.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$100,000–$135,000", "role": "Executive Pastor"}, {"church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Executive Pastor – International. Oversee Hillsong's 100+ international locations and global ministry network.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $120,000–$160,000", "role": "Executive Pastor"}, {"church": "RCCG International", "loc": "Lagos, Nigeria", "desc": "Executive Director – Missions. Oversee global outreach strategy, church planting, and regional leadership.", "url": "https://rccg.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Executive Pastor"}, {"church": "Every Nation", "loc": "Manila, Philippines", "desc": "Executive Director – Asia Pacific. Lead Every Nation's church planting and leadership development across Asia.", "url": "https://everynation.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Executive Pastor"}, {"church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Executive Director – Programs. Oversee Watoto's children's villages, schools, and community programs.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable", "role": "Executive Pastor"}, {"church": "Rhema Bible Church", "loc": "Johannesburg, SA", "desc": "Executive Pastor. Oversee Rhema's staff operations, ministry departments, and South African campus network.", "url": "https://www.rhema.co.za/employment", "region": "INTL", "salary": "ZAR 550,000–750,000", "role": "Executive Pastor"}, {"church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Executive Pastor – Global Conferences. Lead the annual PlanetShakers conference operations worldwide.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $100,000–$135,000", "role": "Executive Pastor"}, {"church": "C3 Church", "loc": "Sydney, Australia", "desc": "Executive Pastor. Drive C3's global network expansion, training systems, and international church partnerships.", "url": "https://c3church.com/careers", "region": "INTL", "salary": "AUD $105,000–$140,000", "role": "Executive Pastor"}], "childrens_pastor": [{"church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Children's Pastor – Campus. Lead kids ministry (birth–5th grade) at an assigned Highlands campus. CPR certified required.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$52,000–$68,000", "role": "Children's Pastor"}, {"church": "Life.Church", "loc": "Edmond, OK", "desc": "Children's Director – Campus. Oversee LifeKids programming, volunteer teams, and curriculum at a campus location.", "url": "https://jobs.life.church", "region": "US", "salary": "$50,000–$65,000", "role": "Children's Pastor"}, {"church": "Gateway Church", "loc": "Southlake, TX", "desc": "Children's Pastor – Family Ministry. Lead Kidstuff ministry with excellence, discipleship depth, and parent partnership.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$55,000–$70,000", "role": "Children's Pastor"}, {"church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Children's Director. Lead UpStreet kids ministry for our flagship campus. Curriculum development, team building.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$55,000–$72,000", "role": "Children's Pastor"}, {"church": "Lakewood Church", "loc": "Houston, TX", "desc": "Children's Pastor. Lead Champions Club kids ministry for one of America's largest congregations.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$55,000–$72,000", "role": "Children's Pastor"}, {"church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Children's Ministry Director. Oversee curriculum, volunteers, and programming for 2,000+ children across all campuses.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$58,000–$75,000", "role": "Children's Pastor"}, {"church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Children's Pastor – Elevate Kids. Lead kids ministry at an assigned Elevation campus with excellence and joy.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$52,000–$68,000", "role": "Children's Pastor"}, {"church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Children's Ministry Pastor. Lead comprehensive birth–5th grade ministry for 15,000-member congregation.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$58,000–$75,000", "role": "Children's Pastor"}, {"church": "Southeast Christian", "loc": "Louisville, KY", "desc": "Children's Pastor. Lead one of America's largest kids ministries with creative programming and discipleship.", "url": "https://southeastchristian.org/jobs", "region": "US", "salary": "$55,000–$72,000", "role": "Children's Pastor"}, {"church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Children's Ministry Director. Develop next-gen discipleship, volunteer teams, and parent partnership programs.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$50,000–$65,000", "role": "Children's Pastor"}, {"church": "Transformation Church", "loc": "Tulsa, OK", "desc": "NextGen Children's Pastor. Lead kids ministry with creativity, biblical depth, and multigenerational vision.", "url": "https://transformationchurch.tc/careers", "region": "US", "salary": "$52,000–$68,000", "role": "Children's Pastor"}, {"church": "NewSpring Church", "loc": "Anderson, SC", "desc": "Children's Pastor. Lead UpStreet kids at an assigned NewSpring campus. Energy, systems, and discipleship focus.", "url": "https://newspring.cc/jobs", "region": "US", "salary": "$50,000–$65,000", "role": "Children's Pastor"}, {"church": "Antioch Community Church", "loc": "Waco, TX", "desc": "Children's Pastor. Lead kids ministry with a missions DNA and discipleship-first culture.", "url": "https://antiochcc.net/jobs", "region": "US", "salary": "$48,000–$62,000", "role": "Children's Pastor"}, {"church": "National Community Church", "loc": "Washington, DC", "desc": "Children's Director. Lead DC-area kids ministry across multiple campus locations and our Capitol Hill venue.", "url": "https://theaterchurch.com/jobs", "region": "US", "salary": "$52,000–$68,000", "role": "Children's Pastor"}, {"church": "Rock Church", "loc": "San Diego, CA", "desc": "Children's Pastor. Lead a diverse kids ministry with vibrant programming and family discipleship focus.", "url": "https://sdrock.com/jobs", "region": "US", "salary": "$50,000–$65,000", "role": "Children's Pastor"}, {"church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Children's Pastor. Lead Hillsong KidzChurch with creative excellence and discipleship depth.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $55,000–$70,000", "role": "Children's Pastor"}, {"church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Children's Ministry Director. Oversee Watoto's children's programming across Ugandan campuses and villages.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable", "role": "Children's Pastor"}, {"church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Children's Pastor. Lead PlanetShakers kids ministry with creativity, faith, and family engagement.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $52,000–$68,000", "role": "Children's Pastor"}, {"church": "Mavuno Church", "loc": "Nairobi, Kenya", "desc": "Children's Pastor. Lead Mavuno kids with discipleship excellence in Nairobi's urban context.", "url": "https://mavuno.org/jobs", "region": "INTL", "salary": "Negotiable", "role": "Children's Pastor"}, {"church": "Daystar Christian Centre", "loc": "Lagos, Nigeria", "desc": "Children's Ministry Director. Lead faith formation for thousands of Lagos children with excellence.", "url": "https://daystarng.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Children's Pastor"}, {"church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Children's Pastor. Lead Hope City's kids ministry across campuses with creativity and discipleship heart.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£35,000–£48,000", "role": "Children's Pastor"}, {"church": "Kings Church International", "loc": "London, UK", "desc": "Children's Director. Lead kids ministry for London's growing Kings Church network.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£36,000–£50,000", "role": "Children's Pastor"}, {"church": "City Harvest Church", "loc": "Singapore", "desc": "Children's Ministry Director. Lead CHC Kids with excellence, faith formation, and parent engagement.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $48,000–$62,000", "role": "Children's Pastor"}], "church_administrator": [{"church": "Lakewood Church", "loc": "Houston, TX", "desc": "Church Business Administrator. Oversee $70M annual budget, facilities, HR, and operational excellence for America's largest church.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$90,000–$115,000", "role": "Church Administrator"}, {"church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Director of Operations. Lead facilities, IT, finance, and HR for our 7-campus ministry organization.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$85,000–$110,000", "role": "Church Administrator"}, {"church": "Gateway Church", "loc": "Southlake, TX", "desc": "Church Administrator. Manage staff operations, vendor relationships, and day-to-day ministry logistics.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$80,000–$105,000", "role": "Church Administrator"}, {"church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Business Administrator. CPA preferred. Oversee financial reporting, payroll, and operational systems for 40,000-member church.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$85,000–$110,000", "role": "Church Administrator"}, {"church": "Southeast Christian", "loc": "Louisville, KY", "desc": "Church Administrator – Operations. Coordinate campus facilities, events, security, and daily operations.", "url": "https://southeastchristian.org/jobs", "region": "US", "salary": "$75,000–$98,000", "role": "Church Administrator"}, {"church": "First Baptist Dallas", "loc": "Dallas, TX", "desc": "Church Business Manager. Oversee budgeting, accounting, and operational support for historic Dallas congregation.", "url": "https://www.firstdallas.org/employment", "region": "US", "salary": "$80,000–$105,000", "role": "Church Administrator"}, {"church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Operations Director. Lead Saddleback's campus operations, facilities management, and event logistics.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$85,000–$110,000", "role": "Church Administrator"}, {"church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Director of Church Operations. Oversee administrative systems for 30+ campus locations nationwide.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$88,000–$115,000", "role": "Church Administrator"}, {"church": "Life.Church", "loc": "Edmond, OK", "desc": "Operations Manager – Campus. Manage all operational aspects of an assigned Life.Church campus location.", "url": "https://jobs.life.church", "region": "US", "salary": "$65,000–$85,000", "role": "Church Administrator"}, {"church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Church Operations Director. Coordinate daily ministry logistics, vendor management, and staff support.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$70,000–$90,000", "role": "Church Administrator"}, {"church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Church Administrator. Oversee budget management, facility operations, and administrative staff team.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$72,000–$92,000", "role": "Church Administrator"}, {"church": "Christ Fellowship", "loc": "Palm Beach Gardens, FL", "desc": "Director of Administration. Lead HR, benefits, compliance, and staff onboarding for our ministry team.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$80,000–$105,000", "role": "Church Administrator"}, {"church": "Bethel Church", "loc": "Redding, CA", "desc": "Administrative Director. Coordinate ministry scheduling, communications, and operational support for all Bethel departments.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$70,000–$90,000", "role": "Church Administrator"}, {"church": "National Community Church", "loc": "Washington, DC", "desc": "Church Administrator. Manage NCC's Capitol Hill facilities, staff logistics, and coffeehouse operations.", "url": "https://theaterchurch.com/jobs", "region": "US", "salary": "$68,000–$88,000", "role": "Church Administrator"}, {"church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Operations Manager. Lead facility management, IT systems, and event coordination for our growing campus.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$65,000–$85,000", "role": "Church Administrator"}, {"church": "Antioch Community Church", "loc": "Waco, TX", "desc": "Church Administrator. Coordinate ministry operations, missions logistics, and staff support with excellence.", "url": "https://antiochcc.net/jobs", "region": "US", "salary": "$60,000–$78,000", "role": "Church Administrator"}, {"church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Business Director. Lead Hillsong's financial operations, legal compliance, and international administrative systems.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $95,000–$125,000", "role": "Church Administrator"}, {"church": "RCCG International", "loc": "Lagos, Nigeria", "desc": "Administrative Director. Oversee RCCG's global operations, parish administration, and international communications.", "url": "https://rccg.org/careers", "region": "INTL", "salary": "Negotiable", "role": "Church Administrator"}, {"church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Operations Director. Lead Watoto's administrative systems, HR, and NGO compliance across all Uganda programs.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable", "role": "Church Administrator"}, {"church": "Rhema Bible Church", "loc": "Johannesburg, SA", "desc": "Church Administrator. Oversee Rhema's administrative staff, facility management, and operational budget.", "url": "https://www.rhema.co.za/employment", "region": "INTL", "salary": "ZAR 380,000–520,000", "role": "Church Administrator"}, {"church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Operations Manager. Coordinate conference logistics, staff operations, and international touring administration.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $70,000–$90,000", "role": "Church Administrator"}, {"church": "Kings Church International", "loc": "London, UK", "desc": "Church Administrator. Manage Kings' staff operations, venue logistics, and multi-campus administrative support.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£42,000–£58,000", "role": "Church Administrator"}, {"church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Church Business Manager. Oversee financial reporting, HR, and operational management for Hope City's growing network.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£38,000–£52,000", "role": "Church Administrator"}, {"church": "Mavuno Church", "loc": "Nairobi, Kenya", "desc": "Operations Director. Lead Mavuno's organizational systems, staff management, and facility coordination.", "url": "https://mavuno.org/jobs", "region": "INTL", "salary": "Negotiable", "role": "Church Administrator"}, {"church": "New Creation Church", "loc": "Singapore", "desc": "Administrative Director. Manage NCC's large-scale operations, financial compliance, and staff support systems.", "url": "https://www.newcreation.org.sg/careers", "region": "INTL", "salary": "SGD $72,000–$95,000", "role": "Church Administrator"}, {"church": "City Harvest Church", "loc": "Singapore", "desc": "Church Administrator. Coordinate daily operations, event logistics, and administrative support across CHC campuses.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $60,000–$78,000", "role": "Church Administrator"}]};
-var ROLE_ICONS = {"senior_pastor": "👑", "associate_pastor": "🤝", "youth_pastor": "🎯", "worship_leader": "🎵", "executive_pastor": "⚙️", "childrens_pastor": "👶", "church_administrator": "📋"};
-var ROLE_LABELS = {"senior_pastor": "Senior Pastor", "associate_pastor": "Associate Pastor", "youth_pastor": "Youth Pastor", "worship_leader": "Worship Leader", "executive_pastor": "Executive Pastor", "childrens_pastor": "Children's Pastor", "church_administrator": "Church Administrator"};
+function getCustomJobs(){return gl('gate_hiring_jobs')||[];}
 
-
-
-var ALL_CHURCHES = [{"name": "Grace Church", "loc": "Eden Prairie, MN", "region": "US"}, {"name": "Westside Church", "loc": "Bend, OR", "region": "US"}, {"name": "Bayside Community Church", "loc": "Bradenton, FL", "region": "US"}, {"name": "The Heights Baptist Church", "loc": "Richardson, TX", "region": "US"}, {"name": "Christ Fellowship Church", "loc": "Palm Beach Gardens, FL", "region": "US"}, {"name": "Valley Bible Church", "loc": "Hercules, CA", "region": "US"}, {"name": "Harvest Bible Chapel", "loc": "Rolling Meadows, IL", "region": "US"}, {"name": "Calvary Church", "loc": "Charlotte, NC", "region": "US"}, {"name": "Central Christian Church", "loc": "Mesa, AZ", "region": "US"}, {"name": "Emmanuel Church", "loc": "Burbank, CA", "region": "US"}, {"name": "FBC Woodstock", "loc": "Woodstock, GA", "region": "US"}, {"name": "Cornerstone Church", "loc": "San Antonio, TX", "region": "US"}, {"name": "Shoreline Church", "loc": "Monterey, CA", "region": "US"}, {"name": "Gracepoint Church", "loc": "Berkeley, CA", "region": "US"}, {"name": "Lighthouse Chapel International", "loc": "Accra, Ghana", "region": "INTL"}, {"name": "Church of God Mission Intl", "loc": "Lagos, Nigeria", "region": "INTL"}, {"name": "Abundant Life Church", "loc": "Bradford, UK", "region": "INTL"}, {"name": "Kings Church International", "loc": "London, UK", "region": "INTL"}, {"name": "New Covenant Church", "loc": "Johannesburg, South Africa", "region": "INTL"}, {"name": "Grace Church Melbourne", "loc": "Melbourne, Australia", "region": "INTL"}, {"name": "Every Nation Church", "loc": "Manila, Philippines", "region": "INTL"}, {"name": "Faith Tabernacle", "loc": "Ota, Nigeria", "region": "INTL"}, {"name": "New Frontiers Church", "loc": "Brighton, UK", "region": "INTL"}, {"name": "Auckland City Church", "loc": "Auckland, New Zealand", "region": "INTL"}, {"name": "Lakewood Church", "loc": "Houston, TX", "region": "US"}, {"name": "North Point Community Church", "loc": "Alpharetta, GA", "region": "US"}, {"name": "Gateway Church", "loc": "Southlake, TX", "region": "US"}, {"name": "Southeast Christian Church", "loc": "Louisville, KY", "region": "US"}, {"name": "Elevation Church", "loc": "Charlotte, NC", "region": "US"}, {"name": "Church of the Highlands", "loc": "Birmingham, AL", "region": "US"}, {"name": "Bethel Church", "loc": "Redding, CA", "region": "US"}, {"name": "Saddleback Church", "loc": "Lake Forest, CA", "region": "US"}, {"name": "Life.Church", "loc": "Edmond, OK", "region": "US"}, {"name": "First Baptist Dallas", "loc": "Dallas, TX", "region": "US"}, {"name": "National Community Church", "loc": "Washington, DC", "region": "US"}, {"name": "Christ Fellowship", "loc": "Palm Beach Gardens, FL", "region": "US"}, {"name": "Hillsong Church", "loc": "London, UK", "region": "INTL"}, {"name": "Holy Trinity Brompton", "loc": "London, UK", "region": "INTL"}, {"name": "Planet Shakers", "loc": "Melbourne, Australia", "region": "INTL"}, {"name": "RCCG", "loc": "Lagos, Nigeria", "region": "INTL"}, {"name": "C3 Church", "loc": "Sydney, Australia", "region": "INTL"}, {"name": "Catch the Fire", "loc": "Toronto, Canada", "region": "INTL"}, {"name": "Elim Church", "loc": "Auckland, NZ", "region": "INTL"}, {"name": "Rhema Bible Church", "loc": "Johannesburg, South Africa", "region": "INTL"}, {"name": "Transformation Church", "loc": "Tulsa, OK", "region": "US"}, {"name": "Prestonwood Baptist", "loc": "Plano, TX", "region": "US"}, {"name": "Summit Church", "loc": "Durham, NC", "region": "US"}, {"name": "Cross Point Church", "loc": "Nashville, TN", "region": "US"}, {"name": "The Journey Church", "loc": "St. Louis, MO", "region": "US"}, {"name": "First Baptist Orlando", "loc": "Orlando, FL", "region": "US"}, {"name": "McLean Presbyterian", "loc": "McLean, VA", "region": "US"}, {"name": "New Life Church", "loc": "Colorado Springs, CO", "region": "US"}, {"name": "Celebration Church", "loc": "Jacksonville, FL", "region": "US"}, {"name": "Hillsong Church", "loc": "Sydney, Australia", "region": "INTL"}, {"name": "Daystar Christian Centre", "loc": "Lagos, Nigeria", "region": "INTL"}, {"name": "City Harvest Church", "loc": "Singapore", "region": "INTL"}, {"name": "Onnuri Community Church", "loc": "Seoul, South Korea", "region": "INTL"}, {"name": "Mavuno Church", "loc": "Nairobi, Kenya", "region": "INTL"}, {"name": "Watoto Church", "loc": "Kampala, Uganda", "region": "INTL"}, {"name": "New Creation Church", "loc": "Singapore", "region": "INTL"}, {"name": "Hope City Church", "loc": "Sheffield, UK", "region": "INTL"}, {"name": "Passion City Church", "loc": "Atlanta, GA", "region": "US"}, {"name": "Hillsong USA", "loc": "New York, NY", "region": "US"}, {"name": "Mosaic Church", "loc": "Los Angeles, CA", "region": "US"}, {"name": "Brooklyn Tabernacle", "loc": "Brooklyn, NY", "region": "US"}, {"name": "Rock Church", "loc": "San Diego, CA", "region": "US"}, {"name": "North Point Ministries", "loc": "Alpharetta, GA", "region": "US"}, {"name": "Vineyard Church UK", "loc": "Birmingham, UK", "region": "INTL"}, {"name": "Emmanuel Church", "loc": "Accra, Ghana", "region": "INTL"}, {"name": "RCCG International", "loc": "Lagos, Nigeria", "region": "INTL"}, {"name": "Every Nation", "loc": "Manila, Philippines", "region": "INTL"}, {"name": "Rhema Bible Church", "loc": "Johannesburg, SA", "region": "INTL"}, {"name": "Southeast Christian", "loc": "Louisville, KY", "region": "US"}, {"name": "NewSpring Church", "loc": "Anderson, SC", "region": "US"}, {"name": "Antioch Community Church", "loc": "Waco, TX", "region": "US"}];
-
-var ALL_POSITIONS_165 = [{"role": "Senior Pastor", "icon": "👑", "church": "Grace Church", "loc": "Eden Prairie, MN", "desc": "Lead a vibrant multi-site congregation of 4,000+. Doctorate preferred. 10+ years senior leadership experience required.", "url": "https://jobs.gracechurch.com", "region": "US", "salary": "$95,000–$130,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Westside Church", "loc": "Bend, OR", "desc": "Guide a growing non-denominational church. Strong preaching, vision-casting, and team leadership essential.", "url": "https://westsidechurch.com/careers", "region": "US", "salary": "$80,000–$110,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Bayside Community Church", "loc": "Bradenton, FL", "desc": "Seek a shepherd-leader for our 3,500-member congregation. Relational, visionary, theologically grounded.", "url": "https://baysidecommunity.org/careers", "region": "US", "salary": "$90,000–$120,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "The Heights Baptist Church", "loc": "Richardson, TX", "desc": "Seeking a Senior Pastor to lead our historic congregation forward. Southern Baptist alignment preferred.", "url": "https://theheights.org/employment", "region": "US", "salary": "$85,000–$115,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Christ Fellowship Church", "loc": "Palm Beach Gardens, FL", "desc": "Lead one of South Florida's fastest-growing churches. Multi-site vision, charismatic background welcomed.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$100,000–$140,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Valley Bible Church", "loc": "Hercules, CA", "desc": "Pastor-teacher role for a congregation committed to expository preaching and discipleship. Masters/Doctorate required.", "url": "https://valleybible.net/employment", "region": "US", "salary": "$85,000–$110,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Harvest Bible Chapel", "loc": "Rolling Meadows, IL", "desc": "Lead our restored congregation. Commitment to verse-by-verse preaching and church health essential.", "url": "https://harvestbiblechapel.org/careers", "region": "US", "salary": "$90,000–$120,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Calvary Church", "loc": "Charlotte, NC", "desc": "Senior pastor sought for Calvary's next chapter. Preaching excellence, missional heart, team culture.", "url": "https://calvarychurch.com/jobs", "region": "US", "salary": "$95,000–$125,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Central Christian Church", "loc": "Mesa, AZ", "desc": "Lead a congregation of 12,000+. Multi-site experience and strong communicator required.", "url": "https://centralaz.com/jobs", "region": "US", "salary": "$110,000–$150,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Emmanuel Church", "loc": "Burbank, CA", "desc": "Shepherd a diverse, multigenerational church in the heart of the entertainment industry.", "url": "https://emmanuel.church/careers", "region": "US", "salary": "Negotiable"}, {"role": "Senior Pastor", "icon": "👑", "church": "FBC Woodstock", "loc": "Woodstock, GA", "desc": "Lead this historic Southern Baptist congregation. Seminary degree, evangelistic heart required.", "url": "https://fbcwoodstock.org/employment", "region": "US", "salary": "$100,000–$135,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Senior Pastor for a congregation of 5,000. Strong preacher, strategic leader, family-oriented.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$95,000–$130,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Shoreline Church", "loc": "Monterey, CA", "desc": "Coastal California church seeks a visionary senior pastor. Relational, community-focused leadership.", "url": "https://shorelinechurch.org/jobs", "region": "US", "salary": "$80,000–$105,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Gracepoint Church", "loc": "Berkeley, CA", "desc": "Multicultural, college-ministry-rooted congregation seeks a teaching pastor with cross-cultural competency.", "url": "https://gracepointchurch.org/employment", "region": "US", "salary": "$85,000–$115,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Lighthouse Chapel International", "loc": "Accra, Ghana", "desc": "Lead one of West Africa's fastest-growing church networks. Apostolic calling and international ministry experience.", "url": "https://lighthousechapel.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Senior Pastor", "icon": "👑", "church": "Church of God Mission Intl", "loc": "Lagos, Nigeria", "desc": "Lead a mission-focused congregation in Lagos. Evangelistic, apostolic, strong theological grounding.", "url": "https://cogmission.org/apply", "region": "INTL", "salary": "Negotiable"}, {"role": "Senior Pastor", "icon": "👑", "church": "Abundant Life Church", "loc": "Bradford, UK", "desc": "Lead a growing multicultural congregation in northern England. Charismatic, family-friendly vision.", "url": "https://alc.org.uk/vacancies", "region": "INTL", "salary": "£55,000–£75,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Kings Church International", "loc": "London, UK", "desc": "Senior pastor sought for a thriving London congregation. Visionary leadership, global perspective.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£60,000–£80,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "New Covenant Church", "loc": "Johannesburg, South Africa", "desc": "Lead an established multiracial congregation post-apartheid. Strong pastoral and teaching gifts.", "url": "https://ncc.org.za/employment", "region": "INTL", "salary": "ZAR 450,000–650,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Grace Church Melbourne", "loc": "Melbourne, Australia", "desc": "Senior pastor for a growing evangelical congregation. Gospel-centered, community-engaged.", "url": "https://gracechurchmelbourne.com/careers", "region": "INTL", "salary": "AUD $85,000–$110,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Every Nation Church", "loc": "Manila, Philippines", "desc": "Lead Every Nation's flagship campus. Church planting heart, theological depth, leadership development.", "url": "https://everynation.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Senior Pastor", "icon": "👑", "church": "Faith Tabernacle", "loc": "Ota, Nigeria", "desc": "Lead a growing congregation under Bishop David Oyedepo's network. Apostolic calling essential.", "url": "https://faithtabernacle.org.ng/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Senior Pastor", "icon": "👑", "church": "New Frontiers Church", "loc": "Brighton, UK", "desc": "Apostolic senior pastor sought. Reformed charismatic theology, church planting DNA.", "url": "https://newfrontierstogether.com/jobs", "region": "INTL", "salary": "£50,000–£70,000"}, {"role": "Senior Pastor", "icon": "👑", "church": "Auckland City Church", "loc": "Auckland, New Zealand", "desc": "Lead a city-centre congregation committed to justice and renewal. Ecumenical, community-focused.", "url": "https://acc.nz/jobs", "region": "INTL", "salary": "NZD $80,000–$105,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Lakewood Church", "loc": "Houston, TX", "desc": "Associate Pastor to serve under senior leadership in pastoral care, preaching rotation, and ministry oversight. MDiv required.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$70,000–$90,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "North Point Community Church", "loc": "Alpharetta, GA", "desc": "Associate Pastor – Teaching focus. Serve on our preaching team and develop small group curriculum.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$72,000–$92,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Gateway Church", "loc": "Southlake, TX", "desc": "Associate Pastor for Discipleship. Develop spiritual formation pathways for our 36,000 members.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$75,000–$95,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Southeast Christian Church", "loc": "Louisville, KY", "desc": "Associate Pastor – Pastoral Care. Counsel, visit, and shepherd our large congregation alongside senior leadership.", "url": "https://southeastchristian.org/jobs", "region": "US", "salary": "$68,000–$88,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Associate Teaching Pastor. Join our preaching team at multiple campuses. High-capacity communicator needed.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$80,000–$105,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Associate Pastor – Groups. Lead our Life Group ministry and spiritual growth strategy.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$70,000–$90,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Bethel Church", "loc": "Redding, CA", "desc": "Associate Pastor – Prophetic Ministry. Oversee prophetic culture, training school, and activation ministry.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$65,000–$85,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Associate Pastor – Global Outreach. Coordinate our PEACE plan and international missions partnerships.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$75,000–$95,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Life.Church", "loc": "Edmond, OK", "desc": "Associate Pastor – Campus. Lead spiritual growth and community at an assigned campus location.", "url": "https://jobs.life.church", "region": "US", "salary": "$68,000–$88,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "First Baptist Dallas", "loc": "Dallas, TX", "desc": "Associate Pastor – Pastoral Ministries. SBC-aligned. Seminary degree, evangelistic gifting required.", "url": "https://www.firstdallas.org/employment", "region": "US", "salary": "$70,000–$90,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "National Community Church", "loc": "Washington, DC", "desc": "Associate Pastor – Young Adults. Lead our Capitol Hill young adult ministry and discipleship track.", "url": "https://theaterchurch.com/jobs", "region": "US", "salary": "$65,000–$85,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Christ Fellowship", "loc": "Palm Beach Gardens, FL", "desc": "Associate Pastor – Multicampus Coordination. Oversee campus health across all 9 South Florida locations.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$72,000–$92,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Hillsong Church", "loc": "London, UK", "desc": "Associate Pastor – Pastoral Care. Serve London's diverse congregation in counseling, crisis care, and community.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "£45,000–£60,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Holy Trinity Brompton", "loc": "London, UK", "desc": "Associate Vicar. Lead Alpha Course nationally and pastoral ministry within HTB's network.", "url": "https://www.htb.org/jobs", "region": "INTL", "salary": "£42,000–£58,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Associate Pastor – Discipleship. Build discipleship infrastructure for our national and international network.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $70,000–$90,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "RCCG", "loc": "Lagos, Nigeria", "desc": "Associate Pastor – Zonal Administration. Serve under the General Overseer in parish oversight and training.", "url": "https://rccg.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Associate Pastor", "icon": "🤝", "church": "C3 Church", "loc": "Sydney, Australia", "desc": "Associate Pastor – Creative Culture. Lead C3's creative and artistic ministry alongside the senior pastor.", "url": "https://c3church.com/careers", "region": "INTL", "salary": "AUD $68,000–$88,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Catch the Fire", "loc": "Toronto, Canada", "desc": "Associate Pastor – Prayer & Intercession. Lead 24/7 prayer initiatives and prophetic community.", "url": "https://www.catchthefire.com/employment", "region": "INTL", "salary": "CAD $60,000–$78,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Elim Church", "loc": "Auckland, NZ", "desc": "Associate Pastor – Outreach. Coordinate evangelism, community partnerships, and social impact ministry.", "url": "https://elim.org.nz/jobs", "region": "INTL", "salary": "NZD $65,000–$82,000"}, {"role": "Associate Pastor", "icon": "🤝", "church": "Rhema Bible Church", "loc": "Johannesburg, South Africa", "desc": "Associate Pastor – Teaching. Join our preaching team and oversee our Bible training college.", "url": "https://www.rhema.co.za/employment", "region": "INTL", "salary": "ZAR 380,000–520,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Transformation Church", "loc": "Tulsa, OK", "desc": "Student Ministries Pastor. Lead our middle and high school ministry (500+ students). Creative, energetic, discipleship-focused.", "url": "https://transformationchurch.tc/careers", "region": "US", "salary": "$55,000–$72,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Gateway Church", "loc": "Southlake, TX", "desc": "Youth Pastor – Student Life. Develop and lead our student ministry across multiple campuses.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Youth Pastor. Lead one of America's largest student ministries (2,000+ teens). SBC alignment. Seminary preferred.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$60,000–$80,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Student Pastor – Campus. Lead student ministry for an assigned Highlands campus. High energy, relational.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$55,000–$72,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Lakewood Church", "loc": "Houston, TX", "desc": "Junior High/High School Pastor. Shepherd 800+ students alongside the Lakewood student team.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Youth Pastor – Fuse. Lead Elevation Fuse student ministry at an assigned campus. Gifted communicator needed.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$57,000–$74,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Bethel Church", "loc": "Redding, CA", "desc": "Youth Pastor. Lead Bethel Student Ministries with a supernatural culture, creative programming, and discipleship depth.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$52,000–$68,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Summit Church", "loc": "Durham, NC", "desc": "Student Ministries Director. Vision, strategy, and pastoral leadership for 600+ middle and high schoolers.", "url": "https://summitrdu.com/jobs", "region": "US", "salary": "$55,000–$70,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Cross Point Church", "loc": "Nashville, TN", "desc": "Youth Pastor. Build authentic community with Nashville-area students through weekend programming and small groups.", "url": "https://crosspoint.tv/careers", "region": "US", "salary": "$54,000–$70,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "The Journey Church", "loc": "St. Louis, MO", "desc": "Student Pastor. Lead student ministry with excellence and authenticity. Relational, outreach-minded required.", "url": "https://www.journeyon.net/employment", "region": "US", "salary": "$52,000–$68,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Central Christian Church", "loc": "Mesa, AZ", "desc": "High School Pastor. Oversee weekend programming, mission trips, and discipleship for 500+ high schoolers.", "url": "https://centralaz.com/jobs", "region": "US", "salary": "$56,000–$73,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "First Baptist Orlando", "loc": "Orlando, FL", "desc": "Youth Pastor. SBC-aligned. Lead student discipleship, parent partnership, and summer camp ministry.", "url": "https://www.fbcorlando.org/employment", "region": "US", "salary": "$55,000–$70,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "McLean Presbyterian", "loc": "McLean, VA", "desc": "Youth Director. Lead PCA-aligned student ministry in the Washington, DC metro area. Reformed theology required.", "url": "https://mcleanpres.org/jobs", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Student Ministries Pastor. Shepherd a large student ministry in a Spirit-filled, evangelical culture.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$55,000–$72,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Youth and Young Adults Pastor. Lead multigenerational ministry for teens and college-age congregation.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$54,000–$70,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Youth Pastor – Hillsong Y&F. Lead youth ministry for Hillsong's flagship campus. High energy, creative, missional.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $58,000–$75,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Youth Pastor. Lead PlanetX (youth ministry) with vision, creativity, and discipleship excellence.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $56,000–$72,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Daystar Christian Centre", "loc": "Lagos, Nigeria", "desc": "Youth Pastor. Energize and disciple Lagos youth (16–30). Evangelistic, creative, social media savvy.", "url": "https://daystarng.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Kings Church International", "loc": "London, UK", "desc": "Youth Pastor. Lead Kingdom youth across London. Creative programming, small groups, mission trips.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£38,000–£52,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "City Harvest Church", "loc": "Singapore", "desc": "Youth Pastor. Serve in CHC's vibrant youth ministry. Multicultural, Spirit-filled, excellence-driven.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $48,000–$65,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Onnuri Community Church", "loc": "Seoul, South Korea", "desc": "Youth Pastor (English Ministry). Lead student ministry for Onnuri's international English-speaking congregation.", "url": "https://www.onnuri.org/careers", "region": "INTL", "salary": "KRW 35M–50M"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Mavuno Church", "loc": "Nairobi, Kenya", "desc": "Youth Pastor. Champion discipleship for Nairobi's urban youth. Creative, entrepreneurial, Spirit-filled.", "url": "https://mavuno.org/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Youth Pastor. Lead youth ministry for one of Uganda's largest congregations. Pastoral care, leadership development.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Youth Pastor", "icon": "🎯", "church": "New Creation Church", "loc": "Singapore", "desc": "Youth Pastor. Serve in NCC's grace-based youth ministry. Theological depth + relational warmth required.", "url": "https://www.newcreation.org.sg/careers", "region": "INTL", "salary": "SGD $50,000–$68,000"}, {"role": "Youth Pastor", "icon": "🎯", "church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Youth Pastor. Lead youth ministry across Hope City's growing network of campuses.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£35,000–£48,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Passion City Church", "loc": "Atlanta, GA", "desc": "Worship Pastor. Lead Sunday worship, oversee worship team development, and contribute to original music creation.", "url": "https://passioncitychurch.com/jobs", "region": "US", "salary": "$65,000–$85,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Bethel Church", "loc": "Redding, CA", "desc": "Worship Leader. Contribute to Bethel Music's global worship culture. Recording, leading, and team development.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$60,000–$80,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Worship Pastor – Campus. Lead worship ministry at an assigned Elevation campus. Strong vocalist/musician required.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$60,000–$78,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Life.Church", "loc": "Edmond, OK", "desc": "Worship Leader. Lead Life.Church's weekend worship experience across campuses and online streaming.", "url": "https://jobs.life.church", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Gateway Church", "loc": "Southlake, TX", "desc": "Worship Pastor. Oversee Gateway Worship team, contribute to published worship resources, lead Sunday experiences.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$65,000–$85,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Worship Leader – Campus. Lead authentic, Spirit-filled worship at an assigned Highlands campus.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Hillsong USA", "loc": "New York, NY", "desc": "Worship Pastor. Lead the Hillsong NYC worship team. Contribute to global Hillsong worship projects and recordings.", "url": "https://hillsong.com/usa/jobs", "region": "US", "salary": "$62,000–$80,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Mosaic Church", "loc": "Los Angeles, CA", "desc": "Worship Arts Director. Lead Mosaic's worship and creative arts integration. Original music and interdisciplinary vision.", "url": "https://www.mosaic.org/careers", "region": "US", "salary": "$60,000–$78,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Transformation Church", "loc": "Tulsa, OK", "desc": "Worship Pastor. Lead transformational worship experiences. Songwriting, production, team leadership required.", "url": "https://transformationchurch.tc/careers", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Minister of Music & Worship. Lead our 400-voice choir, orchestra, and contemporary worship teams.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$70,000–$90,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Lakewood Church", "loc": "Houston, TX", "desc": "Worship Team Leader. Serve under Don Moen/Israel Houghton-legacy worship culture. Vocalist and musician required.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$60,000–$78,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Brooklyn Tabernacle", "loc": "Brooklyn, NY", "desc": "Worship Leader. Lead the Brooklyn Tabernacle choir tradition with excellence, prayer culture, and musical depth.", "url": "https://brooklyntabernacle.org/employment", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Worship Pastor. Lead weekend worship, songwriter culture, and NextGen worship development.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$60,000–$78,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Worship Leader. High-energy, Spirit-led worship ministry. Multicampus coordination and original music required.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$55,000–$72,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Cross Point Church", "loc": "Nashville, TN", "desc": "Worship Director. Lead worship in America's music city. Songwriting background and team development skills needed.", "url": "https://crosspoint.tv/careers", "region": "US", "salary": "$60,000–$78,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Worship Pastor. Lead robust Sunday worship and develop worship school curriculum.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Rock Church", "loc": "San Diego, CA", "desc": "Worship Leader. Lead diverse, high-energy worship ministry. Multicultural competency and vocal excellence required.", "url": "https://sdrock.com/jobs", "region": "US", "salary": "$55,000–$70,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Worship Leader. Serve the North Point network's worship culture. Songwriter, team developer, excellence-driven.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$62,000–$80,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Worship Leader. Serve Hillsong's global worship brand. Recording opportunities, touring, team leading.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $60,000–$80,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Worship Pastor. Lead PlanetShakers worship band, recording projects, and annual conference worship.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $58,000–$75,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Worship Director. Lead Watoto's renowned worship and recording ministry across Uganda campuses.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Worship Leader", "icon": "🎵", "church": "Vineyard Church UK", "loc": "Birmingham, UK", "desc": "Worship Leader. Lead Spirit-led, theologically rich worship in the Vineyard tradition.", "url": "https://vineyardchurchuk.org/jobs", "region": "INTL", "salary": "£38,000–£52,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Kings Church International", "loc": "London, UK", "desc": "Worship Leader. Lead dynamic worship across King's London campuses. Charismatic, excellent musician.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£40,000–$55,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "New Creation Church", "loc": "Singapore", "desc": "Worship Leader. Lead grace-focused, Spirit-filled worship. Excellent vocalist, heart for people required.", "url": "https://www.newcreation.org.sg/careers", "region": "INTL", "salary": "SGD $52,000–$68,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "City Harvest Church", "loc": "Singapore", "desc": "Worship Pastor. Lead CHC's contemporary worship ministry and contribute to original music recordings.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $55,000–$72,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Worship Leader. Lead worship across Hope City's growing network. Songwriter culture, team builder.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£36,000–£50,000"}, {"role": "Worship Leader", "icon": "🎵", "church": "Emmanuel Church", "loc": "Accra, Ghana", "desc": "Worship Pastor. Lead worship across Emmanuel's congregations. Songwriter, Spirit-filled musician.", "url": "https://emmanuelghana.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Worship Leader", "icon": "🎵", "church": "Daystar Christian Centre", "loc": "Lagos, Nigeria", "desc": "Worship Director. Lead Daystar's contemporary worship ministry. Production experience a plus.", "url": "https://daystarng.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Life.Church", "loc": "Edmond, OK", "desc": "Executive Pastor – Operations. Oversee all campus operations, staff development, and strategic planning for 40+ campuses.", "url": "https://jobs.life.church", "region": "US", "salary": "$110,000–$145,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Executive Pastor. Lead operations, staff culture, and campus expansion strategy for Alabama's largest church.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$110,000–$150,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Executive Director. Oversee ministry programming, staff teams, and strategic alignment across 7 campuses.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$115,000–$150,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Gateway Church", "loc": "Southlake, TX", "desc": "Executive Pastor – Administration. Lead finance, HR, and church operations for 36,000-member congregation.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$110,000–$145,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Executive Pastor – Global. Oversee Saddleback's international church plants and PEACE Plan partnerships.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$115,000–$150,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Executive Pastor – Campuses. Oversee health, leadership, and operations of all 30+ Elevation campus locations.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$110,000–$145,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Lakewood Church", "loc": "Houston, TX", "desc": "Executive Pastor – Ministries. Oversee all Lakewood ministry departments and staff, reporting to senior leadership.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$115,000–$150,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Central Christian Church", "loc": "Mesa, AZ", "desc": "Executive Pastor. Drive operational excellence, staff leadership, and long-range strategic planning.", "url": "https://centralaz.com/jobs", "region": "US", "salary": "$105,000–$140,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Executive Pastor – Innovation. Lead digital ministry, online church, and technology-forward strategy.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$100,000–$135,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Christ Fellowship", "loc": "Palm Beach Gardens, FL", "desc": "Executive Pastor – People. Champion staff culture, leadership pipeline, and HR across all campuses.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$105,000–$140,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Executive Pastor. Oversee all ministry departments, staff operations, and campus expansion planning.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$100,000–$135,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Executive Pastor – Finance & Operations. MBA or CPA preferred. Oversee $12M budget and all business operations.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$100,000–$135,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Executive Pastor – International. Oversee Hillsong's 100+ international locations and global ministry network.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $120,000–$160,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "RCCG International", "loc": "Lagos, Nigeria", "desc": "Executive Director – Missions. Oversee global outreach strategy, church planting, and regional leadership.", "url": "https://rccg.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Every Nation", "loc": "Manila, Philippines", "desc": "Executive Director – Asia Pacific. Lead Every Nation's church planting and leadership development across Asia.", "url": "https://everynation.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Executive Director – Programs. Oversee Watoto's children's villages, schools, and community programs.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Rhema Bible Church", "loc": "Johannesburg, SA", "desc": "Executive Pastor. Oversee Rhema's staff operations, ministry departments, and South African campus network.", "url": "https://www.rhema.co.za/employment", "region": "INTL", "salary": "ZAR 550,000–750,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Executive Pastor – Global Conferences. Lead the annual PlanetShakers conference operations worldwide.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $100,000–$135,000"}, {"role": "Executive Pastor", "icon": "⚙️", "church": "C3 Church", "loc": "Sydney, Australia", "desc": "Executive Pastor. Drive C3's global network expansion, training systems, and international church partnerships.", "url": "https://c3church.com/careers", "region": "INTL", "salary": "AUD $105,000–$140,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Church of the Highlands", "loc": "Birmingham, AL", "desc": "Children's Pastor – Campus. Lead kids ministry (birth–5th grade) at an assigned Highlands campus. CPR certified required.", "url": "https://www.churchofthehighlands.com/jobs", "region": "US", "salary": "$52,000–$68,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Life.Church", "loc": "Edmond, OK", "desc": "Children's Director – Campus. Oversee LifeKids programming, volunteer teams, and curriculum at a campus location.", "url": "https://jobs.life.church", "region": "US", "salary": "$50,000–$65,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Gateway Church", "loc": "Southlake, TX", "desc": "Children's Pastor – Family Ministry. Lead Kidstuff ministry with excellence, discipleship depth, and parent partnership.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$55,000–$70,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Children's Director. Lead UpStreet kids ministry for our flagship campus. Curriculum development, team building.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$55,000–$72,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Lakewood Church", "loc": "Houston, TX", "desc": "Children's Pastor. Lead Champions Club kids ministry for one of America's largest congregations.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$55,000–$72,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Children's Ministry Director. Oversee curriculum, volunteers, and programming for 2,000+ children across all campuses.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Children's Pastor – Elevate Kids. Lead kids ministry at an assigned Elevation campus with excellence and joy.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$52,000–$68,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Children's Ministry Pastor. Lead comprehensive birth–5th grade ministry for 15,000-member congregation.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$58,000–$75,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Southeast Christian", "loc": "Louisville, KY", "desc": "Children's Pastor. Lead one of America's largest kids ministries with creative programming and discipleship.", "url": "https://southeastchristian.org/jobs", "region": "US", "salary": "$55,000–$72,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Children's Ministry Director. Develop next-gen discipleship, volunteer teams, and parent partnership programs.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$50,000–$65,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Transformation Church", "loc": "Tulsa, OK", "desc": "NextGen Children's Pastor. Lead kids ministry with creativity, biblical depth, and multigenerational vision.", "url": "https://transformationchurch.tc/careers", "region": "US", "salary": "$52,000–$68,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "NewSpring Church", "loc": "Anderson, SC", "desc": "Children's Pastor. Lead UpStreet kids at an assigned NewSpring campus. Energy, systems, and discipleship focus.", "url": "https://newspring.cc/jobs", "region": "US", "salary": "$50,000–$65,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Antioch Community Church", "loc": "Waco, TX", "desc": "Children's Pastor. Lead kids ministry with a missions DNA and discipleship-first culture.", "url": "https://antiochcc.net/jobs", "region": "US", "salary": "$48,000–$62,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "National Community Church", "loc": "Washington, DC", "desc": "Children's Director. Lead DC-area kids ministry across multiple campus locations and our Capitol Hill venue.", "url": "https://theaterchurch.com/jobs", "region": "US", "salary": "$52,000–$68,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Rock Church", "loc": "San Diego, CA", "desc": "Children's Pastor. Lead a diverse kids ministry with vibrant programming and family discipleship focus.", "url": "https://sdrock.com/jobs", "region": "US", "salary": "$50,000–$65,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Children's Pastor. Lead Hillsong KidzChurch with creative excellence and discipleship depth.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $55,000–$70,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Children's Ministry Director. Oversee Watoto's children's programming across Ugandan campuses and villages.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Children's Pastor", "icon": "👶", "church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Children's Pastor. Lead PlanetShakers kids ministry with creativity, faith, and family engagement.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $52,000–$68,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Mavuno Church", "loc": "Nairobi, Kenya", "desc": "Children's Pastor. Lead Mavuno kids with discipleship excellence in Nairobi's urban context.", "url": "https://mavuno.org/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Children's Pastor", "icon": "👶", "church": "Daystar Christian Centre", "loc": "Lagos, Nigeria", "desc": "Children's Ministry Director. Lead faith formation for thousands of Lagos children with excellence.", "url": "https://daystarng.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Children's Pastor", "icon": "👶", "church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Children's Pastor. Lead Hope City's kids ministry across campuses with creativity and discipleship heart.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£35,000–£48,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "Kings Church International", "loc": "London, UK", "desc": "Children's Director. Lead kids ministry for London's growing Kings Church network.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£36,000–£50,000"}, {"role": "Children's Pastor", "icon": "👶", "church": "City Harvest Church", "loc": "Singapore", "desc": "Children's Ministry Director. Lead CHC Kids with excellence, faith formation, and parent engagement.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $48,000–$62,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Lakewood Church", "loc": "Houston, TX", "desc": "Church Business Administrator. Oversee $70M annual budget, facilities, HR, and operational excellence for America's largest church.", "url": "https://www.lakewoodchurch.com/jobs", "region": "US", "salary": "$90,000–$115,000"}, {"role": "Church Administrator", "icon": "📋", "church": "North Point Ministries", "loc": "Alpharetta, GA", "desc": "Director of Operations. Lead facilities, IT, finance, and HR for our 7-campus ministry organization.", "url": "https://northpoint.org/jobs", "region": "US", "salary": "$85,000–$110,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Gateway Church", "loc": "Southlake, TX", "desc": "Church Administrator. Manage staff operations, vendor relationships, and day-to-day ministry logistics.", "url": "https://www.gatewaypeople.com/employment", "region": "US", "salary": "$80,000–$105,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Prestonwood Baptist", "loc": "Plano, TX", "desc": "Business Administrator. CPA preferred. Oversee financial reporting, payroll, and operational systems for 40,000-member church.", "url": "https://prestonwood.org/careers", "region": "US", "salary": "$85,000–$110,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Southeast Christian", "loc": "Louisville, KY", "desc": "Church Administrator – Operations. Coordinate campus facilities, events, security, and daily operations.", "url": "https://southeastchristian.org/jobs", "region": "US", "salary": "$75,000–$98,000"}, {"role": "Church Administrator", "icon": "📋", "church": "First Baptist Dallas", "loc": "Dallas, TX", "desc": "Church Business Manager. Oversee budgeting, accounting, and operational support for historic Dallas congregation.", "url": "https://www.firstdallas.org/employment", "region": "US", "salary": "$80,000–$105,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Saddleback Church", "loc": "Lake Forest, CA", "desc": "Operations Director. Lead Saddleback's campus operations, facilities management, and event logistics.", "url": "https://saddleback.com/careers", "region": "US", "salary": "$85,000–$110,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Elevation Church", "loc": "Charlotte, NC", "desc": "Director of Church Operations. Oversee administrative systems for 30+ campus locations nationwide.", "url": "https://jobs.elevationchurch.org", "region": "US", "salary": "$88,000–$115,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Life.Church", "loc": "Edmond, OK", "desc": "Operations Manager – Campus. Manage all operational aspects of an assigned Life.Church campus location.", "url": "https://jobs.life.church", "region": "US", "salary": "$65,000–$85,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Celebration Church", "loc": "Jacksonville, FL", "desc": "Church Operations Director. Coordinate daily ministry logistics, vendor management, and staff support.", "url": "https://celebrationchurch.org/careers", "region": "US", "salary": "$70,000–$90,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Cornerstone Church", "loc": "San Antonio, TX", "desc": "Church Administrator. Oversee budget management, facility operations, and administrative staff team.", "url": "https://cornerstonesa.net/careers", "region": "US", "salary": "$72,000–$92,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Christ Fellowship", "loc": "Palm Beach Gardens, FL", "desc": "Director of Administration. Lead HR, benefits, compliance, and staff onboarding for our ministry team.", "url": "https://christfellowship.com/careers", "region": "US", "salary": "$80,000–$105,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Bethel Church", "loc": "Redding, CA", "desc": "Administrative Director. Coordinate ministry scheduling, communications, and operational support for all Bethel departments.", "url": "https://www.bethel.com/jobs", "region": "US", "salary": "$70,000–$90,000"}, {"role": "Church Administrator", "icon": "📋", "church": "National Community Church", "loc": "Washington, DC", "desc": "Church Administrator. Manage NCC's Capitol Hill facilities, staff logistics, and coffeehouse operations.", "url": "https://theaterchurch.com/jobs", "region": "US", "salary": "$68,000–$88,000"}, {"role": "Church Administrator", "icon": "📋", "church": "New Life Church", "loc": "Colorado Springs, CO", "desc": "Operations Manager. Lead facility management, IT systems, and event coordination for our growing campus.", "url": "https://newlifechurch.org/jobs", "region": "US", "salary": "$65,000–$85,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Antioch Community Church", "loc": "Waco, TX", "desc": "Church Administrator. Coordinate ministry operations, missions logistics, and staff support with excellence.", "url": "https://antiochcc.net/jobs", "region": "US", "salary": "$60,000–$78,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Hillsong Church", "loc": "Sydney, Australia", "desc": "Business Director. Lead Hillsong's financial operations, legal compliance, and international administrative systems.", "url": "https://hillsong.com/careers", "region": "INTL", "salary": "AUD $95,000–$125,000"}, {"role": "Church Administrator", "icon": "📋", "church": "RCCG International", "loc": "Lagos, Nigeria", "desc": "Administrative Director. Oversee RCCG's global operations, parish administration, and international communications.", "url": "https://rccg.org/careers", "region": "INTL", "salary": "Negotiable"}, {"role": "Church Administrator", "icon": "📋", "church": "Watoto Church", "loc": "Kampala, Uganda", "desc": "Operations Director. Lead Watoto's administrative systems, HR, and NGO compliance across all Uganda programs.", "url": "https://watoto.com/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Church Administrator", "icon": "📋", "church": "Rhema Bible Church", "loc": "Johannesburg, SA", "desc": "Church Administrator. Oversee Rhema's administrative staff, facility management, and operational budget.", "url": "https://www.rhema.co.za/employment", "region": "INTL", "salary": "ZAR 380,000–520,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Planet Shakers", "loc": "Melbourne, Australia", "desc": "Operations Manager. Coordinate conference logistics, staff operations, and international touring administration.", "url": "https://planetshakers.com/careers", "region": "INTL", "salary": "AUD $70,000–$90,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Kings Church International", "loc": "London, UK", "desc": "Church Administrator. Manage Kings' staff operations, venue logistics, and multi-campus administrative support.", "url": "https://kingschurch.eu/careers", "region": "INTL", "salary": "£42,000–£58,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Hope City Church", "loc": "Sheffield, UK", "desc": "Church Business Manager. Oversee financial reporting, HR, and operational management for Hope City's growing network.", "url": "https://hopecity.co.uk/jobs", "region": "INTL", "salary": "£38,000–£52,000"}, {"role": "Church Administrator", "icon": "📋", "church": "Mavuno Church", "loc": "Nairobi, Kenya", "desc": "Operations Director. Lead Mavuno's organizational systems, staff management, and facility coordination.", "url": "https://mavuno.org/jobs", "region": "INTL", "salary": "Negotiable"}, {"role": "Church Administrator", "icon": "📋", "church": "New Creation Church", "loc": "Singapore", "desc": "Administrative Director. Manage NCC's large-scale operations, financial compliance, and staff support systems.", "url": "https://www.newcreation.org.sg/careers", "region": "INTL", "salary": "SGD $72,000–$95,000"}, {"role": "Church Administrator", "icon": "📋", "church": "City Harvest Church", "loc": "Singapore", "desc": "Church Administrator. Coordinate daily operations, event logistics, and administrative support across CHC campuses.", "url": "https://www.chc.org.sg/careers", "region": "INTL", "salary": "SGD $60,000–$78,000"}];
-
-
-
-
-
-var currentRole = "senior_pastor";
-var isAdminH = false;
-var uploadedDocs = {};
-var selectedChurch = null;
-
-/* ── Position statuses ─────────────────────────────────────────── */
-function getStatuses(){return gl("gate_pos_statuses")||{};}
-function isPositionFilled(church,role){var s=getStatuses();return s[(church+"|"+role)]===true;}
-function toggleStatus(church,role){var s=getStatuses();var key=church+"|"+role;s[key]=!s[key];gs("gate_pos_statuses",s);}
-
-/* ── Role tabs ─────────────────────────────────────────────────── */
-function buildTabs(){
-  var bar=document.getElementById("roleTabs");if(!bar)return;
-  var html="";
-  Object.keys(HIRING_DATA).forEach(function(key){
-    var icon=ROLE_ICONS[key]||"📌";
-    var label=ROLE_LABELS[key]||key;
-    var custom=gl("gate_hiring_custom_"+key)||[];
-    var base=HIRING_DATA[key]||[];
-    var statuses=getStatuses();
-    var open=base.concat(custom).filter(function(j){return !isPositionFilled(j.church,j.role||label);}).length;
-    html+='<button class="role-tab'+(key===currentRole?" active":"")+'" onclick="switchRole(''+key+'')" id="rtab-'+key+'">'+icon+' '+label+' <span style="font-size:.65rem;opacity:.7;">('+open+' open)</span></button>';
-  });
-  bar.innerHTML=html;
-}
-
-function switchRole(key){
-  currentRole=key;
-  document.querySelectorAll(".role-tab").forEach(function(b){b.classList.remove("active");});
-  var btn=document.getElementById("rtab-"+key);if(btn)btn.classList.add("active");
-  document.getElementById("hireSearch").value="";
-  document.getElementById("regionFilter").value="all";
-  // Sync application role select
-  var ar=document.getElementById("appRole");if(ar)ar.value=ROLE_LABELS[key]||"";
-  filterListings("");
-}
-
-/* ── Listings render ───────────────────────────────────────────── */
-function filterListings(q){
-  var region=document.getElementById("regionFilter").value;
-  var custom=gl("gate_hiring_custom_"+currentRole)||[];
-  var base=HIRING_DATA[currentRole]||[];
-  var all=custom.concat(base);
-  var lq=(q||"").toLowerCase();
-  if(lq)all=all.filter(function(j){return (j.church||"").toLowerCase().indexOf(lq)>-1||(j.loc||"").toLowerCase().indexOf(lq)>-1||(j.desc||"").toLowerCase().indexOf(lq)>-1;});
-  if(region!=="all")all=all.filter(function(j){return j.region===region;});
-  // Filter out filled positions for public view
-  if(!isAdminH){var statuses=getStatuses();all=all.filter(function(j){return !statuses[(j.church+"|"+(j.role||ROLE_LABELS[currentRole]))];});}
-  var grid=document.getElementById("hiringGrid");
-  var info=document.getElementById("resultsInfo");
-  var total=Object.keys(HIRING_DATA).reduce(function(s,k){return s+(HIRING_DATA[k]||[]).length+(gl("gate_hiring_custom_"+k)||[]).length;},0);
-  document.getElementById("stTotal").textContent=total+"+";
-  if(info)info.textContent=all.length+" position(s) shown"+(lq?" for “"+q+"”":"")+(region!=="all"?" in "+(region==="US"?"United States":"International regions"):"");
-  if(!all.length){grid.innerHTML='<div style="color:var(--text2);font-size:.85rem;text-align:center;padding:3rem;grid-column:1/-1;">No open positions found. Try a different role or filter.</div>';return;}
-  var role_label=ROLE_LABELS[currentRole]||currentRole;
-  var html="";
+function renderHiringGrid(q,role){
+  var all=getCustomJobs().concat(DEFAULT_JOBS);
+  if(q){var lq=q.toLowerCase();all=all.filter(function(j){return j.church.toLowerCase().indexOf(lq)>-1||j.role.toLowerCase().indexOf(lq)>-1||(j.location||'').toLowerCase().indexOf(lq)>-1;});}
+  if(role&&role!='all'){all=all.filter(function(j){return j.role.indexOf(role)>-1;});}
+  var cnt=document.getElementById('hiringCount');if(cnt)cnt.textContent=all.length;
+  var grid=document.getElementById('hiringGrid');if(!grid)return;
+  if(!all.length){grid.innerHTML='<div style="color:var(--text2);text-align:center;padding:2rem;grid-column:1/-1;">No positions found.</div>';return;}
+  var html='';
   for(var i=0;i<all.length;i++){
     var j=all[i];
-    var filled=isPositionFilled(j.church,j.role||role_label);
-    var badge=j.region==="US"?'<span class="ch-badge badge-us">National</span>':'<span class="ch-badge badge-intl">International</span>';
-    var filledBadge=filled?'<span class="ch-badge" style="background:rgba(139,32,32,.2);color:#e05555;">Position Filled</span>':'';
-    html+='<div class="church-card"'+(!filled&&!isAdminH?' style="cursor:pointer;" onclick="applyToJob(\''+j.church.replace(/'/g,"\\'")+'\')"':'' )+'>';
-    html+=badge+filledBadge;
-    html+='<div class="ch-name">'+esc(j.church)+'</div>';
-    html+='<div style="font-family:Cinzel,serif;color:var(--cream);font-size:.78rem;margin-bottom:.2rem;">'+esc(j.role||role_label)+'</div>';
-    html+='<div class="ch-loc">📍 '+esc(j.loc||"")+'</div>';
-    if(j.salary)html+='<div style="font-size:.73rem;color:#6fd498;font-family:sans-serif;margin-bottom:.35rem;">💰 '+esc(j.salary)+'</div>';
-    html+='<div style="font-size:.77rem;color:var(--text2);font-family:sans-serif;line-height:1.65;margin-bottom:.7rem;flex:1;">'+esc((j.desc||"").slice(0,120))+(j.desc&&j.desc.length>120?"...":"")+'</div>';
-    if(!filled){
-      html+='<a href="'+esc(j.url||"#")+'" target="_blank" rel="noopener" class="ch-btn">📄 Apply at Church Website →</a>';
-      html+='<button onclick="applyToJob(\''+j.church.replace(/'/g,"\\'")+'\')" class="ch-btn-out" style="cursor:pointer;background:transparent;border:1.5px solid rgba(201,168,76,.4);color:var(--gold);padding:.38rem;border-radius:5px;font-family:sans-serif;font-size:.73rem;margin-top:.35rem;width:100%;">📝 Apply via GATE Form ↓</button>';
-    } else {
-      html+='<div style="text-align:center;color:var(--text2);font-size:.75rem;font-family:sans-serif;padding:.4rem;border:1px solid rgba(255,255,255,.08);border-radius:5px;">Position no longer available</div>';
-    }
-    if(isAdminH){
-      var filled2=isPositionFilled(j.church,j.role||role_label);
-      html+='<button onclick="adminToggleStatus(\''+j.church.replace(/'/g,"\\'")+'\''+",'\'"+(j.role||role_label)+"'\'"+')" style="margin-top:.4rem;background:'+( filled2?'rgba(45,122,79,.2)':'rgba(139,32,32,.2)')+';color:'+( filled2?'#6fd498':'#e05555')+';border:1px solid currentColor;padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;width:100%;">'+( filled2?'✓ Mark as Open':'⊘ Mark as Filled')+'</button>';
-    }
-    html+='</div>';
+    html+='<div class="church-card"><div class="church-name">'+esc(j.church)+'</div><div style="font-family:Cinzel,serif;color:var(--cream);font-size:.78rem;margin-bottom:.2rem;">'+esc(j.role)+'</div><div class="church-location">&#128205; '+esc(j.location||'')+'</div>'+(j.salary?'<div style="font-size:.75rem;color:#4aad74;font-family:sans-serif;margin-bottom:.4rem;">&#128176; '+esc(j.salary)+'</div>':'')+'<div style="font-size:.78rem;color:var(--text2);font-family:sans-serif;margin-bottom:.7rem;line-height:1.6;">'+(j.desc?esc(j.desc.slice(0,100))+'...':'')+'</div><a href="'+esc(j.url||'#')+'" target="_blank" class="church-btn">&#128196; Apply Now</a></div>';
   }
   grid.innerHTML=html;
 }
 
-function applyToJob(churchName){
-  var el=document.getElementById("appChurchName");
-  if(el){el.value=churchName;el.style.borderColor="var(--gold)";}
-  // Find in ALL_CHURCHES for location
-  var found=ALL_CHURCHES.find(function(c){return c.name===churchName;});
-  var locEl=document.getElementById("appChurchLoc");
-  if(locEl&&found)locEl.textContent="📍 "+found.loc+" — "+(found.region==="US"?"United States":"International");
-  // Select in church list
-  selectChurchCard(churchName);
-  document.getElementById("applySection").scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-/* ── Document uploads ──────────────────────────────────────────── */
-function handleDocUpload(input,docId,statId){
-  var file=input.files[0];
-  var statEl=document.getElementById(statId);
-  if(!file){uploadedDocs[docId]=null;if(statEl)statEl.textContent="";return;}
-  if(file.size>5*1024*1024){if(statEl)statEl.innerHTML='<span style="color:#e05555">File too large (max 5MB)</span>';input.value="";return;}
-  var r=new FileReader();
-  r.onload=function(e){
-    uploadedDocs[docId]={name:file.name,size:Math.round(file.size/1024)+"KB",type:file.type,data:e.target.result};
-    if(statEl)statEl.textContent="✓ "+file.name+" ("+Math.round(file.size/1024)+"KB)";
-  };
-  r.readAsDataURL(file);
-}
-
-/* ── Submit application ────────────────────────────────────────── */
-function submitApplication(){
-  var req={
-    role:    document.getElementById("appRole").value,
-    region:  document.getElementById("appRegion").value,
-    church:  document.getElementById("appChurchName").value.trim(),
-    first:   document.getElementById("appFirst").value.trim(),
-    last:    document.getElementById("appLast").value.trim(),
-    email:   document.getElementById("appEmail").value.trim(),
-    phone:   document.getElementById("appPhone").value.trim(),
-    marital: document.getElementById("appMarital").value,
-    spouse:  document.getElementById("appSpouse").value.trim(),
-    address: document.getElementById("appAddress").value.trim(),
-    dob:     document.getElementById("appDob").value,
-    nation:  document.getElementById("appNationality").value.trim(),
-    currChurch:document.getElementById("appCurrChurch").value.trim(),
-    years:   document.getElementById("appYears").value,
-    denom:   document.getElementById("appDenom").value.trim(),
-    edu:     document.getElementById("appEdu").value,
-    statement:document.getElementById("appStatement").value.trim(),
-    docs:    uploadedDocs,
-    status:  "new",
-    submitted:Date.now(),
-    id:      Date.now()
-  };
-  var msg=document.getElementById("appFormMsg");
-  var missing=[];
-  if(!req.role)missing.push("Position Role");
-  if(!req.church)missing.push("Selected Church");
-  if(!req.first||!req.last)missing.push("Full Name");
-  if(!req.email)missing.push("Email Address");
-  if(!req.phone)missing.push("Phone Number");
-  if(!req.marital)missing.push("Marital Status");
-  if(!req.address)missing.push("Address");
-  if(!req.statement||req.statement.length<50)missing.push("Personal Statement (min 50 chars)");
-  if(missing.length){msg.innerHTML='<span style="color:#e05555">Please complete: '+missing.join(", ")+'</span>';return;}
-  msg.innerHTML='<span style="color:var(--text2)">Submitting...</span>';
-  var apps=gl("gate_applications")||[];
-  apps.unshift(req);
-  gs("gate_applications",apps);
-  document.getElementById("appSubmitResult").innerHTML='<div style="background:linear-gradient(135deg,rgba(45,122,79,.12),rgba(30,50,100,.08));border:1px solid rgba(45,122,79,.4);border-radius:10px;padding:1.5rem;text-align:center;"><div style="font-size:2rem;margin-bottom:.5rem;">✅</div><div style="font-family:Cinzel,serif;color:#6fd498;font-size:.95rem;margin-bottom:.4rem;">Application Submitted Successfully!</div><div style="color:var(--text2);font-size:.82rem;line-height:1.75;">Your application for <strong style="color:var(--gold);">'+esc(req.role)+'</strong> at <strong style="color:var(--gold);">'+esc(req.church)+'</strong> has been received.<br>The GATE admin will review and forward it to the church. You will be contacted at <strong>'+esc(req.email)+'</strong>.</div></div>';
-  msg.innerHTML="";
-  updateAppCount();
-  // Clear required fields but keep for review
-  ["appRole","appRegion","appChurchName","appFirst","appLast","appEmail","appPhone","appMarital","appSpouse","appAddress","appDob","appNationality","appCurrChurch","appYears","appDenom","appEdu","appStatement"].forEach(function(id){var el=document.getElementById(id);if(el)el.value="";});
-  uploadedDocs={};
-  for(var i=1;i<=7;i++){var si=document.getElementById("stat"+i);if(si)si.textContent="";}
-  document.querySelectorAll(".doc-upload-input").forEach(function(inp){inp.value="";});
-  deselectChurchCards();
-}
-
-/* ── Church list at bottom ─────────────────────────────────────── */
-function renderAllChurches(q,region){
-  var list=ALL_CHURCHES.concat(getCustomChurches());
-  var lq=(q||"").toLowerCase();
-  if(lq)list=list.filter(function(c){return (c.name||"").toLowerCase().indexOf(lq)>-1||(c.loc||"").toLowerCase().indexOf(lq)>-1;});
-  if(region&&region!=="all")list=list.filter(function(c){return c.region===region;});
-  var el=document.getElementById("allChurchesGrid");
-  var cnt=document.getElementById("allChurchesCount");
-  if(cnt)cnt.textContent=list.length+" church(es) with open positions";
-  if(!el)return;
-  var sel=document.getElementById("appChurchName")&&document.getElementById("appChurchName").value;
-  var html="";
-  for(var i=0;i<list.length;i++){
-    var c=list[i];
-    var badge=c.region==="US"?'🇺🇸':'🌍';
-    var isSelected=sel&&sel===c.name;
-    html+='<div class="ch-all-card'+( isSelected?' selected':'')+'" id="chcard-'+i+'" onclick="selectChurch(\''+ c.name.replace(/\'/g,"\\'")+ '\',\''+c.loc.replace(/\'/g,"\\'")+ '\',\''+c.region+'\')">';
-    html+='<div style="font-size:1rem;flex-shrink:0;">'+badge+'</div>';
-    html+='<div><div class="ch-all-name">'+esc(c.name)+'</div><div class="ch-all-loc">📍'+esc(c.loc)+'</div></div>';
-    html+='</div>';
-  }
-  if(!list.length)html='<div style="color:var(--text2);font-size:.82rem;padding:1rem;grid-column:1/-1;">No churches match your search.</div>';
-  el.innerHTML=html;
-}
-
-function filterChurchList(q){
-  var region=document.getElementById("churchListRegion").value;
-  renderAllChurches(q,region);
-}
-
-function getCustomChurches(){
-  var us=gl("gate_churches_US")||[];
-  var intl=gl("gate_churches_INTL")||[];
-  return us.concat(intl);
-}
-
-function selectChurch(name,loc,region){
-  var el=document.getElementById("appChurchName");if(el){el.value=name;el.style.borderColor="var(--gold)";}
-  var locEl=document.getElementById("appChurchLoc");
-  if(locEl)locEl.textContent="📍 "+loc+" — "+(region==="US"?"United States":"International");
-  selectChurchCard(name);
-  document.getElementById("applySection").scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-function selectChurchCard(name){
-  document.querySelectorAll(".ch-all-card").forEach(function(c){c.classList.remove("selected");});
-  document.querySelectorAll(".ch-all-card").forEach(function(c){
-    var nameEl=c.querySelector(".ch-all-name");
-    if(nameEl&&nameEl.textContent===name)c.classList.add("selected");
-  });
-}
-function deselectChurchCards(){document.querySelectorAll(".ch-all-card").forEach(function(c){c.classList.remove("selected");});}
-
-/* ── Admin ─────────────────────────────────────────────────────── */
-function showAdminTab(tab){
-  ["apps","positions","statuses"].forEach(function(t){
-    var el=document.getElementById("admin-tab-"+t);
-    var btn=document.getElementById("atab-"+t);
-    if(el)el.style.display=t===tab?"block":"none";
-    if(btn)btn.classList.toggle("active",t===tab);
-  });
-  if(tab==="apps")renderApplications();
-  if(tab==="statuses")renderStatusAdmin();
-}
-
-function updateAppCount(){
-  var apps=gl("gate_applications")||[];
-  var el=document.getElementById("stApps");if(el)el.textContent=apps.length;
-  var el2=document.getElementById("appCount");if(el2)el2.textContent=apps.length;
-}
-
-function renderApplications(){
-  var apps=gl("gate_applications")||[];
-  var el=document.getElementById("applicationsList");
-  if(!apps.length){el.innerHTML='<div style="color:var(--text2);font-size:.82rem;text-align:center;padding:2rem;">No applications submitted yet.</div>';return;}
-  var statusColors={new:"#7ab0ff",reviewed:"var(--gold)",forwarded:"#6fd498",declined:"#e05555"};
-  var html="";
-  for(var i=0;i<apps.length;i++){
-    var a=apps[i];
-    var d=new Date(a.submitted);
-    var docCount=Object.keys(a.docs||{}).filter(function(k){return a.docs[k];}).length;
-    html+='<div class="app-card"><div class="app-card-hdr"><div><div class="app-name">'+esc((a.first||"")+" "+(a.last||""))+'</div><div class="app-role">'+esc(a.role||"")+' — '+esc(a.church||"")+'</div><div style="font-size:.68rem;color:var(--text2);font-family:sans-serif;margin-top:.15rem;">📍 '+esc(a.address||"")+' &nbsp;📧 '+esc(a.email||"")+' &nbsp;📞 '+esc(a.phone||"")+'</div></div><div style="text-align:right;"><span class="app-status status-'+( a.status||"new")+'">'+( a.status||"new")+'</span><div style="font-size:.67rem;color:var(--text2);font-family:sans-serif;margin-top:.3rem;">'+d.toLocaleDateString()+'</div></div></div>';
-    html+='<div style="font-size:.75rem;color:var(--text2);font-family:sans-serif;margin:.4rem 0;line-height:1.6;">💍 '+esc(a.marital||"N/A")+' &nbsp;🎓 '+esc(a.edu||"N/A")+' &nbsp;⛪ '+esc(a.years||"0")+' yrs ministry &nbsp;📎 '+docCount+' doc(s) uploaded</div>';
-    if(a.statement)html+='<div style="font-size:.78rem;color:var(--cream);line-height:1.7;font-style:italic;border-left:3px solid rgba(201,168,76,.3);padding-left:.7rem;margin:.5rem 0;">'+esc(a.statement.slice(0,200))+(a.statement.length>200?"...":"")+'</div>';
-    html+='<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem;">';
-    html+='<button onclick="setAppStatus('+i+',\'reviewed\')" style="background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;">Mark Reviewed</button>';
-    html+='<button onclick="setAppStatus('+i+',\'forwarded\')" style="background:rgba(45,122,79,.15);color:#6fd498;border:1px solid #2d7a4f;padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;">Forward to Church</button>';
-    html+='<button onclick="setAppStatus('+i+',\'declined\')" style="background:rgba(139,32,32,.15);color:#e05555;border:1px solid #8b2020;padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;">Decline</button>';
-    html+='<button onclick="viewAppDocs('+i+')" style="background:rgba(30,80,150,.15);color:#7ab0ff;border:1px solid rgba(30,80,150,.3);padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;">View Docs</button>';
-    html+='<button onclick="deleteApp('+i+')" style="background:transparent;color:var(--text2);border:1px solid rgba(255,255,255,.1);padding:.2rem .6rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;">Delete</button>';
-    html+='</div></div>';
-  }
-  el.innerHTML=html;
-}
-
-function setAppStatus(idx,status){
-  var apps=gl("gate_applications")||[];
-  if(apps[idx])apps[idx].status=status;
-  gs("gate_applications",apps);
-  renderApplications();
-}
-
-function viewAppDocs(idx){
-  var apps=gl("gate_applications")||[];
-  var a=apps[idx];if(!a||!a.docs)return;
-  var win=window.open("","_blank");
-  win.document.write('<html><head><title>Documents: '+(a.first||"")+" "+(a.last||"")+'</title></head><body style="background:#0d1b2e;color:#e8e0d0;font-family:sans-serif;padding:2rem;">');
-  win.document.write('<h2 style="color:#c9a84c;">'+(a.first||"")+" "+(a.last||"")+' — '+(a.role||"")+' @ '+(a.church||"")+'</h2>');
-  var docLabels={"doc1":"Birth Certificate","doc2":"License/ID Card","doc3":"PhD/Certificate","doc4":"Marriage Certificate","doc5":"Professional Photo","doc6":"Biography","doc7":"Resume"};
-  for(var k in (a.docs||{})){
-    var d=a.docs[k];if(!d)continue;
-    win.document.write('<div style="margin:.8rem 0;padding:1rem;background:#162440;border-radius:8px;"><strong>'+( docLabels[k]||k)+'</strong><br><small>'+(d.name||"")+' — '+(d.size||"")+'</small><br><a href="'+( d.data||"")+'" download="'+( d.name||k)+'" style="color:#c9a84c;">Download</a></div>');
-  }
-  win.document.write('</body></html>');win.document.close();
-}
-
-function deleteApp(idx){
-  if(!confirm("Delete this application permanently?"))return;
-  var apps=gl("gate_applications")||[];
-  apps.splice(idx,1);
-  gs("gate_applications",apps);
-  updateAppCount();
-  renderApplications();
-}
-
-function renderStatusAdmin(){
-  var el=document.getElementById("statusListAdmin");if(!el)return;
-  var statuses=getStatuses();
-  var html="";
-  Object.keys(HIRING_DATA).forEach(function(roleKey){
-    var listings=(HIRING_DATA[roleKey]||[]).concat(gl("gate_hiring_custom_"+roleKey)||[]);
-    listings.forEach(function(j){
-      var label=j.role||ROLE_LABELS[roleKey]||roleKey;
-      var key=j.church+"|"+label;
-      var filled=statuses[key]===true;
-      html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem .8rem;background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:6px;margin-bottom:.3rem;">';
-      html+='<div><span style="font-family:Cinzel,serif;color:var(--gold);font-size:.78rem;">'+esc(j.church)+'</span> <span style="font-size:.7rem;color:var(--text2);font-family:sans-serif;">— '+esc(label)+'</span></div>';
-      html+='<button onclick="adminToggleStatus(\''+ j.church.replace(/\'/g,"\\'")+"','"+ label.replace(/'/g,"\\'")+'')"  style="background:'+( filled?'rgba(45,122,79,.2)':'rgba(139,32,32,.15)')+';color:'+( filled?'#6fd498':'#e05555')+';border:1px solid currentColor;padding:.18rem .55rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;cursor:pointer;">'+( filled?'✓ Open':'⊘ Filled')+'</button></div>';
-    });
-  });
-  el.innerHTML=html||'<div style="color:var(--text2);font-size:.82rem;">No positions to manage.</div>';
-}
-
-function adminToggleStatus(church,role){
-  toggleStatus(church,role);
-  buildTabs();
-  filterListings(document.getElementById("hireSearch").value);
-  renderStatusAdmin();
+function filterHiring(q){
+  var role=document.getElementById('roleFilter').value;
+  renderHiringGrid(q,role);
 }
 
 function addHiring(){
-  var church=document.getElementById("hChurch").value.trim();
-  var url=document.getElementById("hUrl").value.trim();
-  if(!church||!url){document.getElementById("hMsg").innerHTML='<span style="color:#e05555">Church name and URL required.</span>';return;}
-  var roleRaw=document.getElementById("hRole").value;
-  var roleKey=roleRaw.toLowerCase().replace(/ /g,"_").replace(/'/g,"");
-  var custom=gl("gate_hiring_custom_"+roleKey)||[];
-  custom.unshift({church:church,loc:document.getElementById("hLoc").value,salary:document.getElementById("hSalary").value,desc:document.getElementById("hDesc").value,url:url,region:document.getElementById("hRegion").value,role:roleRaw});
-  gs("gate_hiring_custom_"+roleKey,custom);
-  // Also add to ALL_CHURCHES if not present
-  var exists=ALL_CHURCHES.some(function(c){return c.name===church;});
-  if(!exists){var customCh=gl("gate_all_custom_churches")||[];customCh.push({name:church,loc:document.getElementById("hLoc").value,region:document.getElementById("hRegion").value});gs("gate_all_custom_churches",customCh);ALL_CHURCHES.push({name:church,loc:document.getElementById("hLoc").value,region:document.getElementById("hRegion").value});}
-  ["hChurch","hLoc","hSalary","hDesc","hUrl"].forEach(function(id){var el=document.getElementById(id);if(el)el.value="";});
-  document.getElementById("hMsg").innerHTML='<span style="color:#4aad74">✓ Position posted under '+roleRaw+'!</span>';
-  setTimeout(function(){document.getElementById("hMsg").innerHTML="";},3000);
-  buildTabs();
-  if(currentRole===roleKey)filterListings("");
-  render165("");
-}
-
-/* ── Check for updates (refresh statuses + counts) ─────────────── */
-
-/* ── All 165 positions listing ─────────────────────────────────── */
-function renderAllPositions(q, role, region) {
-  var list = ALL_POSITIONS.concat(getCustomPositions());
-  var lq = (q||"").toLowerCase();
-  if (lq) list = list.filter(function(p) {
-    return (p.church||"").toLowerCase().indexOf(lq) > -1
-        || (p.loc||"").toLowerCase().indexOf(lq) > -1
-        || (p.role||"").toLowerCase().indexOf(lq) > -1
-        || (p.desc||"").toLowerCase().indexOf(lq) > -1;
-  });
-  if (role && role !== "all") list = list.filter(function(p) { return p.role === role; });
-  if (region && region !== "all") list = list.filter(function(p) { return p.region === region; });
-  var el = document.getElementById("allPositionsGrid");
-  var cnt = document.getElementById("allPosCount");
-  if (cnt) cnt.textContent = list.length + " position(s) found";
-  if (!el) return;
-  if (!list.length) {
-    el.innerHTML = '<div style="color:var(--text2);text-align:center;padding:2rem;font-family:sans-serif;font-size:.85rem;">No positions match your search.</div>';
-    return;
-  }
-  var html = '<div style="overflow-x:auto;">'
-    + '<table style="width:100%;border-collapse:collapse;font-family:sans-serif;font-size:.8rem;">'
-    + '<thead><tr style="background:rgba(201,168,76,.1);border-bottom:2px solid rgba(201,168,76,.3);">'
-    + '<th style="padding:.55rem .8rem;text-align:left;color:var(--gold);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1px;font-weight:700;white-space:nowrap;">#</th>'
-    + '<th style="padding:.55rem .8rem;text-align:left;color:var(--gold);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1px;font-weight:700;">Church Name</th>'
-    + '<th style="padding:.55rem .8rem;text-align:left;color:var(--gold);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1px;font-weight:700;">Position</th>'
-    + '<th style="padding:.55rem .8rem;text-align:left;color:var(--gold);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1px;font-weight:700;">Location</th>'
-    + '<th style="padding:.55rem .8rem;text-align:left;color:var(--gold);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1px;font-weight:700;">Salary</th>'
-    + '<th style="padding:.55rem .8rem;text-align:left;color:var(--gold);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1px;font-weight:700;">Region</th>'
-    + '<th style="padding:.55rem .8rem;text-align:center;color:var(--gold);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:1px;font-weight:700;">Actions</th>'
-    + '</tr></thead><tbody>';
-  for (var i = 0; i < list.length; i++) {
-    var p = list[i];
-    var filled = isPositionFilled(p.church, p.role);
-    var rowBg = i % 2 === 0 ? "background:rgba(22,36,64,.6);" : "background:rgba(13,27,46,.6);";
-    if (filled) rowBg += "opacity:.55;";
-    var regionBadge = p.region === "US"
-      ? '<span style="background:rgba(30,80,150,.2);color:#7ab0ff;font-size:.6rem;padding:.1rem .35rem;border-radius:6px;font-weight:700;">🇺🇸 US</span>'
-      : '<span style="background:rgba(201,168,76,.2);color:var(--gold);font-size:.6rem;padding:.1rem .35rem;border-radius:6px;font-weight:700;">🌍 INTL</span>';
-    var filledTag = filled
-      ? '<span style="background:rgba(139,32,32,.2);color:#e05555;font-size:.6rem;padding:.1rem .35rem;border-radius:6px;font-weight:700;margin-left:.3rem;">FILLED</span>'
-      : '';
-    html += '<tr style="' + rowBg + 'border-bottom:1px solid rgba(255,255,255,.04);transition:background .15s;" '
-      + 'onmouseover="this.style.background='rgba(201,168,76,.07)'" '
-      + 'onmouseout="this.style.background='' + (i%2===0?"rgba(22,36,64,.6)":"rgba(13,27,46,.6)") + ''">';
-    html += '<td style="padding:.5rem .8rem;color:var(--text2);white-space:nowrap;">' + (i+1) + '</td>';
-    html += '<td style="padding:.5rem .8rem;"><div style="color:var(--cream);font-weight:600;">' + esc(p.church) + '</div></td>';
-    html += '<td style="padding:.5rem .8rem;white-space:nowrap;">' + (p.icon||"📌") + ' <span style="color:var(--gold);">' + esc(p.role) + '</span>' + filledTag + '</td>';
-    html += '<td style="padding:.5rem .8rem;color:var(--text2);white-space:nowrap;">📍 ' + esc(p.loc) + '</td>';
-    html += '<td style="padding:.5rem .8rem;color:#6fd498;white-space:nowrap;">' + esc(p.salary||"Negotiable") + '</td>';
-    html += '<td style="padding:.5rem .8rem;">' + regionBadge + '</td>';
-    html += '<td style="padding:.5rem .8rem;text-align:center;white-space:nowrap;">';
-    html += '<a href="' + esc(p.url) + '" target="_blank" rel="noopener" '
-      + 'style="display:inline-block;background:var(--gold);color:var(--navy);padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;font-weight:700;text-decoration:none;margin-right:.3rem;white-space:nowrap;">🌐 Website</a>';
-    if (!filled) {
-      html += '<button onclick="applyToJob(\'' + p.church.replace(/'/g, "\\'") + '\')" '
-        + 'style="background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.35);color:var(--gold);padding:.28rem .65rem;border-radius:4px;font-family:sans-serif;font-size:.7rem;font-weight:600;cursor:pointer;white-space:nowrap;">📝 Apply</button>';
-    }
-    html += '</td></tr>';
-  }
-  html += '</tbody></table></div>';
-  el.innerHTML = html;
-}
-
-function filterAllPositions(q) {
-  var role   = document.getElementById("allPosRole")   ? document.getElementById("allPosRole").value   : "all";
-  var region = document.getElementById("allPosRegion") ? document.getElementById("allPosRegion").value : "all";
-  renderAllPositions(q, role, region);
-}
-
-function getCustomPositions() {
-  var result = [];
-  var roleKeys = Object.keys(HIRING_DATA);
-  roleKeys.forEach(function(k) {
-    var custom = gl("gate_hiring_custom_" + k) || [];
-    custom.forEach(function(j) { result.push(j); });
-  });
-  return result;
-}
-
-
-/* ── All 165 positions card grid (like churches_member) ───────── */
-function render165(q) {
-  var role   = document.getElementById("pos165Role")   ? document.getElementById("pos165Role").value   : "all";
-  var region = document.getElementById("pos165Region") ? document.getElementById("pos165Region").value : "all";
-  var lq = (q||"").toLowerCase();
-
-  // Get custom admin-added positions too
-  var custom = [];
-  Object.keys(HIRING_DATA).forEach(function(k){
-    (gl("gate_hiring_custom_"+k)||[]).forEach(function(j){ custom.push(j); });
-  });
-
-  var all = ALL_POSITIONS_165.concat(custom);
-
-  if (lq) all = all.filter(function(p){
-    return (p.church||"").toLowerCase().indexOf(lq)>-1
-        || (p.role||"").toLowerCase().indexOf(lq)>-1
-        || (p.loc||"").toLowerCase().indexOf(lq)>-1;
-  });
-  if (role !== "all")   all = all.filter(function(p){ return p.role === role; });
-
-  var usItems   = all.filter(function(p){ return p.region === "US"; });
-  var intlItems = all.filter(function(p){ return p.region === "INTL"; });
-
-  if (region === "US")   { intlItems = []; }
-  if (region === "INTL") { usItems   = []; }
-
-  var cnt = document.getElementById("pos165Count");
-  if (cnt) cnt.textContent = (usItems.length + intlItems.length) + " position(s) shown";
-
-  var usSection   = document.getElementById("pos165UsSection");
-  var intlSection = document.getElementById("pos165IntlSection");
-  if (usSection)   usSection.style.display   = usItems.length   ? "block" : "none";
-  if (intlSection) intlSection.style.display = intlItems.length ? "block" : "none";
-
-  buildPosGrid(usItems,   "pos165UsGrid",   "US");
-  buildPosGrid(intlItems, "pos165IntlGrid", "INTL");
-}
-
-function buildPosGrid(items, gridId, region) {
-  var el = document.getElementById(gridId);
-  if (!el) return;
-  if (!items.length) { el.innerHTML = ''; return; }
-
-  var html = "";
-  for (var i = 0; i < items.length; i++) {
-    var p = items[i];
-    var filled = isPositionFilled(p.church, p.role);
-    var badge  = region === "US"
-      ? '<span class="ch-badge badge-us">National</span>'
-      : '<span class="ch-badge badge-intl">International</span>';
-    var filledBadge = filled
-      ? '<span class="ch-badge" style="background:rgba(139,32,32,.2);color:#e05555;">Position Filled</span>'
-      : '';
-
-    html += '<div class="church-card">';
-    html += badge + filledBadge;
-    // Church name
-    html += '<div class="ch-name">' + esc(p.church) + '</div>';
-    // Role / position
-    html += '<div style="font-family:sans-serif;font-size:.73rem;color:var(--gold);font-weight:600;margin-bottom:.15rem;">'
-          + esc(p.icon||"") + ' ' + esc(p.role) + '</div>';
-    // Location
-    html += '<div class="ch-loc">📍 ' + esc(p.loc||"") + '</div>';
-    // Salary
-    if (p.salary) {
-      html += '<div style="font-size:.72rem;color:#6fd498;font-family:sans-serif;margin-bottom:.4rem;">💰 '
-            + esc(p.salary) + '</div>';
-    }
-    // Description snippet
-    if (p.desc) {
-      html += '<div style="font-size:.75rem;color:var(--text2);font-family:sans-serif;line-height:1.6;'
-            + 'margin-bottom:.7rem;flex:1;">'
-            + esc(p.desc.slice(0,110)) + (p.desc.length>110?"...":"") + '</div>';
-    }
-    // Buttons
-    html += '<a href="' + esc(p.url||"#") + '" target="_blank" rel="noopener" class="ch-btn">'
-          + '🌐 Visit Church Website →</a>';
-    if (!filled) {
-      html += '<button onclick="applyToJob(\'' + p.church.replace(/'/g,"\\'") + '\')" '
-            + 'class="ch-btn-out" style="cursor:pointer;background:transparent;border:1.5px solid rgba(201,168,76,.4);'
-            + 'color:var(--gold);padding:.38rem;border-radius:5px;font-family:sans-serif;font-size:.73rem;'
-            + 'margin-top:.35rem;width:100%;">📝 Apply for this Position ↑</button>';
-    } else {
-      html += '<div style="text-align:center;color:var(--text2);font-size:.75rem;font-family:sans-serif;'
-            + 'padding:.4rem;border:1px solid rgba(255,255,255,.08);border-radius:5px;margin-top:.35rem;">'
-            + 'Position no longer available</div>';
-    }
-    html += '</div>';
-  }
-  el.innerHTML = html;
-}
-
-function checkUpdates(){
-  buildTabs();
-  filterListings(document.getElementById("hireSearch").value);
-  var btn=event.target;
-  btn.textContent="✓ Updated";btn.style.color="#6fd498";
-  setTimeout(function(){btn.textContent="🔄 Check Updates";btn.style.color="var(--gold)";},2000);
+  var church=document.getElementById('hChurch').value.trim();
+  var role=document.getElementById('hRole').value.trim();
+  var url=document.getElementById('hUrl').value.trim();
+  if(!church||!role||!url){document.getElementById('hireAddMsg').innerHTML='<span style="color:#e05555">Church, role and URL required.</span>';return;}
+  var jobs=getCustomJobs();
+  jobs.unshift({church:church,role:role,location:document.getElementById('hLoc').value,salary:document.getElementById('hSalary').value,desc:document.getElementById('hDesc').value,url:url});
+  gs('gate_hiring_jobs',jobs);
+  ['hChurch','hRole','hLoc','hSalary','hDesc','hUrl'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('hireAddMsg').innerHTML='<span style="color:#4aad74">&#10003; Position posted!</span>';
+  setTimeout(function(){document.getElementById('hireAddMsg').innerHTML='';},3000);
+  renderHiringGrid('','all');
 }
 
 function promptAdminHire(){
-  if(isAdminH){document.getElementById("adminHireBox").classList.add("visible");updateAppCount();renderApplications();return;}
-  var pw=prompt("Admin Password:");
-  if(pw==="GATE2025admin"){
-    isAdminH=true;
-    document.getElementById("adminHireBox").classList.add("visible");
-    updateAppCount();renderApplications();
-    buildTabs();filterListings("");
-  } else if(pw!==null)alert("Incorrect password.");
+  if(isAdminHire){document.getElementById('adminHireBox').classList.add('visible');return;}
+  var pw=prompt('Admin Password:');
+  if(pw=='GATE2025admin'){isAdminHire=true;document.getElementById('adminHireBox').classList.add('visible');}
+  else if(pw!==null)alert('Incorrect.');
 }
+renderHiringGrid('','all');
 
-/* ── Init ──────────────────────────────────────────────────────── */
-window.addEventListener("load",function(){
-  // Merge custom churches into ALL_CHURCHES
-  var cc=gl("gate_all_custom_churches")||[];cc.forEach(function(c){if(!ALL_CHURCHES.some(function(x){return x.name===c.name;}))ALL_CHURCHES.push(c);});
-  buildTabs();
-  filterListings("");
-  render165("");
-  updateAppCount();
-  (function(){var T={};document.querySelectorAll(".gate-dropdown").forEach(function(dd,i){function open(){clearTimeout(T[i]);dd.classList.add("open");}function close(){T[i]=setTimeout(function(){dd.classList.remove("open");},350);}dd.addEventListener("mouseenter",open);dd.addEventListener("mouseleave",close);var m=dd.querySelector(".gate-dropdown-menu");if(m){m.addEventListener("mouseenter",function(){clearTimeout(T[i]);});m.addEventListener("mouseleave",close);}});})();
-});
+window.addEventListener('load',function(){
+(function(){
+  var T={};
+  document.querySelectorAll('.gate-dropdown').forEach(function(dd,i){
+    function open(){clearTimeout(T[i]);dd.classList.add('open');}
+    function close(){T[i]=setTimeout(function(){dd.classList.remove('open');},350);}
+    dd.addEventListener('mouseenter',open);dd.addEventListener('mouseleave',close);
+    var m=dd.querySelector('.gate-dropdown-menu');
+    if(m){m.addEventListener('mouseenter',function(){clearTimeout(T[i]);});m.addEventListener('mouseleave',close);}
+  });
+})();});</script>
+
+<script>
+/* Admin access via URL: add ?admin=GATE2025admin to any page URL */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var key = params.get('admin');
+  if(key === 'GATE2025admin'){
+    /* Set session flag */
+    try{ sessionStorage.setItem('gate_admin_url','1'); }catch(e){}
+    /* Trigger existing admin unlock functions if they exist */
+    var fns=['promptAdmin','promptAdminStore','promptAdminHire','promptAdminChurch',
+             'promptAdminRel','promptAdminTv','promptAdminRadio','promptAdminArt',
+             'promptAdminProfile','promptAdminHire'];
+    window.addEventListener('load', function(){
+      /* Mark admin as active without showing prompt */
+      if(typeof isAdmin !== 'undefined') isAdmin = true;
+      if(typeof isAdminH !== 'undefined') isAdminH = true;
+      if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+      if(typeof isAdminC !== 'undefined') isAdminC = true;
+      if(typeof isAdminRel !== 'undefined') isAdminRel = true;
+      if(typeof isAdminTv !== 'undefined') isAdminTv = true;
+      if(typeof isAdminRadio !== 'undefined') isAdminRadio = true;
+      if(typeof isAdminArt !== 'undefined') isAdminArt = true;
+      /* Show all admin panels */
+      document.querySelectorAll('.admin-box,.admin-panel,[id*="admin"],[id*="Admin"]').forEach(function(el){
+        if(el.id && (el.id.toLowerCase().includes('box') || el.id.toLowerCase().includes('panel'))){
+          el.classList.add('visible');
+          el.style.display='block';
+        }
+      });
+      /* Rebuild any admin-aware UI */
+      if(typeof buildTabs==='function') buildTabs();
+      if(typeof renderApplications==='function') renderApplications();
+      if(typeof renderStatusAdmin==='function') renderStatusAdmin();
+      if(typeof updateAppCount==='function') updateAppCount();
+      console.log('[GATE] Admin mode active via URL');
+    });
+  }
+  /* Also check sessionStorage for persistence across page loads */
+  try{
+    if(sessionStorage.getItem('gate_admin_url')==='1'){
+      window.addEventListener('load', function(){
+        if(typeof isAdmin !== 'undefined') isAdmin = true;
+        if(typeof isAdminH !== 'undefined') isAdminH = true;
+        if(typeof isAdminStore !== 'undefined') isAdminStore = true;
+        document.querySelectorAll('.admin-box,.admin-panel').forEach(function(el){
+          el.classList.add('visible');
+        });
+        if(typeof buildTabs==='function') buildTabs();
+      });
+    }
+  }catch(e){}
+})();
 </script>
+
 </body></html>
