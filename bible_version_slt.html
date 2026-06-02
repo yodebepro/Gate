@@ -250,7 +250,7 @@ function fmtDate(ts){return new Date(ts).toLocaleDateString('en-US',{month:'shor
 function promptAdmin(){
   if(isAdmin){showAdminUI();return;}
   const pw=prompt('Admin Password:');
-  if(pw===ADMIN_PASS){isAdmin=true;const s=gl('td_gate_v6')||{};if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu'};s.tier='admin';gs('td_gate_v6',s);showAdminUI();}
+  if(pw===ADMIN_PASS){isAdmin=true;const s=gl('td_gate_v6')||{};if(!s.user)s.user={name:'Administrator',email:'theworldprayerline@outlook.com'};s.tier='admin';gs('td_gate_v6',s);showAdminUI();}
   else if(pw!==null)alert('Incorrect password.');
 }
 function showAdminUI(){
