@@ -376,7 +376,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
         <div class="form-group"><label>First Name *</label><input type="text" id="regFirst" placeholder="First Name"></div>
         <div class="form-group"><label>Last Name *</label><input type="text" id="regLast" placeholder="Last Name"></div>
       </div>
-      <div class="form-group"><label>Email Address *</label><input type="email" id="regEmail" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Email Address *</label><input type="email" id="regEmail" placeholder="theworldprayerline@outlook.com"></div>
       <div class="form-group"><label>Phone Number *</label><input type="tel" id="regPhone" placeholder="+1 (555) 000-0000"></div>
       <div class="form-group"><label>Mailing Address *</label><input type="text" id="regAddress" placeholder="Street address"></div>
       <div class="two-col">
@@ -583,7 +583,7 @@ function submitSchedule(){
     'Test Fee: $330 (Stripe payment completed)\n\n'+
     'Please verify payment and confirm the test schedule.\n--- GATE Platform ---'
   );
-  window.open('mailto:yodebepro@gmail.com?subject=GATE+Test+Schedule+Request:+'+encodeURIComponent(formData.first+' '+formData.last)+'&body='+body,'_blank');
+  window.open('mailto:theworldprayerline@outlook.com?subject=GATE+Test+Schedule+Request:+'+encodeURIComponent(formData.first+' '+formData.last)+'&body='+body,'_blank');
   document.getElementById('confirmDetails').innerHTML=document.getElementById('summaryBox').innerHTML+
     '<br><strong style="color:#4aad74;">Status:</strong> Pending admin payment verification';
   setStep(4);
@@ -659,7 +659,7 @@ buildCalendar();
     const pw=prompt('🔐 Admin Password:');
     if(pw===ADMIN_PASS){
       const s=gl(GATE_KEY)||{user:null,tier:null};
-      if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};
+      if(!s.user)s.user={name:'Administrator',email:'theworldprayerline@outlook.com',enrolled:Date.now(),verified:true};
       s.tier='admin';
       gs(GATE_KEY,s);
       gAdminShow();

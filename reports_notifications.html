@@ -303,7 +303,7 @@ function promptAdmin(){
   if(pw===ADMIN_PASS){
     isAdmin=true;
     const s=gl('td_gate_v6')||{user:null,tier:null};
-    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};
+    if(!s.user)s.user={name:'Administrator',email:'theworldprayerline@outlook.com',enrolled:Date.now()};
     s.tier='admin';gs('td_gate_v6',s);
     showAdmin();
   } else if(pw!==null){alert('Incorrect password.');}
