@@ -1377,7 +1377,7 @@ window.addEventListener('load', function() {
     const pw=prompt('🔐 Admin Password:');
     if(pw===ADMIN_PASS){
       const s=gl(GATE_KEY)||{user:null,tier:null};
-      if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};
+      if(!s.user)s.user={name:'Administrator',email:'theworldprayerline@outlook.com',enrolled:Date.now(),verified:true};
       s.tier='admin';
       gs(GATE_KEY,s);
       gAdminShow();
