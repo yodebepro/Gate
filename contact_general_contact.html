@@ -253,7 +253,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
   <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;text-align:center;">
     <div style="font-size:2rem;margin-bottom:.4rem;">✉</div>
     <div style="color:var(--cream);font-weight:600;font-size:.9rem;margin-bottom:.3rem;">Email</div>
-    <a href="mailto:yodebepro@gmail.com" style="color:var(--gold);font-size:.85rem;">yodebepro@gmail.com</a>
+    <a href="mailto:theworldprayerline@outlook.com" style="color:var(--gold);font-size:.85rem;">theworldprayerline@outlook.com</a>
   </div>
   <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1.2rem;text-align:center;">
     <div style="font-size:2rem;margin-bottom:.4rem;">🌐</div>
@@ -263,7 +263,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
 </div></div>
 <div class="card"><div class="card-header"><h2><span>📩</span> Send a Message</h2></div>
 <div class="form-group"><label>Your Name</label><input type="text" id="cnt_name" placeholder="Your full name"></div>
-<div class="form-group"><label>Email</label><input type="email" id="cnt_email" placeholder="your@email.com"></div>
+<div class="form-group"><label>Email</label><input type="email" id="cnt_email" placeholder="theworldprayerline@outlook.com"></div>
 <div class="form-group"><label>Message *</label><textarea id="cnt_msg" rows="4" placeholder="Your message..."></textarea></div>
 <div style="display:flex;gap:.6rem;">
   <button class="btn btn-gold" onclick="sendMsg()">Send Message</button>
@@ -322,7 +322,7 @@ function promptAdmin(){
   if(pw===ADMIN_PASS){
     isAdmin=true;
     const s=gl('td_gate_v6')||{user:null,tier:null};
-    if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now()};
+    if(!s.user)s.user={name:'Administrator',email:'theworldprayerline@outlook.com',enrolled:Date.now()};
     s.tier='admin';gs('td_gate_v6',s);
     showAdmin();
   } else if(pw!==null){alert('Incorrect password.');}
@@ -460,7 +460,7 @@ function sendMsg(){
   const email=document.getElementById('cnt_email').value.trim();
   const msg=document.getElementById('cnt_msg').value.trim();
   if(!msg){document.getElementById('cnt_result').innerHTML='<span style="color:#e05555">Please enter a message.</span>';return;}
-  window.open('mailto:yodebepro@gmail.com?subject=GATE Contact: '+encodeURIComponent(name||email)+'&body='+encodeURIComponent('From: '+name+' ('+email+')\n\n'+msg),'_blank');
+  window.open('mailto:theworldprayerline@outlook.com?subject=GATE Contact: '+encodeURIComponent(name||email)+'&body='+encodeURIComponent('From: '+name+' ('+email+')\n\n'+msg),'_blank');
   document.getElementById('cnt_result').innerHTML='<span style="color:#4aad74">✓ Email client opened.</span>';
 }
 
@@ -572,5 +572,121 @@ function sendMsg(){
   }catch(e){}
 })();
 </script>
+
+
+<section id="gate-direct-contact" class="gate-direct-contact">
+<style>
+.gate-direct-contact {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid rgba(201,168,76,.28);
+  border-radius: 16px;
+  background: rgba(255,255,255,.035);
+  box-shadow: 0 14px 35px rgba(0,0,0,.25);
+}
+.gate-direct-contact h2 {
+  margin: 0 0 .5rem;
+  color: var(--gold, #c9a84c);
+  font-family: Georgia, serif;
+}
+.gate-direct-contact p {
+  color: var(--text2, #b8a88a);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.gate-direct-contact .gate-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .9rem;
+}
+.gate-direct-contact label {
+  display:block;
+  margin: .75rem 0 .35rem;
+  color: var(--text2, #b8a88a);
+  font-size: .92rem;
+}
+.gate-direct-contact input,
+.gate-direct-contact textarea,
+.gate-direct-contact select {
+  width: 100%;
+  padding: .8rem .9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,76,.28);
+  background: rgba(255,255,255,.05);
+  color: var(--text, #e8e0d0);
+  outline: none;
+  font: inherit;
+}
+.gate-direct-contact textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.gate-direct-contact button {
+  margin-top: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: .85rem 1.2rem;
+  background: var(--gold, #c9a84c);
+  color: var(--navy, #0d1b2e);
+  font-weight: 800;
+  cursor: pointer;
+}
+.gate-direct-contact button:hover { filter: brightness(1.08); }
+.gate-direct-contact .gate-note {
+  font-size: .85rem;
+  margin-top: .75rem;
+  color: var(--text2, #b8a88a);
+}
+@media(max-width: 720px) {
+  .gate-direct-contact .gate-form-grid { grid-template-columns: 1fr; }
+  .gate-direct-contact { margin: 1rem; padding: 1rem; }
+}
+</style>
+
+<h2>Contact / Message Form</h2>
+<p>Send your message directly in one click. This form sends to the ministry inbox without opening a pop-up email box.</p>
+
+<form action="https://formsubmit.co/theworldprayerline@outlook.com" method="POST">
+<input type="hidden" name="_subject" value="New GATE Website Message">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="./contact-thank-you.html">
+
+<div class="gate-form-grid">
+<div>
+<label for="gate-name">Full Name</label>
+<input id="gate-name" name="name" type="text" placeholder="Your name" required>
+</div>
+<div>
+<label for="gate-email">Email</label>
+<input id="gate-email" name="email" type="email" placeholder="Your email" required>
+</div>
+</div>
+
+<div class="gate-form-grid">
+<div>
+<label for="gate-phone">Phone</label>
+<input id="gate-phone" name="phone" type="tel" placeholder="Optional phone number">
+</div>
+<div>
+<label for="gate-topic">Message Type</label>
+<select id="gate-topic" name="message_type">
+<option value="General Message">General Message</option>
+<option value="Prayer Request">Prayer Request</option>
+<option value="GATE School Inquiry">GATE School Inquiry</option>
+<option value="Bundle / Payment Question">Bundle / Payment Question</option>
+<option value="Technical Support">Technical Support</option>
+</select>
+</div>
+</div>
+
+<label for="gate-message">Message</label>
+<textarea id="gate-message" name="message" placeholder="Write your message here..." required></textarea>
+
+<button type="submit">Send Message</button>
+<div class="gate-note">Recipient: theworldprayerline@outlook.com</div>
+</form>
+</section>
 
 </body></html>

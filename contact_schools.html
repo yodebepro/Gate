@@ -110,7 +110,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
         <div class="form-group"><label>School Name *</label><input type="text" id="addName" placeholder="e.g., Dallas Theological Seminary"></div>
         <div class="form-group"><label>Location</label><input type="text" id="addLoc" placeholder="City, State / Country"></div>
         <div class="form-group"><label>Programs Offered</label><input type="text" id="addPrograms" placeholder="PhD, DMin, MDiv..."></div>
-        <div class="form-group"><label>Contact Email</label><input type="email" id="addEmail" placeholder="admissions@school.edu"></div>
+        <div class="form-group"><label>Contact Email</label><input type="email" id="addEmail" placeholder="theworldprayerline@outlook.com"></div>
         <div class="form-group"><label>Phone</label><input type="tel" id="addPhone" placeholder="+1 (555) 000-0000"></div>
         <div class="form-group"><label>Website</label><input type="url" id="addUrl" placeholder="https://..."></div>
       </div>
@@ -149,17 +149,17 @@ async function toBase64(file){return new Promise((res,rej)=>{const r=new FileRea
 
 
 const DEFAULT_SCHOOLS=[
-  {name:"Dallas Theological Seminary",loc:"Dallas, TX",programs:"ThM, DMin, PhD",email:"admissions@dts.edu",phone:"(214) 887-5000",url:"https://www.dts.edu",notes:"One of the largest evangelical seminaries. Strong dispensational theology.",img:"",ts:1000},
-  {name:"Southern Baptist Theological Seminary",loc:"Louisville, KY",programs:"MDiv, DMin, PhD",email:"admissions@sbts.edu",phone:"(502) 897-4011",url:"https://www.sbts.edu",notes:"World's largest Southern Baptist seminary.",img:"",ts:1001},
-  {name:"Gordon-Conwell Theological Seminary",loc:"South Hamilton, MA",programs:"MDiv, MA, DMin, PhD",email:"admissions@gordonconwell.edu",phone:"(978) 468-7111",url:"https://www.gordonconwell.edu",notes:"Interdenominational with multiple campus locations.",img:"",ts:1002},
-  {name:"Trinity Evangelical Divinity School",loc:"Deerfield, IL",programs:"MDiv, MA, ThM, PhD",email:"teds@tiu.edu",phone:"(847) 945-8800",url:"https://teds.edu",notes:"Graduate school of Trinity International University.",img:"",ts:1003},
-  {name:"Fuller Theological Seminary",loc:"Pasadena, CA",programs:"MDiv, MA, DMin, PhD",email:"admissions@fuller.edu",phone:"(626) 584-5200",url:"https://www.fuller.edu",notes:"Largest multidenominational seminary in the world.",img:"",ts:1004},
-  {name:"Asbury Theological Seminary",loc:"Wilmore, KY",programs:"MDiv, MA, DMin, PhD",email:"admissions@asburyseminary.edu",phone:"(800) 2ASBURY",url:"https://asburyseminary.edu",notes:"Wesleyan/Methodist tradition with global mission focus.",img:"",ts:1005},
-  {name:"Regent University School of Divinity",loc:"Virginia Beach, VA",programs:"MDiv, DMin, PhD",email:"divinity@regent.edu",phone:"(757) 352-4261",url:"https://www.regent.edu",notes:"Charismatic/Pentecostal tradition. Online options available.",img:"",ts:1006},
-  {name:"Liberty University School of Divinity",loc:"Lynchburg, VA",programs:"MDiv, DMin, PhD",email:"divinity@liberty.edu",phone:"(434) 582-2000",url:"https://www.liberty.edu",notes:"Largest Christian university. Extensive online programs.",img:"",ts:1007},
-  {name:"King's College London — Theology",loc:"London, UK",programs:"MA, PhD, MPhil",email:"theology@kcl.ac.uk",phone:"+44 20 7836 5454",url:"https://www.kcl.ac.uk/theology",notes:"World-renowned research university for theology and religion.",img:"",ts:1008},
-  {name:"Oxford Centre for Mission Studies",loc:"Oxford, UK",programs:"MA, MPhil, PhD",email:"admin@ocms.ac.uk",phone:"+44 1865 556071",url:"https://www.ocms.ac.uk",notes:"Postgraduate research in mission and world Christianity.",img:"",ts:1009},
-  {name:"African Theological Seminary",loc:"Nairobi, Kenya",programs:"BTh, MDiv, MTh",email:"info@ats.ac.ke",phone:"+254 20 3870613",url:"https://ats.ac.ke",notes:"Leading evangelical seminary serving sub-Saharan Africa.",img:"",ts:1010},
+  {name:"Dallas Theological Seminary",loc:"Dallas, TX",programs:"ThM, DMin, PhD",email:"theworldprayerline@outlook.com",phone:"(214) 887-5000",url:"https://www.dts.edu",notes:"One of the largest evangelical seminaries. Strong dispensational theology.",img:"",ts:1000},
+  {name:"Southern Baptist Theological Seminary",loc:"Louisville, KY",programs:"MDiv, DMin, PhD",email:"theworldprayerline@outlook.com",phone:"(502) 897-4011",url:"https://www.sbts.edu",notes:"World's largest Southern Baptist seminary.",img:"",ts:1001},
+  {name:"Gordon-Conwell Theological Seminary",loc:"South Hamilton, MA",programs:"MDiv, MA, DMin, PhD",email:"theworldprayerline@outlook.com",phone:"(978) 468-7111",url:"https://www.gordonconwell.edu",notes:"Interdenominational with multiple campus locations.",img:"",ts:1002},
+  {name:"Trinity Evangelical Divinity School",loc:"Deerfield, IL",programs:"MDiv, MA, ThM, PhD",email:"theworldprayerline@outlook.com",phone:"(847) 945-8800",url:"https://teds.edu",notes:"Graduate school of Trinity International University.",img:"",ts:1003},
+  {name:"Fuller Theological Seminary",loc:"Pasadena, CA",programs:"MDiv, MA, DMin, PhD",email:"theworldprayerline@outlook.com",phone:"(626) 584-5200",url:"https://www.fuller.edu",notes:"Largest multidenominational seminary in the world.",img:"",ts:1004},
+  {name:"Asbury Theological Seminary",loc:"Wilmore, KY",programs:"MDiv, MA, DMin, PhD",email:"theworldprayerline@outlook.com",phone:"(800) 2ASBURY",url:"https://asburyseminary.edu",notes:"Wesleyan/Methodist tradition with global mission focus.",img:"",ts:1005},
+  {name:"Regent University School of Divinity",loc:"Virginia Beach, VA",programs:"MDiv, DMin, PhD",email:"theworldprayerline@outlook.com",phone:"(757) 352-4261",url:"https://www.regent.edu",notes:"Charismatic/Pentecostal tradition. Online options available.",img:"",ts:1006},
+  {name:"Liberty University School of Divinity",loc:"Lynchburg, VA",programs:"MDiv, DMin, PhD",email:"theworldprayerline@outlook.com",phone:"(434) 582-2000",url:"https://www.liberty.edu",notes:"Largest Christian university. Extensive online programs.",img:"",ts:1007},
+  {name:"King's College London — Theology",loc:"London, UK",programs:"MA, PhD, MPhil",email:"theworldprayerline@outlook.com",phone:"+44 20 7836 5454",url:"https://www.kcl.ac.uk/theology",notes:"World-renowned research university for theology and religion.",img:"",ts:1008},
+  {name:"Oxford Centre for Mission Studies",loc:"Oxford, UK",programs:"MA, MPhil, PhD",email:"theworldprayerline@outlook.com",phone:"+44 1865 556071",url:"https://www.ocms.ac.uk",notes:"Postgraduate research in mission and world Christianity.",img:"",ts:1009},
+  {name:"African Theological Seminary",loc:"Nairobi, Kenya",programs:"BTh, MDiv, MTh",email:"theworldprayerline@outlook.com",phone:"+254 20 3870613",url:"https://ats.ac.ke",notes:"Leading evangelical seminary serving sub-Saharan Africa.",img:"",ts:1010},
 ];
 
 let allSchools=[];
@@ -215,4 +215,120 @@ function removeSchool(ts){
 }
 init();
 
-</script></body></html>
+</script>
+<section id="gate-direct-contact" class="gate-direct-contact">
+<style>
+.gate-direct-contact {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid rgba(201,168,76,.28);
+  border-radius: 16px;
+  background: rgba(255,255,255,.035);
+  box-shadow: 0 14px 35px rgba(0,0,0,.25);
+}
+.gate-direct-contact h2 {
+  margin: 0 0 .5rem;
+  color: var(--gold, #c9a84c);
+  font-family: Georgia, serif;
+}
+.gate-direct-contact p {
+  color: var(--text2, #b8a88a);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.gate-direct-contact .gate-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .9rem;
+}
+.gate-direct-contact label {
+  display:block;
+  margin: .75rem 0 .35rem;
+  color: var(--text2, #b8a88a);
+  font-size: .92rem;
+}
+.gate-direct-contact input,
+.gate-direct-contact textarea,
+.gate-direct-contact select {
+  width: 100%;
+  padding: .8rem .9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,76,.28);
+  background: rgba(255,255,255,.05);
+  color: var(--text, #e8e0d0);
+  outline: none;
+  font: inherit;
+}
+.gate-direct-contact textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.gate-direct-contact button {
+  margin-top: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: .85rem 1.2rem;
+  background: var(--gold, #c9a84c);
+  color: var(--navy, #0d1b2e);
+  font-weight: 800;
+  cursor: pointer;
+}
+.gate-direct-contact button:hover { filter: brightness(1.08); }
+.gate-direct-contact .gate-note {
+  font-size: .85rem;
+  margin-top: .75rem;
+  color: var(--text2, #b8a88a);
+}
+@media(max-width: 720px) {
+  .gate-direct-contact .gate-form-grid { grid-template-columns: 1fr; }
+  .gate-direct-contact { margin: 1rem; padding: 1rem; }
+}
+</style>
+
+<h2>Contact / Message Form</h2>
+<p>Send your message directly in one click. This form sends to the ministry inbox without opening a pop-up email box.</p>
+
+<form action="https://formsubmit.co/theworldprayerline@outlook.com" method="POST">
+<input type="hidden" name="_subject" value="New GATE Website Message">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="./contact-thank-you.html">
+
+<div class="gate-form-grid">
+<div>
+<label for="gate-name">Full Name</label>
+<input id="gate-name" name="name" type="text" placeholder="Your name" required>
+</div>
+<div>
+<label for="gate-email">Email</label>
+<input id="gate-email" name="email" type="email" placeholder="Your email" required>
+</div>
+</div>
+
+<div class="gate-form-grid">
+<div>
+<label for="gate-phone">Phone</label>
+<input id="gate-phone" name="phone" type="tel" placeholder="Optional phone number">
+</div>
+<div>
+<label for="gate-topic">Message Type</label>
+<select id="gate-topic" name="message_type">
+<option value="General Message">General Message</option>
+<option value="Prayer Request">Prayer Request</option>
+<option value="GATE School Inquiry">GATE School Inquiry</option>
+<option value="Bundle / Payment Question">Bundle / Payment Question</option>
+<option value="Technical Support">Technical Support</option>
+</select>
+</div>
+</div>
+
+<label for="gate-message">Message</label>
+<textarea id="gate-message" name="message" placeholder="Write your message here..." required></textarea>
+
+<button type="submit">Send Message</button>
+<div class="gate-note">Recipient: theworldprayerline@outlook.com</div>
+</form>
+</section>
+
+</body></html>

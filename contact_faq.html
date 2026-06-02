@@ -149,7 +149,7 @@ const DEFAULT_FAQS=[
   {cat:"Account",q:"What do I get with a free account?",a:"A free account gives you access to the 38-question Trial Examination, the secondary navigation resources (Bible, Announcements, Events, etc.), and the ability to purchase exam bundles.",featured:false,ts:105},
   {cat:"Technical",q:"Does the platform require internet?",a:"After opening the HTML files, all 1,500 exam questions and passages are embedded locally. No internet is required to take examinations. However, internet is required to access YouTube streams, podcast embeds, and external links.",featured:false,ts:106},
   {cat:"Payment",q:"How do I pay for the GATE Test ($330 test fee)?",a:"Visit the 'Take The Test' page from the secondary navigation. Select a date and time, fill in the registration form, then pay the $330 test fee via the Stripe link provided. After payment, notify the admin who will confirm your scheduling.",featured:true,ts:107},
-  {cat:"Account",q:"I forgot my password. What do I do?",a:"Click 'Forgot your password?' on the login page, or visit the Contact page. Enter your registered email to send a password reset request to the GATE admin at yodebepro@gmail.com. The admin will verify your identity and assist you within 24–48 hours.",featured:false,ts:108},
+  {cat:"Account",q:"I forgot my password. What do I do?",a:"Click 'Forgot your password?' on the login page, or visit the Contact page. Enter your registered email to send a password reset request to the GATE admin at theworldprayerline@outlook.com. The admin will verify your identity and assist you within 24–48 hours.",featured:false,ts:108},
   {cat:"Technical",q:"How do I access my examination results and certificates?",a:"Go to Account → My Progress for score history, or Account → My Certificates to view and print your earned certificates for passed examinations.",featured:false,ts:109},
 ];
 
@@ -212,4 +212,120 @@ function removeFaq(ts){
 }
 init();
 
-</script></body></html>
+</script>
+<section id="gate-direct-contact" class="gate-direct-contact">
+<style>
+.gate-direct-contact {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid rgba(201,168,76,.28);
+  border-radius: 16px;
+  background: rgba(255,255,255,.035);
+  box-shadow: 0 14px 35px rgba(0,0,0,.25);
+}
+.gate-direct-contact h2 {
+  margin: 0 0 .5rem;
+  color: var(--gold, #c9a84c);
+  font-family: Georgia, serif;
+}
+.gate-direct-contact p {
+  color: var(--text2, #b8a88a);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+.gate-direct-contact .gate-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .9rem;
+}
+.gate-direct-contact label {
+  display:block;
+  margin: .75rem 0 .35rem;
+  color: var(--text2, #b8a88a);
+  font-size: .92rem;
+}
+.gate-direct-contact input,
+.gate-direct-contact textarea,
+.gate-direct-contact select {
+  width: 100%;
+  padding: .8rem .9rem;
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,76,.28);
+  background: rgba(255,255,255,.05);
+  color: var(--text, #e8e0d0);
+  outline: none;
+  font: inherit;
+}
+.gate-direct-contact textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.gate-direct-contact button {
+  margin-top: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: .85rem 1.2rem;
+  background: var(--gold, #c9a84c);
+  color: var(--navy, #0d1b2e);
+  font-weight: 800;
+  cursor: pointer;
+}
+.gate-direct-contact button:hover { filter: brightness(1.08); }
+.gate-direct-contact .gate-note {
+  font-size: .85rem;
+  margin-top: .75rem;
+  color: var(--text2, #b8a88a);
+}
+@media(max-width: 720px) {
+  .gate-direct-contact .gate-form-grid { grid-template-columns: 1fr; }
+  .gate-direct-contact { margin: 1rem; padding: 1rem; }
+}
+</style>
+
+<h2>Contact / Message Form</h2>
+<p>Send your message directly in one click. This form sends to the ministry inbox without opening a pop-up email box.</p>
+
+<form action="https://formsubmit.co/theworldprayerline@outlook.com" method="POST">
+<input type="hidden" name="_subject" value="New GATE Website Message">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="./contact-thank-you.html">
+
+<div class="gate-form-grid">
+<div>
+<label for="gate-name">Full Name</label>
+<input id="gate-name" name="name" type="text" placeholder="Your name" required>
+</div>
+<div>
+<label for="gate-email">Email</label>
+<input id="gate-email" name="email" type="email" placeholder="Your email" required>
+</div>
+</div>
+
+<div class="gate-form-grid">
+<div>
+<label for="gate-phone">Phone</label>
+<input id="gate-phone" name="phone" type="tel" placeholder="Optional phone number">
+</div>
+<div>
+<label for="gate-topic">Message Type</label>
+<select id="gate-topic" name="message_type">
+<option value="General Message">General Message</option>
+<option value="Prayer Request">Prayer Request</option>
+<option value="GATE School Inquiry">GATE School Inquiry</option>
+<option value="Bundle / Payment Question">Bundle / Payment Question</option>
+<option value="Technical Support">Technical Support</option>
+</select>
+</div>
+</div>
+
+<label for="gate-message">Message</label>
+<textarea id="gate-message" name="message" placeholder="Write your message here..." required></textarea>
+
+<button type="submit">Send Message</button>
+<div class="gate-note">Recipient: theworldprayerline@outlook.com</div>
+</form>
+</section>
+
+</body></html>

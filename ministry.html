@@ -326,7 +326,7 @@ td{padding:.65rem .9rem;border-bottom:1px solid rgba(255,255,255,.05);font-size:
         <div class="form-group"><label>Location / Region</label><input type="text" id="addLoc" placeholder="City, State, Country"></div>
         <div class="form-group"><label>Website (optional)</label><input type="url" id="addUrl" placeholder="https://..."></div>
       </div>
-      <div class="form-group"><label>Contact Email (optional)</label><input type="email" id="addEmail" placeholder="contact@ministry.org"></div>
+      <div class="form-group"><label>Contact Email (optional)</label><input type="email" id="addEmail" placeholder="theworldprayerline@outlook.com"></div>
       <button class="btn btn-primary" onclick="addMinistry()">📢 POST</button>
       <div id="ministryMsg" style="margin-top:.5rem;font-size:.85rem;"></div>
     </div>
@@ -488,7 +488,7 @@ init();
     const pw=prompt('🔐 Admin Password:');
     if(pw===ADMIN_PASS){
       const s=gl(GATE_KEY)||{user:null,tier:null};
-      if(!s.user)s.user={name:'Administrator',email:'admin@gate.edu',enrolled:Date.now(),verified:true};
+      if(!s.user)s.user={name:'Administrator',email:'theworldprayerline@outlook.com',enrolled:Date.now(),verified:true};
       s.tier='admin';
       gs(GATE_KEY,s);
       gAdminShow();
